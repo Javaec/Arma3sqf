@@ -1,0 +1,261 @@
+/*%FSM<COMPILE "C:\bis\fsmeditor\scriptedFSM.cfg, Progress">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,100.000000,100.000000,200.000000,150.000000,0.000000,"Init"};
+item1[] = {"AI__controlled",4,218,100.000000,175.000000,200.000000,225.000000,1.000000,"AI-" \n "controlled"};
+item2[] = {"__re_calculate_w",2,4346,100.000000,250.000000,200.000000,300.000000,0.000000,"(re)calculate" \n "waypoints"};
+item3[] = {"new_task_s_",4,218,25.000000,325.000000,125.000000,375.000000,0.000000,"new task(s)"};
+item4[] = {"player__controll",4,218,225.000000,250.000000,325.000000,300.000000,1.000000,"player-" \n "controlled"};
+item5[] = {"get_rid_of_waypo",2,250,225.000000,175.000000,325.000000,225.000000,0.000000,"get rid of" \n "waypoints"};
+item6[] = {"task_dest__chang",4,218,175.000000,325.000000,275.000000,375.000000,0.000000,"task dest." \n "changed"};
+item7[] = {"died",4,218,225.000000,100.000000,325.000000,150.000000,2.000000,"died"};
+item8[] = {"terminate",1,250,350.000000,100.000000,450.000000,150.000000,0.000000,"terminate"};
+link0[] = {0,1};
+link1[] = {0,7};
+link2[] = {1,2};
+link3[] = {2,3};
+link4[] = {2,4};
+link5[] = {2,6};
+link6[] = {2,7};
+link7[] = {3,2};
+link8[] = {4,5};
+link9[] = {5,1};
+link10[] = {5,7};
+link11[] = {6,2};
+link12[] = {7,8};
+globals[] = {25.000000,1,0,0,0,640,480,1,244,6316128,1,-45.428818,490.884949,592.313782,-80.338120,712,893,1};
+window[] = {2,-1,-1,-1,-1,962,92,1289,92,3,730};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Progress";
+  class States
+  {
+    /*%FSM<STATE "Init">*/
+    class Init
+    {
+      name = "Init";
+      itemno = 0;
+      init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+       "_theOne =_this;" \n
+       "" \n
+       "textLogFormat [""[AI tasks] :: Starting for %1"", _theOne];" \n
+       "" \n
+       "//procedure for sorting the tasks based on their distance to the owner's last expected position" \n
+       "_sortSamePrios = {" \n
+       "	_pool = _this select 0;" \n
+       "	_prioSortedPool = _this select 1;" \n
+       "	_ret = [];" \n
+       "	while {(count _pool) > 0} do {" \n
+       "		_which = _pool select 0;" \n
+       "		_sourcePos = position _theOne;" \n
+       "		if (count _prioSortedPool > 0) then {_sourcePos = taskDestination (BIS_missionScope getVariable (_prioSortedPool select ((count  _prioSortedPool) - 1)))};" \n
+       "		{if ((taskDestination (BIS_missionScope getVariable _which)) distance _sourcePos > (taskDestination (BIS_missionScope getVariable _x)) distance _sourcePos) then {_which = _x}} forEach _pool;" \n
+       "		_ret = _ret + [_which];" \n
+       "		_pool = _pool - [_which]" \n
+       "	};" \n
+       "	_ret" \n
+       "}"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "died">*/
+        class died
+        {
+          itemno = 7;
+          priority = 2.000000;
+          to="terminate";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(alive _this)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "AI__controlled">*/
+        class AI__controlled
+        {
+          itemno = 1;
+          priority = 1.000000;
+          to="__re_calculate_w";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(isPlayer _this)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "__re_calculate_w">*/
+    class __re_calculate_w
+    {
+      name = "__re_calculate_w";
+      itemno = 2;
+      init = /*%FSM<STATEINIT""">*/"BIS_missionScope setVariable [""BIS_AITasks_recalcWPs"", FALSE];" \n
+       "" \n
+       "textLogFormat [""[AI tasks] :: Recalculating waypoints for %1"", _this];" \n
+       "" \n
+       "_lastTasksCnt = count simpleTasks _this;" \n
+       "" \n
+       "//get rid of old waypoints chain" \n
+       "while {count waypoints _this > 0} do {" \n
+       "	{deleteWaypoint _x} foreach waypoints _this" \n
+       "};" \n
+       "" \n
+       "_this move position _this;" \n
+       "" \n
+       "_prioSortedPool = [];			//pool of task id's sorted by priority and distance" \n
+       "_samePrioPool = [];			//pool of task id's with the same priority" \n
+       "_remainingPriorities = [];" \n
+       "_prioLadderCreated = [];		//pool of task id's and their priorities (created tasks with specified destination only)" \n
+       "" \n
+       "_posInList = (units group _this) find _this;" \n
+       "" \n
+       "//fill the _prioLadderCreated" \n
+       "{" \n
+       "	if (!(isNil {BIS_missionScope getVariable (_x select 0)})) then {" \n
+       "		if (((BIS_missionScope getVariable (((_x select 0) + ""TaskArray"")) select _posInList)) in simpleTasks _this && !(taskCompleted ((BIS_missionScope getVariable (((_x select 0) + ""TaskArray"")) select _posInList))) && !(isNil {taskDestination ((BIS_missionScope getVariable (((_x select 0) + ""TaskArray"")) select _posInList))})) then {_prioLadderCreated = _prioLadderCreated + [_x]}" \n
+       "	}" \n
+       "} forEach (_this getVariable ""BIS_tasksPriorityLadder"");" \n
+       "" \n
+       "//fill the _remainingPriorities" \n
+       "{" \n
+       "	if (!(taskCompleted ((BIS_missionScope getVariable (((_x select 0) + ""TaskArray"")) select _posInList)))) then {_remainingPriorities = _remainingPriorities + [_x select 1]}" \n
+       "} forEach _prioLadderCreated;" \n
+       "" \n
+       "//sort out the tasks, fill the _prioSortedPool" \n
+       "while {(count _remainingPriorities) > 0} do {" \n
+       "	_topPrio = (_remainingPriorities call BIS_fnc_lowestNum);" \n
+       "	_samePrioPool = [];" \n
+       "	{" \n
+       "		if ((_x select 1) == _topPrio) then {" \n
+       "			_samePrioPool = (_samePrioPool + [_x select 0]);" \n
+       "		}" \n
+       "	} forEach _prioLadderCreated;" \n
+       "	_prioSortedPool = _prioSortedPool + ([_samePrioPool, _prioSortedPool] call _sortSamePrios);" \n
+       "	_remainingPriorities = (_remainingPriorities - [_topPrio])" \n
+       "};" \n
+       "" \n
+       "//create the waypoints in order based on _prioSortedPool (one of them executes the given code, the other waits unitl the task is completed" \n
+       "{" \n
+       "	_wp1 = group _this addWaypoint [taskDestination (BIS_missionScope getVariable _x), 0];" \n
+       "	_wpCode = """";" \n
+       "	if (!(isNil {BIS_missionScope getVariable (format [""%1AIWPCode"", _x])})) then {_wpCode = (BIS_missionScope getVariable (format [""%1AIWPCode"", _x]))};" \n
+       "	_wp1 setWaypointStatements [""TRUE"", _wpCode];" \n
+       "	_wp2 = group _this addWaypoint [taskDestination (BIS_missionScope getVariable _x), 0];" \n
+       "	_wpType = ""MOVE"";" \n
+       "	if (!(isNil {BIS_missionScope getVariable (format [""%1AIWPType"", _x])})) then {_wpType = (BIS_missionScope getVariable (format [""%1AIWPType"", _x]))};" \n
+       "	_wp2 setWaypointType _wpType;" \n
+       "	_wp2 setWaypointStatements [format [""taskCompleted (BIS_missionScope getVariable """"%1"""")"", _x], """"];" \n
+       "} forEach _prioSortedPool;" \n
+       "" \n
+       "textLogFormat [""[AI tasks] :: Recalculated %1 waypoints for %2"", count _prioSortedPool, _this];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "died">*/
+        class died
+        {
+          itemno = 7;
+          priority = 2.000000;
+          to="terminate";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(alive _this)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "player__controll">*/
+        class player__controll
+        {
+          itemno = 4;
+          priority = 1.000000;
+          to="get_rid_of_waypo";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isPlayer _this"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "task_dest__chang">*/
+        class task_dest__chang
+        {
+          itemno = 6;
+          priority = 0.000000;
+          to="__re_calculate_w";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_missionScope getVariable ""BIS_AITasks_recalcWPs""" \n
+           "" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "new_task_s_">*/
+        class new_task_s_
+        {
+          itemno = 3;
+          priority = 0.000000;
+          to="__re_calculate_w";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(count simpleTasks _this) > _lastTasksCnt"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "get_rid_of_waypo">*/
+    class get_rid_of_waypo
+    {
+      name = "get_rid_of_waypo";
+      itemno = 5;
+      init = /*%FSM<STATEINIT""">*/"//get rid of old waypoints chain" \n
+       "while {count waypoints _this > 0} do {" \n
+       "	{deleteWaypoint _x} foreach waypoints _this" \n
+       "};" \n
+       "" \n
+       "debuglog ""[AI tasks] :: Deleting waypoints"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "died">*/
+        class died
+        {
+          itemno = 7;
+          priority = 2.000000;
+          to="terminate";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(alive _this)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "AI__controlled">*/
+        class AI__controlled
+        {
+          itemno = 1;
+          priority = 1.000000;
+          to="__re_calculate_w";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(isPlayer _this)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "terminate">*/
+    class terminate
+    {
+      name = "terminate";
+      itemno = 8;
+      init = /*%FSM<STATEINIT""">*/"// TASK HANDLER FSM TAKES CARE OF RE-ENABLING"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Init";
+  finalStates[] =
+  {
+    "terminate",
+  };
+};
+/*%FSM</COMPILE>*/

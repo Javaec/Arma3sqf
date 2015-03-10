@@ -1,0 +1,832 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Firing Drill - CP In">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"CP_In",0,250,-450.000000,-410.000000,-350.000000,-360.000000,0.000000,"CP In"};
+item1[] = {"Normal_CP",2,250,-450.000000,-80.000000,-340.000000,-30.000000,0.000000,"Normal CP"};
+item2[] = {"Finish",1,250,-190.000000,-80.000000,-100.000000,-30.000000,0.000000,"Finish"};
+item3[] = {"Always",8,218,-440.000000,290.000000,-350.000000,340.000000,0.000000,"Always"};
+item4[] = {"Always",8,218,-440.000000,430.000000,-350.000000,480.000000,0.000000,"Always"};
+item5[] = {"Targets",2,4346,-450.000000,70.000000,-340.000000,120.000000,0.000000,"Targets"};
+item6[] = {"End",1,250,-460.000000,800.000000,-370.000000,850.000000,0.000000,"End"};
+item7[] = {"Finish",4,218,-190.000000,-170.000000,-100.000000,-120.000000,2.000000,"Finish"};
+item8[] = {"Normal_CP",8,218,-440.000000,-170.000000,-350.000000,-120.000000,0.000000,"Normal CP"};
+item9[] = {"Start",4,218,-50.000000,-170.000000,40.000000,-120.000000,1.000000,"Start"};
+item10[] = {"Start",1,250,-50.000000,-80.000000,40.000000,-30.000000,0.000000,"Start"};
+item11[] = {"Otherwise",8,218,-440.000000,0.000000,-350.000000,50.000000,0.000000,"Otherwise"};
+item12[] = {"Info_message",2,250,-450.000000,360.000000,-340.000000,410.000000,0.000000,"Info message"};
+item13[] = {"Always",8,218,-440.000000,140.000000,-350.000000,190.000000,0.000000,"Always"};
+item14[] = {"Next_CP_switch",2,250,-450.000000,210.000000,-340.000000,260.000000,0.000000,"Next CP switch"};
+item15[] = {"Cleared",4,218,-700.000000,0.000000,-610.000000,50.000000,1.000000,"Cleared"};
+item16[] = {"Cannot_be_active",4,218,-590.000000,-330.000000,-480.000000,-280.000000,1.000000,"Cannot be active"};
+item17[] = {"CP_entered",2,250,-440.000000,-250.000000,-350.000000,-200.000000,0.000000,"CP entered"};
+item18[] = {"End_1",1,250,-710.000000,-330.000000,-620.000000,-280.000000,0.000000,"End"};
+item19[] = {"Otherwise",8,218,-440.000000,-330.000000,-350.000000,-280.000000,0.000000,"Otherwise"};
+item20[] = {"Always",8,218,-450.000000,570.000000,-360.000000,620.000000,0.000000,"Always"};
+item21[] = {"PiP_feedback",2,250,-460.000000,500.000000,-350.000000,550.000000,0.000000,"PiP feedback"};
+item22[] = {"Markers",2,250,-460.000000,650.000000,-350.000000,700.000000,0.000000,"Markers"};
+item23[] = {"Always",8,218,-450.000000,710.000000,-360.000000,760.000000,0.000000,"Always"};
+link0[] = {0,16};
+link1[] = {0,19};
+link2[] = {1,11};
+link3[] = {1,15};
+link4[] = {3,12};
+link5[] = {4,21};
+link6[] = {5,13};
+link7[] = {7,2};
+link8[] = {8,1};
+link9[] = {9,10};
+link10[] = {11,5};
+link11[] = {12,4};
+link12[] = {13,14};
+link13[] = {14,3};
+link14[] = {15,6};
+link15[] = {16,18};
+link16[] = {17,7};
+link17[] = {17,8};
+link18[] = {17,9};
+link19[] = {19,17};
+link20[] = {20,22};
+link21[] = {21,20};
+link22[] = {22,23};
+link23[] = {23,6};
+globals[] = {10.000000,1,0,0,0,640,480,1,222,6316128,1,-869.021606,-34.342621,663.361877,-271.007385,921,1031,1};
+window[] = {2,-1,-1,-32000,-32000,792,25,1239,25,3,939};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Firing Drill - CP In";
+        class States
+        {
+                /*%FSM<STATE "CP_In">*/
+                class CP_In
+                {
+                        name = "CP_In";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private [""_cp""];" \n
+                         "_cp = _this getVariable ""CP"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Cannot_be_active">*/
+                                class Cannot_be_active
+                                {
+                                        itemno = 16;
+                                        priority = 1.000000;
+                                        to="End_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"private [""_cannotActivate""];" \n
+                                         "_cannotActivate = true;" \n
+                                         "switch (BIS_FD_rule1) do  " \n
+                                         "{" \n
+                                         "	case 0: {_cannotActivate = false;}; //CPs off" \n
+                                         "	case 1: " \n
+                                         "	{" \n
+                                         "		//CPs Normal - this CP must have been activated or be the next one" \n
+                                         "		_cannotActivate = (_cp > BIS_FD_nextCP);" \n
+                                         "	};" \n
+                                         "	case 2: " \n
+                                         "	{" \n
+                                         "		//CPs Strict - this CP must be the active one" \n
+                                         "		_cannotActivate = !(_cp in [BIS_FD_activeCP, BIS_FD_nextCP]);" \n
+                                         "	};" \n
+                                         "};" \n
+                                         "" \n
+                                         "_cannotActivate || BIS_FD_ended"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Otherwise">*/
+                                class Otherwise
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="CP_entered";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Normal_CP">*/
+                class Normal_CP
+                {
+                        name = "Normal_CP";
+                        itemno = 1;
+                        init = /*%FSM<STATEINIT""">*/"private [""_targets""];" \n
+                         "_targets = _this getVariable ""targets"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Cleared">*/
+                                class Cleared
+                                {
+                                        itemno = 15;
+                                        priority = 1.000000;
+                                        to="End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_this getVariable [""clear"", false]"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Otherwise">*/
+                                class Otherwise
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="Targets";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Finish">*/
+                class Finish
+                {
+                        name = "Finish";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"_this setVariable [""clear"", true];" \n
+                         "_this setVariable [""activated"", true];" \n
+                         "" \n
+                         "(_this getVariable ""marker"") setMarkerType ""mil_objective"";" \n
+                         "" \n
+                         "//When CPs are not Off, the finish is obviously last" \n
+                         "if (BIS_FD_rule1 != 0) then " \n
+                         "{" \n
+                         "	BIS_FD_ended = true;" \n
+                         "} " \n
+                         "else " \n
+                         "{" \n
+                         "	//Show remaining targets" \n
+                         "	RscFiringDrillCheckpoint_targetTextCurrent = str BIS_FD_targetsRemaining;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Targets">*/
+                class Targets
+                {
+                        name = "Targets";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"scopeName ""root"";" \n
+                         "" \n
+                         "BIS_FD_hasReset = {BIS_FD_reset || BIS_FD_ended || BIS_FD_ending};" \n
+                         "" \n
+                         "//Pop-up all targets for this CP" \n
+                         "{" \n
+                         "	if (!((_x getVariable [""state"", -1]) in [2, 3, 4])) then " \n
+                         "	{		" \n
+                         "		//Set target inactive" \n
+                         "		if (_x getVariable [""triggerActive"", false]) then //Only if this target was selected " \n
+                         "		{" \n
+                         "			_x setVariable [""state"", 1];" \n
+                         "			" \n
+                         "			_x spawn " \n
+                         "			{" \n
+                         "				private [""_noShoot"", ""_optional"", ""_marker""];" \n
+                         "				_noShoot = _this getVariable [""noShoot"", 0];" \n
+                         "				_optional = _this getVariable [""optional"", 0];" \n
+                         "				_marker = _this getVariable [""marker"", """"];" \n
+                         "" \n
+                         "				private [""_triggers""];" \n
+                         "				_triggers = _this getVariable [""triggers"", []];" \n
+                         "				if ((count _triggers) > 0) then " \n
+                         "				{" \n
+                         "					waitUntil " \n
+                         "					{" \n
+                         "						(({" \n
+                         "							((_x getVariable [""state"", -1]) == 3) " \n
+                         "							|| " \n
+                         "							(((_x getVariable [""state"", -1]) == 4) && (_optional != 1)) " \n
+                         "							|| " \n
+                         "							!(_x getVariable [""spawned"", false]) " \n
+                         "						} count _triggers) == (count _triggers))" \n
+                         "						|| " \n
+                         "						(call BIS_FD_hasReset)" \n
+                         "					};" \n
+                         "				};" \n
+                         "				if (call BIS_FD_hasReset) exitWith {};" \n
+                         "" \n
+                         "				private [""_timeNow"", ""_triggerTime""];" \n
+                         "				_timeNow = time;" \n
+                         "				_triggerTime = (_this getVariable [""triggerTime"", 0]) + (random 0.2); //To avoid all targets triggering instantly" \n
+                         "				waitUntil {((time - _timeNow) > _triggerTime) || (call BIS_FD_hasReset)};" \n
+                         "				if (call BIS_FD_hasReset) exitWith {};" \n
+                         "				" \n
+                         "				private [""_onActivate""];" \n
+                         "				_onActivate = _this getVariable [""onActivate"", """"];" \n
+                         "				if (_onActivate != """") then {private [""_handle""]; _handle = [_this] execVM _onActivate;};" \n
+                         "" \n
+                         "				[_marker, 0.8] spawn BIS_fnc_moduleFDFadeMarker;" \n
+                         "" \n
+                         "				_this setVariable [""state"", 2];" \n
+                         "				" \n
+                         "				if ((count (_this getVariable [""positionsMove"", []])) > 0) then " \n
+                         "				{" \n
+                         "					_this spawn " \n
+                         "					{" \n
+                         "						private [""_positionsMove"", ""_timesMove"", ""_marker""];" \n
+                         "						_positionsMove = _this getVariable [""positionsMove"", []];" \n
+                         "						_timesMove = _this getVariable [""timesMove"", []];" \n
+                         "						_marker = _this getVariable [""marker"", """"];" \n
+                         "						" \n
+                         "						if ((count _timesMove) != (count _positionsMove)) then " \n
+                         "						{" \n
+                         "							{" \n
+                         "								if ((count _timesMove) < (_forEachIndex + 1)) then " \n
+                         "								{" \n
+                         "									_timesMove set [_forEachIndex, 4];" \n
+                         "								};" \n
+                         "							} forEach _positionsMove;" \n
+                         "						};" \n
+                         "						" \n
+                         "						{" \n
+                         "							private [""_ASL"", ""_pos"", ""_posMove"", ""_moveTime""];" \n
+                         "							_ASL = _this getVariable [""BIS_DynO_ASL"", false];" \n
+                         "							if (!_ASL) then {_pos = position _this;} else {_pos = getPosASL _this;};" \n
+                         "							_posMove = _x;" \n
+                         "							_moveTime = _timesMove select _forEachIndex;" \n
+                         "" \n
+                         "							private [""_timeStart""];" \n
+                         "							_timeStart = time;" \n
+                         "							" \n
+                         "							while {(time - _timeStart) <= _moveTime} do " \n
+                         "							{" \n
+                         "								private [""_x"", ""_y"", ""_z""];" \n
+                         "								_x = linearConversion [_timeStart, _timeStart + _moveTime, time, _pos select 0, _posMove select 0];" \n
+                         "								_y = linearConversion [_timeStart, _timeStart + _moveTime, time, _pos select 1, _posMove select 1];" \n
+                         "								_z = linearConversion [_timeStart, _timeStart + _moveTime, time, _pos select 2, _posMove select 2];" \n
+                         "								if (!_ASL) then " \n
+                         "								{" \n
+                         "									_this setPos [_x, _y, _z];" \n
+                         "								} " \n
+                         "								else " \n
+                         "								{" \n
+                         "									_this setPosASL [_x, _y, _z];" \n
+                         "								};" \n
+                         "								_marker setMarkerPos [_x, _y, _z];" \n
+                         "								" \n
+                         "								sleep 0.01;" \n
+                         "								if ((call BIS_FD_hasReset) || ((_this getVariable [""state"", -1]) == 3)) exitWith {};" \n
+                         "							};" \n
+                         "						} forEach _positionsMove;" \n
+                         "					};" \n
+                         "				};" \n
+                         "				" \n
+                         "				private [""_upTime""];" \n
+                         "				_upTime = _this getVariable [""upTime"", -1];" \n
+                         "				if (_upTime != -1) then " \n
+                         "				{" \n
+                         "					private [""_timeUp""];" \n
+                         "					_timeUp = time;" \n
+                         "					waitUntil {((time - _timeUp) > _upTime) || (call BIS_FD_hasReset)};" \n
+                         "					if (call BIS_FD_hasReset) exitWith {};" \n
+                         "					" \n
+                         "					if ((_this getVariable [""state"", -1]) != 3) then " \n
+                         "					{" \n
+                         "						private [""_onDeactivate""];" \n
+                         "						_onDeactivate = _this getVariable [""onDeactivate"", """"];" \n
+                         "						if (_onDeactivate != """") then " \n
+                         "						{" \n
+                         "							private [""_handle""]; _handle = [_this] execVM _onDeactivate;" \n
+                         "						} " \n
+                         "						else " \n
+                         "						{" \n
+                         "							//Use onHit in case there is no onDeactivate" \n
+                         "							private [""_onHit""];" \n
+                         "							_onHit = _this getVariable [""onHit"", """"];" \n
+                         "							if (_onHit != """") then {private [""_handle""]; _handle = [_this, [0, 0, 0]] execVM _onHit;};" \n
+                         "						};" \n
+                         "					" \n
+                         "						_this setVariable [""state"", 4];" \n
+                         "" \n
+                         "						_marker setMarkerType ""waypoint"";" \n
+                         "						_marker setMarkerSize [0.6, 0.6];" \n
+                         "" \n
+                         "						_this call BIS_fnc_moduleFDCPClear;" \n
+                         "" \n
+                         "						//Missing no-shoots is obviously good" \n
+                         "						//Missing optional targets is no problem" \n
+                         "						if (((_this getVariable [""noShoot"", 0]) != 1) && ((_this getVariable [""optional"", 0]) != 1)) then " \n
+                         "						{" \n
+                         "							BIS_FD_penalties set [count BIS_FD_penalties, 4];" \n
+                         "" \n
+                         "							[""Negative"", ""Firing_Drills"", [[[""ROF"", 4], [""ROF"", 5], [""ROF"", 6]] call BIS_fnc_selectRandom, true], ""SIDE""] spawn BIS_fnc_kbTell;" \n
+                         "						};" \n
+                         "					};" \n
+                         "				};" \n
+                         "				" \n
+                         "				if (call BIS_FD_hasReset) exitWith {};" \n
+                         "			};" \n
+                         "		};" \n
+                         "	};" \n
+                         "} forEach _targets;" \n
+                         "" \n
+                         "if ((({((_x getVariable [""noShoot"", 0]) == 0) || ((_x getVariable [""optional"", 0]) == 0)} count _targets) == 0) && !(call BIS_FD_hasReset)) then " \n
+                         "{" \n
+                         "	//TODO: Make function - merge in Hit EH?" \n
+                         "	[] spawn " \n
+                         "	{" \n
+                         "		RscFiringDrillCheckpoint_targetTextCurrent = str BIS_FD_activeTargets;" \n
+                         "		sleep 0.2;" \n
+                         "		waitUntil {(time - BIS_FD_CPIn) > 1};" \n
+                         "		RscFiringDrillCheckpoint_done = true;" \n
+                         "	};" \n
+                         "" \n
+                         "	_this setVariable [""clear"", true];" \n
+                         "" \n
+                         "	[""CheckPoints"", ""Firing_Drills"", [[[""ROF"", 14], [""ROF"", 15], [""ROF"", 16], [""ROF"", 17], [""ROF"", 18]] call BIS_fnc_selectRandom, true], ""SIDE""] spawn BIS_fnc_kbTell;" \n
+                         "" \n
+                         "	playSound ""FD_CP_Clear_F"";" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Always">*/
+                                class Always
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="Next_CP_switch";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End">*/
+                class End
+                {
+                        name = "End";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"BIS_FD_atStart = true;" \n
+                         "" \n
+                         "_this setVariable [""clear"", true];" \n
+                         "_this setVariable [""activated"", true];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Info_message">*/
+                class Info_message
+                {
+                        name = "Info_message";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"hintSilent """";" \n
+                         "" \n
+                         "if (BIS_FD_rule1 != 0) then " \n
+                         "{" \n
+                         "	private [""_textCP"", ""_textTargetActive"", ""_activeTargets"", ""_textBonusesActive"", ""_activeBonuses"", ""_iconWeapon"", ""_iconStance""];" \n
+                         "	_textCP = str (_cp - 1);" \n
+                         "" \n
+                         "	_iconWeapon = """";" \n
+                         "	_iconStance = """";" \n
+                         "	_textTargetActive = ""0"";" \n
+                         "	_textBonusesActive = """";" \n
+                         "	" \n
+                         "	_activeTargets = {((_x getVariable [""state"", -1]) in [1, 2]) && ((_x getVariable [""noShoot"", 0]) == 0) && ((_x getVariable [""optional"", 0]) == 0)} count _targets;" \n
+                         "	_activeBonuses = {((_x getVariable [""state"", -1]) in [1, 2]) && ((_x getVariable [""optional"", 0]) == 1)} count _targets;" \n
+                         "	BIS_FD_activeTargets = _activeTargets;" \n
+                         "	BIS_FD_targetsRemainingCP = _activeTargets;" \n
+                         "	if (_activeTargets != 0) then " \n
+                         "	{" \n
+                         "		_textTargetActive = str _activeTargets;" \n
+                         "		if (_activeBonuses > 0) then " \n
+                         "		{" \n
+                         "			_textBonusesActive = str _activeBonuses;" \n
+                         "		};" \n
+                         "	};" \n
+                         "" \n
+                         "	if (BIS_FD_rule3 != 0) then " \n
+                         "	{" \n
+                         "		private [""_cpWeapons"", ""_cpWeaponNames"", ""_cpWeaponIcons""];" \n
+                         "		_cpWeapons = BIS_FD_activeCPObj getVariable [""weapons"", []];" \n
+                         "		_cpWeaponNames = BIS_FD_activeCPObj getVariable [""weaponNames"", []];" \n
+                         "		_cpWeaponIcons = BIS_FD_activeCPObj getVariable [""weaponIcons"", []];" \n
+                         "" \n
+                         "		if ((count _cpWeaponNames) > 0) then " \n
+                         "		{	" \n
+                         "			{" \n
+                         "				if (_forEachIndex == 0) then " \n
+                         "				{" \n
+                         "					if ((currentWeapon BIS_FD_competitor) != (_cpWeapons select _forEachIndex)) then " \n
+                         "					{" \n
+                         "						[""CheckPoints"", ""Firing_Drills"", [[""ROF"", 13], true], ""SIDE""] spawn BIS_fnc_kbTell;" \n
+                         "					};" \n
+                         "				};" \n
+                         "			} forEach _cpWeaponNames;" \n
+                         "" \n
+                         "			_iconWeapon = _cpWeaponIcons select 0;" \n
+                         "		};" \n
+                         "	};" \n
+                         "" \n
+                         "	if (BIS_FD_rule5 != 0) then " \n
+                         "	{" \n
+                         "		private [""_cpStances""];" \n
+                         "		_cpStances = BIS_FD_activeCPObj getVariable [""stances"", []];" \n
+                         "" \n
+                         "		if ((count _cpStances) > 0) then " \n
+                         "		{	" \n
+                         "			{" \n
+                         "				if (_forEachIndex == 0) then " \n
+                         "				{" \n
+                         "					private [""_stance""];" \n
+                         "					_stance = stance BIS_FD_competitor;" \n
+                         "					if (_x != _stance) then " \n
+                         "					{" \n
+                         "						private [""_sentenceID""];" \n
+                         "						switch (toUpper _x) do " \n
+                         "						{" \n
+                         "							case ""PRONE"": {_sentenceID = 7;};" \n
+                         "							case ""CROUCH"": {_sentenceID = 8;};" \n
+                         "							case ""STAND"": {_sentenceID = 9;};" \n
+                         "						};" \n
+                         "						if ((random 1) > 0.85) then {_sentenceID = 10;};" \n
+                         "						" \n
+                         "						[""CheckPoints"", ""Firing_Drills"", [[""ROF"", _sentenceID], true], ""SIDE""] spawn BIS_fnc_kbTell;" \n
+                         "					};" \n
+                         "				};" \n
+                         "			} forEach _cpStances;" \n
+                         "" \n
+                         "			switch (toUpper (_cpStances select 0)) do " \n
+                         "			{" \n
+                         "				case ""PRONE"": {_iconStance = ""A3\Ui_f\data\IGUI\RscIngameUI\RscUnitInfo\SI_prone_ca"";};" \n
+                         "				case ""CROUCH"": {_iconStance = ""A3\Ui_f\data\IGUI\RscIngameUI\RscUnitInfo\SI_crouch_ca"";};" \n
+                         "				case ""STAND"": {_iconStance = ""A3\Ui_f\data\IGUI\RscIngameUI\RscUnitInfo\SI_stand_ca"";};" \n
+                         "			};			" \n
+                         "		};" \n
+                         "	};" \n
+                         "" \n
+                         "	RscFiringDrillCheckpoint_checkpointPicture = ""A3\Modules_F_Beta\data\FiringDrills\checkpoint_ca"";" \n
+                         "	RscFiringDrillCheckpoint_checkpointText = _textCP;" \n
+                         "	RscFiringDrillCheckpoint_checkpointTextColor = BIS_FD_color;" \n
+                         "	RscFiringDrillCheckpoint_targetPicture = ""A3\Modules_F_Beta\data\FiringDrills\target_ca"";" \n
+                         "	RscFiringDrillCheckpoint_targetTextCurrent = _textTargetActive;" \n
+                         "	RscFiringDrillCheckpoint_targetTextTotal = _textBonusesActive;" \n
+                         "	RscFiringDrillCheckpoint_targetTextTotalColor = BIS_FD_color;" \n
+                         "	RscFiringDrillCheckpoint_stancePicture = if(_iconStance != """") then {_iconStance} else {nil};" \n
+                         "	RscFiringDrillCheckpoint_weaponPicture = if(_iconWeapon != """") then {_iconWeapon} else {nil};" \n
+                         "	RscFiringDrillCheckpoint_done = false;" \n
+                         "	(""BIS_FD_IGUI_CP"" call BIS_fnc_rscLayer) cutrsc [""RscFiringDrillCheckpoint"",""plain""];" \n
+                         "	BIS_FD_CPIn = time;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Always">*/
+                                class Always
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="PiP_feedback";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Next_CP_switch">*/
+                class Next_CP_switch
+                {
+                        name = "Next_CP_switch";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"if ((BIS_FD_rule1 != 0) && !(_this getVariable [""activated"", false])) then " \n
+                         "{" \n
+                         "	_this spawn " \n
+                         "	{" \n
+                         "		if (BIS_FD_rule1 == 2) then " \n
+                         "		{" \n
+                         "			waitUntil {(({((_x getVariable [""state"", -1]) in [1, 2]) && ((_x getVariable [""noShoot"", 0]) != 1) && ((_x getVariable [""optional"", 0]) != 1)} count (_this getVariable [""targets"", []])) == 0) || BIS_FD_reset};" \n
+                         "		};" \n
+                         "	" \n
+                         "		if (BIS_FD_reset) exitWith {};" \n
+                         "" \n
+                         "		BIS_FD_nextCP = BIS_FD_nextCP + 1;" \n
+                         "		BIS_FD_nextCPObj = BIS_FD_CPs select (BIS_FD_nextCP - 1);" \n
+                         "		" \n
+                         "		private [""_posASL""];" \n
+                         "		_posASL = getPosASL BIS_FD_nextCPObj;" \n
+                         "		_posASL set [2, (_posASL select 2) - 2.3];" \n
+                         "		BIS_FD_icon setPosASL _posASL;" \n
+                         "" \n
+                         "		//TODO: link to guidance?" \n
+                         "		[BIS_FD_nextCPObj getVariable [""marker"", """"], 1] spawn BIS_fnc_moduleFDFadeMarker;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "_this setVariable [""activated"", true];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Always">*/
+                                class Always
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Info_message";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "CP_entered">*/
+                class CP_entered
+                {
+                        name = "CP_entered";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"BIS_FD_activeCP = _cp;" \n
+                         "BIS_FD_activeCPObj = BIS_FD_CPs select (BIS_FD_activeCP - 1);" \n
+                         "" \n
+                         "[_this getVariable [""marker"", """"], 0.8] spawn BIS_fnc_moduleFDFadeMarker;" \n
+                         "[_this getVariable [""markerArea"", """"], 0.7] spawn BIS_fnc_moduleFDFadeMarker;" \n
+                         "" \n
+                         "private [""_onActivate""];" \n
+                         "_onActivate = _this getVariable [""onActivate"", """"];" \n
+                         "if (_onActivate != """") then {private [""_handle""]; _handle = [_this] execVM _onActivate;};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Finish">*/
+                                class Finish
+                                {
+                                        itemno = 7;
+                                        priority = 2.000000;
+                                        to="Finish";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_cp == (count BIS_FD_CPs)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Start">*/
+                                class Start
+                                {
+                                        itemno = 9;
+                                        priority = 1.000000;
+                                        to="Start";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_cp == 1"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Normal_CP">*/
+                                class Normal_CP
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Normal_CP";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End_1">*/
+                class End_1
+                {
+                        name = "End_1";
+                        itemno = 18;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "PiP_feedback">*/
+                class PiP_feedback
+                {
+                        name = "PiP_feedback";
+                        itemno = 21;
+                        init = /*%FSM<STATEINIT""">*/"if (isPiPEnabled) then " \n
+                         "{" \n
+                         "	if ((count (_targets call BIS_FD_getTargetCandidates)) > 0) then " \n
+                         "	{" \n
+                         "		[] spawn " \n
+                         "		{" \n
+                         "			if (!BIS_FD_PiPStarting) then " \n
+                         "			{" \n
+                         "				if (BIS_FD_PiPEnding) then {waitUntil {!BIS_FD_PiPEnding}};" \n
+                         "" \n
+                         "				BIS_FD_PiPStarting = true;" \n
+                         "				BIS_FD_PiP = true;" \n
+                         "" \n
+                         "				disableSerialization;" \n
+                         "" \n
+                         "				if (!(isNil ""BIS_FD_PiPCam"")) then " \n
+                         "				{" \n
+                         "					(""BIS_FD_IGUI_PiP"" call BIS_fnc_rscLayer) cutText ["""", ""PLAIN""];" \n
+                         "					BIS_FD_PiPCam cameraEffect [""TERMINATE"", ""BACK""];" \n
+                         "					camDestroy BIS_FD_PiPCam;" \n
+                         "					BIS_FD_PiPCam = nil;" \n
+                         "				};" \n
+                         "" \n
+                         "				BIS_FD_PiPCam = ""camera"" camCreate (position BIS_FD_Competitor);" \n
+                         "" \n
+                         "				(""BIS_FD_IGUI_PiP"" call BIS_fnc_rscLayer) cutRsc [""RscPIP"", ""PLAIN"", 0, false];" \n
+                         "				waitUntil {!isNil {uiNamespace getVariable ""RscPIP""}};" \n
+                         "				uiNamespace setVariable [""BIS_fnc_PIP_RscPIP"", uiNamespace getVariable ""RscPIP""];" \n
+                         "				" \n
+                         "				private [""_control""];" \n
+                         "				_control = (uiNamespace getVariable ""BIS_fnc_PIP_RscPIP"") displayCtrl 2300;" \n
+                         "				_control ctrlSetText format [""#(argb,256,256,1)r2t(%1,1.0)"", ""fdrt1""];" \n
+                         "				_control ctrlSetTextColor [1, 1, 1, 1];" \n
+                         "				_control ctrlCommit 0;" \n
+                         "" \n
+                         "				private [""_disp""];" \n
+                         "				_disp = uiNamespace getVariable ""BIS_fnc_PIP_RscPIP"";" \n
+                         "				" \n
+                         "				// Display images" \n
+                         "				for ""_i"" from 12 to 0 step -1 do " \n
+                         "				{" \n
+                         "					private [""_ctrl""];" \n
+                         "					_ctrl = _disp displayCtrl (2400 + _i);" \n
+                         "					" \n
+                         "					_ctrl ctrlSetPosition ctrlPosition (_disp displayCtrl 2300);" \n
+                         "					_ctrl ctrlCommit 0;" \n
+                         "					" \n
+                         "					uiSleep 0.03;" \n
+                         "					" \n
+                         "					_ctrl ctrlSetPosition [0,0,0,0];" \n
+                         "					_ctrl ctrlCommit 0;" \n
+                         "				};" \n
+                         "				" \n
+                         "				if (!(isNil ""BIS_FD_PiPCam"")) then " \n
+                         "				{" \n
+                         "					BIS_FD_PiPCam cameraEffect [""INTERNAL"", ""BACK"", ""fdrt1""];" \n
+                         "					""fdrt1"" setPiPEffect [3, 1, 1, 1, 0.1, [0, 0.4, 1, 0.1], [0, 0.2, 1, 1], [0, 0, 0, 0]];" \n
+                         "				};" \n
+                         "" \n
+                         "				BIS_FD_PiPStarting = false;" \n
+                         "			};" \n
+                         "		};" \n
+                         "		" \n
+                         "		_targets spawn " \n
+                         "		{" \n
+                         "			scriptName ""PiP feedback target selection"";" \n
+                         "" \n
+                         "			//TODO: Show the most interesting target ()" \n
+                         "			//TODO: Use log to verify termination" \n
+                         "			private [""_lastTargetChange"", ""_targetCandidates""];" \n
+                         "			_lastTargetChange = -10;" \n
+                         "			_targetCandidates = _this call BIS_FD_getTargetCandidates;" \n
+                         "			" \n
+                         "			while {((count _targetCandidates) > 0) && !(isNil ""BIS_FD_PiPCam"")} do " \n
+                         "			{" \n
+                         "				private [""_target"", ""_curTarget"", ""_cursorTarget""];" \n
+                         "				_targetCandidates = _this call BIS_FD_getTargetCandidates;" \n
+                         "				_curTarget = objNull;" \n
+                         "				_cursorTarget = false;" \n
+                         "				" \n
+                         "				if ((count _targetCandidates) > 0) then " \n
+                         "				{" \n
+                         "					if (cursorTarget in _targetCandidates) then " \n
+                         "					{" \n
+                         "						_target = cursorTarget;" \n
+                         "						_cursorTarget = true;" \n
+                         "					} " \n
+                         "					else " \n
+                         "					{" \n
+                         "						private [""_candidatesActive"", ""_candidates""];" \n
+                         "						_candidatesActive = [];" \n
+                         "						{" \n
+                         "							//Hit targets are allowed to be seen first 5 seconds after a hit" \n
+                         "							private [""_state""];" \n
+                         "							_state = _x getVariable [""state"", -1];" \n
+                         "							if ((_state == 2) || ((_state == 3) && ((time - (_x getVariable [""timeHit"", -100])) < 5))) then {_candidatesActive set [count _candidatesActive, _x]};" \n
+                         "						} forEach _targetCandidates;" \n
+                         "						_candidates = if ((count _candidatesActive) > 0) then {_candidatesActive} else {_targetCandidates};" \n
+                         "						" \n
+                         "						private [""_centerPos"", ""_closest"", ""_closestDist""];" \n
+                         "						_centerPos = screenToWorld [0.5, 0.5]; //TODO: this is hack, does not work with deadzone, etc." \n
+                         "						_closest = _candidates select 0;" \n
+                         "						_closestDist = _closest distance _centerPos;" \n
+                         "						" \n
+                         "						{" \n
+                         "							private [""_dist""];" \n
+                         "							_dist = _x distance _centerPos;" \n
+                         "							if (_dist < _closestDist) then " \n
+                         "							{" \n
+                         "								_closestDist = _dist;" \n
+                         "								_closest = _x;" \n
+                         "							};" \n
+                         "						} forEach _candidates;" \n
+                         "						" \n
+                         "						if (_closestDist < 50) then " \n
+                         "						{" \n
+                         "							_target = _closest;" \n
+                         "							_cursorTarget = true;" \n
+                         "						} " \n
+                         "						else " \n
+                         "						{" \n
+                         "							_target = _candidates call BIS_fnc_selectRandom;" \n
+                         "						};" \n
+                         "					};" \n
+                         "					" \n
+                         "					//Only update every 5 seconds or when cursorTarget" \n
+                         "					if ((((time - _lastTargetChange) > 5) || _cursorTarget) && (_curTarget != _target)) then " \n
+                         "					{" \n
+                         "						BIS_FD_PiPCam attachTo [_target, _target getVariable [""cameraPos"", [0, -1.5, 0]]];" \n
+                         "						BIS_FD_PiPCam camPrepareFOV (_target getVariable [""cameraFOV"", 0.2]);" \n
+                         "						BIS_FD_PiPCam camPrepareTarget _target;" \n
+                         "						BIS_FD_PiPCam camCommitPrepared 0;" \n
+                         "" \n
+                         "						_lastTargetChange = time;" \n
+                         "						_curTarget = _target;" \n
+                         "					};" \n
+                         "				};" \n
+                         "" \n
+                         "				sleep 0.5;" \n
+                         "			};" \n
+                         "			" \n
+                         "			if ((count _targetCandidates) == 0) then " \n
+                         "			{" \n
+                         "				[] spawn BIS_FD_endPiP;" \n
+                         "			};" \n
+                         "		};" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Always">*/
+                                class Always
+                                {
+                                        itemno = 20;
+                                        priority = 0.000000;
+                                        to="Markers";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Markers">*/
+                class Markers
+                {
+                        name = "Markers";
+                        itemno = 22;
+                        init = /*%FSM<STATEINIT""">*/"private [""_boxMarkers""];" \n
+                         "_boxMarkers = _this getVariable [""markersShootingBox"", []];" \n
+                         "{" \n
+                         "	[_x, 0.8] spawn BIS_fnc_moduleFDFadeMarker;" \n
+                         "} forEach _boxMarkers;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Always">*/
+                                class Always
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="CP_In";
+        finalStates[] =
+        {
+                "Finish",
+                "End",
+                "Start",
+                "End_1",
+        };
+};
+/*%FSM</COMPILE>*/

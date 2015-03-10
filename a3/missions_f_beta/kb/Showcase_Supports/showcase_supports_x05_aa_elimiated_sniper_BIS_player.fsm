@@ -1,0 +1,118 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, PREDLOHA">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"React",0,250,-148.442688,-132.013092,-48.442719,-82.013107,0.000000,"React"};
+item1[] = {"",7,210,-102.438477,48.426529,-94.438538,56.426514,0.000000,""};
+item2[] = {"__",8,218,-245.799591,27.887707,-155.799591,77.887695,0.000000,"-"};
+item3[] = {"END",1,250,-249.361267,105.329407,-149.361450,155.329422,0.000000,"END"};
+item4[] = {"Say_again__Hawkeye__task_executed_with_no_mortar_support__Over_",4, 218, 0.0,150,300.0,200,1.0,"Say_again__Hawkeye__task_executed_with_no_mortar_support__Over_"};
+item5[] = {"Affirmative__sir__I_saw_an_opportunity__I_took_it_",1, 250, 350.0, 187, 650.0,237, 1.0,_Affirmative__sir__I_saw_an_opportunity__I_took_it__};
+item6[] = {"Copy_that__We_appreciate_your_confidence_Sergeant__but_make_sure_you_support_the_assault_properly__Mortar_support_is_still_available_",4, 218, 0.0,225,300.0,275,1.0,"Copy_that__We_appreciate_your_confidence_Sergeant__but_make_sure_you_support_the_assault_properly__Mortar_support_is_still_available_"};
+item7[] = {"Aknowledged__Papa_Bear_",1, 250, 350.0, 262, 650.0,312, 1.0,_Aknowledged__Papa_Bear__};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {1,4};
+link4[] = {4,5};
+link5[] = {1,6};
+link6[] = {6,7};
+globals[] = {0.000000,0,0,0,0,640,480,2,10,6316128,1,-395.949066,712.081299,795.476807,-312.553558,870,870,1};
+window[] = {2,-1,-1,-1,-1,898,162,1184,162,3,890};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "PREDLOHA";
+  class States
+  {
+    /*%FSM<STATE "React">*/
+    class React
+    {
+      name = "React";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Say_again__Hawkeye__task_executed_with_no_mortar_support__Over_">*/
+        class Say_again__Hawkeye__task_executed_with_no_mortar_support__Over_
+        {
+          priority = 1.000000;
+          to="Affirmative__sir__I_saw_an_opportunity__I_took_it_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""showcase_supports_x05_aa_elimiated_sniper_BHQ_0""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Copy_that__We_appreciate_your_confidence_Sergeant__but_make_sure_you_support_the_assault_properly__Mortar_support_is_still_available_">*/
+        class Copy_that__We_appreciate_your_confidence_Sergeant__but_make_sure_you_support_the_assault_properly__Mortar_support_is_still_available_
+        {
+          priority = 1.000000;
+          to="Aknowledged__Papa_Bear_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""showcase_supports_x05_aa_elimiated_sniper_BHQ_1""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "__">*/
+        class __
+        {
+          priority = 0.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "END">*/
+    class END
+    {
+      name = "END";
+      init = /*%FSM<STATEINIT""">*/"//hint""Unexpected Exception""" \n "" \n "debugLog ""VD31- here B"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+     /*%FSM<STATE "Affirmative__sir__I_saw_an_opportunity__I_took_it_">*/
+    class Affirmative__sir__I_saw_an_opportunity__I_took_it_
+    {
+      name = "Affirmative__sir__I_saw_an_opportunity__I_took_it_";
+      init = /*%FSM<STATEINIT""">*/
+	" _this kbTell [_from, _topic,""showcase_supports_x05_aa_elimiated_sniper_HAW_1""];"
+	/*%FSM</STATEINIT""">*/;
+	
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+     /*%FSM<STATE "Aknowledged__Papa_Bear_">*/
+    class Aknowledged__Papa_Bear_
+    {
+      name = "Aknowledged__Papa_Bear_";
+      init = /*%FSM<STATEINIT""">*/
+	" _this kbTell [_from, _topic,""showcase_supports_x05_aa_elimiated_sniper_HAW_2""];"
+	/*%FSM</STATEINIT""">*/;
+	
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="React";
+  finalStates[] =
+  {
+    "END",
+	"Affirmative__sir__I_saw_an_opportunity__I_took_it_",
+	"Aknowledged__Papa_Bear_",
+  };
+};
+/*%FSM</COMPILE>*/

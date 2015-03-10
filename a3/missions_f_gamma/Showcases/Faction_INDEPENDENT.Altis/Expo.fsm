@@ -1,0 +1,847 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, fsmExpo">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,4346,-125.000000,-400.000000,-25.000000,-350.000000,0.000000,"Init"};
+item1[] = {"_",8,218,-125.000000,-325.000000,-25.000000,-275.000000,0.000000,""};
+item2[] = {"Taxiing_and_taking",2,250,-125.000000,-250.000000,-25.000000,-200.000000,0.000000,"Taxiing" \n "and" \n "taking off"};
+item3[] = {"Taxiing_finished",4,218,-125.000000,-175.000000,-25.000000,-125.000000,0.000000,"Taxiing" \n "finished" \n "&& runway clear "};
+item4[] = {"Touch_and_go_ini",2,250,-125.000000,50.000000,-25.000000,100.000000,0.000000,"Touch and go" \n "initiated"};
+item5[] = {"near_to_runway",4,218,-125.000000,275.000000,-25.000000,325.000000,0.000000,"near to runway"};
+item6[] = {"final_approach_open",2,250,-125.000000,350.000000,-25.000000,400.000000,0.000000,"final approach" \n "open gear"};
+item7[] = {"cancel_landing_AI",2,250,400.000000,350.000000,500.000000,400.000000,0.000000,"cancel" \n "landing" \n "AI handle"};
+item8[] = {"something_is_blocking",4,218,175.000000,350.000000,275.000000,400.000000,0.000000,"something is" \n "blocking runway"};
+item9[] = {"runway_touched",4,218,-125.000000,425.000000,-25.000000,475.000000,0.000000,"runway touched"};
+item10[] = {"sustain",2,250,-125.000000,500.000000,-25.000000,550.000000,0.000000,"sustain"};
+item11[] = {"runway_left",4,218,-125.000000,575.000000,-25.000000,625.000000,0.000000,"runway" \n "left"};
+item12[] = {"Runway_left",2,250,-125.000000,650.000000,-25.000000,700.000000,0.000000,"Runway left"};
+item13[] = {"",7,210,-354.000000,896.000000,-346.000000,904.000000,0.000000,""};
+item14[] = {"",7,210,-354.000000,71.000000,-346.000000,78.999992,0.000000,""};
+item15[] = {"reached_safe_poi",4,218,400.000000,50.000000,500.000000,100.000000,0.000000,"reached" \n "safe point"};
+item16[] = {"something_in_front",4,218,25.000000,500.000000,125.000000,550.000000,0.000000,"something" \n "in front of" \n "the nose"};
+item17[] = {"cancel_maneuvre",2,250,175.000000,500.000000,275.000000,550.000000,0.000000,"cancel" \n "maneuvre"};
+item18[] = {"runway_is_clear",4,218,600.000000,500.000000,700.000000,550.000000,0.000000,"runway is clear"};
+item19[] = {"Send_AI_to_safe",2,250,725.000000,500.000000,825.000000,550.000000,0.000000,"Send AI" \n "to safe point." \n "Will takeoff" \n "automatically"};
+item20[] = {"time_to_open_fla",4,218,-125.000000,125.000000,-25.000000,175.000000,0.000000,"time to open" \n "flaps"};
+item21[] = {"flaps_down",2,250,-125.000000,200.000000,-25.000000,250.000000,0.000000,"flaps down"};
+item22[] = {"",7,210,771.000000,70.999893,779.000000,79.000107,0.000000,""};
+item23[] = {"time_to_close_ge",4,218,-125.000000,725.000000,-25.000000,775.000000,0.000000,"time to close" \n "gear"};
+item24[] = {"Gear_Up",2,250,-125.000000,800.000000,-25.000000,850.000000,0.000000,"Gear Up"};
+item25[] = {"enough_speed_and",4,218,175.000000,425.000000,275.000000,475.000000,0.000000,"enough speed" \n "and object far" \n "from Alca"};
+item26[] = {"",7,210,446.000000,446.000000,454.000000,454.000000,0.000000,""};
+item27[] = {"low_speed",4,218,300.000000,500.000000,400.000000,550.000000,0.000000,"low speed"};
+item28[] = {"Stop_the_plane_",2,250,450.000000,500.000000,550.000000,550.000000,0.000000,"Stop the plane!"};
+item29[] = {"near_hangar",4,218,725.000000,600.000000,825.000000,650.000000,0.000000,"near" \n "hangar"};
+item30[] = {"End",1,250,725.000000,800.000000,825.000000,850.000000,0.000000,"End"};
+item31[] = {"player_damaged_A",4,218,-600.000000,-250.000000,-500.000000,-200.000000,0.000000,"player damaged" \n "Alca"};
+item32[] = {"Canceled",1,250,-600.000000,800.000000,-500.000000,850.000000,0.000000,"Canceled"};
+item33[] = {"Touch_and_Go_fin",4,218,-125.000000,875.000000,-25.000000,925.000000,0.000000,"Touch and Go" \n "finished"};
+item34[] = {"Taking_off",2,250,-125.000000,-100.000000,-25.000000,-50.000000,0.000000,"Taking off"};
+item35[] = {"Take_off_finishe",4,218,-125.000000,-25.000000,-25.000000,25.000000,0.000000,"Take off" \n "finished"};
+item36[] = {"Taxiing_finished",4,218,50.000000,-250.000000,150.000000,-200.000000,0.000000,"Taxiing" \n "finished" \n "&& runway NOT clear "};
+item37[] = {"Make_pilot_waitt",2,250,50.000000,-175.000000,150.000000,-125.000000,0.000000,"Make pilot waitting"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,31};
+link4[] = {2,36};
+link5[] = {3,34};
+link6[] = {4,20};
+link7[] = {5,6};
+link8[] = {6,8};
+link9[] = {6,9};
+link10[] = {7,15};
+link11[] = {8,7};
+link12[] = {9,10};
+link13[] = {10,11};
+link14[] = {10,16};
+link15[] = {11,12};
+link16[] = {12,23};
+link17[] = {13,14};
+link18[] = {14,4};
+link19[] = {15,4};
+link20[] = {16,17};
+link21[] = {17,25};
+link22[] = {17,27};
+link23[] = {18,19};
+link24[] = {19,22};
+link25[] = {19,29};
+link26[] = {20,21};
+link27[] = {21,5};
+link28[] = {22,15};
+link29[] = {23,24};
+link30[] = {24,33};
+link31[] = {25,26};
+link32[] = {26,7};
+link33[] = {27,28};
+link34[] = {28,18};
+link35[] = {29,30};
+link36[] = {31,32};
+link37[] = {33,13};
+link38[] = {34,35};
+link39[] = {35,4};
+link40[] = {36,37};
+link41[] = {37,3};
+globals[] = {25.000000,1,0,0,0,640,480,1,47,6316128,1,-526.832642,712.980103,540.357178,-455.162476,1284,1031,1};
+window[] = {2,-1,-1,-1,-1,1050,200,1640,200,3,1302};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "fsmExpo";
+  class States
+  {
+    /*%FSM<STATE "Init">*/
+    class Init
+    {
+      name = "Init";
+      itemno = 0;
+      init = /*%FSM<STATEINIT""">*/"private[ ""_pipPos2"", ""_touchandgo1"", ""_takingoff"", ""_showPip"" ];" \n
+       "" \n
+       "" \n
+       "BIS_PIPEnabled = true;" \n
+       "BIS_InterruptLanding = false;" \n
+       "BIS_expoGroup = createGroup WEST;" \n
+       """I_pilot_F"" createUnit  [position player, BIS_expoGroup,""BIS_expoAlcaDriver = this; this assignasdriver BIS_expoAlca;this moveindriver BIS_expoAlca""];" \n
+       "player action [""lightOn"", BIS_expoAlca];" \n
+       "" \n
+       "BIS_expoAlca setVariable [""takingOffFinished"", false];" \n
+       "BIS_expoAlca setVariable [""taxiingFinished"", false];" \n
+       "BIS_expoAlca setVariable [""touchAndGoFinished"", false];" \n
+       "" \n
+       "" \n
+       "_touchandgo1 = call compile preprocessFileLineNumbers ""recpath1.sqf"";" \n
+       "_taxiing = call compile preprocessFileLineNumbers ""recpath2.sqf"";" \n
+       "_takingoff = call compile preprocessFileLineNumbers ""recpath3.sqf"";" \n
+       "" \n
+       "" \n
+       "/*" \n
+       "_check = [] spawn " \n
+       "{" \n
+       "	while {true} do" \n
+       "	{" \n
+       "		hint format [ ""Distance from runway: %1\nSpeed: %2\nLevel ATL: %3"", ([BIS_mrkRunway, BIS_expoAlca] call BIS_fnc_distance2D), speed BIS_expoAlca,getposatl BIS_expoAlca select 2];" \n
+       "		sleep 0.5;" \n
+       "	};" \n
+       "};" \n
+       "*/" \n
+       "" \n
+       "//debug" \n
+       "/*" \n
+       "player attachto [BIS_expoAlca, [0,-10,-5]];" \n
+       "player allowdamage false;" \n
+       "*/" \n
+       "" \n
+       "BIS_trg_restrictedAreaDynamic=createTrigger[""EmptyDetector"",getPos BIS_expoAlca];  " \n
+       "BIS_trg_restrictedAreaDynamic setTriggerArea[15,75,213.859,true];" \n
+       "BIS_trg_restrictedAreaDynamic setTriggerStatements[""this"", ""BIS_interruptLanding = true"", ""BIS_interruptLanding = false""]; " \n
+       "BIS_trg_restrictedAreaDynamic attachTo [BIS_expoAlca, [-2,77,0]];" \n
+       "" \n
+       "BIS_trg_restrictedarea1 setTriggerActivation[""GUER"",""PRESENT"",true];  " \n
+       "BIS_trg_restrictedAreaDynamic setTriggerActivation[""NONE"",""PRESENT"",true];  " \n
+       "" \n
+       "" \n
+       "BIS_expoAlcaPIPPos1 attachTo [BIS_expoAlca, [0,5, -3]]; " \n
+       "" \n
+       "" \n
+       "_showPip = [] spawn " \n
+       "{" \n
+       "	private [""_distance"", ""_pip"", ""_pipPos2"" ];" \n
+       "	_distance = 45;" \n
+       "	" \n
+       "	_pipPos2 = " \n
+       "	[ " \n
+       "		(getpos BIS_expoAlca select 0)+60*sin(getdir BIS_expoAlca) ," \n
+       "		(getpos BIS_expoAlca select 1)+60*cos(getdir BIS_expoAlca), " \n
+       "		(getpos BIS_expoAlca select 2)" \n
+       "	];" \n
+       "" \n
+       "	while {true} do" \n
+       "	{" \n
+       "		waituntil{ player distance BIS_mrkExpo <= _distance && BIS_PIPEnabled };" \n
+       "		_pip = [ [BIS_expoAlca, [0,-2.5, -1.9 ] ], BIS_expoAlcaPIPPos1, player] spawn BIS_fnc_liveFeed;" \n
+       "		waitUntil { !isNil { BIS_liveFeed } };" \n
+       "		_x = 1 spawn BIS_fnc_liveFeedEffects;" \n
+       "		Sleep 5;" \n
+       "		waituntil{ player distance BIS_mrkExpo > _distance || !BIS_PIPEnabled };" \n
+       "		_pipterm = [] spawn BIS_fnc_liveFeedTerminate;" \n
+       "		Sleep 5;  " \n
+       "	};" \n
+       "};" \n
+       "" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="Taxiing_and_taking";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Taxiing_and_taking">*/
+    class Taxiing_and_taking
+    {
+      name = "Taxiing_and_taking";
+      itemno = 2;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go - taxiing on runway"" ] call BIS_fnc_Log;" \n
+       "" \n
+       "BIS_expotaxiingseq =" \n
+       "[" \n
+       "	BIS_expoAlca, " \n
+       "	_taxiing, " \n
+       "	[BIS_expoAlca, ""taxiingFinished""], " \n
+       "	false, " \n
+       "	false, " \n
+       "	0, " \n
+       "	0" \n
+       "] spawn BIS_fnc_unitPlay;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "player_damaged_A">*/
+        class player_damaged_A
+        {
+          itemno = 31;
+          priority = 0.000000;
+          to="Canceled";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"damage BIS_expoAlca > 0.1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Taxiing_finished">*/
+        class Taxiing_finished
+        {
+          itemno = 36;
+          priority = 0.000000;
+          to="Make_pilot_waitt";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_expoAlca getVariable ""taxiingFinished"" && ( ({ (getpos _x select 2) < 10 } count list BIS_trg_restrictedarea1) > 0) "/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Taxiing_finished_1">*/
+        class Taxiing_finished_1
+        {
+          itemno = 3;
+          priority = 0.000000;
+          to="Taking_off";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_expoAlca getVariable ""taxiingFinished"" && !( ({ (getpos _x select 2) < 10 } count list BIS_trg_restrictedarea1) > 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Touch_and_go_ini">*/
+    class Touch_and_go_ini
+    {
+      name = "Touch_and_go_ini";
+      itemno = 4;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go or taking off finished - initiating touch-and-go"" ] call BIS_fnc_Log;" \n
+       "" \n
+       "BIS_PIPEnabled = false;" \n
+       "BIS_expoAlca setFuel 1;" \n
+       "BIS_InterruptLanding = false;" \n
+       "BIS_expoAlca setVariable [""touchAndGoFinished"", false];" \n
+       "" \n
+       "BIS_expotouchandgoseq =" \n
+       "[" \n
+       "	BIS_expoAlca, " \n
+       "	_touchandgo1, " \n
+       "	[BIS_expoAlca, ""touchAndGoFinished""], " \n
+       "	false, " \n
+       "	false, " \n
+       "	0, " \n
+       "	0" \n
+       "] spawn BIS_fnc_unitPlay;" \n
+       "" \n
+       "BIS_trg_restrictedarea1 setTriggerActivation[""GUER"",""PRESENT"",true];  " \n
+       "BIS_trg_restrictedAreaDynamic setTriggerActivation[""NONE"",""PRESENT"",true];  "/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "time_to_open_fla">*/
+        class time_to_open_fla
+        {
+          itemno = 20;
+          priority = 0.000000;
+          to="flaps_down";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"([BIS_mrkRunway, BIS_expoAlca] call BIS_fnc_distance2D) <= 1900;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "final_approach_open">*/
+    class final_approach_open
+    {
+      name = "final_approach_open";
+      itemno = 6;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go -Final approach: gear down"" ] call BIS_fnc_Log;" \n
+       "//speed must be below 220 km/h" \n
+       "//pilot must be unassigned from the vehicle " \n
+       "//we must wait (one frame?)" \n
+       "//then do the action landgear" \n
+       "//real Alca can open the gear in speed 240kts (444km/h)" \n
+       "" \n
+       "_expoAlca_51 = [] spawn" \n
+       "{" \n
+       "	unassignVehicle driver BIS_expoAlca; " \n
+       "	Sleep 1;" \n
+       "	BIS_expoAlca action [""LandGear"", BIS_expoAlca];" \n
+       "	Sleep 1;" \n
+       "	(driver BIS_expoAlca) action [""lightOn"", BIS_expoAlca];" \n
+       "};" \n
+       "" \n
+       "{" \n
+       "	[" \n
+       "		[position _x select 0, position _x select 1, 50]," \n
+       "		 position _x," \n
+       "		nil," \n
+       "		nil," \n
+       "		""F_40mm_Green""" \n
+       "	] call BIS_fnc_sn_flare;" \n
+       "} foreach [BIS_mrkRunwayLight, BIS_mrkRunwayEnd];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "runway_touched">*/
+        class runway_touched
+        {
+          itemno = 9;
+          priority = 0.000000;
+          to="sustain";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(getposatl BIS_expoAlca select 2) <= 1;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "something_is_blocking">*/
+        class something_is_blocking
+        {
+          itemno = 8;
+          priority = 0.000000;
+          to="cancel_landing_AI";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(count list BIS_trg_restrictedarea1) > 0 && ({ (getpos _x select 2) < 1 } count list BIS_trg_restrictedarea1 > 0)" \n
+           "//BIS_InterruptLanding"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "cancel_landing_AI">*/
+    class cancel_landing_AI
+    {
+      name = "cancel_landing_AI";
+      itemno = 7;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go - Interrupting landing!"" ] call BIS_fnc_Log;" \n
+       "" \n
+       "private[ ""_velocity"" ];" \n
+       "_velocity = velocity BIS_expoAlca;" \n
+       "terminate BIS_expotouchandgoseq;" \n
+       "" \n
+       "BIS_expoAlcaDriver assignAsDriver BIS_expoAlca; " \n
+       "driver BIS_expoAlca enableAI ""MOVE"";      " \n
+       "driver BIS_expoAlca enableAI ""TARGET"";      " \n
+       "driver BIS_expoAlca enableAI ""AUTOTARGET"";      " \n
+       "driver BIS_expoAlca enableSimulation true;    " \n
+       "BIS_expoAlca setVelocity [ _velocity select 0, _velocity select 1, 3 ];      " \n
+       "//BIS_expoAlca setVelocity [   sin (getdir BIS_expoAlca) * 150,   cos (getdir BIS_expoAlca) * 150,   0  ];      " \n
+       "BIS_expoAlca forceSpeed 50000;    " \n
+       "BIS_expoAlca flyInHeight 200;    " \n
+       "_wpSafePos = group BIS_expoAlca addWaypoint [position BIS_exposafepoint, 100];" \n
+       "" \n
+       "" \n
+       "{" \n
+       "	[" \n
+       "		[position _x select 0, position _x select 1, 50]," \n
+       "		 position _x," \n
+       "		nil," \n
+       "		nil," \n
+       "		""F_40mm_Red""" \n
+       "	] call BIS_fnc_sn_flare;" \n
+       "} foreach [BIS_mrkRunwayLight, BIS_mrkRunwayEnd];" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "reached_safe_poi">*/
+        class reached_safe_poi
+        {
+          itemno = 15;
+          priority = 0.000000;
+          to="Touch_and_go_ini";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"([BIS_expoSafePoint, BIS_expoAlca] call BIS_fnc_distance2D) < 1500"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "sustain">*/
+    class sustain
+    {
+      name = "sustain";
+      itemno = 10;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go - runway touched"" ] call BIS_fnc_Log;" \n
+       "" \n
+       "BIS_expoAlcaDriver assignAsDriver BIS_expoAlca; " \n
+       "[BIS_expoAlcaDriver] orderGetIn true;" \n
+       "" \n
+       "//handle only object in front of the nose - check trigger attached to the nose" \n
+       "BIS_trg_restrictedAreaDynamic setTriggerActivation[""GUER"",""PRESENT"",true];  " \n
+       "BIS_trg_restrictedarea1 setTriggerActivation[""NONE"",""PRESENT"",true];  " \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "something_in_front">*/
+        class something_in_front
+        {
+          itemno = 16;
+          priority = 0.000000;
+          to="cancel_maneuvre";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(count list BIS_trg_restrictedAreaDynamic) > 0 && ({ (getpos _x select 2) < 10 } count list BIS_trg_restrictedAreaDynamic > 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "runway_left">*/
+        class runway_left
+        {
+          itemno = 11;
+          priority = 0.000000;
+          to="Runway_left";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(getposatl BIS_expoAlca select 2) > 2;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Runway_left">*/
+    class Runway_left
+    {
+      name = "Runway_left";
+      itemno = 12;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go - runway left"" ] call BIS_fnc_Log;" \n
+       "" \n
+       "//Gear is up automatically after cca 380 km/h is reached, but we will close it sooner" \n
+       "" \n
+       "" \n
+       "//again activate runway trigger and deactivate attached trigger to the Alca's nose" \n
+       "BIS_trg_restrictedAreaDynamic setTriggerActivation[""NONE"",""PRESENT"",true];  " \n
+       "BIS_trg_restrictedarea1 setTriggerActivation[""GUER"",""PRESENT"",true];  "/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "time_to_close_ge">*/
+        class time_to_close_ge
+        {
+          itemno = 23;
+          priority = 0.000000;
+          to="Gear_Up";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"speed BIS_expoAlca >= 220"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "cancel_maneuvre">*/
+    class cancel_maneuvre
+    {
+      name = "cancel_maneuvre";
+      itemno = 17;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go - cancel maneuvre"" ] call BIS_fnc_Log;" \n
+       "" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "low_speed">*/
+        class low_speed
+        {
+          itemno = 27;
+          priority = 0.000000;
+          to="Stop_the_plane_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"speed BIS_expoAlca < 180"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "enough_speed_and">*/
+        class enough_speed_and
+        {
+          itemno = 25;
+          priority = 0.000000;
+          to="cancel_landing_AI";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"speed BIS_expoAlca >= 180"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Send_AI_to_safe">*/
+    class Send_AI_to_safe
+    {
+      name = "Send_AI_to_safe";
+      itemno = 19;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go - runway cleared - continue"" ] call BIS_fnc_Log;" \n
+       "" \n
+       "/*" \n
+       "BIS_expoAlcaDriver assignAsDriver BIS_expoAlca;" \n
+       "BIS_expoAlca forceSpeed 50000;    " \n
+       "BIS_expoAlca flyInHeight 200;    " \n
+       "BIS_expoAlca setFuel 1;" \n
+       "_wpSafePos = group BIS_expoAlca addWaypoint [position BIS_exposafepoint, 100];" \n
+       "*/" \n
+       "" \n
+       "" \n
+       "BIS_expoAlca setFuel 1;" \n
+       "BIS_expoAlcaDriver assignAsDriver BIS_expoAlca; " \n
+       "[BIS_expoAlcaDriver] orderGetIn true;" \n
+       "" \n
+       "_wpSafePos = group BIS_expoAlca addWaypoint [[11592.9,11952.8,0.000457764], 1];" \n
+       "" \n
+       "" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "reached_safe_poi">*/
+        class reached_safe_poi
+        {
+          itemno = 15;
+          priority = 0.000000;
+          to="Touch_and_go_ini";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"([BIS_expoSafePoint, BIS_expoAlca] call BIS_fnc_distance2D) < 1500"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "near_hangar">*/
+        class near_hangar
+        {
+          itemno = 29;
+          priority = 0.000000;
+          to="End";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_expoAlca in list BIS_trg_air1;" \n
+           "" \n
+           "//[11592.9,11952.8,0.000457764]"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "flaps_down">*/
+    class flaps_down
+    {
+      name = "flaps_down";
+      itemno = 21;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go - flaps down and lights on"" ] call BIS_fnc_Log;" \n
+       "" \n
+       "/*" \n
+       "driver BIS_expoAlca assignAsDriver BIS_expoAlca;" \n
+       "driver BIS_expoAlca disableAI ""MOVE"";" \n
+       "driver BIS_expoAlca disableAI ""TARGET""; " \n
+       "driver BIS_expoAlca disableAI ""AUTOTARGET"";" \n
+       "driver BIS_expoAlca enableSimulation false;" \n
+       "" \n
+       "[""BIS_PIPEnabled: %1"", BIS_PIPEnabled] call BIS_fnc_LogFormat;" \n
+       "" \n
+       "_expoAlca_50 = [] spawn" \n
+       "{" \n
+       "	BIS_expoAlca action [""flapsDown"", BIS_expoAlca];" \n
+       "	Sleep 5;" \n
+       "	BIS_expoAlca action [""flapsDown"", BIS_expoAlca];" \n
+       "	Sleep 1;" \n
+       "	(driver BIS_expoAlca) action [""lightOn"", BIS_expoAlca];" \n
+       "};" \n
+       "*/" \n
+       "" \n
+       "BIS_PIPEnabled = true;" \n
+       "" \n
+       "_x = [] spawn " \n
+       "{	" \n
+       "	 while { !(BIS_expoAlca getVariable ""touchAndGoFinished"") } do " \n
+       "	{" \n
+       "		driver BIS_expoAlca action [""lightOn"", BIS_expoAlca]; sleep 0.01" \n
+       "	}" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "near_to_runway">*/
+        class near_to_runway
+        {
+          itemno = 5;
+          priority = 0.000000;
+          to="final_approach_open";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"speed BIS_expoAlca <= 220" \n
+           "// ([BIS_mrkRunway, BIS_expoAlca] call BIS_fnc_distance2D) <= 800;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Gear_Up">*/
+    class Gear_Up
+    {
+      name = "Gear_Up";
+      itemno = 24;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go - Gear Up"" ] call BIS_fnc_Log;" \n
+       "player action [""LandGearUp"", BIS_expoAlca];" \n
+       "BIS_expoAlcaDriver assignAsDriver BIS_expoAlca;" \n
+       "" \n
+       "_xx = [] spawn" \n
+       "{" \n
+       "	Sleep 5;" \n
+       "	BIS_PIPEnabled = false;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Touch_and_Go_fin">*/
+        class Touch_and_Go_fin
+        {
+          itemno = 33;
+          priority = 0.000000;
+          to="Touch_and_go_ini";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_expoAlca getVariable ""touchAndGoFinished"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Stop_the_plane_">*/
+    class Stop_the_plane_
+    {
+      name = "Stop_the_plane_";
+      itemno = 28;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go - Interrupting landing! Stop!"" ] call BIS_fnc_Log;" \n
+       "" \n
+       "private[ ""_velocity"", ""_breakfactor"" ];" \n
+       "_velocity = velocity BIS_expoAlca;" \n
+       "_breakfactor = 0.6;" \n
+       "terminate BIS_expotouchandgoseq;" \n
+       "" \n
+       "driver BIS_expoAlca enableAI ""MOVE"";      " \n
+       "driver BIS_expoAlca enableAI ""TARGET"";      " \n
+       "driver BIS_expoAlca enableAI ""AUTOTARGET"";      " \n
+       "driver BIS_expoAlca enableSimulation true;    " \n
+       "BIS_expoAlca setVelocity [ (_velocity select 0)*_breakfactor, (_velocity select 1)*_breakfactor, -1 ];      " \n
+       "//BIS_expoAlca setVelocity [   sin (getdir BIS_expoAlca) * 150,   cos (getdir BIS_expoAlca) * 150,   0  ];      " \n
+       "BIS_expoAlca forceSpeed 0;    " \n
+       "BIS_expoAlca flyInHeight 0;    " \n
+       "BIS_expoAlca setfuel 0;" \n
+       "_wpSafePos = group BIS_expoAlca addWaypoint [position BIS_expoAlca, 1];" \n
+       "" \n
+       "BIS_trg_restrictedAreaDynamic setTriggerActivation[""NONE"",""PRESENT"",true];  " \n
+       "BIS_trg_restrictedarea1 setTriggerActivation[""GUER"",""PRESENT"",true];  " \n
+       "_t = time;" \n
+       "" \n
+       "" \n
+       "" \n
+       "{" \n
+       "	[" \n
+       "		[position _x select 0, position _x select 1, 50]," \n
+       "		 position _x," \n
+       "		nil," \n
+       "		nil," \n
+       "		""F_40mm_Red""" \n
+       "	] call BIS_fnc_sn_flare;" \n
+       "} foreach [BIS_mrkRunwayLight, BIS_mrkRunwayEnd];" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "runway_is_clear">*/
+        class runway_is_clear
+        {
+          itemno = 18;
+          priority = 0.000000;
+          to="Send_AI_to_safe";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(count list BIS_trg_restrictedarea1) == 0 && (time > _t + 2);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "End">*/
+    class End
+    {
+      name = "End";
+      itemno = 30;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go - Hangared - FSM ends"" ] call BIS_fnc_Log;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Canceled">*/
+    class Canceled
+    {
+      name = "Canceled";
+      itemno = 32;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Taxiing - Alca damaged - Interrupted"" ] call BIS_fnc_Log;" \n
+       "" \n
+       "terminate BIS_expotaxiingseq;" \n
+       "" \n
+       "BIS_expoAlca enablesimulation true;" \n
+       "driver BIS_expoAlca enableAI ""MOVE"";      " \n
+       "driver BIS_expoAlca enableAI ""TARGET"";      " \n
+       "driver BIS_expoAlca enableAI ""AUTOTARGET"";      " \n
+       "driver BIS_expoAlca enableSimulation true;    " \n
+       "BIS_expoAlca setfuel 0;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Taking_off">*/
+    class Taking_off
+    {
+      name = "Taking_off";
+      itemno = 34;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go - taking off"" ] call BIS_fnc_Log;" \n
+       "" \n
+       "/*" \n
+       "BIS_expoAlca setFuel 0;" \n
+       "unassignVehicle BIS_expoAlcaDriver;" \n
+       "BIS_expoAlcaDriver setpos [10,10,10];" \n
+       "" \n
+       "player moveindriver BIS_expoAlca;" \n
+       "[BIS_expoAlca, 85] spawn BIS_fnc_UnitCapture;" \n
+       "*/" \n
+       "" \n
+       "_xx = [] spawn" \n
+       "{" \n
+       "	Sleep 35;" \n
+       "	BIS_PIPEnabled = false;" \n
+       "};" \n
+       "" \n
+       "" \n
+       "{" \n
+       "	[" \n
+       "		[position _x select 0, position _x select 1, 50]," \n
+       "		 position _x," \n
+       "		nil," \n
+       "		nil," \n
+       "		""F_40mm_Green""" \n
+       "	] call BIS_fnc_sn_flare;" \n
+       "} foreach [BIS_mrkRunwayLight, BIS_mrkRunwayEnd];" \n
+       "" \n
+       "" \n
+       "" \n
+       "" \n
+       "BIS_expoAlca setFuel 1;" \n
+       "BIS_expotakeoffseq =" \n
+       "[" \n
+       "	BIS_expoAlca, " \n
+       "	_takingoff, " \n
+       "	[BIS_expoAlca, ""takingOffFinished""], " \n
+       "	false, " \n
+       "	false, " \n
+       "	0, " \n
+       "	38" \n
+       "] spawn BIS_fnc_unitPlay;" \n
+       "" \n
+       "BIS_expoAlca enablesimulation true;" \n
+       "" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Take_off_finishe">*/
+        class Take_off_finishe
+        {
+          itemno = 35;
+          priority = 0.000000;
+          to="Touch_and_go_ini";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_expoAlca getVariable ""takingOffFinished"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Make_pilot_waitt">*/
+    class Make_pilot_waitt
+    {
+      name = "Make_pilot_waitt";
+      itemno = 37;
+      init = /*%FSM<STATEINIT""">*/"[ ""Expo: Touch and go - something is blocking the runway, wait"" ] call BIS_fnc_Log;" \n
+       "" \n
+       "BIS_expoAlcaDriver disableAI ""MOVE"";" \n
+       "BIS_expoAlcaDriver disableAI ""TARGET""; " \n
+       "BIS_expoAlcaDriver disableAI ""AUTOTARGET"";" \n
+       "" \n
+       "BIS_expoAlca enablesimulation false;" \n
+       "" \n
+       "{" \n
+       "	[" \n
+       "		[position _x select 0, position _x select 1, 50]," \n
+       "		 position _x," \n
+       "		nil," \n
+       "		nil," \n
+       "		""F_40mm_Red""" \n
+       "	] call BIS_fnc_sn_flare;" \n
+       "} foreach [BIS_mrkRunwayLight, BIS_mrkRunwayEnd];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Taxiing_finished">*/
+        class Taxiing_finished
+        {
+          itemno = 3;
+          priority = 0.000000;
+          to="Taking_off";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_expoAlca getVariable ""taxiingFinished"" && !( ({ (getpos _x select 2) < 10 } count list BIS_trg_restrictedarea1) > 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Init";
+  finalStates[] =
+  {
+    "End",
+    "Canceled",
+  };
+};
+/*%FSM</COMPILE>*/

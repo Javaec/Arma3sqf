@@ -1,0 +1,654 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Mission Flow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"start",0,250,75.000000,-725.000000,175.000000,-675.000000,0.000000,"start"};
+item1[] = {"move_to_meeting",2,250,75.000000,-575.000000,175.000000,-525.000000,0.000000,"move to" \n "meeting point"};
+item2[] = {"__journalist",4,218,75.000000,-400.000000,175.000000,-350.000000,0.000000,"@journalist"};
+item3[] = {"__airport",4,218,75.000000,-650.000000,175.000000,-600.000000,0.000000,"@airport"};
+item4[] = {"pickup_journalis",2,250,75.000000,-325.000000,175.000000,-275.000000,0.000000,"pickup journalist"};
+item5[] = {"kb_done",4,218,75.000000,-250.000000,175.000000,-200.000000,0.000000,"kb done"};
+item6[] = {"join_player",2,250,75.000000,-175.000000,175.000000,-125.000000,0.000000,"join player"};
+item7[] = {"kb_done",4,218,75.000000,-100.000000,175.000000,-50.000000,0.000000,"kb done"};
+item8[] = {"search_for_car",2,250,75.000000,-25.000000,175.000000,25.000000,0.000000,"search for car"};
+item9[] = {"in_different_car",4,218,225.000000,-25.000000,325.000000,25.000000,0.000000,"in different" \n "car"};
+item10[] = {"send_journalist",2,250,-75.000000,50.000000,25.000000,100.000000,0.000000,"send journalist" \n "to car"};
+item11[] = {"__car",4,218,75.000000,50.000000,175.000000,100.000000,0.000000,"@car"};
+item12[] = {"__destination",4,218,75.000000,225.000000,175.000000,275.000000,0.000000,"@destination"};
+item13[] = {"close_to_proper",4,218,-75.000000,-25.000000,25.000000,25.000000,0.000000,"close to" \n "proper car"};
+item14[] = {"send_journalist_1",2,250,225.000000,50.000000,325.000000,100.000000,0.000000,"send journalist" \n "to car"};
+item15[] = {"__car",2,250,75.000000,150.000000,175.000000,200.000000,0.000000,"@car"};
+item16[] = {"cheat1",4,218,225.000000,-575.000000,325.000000,-525.000000,100.000000,"cheat1"};
+item17[] = {"repos_to_parking",2,250,225.000000,-500.000000,325.000000,-450.000000,0.000000,"repos to" \n "parking area"};
+item18[] = {"execute_cutscene",1,250,75.000000,300.000000,175.000000,350.000000,0.000000,"execute" \n "cutscene"};
+item19[] = {"in_car",4,218,375.000000,-175.000000,475.000000,-125.000000,100.000000,"in car"};
+item20[] = {"wait_for_jurnalist",2,250,375.000000,150.000000,475.000000,200.000000,0.000000,"wait for jurnalist to" \n " get into the car"};
+item21[] = {"cheat2",4,218,-250.000000,-25.000000,-150.000000,25.000000,1000.000000,"cheat2"};
+item22[] = {"",7,210,-204.000000,-704.000000,-196.000000,-696.000000,0.000000,""};
+item23[] = {"",7,210,-204.000000,-554.000000,-196.000000,-546.000000,0.000000,""};
+item24[] = {"",7,210,-204.000000,-304.000000,-196.000000,-296.000000,0.000000,""};
+item25[] = {"",7,210,-204.000000,-154.000000,-196.000000,-146.000000,0.000000,""};
+item26[] = {"",7,210,-204.000000,245.999954,-196.000000,254.000061,0.000000,""};
+item27[] = {"repos_to_Athira",2,4346,-250.000000,50.000000,-150.000000,100.000000,0.000000,"repos to" \n "Athira"};
+item28[] = {"",7,210,271.000000,-704.000000,279.000031,-696.000000,0.000000,""};
+item29[] = {"too_far",4,218,225.000000,-250.000000,325.000000,-200.000000,0.000000,"too far"};
+item30[] = {"cheat3",4,218,400.000000,-725.000000,500.000000,-675.000000,0.000000,"cheat3"};
+item31[] = {"repos_to_airfiel",2,250,400.000000,-400.000000,500.000000,-350.000000,0.000000,"repos to" \n "airfield"};
+link0[] = {0,3};
+link1[] = {0,22};
+link2[] = {0,28};
+link3[] = {1,2};
+link4[] = {1,16};
+link5[] = {1,23};
+link6[] = {2,4};
+link7[] = {3,1};
+link8[] = {4,5};
+link9[] = {4,24};
+link10[] = {4,29};
+link11[] = {5,6};
+link12[] = {6,7};
+link13[] = {6,19};
+link14[] = {6,25};
+link15[] = {7,8};
+link16[] = {8,9};
+link17[] = {8,13};
+link18[] = {8,25};
+link19[] = {9,14};
+link20[] = {10,11};
+link21[] = {11,15};
+link22[] = {12,18};
+link23[] = {13,10};
+link24[] = {14,11};
+link25[] = {15,12};
+link26[] = {16,17};
+link27[] = {17,2};
+link28[] = {19,20};
+link29[] = {20,11};
+link30[] = {21,27};
+link31[] = {22,23};
+link32[] = {23,24};
+link33[] = {24,25};
+link34[] = {25,21};
+link35[] = {26,12};
+link36[] = {27,26};
+link37[] = {28,16};
+link38[] = {28,30};
+link39[] = {29,6};
+link40[] = {30,31};
+link41[] = {31,2};
+link42[] = {31,24};
+globals[] = {25.000000,1,0,0,0,640,480,1,363,6316128,1,-299.062347,541.557922,371.199524,-956.699890,659,1041,1};
+window[] = {2,-1,-1,-1,-1,1018,250,1450,250,3,677};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Mission Flow";
+        class States
+        {
+                /*%FSM<STATE "start">*/
+                class start
+                {
+                        name = "start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"cheat1 = false;" \n
+                         "cheat2 = false;" \n
+                         "" \n
+                         "private[""_kb"",""_car""];" \n
+                         "" \n
+                         "_kb = [] spawn {true};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cheat2">*/
+                                class cheat2
+                                {
+                                        itemno = 21;
+                                        priority = 1000.000000;
+                                        to="repos_to_Athira";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cheat2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cheat1">*/
+                                class cheat1
+                                {
+                                        itemno = 16;
+                                        priority = 100.000000;
+                                        to="repos_to_parking";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cheat1"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cheat3">*/
+                                class cheat3
+                                {
+                                        itemno = 30;
+                                        priority = 0.000000;
+                                        to="repos_to_airfiel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cheat3"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "__airport">*/
+                                class __airport
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="move_to_meeting";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle player != BIS_introCar"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "move_to_meeting">*/
+                class move_to_meeting
+                {
+                        name = "move_to_meeting";
+                        itemno = 1;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cheat2">*/
+                                class cheat2
+                                {
+                                        itemno = 21;
+                                        priority = 1000.000000;
+                                        to="repos_to_Athira";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cheat2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cheat1">*/
+                                class cheat1
+                                {
+                                        itemno = 16;
+                                        priority = 100.000000;
+                                        to="repos_to_parking";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cheat1"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "__journalist">*/
+                                class __journalist
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="pickup_journalis";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((player distance BIS_journalist < 10) && (currentWaypoint group bis_journalist != count waypoints group bis_journalist))" \n
+                                         "||" \n
+                                         "(player distance BIS_journalist < 3)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "pickup_journalis">*/
+                class pickup_journalis
+                {
+                        name = "pickup_journalis";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"/*" \n
+                         "private[""_p1"",""_p2"",""_p""];" \n
+                         "" \n
+                         "if (currentWaypoint group bis_journalist != count waypoints group bis_journalist) then" \n
+                         "{" \n
+                         "	_p1 = getPos player;" \n
+                         "	_p2 = getPos BIS_journalist;" \n
+                         "	_p  = [((_p1 select 0) + (_p2 select 0))/2,((_p1 select 1) + (_p2 select 1))/2,((_p1 select 2) + (_p2 select 2))/2];" \n
+                         "" \n
+                         "	[group BIS_journalist, currentWaypoint group bis_journalist] setWaypointPosition [_p, 0];" \n
+                         "};" \n
+                         "*/" \n
+                         "" \n
+                         "" \n
+                         "while {count waypoints (group BIS_journalist) > 0} do" \n
+                         "{" \n
+                         "	deleteWaypoint [(group BIS_journalist), 0];" \n
+                         "};	" \n
+                         "" \n
+                         "" \n
+                         "BIS_journalistCanFollow = true;" \n
+                         "" \n
+                         "_kb = ""05_MeetingWithJournalist"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cheat2">*/
+                                class cheat2
+                                {
+                                        itemno = 21;
+                                        priority = 1000.000000;
+                                        to="repos_to_Athira";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cheat2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "too_far">*/
+                                class too_far
+                                {
+                                        itemno = 29;
+                                        priority = 0.000000;
+                                        to="join_player";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player distance BIS_journalist) > 10"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "kb_done">*/
+                                class kb_done
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="join_player";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"scriptDone _kb"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "join_player">*/
+                class join_player
+                {
+                        name = "join_player";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"if (vehicle player == player) then" \n
+                         "{" \n
+                         "	_kb = ""10_GetCar"" spawn BIS_fnc_missionConversations;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cheat2">*/
+                                class cheat2
+                                {
+                                        itemno = 21;
+                                        priority = 1000.000000;
+                                        to="repos_to_Athira";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cheat2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "in_car">*/
+                                class in_car
+                                {
+                                        itemno = 19;
+                                        priority = 100.000000;
+                                        to="wait_for_jurnalist";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle player != player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "kb_done">*/
+                                class kb_done
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="search_for_car";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"scriptDone _kb"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "search_for_car">*/
+                class search_for_car
+                {
+                        name = "search_for_car";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cheat2">*/
+                                class cheat2
+                                {
+                                        itemno = 21;
+                                        priority = 1000.000000;
+                                        to="repos_to_Athira";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cheat2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "close_to_proper">*/
+                                class close_to_proper
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="send_journalist";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"player distance BIS_car < 5"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "in_different_car">*/
+                                class in_different_car
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="send_journalist_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player != player) && (vehicle player != BIS_car)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "send_journalist">*/
+                class send_journalist
+                {
+                        name = "send_journalist";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"//play ""found the car"" conversation" \n
+                         "_kb = ""15_CarFound"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//update the task" \n
+                         "[""BIS_getCar"",getPos BIS_car] call BIS_fnc_taskSetDestination;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "__car">*/
+                                class __car
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="__car";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player == vehicle BIS_journalist) && (scriptDone _kb)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "send_journalist_1">*/
+                class send_journalist_1
+                {
+                        name = "send_journalist_1";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "__car">*/
+                                class __car
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="__car";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player == vehicle BIS_journalist) && (scriptDone _kb)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__car">*/
+                class __car
+                {
+                        name = "__car";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_getCar"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "__destination">*/
+                                class __destination
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="execute_cutscene";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((vehicle player distance BIS_destinationPoint < 20) && (speed vehicle player < 5))" \n
+                                         "||" \n
+                                         "(({_x distance BIS_nikos < 40} count [BIS_journalist,player] > 0) && ({vehicle _x == _x} count [BIS_journalist,player] == 2))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "repos_to_parking">*/
+                class repos_to_parking
+                {
+                        name = "repos_to_parking";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"[""[!] cheat1""] call BIS_fnc_logFormat;" \n
+                         "" \n
+                         "moveOut player;" \n
+                         "player setVelocity [0,0,0];" \n
+                         "player setPos [14636.1,16780.2,0.00143814];" \n
+                         "player setDir 135.148;" \n
+                         "" \n
+                         "/*" \n
+                         "unassignVehicle BIS_journalist;" \n
+                         "moveout BIS_journalist;" \n
+                         "BIS_journalist setVelocity [0,0,0];" \n
+                         "BIS_journalist setPos [14638.2,16783.6,0.00143814];" \n
+                         "BIS_journalist setDir 322.056;" \n
+                         "*/" \n
+                         "" \n
+                         "if (vehicle player != BIS_car) then" \n
+                         "{" \n
+                         "	moveOut player;	" \n
+                         "};" \n
+                         "" \n
+                         "player moveInDriver BIS_car;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "__journalist">*/
+                                class __journalist
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="pickup_journalis";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((player distance BIS_journalist < 10) && (currentWaypoint group bis_journalist != count waypoints group bis_journalist))" \n
+                                         "||" \n
+                                         "(player distance BIS_journalist < 3)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "execute_cutscene">*/
+                class execute_cutscene
+                {
+                        name = "execute_cutscene";
+                        itemno = 18;
+                        init = /*%FSM<STATEINIT""">*/"//cancel the re-fuel task if not completed yet" \n
+                         "if !([""BIS_refuel""] call BIS_fnc_taskCompleted) then" \n
+                         "{" \n
+                         "	[""BIS_refuel"",""CANCELED""] call BIS_fnc_taskSetState;" \n
+                         "};" \n
+                         "" \n
+                         "private[""_cuscene""];" \n
+                         "" \n
+                         "_cuscene = [] execVM ""scripts\meetingNikos.sqf"";" \n
+                         "" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "wait_for_jurnalist">*/
+                class wait_for_jurnalist
+                {
+                        name = "wait_for_jurnalist";
+                        itemno = 20;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "__car">*/
+                                class __car
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="__car";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player == vehicle BIS_journalist) && (scriptDone _kb)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "repos_to_Athira">*/
+                class repos_to_Athira
+                {
+                        name = "repos_to_Athira";
+                        itemno = 27;
+                        init = /*%FSM<STATEINIT""">*/"[""[!] cheat2""] call BIS_fnc_logFormat;" \n
+                         "" \n
+                         "//_kb = ""30_ChatToOilStation"" spawn BIS_fnc_missionConversations;" \n
+                         "//_kb = ""40_ChatToDestination"" spawn BIS_fnc_missionConversations;" \n
+                         "//_kb = ""45_ChatToDestination2"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "private[""_car""];" \n
+                         "" \n
+                         "if (vehicle player == player || vehicle player == BIS_introCar) then" \n
+                         "{" \n
+                         "	_car = BIS_car;" \n
+                         "}" \n
+                         "else" \n
+                         "{" \n
+                         "	_car = vehicle player;" \n
+                         "};" \n
+                         "" \n
+                         "" \n
+                         "if (assignedVehicle BIS_journalist != _car) then" \n
+                         "{" \n
+                         "	unassignVehicle BIS_journalist;" \n
+                         "};" \n
+                         "" \n
+                         "if (vehicle player != _car) then" \n
+                         "{" \n
+                         "	moveOut player;" \n
+                         "};" \n
+                         "" \n
+                         "if (vehicle BIS_journalist != _car) then" \n
+                         "{" \n
+                         "	moveOut BIS_journalist;" \n
+                         "};" \n
+                         "" \n
+                         "BIS_journalist assignAsCargo _car;" \n
+                         "BIS_journalist moveInCargo _car;" \n
+                         "player moveInDriver _car;" \n
+                         "" \n
+                         "_car setVelocity [0,0,0];" \n
+                         "_car setPos [14027.2,18640.1,0.000934601];" \n
+                         "_car setDir 110;" \n
+                         "" \n
+                         "while {count waypoints (group BIS_journalist) > 0} do" \n
+                         "{" \n
+                         "	deleteWaypoint [(group BIS_journalist), 0];" \n
+                         "};	" \n
+                         "" \n
+                         "BIS_journalistCanFollow = true;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "__destination">*/
+                                class __destination
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="execute_cutscene";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((vehicle player distance BIS_destinationPoint < 20) && (speed vehicle player < 5))" \n
+                                         "||" \n
+                                         "(({_x distance BIS_nikos < 40} count [BIS_journalist,player] > 0) && ({vehicle _x == _x} count [BIS_journalist,player] == 2))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "repos_to_airfiel">*/
+                class repos_to_airfiel
+                {
+                        name = "repos_to_airfiel";
+                        itemno = 31;
+                        init = /*%FSM<STATEINIT""">*/"[""[!] cheat3""] call BIS_fnc_logFormat;" \n
+                         "" \n
+                         "moveOut player;" \n
+                         "player setVelocity [0,0,0];" \n
+                         "player setPos [14720.3,16706,0.00143814];" \n
+                         "player setDir 138.141;" \n
+                         "" \n
+                         "BIS_car setVelocity [0,0,0];" \n
+                         "BIS_car setPos [14711.6,16714.7,1.16202];" \n
+                         "BIS_car setDir 129.86;" \n
+                         "" \n
+                         "unassignVehicle BIS_journalist;" \n
+                         "moveout BIS_journalist;" \n
+                         "BIS_journalist setVelocity [0,0,0];" \n
+                         "BIS_journalist setPos [14746.6,16685.2,0.00143814];" \n
+                         "BIS_journalist setDir 309.616;" \n
+                         "" \n
+                         "" \n
+                         "" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cheat2">*/
+                                class cheat2
+                                {
+                                        itemno = 21;
+                                        priority = 1000.000000;
+                                        to="repos_to_Athira";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cheat2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "__journalist">*/
+                                class __journalist
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="pickup_journalis";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((player distance BIS_journalist < 10) && (currentWaypoint group bis_journalist != count waypoints group bis_journalist))" \n
+                                         "||" \n
+                                         "(player distance BIS_journalist < 3)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="start";
+        finalStates[] =
+        {
+                "execute_cutscene",
+        };
+};
+/*%FSM</COMPILE>*/

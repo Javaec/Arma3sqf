@@ -1,0 +1,726 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, Transreq - Group">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-50.000000,-350.000000,50.000000,-300.000000,0.000000,"init"};
+item1[] = {"has_transport",4,218,-125.000000,-250.000000,-25.000000,-200.000000,0.000000,"has transport"};
+item2[] = {"no_transport",4,218,25.000000,-250.000000,125.000000,-200.000000,1.000000,"no transport"};
+item3[] = {"transit",2,250,-125.000000,-75.000000,-25.000000,-25.000000,0.000000,"transit"};
+item4[] = {"arrived",4,218,-250.000000,-75.000000,-150.000000,-25.000000,0.000000,"arrived"};
+item5[] = {"unservicable",4,218,175.000000,-75.000000,275.000000,-25.000000,1.000000,"unservicable"};
+item6[] = {"landing",2,250,-125.000000,700.000000,-25.000000,750.000000,0.000000,"landing"};
+item7[] = {"end",1,250,275.000000,525.000000,375.000000,575.000000,0.000000,"end"};
+item8[] = {"empty",4,218,-125.000000,950.000000,-25.000000,1000.000000,0.000000,"empty"};
+item9[] = {"",7,210,321.000000,21.000002,329.000000,29.000000,0.000000,""};
+item10[] = {"aborted",4,218,-250.000000,225.000000,-150.000000,275.000000,0.000000,"aborted"};
+item11[] = {"",7,210,321.000000,-229.000000,329.000000,-221.000000,0.000000,""};
+item12[] = {"pickup",2,250,-125.000000,225.000000,-25.000000,275.000000,0.000000,"pickup"};
+item13[] = {"all_onboard",4,218,-125.000000,300.000000,-25.000000,350.000000,0.000000,"all onboard"};
+item14[] = {"",7,210,321.000000,-54.000000,329.000000,-46.000000,0.000000,""};
+item15[] = {"transit_1",2,250,-125.000000,375.000000,-25.000000,425.000000,0.000000,"transit"};
+item16[] = {"arrived",4,218,-125.000000,450.000000,-25.000000,500.000000,0.000000,"arrived"};
+item17[] = {"pax_dead",4,218,175.000000,0.000000,275.000000,50.000000,0.000000,"pax" \n "dead"};
+item18[] = {"",7,210,121.000008,246.000000,129.000000,254.000000,0.000000,""};
+item19[] = {"",7,210,121.000000,-53.999992,129.000000,-46.000008,0.000000,""};
+item20[] = {"landing_1",2,250,-125.000000,75.000000,-25.000000,125.000000,0.000000,"landing"};
+item21[] = {"landed",4,218,-125.000000,150.000000,-25.000000,200.000000,0.000000,"landed"};
+item22[] = {"",7,210,121.000000,96.000000,129.000000,104.000000,0.000000,""};
+item23[] = {"",7,210,121.000000,396.000000,129.000000,404.000000,0.000000,""};
+item24[] = {"",7,210,121.000000,21.000000,129.000000,29.000000,0.000000,""};
+item25[] = {"",7,210,-79.000000,21.000002,-71.000000,29.000000,0.000000,""};
+item26[] = {"locate_landing",2,250,-250.000000,0.000000,-150.000000,50.000000,0.000000,"locate landing"};
+item27[] = {"found_spot",4,218,-250.000000,100.000000,-150.000000,150.000000,0.000000,"found spot"};
+item28[] = {"no_spot",4,218,-400.000000,100.000000,-300.000000,150.000000,0.000000,"no spot"};
+item29[] = {"",7,210,-354.000183,71.000015,-345.999817,78.999977,0.000000,""};
+item30[] = {"",7,210,-354.000122,1021.000122,-345.999878,1029.000000,0.000000,""};
+item31[] = {"",7,210,321.000000,1021.000000,329.000000,1029.000000,0.000000,""};
+item32[] = {"",7,210,-279.000000,246.000015,-271.000000,253.999985,0.000000,""};
+item33[] = {"",7,210,-279.000000,21.000002,-271.000000,28.999996,0.000000,""};
+item34[] = {"",7,210,321.000000,971.000000,329.000000,979.000000,0.000000,""};
+item35[] = {"wait",2,250,-250.000000,300.000000,-150.000000,350.000000,0.000000,"wait"};
+item36[] = {"ready",4,218,-250.000000,375.000000,-150.000000,425.000000,0.000000,"ready"};
+item37[] = {"",7,210,120.999992,546.000000,129.000000,554.000000,0.000000,""};
+item38[] = {"landed",4,218,-125.000000,800.000000,-25.000000,850.000000,0.000000,"landed"};
+item39[] = {"disembark",2,250,-125.000000,875.000000,-25.000000,925.000000,0.000000,"disembark"};
+item40[] = {"",7,210,120.999992,896.000000,129.000000,904.000000,0.000000,""};
+item41[] = {"",7,210,121.000000,721.000000,129.000000,729.000000,0.000000,""};
+item42[] = {"locate_landing_1",2,250,-125.000000,525.000000,-25.000000,575.000000,0.000000,"locate landing"};
+item43[] = {"found_spot",4,218,-125.000000,625.000000,-25.000000,675.000000,0.000000,"found spot"};
+item44[] = {"no_spot",4,218,-250.000000,625.000000,-150.000000,675.000000,0.000000,"no spot"};
+item45[] = {"",7,210,-204.000000,596.000000,-196.000000,604.000000,0.000000,""};
+item46[] = {"",7,210,-79.000000,596.000000,-71.000000,604.000000,0.000000,""};
+item47[] = {"",7,210,-204.000000,896.000000,-196.000000,904.000000,0.000000,""};
+item48[] = {"",7,210,321.000000,-129.000000,329.000000,-121.000008,0.000000,""};
+item49[] = {"",7,210,-204.000000,71.000000,-196.000000,79.000000,0.000000,""};
+item50[] = {"GROUP_TRANSREQ",-1,250,100.000000,-375.000000,350.000000,-275.000000,0.000000,"GROUP" \n "TRANSREQ"};
+version=1;
+class LayoutItems
+{
+	class Item50
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=18;
+			FontWeight=700;
+			lStyle=1;
+		};
+	};
+};
+link0[] = {0,1};
+link1[] = {0,2};
+link2[] = {1,3};
+link3[] = {2,11};
+link4[] = {3,4};
+link5[] = {3,25};
+link6[] = {4,26};
+link7[] = {5,14};
+link8[] = {6,38};
+link9[] = {6,41};
+link10[] = {8,34};
+link11[] = {9,7};
+link12[] = {10,32};
+link13[] = {11,48};
+link14[] = {12,10};
+link15[] = {12,13};
+link16[] = {12,18};
+link17[] = {13,35};
+link18[] = {14,9};
+link19[] = {15,16};
+link20[] = {15,23};
+link21[] = {16,42};
+link22[] = {17,9};
+link23[] = {18,22};
+link24[] = {19,5};
+link25[] = {20,21};
+link26[] = {20,22};
+link27[] = {21,12};
+link28[] = {22,24};
+link29[] = {23,18};
+link30[] = {24,17};
+link31[] = {24,19};
+link32[] = {25,24};
+link33[] = {26,25};
+link34[] = {26,49};
+link35[] = {27,20};
+link36[] = {28,30};
+link37[] = {29,28};
+link38[] = {30,31};
+link39[] = {31,34};
+link40[] = {32,33};
+link41[] = {33,26};
+link42[] = {34,7};
+link43[] = {35,36};
+link44[] = {36,15};
+link45[] = {37,23};
+link46[] = {38,39};
+link47[] = {39,8};
+link48[] = {39,40};
+link49[] = {40,41};
+link50[] = {41,37};
+link51[] = {42,37};
+link52[] = {42,46};
+link53[] = {43,6};
+link54[] = {44,47};
+link55[] = {45,44};
+link56[] = {46,43};
+link57[] = {46,45};
+link58[] = {47,39};
+link59[] = {48,14};
+link60[] = {49,27};
+link61[] = {49,29};
+globals[] = {25.000000,1,0,0,0,640,480,1,84,6316128,1,-1331.377686,1418.564941,1167.308105,-507.289307,1496,911,1};
+window[] = {2,-1,-1,-1,-1,549,837,1599,75,3,1514};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Transreq - Group";
+  class States
+  {
+    /*%FSM<STATE "init">*/
+    class init
+    {
+      name = "init";
+      init = /*%FSM<STATEINIT""">*/"_group = [_this, 0, grpNull] call bis_fnc_param;" \n
+       "_destination = [_this, 1, []] call bis_fnc_param;" \n
+       "_action = [_this, 2, []] call bis_fnc_param;" \n
+       "_side = side _group;" \n
+       "_numPax = count units _group;" \n
+       "_maxTime = 3* 60;" \n
+       "_spawnpos = format[""spawn_%1"",_side] ;" \n
+       "_vehicle = objNull;" \n
+       "_crewGrp = grpNull;" \n
+       "_units = units grpNull;" \n
+       "_vehicleClass = ""Helicopter"";" \n
+       "" \n
+       "_tptOptions = nearestObjects [(position leader _group), [_vehicleClass], 6000];" \n
+       "{" \n
+       "	_isTpt =  _x getVariable [""isTransport"",true];" \n
+       "	_isAvail =  isNull (_x getVariable [""transportingGroup"",grpNull]);" \n
+       "	_isFriendly = (side _x) == _side;" \n
+       "	_isOk = !(_destination select 0 == 0 and _destination select 1 == 0 and _destination select 2 == 0);" \n
+       "	if (_isTpt and _isOk and canMove(_x) and _isAvail and isNull(_vehicle) and _isFriendly) then {" \n
+       "		_x setVariable [""transportingGroup"",_group];" \n
+       "		_x setVariable [""statusV"",""accepted task""];" \n
+       "		_vehicle = _x;" \n
+       "	};" \n
+       "} forEach _tptOptions;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "no_transport">*/
+        class no_transport
+        {
+          priority = 1.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNull _vehicle;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_group setVariable [""transreq"",""nogo""];"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "has_transport">*/
+        class has_transport
+        {
+          priority = 0.000000;
+          to="transit";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(isNull _vehicle) and (count _destination > 0) and !(_destination select 0 == 0 and _destination select 1 == 0 and _destination select 2 == 0);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_lz = (position leader _group);" \n
+           "_crewGrp = group driver _vehicle;" \n
+           "driver _vehicle commandMove _lz;" \n
+           "" \n
+           "_vehicle setBehaviour ""CARELESS"";" \n
+           "_loiterPos = _vehicle getVariable [""loiterPos"",[0,0,0]];" \n
+           "_vehicle allowFleeing 0;" \n
+           "" \n
+           "_group setVariable [""transreq"",""go""];" \n
+           "_group move _lz;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "transit">*/
+    class transit
+    {
+      name = "transit";
+      init = /*%FSM<STATEINIT""">*/"_units = units _group;" \n
+       "_aborter = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unservicable">*/
+        class unservicable
+        {
+          priority = 1.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(canMove _vehicle) or (fuel _vehicle == 0) or (isNull _vehicle);" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_group setVariable [""transreq"",""nogo""];" \n
+           "_vehicle setVariable [""statusV"",""finished (unservicable)""];" \n
+           "//Eject if still in vehicle" \n
+           "{" \n
+           "	if (vehicle _x != _x) then {" \n
+           "		_x action [""eject"", vehicle _x];" \n
+           "	};" \n
+           "} forEach _units;" \n
+           ""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "pax_dead">*/
+        class pax_dead
+        {
+          priority = 0.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(isNull _group) or ({(alive _x) or (canMove _x)} count _units == 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""transportingGroup"",grpNull];" \n
+           "_vehicle setVariable [""statusV"",""finished (pax dead)""];" \n
+           "driver _vehicle commandMove _loiterPos;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "arrived">*/
+        class arrived
+        {
+          priority = 0.000000;
+          to="locate_landing";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"unitReady driver _vehicle;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""statusV"",""arrived""];"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "landing">*/
+    class landing
+    {
+      name = "landing";
+      init = /*%FSM<STATEINIT""">*/"_aborter = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unservicable">*/
+        class unservicable
+        {
+          priority = 1.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(canMove _vehicle) or (fuel _vehicle == 0) or (isNull _vehicle);" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_group setVariable [""transreq"",""nogo""];" \n
+           "_vehicle setVariable [""statusV"",""finished (unservicable)""];" \n
+           "//Eject if still in vehicle" \n
+           "{" \n
+           "	if (vehicle _x != _x) then {" \n
+           "		_x action [""eject"", vehicle _x];" \n
+           "	};" \n
+           "} forEach _units;" \n
+           ""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "pax_dead">*/
+        class pax_dead
+        {
+          priority = 0.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(isNull _group) or ({(alive _x) or (canMove _x)} count _units == 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""transportingGroup"",grpNull];" \n
+           "_vehicle setVariable [""statusV"",""finished (pax dead)""];" \n
+           "driver _vehicle commandMove _loiterPos;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "landed">*/
+        class landed
+        {
+          priority = 0.000000;
+          to="disembark";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(position _vehicle select 2) < 4;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_group leaveVehicle _vehicle;" \n
+           "_vehicle setVariable [""statusV"",""disembarking dropoff""];"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "end">*/
+    class end
+    {
+      name = "end";
+      init = /*%FSM<STATEINIT""">*/"_vehicle setVariable [""transportingGroup"",grpNull];" \n
+       "//Eject if still in vehicle" \n
+       "{" \n
+       "	if (vehicle _x != _x) then {" \n
+       "		_x action [""eject"", vehicle _x];" \n
+       "	};" \n
+       "} forEach _units;" \n
+       "" \n
+       "if (!isNull _group) then {" \n
+       "	_group move _destination;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "pickup">*/
+    class pickup
+    {
+      name = "pickup";
+      init = /*%FSM<STATEINIT""">*/"(units _group) orderGetIn true;" \n
+       "//_vehicle engineOn true;" \n
+       "_aborter = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unservicable">*/
+        class unservicable
+        {
+          priority = 1.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(canMove _vehicle) or (fuel _vehicle == 0) or (isNull _vehicle);" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_group setVariable [""transreq"",""nogo""];" \n
+           "_vehicle setVariable [""statusV"",""finished (unservicable)""];" \n
+           "//Eject if still in vehicle" \n
+           "{" \n
+           "	if (vehicle _x != _x) then {" \n
+           "		_x action [""eject"", vehicle _x];" \n
+           "	};" \n
+           "} forEach _units;" \n
+           ""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "pax_dead">*/
+        class pax_dead
+        {
+          priority = 0.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(isNull _group) or ({(alive _x) or (canMove _x)} count _units == 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""transportingGroup"",grpNull];" \n
+           "_vehicle setVariable [""statusV"",""finished (pax dead)""];" \n
+           "driver _vehicle commandMove _loiterPos;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "all_onboard">*/
+        class all_onboard
+        {
+          priority = 0.000000;
+          to="wait";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"({vehicle _x != _x} count units _group) == {alive _x} count ( units _group);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_units = units _group;" \n
+           "_vehicle setVariable [""statusV"",""all on board""];"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "aborted">*/
+        class aborted
+        {
+          priority = 0.000000;
+          to="locate_landing";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(position _vehicle select 2) > 5;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""statusV"",""aborted landing""];"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "transit_1">*/
+    class transit_1
+    {
+      name = "transit_1";
+      init = /*%FSM<STATEINIT""">*/"_aborter = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unservicable">*/
+        class unservicable
+        {
+          priority = 1.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(canMove _vehicle) or (fuel _vehicle == 0) or (isNull _vehicle);" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_group setVariable [""transreq"",""nogo""];" \n
+           "_vehicle setVariable [""statusV"",""finished (unservicable)""];" \n
+           "//Eject if still in vehicle" \n
+           "{" \n
+           "	if (vehicle _x != _x) then {" \n
+           "		_x action [""eject"", vehicle _x];" \n
+           "	};" \n
+           "} forEach _units;" \n
+           ""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "pax_dead">*/
+        class pax_dead
+        {
+          priority = 0.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(isNull _group) or ({(alive _x) or (canMove _x)} count _units == 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""transportingGroup"",grpNull];" \n
+           "_vehicle setVariable [""statusV"",""finished (pax dead)""];" \n
+           "driver _vehicle commandMove _loiterPos;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "arrived">*/
+        class arrived
+        {
+          priority = 0.000000;
+          to="locate_landing_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"unitReady driver _vehicle;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_attempt = 0;" \n
+           "_vehicle setVariable [""statusV"",""arrived for dropoff""];"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "landing_1">*/
+    class landing_1
+    {
+      name = "landing_1";
+      init = /*%FSM<STATEINIT""">*/"_group move ((expectedDestination _vehicle) select 0);" \n
+       "_crewGrp move position _vehicle;" \n
+       "dostop _vehicle;" \n
+       "_aborter = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unservicable">*/
+        class unservicable
+        {
+          priority = 1.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(canMove _vehicle) or (fuel _vehicle == 0) or (isNull _vehicle);" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_group setVariable [""transreq"",""nogo""];" \n
+           "_vehicle setVariable [""statusV"",""finished (unservicable)""];" \n
+           "//Eject if still in vehicle" \n
+           "{" \n
+           "	if (vehicle _x != _x) then {" \n
+           "		_x action [""eject"", vehicle _x];" \n
+           "	};" \n
+           "} forEach _units;" \n
+           ""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "pax_dead">*/
+        class pax_dead
+        {
+          priority = 0.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(isNull _group) or ({(alive _x) or (canMove _x)} count _units == 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""transportingGroup"",grpNull];" \n
+           "_vehicle setVariable [""statusV"",""finished (pax dead)""];" \n
+           "driver _vehicle commandMove _loiterPos;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "landed">*/
+        class landed
+        {
+          priority = 0.000000;
+          to="pickup";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((position _vehicle select 2) < 2) and !(isEngineOn _vehicle) ;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"{" \n
+           "	_x assignAsCargo _vehicle;" \n
+           "} forEach units _group;" \n
+           "_vehicle setVariable [""statusV"",""landed for pickup""];"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "locate_landing">*/
+    class locate_landing
+    {
+      name = "locate_landing";
+      init = /*%FSM<STATEINIT""">*/"_vehicle land ""LAND"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unservicable">*/
+        class unservicable
+        {
+          priority = 1.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(canMove _vehicle) or (fuel _vehicle == 0) or (isNull _vehicle);" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_group setVariable [""transreq"",""nogo""];" \n
+           "_vehicle setVariable [""statusV"",""finished (unservicable)""];" \n
+           "//Eject if still in vehicle" \n
+           "{" \n
+           "	if (vehicle _x != _x) then {" \n
+           "		_x action [""eject"", vehicle _x];" \n
+           "	};" \n
+           "} forEach _units;" \n
+           ""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "found_spot">*/
+        class found_spot
+        {
+          priority = 0.000000;
+          to="landing_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"landResult _vehicle == ""Found"";"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""statusV"",""found pickup spot""];"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no_spot">*/
+        class no_spot
+        {
+          priority = 0.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"landResult _vehicle == ""NotFound"";"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_group setVariable [""transreq"",""nogo""];" \n
+           "_vehicle setVariable [""statusV"",""no pickup spot""];"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "pax_dead">*/
+        class pax_dead
+        {
+          priority = 0.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(isNull _group) or ({(alive _x) or (canMove _x)} count _units == 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""transportingGroup"",grpNull];" \n
+           "_vehicle setVariable [""statusV"",""finished (pax dead)""];" \n
+           "driver _vehicle commandMove _loiterPos;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "wait">*/
+    class wait
+    {
+      name = "wait";
+      init = /*%FSM<STATEINIT""">*/"_waitTime = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "ready">*/
+        class ready
+        {
+          priority = 0.000000;
+          to="transit_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _waitTime) > 5;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_crewGrp move _destination;" \n
+           "driver _vehicle commandMove _destination;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "disembark">*/
+    class disembark
+    {
+      name = "disembark";
+      init = /*%FSM<STATEINIT""">*/"" \n
+       "_waitTime = time;" \n
+       "_aborter = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unservicable">*/
+        class unservicable
+        {
+          priority = 1.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(canMove _vehicle) or (fuel _vehicle == 0) or (isNull _vehicle);" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_group setVariable [""transreq"",""nogo""];" \n
+           "_vehicle setVariable [""statusV"",""finished (unservicable)""];" \n
+           "//Eject if still in vehicle" \n
+           "{" \n
+           "	if (vehicle _x != _x) then {" \n
+           "		_x action [""eject"", vehicle _x];" \n
+           "	};" \n
+           "} forEach _units;" \n
+           ""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "pax_dead">*/
+        class pax_dead
+        {
+          priority = 0.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(isNull _group) or ({(alive _x) or (canMove _x)} count _units == 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""transportingGroup"",grpNull];" \n
+           "_vehicle setVariable [""statusV"",""finished (pax dead)""];" \n
+           "driver _vehicle commandMove _loiterPos;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "empty">*/
+        class empty
+        {
+          priority = 0.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((time - _waitTime) > 5);" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"driver _vehicle commandMove _loiterPos;" \n
+           "_vehicle setVariable [""statusV"",""finished""];" \n
+           "_group setVariable [""transreq"",""done""];"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "locate_landing_1">*/
+    class locate_landing_1
+    {
+      name = "locate_landing_1";
+      init = /*%FSM<STATEINIT""">*/"_vehicle land ""GET OUT"";" \n
+       "_waitTime = time;" \n
+       "_attempt = _attempt + 1;" \n
+       "_aborter = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unservicable">*/
+        class unservicable
+        {
+          priority = 1.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(canMove _vehicle) or (fuel _vehicle == 0) or (isNull _vehicle);" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_group setVariable [""transreq"",""nogo""];" \n
+           "_vehicle setVariable [""statusV"",""finished (unservicable)""];" \n
+           "//Eject if still in vehicle" \n
+           "{" \n
+           "	if (vehicle _x != _x) then {" \n
+           "		_x action [""eject"", vehicle _x];" \n
+           "	};" \n
+           "} forEach _units;" \n
+           ""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "found_spot">*/
+        class found_spot
+        {
+          priority = 0.000000;
+          to="landing";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(landResult _vehicle == ""Found"") and ((time - _waitTime) > 5);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""statusV"",""landing for dropoff""];"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no_spot">*/
+        class no_spot
+        {
+          priority = 0.000000;
+          to="disembark";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(landResult _vehicle == ""NotFound"") and ((time - _waitTime) > 5);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""statusV"",""no dropoff site""];" \n
+           "" \n
+           "driver _vehicle commandMove _loiterPos;" \n
+           "" \n
+           "_group leaveVehicle _vehicle;" \n
+           "{" \n
+           "	_x setPos [position _vehicle select 0,position _vehicle select 1,0];" \n
+           "} forEach _units;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "pax_dead">*/
+        class pax_dead
+        {
+          priority = 0.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(isNull _group) or ({(alive _x) or (canMove _x)} count _units == 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_vehicle setVariable [""transportingGroup"",grpNull];" \n
+           "_vehicle setVariable [""statusV"",""finished (pax dead)""];" \n
+           "driver _vehicle commandMove _loiterPos;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="init";
+  finalStates[] =
+  {
+    "end",
+  };
+};
+/*%FSM</COMPILE>*/

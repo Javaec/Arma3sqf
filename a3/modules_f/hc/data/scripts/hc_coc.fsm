@@ -1,0 +1,127 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, HC - COC">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Chain_of_Command",0,250,-100.000000,-200.000000,0.000000,-150.000000,0.000000,"Chain" \n "of" \n "Command"};
+item1[] = {"Delay",4,218,-100.000000,-100.000000,0.000000,-50.000000,0.000000,"Delay"};
+item2[] = {"Have_superior_",2,250,-100.000000,0.000000,0.000000,50.000000,0.000000,"Have superior?"};
+item3[] = {"No",8,218,-250.000000,75.000000,-150.000000,125.000000,0.000000,"No"};
+item4[] = {"Return",2,250,-250.000000,-100.000000,-150.000000,-50.000000,0.000000,"Return"};
+item5[] = {"Yes",4,218,50.000000,75.000000,150.000000,125.000000,1.000000,"Yes"};
+item6[] = {"Get_parameters",2,4346,50.000000,-100.000000,150.000000,-50.000000,0.000000,"Get parameters"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,5};
+link4[] = {3,4};
+link5[] = {4,1};
+link6[] = {5,6};
+link7[] = {6,1};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,9,6316128,1,-427.513214,355.194489,299.799408,-313.424316,779,899,1};
+window[] = {2,-1,-1,-1,-1,875,-1247,13,145,3,796};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "HC - COC";
+  class States
+  {
+    /*%FSM<STATE "Chain_of_Command">*/
+    class Chain_of_Command
+    {
+      name = "Chain_of_Command";
+      init = /*%FSM<STATEINIT""">*/"_group = _this;" \n "_timeNow = time;" \n "_delay = random 5;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Delay">*/
+        class Delay
+        {
+          priority = 0.000000;
+          to="Have_superior_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _timeNow) > _delay"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Have_superior_">*/
+    class Have_superior_
+    {
+      name = "Have_superior_";
+      init = /*%FSM<STATEINIT""">*/"_hcleader = hcleader _group;" \n "_delay = 5;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Yes">*/
+        class Yes
+        {
+          priority = 1.000000;
+          to="Get_parameters";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(_hcleader in units _group)" \n " && " \n "!(isplayer _hcleader) && !(isnull _hcleader)" \n " &&" \n "count units _group > 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "No">*/
+        class No
+        {
+          priority = 0.000000;
+          to="Return";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Return">*/
+    class Return
+    {
+      name = "Return";
+      init = /*%FSM<STATEINIT""">*/"_timeNow = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Delay">*/
+        class Delay
+        {
+          priority = 0.000000;
+          to="Have_superior_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _timeNow) > _delay"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Get_parameters">*/
+    class Get_parameters
+    {
+      name = "Get_parameters";
+      init = /*%FSM<STATEINIT""">*/"_timeNow = time;" \n "" \n "_leader = leader _group;" \n "" \n "//--- Copy waypoint" \n "_destinationLeader = expecteddestination _hcleader select 0;" \n "_destinationGroup = expecteddestination _leader select 0;" \n "if (_destinationLeader distance _destinationGroup > 1) then {" \n "	_leader commandmove _destinationLeader;" \n "};" \n "" \n "//--- Copy behavior" \n "_combatmode = combatmode _hcleader;" \n "if (combatmode _group != _combatmode) then {_group setcombatmode _combatmode};" \n "" \n "_behaviour = behaviour _hcleader;" \n "if (behaviour _leader != _behaviour) then {_group setbehaviour _behaviour};" \n "" \n "_speedmode = speedmode _hcleader;" \n "if (speedmode _group != _speedmode) then {_group setspeedmode _speedmode};" \n "" \n "_formation = formation _hcleader;" \n "if (formation _group != _formation) then {_group setformation _formation};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Delay">*/
+        class Delay
+        {
+          priority = 0.000000;
+          to="Have_superior_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _timeNow) > _delay"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Chain_of_Command";
+  finalStates[] =
+  {
+  };
+};
+/*%FSM</COMPILE>*/

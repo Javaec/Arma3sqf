@@ -1,0 +1,763 @@
+/*%FSM<COMPILE "campaignFSMA3.cfg, Project Splendid">*//*%FSM<HEAD>*//*item0[] = {"OPTIONAL_MISSION",-1,250,2000.000000,950.000000,2150.000000,1050.000000,0.000000,"OPTIONAL MISSION" \n "" \n "" \n "" \n "" \n ""};
+item1[] = {"STAGE_B_HUB____",-1,250,1850.000000,725.000000,2000.000000,825.000000,0.000000,"STAGE B HUB" \n "" \n "" \n "" \n "" \n "03"};
+item2[] = {"MISSION_POOL___",-1,250,825.000000,875.000000,1225.000000,975.000000,0.000000,"MISSION POOL" \n "" \n "" \n "" \n "" \n ""};
+item3[] = {"OPTIONAL_MISSION_1",-1,250,675.000000,875.000000,825.000000,975.000000,0.000000,"OPTIONAL MISSION" \n "" \n "" \n "" \n "" \n ""};
+item4[] = {"STAGE_B_HUB_____1",-1,250,550.000000,1100.000000,700.000000,1200.000000,0.000000,"STAGE B HUB" \n "" \n "" \n "" \n "" \n "02"};
+item5[] = {"OPTIONAL_MISSION_2",-1,250,25.000000,950.000000,175.000000,1050.000000,0.000000,"OPTIONAL MISSION" \n "" \n "" \n "" \n "" \n ""};
+item6[] = {"STAGE_B_HUB_____2",-1,250,175.000000,725.000000,325.000000,825.000000,0.000000,"STAGE B HUB" \n "" \n "" \n "" \n "" \n "01"};
+item7[] = {"_",4,218,200.000000,500.000000,300.000000,550.000000,0.000000,""};
+item8[] = {"__2",4,218,200.000000,900.000000,300.000000,950.000000,0.000000,""};
+item9[] = {"",7,210,896.000000,833.500000,904.000000,841.500000,0.000000,""};
+item10[] = {"",7,210,621.000000,770.999878,629.000000,779.000122,0.000000,""};
+item11[] = {"__5",4,218,975.000000,1000.000000,1075.000000,1050.000000,0.000000,""};
+item12[] = {"PROJECT_SPLENDID",-1,250,-350.000000,125.000000,-75.000000,325.000000,0.000000,"PROJECT SPLENDID" \n "CAMPAIGN FSM" \n "" \n "- State names are mission classes" \n "" \n "- Condition names can be anything (even empty)" \n "" \n "- Condition ""conditions"" field can contain code which has to" \n "return true in order to make the mission available." \n "Other missions' classes can be used as variables." \n "Empty field returns true by default"};
+item13[] = {"",7,210,95.999985,1146.000122,104.000023,1153.999878,0.000000,""};
+item14[] = {"",7,210,1021.000000,771.000000,1029.000000,779.000000,0.000000,""};
+item15[] = {"_",4,218,375.000000,1125.000000,475.000000,1175.000000,0.000000,""};
+item16[] = {"_",4,218,1575.000000,750.000000,1675.000000,800.000000,0.000000,""};
+item17[] = {"_",4,218,-75.000000,900.000000,25.000000,950.000000,0.000000,""};
+item18[] = {"_",4,218,575.000000,1000.000000,675.000000,1050.000000,0.000000,""};
+item19[] = {"_",4,218,1875.000000,875.000000,1975.000000,925.000000,0.000000,""};
+item20[] = {"",7,210,1921.000000,1133.499878,1929.000000,1141.500122,0.000000,""};
+item21[] = {"",7,210,-29.000046,1146.000122,-20.999954,1153.999878,0.000000,""};
+item22[] = {"_",4,218,850.000000,1000.000000,950.000000,1050.000000,0.000000,""};
+item23[] = {"",7,210,746.000000,770.999878,754.000000,779.000122,0.000000,""};
+item24[] = {"",7,210,2071.000000,1133.499878,2079.000000,1141.500122,0.000000,""};
+item25[] = {"_",4,218,50.000000,900.000000,150.000000,950.000000,0.000000,""};
+item26[] = {"__1",4,218,700.000000,1000.000000,800.000000,1050.000000,0.000000,""};
+item27[] = {"__1",4,218,2025.000000,850.000000,2125.000000,900.000000,0.000000,""};
+item28[] = {"_",4,218,2400.000000,875.000000,2500.000000,925.000000,0.000000,""};
+item29[] = {"",7,210,246.000000,1146.000122,254.000015,1153.999878,0.000000,""};
+item30[] = {"",7,210,1146.000000,833.500000,1154.000000,841.500000,0.000000,""};
+item31[] = {"__1",4,218,375.000000,750.000000,475.000000,800.000000,0.000000,""};
+item32[] = {"__2",4,218,1725.000000,1125.000000,1825.000000,1175.000000,0.000000,""};
+item33[] = {"",7,210,421.000000,1058.500000,429.000000,1066.500000,0.000000,""};
+item34[] = {"",7,210,1771.000000,846.000000,1779.000000,854.000000,0.000000,""};
+item35[] = {"__3",4,218,1100.000000,1000.000000,1200.000000,1050.000000,0.000000,""};
+item36[] = {"_",4,218,200.000000,650.000000,300.000000,700.000000,0.000000,""};
+item37[] = {"__4",4,4314,1275.000000,1000.000000,1375.000000,1050.000000,0.000000,""};
+item38[] = {"_",4,218,1425.000000,900.000000,1525.000000,950.000000,0.000000,""};
+item39[] = {"",7,210,1021.000000,833.500000,1029.000000,841.500000,0.000000,""};
+item40[] = {"B_in",0,250,200.000000,425.000000,300.000000,475.000000,0.000000,"B_in"};
+item41[] = {"B_in2",2,250,200.000000,575.000000,300.000000,625.000000,0.000000,"B_in2"};
+item42[] = {"B_hub01",2,250,200.000000,750.000000,300.000000,800.000000,0.000000,"B_hub01"};
+item43[] = {"B_skirmish01",2,250,50.000000,975.000000,150.000000,1025.000000,0.000000,"B_skirmish01"};
+item44[] = {"B_m06",2,250,200.000000,975.000000,300.000000,1025.000000,0.000000,"B_m06"};
+item45[] = {"B_hub02",2,250,575.000000,1125.000000,675.000000,1175.000000,0.000000,"B_hub02"};
+item46[] = {"B_skirmish02",2,250,700.000000,900.000000,800.000000,950.000000,0.000000,"B_skirmish02"};
+item47[] = {"B_m03",2,250,850.000000,900.000000,950.000000,950.000000,0.000000,"B_m03"};
+item48[] = {"B_m01",2,250,975.000000,900.000000,1075.000000,950.000000,0.000000,"B_m01"};
+item49[] = {"B_m05",2,250,1100.000000,900.000000,1200.000000,950.000000,0.000000,"B_m05"};
+item50[] = {"B_m02_1",2,250,1275.000000,900.000000,1375.000000,950.000000,0.000000,"B_m02_1"};
+item51[] = {"B_m02_2",2,250,1575.000000,900.000000,1675.000000,950.000000,0.000000,"B_m02_2"};
+item52[] = {"B_hub03",2,250,1875.000000,750.000000,1975.000000,800.000000,0.000000,"B_hub03"};
+item53[] = {"B_skirmish03",2,250,2025.000000,975.000000,2125.000000,1025.000000,0.000000,"B_skirmish03"};
+item54[] = {"B_out2",1,250,2400.000000,1125.000000,2500.000000,1175.000000,0.000000,"B_out2"};
+version=1;
+class LayoutItems
+{
+	class Item0
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			lStyle=2;
+		};
+	};
+	class Item1
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			lStyle=2;
+		};
+	};
+	class Item2
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			lStyle=2;
+		};
+	};
+	class Item3
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			lStyle=2;
+		};
+	};
+	class Item4
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			lStyle=2;
+		};
+	};
+	class Item5
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			lStyle=2;
+		};
+	};
+	class Item6
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			lStyle=2;
+		};
+	};
+	class Item12
+	{
+		class ItemInfo
+		{
+			FontFace="Calibri";
+			FontHeight=10;
+			lStyle=1;
+			Align=0;
+		};
+	};
+};
+link0[] = {7,41};
+link1[] = {8,44};
+link2[] = {9,39};
+link3[] = {10,18};
+link4[] = {11,48};
+link5[] = {13,21};
+link6[] = {14,23};
+link7[] = {15,45};
+link8[] = {16,52};
+link9[] = {17,42};
+link10[] = {18,45};
+link11[] = {19,52};
+link12[] = {20,19};
+link13[] = {21,17};
+link14[] = {22,47};
+link15[] = {23,10};
+link16[] = {24,20};
+link17[] = {25,43};
+link18[] = {26,46};
+link19[] = {27,53};
+link20[] = {28,54};
+link21[] = {29,15};
+link22[] = {30,39};
+link23[] = {31,33};
+link24[] = {32,34};
+link25[] = {33,45};
+link26[] = {34,52};
+link27[] = {35,49};
+link28[] = {36,42};
+link29[] = {37,50};
+link30[] = {38,51};
+link31[] = {39,14};
+link32[] = {40,7};
+link33[] = {41,36};
+link34[] = {42,8};
+link35[] = {42,25};
+link36[] = {42,31};
+link37[] = {43,13};
+link38[] = {44,29};
+link39[] = {45,11};
+link40[] = {45,22};
+link41[] = {45,26};
+link42[] = {45,32};
+link43[] = {45,35};
+link44[] = {45,37};
+link45[] = {46,23};
+link46[] = {47,9};
+link47[] = {48,39};
+link48[] = {49,30};
+link49[] = {50,38};
+link50[] = {51,16};
+link51[] = {52,27};
+link52[] = {52,28};
+link53[] = {53,24};
+globals[] = {25.000000,1,0,0,0,640,480,1,166,6316128,1,-48.907143,1854.978149,1243.403076,182.583374,1493,1041,1};
+window[] = {2,-1,-1,-1,-1,1244,250,1530,250,3,1511};
+*//*%FSM</HEAD>*/
+#define _CAMPAIGN	1
+class B_in: MissionDefault
+{
+        endDefault = B_in2;
+        noWeaponPool = 1;
+        isIntro = 1;
+        B_in2 = B_in2;
+        B_in2_1 = B_in2;
+        B_in2_2 = B_in2;
+        B_in2_3 = B_in2;
+        B_in2_4 = B_in2;
+        B_in2_5 = B_in2;
+        B_in2_6 = B_in2;
+        links[] = {"B_in","B_in2"};
+        linkConditions[] = {"",""};
+        lost = B_in;
+        lost_1 = B_in;
+        lost_2 = B_in;
+        lost_3 = B_in;
+        lost_4 = B_in;
+        lost_5 = B_in;
+        lost_6 = B_in;
+        template = B_in.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_in.Altis\description.ext"
+        };
+        #endif
+};
+class B_in2: MissionDefault
+{
+        endDefault = B_hub01;
+        noWeaponPool = 1;
+        isIntro = 1;
+        B_hub01 = B_hub01;
+        B_hub01_1 = B_hub01;
+        B_hub01_2 = B_hub01;
+        B_hub01_3 = B_hub01;
+        B_hub01_4 = B_hub01;
+        B_hub01_5 = B_hub01;
+        B_hub01_6 = B_hub01;
+        links[] = {"B_in2","B_hub01"};
+        linkConditions[] = {"",""};
+        lost = B_in2;
+        lost_1 = B_in2;
+        lost_2 = B_in2;
+        lost_3 = B_in2;
+        lost_4 = B_in2;
+        lost_5 = B_in2;
+        lost_6 = B_in2;
+        template = B_in2.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_in2.Altis\description.ext"
+        };
+        #endif
+};
+class B_hub01: MissionDefault
+{
+        repeat = 1;
+        isHub = 1;
+        B_skirmish01 = B_skirmish01;
+        B_skirmish01_1 = B_skirmish01;
+        B_skirmish01_2 = B_skirmish01;
+        B_skirmish01_3 = B_skirmish01;
+        B_skirmish01_4 = B_skirmish01;
+        B_skirmish01_5 = B_skirmish01;
+        B_skirmish01_6 = B_skirmish01;
+        B_hub02 = B_hub02;
+        B_hub02_1 = B_hub02;
+        B_hub02_2 = B_hub02;
+        B_hub02_3 = B_hub02;
+        B_hub02_4 = B_hub02;
+        B_hub02_5 = B_hub02;
+        B_hub02_6 = B_hub02;
+        B_m06 = B_m06;
+        B_m06_1 = B_m06;
+        B_m06_2 = B_m06;
+        B_m06_3 = B_m06;
+        B_m06_4 = B_m06;
+        B_m06_5 = B_m06;
+        B_m06_6 = B_m06;
+        links[] = {"B_hub01","B_skirmish01","B_hub02","B_m06"};
+        linkConditions[] = {"","","false",""};
+        lost = B_hub01;
+        lost_1 = B_hub01;
+        lost_2 = B_hub01;
+        lost_3 = B_hub01;
+        lost_4 = B_hub01;
+        lost_5 = B_hub01;
+        lost_6 = B_hub01;
+        template = B_hub01.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_hub01.Altis\description.ext"
+        };
+        #endif
+};
+class B_skirmish01: MissionDefault
+{
+        endDefault = B_hub01;
+        repeat = 1;
+        isSkirmish = 1;
+        B_hub01 = B_hub01;
+        B_hub01_1 = B_hub01;
+        B_hub01_2 = B_hub01;
+        B_hub01_3 = B_hub01;
+        B_hub01_4 = B_hub01;
+        B_hub01_5 = B_hub01;
+        B_hub01_6 = B_hub01;
+        links[] = {"B_skirmish01","B_hub01"};
+        linkConditions[] = {"",""};
+        lost = B_skirmish01;
+        lost_1 = B_skirmish01;
+        lost_2 = B_skirmish01;
+        lost_3 = B_skirmish01;
+        lost_4 = B_skirmish01;
+        lost_5 = B_skirmish01;
+        lost_6 = B_skirmish01;
+        template = B_skirmish01.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_skirmish01.Altis\description.ext"
+        };
+        #endif
+};
+class B_m06: MissionDefault
+{
+        endDefault = B_hub02;
+        isHubMission = 1;
+        B_hub02 = B_hub02;
+        B_hub02_1 = B_hub02;
+        B_hub02_2 = B_hub02;
+        B_hub02_3 = B_hub02;
+        B_hub02_4 = B_hub02;
+        B_hub02_5 = B_hub02;
+        B_hub02_6 = B_hub02;
+        links[] = {"B_m06","B_hub02"};
+        linkConditions[] = {"",""};
+        lost = B_m06;
+        lost_1 = B_m06;
+        lost_2 = B_m06;
+        lost_3 = B_m06;
+        lost_4 = B_m06;
+        lost_5 = B_m06;
+        lost_6 = B_m06;
+        template = B_m06.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_m06.Altis\description.ext"
+        };
+        #endif
+};
+class B_hub02: MissionDefault
+{
+        repeat = 1;
+        isHub = 1;
+        B_m03 = B_m03;
+        B_m03_1 = B_m03;
+        B_m03_2 = B_m03;
+        B_m03_3 = B_m03;
+        B_m03_4 = B_m03;
+        B_m03_5 = B_m03;
+        B_m03_6 = B_m03;
+        B_skirmish02 = B_skirmish02;
+        B_skirmish02_1 = B_skirmish02;
+        B_skirmish02_2 = B_skirmish02;
+        B_skirmish02_3 = B_skirmish02;
+        B_skirmish02_4 = B_skirmish02;
+        B_skirmish02_5 = B_skirmish02;
+        B_skirmish02_6 = B_skirmish02;
+        B_hub03 = B_hub03;
+        B_hub03_1 = B_hub03;
+        B_hub03_2 = B_hub03;
+        B_hub03_3 = B_hub03;
+        B_hub03_4 = B_hub03;
+        B_hub03_5 = B_hub03;
+        B_hub03_6 = B_hub03;
+        B_m05 = B_m05;
+        B_m05_1 = B_m05;
+        B_m05_2 = B_m05;
+        B_m05_3 = B_m05;
+        B_m05_4 = B_m05;
+        B_m05_5 = B_m05;
+        B_m05_6 = B_m05;
+        B_m02_1 = B_m02_1;
+        B_m02_1_1 = B_m02_1;
+        B_m02_1_2 = B_m02_1;
+        B_m02_1_3 = B_m02_1;
+        B_m02_1_4 = B_m02_1;
+        B_m02_1_5 = B_m02_1;
+        B_m02_1_6 = B_m02_1;
+        B_m01 = B_m01;
+        B_m01_1 = B_m01;
+        B_m01_2 = B_m01;
+        B_m01_3 = B_m01;
+        B_m01_4 = B_m01;
+        B_m01_5 = B_m01;
+        B_m01_6 = B_m01;
+        links[] = {"B_hub02","B_m03","B_skirmish02","B_hub03","B_m05","B_m02_1","B_m01"};
+        linkConditions[] = {"","","","false","","{!isnil _x} count ['BIS_B_m03','BIS_B_m01','BIS_B_m05'] == 3",""};
+        lost = B_hub02;
+        lost_1 = B_hub02;
+        lost_2 = B_hub02;
+        lost_3 = B_hub02;
+        lost_4 = B_hub02;
+        lost_5 = B_hub02;
+        lost_6 = B_hub02;
+        template = B_hub02.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_hub02.Altis\description.ext"
+        };
+        #endif
+};
+class B_skirmish02: MissionDefault
+{
+        endDefault = B_hub02;
+        repeat = 1;
+        isSkirmish = 1;
+        B_hub02 = B_hub02;
+        B_hub02_1 = B_hub02;
+        B_hub02_2 = B_hub02;
+        B_hub02_3 = B_hub02;
+        B_hub02_4 = B_hub02;
+        B_hub02_5 = B_hub02;
+        B_hub02_6 = B_hub02;
+        links[] = {"B_skirmish02","B_hub02"};
+        linkConditions[] = {"",""};
+        lost = B_skirmish02;
+        lost_1 = B_skirmish02;
+        lost_2 = B_skirmish02;
+        lost_3 = B_skirmish02;
+        lost_4 = B_skirmish02;
+        lost_5 = B_skirmish02;
+        lost_6 = B_skirmish02;
+        template = B_skirmish02.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_skirmish02.Altis\description.ext"
+        };
+        #endif
+};
+class B_m03: MissionDefault
+{
+        endDefault = B_hub02;
+        isHubMission = 1;
+        B_hub02 = B_hub02;
+        B_hub02_1 = B_hub02;
+        B_hub02_2 = B_hub02;
+        B_hub02_3 = B_hub02;
+        B_hub02_4 = B_hub02;
+        B_hub02_5 = B_hub02;
+        B_hub02_6 = B_hub02;
+        links[] = {"B_m03","B_hub02"};
+        linkConditions[] = {"",""};
+        lost = B_m03;
+        lost_1 = B_m03;
+        lost_2 = B_m03;
+        lost_3 = B_m03;
+        lost_4 = B_m03;
+        lost_5 = B_m03;
+        lost_6 = B_m03;
+        template = B_m03.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_m03.Altis\description.ext"
+        };
+        #endif
+};
+class B_m01: MissionDefault
+{
+        endDefault = B_hub02;
+        isHubMission = 1;
+        B_hub02 = B_hub02;
+        B_hub02_1 = B_hub02;
+        B_hub02_2 = B_hub02;
+        B_hub02_3 = B_hub02;
+        B_hub02_4 = B_hub02;
+        B_hub02_5 = B_hub02;
+        B_hub02_6 = B_hub02;
+        links[] = {"B_m01","B_hub02"};
+        linkConditions[] = {"",""};
+        lost = B_m01;
+        lost_1 = B_m01;
+        lost_2 = B_m01;
+        lost_3 = B_m01;
+        lost_4 = B_m01;
+        lost_5 = B_m01;
+        lost_6 = B_m01;
+        template = B_m01.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_m01.Altis\description.ext"
+        };
+        #endif
+};
+class B_m05: MissionDefault
+{
+        endDefault = B_hub02;
+        isHubMission = 1;
+        B_hub02 = B_hub02;
+        B_hub02_1 = B_hub02;
+        B_hub02_2 = B_hub02;
+        B_hub02_3 = B_hub02;
+        B_hub02_4 = B_hub02;
+        B_hub02_5 = B_hub02;
+        B_hub02_6 = B_hub02;
+        links[] = {"B_m05","B_hub02"};
+        linkConditions[] = {"",""};
+        lost = B_m05;
+        lost_1 = B_m05;
+        lost_2 = B_m05;
+        lost_3 = B_m05;
+        lost_4 = B_m05;
+        lost_5 = B_m05;
+        lost_6 = B_m05;
+        template = B_m05.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_m05.Altis\description.ext"
+        };
+        #endif
+};
+class B_m02_1: MissionDefault
+{
+        endDefault = B_m02_2;
+        isHubMission = 1;
+        B_m02_2 = B_m02_2;
+        B_m02_2_1 = B_m02_2;
+        B_m02_2_2 = B_m02_2;
+        B_m02_2_3 = B_m02_2;
+        B_m02_2_4 = B_m02_2;
+        B_m02_2_5 = B_m02_2;
+        B_m02_2_6 = B_m02_2;
+        links[] = {"B_m02_1","B_m02_2"};
+        linkConditions[] = {"",""};
+        lost = B_m02_1;
+        lost_1 = B_m02_1;
+        lost_2 = B_m02_1;
+        lost_3 = B_m02_1;
+        lost_4 = B_m02_1;
+        lost_5 = B_m02_1;
+        lost_6 = B_m02_1;
+        template = B_m02_1.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_m02_1.Altis\description.ext"
+        };
+        #endif
+};
+class B_m02_2: MissionDefault
+{
+        endDefault = B_hub03;
+        B_hub03 = B_hub03;
+        B_hub03_1 = B_hub03;
+        B_hub03_2 = B_hub03;
+        B_hub03_3 = B_hub03;
+        B_hub03_4 = B_hub03;
+        B_hub03_5 = B_hub03;
+        B_hub03_6 = B_hub03;
+        links[] = {"B_m02_2","B_hub03"};
+        linkConditions[] = {"",""};
+        lost = B_m02_2;
+        lost_1 = B_m02_2;
+        lost_2 = B_m02_2;
+        lost_3 = B_m02_2;
+        lost_4 = B_m02_2;
+        lost_5 = B_m02_2;
+        lost_6 = B_m02_2;
+        template = B_m02_2.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_m02_2.Stratis\description.ext"
+        };
+        #endif
+};
+class B_hub03: MissionDefault
+{
+        repeat = 1;
+        isHub = 1;
+        B_out2 = B_out2;
+        B_out2_1 = B_out2;
+        B_out2_2 = B_out2;
+        B_out2_3 = B_out2;
+        B_out2_4 = B_out2;
+        B_out2_5 = B_out2;
+        B_out2_6 = B_out2;
+        B_skirmish03 = B_skirmish03;
+        B_skirmish03_1 = B_skirmish03;
+        B_skirmish03_2 = B_skirmish03;
+        B_skirmish03_3 = B_skirmish03;
+        B_skirmish03_4 = B_skirmish03;
+        B_skirmish03_5 = B_skirmish03;
+        B_skirmish03_6 = B_skirmish03;
+        links[] = {"B_hub03","B_out2","B_skirmish03"};
+        linkConditions[] = {"","",""};
+        lost = B_hub03;
+        lost_1 = B_hub03;
+        lost_2 = B_hub03;
+        lost_3 = B_hub03;
+        lost_4 = B_hub03;
+        lost_5 = B_hub03;
+        lost_6 = B_hub03;
+        template = B_hub03.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_hub03.Altis\description.ext"
+        };
+        #endif
+};
+class B_skirmish03: MissionDefault
+{
+        endDefault = B_hub03;
+        repeat = 1;
+        isSkirmish = 1;
+        B_hub03 = B_hub03;
+        B_hub03_1 = B_hub03;
+        B_hub03_2 = B_hub03;
+        B_hub03_3 = B_hub03;
+        B_hub03_4 = B_hub03;
+        B_hub03_5 = B_hub03;
+        B_hub03_6 = B_hub03;
+        links[] = {"B_skirmish03","B_hub03"};
+        linkConditions[] = {"",""};
+        lost = B_skirmish03;
+        lost_1 = B_skirmish03;
+        lost_2 = B_skirmish03;
+        lost_3 = B_skirmish03;
+        lost_4 = B_skirmish03;
+        lost_5 = B_skirmish03;
+        lost_6 = B_skirmish03;
+        template = B_skirmish03.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_skirmish03.Altis\description.ext"
+        };
+        #endif
+};
+class B_out2: MissionDefault
+{
+        isOutro = 1;
+        isHubMission = 1;
+        links[] = {"B_out2","end1"};
+        linkConditions[] = {""};
+        lost = B_out2;
+        lost_1 = B_out2;
+        lost_2 = B_out2;
+        lost_3 = B_out2;
+        lost_4 = B_out2;
+        lost_5 = B_out2;
+        lost_6 = B_out2;
+        template = B_out2.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\B_out2.Altis\description.ext"
+        };
+        #endif
+};
+#ifdef _EMPTY
+//////////////////////////////////////////////////////////////
+// FSM System
+//////////////////////////////////////////////////////////////
+/*%FSM<STATE "B_in">*//*%FSM<STATEINIT>*/endDefault = B_in2;
+noWeaponPool = 1;
+isIntro = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_in2">*//*%FSM<STATEINIT>*/endDefault = B_hub01;
+noWeaponPool = 1;
+isIntro = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_hub01">*//*%FSM<STATEINIT>*/repeat = 1;
+isHub = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__1">*///--- Link: /*%FSM<CONDITION>*/false/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__2">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_skirmish01">*//*%FSM<STATEINIT>*/endDefault = B_hub01;
+repeat = 1;
+isSkirmish = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_m06">*//*%FSM<STATEINIT>*/endDefault = B_hub02;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_hub02">*//*%FSM<STATEINIT>*/repeat = 1;
+isHub = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__1">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__2">*///--- Link: /*%FSM<CONDITION>*/false/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__3">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__4">*///--- Link: /*%FSM<CONDITION>*/{!isnil _x} count ['BIS_B_m03','BIS_B_m01','BIS_B_m05'] == 3/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__5">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_skirmish02">*//*%FSM<STATEINIT>*/endDefault = B_hub02;
+repeat = 1;
+isSkirmish = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_m03">*//*%FSM<STATEINIT>*/endDefault = B_hub02;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_m01">*//*%FSM<STATEINIT>*/endDefault = B_hub02;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_m05">*//*%FSM<STATEINIT>*/endDefault = B_hub02;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_m02_1">*//*%FSM<STATEINIT>*/endDefault = B_m02_2;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_m02_2">*//*%FSM<STATEINIT>*/endDefault = B_hub03;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_hub03">*//*%FSM<STATEINIT>*/repeat = 1;
+isHub = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__1">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_skirmish03">*//*%FSM<STATEINIT>*/endDefault = B_hub03;
+repeat = 1;
+isSkirmish = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "B_out2">*//*%FSM<STATEINIT>*/isOutro = 1;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM</STATE>*/
+#endif
+/*%FSM</COMPILE>*/

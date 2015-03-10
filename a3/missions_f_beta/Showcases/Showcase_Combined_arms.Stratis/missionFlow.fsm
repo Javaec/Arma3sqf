@@ -1,0 +1,1174 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, Showcase Combined Arms Mission Flow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"insertion_E3",2,250,30.000000,-120.000000,120.000000,-70.000000,0.000000,"insertion" \n "E3"};
+item1[] = {"insertion_finish",4,218,-40.000000,-50.000000,50.000000,0.000000,0.000000,"insertion finished"};
+item2[] = {"start_assault",2,250,-40.000000,20.000000,50.000000,70.000000,0.000000,"start assault"};
+item3[] = {"not_server",4,218,-30.000000,-470.000000,60.000000,-420.000000,1.000000,"not server"};
+item4[] = {"exit",1,250,-30.000000,-540.000000,60.000000,-490.000000,0.000000,"exit"};
+item5[] = {"area_seized",4,218,-40.000000,90.000000,50.000000,140.000000,0.000000,"area" \n "seized"};
+item6[] = {"start_extraction",2,250,-40.000000,300.000000,50.000000,350.000000,0.000000,"start extraction"};
+item7[] = {"extraction_finis",4,218,-150.000000,520.000000,-60.000000,570.000000,0.000000,"extraction finished"};
+item8[] = {"END1_OR_END7",1,250,-150.000000,730.000000,-60.000000,780.000000,0.000000,"END1" \n "OR" \n "END7"};
+item9[] = {"extraction_unava",4,218,70.000000,380.000000,160.000000,430.000000,2.000000,"extraction" \n "unavailable"};
+item10[] = {"END3",1,250,70.000000,450.000000,160.000000,500.000000,0.000000,"END3"};
+item11[] = {"reinforcements",2,250,-40.000000,160.000000,50.000000,210.000000,0.000000,"reinforcements"};
+item12[] = {"reinforcements_e",4,218,-40.000000,230.000000,50.000000,280.000000,0.000000,"reinforcements" \n "eliminated"};
+item13[] = {"init",0,250,-30.000000,-400.000000,60.000000,-350.000000,0.000000,"init"};
+item14[] = {"E3",4,218,30.000000,-190.000000,120.000000,-140.000000,1.000000,"E3"};
+item15[] = {"timeout_reached",4,218,-40.000000,380.000000,50.000000,430.000000,1.000000,"timeout" \n "reached"};
+item16[] = {"dialog_from_pilo",2,250,-40.000000,450.000000,50.000000,500.000000,0.000000,"dialog from" \n "pilot"};
+item17[] = {"delay",4,218,-40.000000,520.000000,50.000000,570.000000,0.000000,"delay"};
+item18[] = {"END2",1,250,-40.000000,590.000000,50.000000,640.000000,0.000000,"END2"};
+item19[] = {"retreat",4,218,70.000000,160.000000,160.000000,210.000000,1.000000,"retreat"};
+item20[] = {"END6",1,250,400.000000,160.000000,490.000000,210.000000,0.000000,"END6"};
+item21[] = {"cas_leaves",4,218,70.000000,20.000000,160.000000,70.000000,1.000000,"cas" \n "leaves"};
+item22[] = {"cas_conversation",2,250,70.000000,90.000000,160.000000,140.000000,0.000000,"cas" \n "conversation"};
+item23[] = {"retreat_task",2,250,180.000000,160.000000,270.000000,210.000000,0.000000,"retreat task"};
+item24[] = {"at_point_gamma",4,218,290.000000,160.000000,380.000000,210.000000,1.000000,"at point" \n "gamma"};
+item25[] = {"",7,210,221.000000,251.000015,229.000000,259.000000,0.000000,""};
+item26[] = {"insertion_choppers",4,218,-150.000000,20.000000,-60.000000,70.000000,2.000000,"insertion" \n "choppers" \n "down"};
+item27[] = {"END5",1,250,-260.000000,20.000000,-170.000000,70.000000,0.000000,"END5"};
+item28[] = {"public",4,218,-100.000000,-190.000000,-10.000000,-140.000000,0.000000,"public"};
+item29[] = {"insertion",2,4346,-100.000000,-120.000000,-10.000000,-70.000000,0.000000,"insertion"};
+item30[] = {"server",4,218,-30.000000,-330.000000,60.000000,-280.000000,0.000000,"server"};
+item31[] = {"start",2,250,-30.000000,-260.000000,60.000000,-210.000000,0.000000,"start"};
+item32[] = {"extraction_compl",2,250,-150.000000,590.000000,-60.000000,640.000000,0.000000,"extraction" \n "complete"};
+item33[] = {"delay",4,218,-150.000000,660.000000,-60.000000,710.000000,0.000000,"delay"};
+item34[] = {"some_in_helicopt",4,218,-150.000000,380.000000,-60.000000,430.000000,0.000000,"some in" \n "helicopter"};
+item35[] = {"no_more_timeout",2,250,-150.000000,450.000000,-60.000000,500.000000,0.000000,"no more" \n "timeout"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,5};
+link3[] = {2,21};
+link4[] = {2,26};
+link5[] = {3,4};
+link6[] = {5,11};
+link7[] = {6,9};
+link8[] = {6,15};
+link9[] = {6,34};
+link10[] = {7,32};
+link11[] = {9,10};
+link12[] = {11,12};
+link13[] = {11,19};
+link14[] = {12,6};
+link15[] = {13,3};
+link16[] = {13,30};
+link17[] = {14,0};
+link18[] = {15,16};
+link19[] = {16,17};
+link20[] = {17,18};
+link21[] = {19,23};
+link22[] = {21,22};
+link23[] = {22,5};
+link24[] = {23,24};
+link25[] = {23,25};
+link26[] = {24,20};
+link27[] = {25,12};
+link28[] = {26,27};
+link29[] = {28,29};
+link30[] = {29,1};
+link31[] = {30,31};
+link32[] = {31,14};
+link33[] = {31,28};
+link34[] = {32,33};
+link35[] = {33,8};
+link36[] = {34,35};
+link37[] = {35,7};
+globals[] = {10.000000,1,0,0,0,640,480,1,99,6316128,1,-312.639893,427.850037,435.474091,-479.248871,867,1031,1};
+window[] = {2,-1,-1,-1,-1,875,25,1465,25,3,885};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Showcase Combined Arms Mission Flow";
+        class States
+        {
+                /*%FSM<STATE "insertion_E3">*/
+                class insertion_E3
+                {
+                        name = "insertion_E3";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Fake Insertion for E3" \n
+                         "//***************" \n
+                         "//Position the choppers at the insertion position LZ" \n
+                         "{" \n
+                         "	private [""_chopper"", ""_position""];" \n
+                         "	_chopper	= _x select 0;" \n
+                         "	_position	= _x select 1;" \n
+                         "	" \n
+                         "	_chopper allowDamage false;" \n
+                         "	_chopper flyInHeight 0;" \n
+                         "	_chopper setVelocity [0,0,0];" \n
+                         "	_chopper setVectorDirAndUp [[0,0,0], [0,0,0]];" \n
+                         "	_chopper setCaptive true;" \n
+                         "	_chopper allowFleeing 0;" \n
+                         "	_chopper lock true;" \n
+                         "	_chopper disableAi ""TARGET"";" \n
+                         "	_chopper disableAi ""AUTOTARGET"";" \n
+                         "	_chopper setPos _position;" \n
+                         "} forEach [" \n
+                         "	[BIS_insertionChopper_1, getPos BIS_lzInsertion_1]," \n
+                         "	[BIS_insertionChopper_2, getPos BIS_lzInsertion_2]" \n
+                         "];" \n
+                         "" \n
+                         "//Make the groups disembark" \n
+                         "{" \n
+                         "	[_x] orderGetIn false;" \n
+                         "	unassignVehicle _x;" \n
+                         "	_x action [""Eject"", vehicle _x];" \n
+                         "} forEach (units BIS_group_1) + (units BIS_group_2);" \n
+                         "" \n
+                         "//Player start position" \n
+                         "if (!isMultiplayer) then {" \n
+                         "	//Position and direction" \n
+                         "	private [""_position"", ""_direction""];" \n
+                         "	_position 	= [BIS_insertionChopper_1, 10, 0] call BIS_fnc_relPos;" \n
+                         "	_direction 	= [_position, BIS_insertionChopper_1] call BIS_fnc_dirTo;" \n
+                         "	" \n
+                         "	//Position the player near and looking at the chopper" \n
+                         "	player setDir _direction;" \n
+                         "	player setPos _position;" \n
+                         "};" \n
+                         "" \n
+                         "//Make choppers leave" \n
+                         "[] spawn {" \n
+                         "	sleep 5;" \n
+                         "	" \n
+                         "	private ""_wpChopper_1"";" \n
+                         "	_wpChopper_1 = group BIS_insertionChopper_1 addWaypoint [getMarkerPos ""BIS_insertionChopperExit_1"", 0];" \n
+                         "	_wpChopper_1 setWaypointType ""MOVE"";" \n
+                         "	_wpChopper_1 setWaypointStatements [""true"", ""_chopper = vehicle this; _group = group this; { deleteVehicle _x; } forEach units _group; deleteVehicle _chopper; deleteGroup _group;""];" \n
+                         "	_wpChopper_1 showWaypoint ""NEVER"";" \n
+                         "	BIS_insertionChopper_1 flyInHeight 50;" \n
+                         "	" \n
+                         "	sleep 5;" \n
+                         "	" \n
+                         "	private ""_wpChopper_2"";" \n
+                         "	_wpChopper_2 = group BIS_insertionChopper_2 addWaypoint [getMarkerPos ""BIS_insertionChopperExit_2"", 0];" \n
+                         "	_wpChopper_2 setWaypointType ""MOVE"";" \n
+                         "	_wpChopper_2 setWaypointStatements [""true"", ""_chopper = vehicle this; _group = group this; { deleteVehicle _x; } forEach units _group; deleteVehicle _chopper; deleteGroup _group;""];" \n
+                         "	_wpChopper_2 showWaypoint ""NEVER"";" \n
+                         "	BIS_insertionChopper_2 flyInHeight 50;" \n
+                         "};" \n
+                         "" \n
+                         "//BIS_lzInsertion_1 being not alive will be our flag to tell JIP the insertion has been finished already and they should spawn on the ground instead" \n
+                         "//We need to do it here at E3 version or flow won't continue further" \n
+                         "BIS_lzInsertion_1 setDamage 1;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "insertion_finish">*/
+                                class insertion_finish
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="start_assault";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive BIS_lzInsertion_1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "start_assault">*/
+                class start_assault
+                {
+                        name = "start_assault";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         "//Assign seize task" \n
+                         "[""BIS_seize"", ""ASSIGNED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         "[] spawn {" \n
+                         "	if ([] call BIS_fnc_isCampaign) then {" \n
+                         "		sleep 10;" \n
+                         "	};" \n
+                         "	" \n
+                         "	""BIS_insertionComplete"" call BIS_fnc_missionConversations;" \n
+                         "	sleep 15;" \n
+                         "	""BIS_startAssault"" call BIS_fnc_missionConversations;" \n
+                         "	sleep 15;" \n
+                         "	""BIS_ambientChatter_2"" call BIS_fnc_missionConversations;" \n
+                         "};" \n
+                         "" \n
+                         "//***************" \n
+                         "//Triggers" \n
+                         "//***************" \n
+                         "//Create trigger that checks when all opfor has been eliminated from the base" \n
+                         "private ""_trigger1"";" \n
+                         "_trigger1 = createTrigger [""EmptyDetector"", getMarkerPos ""BIS_enemy""];" \n
+                         "_trigger1 setTriggerArea [300, 300, 0, false];" \n
+                         "_trigger1 setTriggerTimeout [10, 15, 20, false ];" \n
+                         "_trigger1 setTriggerActivation [""EAST"", ""NOT PRESENT"", false];" \n
+                         "_trigger1 setTriggerStatements [""this"", ""BIS_areaSeized = true; publicVariable 'BIS_areaSeized';"", """"];" \n
+                         "" \n
+                         "//Create trigger that checks when blufor is inside the enemy base" \n
+                         "private ""_trigger2"";" \n
+                         "_trigger2 = createTrigger [""EmptyDetector"", getMarkerPos ""BIS_enemy""];" \n
+                         "_trigger2 setTriggerArea [50, 50, 0, false];" \n
+                         "_trigger2 setTriggerActivation [""WEST"", ""PRESENT"", false];" \n
+                         "_trigger2 setTriggerStatements [""this && { _x in thisList } count (playableUnits + switchableUnits) > 0"", ""BIS_areaControlled = true; publicVariable 'BIS_areaControlled';"", """"];" \n
+                         "" \n
+                         "//***************" \n
+                         "//CAS" \n
+                         "//***************" \n
+                         "//The time for cas" \n
+                         "private ""_casTimeLimit"";" \n
+                         "_casTimeLimit = time + 100;" \n
+                         "" \n
+                         "//Add attack waypoint" \n
+                         "private ""_wp1"";" \n
+                         "_wp1 = group BIS_casChopper addWaypoint [getMarkerPos ""BIS_enemy"", 150];" \n
+                         "_wp1 setWaypointType ""MOVE"";" \n
+                         "_wp1 setWaypointBehaviour ""COMBAT"";" \n
+                         "_wp1 setWaypointCombatMode ""RED"";" \n
+                         "_wp1 setWaypointSpeed ""FULL"";" \n
+                         "_wp1 setWaypointStatements [format [""time > %1"", _casTimeLimit], ""vehicle this disableAi 'TARGET'; vehicle this disableAi 'AUTOTARGET'; BIS_casIsRtb = true;""];" \n
+                         "" \n
+                         "//Add leave waypoint" \n
+                         "private ""_wp2"";" \n
+                         "_wp2 = group BIS_casChopper addWaypoint [position BIS_casChopper, 0];" \n
+                         "_wp2 setWaypointType ""MOVE"";" \n
+                         "_wp2 setWaypointBehaviour ""CARELESS"";" \n
+                         "_wp2 setWaypointCombatMode ""BLUE"";" \n
+                         "_wp2 setWaypointSpeed ""FULL"";" \n
+                         "_wp2 setWaypointStatements [""true"", ""_chopper = vehicle this; _group = group this; { deleteVehicle _x; } forEach units _group; deleteVehicle _chopper; deleteGroup _group;""];" \n
+                         "" \n
+                         "//***************" \n
+                         "//APC" \n
+                         "//***************" \n
+                         "//Move waypoint" \n
+                         "private ""_wp1"";" \n
+                         "_wp1 = group BIS_apc addWaypoint [getMarkerPos ""BIS_apcHoldPosition"", 0];" \n
+                         "_wp1 setWaypointType ""MOVE"";" \n
+                         "_wp1 setWaypointBehaviour ""AWARE"";" \n
+                         "_wp1 setWaypointCombatMode ""YELLOW"";" \n
+                         "_wp1 setWaypointSpeed ""NORMAL"";" \n
+                         "_wp1 setWaypointStatements [""{ side _x == WEST && (getPosATL _x) select 2 < 5 && _x distance getMarkerPos 'BIS_enemy' < 50 } count allUnits > 0"", """"];" \n
+                         "" \n
+                         "//Hold waypoint" \n
+                         "private ""_wp2"";" \n
+                         "_wp2 = group BIS_apc addWaypoint [getMarkerPos ""BIS_enemy"", 5];" \n
+                         "_wp2 setWaypointCompletionRadius 5;" \n
+                         "_wp2 setWaypointType ""HOLD"";" \n
+                         "_wp2 setWaypointSpeed ""LIMITED"";" \n
+                         "" \n
+                         "//***************" \n
+                         "//Savegame" \n
+                         "//***************" \n
+                         "if (!isMultiplayer && !([] call BIS_fnc_isCampaign)) then {" \n
+                         "	[] spawn {" \n
+                         "		waitUntil { vehicle player == player };" \n
+                         "		sleep 10;" \n
+                         "		savegame;" \n
+                         "	};" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "insertion_choppers">*/
+                                class insertion_choppers
+                                {
+                                        itemno = 26;
+                                        priority = 2.000000;
+                                        to="END5";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isMultiplayer" \n
+                                         "&&" \n
+                                         "!isNil { BIS_insertionChopperFriendlyFire }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cas_leaves">*/
+                                class cas_leaves
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="cas_conversation";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { BIS_casIsRtb }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "area_seized">*/
+                                class area_seized
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="reinforcements";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { BIS_areaSeized }" \n
+                                         "&&" \n
+                                         "!isNil { BIS_areaControlled }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "exit">*/
+                class exit
+                {
+                        name = "exit";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"//Not server, exit..." \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "start_extraction">*/
+                class start_extraction
+                {
+                        name = "start_extraction";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         "//Succeed seize task" \n
+                         "[""BIS_reinforcements"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//If retreat task has been added cancel it" \n
+                         "if (!isNil { BIS_retreatTaskAdded }) then {" \n
+                         "	[""BIS_retreat"", ""CANCELED""] call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         "" \n
+                         "//Add extraction task" \n
+                         "//[""BIS_extraction"", ""BIS_fnc_missionTasks"", nil, true] call BIS_fnc_MP;" \n
+                         """BIS_extraction"" call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         """BIS_reinforcementsEliminated"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Waypoints" \n
+                         "//***************" \n
+                         "//Player(s) group waypoint to move to extraction position" \n
+                         "private ""_wp"";" \n
+                         "_wp = BIS_group_1 addWaypoint [getMarkerPos ""BIS_extraction"", 0];" \n
+                         "_wp setWaypointType ""MOVE"";" \n
+                         "_wp setWaypointbehaviour ""AWARE"";" \n
+                         "_wp setWaypointCombatMode ""YELLOW"";" \n
+                         "_wp setWaypointSpeed ""FULL"";" \n
+                         "_wp setWaypointStatements [""BIS_extractionChopper distance getMarkerPos 'BIS_extraction' < 50 && isTouchingGround BIS_extractionChopper"", ""_units = units group this; { _x assignAsCargo BIS_extractionChopper; } forEach _units; _units orderGetIn true; _units allowGetIn true;""];" \n
+                         "_wp setWaypointVisible false;" \n
+                         "_wp showWaypoint ""NEVER"";" \n
+                         "" \n
+                         "//Set behaviour manually" \n
+                         "BIS_group_1 setBehaviour ""AWARE"";" \n
+                         "" \n
+                         "//***************" \n
+                         "//Extraction chopper" \n
+                         "//***************" \n
+                         "//Extraction chopper behaviour" \n
+                         "BIS_extractionChopper disableAi ""TARGET"";" \n
+                         "BIS_extractionChopper disableAi ""AUTOTARGET"";" \n
+                         "BIS_extractionChopper setCaptive true;" \n
+                         "BIS_extractionChopper allowFleeing 0;" \n
+                         "" \n
+                         "//Extraction chopper pickup waypoint" \n
+                         "private ""_wp"";" \n
+                         "_wp = group BIS_extractionChopper addWaypoint [position BIS_lzExtraction, 0];" \n
+                         "_wp setWaypointType ""MOVE"";" \n
+                         "_wp setWaypointSpeed ""NORMAL"";" \n
+                         "_wp setWaypointBehaviour ""CARELESS"";" \n
+                         "_wp setWaypointCombatMode ""BLUE"";" \n
+                         "_wp setWaypointVisible false;" \n
+                         "_wp setWaypointStatements [""true"", ""vehicle this land 'GET IN';""];" \n
+                         "" \n
+                         "//***************" \n
+                         "//The timeout for extraction" \n
+                         "//***************" \n
+                         "private [""_waitFor"", ""_extractionTimeLimit""];" \n
+                         "_waitFor 				= 360;	// increased from 240" \n
+                         "_extractionTimeLimit 	= time + _waitFor;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Savegame" \n
+                         "//***************" \n
+                         "if (!isMultiplayer) then {" \n
+                         "	savegame;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "extraction_unava">*/
+                                class extraction_unava
+                                {
+                                        itemno = 9;
+                                        priority = 2.000000;
+                                        to="END3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive BIS_extractionChopper" \n
+                                         "||" \n
+                                         "!canMove BIS_extractionChopper" \n
+                                         "||" \n
+                                         "!alive driver BIS_extractionChopper" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "timeout_reached">*/
+                                class timeout_reached
+                                {
+                                        itemno = 15;
+                                        priority = 1.000000;
+                                        to="dialog_from_pilo";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _extractionTimeLimit" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "some_in_helicopt">*/
+                                class some_in_helicopt
+                                {
+                                        itemno = 34;
+                                        priority = 0.000000;
+                                        to="no_more_timeout";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	vehicle _x == BIS_extractionChopper" \n
+                                         "	&&" \n
+                                         "	alive _x" \n
+                                         " } count units BIS_group_1 > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END1_OR_END7">*/
+                class END1_OR_END7
+                {
+                        name = "END1_OR_END7";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//End mission" \n
+                         "//***************" \n
+                         "if (isNil { BIS_retreatTaskAdded }) then {" \n
+                         "	//Good ending" \n
+                         "	[[[""Showcase_Night"", 1], true], ""BIS_fnc_endMission"", nil, true] call BIS_fnc_MP;" \n
+                         "} else {" \n
+                         "	//Outstanding ending" \n
+                         "	[[[""Showcase_Night"", 2], true], ""BIS_fnc_endMission"", nil, true] call BIS_fnc_MP;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END3">*/
+                class END3
+                {
+                        name = "END3";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         "[""BIS_extraction"", ""FAILED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//***************" \n
+                         "//End mission" \n
+                         "//***************" \n
+                         "[[[""Showcase_Combined_Arms"", 2], false], ""BIS_fnc_endMission"", nil, true] call BIS_fnc_MP;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "reinforcements">*/
+                class reinforcements
+                {
+                        name = "reinforcements";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         "//Succeed seize task" \n
+                         "[""BIS_seize"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//Add reinforcements task, with some delay" \n
+                         "[] spawn {" \n
+                         "	sleep 20;" \n
+                         "	""BIS_reinforcements"" call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         "" \n
+                         "//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         """BIS_seized"" call BIS_fnc_missionConversations;" \n
+                         "[] spawn {" \n
+                         "	sleep 20;" \n
+                         "	""BIS_defeatReinforcements"" call BIS_fnc_missionConversations;" \n
+                         "};" \n
+                         "" \n
+                         "//***************" \n
+                         "//Reinforcements script" \n
+                         "//***************" \n
+                         "private ""_reinforcements"";" \n
+                         "_reinforcements = [] execVM ""scripts\reinforcements.sqf"";" \n
+                         "" \n
+                         "//***************" \n
+                         "//Groups behaviour" \n
+                         "//***************" \n
+                         "BIS_group_1 setBehaviour ""COMBAT"";" \n
+                         "BIS_group_2 setBehaviour ""COMBAT"";" \n
+                         "" \n
+                         "//***************" \n
+                         "//Retreat delay" \n
+                         "//***************" \n
+                         "private ""_retreatDelay"";" \n
+                         "_retreatDelay = time + 45;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Savegame" \n
+                         "//***************" \n
+                         "if (!isMultiplayer) then {" \n
+                         "	savegame;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "retreat">*/
+                                class retreat
+                                {
+                                        itemno = 19;
+                                        priority = 1.000000;
+                                        to="retreat_task";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	!alive BIS_apc" \n
+                                         "	||" \n
+                                         "	!canMove BIS_apc" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "{ alive _x } count (units BIS_group_1 + units BIS_group_2) <= 3" \n
+                                         "&&" \n
+                                         "{ alive _x && side _x == EAST && vehicle _x != _x } count allUnits >= 1" \n
+                                         "&&" \n
+                                         "time > _retreatDelay" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "reinforcements_e">*/
+                                class reinforcements_e
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="start_extraction";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"scriptDone _reinforcements" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"//Nothing..." \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "not_server">*/
+                                class not_server
+                                {
+                                        itemno = 3;
+                                        priority = 1.000000;
+                                        to="exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isServer" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "server">*/
+                                class server
+                                {
+                                        itemno = 30;
+                                        priority = 0.000000;
+                                        to="start";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isServer"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "dialog_from_pilo">*/
+                class dialog_from_pilo
+                {
+                        name = "dialog_from_pilo";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         """BIS_extractionLeaves"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Extraction chopper" \n
+                         "//***************" \n
+                         "//Exit position for extraction chopper" \n
+                         "private ""_position"";" \n
+                         "_position = [getMarkerPos ""BIS_extraction"", 2000, 180] call BIS_fnc_relPos;" \n
+                         "" \n
+                         "//Make extraction chopper leave" \n
+                         "private ""_wp"";" \n
+                         "_wp = (group driver BIS_extractionChopper) addWaypoint [_position, 200];" \n
+                         "_wp setWaypointType ""MOVE"";" \n
+                         "" \n
+                         "//Lock the chopper" \n
+                         "BIS_extractionChopper lock true;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Delay" \n
+                         "//***************" \n
+                         "private ""_delay"";" \n
+                         "_delay = time + 10;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "delay">*/
+                                class delay
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="END2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _delay" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END2">*/
+                class END2
+                {
+                        name = "END2";
+                        itemno = 18;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         "[""BIS_extraction"", ""FAILED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//***************" \n
+                         "//End mission" \n
+                         "//***************" \n
+                         "[[[""Showcase_Combined_Arms"", 1], false], ""BIS_fnc_endMission"", nil, true] call BIS_fnc_MP;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END6">*/
+                class END6
+                {
+                        name = "END6";
+                        itemno = 20;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         "//Fail extraction task" \n
+                         "[""BIS_reinforcements"", ""FAILED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//Succeed retreat task" \n
+                         "[""BIS_retreat"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//***************" \n
+                         "//End mission" \n
+                         "//***************" \n
+                         "[[[""Showcase_Combined_Arms"", 5], false], ""BIS_fnc_endMission"", nil, true] call BIS_fnc_MP;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "cas_conversation">*/
+                class cas_conversation
+                {
+                        name = "cas_conversation";
+                        itemno = 22;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         "//Conversation should only happen if CAS chopper and it's driver are still alive" \n
+                         "if (alive BIS_casChopper && alive driver BIS_casChopper) then {" \n
+                         "	""BIS_casLeaves"" call BIS_fnc_missionConversations;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "area_seized">*/
+                                class area_seized
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="reinforcements";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { BIS_areaSeized }" \n
+                                         "&&" \n
+                                         "!isNil { BIS_areaControlled }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "retreat_task">*/
+                class retreat_task
+                {
+                        name = "retreat_task";
+                        itemno = 23;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         """BIS_retreat"" call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         """BIS_impossibleTask"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Flag event" \n
+                         "//***************" \n
+                         "BIS_retreatTaskAdded = true;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Waypoints" \n
+                         "//***************" \n
+                         "{" \n
+                         "	//The group" \n
+                         "	private ""_group"";" \n
+                         "	_group = _x;" \n
+                         "	" \n
+                         "	//Make sure the group has units alive" \n
+                         "	if ({ alive _x } count units _group > 0) then {" \n
+                         "		//Add waypoint" \n
+                         "		private ""_wp"";" \n
+                         "		_wp = _group addWaypoint [getMarkerPos ""BIS_militaryRange"", 10];" \n
+                         "		_wp setWaypointType ""MOVE"";" \n
+                         "		_wp setWaypointSpeed ""FULL"";" \n
+                         "		_wp setWaypointBehaviour ""CARELESS"";" \n
+                         "		_wp setWaypointCombatMode ""GREEN"";" \n
+                         "		_wp showWaypoint ""NEVER"";" \n
+                         "	};" \n
+                         "} forEach [" \n
+                         "	BIS_group_1," \n
+                         "	BIS_group_2" \n
+                         "];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "at_point_gamma">*/
+                                class at_point_gamma
+                                {
+                                        itemno = 24;
+                                        priority = 1.000000;
+                                        to="END6";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"if (isMultiplayer) then {" \n
+                                         "	{" \n
+                                         "		_x distance getMarkerPos ""BIS_militaryRange"" > 600" \n
+                                         "	} count (playableUnits + switchableUnits) < 1" \n
+                                         "	&&" \n
+                                         "	{ alive _x } count (playableUnits + switchableUnits) > 0" \n
+                                         "} else {" \n
+                                         "	player distance getMarkerPos ""BIS_militaryRange"" <= 600" \n
+                                         "}" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "reinforcements_e">*/
+                                class reinforcements_e
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="start_extraction";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"scriptDone _reinforcements" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END5">*/
+                class END5
+                {
+                        name = "END5";
+                        itemno = 27;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//End mission" \n
+                         "//***************" \n
+                         "[[[""Showcase_Combined_Arms"", 4], false], ""BIS_fnc_endMission"", nil, true] call BIS_fnc_MP;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "insertion">*/
+                class insertion
+                {
+                        name = "insertion";
+                        itemno = 29;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         "[] spawn {" \n
+                         "	sleep 15;" \n
+                         "	""BIS_readyUp"" call BIS_fnc_missionConversations;" \n
+                         "	sleep 15;" \n
+                         "	""BIS_ambientChatter_1"" call BIS_fnc_missionConversations;" \n
+                         "};" \n
+                         "" \n
+                         "//***************" \n
+                         "//Insertion choppers" \n
+                         "//***************" \n
+                         "{" \n
+                         "	private [""_chopper"", ""_lz"", ""_end""];" \n
+                         "	_chopper 	= _x select 0;" \n
+                         "	_lz			= _x select 1;" \n
+                         "	_end		= _x select 2;" \n
+                         "	" \n
+                         "	//Chopper AI stuff" \n
+                         "	_chopper disableAi ""TARGET"";" \n
+                         "	_chopper disableAi ""AUTOTARGET"";" \n
+                         "	_chopper setCaptive true;" \n
+                         "	_chopper allowFleeing 0;" \n
+                         "	_chopper lock true;" \n
+                         "	" \n
+                         "	//Height of flight" \n
+                         "	_chopper flyInHeight 20;" \n
+                         "	" \n
+                         "	//Remove stuff from chopper cargo" \n
+                         "	clearItemCargoGlobal _chopper;" \n
+                         "	clearMagazineCargoGlobal _chopper;" \n
+                         "	clearWeaponCargoGlobal _chopper;" \n
+                         "	" \n
+                         "	//Move to LZ and land waypoint" \n
+                         "	private ""_wp1"";" \n
+                         "	_wp1 = group _chopper addWaypoint [_lz, 0];" \n
+                         "	_wp1 setWaypointType ""MOVE"";" \n
+                         "	_wp1 setWaypointStatements [""true"", ""vehicle this land 'GET OUT'; if (isMultiplayer) then { vehicle this spawn { waitUntil { isTouchingGround _this }; sleep 2; _this lock false; }; };""];" \n
+                         "	_wp1 showWaypoint ""NEVER"";" \n
+                         "	" \n
+                         "	//Unload troops waypoint" \n
+                         "	//BIS_lzInsertion_1 being not alive will be our flag to tell JIP the insertion has been finished already and they should spawn on the ground instead" \n
+                         "	private ""_wp2"";" \n
+                         "	_wp2 = group _chopper addWaypoint [_lz, 0];" \n
+                         "	_wp2 setWaypointType ""TR UNLOAD"";" \n
+                         "	_wp2 setWaypointStatements [""true"", ""if (alive BIS_lzInsertion_1) then { BIS_lzInsertion_1 setDamage 1; }; if (isMultiplayer) then { vehicle this lock true; };""];" \n
+                         "	_wp2 showWaypoint ""NEVER"";" \n
+                         "	" \n
+                         "	//Move away and delete waypoint" \n
+                         "	private ""_wp3"";" \n
+                         "	_wp3 = group _chopper addWaypoint [_end, 0];" \n
+                         "	_wp3 setWaypointType ""MOVE"";" \n
+                         "	_wp3 setWaypointStatements [""true"", ""_chopper = vehicle this; _group = group this; { deleteVehicle _x; } forEach units _group; deleteVehicle _chopper; deleteGroup _group;""];" \n
+                         "	_wp3 showWaypoint ""NEVER"";" \n
+                         "	" \n
+                         "	//Add event handlers to the chopper to detect if it get shot down by a player" \n
+                         "	//In multiplayer we add negative rating (renegade) to the causing player" \n
+                         "	//In single player we fail the mission" \n
+                         "	_chopper addEventHandler [""Hit"", {" \n
+                         "		private [""_chopper"", ""_causedBy"", ""_pilot""];" \n
+                         "		_chopper 	= _this select 0;" \n
+                         "		_causedBy = _this select 1;" \n
+                         "		_pilot 		= driver _chopper;" \n
+                         "		" \n
+                         "		//Check if it was a player who caused the damage" \n
+                         "		if (isPlayer _causedBy) then {" \n
+                         "			//Check if there was enough damage caused" \n
+                         "			if (!alive _chopper || !canMove _chopper || !alive _pilot) then {" \n
+                         "				if (isMultiplayer) then {" \n
+                         "					//Multiplayer" \n
+                         "					_causedBy addRating -100000;" \n
+                         "				} else {" \n
+                         "					//Singleplayer" \n
+                         "					BIS_insertionChopperFriendlyFire = true;" \n
+                         "				};" \n
+                         "			};" \n
+                         "		};" \n
+                         "	}];" \n
+                         "} forEach [" \n
+                         "	[BIS_insertionChopper_1, position BIS_lzInsertion_1, getMarkerPos ""BIS_insertionChopperExit_1""]," \n
+                         "	[BIS_insertionChopper_2, position BIS_lzInsertion_2, getMarkerPos ""BIS_insertionChopperExit_2""]" \n
+                         "];" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	sleep 20;" \n
+                         "	BIS_insertionChopper_1 animateDoor [""Door_L"", 1];" \n
+                         "	sleep 2.5;" \n
+                         "	BIS_insertionChopper_1 animateDoor [""Door_R"", 1];" \n
+                         "	sleep 5;" \n
+                         "	BIS_insertionChopper_2 animateDoor [""Door_L"", 1];" \n
+                         "	BIS_insertionChopper_2 animateDoor [""Door_R"", 1];" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "insertion_finish">*/
+                                class insertion_finish
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="start_assault";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive BIS_lzInsertion_1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "start">*/
+                class start
+                {
+                        name = "start";
+                        itemno = 31;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         "//Add seize task" \n
+                         """BIS_seize"" call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Compositions" \n
+                         "//***************" \n
+                         "//Enemy base composition" \n
+                         "[] call compile preprocessFileLineNumbers ""scripts\composition.sqf"";" \n
+                         "" \n
+                         "//***************" \n
+                         "//Waypoints" \n
+                         "//***************" \n
+                         "//Troop groups waypoints" \n
+                         "//1 - Unload at insertion position" \n
+                         "//2 - Move to enemy base flank" \n
+                         "//3 - Move to enemy base" \n
+                         "{" \n
+                         "	private [""_group"", ""_unload"", ""_move_1"", ""_move_2"", ""_enemy""];" \n
+                         "	_group 	= _x select 0;" \n
+                         "	_unload 	= _x select 1;" \n
+                         "	_move_1	= _x select 2;" \n
+                         "	_move_2	= _x select 3;" \n
+                         "	_enemy	= _x select 4;" \n
+                         "	" \n
+                         "	//Groups should never flee" \n
+                         "	_group allowFleeing 0;" \n
+                         "	" \n
+                         "	//Unload waypoint" \n
+                         "	private ""_wp1"";" \n
+                         "	_wp1 = _group addWaypoint [_unload, 0];" \n
+                         "	_wp1 setWaypointType ""UNLOAD"";" \n
+                         "	_wp1 setWaypointSpeed ""FULL"";" \n
+                         "	_wp1 setWaypointBehaviour ""AWARE"";" \n
+                         "	_wp1 setWaypointCombatMode ""YELLOW"";" \n
+                         "	_wp1 setWaypointVisible false;" \n
+                         "	_wp1 showWaypoint ""NEVER"";" \n
+                         "	" \n
+                         "	//Move to flank waypoint" \n
+                         "	private ""_wp2"";" \n
+                         "	_wp2 = _group addWaypoint [_move_1, 0];" \n
+                         "	_wp2 setWaypointType ""MOVE"";" \n
+                         "	_wp2 setWaypointVisible false;" \n
+                         "	_wp2 showWaypoint ""NEVER"";" \n
+                         "	" \n
+                         "	//Move to flank waypoint" \n
+                         "	private ""_wp3"";" \n
+                         "	_wp3 = _group addWaypoint [_move_2, 0];" \n
+                         "	_wp3 setWaypointType ""MOVE"";" \n
+                         "	_wp3 setWaypointVisible false;" \n
+                         "	_wp3 showWaypoint ""NEVER"";" \n
+                         "	" \n
+                         "	//Move to base waypoint" \n
+                         "	private ""_wp4"";" \n
+                         "	_wp4 = _group addWaypoint [_enemy, 25];" \n
+                         "	_wp4 setWaypointType ""MOVE"";" \n
+                         "	_wp4 setWaypointVisible false;" \n
+                         "	_wp4 showWaypoint ""NEVER"";" \n
+                         "	" \n
+                         "} forEach [" \n
+                         "	[BIS_group_1, position BIS_lzInsertion_1, getMarkerPos ""BIS_waypointGroupOne_1"", getMarkerPos ""BIS_waypointGroupOne_2"", getMarkerPos ""BIS_enemyText""]," \n
+                         "	[BIS_group_2, position BIS_lzInsertion_2, getMarkerPos ""BIS_waypointGroupTwo_1"", getMarkerPos ""BIS_waypointGroupTwo_2"", getMarkerPos ""BIS_enemyText""]" \n
+                         "];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "E3">*/
+                                class E3
+                                {
+                                        itemno = 14;
+                                        priority = 1.000000;
+                                        to="insertion_E3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"[] call BIS_fnc_isCampaign" \n
+                                         "&&" \n
+                                         "(" \n
+                                         "	!isNil { BIS_fnc_titlecard_finished }" \n
+                                         "	&&" \n
+                                         "	!isNil { BIS_missionStarted }" \n
+                                         ")" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "public">*/
+                                class public
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="insertion";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isMultiplayer" \n
+                                         "||" \n
+                                         "(" \n
+                                         "	!isNil { BIS_fnc_titlecard_finished }" \n
+                                         "	&&" \n
+                                         "	!isNil { BIS_missionStarted }" \n
+                                         ")" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "extraction_compl">*/
+                class extraction_compl
+                {
+                        name = "extraction_compl";
+                        itemno = 32;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Extraction chopper" \n
+                         "//***************" \n
+                         "//End position for extraction chopper" \n
+                         "private ""_position"";" \n
+                         "_position = [getMarkerPos ""BIS_extraction"", 2000, 180] call BIS_fnc_relPos;" \n
+                         "" \n
+                         "//Make extraction chopper leave" \n
+                         "private ""_wp"";" \n
+                         "_wp = (group driver BIS_extractionChopper) addWaypoint [_position, 0];" \n
+                         "_wp setWaypointType ""MOVE"";" \n
+                         "" \n
+                         "//Lock chopper" \n
+                         "BIS_extractionChopper lock 2;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         "[""BIS_extraction"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Delay" \n
+                         "//***************" \n
+                         "private ""_delay"";" \n
+                         "_delay = time + 10;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "delay">*/
+                                class delay
+                                {
+                                        itemno = 33;
+                                        priority = 0.000000;
+                                        to="END1_OR_END7";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _delay" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "no_more_timeout">*/
+                class no_more_timeout
+                {
+                        name = "no_more_timeout";
+                        itemno = 35;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "extraction_finis">*/
+                                class extraction_finis
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="extraction_compl";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	vehicle _x != BIS_extractionChopper" \n
+                                         "	&&" \n
+                                         "	alive _x" \n
+                                         " } count units BIS_group_1 < 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "exit",
+                "END1_OR_END7",
+                "END3",
+                "END2",
+                "END6",
+                "END5",
+        };
+};
+/*%FSM</COMPILE>*/

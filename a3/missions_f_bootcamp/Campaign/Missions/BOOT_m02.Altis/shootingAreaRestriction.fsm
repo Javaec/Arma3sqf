@@ -1,0 +1,147 @@
+/*%FSM<COMPILE "C:\Bis\FSMEditor\scriptedFSM.cfg, Shooting Area Restriction">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Shooting_Area_Re",0,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"Shooting Area" \n "Restriction"};
+item1[] = {"Left_area",4,218,-75.000000,-25.000000,25.000000,25.000000,0.000000,"Left area"};
+item2[] = {"",7,210,-29.000000,-54.000000,-20.999998,-46.000000,0.000000,""};
+item3[] = {"Reprimand",2,250,-75.000000,50.000000,25.000000,100.000000,0.000000,"Reprimand"};
+item4[] = {"",7,210,-104.000008,71.000000,-95.999992,78.999992,0.000000,""};
+item5[] = {"",7,210,-104.000000,-54.000000,-96.000000,-46.000000,0.000000,""};
+item6[] = {"",7,210,96.000000,-54.000000,104.000000,-46.000000,0.000000,""};
+item7[] = {"Stop_monitoring",4,218,50.000000,-25.000000,150.000000,25.000000,0.000000,"Stop monitoring"};
+item8[] = {"Terminate",1,250,50.000000,50.000000,150.000000,100.000000,0.000000,"Terminate"};
+link0[] = {0,2};
+link1[] = {1,3};
+link2[] = {2,1};
+link3[] = {2,6};
+link4[] = {3,4};
+link5[] = {4,5};
+link6[] = {5,2};
+link7[] = {6,7};
+link8[] = {7,8};
+globals[] = {25.000000,1,0,0,0,640,480,1,11,6316128,1,-300.000000,300.000000,236.873749,-205.010010,998,735,1};
+window[] = {0,-1,-1,-1,-1,1155,275,1669,275,1,1016};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Shooting Area Restriction";
+        class States
+        {
+                /*%FSM<STATE "Shooting_Area_Re">*/
+                class Shooting_Area_Re
+                {
+                        name = "Shooting_Area_Re";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private [""_var""];" \n
+                         "_var = _this;" \n
+                         "" \n
+                         "private [""_reprimands""];" \n
+                         "_reprimands = [" \n
+                         "	""x30_Left_Position_1""," \n
+                         "	""x35_Left_Position_2""," \n
+                         "	""x40_Left_Position_3""" \n
+                         "];" \n
+                         "" \n
+                         "private [""_time""];" \n
+                         "_time = 0;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Stop_monitoring">*/
+                                class Stop_monitoring
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"missionNamespace getVariable [_var, false]"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Left_area">*/
+                                class Left_area
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Reprimand";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(triggerActivated BIS_shootingArea)" \n
+                                         "&&" \n
+                                         "time > _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Reprimand">*/
+                class Reprimand
+                {
+                        name = "Reprimand";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"if (count _reprimands == 0) then {" \n
+                         "	_reprimands = [" \n
+                         "		""x30_Left_Position_1""," \n
+                         "		""x35_Left_Position_2""," \n
+                         "		""x40_Left_Position_3""" \n
+                         "	];" \n
+                         "};" \n
+                         "" \n
+                         "private [""_reprimand""];" \n
+                         "_reprimand = _reprimands call BIS_fnc_selectRandom;" \n
+                         "_reprimands = _reprimands - [_reprimand];" \n
+                         "" \n
+                         "_reprimand spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "private [""_time""];" \n
+                         "_time = time + 15;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Stop_monitoring">*/
+                                class Stop_monitoring
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"missionNamespace getVariable [_var, false]"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Left_area">*/
+                                class Left_area
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Reprimand";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(triggerActivated BIS_shootingArea)" \n
+                                         "&&" \n
+                                         "time > _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Shooting_Area_Re";
+        finalStates[] =
+        {
+                "Terminate",
+        };
+};
+/*%FSM</COMPILE>*/

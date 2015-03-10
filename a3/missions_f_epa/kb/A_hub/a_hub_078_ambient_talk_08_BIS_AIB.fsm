@@ -1,0 +1,119 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, PREDLOHA">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"React",0,250,-148.442688,-132.013092,-48.442719,-82.013107,0.000000,"React"};
+item1[] = {"",7,210,-102.438477,48.426529,-94.438538,56.426514,0.000000,""};
+item2[] = {"__",8,218,-245.799591,27.887707,-155.799591,77.887695,0.000000,"-"};
+item3[] = {"END",1,250,-249.361267,105.329407,-149.361450,155.329422,0.000000,"END"};
+item4[] = {"You_know_this_whole_place_used_to_be_British_",4, 218, 0.0,150,300.0,200,1.0,"You_know_this_whole_place_used_to_be_British_"};
+item5[] = {"Like_a_colony_or_some_shit_",1, 250, 350.0, 187, 650.0,237, 1.0,_Like_a_colony_or_some_shit__};
+item6[] = {"Yeah_",4, 218, 0.0,225,300.0,275,1.0,"Yeah_"};
+item7[] = {"Shit__Figures__Of_course_we_d_be_cleaning_up_their_mess_now_",1, 250, 350.0, 262, 650.0,312, 1.0,_Shit__Figures____n__Of_course_we_d_be_cleaning_up_their_mess_now__};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {1,4};
+link4[] = {4,5};
+link5[] = {1,6};
+link6[] = {6,7};
+globals[] = {0.000000,0,0,0,0,640,480,2,10,6316128,1,-395.949066,712.081299,795.476807,-312.553558,870,870,1};
+window[] = {2,-1,-1,-1,-1,898,162,1184,162,3,890};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "PREDLOHA";
+  class States
+  {
+    /*%FSM<STATE "React">*/
+    class React
+    {
+      name = "React";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "You_know_this_whole_place_used_to_be_British_">*/
+        class You_know_this_whole_place_used_to_be_British_
+        {
+          priority = 1.000000;
+          to="Like_a_colony_or_some_shit_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""a_hub_078_ambient_talk_08_ALPA_0""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Yeah_">*/
+        class Yeah_
+        {
+          priority = 1.000000;
+          to="Shit__Figures__Of_course_we_d_be_cleaning_up_their_mess_now_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""a_hub_078_ambient_talk_08_ALPA_1""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "__">*/
+        class __
+        {
+          priority = 0.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "END">*/
+    class END
+    {
+      name = "END";
+      init = /*%FSM<STATEINIT""">*/"//hint""Unexpected Exception""" \n "" \n "debugLog ""VD31- here B"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+     /*%FSM<STATE "Like_a_colony_or_some_shit_">*/
+    class Like_a_colony_or_some_shit_
+    {
+      name = "Like_a_colony_or_some_shit_";
+      init = /*%FSM<STATEINIT""">*/
+	" _this kbTell [_from, _topic,""a_hub_078_ambient_talk_08_ALPB_0""];"
+	/*%FSM</STATEINIT""">*/;
+	
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+     /*%FSM<STATE "Shit__Figures__Of_course_we_d_be_cleaning_up_their_mess_now_">*/
+    class Shit__Figures__Of_course_we_d_be_cleaning_up_their_mess_now_
+    {
+      name = "Shit__Figures__Of_course_we_d_be_cleaning_up_their_mess_now_";
+      init = /*%FSM<STATEINIT""">*/
+	" _this kbTell [_from, _topic,""a_hub_078_ambient_talk_08_ALPB_1""];"
+	 \n	" _this kbTell [_from, _topic,""a_hub_078_ambient_talk_08_ALPB_2""];"
+	/*%FSM</STATEINIT""">*/;
+	
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="React";
+  finalStates[] =
+  {
+    "END",
+	"Like_a_colony_or_some_shit_",
+	"Shit__Figures__Of_course_we_d_be_cleaning_up_their_mess_now_",
+  };
+};
+/*%FSM</COMPILE>*/

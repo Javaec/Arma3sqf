@@ -1,0 +1,353 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, LiveFeed">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-40.000000,-140.000000,50.000000,-90.000000,0.000000,"Start"};
+item1[] = {"Slower_End",1,250,-40.000000,280.000000,50.000000,330.000000,0.000000,"Slower" \n "End"};
+item2[] = {"Simply_nothing",2,250,-40.000000,0.000000,50.000000,50.000000,0.000000,"Simply" \n "nothing"};
+item3[] = {"Player_close",4,218,-40.000000,70.000000,50.000000,120.000000,0.000000,"Player" \n "close"};
+item4[] = {"Player_away",4,218,-150.000000,140.000000,-60.000000,190.000000,0.000000,"Player" \n "away"};
+item5[] = {"Player_dead___ej",4,218,70.000000,350.000000,160.000000,400.000000,5.000000,"Player" \n "dead / ejected"};
+item6[] = {"SPG_destroyed",4,218,-40.000000,210.000000,50.000000,260.000000,5.000000,"SPG" \n "destroyed"};
+item7[] = {"Start_Live_Feed",2,250,-40.000000,140.000000,50.000000,190.000000,0.000000,"Start" \n "Live Feed"};
+item8[] = {"End_Live_Feed__",2,250,-150.000000,280.000000,-60.000000,330.000000,0.000000,"End" \n "Live Feed" \n "+ timer"};
+item9[] = {"Timeout_10_sec",4,218,-260.000000,280.000000,-170.000000,330.000000,0.000000,"Timeout" \n "10 sec"};
+item10[] = {"",7,210,111.000000,21.000000,119.000000,29.000000,0.000000,""};
+item11[] = {"Quick_End",1,250,70.000000,420.000000,160.000000,470.000000,0.000000,"Quick" \n "End"};
+item12[] = {"PiP_enabled",4,218,-40.000000,-70.000000,50.000000,-20.000000,0.000000,"PiP enabled"};
+item13[] = {"",7,210,111.000000,161.000000,119.000000,169.000000,0.000000,""};
+item14[] = {"",7,210,-219.000015,21.000000,-211.000000,29.000002,0.000000,""};
+item15[] = {"",7,210,-108.999992,371.000000,-101.000000,379.000000,0.000000,""};
+item16[] = {"PiP_disabled",4,218,70.000000,-140.000000,160.000000,-90.000000,0.000000,"PiP disabled"};
+item17[] = {"Simply_nothing_1",2,250,180.000000,-140.000000,270.000000,-90.000000,0.000000,"Simply" \n "nothing"};
+item18[] = {"SPG_destroyed",4,218,180.000000,-70.000000,270.000000,-20.000000,5.000000,"SPG" \n "destroyed"};
+item19[] = {"End",1,250,180.000000,420.000000,270.000000,470.000000,0.000000,"End"};
+link0[] = {0,12};
+link1[] = {0,16};
+link2[] = {2,3};
+link3[] = {2,10};
+link4[] = {3,7};
+link5[] = {4,8};
+link6[] = {5,11};
+link7[] = {6,1};
+link8[] = {7,4};
+link9[] = {7,6};
+link10[] = {7,13};
+link11[] = {8,9};
+link12[] = {8,15};
+link13[] = {9,14};
+link14[] = {10,13};
+link15[] = {12,2};
+link16[] = {13,5};
+link17[] = {14,2};
+link18[] = {15,5};
+link19[] = {16,17};
+link20[] = {17,18};
+link21[] = {18,19};
+globals[] = {10.000000,1,0,0,0,640,480,1,43,6316128,1,-494.034180,491.227173,482.806122,-156.490936,1404,1031,1};
+window[] = {2,-1,-1,-1,-1,910,150,1590,150,3,1422};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "LiveFeed";
+        class States
+        {
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"LiveFeed = false;" \n
+                         "" \n
+                         "BIS_Laser = ""LaserTargetW"" createVehicle [0,0,0]; " \n
+                         "BIS_Laser attachTo [BIS_SPG_02,[0.75,-3.50,0.90]];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "PiP_disabled">*/
+                                class PiP_disabled
+                                {
+                                        itemno = 16;
+                                        priority = 0.000000;
+                                        to="Simply_nothing_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isPipEnabled" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "PiP_enabled">*/
+                                class PiP_enabled
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Simply_nothing";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isPipEnabled" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Slower_End">*/
+                class Slower_End
+                {
+                        name = "Slower_End";
+                        itemno = 1;
+                        init = /*%FSM<STATEINIT""">*/"deleteVehicle BIS_Laser;" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "" \n
+                         "sleep 1;" \n
+                         """GoodHit"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "};" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "" \n
+                         "If (LiveFeed) Then {" \n
+                         "" \n
+                         "sleep 7.5;" \n
+                         "BIS_liveFeed camPrepareFOV 0.1;" \n
+                         "BIS_liveFeed camCommitPrepared 5;" \n
+                         "" \n
+                         "sleep 7.5;" \n
+                         "[] call BIS_fnc_liveFeedTerminate};" \n
+                         "" \n
+                         "sleep 2.5;" \n
+                         "deleteVehicle BIS_JTAC;" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Simply_nothing">*/
+                class Simply_nothing
+                {
+                        name = "Simply_nothing";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"// Aw come on..." \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Player_dead___ej">*/
+                                class Player_dead___ej
+                                {
+                                        itemno = 5;
+                                        priority = 5.000000;
+                                        to="Quick_End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_Player) or " \n
+                                         "(vehicle BIS_Player != BIS_Plane)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Player_close">*/
+                                class Player_close
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Start_Live_Feed";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((vehicle BIS_Player == BIS_Plane) and" \n
+                                         "(BIS_Player distance BIS_SPG_02 < 5000))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Start_Live_Feed">*/
+                class Start_Live_Feed
+                {
+                        name = "Start_Live_Feed";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"LiveFeed = true;" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "" \n
+                         "	private [""_pos""];" \n
+                         "	_pos = [" \n
+                         "		position BIS_JTAC select 0," \n
+                         "		position BIS_JTAC select 1," \n
+                         "		2" \n
+                         "	];" \n
+                         "	" \n
+                         "		[_pos, BIS_SPG_02, Player] call BIS_fnc_liveFeed;" \n
+                         "" \n
+                         "		If (!(isNil ""BIS_liveFeed"")) Then {" \n
+                         "			BIS_liveFeed camPrepareFOV 0.06;" \n
+                         "			BIS_liveFeed camCommitPrepared 0;" \n
+                         "			};" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "SPG_destroyed">*/
+                                class SPG_destroyed
+                                {
+                                        itemno = 6;
+                                        priority = 5.000000;
+                                        to="Slower_End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(damage BIS_SPG_02 == 1)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Player_dead___ej">*/
+                                class Player_dead___ej
+                                {
+                                        itemno = 5;
+                                        priority = 5.000000;
+                                        to="Quick_End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_Player) or " \n
+                                         "(vehicle BIS_Player != BIS_Plane)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Player_away">*/
+                                class Player_away
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="End_Live_Feed__";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((vehicle BIS_Player == BIS_Plane) and" \n
+                                         "(BIS_Player distance BIS_SPG_02 > 5000))" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End_Live_Feed__">*/
+                class End_Live_Feed__
+                {
+                        name = "End_Live_Feed__";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "[] call BIS_fnc_liveFeedTerminate;" \n
+                         "LiveFeed = false;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Player_dead___ej">*/
+                                class Player_dead___ej
+                                {
+                                        itemno = 5;
+                                        priority = 5.000000;
+                                        to="Quick_End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_Player) or " \n
+                                         "(vehicle BIS_Player != BIS_Plane)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Timeout_10_sec">*/
+                                class Timeout_10_sec
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="Simply_nothing";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 10"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Quick_End">*/
+                class Quick_End
+                {
+                        name = "Quick_End";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "" \n
+                         "If (LiveFeed) Then {" \n
+                         "" \n
+                         "[] call BIS_fnc_liveFeedTerminate;" \n
+                         "" \n
+                         "};" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Simply_nothing_1">*/
+                class Simply_nothing_1
+                {
+                        name = "Simply_nothing_1";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"// Nothing at all..." \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "SPG_destroyed">*/
+                                class SPG_destroyed
+                                {
+                                        itemno = 18;
+                                        priority = 5.000000;
+                                        to="End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(damage BIS_SPG_02 == 1)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End">*/
+                class End
+                {
+                        name = "End";
+                        itemno = 19;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "" \n
+                         "deleteVehicle BIS_Laser;" \n
+                         "" \n
+                         "sleep 1;" \n
+                         """GoodHit"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "sleep 2.5;" \n
+                         "deleteVehicle BIS_JTAC;" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Start";
+        finalStates[] =
+        {
+                "Slower_End",
+                "Quick_End",
+                "End",
+        };
+};
+/*%FSM</COMPILE>*/

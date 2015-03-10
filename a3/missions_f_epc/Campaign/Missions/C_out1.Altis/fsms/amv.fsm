@@ -1,0 +1,953 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, AMV_FSM">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-75.000000,-275.000000,25.000000,-225.000000,0.000000,"init"};
+item1[] = {"player_landed",4,218,-75.000000,-200.000000,25.000000,-150.000000,0.000000,"player" \n "landed"};
+item2[] = {"move_to_gamma",2,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"move to" \n "gamma"};
+item3[] = {"near_gamma",4,218,-75.000000,-50.000000,25.000000,0.000000,0.000000,"near gamma"};
+item4[] = {"disembark_troops",2,250,-75.000000,25.000000,25.000000,75.000000,0.000000,"disembark" \n "troops"};
+item5[] = {"destroyed",4,218,-300.000000,475.000000,-200.000000,525.000000,99.000000,"destroyed"};
+item6[] = {"gamma_secure",4,218,-75.000000,100.000000,25.000000,150.000000,1.000000,"gamma" \n "secure"};
+item7[] = {"move_to_rally_po",2,250,-75.000000,175.000000,25.000000,225.000000,0.000000,"move to" \n "rally point"};
+item8[] = {"at_rally_point",4,218,-175.000000,250.000000,-75.000000,300.000000,1.000000,"at rally" \n "point"};
+item9[] = {"support_player_s",2,250,-175.000000,325.000000,-75.000000,375.000000,0.000000,"support player's" \n "squad"};
+item10[] = {"kappa_secure",4,218,-175.000000,550.000000,-75.000000,600.000000,0.000000,"kappa" \n "secure"};
+item11[] = {"offer_ride_to_pl",2,250,-175.000000,775.000000,-75.000000,825.000000,0.000000,"offer ride to" \n "player"};
+item12[] = {"timeout",4,218,100.000000,775.000000,200.000000,825.000000,0.000000,"timeout"};
+item13[] = {"player_inside",4,218,-175.000000,850.000000,-75.000000,900.000000,1.000000,"player" \n "inside"};
+item14[] = {"defend_kappa",1,250,100.000000,1150.000000,200.000000,1200.000000,0.000000,"defend" \n "kappa"};
+item15[] = {"move_to_defense",2,250,-175.000000,925.000000,-75.000000,975.000000,0.000000,"move to" \n "defense position"};
+item16[] = {"at_defense_posit",4,218,-300.000000,1000.000000,-200.000000,1050.000000,2.000000,"at defense" \n "position"};
+item17[] = {"enemy_detected",4,218,-175.000000,1000.000000,-75.000000,1050.000000,1.000000,"enemy" \n "detected"};
+item18[] = {"timeout",4,218,-50.000000,1000.000000,50.000000,1050.000000,0.000000,"timeout"};
+item19[] = {"_",2,250,-300.000000,1075.000000,-200.000000,1125.000000,0.000000,""};
+item20[] = {"__1",2,250,-175.000000,1075.000000,-75.000000,1125.000000,0.000000,""};
+item21[] = {"__2",2,250,-50.000000,1075.000000,50.000000,1125.000000,0.000000,""};
+item22[] = {"all_out",4,4314,-175.000000,1150.000000,-75.000000,1200.000000,0.000000,"all out"};
+item23[] = {"waypoint_complet",4,218,-75.000000,375.000000,25.000000,425.000000,0.000000,"waypoint" \n "completed"};
+item24[] = {"reset",2,250,50.000000,375.000000,150.000000,425.000000,0.000000,"reset"};
+item25[] = {"always",4,218,50.000000,450.000000,150.000000,500.000000,0.000000,"always"};
+item26[] = {"",7,210,-29.000044,471.000000,-20.999956,479.000000,0.000000,""};
+item27[] = {"player_near_kapp",4,218,25.000000,250.000000,125.000000,300.000000,0.000000,"player near" \n "kappa"};
+item28[] = {"",7,210,71.000008,346.000000,79.000000,354.000000,0.000000,""};
+item29[] = {"near_kappa",4,218,-175.000000,400.000000,-75.000000,450.000000,1.000000,"near" \n "kappa"};
+item30[] = {"disembark_cargo",2,250,-175.000000,475.000000,-75.000000,525.000000,0.000000,"disembark" \n "cargo"};
+item31[] = {"move_to_player_s",2,250,-175.000000,625.000000,-75.000000,675.000000,0.000000,"move to" \n "player's position"};
+item32[] = {"at_position_or_player",4,218,-175.000000,700.000000,-75.000000,750.000000,0.000000,"at position" \n "or player is" \n "near"};
+item33[] = {"",7,210,71.000000,46.000000,79.000008,54.000000,0.000000,""};
+item34[] = {"exit",1,250,-425.000000,475.000000,-325.000000,525.000000,0.000000,"exit"};
+item35[] = {"",7,210,-254.000000,796.000000,-246.000015,804.000000,0.000000,""};
+item36[] = {"",7,210,-253.999985,646.000000,-246.000000,654.000000,0.000000,""};
+item37[] = {"",7,210,-254.000000,346.000000,-246.000015,354.000000,0.000000,""};
+item38[] = {"",7,210,-254.000015,196.000000,-246.000000,204.000000,0.000000,""};
+item39[] = {"",7,210,-254.000000,46.000000,-246.000000,54.000000,0.000000,""};
+item40[] = {"",7,210,-254.000000,-104.000008,-246.000000,-96.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,40};
+link4[] = {3,4};
+link5[] = {4,6};
+link6[] = {4,33};
+link7[] = {4,39};
+link8[] = {5,34};
+link9[] = {6,7};
+link10[] = {7,8};
+link11[] = {7,27};
+link12[] = {7,38};
+link13[] = {8,9};
+link14[] = {9,23};
+link15[] = {9,29};
+link16[] = {9,37};
+link17[] = {10,31};
+link18[] = {11,12};
+link19[] = {11,13};
+link20[] = {11,35};
+link21[] = {12,14};
+link22[] = {13,15};
+link23[] = {15,16};
+link24[] = {15,17};
+link25[] = {15,18};
+link26[] = {16,19};
+link27[] = {17,20};
+link28[] = {18,21};
+link29[] = {19,22};
+link30[] = {20,22};
+link31[] = {21,22};
+link32[] = {22,14};
+link33[] = {23,24};
+link34[] = {24,25};
+link35[] = {25,26};
+link36[] = {26,9};
+link37[] = {27,28};
+link38[] = {28,9};
+link39[] = {29,30};
+link40[] = {30,5};
+link41[] = {30,10};
+link42[] = {31,32};
+link43[] = {31,36};
+link44[] = {32,11};
+link45[] = {33,27};
+link46[] = {35,36};
+link47[] = {36,5};
+link48[] = {37,5};
+link49[] = {38,37};
+link50[] = {39,38};
+link51[] = {40,39};
+globals[] = {25.000000,1,0,0,0,640,480,1,157,6316128,1,-485.776367,242.284424,1247.585205,334.357788,822,1031,1};
+window[] = {2,-1,-1,-1,-1,1130,250,1644,250,3,840};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "AMV_FSM";
+        class States
+        {
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"//Parameters" \n
+                         "private [""_vehicle""];" \n
+                         "_vehicle = [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "" \n
+                         "//Get all the useful stuff" \n
+                         "private [""_group"", ""_commander"", ""_driver"", ""_gunner"", ""_cargo""];" \n
+                         "_group 		= group _vehicle;" \n
+                         "_commander	= commander _vehicle;" \n
+                         "_driver			= driver _vehicle;" \n
+                         "_gunner		= gunner _vehicle;" \n
+                         "_cargo			= crew _vehicle - [_commander, _driver, _gunner];" \n
+                         "" \n
+                         "//The cargo group" \n
+                         "private ""_groupCargo"";" \n
+                         "_groupCargo = createGroup WEST;" \n
+                         "" \n
+                         "//The positions/waypoints" \n
+                         "private [""_positionSolar"", ""_positionRally"", ""_positionKalochori"", ""_positionTransportStart"", ""_positionTransportEnd""];" \n
+                         "_positionSolar 				= getMarkerPos ""BIS_amvWaypoint"";" \n
+                         "_positionRally 				= getMarkerPos ""BIS_rally"";" \n
+                         "_positionKalochori			= getMarkerPos ""BIS_base"";" \n
+                         "_positionTransport		= getMarkerPos ""BIS_transportEnd"";" \n
+                         "" \n
+                         "//Do not flee" \n
+                         "_group allowFleeing 0;" \n
+                         "" \n
+                         "//Disable attack" \n
+                         "_group enableAttack false;" \n
+                         "" \n
+                         "//Crew should not disembark vehicle" \n
+                         "_vehicle allowCrewInImmobile true;" \n
+                         "" \n
+                         "//Do not move for now" \n
+                         "{" \n
+                         "	_x disableAi ""MOVE"";" \n
+                         "} forEach units _group;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "player_landed">*/
+                                class player_landed
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="move_to_gamma";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle player == player" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "move_to_gamma">*/
+                class move_to_gamma
+                {
+                        name = "move_to_gamma";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"//The waypoint" \n
+                         "private ""_waypoint"";" \n
+                         "_waypoint = _group addWaypoint [_positionSolar, 0];" \n
+                         "" \n
+                         "//Waypoint properties" \n
+                         "_waypoint setWaypointType ""MOVE"";" \n
+                         "_waypoint setWaypointSpeed ""NORMAL"";" \n
+                         "_waypoint setWaypointBehaviour ""COMBAT"";" \n
+                         "_waypoint setWaypointCombatMode ""RED"";" \n
+                         "_waypoint setWaypointFormation ""LINE"";" \n
+                         "_waypoint setWaypointStatements [""true"", ""group this setVariable ['BIS_waypointSolar', true];""];" \n
+                         "" \n
+                         "//Set new waypoint as current" \n
+                         "_group setCurrentWaypoint _waypoint;" \n
+                         "" \n
+                         "//Allow moving" \n
+                         "{" \n
+                         "	_x enableAi ""MOVE"";" \n
+                         "} forEach units _group;" \n
+                         "" \n
+                         "//Log" \n
+                         """AMV is supporting at Solar Station"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "destroyed">*/
+                                class destroyed
+                                {
+                                        itemno = 5;
+                                        priority = 99.000000;
+                                        to="exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive _vehicle" \n
+                                         "||" \n
+                                         "{ !canMove _vehicle }" \n
+                                         "||" \n
+                                         "{ { alive _x } count units _group < 1 }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "near_gamma">*/
+                                class near_gamma
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="disembark_troops";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_vehicle distance _positionSolar < 150" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "disembark_troops">*/
+                class disembark_troops
+                {
+                        name = "disembark_troops";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"//Disembark troops" \n
+                         "_cargo orderGetIn false;" \n
+                         "_cargo allowGetIn false;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "destroyed">*/
+                                class destroyed
+                                {
+                                        itemno = 5;
+                                        priority = 99.000000;
+                                        to="exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive _vehicle" \n
+                                         "||" \n
+                                         "{ !canMove _vehicle }" \n
+                                         "||" \n
+                                         "{ { alive _x } count units _group < 1 }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "gamma_secure">*/
+                                class gamma_secure
+                                {
+                                        itemno = 6;
+                                        priority = 1.000000;
+                                        to="move_to_rally_po";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_triggerSolar" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "player_near_kapp">*/
+                                class player_near_kapp
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="support_player_s";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"player distance _positionKalochori < player distance _positionRally" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "move_to_rally_po">*/
+                class move_to_rally_po
+                {
+                        name = "move_to_rally_po";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"//Troops get back into vehicle" \n
+                         "_cargo orderGetIn true;" \n
+                         "_cargo allowGetIn true;" \n
+                         "" \n
+                         "//The waypoint" \n
+                         "private ""_waypoint"";" \n
+                         "_waypoint = _group addWaypoint [_positionRally, 5];" \n
+                         "" \n
+                         "//Waypoint properties" \n
+                         "_waypoint setWaypointType ""MOVE"";" \n
+                         "_waypoint setWaypointSpeed ""LIMITED"";" \n
+                         "_waypoint setWaypointBehaviour ""AWARE"";" \n
+                         "_waypoint setWaypointCombatMode ""GREEN"";" \n
+                         "_waypoint setWaypointFormation ""LINE"";" \n
+                         "_waypoint setWaypointCompletionRadius 5;" \n
+                         "_waypoint setWaypointStatements [""true"", ""group this setVariable ['BIS_waypointRally', true];""];" \n
+                         "" \n
+                         "//Set new waypoint as current" \n
+                         "_group setCurrentWaypoint _waypoint;" \n
+                         "" \n
+                         "//Disable engaging orders" \n
+                         "_group enableAttack false;" \n
+                         "" \n
+                         "//Log" \n
+                         """AMV is moving to regroup position"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "destroyed">*/
+                                class destroyed
+                                {
+                                        itemno = 5;
+                                        priority = 99.000000;
+                                        to="exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive _vehicle" \n
+                                         "||" \n
+                                         "{ !canMove _vehicle }" \n
+                                         "||" \n
+                                         "{ { alive _x } count units _group < 1 }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "at_rally_point">*/
+                                class at_rally_point
+                                {
+                                        itemno = 8;
+                                        priority = 1.000000;
+                                        to="support_player_s";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_triggerRegroup" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "player_near_kapp">*/
+                                class player_near_kapp
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="support_player_s";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"player distance _positionKalochori < player distance _positionRally" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "support_player_s">*/
+                class support_player_s
+                {
+                        name = "support_player_s";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"//The position we want vehicle to protect player squad" \n
+                         "private [""_nearestRoad"", ""_position""];" \n
+                         "_nearestRoad 	= [position player, 50] call BIS_fnc_nearestRoad;" \n
+                         "_position		= [];" \n
+                         "" \n
+                         "if (!isNull _nearestRoad) then {" \n
+                         "	_position = position _nearestRoad;" \n
+                         "} else {" \n
+                         "	_position = [position player, 50, [_vehicle, player] call BIS_fnc_dirTo] call BIS_fnc_relPos;" \n
+                         "};" \n
+                         "" \n
+                         "//The waypoint" \n
+                         "private ""_waypoint"";" \n
+                         "_waypoint = _group addWaypoint [_position, 0];" \n
+                         "" \n
+                         "//Waypoint properties" \n
+                         "_waypoint setWaypointType ""MOVE"";" \n
+                         "_waypoint setWaypointSpeed ""NORMAL"";" \n
+                         "_waypoint setWaypointBehaviour ""COMBAT"";" \n
+                         "_waypoint setWaypointCombatMode ""RED"";" \n
+                         "_waypoint setWaypointFormation ""LINE"";" \n
+                         "_waypoint setWaypointStatements [""true"", ""group this setVariable ['BIS_waypointSupport', true];""];" \n
+                         "" \n
+                         "//Set new waypoint as current" \n
+                         "_group setCurrentWaypoint _waypoint;" \n
+                         "" \n
+                         "//Enable engaging orders" \n
+                         "_group enableAttack true;" \n
+                         "" \n
+                         "//Force speed, AMV should move slowly so player can keep up" \n
+                         "if (_vehicle distance player > 100) then {" \n
+                         "	_driver forceSpeed -1;" \n
+                         "} else {" \n
+                         "	_driver forceSpeed 1.5;" \n
+                         "};" \n
+                         "" \n
+                         "//Log" \n
+                         """AMV is supporting at Kalichori"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "destroyed">*/
+                                class destroyed
+                                {
+                                        itemno = 5;
+                                        priority = 99.000000;
+                                        to="exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive _vehicle" \n
+                                         "||" \n
+                                         "{ !canMove _vehicle }" \n
+                                         "||" \n
+                                         "{ { alive _x } count units _group < 1 }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "near_kappa">*/
+                                class near_kappa
+                                {
+                                        itemno = 29;
+                                        priority = 1.000000;
+                                        to="disembark_cargo";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_vehicle distance _positionKalochori < 150" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "waypoint_complet">*/
+                                class waypoint_complet
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="reset";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { _group getVariable ""BIS_waypointSupport"" }" \n
+                                         "&&" \n
+                                         "{ player distance _vehicle > 50 }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "offer_ride_to_pl">*/
+                class offer_ride_to_pl
+                {
+                        name = "offer_ride_to_pl";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"// Force speed reset" \n
+                         "_driver forceSpeed -1;" \n
+                         "" \n
+                         "// Do not move" \n
+                         "_driver disableAi ""MOVE"";" \n
+                         "" \n
+                         "// Disable engaging orders" \n
+                         "_group enableAttack false;" \n
+                         "" \n
+                         "// Timeout" \n
+                         "private ""_timeoutGetIn"";" \n
+                         "_timeoutGetIn = time + 180;" \n
+                         "" \n
+                         "// Conversation and task update" \n
+                         "[] spawn {" \n
+                         "	// Conversation" \n
+                         "	""BIS_transport"" spawn BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	// Task" \n
+                         "	""BIS_transport"" call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         "" \n
+                         "// Log" \n
+                         """AMV is offering a ride to the player"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "destroyed">*/
+                                class destroyed
+                                {
+                                        itemno = 5;
+                                        priority = 99.000000;
+                                        to="exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive _vehicle" \n
+                                         "||" \n
+                                         "{ !canMove _vehicle }" \n
+                                         "||" \n
+                                         "{ { alive _x } count units _group < 1 }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "player_inside">*/
+                                class player_inside
+                                {
+                                        itemno = 13;
+                                        priority = 1.000000;
+                                        to="move_to_defense";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle player == _vehicle" \n
+                                         "&&" \n
+                                         "{ _vehicle emptyPositions ""CARGO"" < 1 || { { vehicle _x != _vehicle } count units group player < 1 } }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "timeout">*/
+                                class timeout
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="defend_kappa";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	time > _timeoutGetIn" \n
+                                         "	||" \n
+                                         "	{ player distance _vehicle > player distance _positionTransport }" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "{ player distance _vehicle > 50 }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "defend_kappa">*/
+                class defend_kappa
+                {
+                        name = "defend_kappa";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"//Allow movement" \n
+                         "_driver enableAi ""MOVE"";" \n
+                         "" \n
+                         "//The waypoints" \n
+                         "private ""_waypointMove"";" \n
+                         "_waypointMove = _group addWaypoint [_positionTransport, 0];" \n
+                         "" \n
+                         "//Waypoint move properties" \n
+                         "_waypointMove setWaypointType ""MOVE"";" \n
+                         "_waypointMove setWaypointSpeed ""FULL"";" \n
+                         "_waypointMove setWaypointBehaviour ""COMBAT"";" \n
+                         "_waypointMove setWaypointCombatMode ""RED"";" \n
+                         "_waypointMove setWaypointFormation ""DIAMOND"";" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "move_to_defense">*/
+                class move_to_defense
+                {
+                        name = "move_to_defense";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/"//Move" \n
+                         "_driver enableAi ""MOVE"";" \n
+                         "" \n
+                         "//The waypoints" \n
+                         "private [""_waypointMove"", ""_waypointTransportUnload""];" \n
+                         "_waypointMove 				= _group addWaypoint [_positionTransport, 0];" \n
+                         "_waypointTransportUnload	= _group addWaypoint [_positionTransport, 0];" \n
+                         "" \n
+                         "//Waypoint move properties" \n
+                         "_waypointMove setWaypointType ""MOVE"";" \n
+                         "_waypointMove setWaypointSpeed ""LIMITED"";" \n
+                         "_waypointMove setWaypointBehaviour ""SAFE"";" \n
+                         "_waypointMove setWaypointCombatMode ""GREEN"";" \n
+                         "_waypointMove setWaypointFormation ""FILE"";" \n
+                         "_waypointMove setWaypointStatements [""true"", ""group this setVariable ['BIS_waypointDrop', true];""];" \n
+                         "" \n
+                         "//Waypoint tr properties" \n
+                         "_waypointTransportUnload setWaypointType ""TR UNLOAD"";" \n
+                         "" \n
+                         "//Set new waypoint as current" \n
+                         "_group setCurrentWaypoint _waypointMove;" \n
+                         "" \n
+                         "//Set captive while transporting the player, and do not allow damage" \n
+                         "_vehicle setCaptive true;" \n
+                         "_vehicle allowDamage false;" \n
+                         "" \n
+                         "//Timeout" \n
+                         "private ""_timeoutDrop"";" \n
+                         "_timeoutDrop = time + 180;" \n
+                         "" \n
+                         "//Conversation" \n
+                         """BIS_transportMoving"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//Task" \n
+                         "[""BIS_transport"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//Log" \n
+                         """AMV moving to defense position"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "at_defense_posit">*/
+                                class at_defense_posit
+                                {
+                                        itemno = 16;
+                                        priority = 2.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { _group getVariable ""BIS_waypointDrop"" }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "enemy_detected">*/
+                                class enemy_detected
+                                {
+                                        itemno = 17;
+                                        priority = 1.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	alive _x" \n
+                                         "	&&" \n
+                                         "	{ canMove _x }" \n
+                                         "	&&" \n
+                                         "	{ !isNull driver _x }" \n
+                                         "	&&" \n
+                                         "	{ side group driver _x == RESISTANCE }" \n
+                                         "} count (position _vehicle nearObjects [""LandVehicle"", 100]) > 0" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "timeout">*/
+                                class timeout
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _timeoutDrop" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 19;
+                        init = /*%FSM<STATEINIT""">*/"//Do not move" \n
+                         "_driver disableAi ""MOVE"";" \n
+                         "" \n
+                         "//Vehicle not captive anymore, and can be destroyed" \n
+                         "_vehicle setCaptive false;" \n
+                         "_vehicle allowDamage true;" \n
+                         "" \n
+                         "//Order get out" \n
+                         "units group player orderGetIn false;" \n
+                         "units group player allowGetIn false;" \n
+                         "" \n
+                         "//Conversation" \n
+                         """BIS_transportSucceeded"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//Log" \n
+                         """AMV is unloading player team"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "all_out">*/
+                                class all_out
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="defend_kappa";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{ vehicle _x == _vehicle } count units group player < 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__1">*/
+                class __1
+                {
+                        name = "__1";
+                        itemno = 20;
+                        init = /*%FSM<STATEINIT""">*/"//Do not move" \n
+                         "_driver disableAi ""MOVE"";" \n
+                         "" \n
+                         "//Vehicle not captive anymore, and can be destroyed" \n
+                         "_vehicle setCaptive false;" \n
+                         "_vehicle allowDamage true;" \n
+                         "" \n
+                         "//Order get out" \n
+                         "units group player orderGetIn false;" \n
+                         "units group player allowGetIn false;" \n
+                         "" \n
+                         "//Conversation" \n
+                         """BIS_transportEnemy"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//Log" \n
+                         """AMV is unloading player team because it spotted enemy vehicle in a radius of 100m"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "all_out">*/
+                                class all_out
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="defend_kappa";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{ vehicle _x == _vehicle } count units group player < 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__2">*/
+                class __2
+                {
+                        name = "__2";
+                        itemno = 21;
+                        init = /*%FSM<STATEINIT""">*/"//Do not move" \n
+                         "_driver disableAi ""MOVE"";" \n
+                         "" \n
+                         "//Vehicle not captive anymore, and can be destroyed" \n
+                         "_vehicle setCaptive false;" \n
+                         "_vehicle allowDamage true;" \n
+                         "" \n
+                         "//Order get out" \n
+                         "units group player orderGetIn false;" \n
+                         "units group player allowGetIn false;" \n
+                         "" \n
+                         "//Conversation" \n
+                         """BIS_transportFailed"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//Log" \n
+                         """AMV is unloading player team because it is taking too much time to reach the drop position"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "all_out">*/
+                                class all_out
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="defend_kappa";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{ vehicle _x == _vehicle } count units group player < 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "reset">*/
+                class reset
+                {
+                        name = "reset";
+                        itemno = 24;
+                        init = /*%FSM<STATEINIT""">*/"//Reset waypoint flag" \n
+                         "_group setVariable [""BIS_waypointSupport"", nil];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 25;
+                                        priority = 0.000000;
+                                        to="support_player_s";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "disembark_cargo">*/
+                class disembark_cargo
+                {
+                        name = "disembark_cargo";
+                        itemno = 30;
+                        init = /*%FSM<STATEINIT""">*/"//Leave vehicle" \n
+                         "{ unassignVehicle _x; } forEach _cargo;" \n
+                         "_cargo orderGetIn false;" \n
+                         "_cargo allowGetIn false;" \n
+                         "" \n
+                         "//The cargo group, will stay and guard Kalochori" \n
+                         "_groupCargo = createGroup WEST;" \n
+                         "" \n
+                         "//Move cargo units to new group" \n
+                         "_cargo joinSilent _groupCargo;" \n
+                         "" \n
+                         "//The cargo guard waypoint" \n
+                         "private ""_waypointCargo"";" \n
+                         "_waypointCargo = _groupCargo addWaypoint [_positionKalochori, 25];" \n
+                         "" \n
+                         "//Waypoint properties" \n
+                         "_waypointCargo setWaypointType ""GUARD"";" \n
+                         "_waypointCargo setWaypointSpeed ""FULL"";" \n
+                         "_waypointCargo setWaypointBehaviour ""AWARE"";" \n
+                         "_waypointCargo setWaypointCombatMode ""RED"";" \n
+                         "_waypointCargo setWaypointFormation ""DIAMOND"";" \n
+                         "" \n
+                         "//Set new waypoint as current" \n
+                         "_groupCargo setCurrentWaypoint _waypointCargo;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "destroyed">*/
+                                class destroyed
+                                {
+                                        itemno = 5;
+                                        priority = 99.000000;
+                                        to="exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive _vehicle" \n
+                                         "||" \n
+                                         "{ !canMove _vehicle }" \n
+                                         "||" \n
+                                         "{ { alive _x } count units _group < 1 }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "kappa_secure">*/
+                                class kappa_secure
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="move_to_player_s";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_triggerKalochori" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "move_to_player_s">*/
+                class move_to_player_s
+                {
+                        name = "move_to_player_s";
+                        itemno = 31;
+                        init = /*%FSM<STATEINIT""">*/"//The waypoint to player's position" \n
+                         "private ""_waypoint"";" \n
+                         "_waypoint = _group addWaypoint [position player, 10];" \n
+                         "" \n
+                         "//Waypoint properties" \n
+                         "_waypoint setWaypointType ""MOVE"";" \n
+                         "_waypoint setWaypointSpeed ""FULL"";" \n
+                         "_waypoint setWaypointBehaviour ""AWARE"";" \n
+                         "_waypoint setWaypointCombatMode ""GREEN"";" \n
+                         "_waypoint setWaypointFormation ""FILE"";" \n
+                         "_waypoint setWaypointStatements [""true"", ""group this setVariable ['BIS_waypointPlayer', true];""];" \n
+                         "" \n
+                         "//Set new waypoint as current" \n
+                         "_group setCurrentWaypoint _waypoint;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "destroyed">*/
+                                class destroyed
+                                {
+                                        itemno = 5;
+                                        priority = 99.000000;
+                                        to="exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive _vehicle" \n
+                                         "||" \n
+                                         "{ !canMove _vehicle }" \n
+                                         "||" \n
+                                         "{ { alive _x } count units _group < 1 }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "at_position_or_player">*/
+                                class at_position_or_player
+                                {
+                                        itemno = 32;
+                                        priority = 0.000000;
+                                        to="offer_ride_to_pl";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { _group getVariable ""BIS_waypointPlayer"" }" \n
+                                         "||" \n
+                                         "{ player distance _vehicle < 50 }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "exit">*/
+                class exit
+                {
+                        name = "exit";
+                        itemno = 34;
+                        init = /*%FSM<STATEINIT""">*/"//Destroy if not already" \n
+                         "if (alive _vehicle) then {" \n
+                         "	_vehicle setDamage 1;" \n
+                         "};" \n
+                         "" \n
+                         "//Conversation, after a while" \n
+                         "[] spawn {" \n
+                         "	sleep 5;" \n
+                         "	""BIS_transportDestroyed"" call BIS_fnc_missionConversations;" \n
+                         "};" \n
+                         "" \n
+                         "//Log" \n
+                         """AMV was destroyed"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "defend_kappa",
+                "exit",
+        };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,285 @@
+/*%FSM<COMPILE "C:\bis\fsmeditor\scriptedFSM.cfg, Collaboration">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"always",8,218,150.000000,-250.000000,250.000000,-200.000000,0.000000,"always"};
+item1[] = {"check_player_s_p",2,250,150.000000,-175.000000,250.000000,-125.000000,0.000000,"check player's" \n "presence"};
+item2[] = {"present",4,218,75.000000,-100.000000,175.000000,-50.000000,0.000000,"present"};
+item3[] = {"Init",0,4346,150.000000,-325.000000,250.000000,-275.000000,0.000000,"Init"};
+item4[] = {"not_present",4,218,225.000000,-100.000000,325.000000,-50.000000,1.000000,"not present"};
+item5[] = {"run_timer",2,250,225.000000,-25.000000,325.000000,25.000000,0.000000,"run timer"};
+item6[] = {"timeout_5_sec",6,250,225.000000,50.000000,325.000000,100.000000,0.000000,"timeout" \n "5 sec"};
+item7[] = {"",7,210,346.000000,71.000000,354.000000,79.000000,0.000000,""};
+item8[] = {"",7,210,346.000000,-154.000000,354.000000,-146.000000,0.000000,""};
+item9[] = {"calculate_timeout",2,250,75.000000,-25.000000,175.000000,25.000000,0.000000,"calculate timeout," \n "run timer"};
+item10[] = {"_timeoutCeil",6,250,75.000000,50.000000,175.000000,100.000000,0.000000,"_timeoutCeil"};
+item11[] = {"inform_enemies_",2,250,75.000000,125.000000,175.000000,175.000000,0.000000,"inform enemies," \n "run timer"};
+item12[] = {"no_enemies_to_in",4,218,-50.000000,-175.000000,50.000000,-125.000000,2.000000,"no enemies" \n "to inform"};
+item13[] = {"terminate",1,250,-175.000000,-175.000000,-75.000000,-125.000000,0.000000,"terminate"};
+item14[] = {"timeout_30_min",6,250,225.000000,125.000000,325.000000,175.000000,0.000000,"timeout" \n "30 min"};
+item15[] = {"loop_10_sec",6,250,-50.000000,-25.000000,50.000000,25.000000,0.000000,"loop" \n "10 sec"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {1,4};
+link3[] = {1,12};
+link4[] = {2,9};
+link5[] = {3,0};
+link6[] = {4,5};
+link7[] = {5,6};
+link8[] = {6,7};
+link9[] = {7,8};
+link10[] = {8,1};
+link11[] = {9,4};
+link12[] = {9,10};
+link13[] = {9,12};
+link14[] = {9,15};
+link15[] = {10,11};
+link16[] = {11,14};
+link17[] = {12,13};
+link18[] = {14,7};
+link19[] = {15,9};
+globals[] = {25.000000,1,0,1,16777215,640,480,1,40,6316128,1,-296.036011,497.624969,319.310486,-420.500763,958,893,1};
+window[] = {2,-1,-1,-1,-1,937,207,1467,207,3,976};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Collaboration";
+  class States
+  {
+    /*%FSM<STATE "check_player_s_p">*/
+    class check_player_s_p
+    {
+      name = "check_player_s_p";
+      itemno = 1;
+      init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+       "" \n
+       "_timeoutCeil = 10e10;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "no_enemies_to_in">*/
+        class no_enemies_to_in
+        {
+          itemno = 12;
+          priority = 2.000000;
+          to="terminate";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count units _responseGrp < 5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "not_present">*/
+        class not_present
+        {
+          itemno = 4;
+          priority = 1.000000;
+          to="run_timer";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(triggerActivated _trg)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "present">*/
+        class present
+        {
+          itemno = 2;
+          priority = 0.000000;
+          to="calculate_timeout";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"triggerActivated _trg"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Init">*/
+    class Init
+    {
+      name = "Init";
+      itemno = 3;
+      init = /*%FSM<STATEINIT""">*/"_trg = _this getVariable ""visitedTrg"";" \n
+       "" \n
+       "_enemySides = [];" \n
+       "_responseGrp = grpNull;" \n
+       "" \n
+       "if (side group player getFriend WEST == 0) then {_enemySides = _enemySides + [""BLUFOR""]};" \n
+       "if (side group player getFriend EAST == 0) then {_enemySides = _enemySides + [""OPFOR""]};" \n
+       "if (side group player getFriend INDEPENDENT == 0) then {_enemySides = _enemySides + [""Independent""]};" \n
+       "" \n
+       "{" \n
+       "	if (_x distance _this < 3000) then {" \n
+       "		if ((_x getVariable ""side"") in _enemySides) then {" \n
+       "			if ((_x getVariable ""siteType"") in [""Military_Base"", ""Military_OP""]) then {" \n
+       "				if (!isNil {_x getVariable ""garrison""}) then {" \n
+       "					_responseGrp = (_x getVariable ""garrison"") select 0" \n
+       "				}" \n
+       "			}" \n
+       "		}" \n
+       "	}" \n
+       "} forEach allSites;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "always">*/
+        class always
+        {
+          itemno = 0;
+          priority = 0.000000;
+          to="check_player_s_p";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "run_timer">*/
+    class run_timer
+    {
+      name = "run_timer";
+      itemno = 5;
+      init = /*%FSM<STATEINIT""">*/"_t = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "timeout_5_sec">*/
+        class timeout_5_sec
+        {
+          itemno = 6;
+          priority = 0.000000;
+          to="check_player_s_p";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"time > _t + 5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "calculate_timeout">*/
+    class calculate_timeout
+    {
+      name = "calculate_timeout";
+      itemno = 9;
+      init = /*%FSM<STATEINIT""">*/"_ticker = time;" \n
+       "" \n
+       "_timeoutBase = 300;" \n
+       "" \n
+       "_grpMilVehs = []; {if (!(vehicle _x in _grpMilVehs) && (getNumber (configFile >> ""CfgVehicles"" >> typeof vehicle _x >> ""side"") != 3)) then {_grpMilVehs = _grpMilVehs + [vehicle _x]}} forEach list _trg;" \n
+       "_grpWpns = []; {_grpWpns = _grpWpns + ((weapons _x) - [""Binocular"", ""NVGoggles""])} forEach list _trg;" \n
+       "" \n
+       "{_timeoutBase = _timeoutBase - 10} forEach list _trg;" \n
+       "{_timeoutBase = _timeoutBase - 10} forEach _grpWpns;" \n
+       "{_timeoutBase = _timeoutBase - 60} forEach _grpMilVehs;" \n
+       "" \n
+       "if (_timeoutBase < _timeoutCeil) then {_timeoutCeil = _timeoutBase};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "no_enemies_to_in">*/
+        class no_enemies_to_in
+        {
+          itemno = 12;
+          priority = 2.000000;
+          to="terminate";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count units _responseGrp < 5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "not_present">*/
+        class not_present
+        {
+          itemno = 4;
+          priority = 1.000000;
+          to="run_timer";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(triggerActivated _trg)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "loop_10_sec">*/
+        class loop_10_sec
+        {
+          itemno = 15;
+          priority = 0.000000;
+          to="calculate_timeout";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"time > _ticker + 10"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_timeoutCeil">*/
+        class _timeoutCeil
+        {
+          itemno = 10;
+          priority = 0.000000;
+          to="inform_enemies_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"time > _t + _timeoutCeil;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "inform_enemies_">*/
+    class inform_enemies_
+    {
+      name = "inform_enemies_";
+      itemno = 11;
+      init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+       "" \n
+       "_originalPos = position leader _responseGrp;" \n
+       "" \n
+       "_wp1 = _responseGrp addWaypoint [position player, 100];" \n
+       "_wp1 setWaypointType ""MOVE"";" \n
+       "_wp1 setWaypointBehaviour ""AWARE"";" \n
+       "_wp1 setWaypointSpeed ""FULL"";" \n
+       "" \n
+       "_wp2 = _responseGrp addWaypoint [position player, 100];" \n
+       "_wp2 setWaypointType ""SAD"";" \n
+       "_wp2 setWaypointBehaviour ""COMBAT"";" \n
+       "_wp2 setWaypointSpeed ""NORMAL"";" \n
+       "" \n
+       "_wp3 = _responseGrp addWaypoint [_originalPos, 0];" \n
+       "_wp3 setWaypointType ""MOVE"";" \n
+       "_wp3 setWaypointBehaviour ""AWARE"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "timeout_30_min">*/
+        class timeout_30_min
+        {
+          itemno = 14;
+          priority = 0.000000;
+          to="check_player_s_p";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"time > _t + 1800"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "terminate">*/
+    class terminate
+    {
+      name = "terminate";
+      itemno = 13;
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Init";
+  finalStates[] =
+  {
+    "terminate",
+  };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,269 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, AFV_FSM">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-75.000000,-275.000000,25.000000,-225.000000,0.000000,"init"};
+item1[] = {"solar_station_se",4,218,-75.000000,-200.000000,25.000000,-150.000000,0.000000,"solar station" \n "secure"};
+item2[] = {"patrol_kalochori",2,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"patrol" \n "kalochori"};
+item3[] = {"waypoint_complet",4,218,-200.000000,-125.000000,-100.000000,-75.000000,0.000000,"waypoint" \n "completed"};
+item4[] = {"killed",4,218,50.000000,-125.000000,150.000000,-75.000000,2.000000,"killed"};
+item5[] = {"stolen",4,218,-75.000000,-50.000000,25.000000,0.000000,1.000000,"stolen"};
+item6[] = {"exit",1,250,175.000000,-125.000000,275.000000,-75.000000,0.000000,"exit"};
+item7[] = {"report_to_friendly",2,4346,-75.000000,25.000000,25.000000,75.000000,0.000000,"report to" \n "friendly units"};
+item8[] = {"",7,210,96.000000,46.000000,104.000000,53.999996,0.000000,""};
+item9[] = {"reset",2,250,-325.000000,-125.000000,-225.000000,-75.000000,0.000000,"reset"};
+item10[] = {"always",4,218,-325.000000,-200.000000,-225.000000,-150.000000,0.000000,"always"};
+item11[] = {"",7,210,-153.999893,-179.000015,-146.000107,-170.999985,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,4};
+link4[] = {2,5};
+link5[] = {3,9};
+link6[] = {4,6};
+link7[] = {5,7};
+link8[] = {7,8};
+link9[] = {8,4};
+link10[] = {9,10};
+link11[] = {10,11};
+link12[] = {11,2};
+globals[] = {25.000000,1,0,0,0,640,480,1,89,6316128,1,-233.013748,308.882874,264.626526,-335.283630,822,1031,1};
+window[] = {2,-1,-1,-1,-1,905,25,1419,25,3,840};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "AFV_FSM";
+        class States
+        {
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"//Parameters" \n
+                         "private [""_vehicle""];" \n
+                         "_vehicle = [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "" \n
+                         "//Get all the useful stuff" \n
+                         "private [""_group"", ""_commander"", ""_driver"", ""_gunner"", ""_cargo""];" \n
+                         "_group 		= group _vehicle;" \n
+                         "_commander	= commander _vehicle;" \n
+                         "_driver			= driver _vehicle;" \n
+                         "_gunner		= gunner _vehicle;" \n
+                         "_cargo			= crew _vehicle - [_commander, _driver, _gunner];" \n
+                         "" \n
+                         "//The positions/waypoints" \n
+                         "private [""_positionKalochori""];" \n
+                         "_positionKalochori = getMarkerPos ""BIS_base"";" \n
+                         "" \n
+                         "//Crew should not disembark" \n
+                         "_vehicle allowCrewInImmobile true;" \n
+                         "" \n
+                         "//Do not move for now" \n
+                         "{" \n
+                         "	_x disableAi ""MOVE"";" \n
+                         "} forEach units _group;" \n
+                         "" \n
+                         "//HandleDamage event handler, we want to detect big hit and make crew disembark, possibility for player to steal it and use it" \n
+                         "private ""_handleDamage"";" \n
+                         "_handleDamage = _vehicle addEventHandler [""HandleDamage"", {" \n
+                         "	private [""_vehicle"", ""_selection"", ""_damage"", ""_source"", ""_projectile""];" \n
+                         "	_vehicle 	= [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "	_selection 	= [_this, 1, """", [""""]] call BIS_fnc_param;" \n
+                         "	_damage 	= [_this, 2, 0, [0]] call BIS_fnc_param;" \n
+                         "	_source 	= [_this, 3, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "	_projectile 	= [_this, 4, """", [""""]] call BIS_fnc_param;" \n
+                         "	" \n
+                         "	if (_damage > 0.8) then {" \n
+                         "		//Remove event handler" \n
+                         "		_vehicle removeEventHandler [""HandleDamage"", _vehicle getVariable ""BIS_handleDamage""];" \n
+                         "		" \n
+                         "		//Set manual damage" \n
+                         "		_vehicle setDamage 0.5;" \n
+                         "		" \n
+                         "		//Make crew jump out" \n
+                         "		{ unassignVehicle _x; } forEach crew _vehicle;" \n
+                         "		crew _vehicle orderGetIn false;" \n
+                         "		crew _vehicle allowGetIn false;" \n
+                         "	} else {" \n
+                         "		_damage;" \n
+                         "	};" \n
+                         "}];" \n
+                         "" \n
+                         "//Store event handler in vehicle namespace" \n
+                         "_vehicle setVariable [""BIS_handleDamage"", _handleDamage];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "solar_station_se">*/
+                                class solar_station_se
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="patrol_kalochori";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_triggerSolar" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "patrol_kalochori">*/
+                class patrol_kalochori
+                {
+                        name = "patrol_kalochori";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"//Find road" \n
+                         "private ""_roadSegment"";" \n
+                         "_roadSegment = (_positionKalochori nearRoads 150) call BIS_fnc_selectRandom;" \n
+                         "" \n
+                         "//The waypoint" \n
+                         "private ""_waypoint"";" \n
+                         "_waypoint = _group addWaypoint [position _roadSegment, 0];" \n
+                         "" \n
+                         "//Waypoint properties" \n
+                         "_waypoint setWaypointType ""MOVE"";" \n
+                         "_waypoint setWaypointSpeed ""LIMITED"";" \n
+                         "_waypoint setWaypointBehaviour ""COMBAT"";" \n
+                         "_waypoint setWaypointCombatMode ""RED"";" \n
+                         "_waypoint setWaypointFormation ""LINE"";" \n
+                         "_waypoint setWaypointStatements [""true"", ""group this setVariable ['BIS_waypointPatrol', true];""];" \n
+                         "" \n
+                         "//Set new waypoint as current" \n
+                         "_group setCurrentWaypoint _waypoint;" \n
+                         "" \n
+                         "//Allow moving" \n
+                         "if (isNil { _group getVariable ""BIS_canMove"" }) then {" \n
+                         "	//Flag" \n
+                         "	_group setVariable [""BIS_canMove"", true];" \n
+                         "	" \n
+                         "	//Allow moving" \n
+                         "	{" \n
+                         "		_x enableAi ""MOVE"";" \n
+                         "	} forEach units _group;" \n
+                         "};" \n
+                         "" \n
+                         "//Log" \n
+                         """IFV is patrolling Kalochori"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "killed">*/
+                                class killed
+                                {
+                                        itemno = 4;
+                                        priority = 2.000000;
+                                        to="exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive _vehicle" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "stolen">*/
+                                class stolen
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="report_to_friendly";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{ vehicle _x == _vehicle } count units group player > 0" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "waypoint_complet">*/
+                                class waypoint_complet
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="reset";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { _group getVariable ""BIS_waypointPatrol"" }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "exit">*/
+                class exit
+                {
+                        name = "exit";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"//Log" \n
+                         """IFV was destroyed"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "report_to_friendly">*/
+                class report_to_friendly
+                {
+                        name = "report_to_friendly";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"//Conversations" \n
+                         """BIS_vehicleStolen"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//Log" \n
+                         """IFV was boarded by the player's team"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "killed">*/
+                                class killed
+                                {
+                                        itemno = 4;
+                                        priority = 2.000000;
+                                        to="exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive _vehicle" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "reset">*/
+                class reset
+                {
+                        name = "reset";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"//Reset waypoint flag" \n
+                         "_group setVariable [""BIS_waypointPatrol"", nil];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="patrol_kalochori";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "exit",
+        };
+};
+/*%FSM</COMPILE>*/

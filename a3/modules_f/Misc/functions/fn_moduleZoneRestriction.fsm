@@ -1,0 +1,356 @@
+/*%FSM<COMPILE "C:\bis\fsmeditor\scriptedFSM.cfg, Zone Restriction">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,50.000000,100.000000,150.000000,150.000000,0.000000,"Init"};
+item1[] = {"server",4,218,-25.000000,175.000000,75.000000,225.000000,1.000000,"server"};
+item2[] = {"set_up_triggers",2,250,-25.000000,250.000000,75.000000,300.000000,0.000000,"set up" \n "triggers"};
+item3[] = {"client__wait_",4,218,125.000000,175.000000,225.000000,225.000000,0.000000,"client" \n "(wait)"};
+item4[] = {"recursive_vars_i",2,250,125.000000,250.000000,225.000000,300.000000,0.000000,"recursive" \n "vars init"};
+item5[] = {"timeout_5_sec",6,250,50.000000,325.000000,150.000000,375.000000,0.000000,"timeout" \n "5 sec"};
+item6[] = {"CHECK",2,4346,50.000000,400.000000,150.000000,450.000000,0.000000,"CHECK"};
+item7[] = {"timeout",6,250,175.000000,400.000000,275.000000,450.000000,0.000000,"timeout"};
+item8[] = {"no_units",4,218,175.000000,100.000000,275.000000,150.000000,2.000000,"no units"};
+item9[] = {"terminate",1,250,300.000000,100.000000,400.000000,150.000000,0.000000,"terminate"};
+item10[] = {"game_loaded_or_r",4,218,50.000000,475.000000,150.000000,525.000000,1.000000,"game" \n "loaded" \n "or respawn"};
+item11[] = {"timeout_for_triggers",2,250,175.000000,475.000000,275.000000,525.000000,0.000000,"timeout for" \n "triggers refresh"};
+link0[] = {0,1};
+link1[] = {0,3};
+link2[] = {0,8};
+link3[] = {1,2};
+link4[] = {2,5};
+link5[] = {3,4};
+link6[] = {4,5};
+link7[] = {5,6};
+link8[] = {6,7};
+link9[] = {6,10};
+link10[] = {7,6};
+link11[] = {8,9};
+link12[] = {10,11};
+link13[] = {11,7};
+globals[] = {25.000000,1,0,0,0,640,480,1,300,6316128,1,-52.767532,283.378540,637.899292,82.504089,624,895,1};
+window[] = {2,-1,-1,-1,-1,1073,1970,3167,89,3,642};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Zone Restriction";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private [" \n
+                         "	""_logic""," \n
+                         "	""_units""," \n
+                         "	""_inverse""," \n
+                         "	""_warningTime""," \n
+                         "	""_customEffectWarning""," \n
+                         "	""_customEffectPunishment""," \n
+                         "	""_airExcluded""," \n
+                         "	""_trgs""," \n
+                         "	""_t""," \n
+                         "	""_mine""," \n
+                         "	""_mines""" \n
+                         "];" \n
+                         "" \n
+                         "_logic = [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "_units = [_this, 1, [], [[]]] call BIS_fnc_param;" \n
+                         "" \n
+                         "_logic setVariable [""BIS_ZR_unitsList"", _units];" \n
+                         "" \n
+                         "_inverse = (_logic getVariable ""Inverse"");" \n
+                         "_warningTime = (_logic getVariable ""WarningTime"");" \n
+                         "_customEffectWarning = (_logic getVariable ""CustomEffectWarning"");" \n
+                         "_customEffectPunishment = (_logic getVariable ""CustomEffectPunishment"");" \n
+                         "_airExcluded = (_logic getVariable ""AirExcluded"");" \n
+                         "" \n
+                         "BIS_zoneRest_wait = FALSE;" \n
+                         "" \n
+                         "addMissionEventHandler [""Loaded"", {BIS_zoneRest_wait = TRUE}];" \n
+                         "" \n
+                         "{" \n
+                         "	_x setVariable [""BIS_zoneRest_timeout"", -10, TRUE];" \n
+                         "	_x spawn {" \n
+                         "		while {TRUE} do {" \n
+                         "			waitUntil {vehicle _this != _this};" \n
+                         "			waitUntil {vehicle _this == _this};" \n
+                         "			_this setVariable [""BIS_zoneRest_timeout"", time, TRUE];" \n
+                         "		};" \n
+                         "	};" \n
+                         "} forEach (_logic getVariable ""BIS_ZR_unitsList"");" \n
+                         "" \n
+                         "if (isMultiplayer) then {" \n
+                         "	{" \n
+                         "		if (local _x) then {" \n
+                         "			_x setVariable [""BIS_ZR_unitLogic"", _logic];" \n
+                         "			_x addEventHandler [""Respawn"", {" \n
+                         "				BIS_zoneRest_wait = TRUE;" \n
+                         "				_unit = _this select 0;" \n
+                         "				_corpse = _this select 1;" \n
+                         "				_unit setVariable [""BIS_deserter"", FALSE];" \n
+                         "				_unit setVariable [""BIS_ZR_unitLogic"", _corpse getVariable ""BIS_ZR_unitLogic""];" \n
+                         "				(_unit getVariable ""BIS_ZR_unitLogic"") setVariable [""BIS_ZR_unitsList"", ((_unit getVariable ""BIS_ZR_unitLogic"") getVariable ""BIS_ZR_unitsList"") - [_corpse] + [_unit]];" \n
+                         "			}];" \n
+                         "		};" \n
+                         "	} forEach (_logic getVariable ""BIS_ZR_unitsList"");" \n
+                         "};" \n
+                         "" \n
+                         "_effectWarning = {" \n
+                         "	_this groupChat localize ""STR_A3_mdl_supp_zonerest_leaving"";" \n
+                         "};" \n
+                         "" \n
+                         "_effectPunishment = {" \n
+                         "	_t = time;" \n
+                         "	_mines = [];" \n
+                         "	while {alive _this && (_this getVariable ""BIS_deserter"")} do {" \n
+                         "		{deleteVehicle _x} forEach _mines; _mines = [];" \n
+                         "		if (vehicle _this == _this) then {" \n
+                         "			if (surfaceIsWater position _this) then {" \n
+                         "				_this setDamage 1" \n
+                         "			} else {" \n
+                         "				_pos = ([_this, 2.5, direction _this] call BIS_fnc_relPos); _pos set [2, 0]; " \n
+                         "				_mine = createMine [""APERSMine"", _pos, [], 0]; _mines = _mines + [_mine];" \n
+                         "			}" \n
+                         "		};" \n
+                         "		if (vehicle _this isKindOf ""Land"" && vehicle _this != _this) then {" \n
+                         "			if (vehicle _this != _this && !(isNil {(vehicle _this) getVariable ""BIS_getaway""})) exitWith {};" \n
+                         "			if (vehicle _this != _this) then {vehicle _this setVariable [""BIS_getaway"", TRUE, TRUE]};" \n
+                         "			_pos = ([_this, 15, direction _this] call BIS_fnc_relPos); _pos set [2, 0]; " \n
+                         "			_mine = createMine [""ATMine"", _pos, [], 0]; _mines = _mines + [_mine];" \n
+                         "		};" \n
+                         "		if (vehicle _this isKindOf ""Ship"") then {" \n
+                         "			if (vehicle _this != _this && !(isNil {(vehicle _this) getVariable ""BIS_getaway""})) exitWith {};" \n
+                         "			if (vehicle _this != _this) then {vehicle _this setVariable [""BIS_getaway"", TRUE, TRUE]};" \n
+                         "			_pos = ([_this, 15, direction _this] call BIS_fnc_relPos); _pos set [2, -2]; " \n
+                         "			_mine = createMine [""UnderwaterMine"", _pos, [], 0]; _mines = _mines + [_mine];" \n
+                         "		};" \n
+                         "		if (vehicle _this isKindOf ""Air"") then {" \n
+                         "			if (vehicle _this != _this && !(isNil {(vehicle _this) getVariable ""BIS_getaway""})) exitWith {};" \n
+                         "			if (vehicle _this != _this) then {vehicle _this setVariable [""BIS_getaway"", TRUE, TRUE]};" \n
+                         "			while {fuel vehicle _this > 0 && (vehicle _this) isKindOf ""Air""} do {" \n
+                         "				vehicle _this setFuel ((fuel vehicle _this) - 0.05);" \n
+                         "				sleep 0.1" \n
+                         "			};" \n
+                         "		};" \n
+                         "		sleep 5;" \n
+                         "		vehicle _this setVariable [""BIS_getaway"", nil, TRUE];" \n
+                         "		if (time >= _t + 12) then {" \n
+                         "			if !(vehicle _this isKindOf ""Air"") then {" \n
+                         "				_pos = position _this; _pos set [2, 0];" \n
+                         "				_mine = createMine [""APERSMine"", _pos, [], 0];" \n
+                         "				_mine setDamage 1;" \n
+                         "			};" \n
+                         "			vehicle _this setDamage 1;" \n
+                         "			_this setDamage 1" \n
+                         "		};" \n
+                         "	};" \n
+                         "	{deleteVehicle _x} forEach _mines; _mines = [];" \n
+                         "};" \n
+                         "" \n
+                         "if (_customEffectWarning != """") then {_effectWarning = compile _customEffectWarning};" \n
+                         "" \n
+                         "if (_customEffectPunishment != """") then {_effectPunishment = compile _customEffectPunishment};" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "no_units">*/
+                                class no_units
+                                {
+                                        itemno = 8;
+                                        priority = 2.000000;
+                                        to="terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count _units == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "server">*/
+                                class server
+                                {
+                                        itemno = 1;
+                                        priority = 1.000000;
+                                        to="set_up_triggers";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isServer"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "client__wait_">*/
+                                class client__wait_
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="recursive_vars_i";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil {_logic getVariable ""triggers""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "set_up_triggers">*/
+                class set_up_triggers
+                {
+                        name = "set_up_triggers";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"{if (isNil {_x getVariable ""BIS_deserter""}) then {_x setVariable [""BIS_deserter"", FALSE, TRUE]}} forEach (_logic getVariable ""BIS_ZR_unitsList"");" \n
+                         "" \n
+                         "_trgs = [];" \n
+                         "" \n
+                         "{" \n
+                         "	if (typeOf _x == ""EmptyDetector"") then {_trgs = _trgs + [_x]}" \n
+                         "} forEach synchronizedObjects _logic;" \n
+                         "" \n
+                         "_logic setVariable [""triggers"", _trgs, TRUE];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout_5_sec">*/
+                                class timeout_5_sec
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="CHECK";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 5;"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "recursive_vars_i">*/
+                class recursive_vars_i
+                {
+                        name = "recursive_vars_i";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_trgs = _logic getVariable ""triggers"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout_5_sec">*/
+                                class timeout_5_sec
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="CHECK";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 5;"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "CHECK">*/
+                class CHECK
+                {
+                        name = "CHECK";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "{if (!alive _x && !isMultiplayer) then {_units = _units - [_x]}} forEach (_logic getVariable ""BIS_ZR_unitsList"");" \n
+                         "" \n
+                         "_trgs = [];" \n
+                         "" \n
+                         "{" \n
+                         "	if (triggerActivated _x) then {_trgs = _trgs + [_x]};" \n
+                         "} forEach (_logic getVariable ""triggers"");" \n
+                         "" \n
+                         "{" \n
+                         "	_who = _x;" \n
+                         "	if (local _who && alive _who && time > ((_who getVariable ""BIS_zoneRest_timeout"") + 2) && (if (_inverse) then {{vehicle _who in list _x} count _trgs > 0} else {{vehicle _who in list _x} count _trgs == 0}) && !(_who getVariable ""BIS_deserter"") && (if (_airExcluded && vehicle _who isKindOf ""Air"") then {FALSE} else {TRUE})) then {" \n
+                         "		if (isPlayer _x) then {_x call _effectWarning};" \n
+                         "		_x setVariable [""BIS_deserter"", TRUE];" \n
+                         "		[_x, _warningTime, _inverse, _trgs, _effectPunishment, _airExcluded] spawn {" \n
+                         "			_deserter = _this select 0;" \n
+                         "			_warningTime = _this select 1;" \n
+                         "			_inverse = _this select 2;" \n
+                         "			_trgs = _this select 3;" \n
+                         "			_effectPunishment = _this select 4;" \n
+                         "			_airExcluded = _this select 5;" \n
+                         "			_t = time;" \n
+                         "			while {time < _t + _warningTime && (if (_inverse) then {{vehicle _deserter in list _x} count _trgs > 0} else {{vehicle _deserter in list _x} count _trgs == 0}) && (if (_airExcluded && vehicle _deserter isKindOf ""Air"") then {FALSE} else {TRUE})} do {" \n
+                         "				sleep 1" \n
+                         "			};" \n
+                         "			if (time >= _t + _warningTime) then {_deserter call _effectPunishment} else {_deserter setVariable [""BIS_deserter"", FALSE]};" \n
+                         "		};" \n
+                         "	};			" \n
+                         "} forEach (_logic getVariable ""BIS_ZR_unitsList"");"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "game_loaded_or_r">*/
+                                class game_loaded_or_r
+                                {
+                                        itemno = 10;
+                                        priority = 1.000000;
+                                        to="timeout_for_triggers";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_zoneRest_wait"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "timeout">*/
+                                class timeout
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="CHECK";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 1"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "terminate">*/
+                class terminate
+                {
+                        name = "terminate";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"""[ZONE RESTRICTION] No synchronized units found"" call BIS_fnc_error"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "timeout_for_triggers">*/
+                class timeout_for_triggers
+                {
+                        name = "timeout_for_triggers";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"_t = (time + 1);" \n
+                         "" \n
+                         "BIS_zoneRest_wait = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout">*/
+                                class timeout
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="CHECK";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 1"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "terminate",
+        };
+};
+/*%FSM</COMPILE>*/

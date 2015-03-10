@@ -1,0 +1,203 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, JoinNATO">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-40.000000,-90.000000,50.000000,-40.000000,0.000000,"Start"};
+item1[] = {"NATO_call",4,218,-40.000000,-20.000000,50.000000,30.000000,5.000000,"NATO" \n "call"};
+item2[] = {"New_task",2,250,-40.000000,50.000000,50.000000,100.000000,0.000000,"New task"};
+item3[] = {"Close_to_NATO",4,218,-150.000000,50.000000,-60.000000,100.000000,5.000000,"Close" \n "to NATO"};
+item4[] = {"Task_DONE",2,250,-150.000000,120.000000,-60.000000,170.000000,0.000000,"Task" \n "DONE"};
+item5[] = {"_",8,218,-150.000000,190.000000,-60.000000,240.000000,0.000000,""};
+item6[] = {"END",1,250,-40.000000,260.000000,50.000000,310.000000,0.000000,"END"};
+item7[] = {"NATO_killed",4,218,70.000000,50.000000,160.000000,100.000000,0.000000,"NATO" \n "killed"};
+item8[] = {"Task_CANCELED",2,250,70.000000,120.000000,160.000000,170.000000,0.000000,"Task" \n "CANCELED"};
+item9[] = {"_",8,218,70.000000,190.000000,160.000000,240.000000,0.000000,""};
+item10[] = {"",7,210,1.000000,211.000000,9.000000,219.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,7};
+link4[] = {3,4};
+link5[] = {4,5};
+link6[] = {5,10};
+link7[] = {7,8};
+link8[] = {8,9};
+link9[] = {9,10};
+link10[] = {10,6};
+globals[] = {10.000000,1,0,0,0,640,480,1,16,6316128,1,-431.575226,442.334167,428.404175,-213.791565,1403,1031,1};
+window[] = {2,-1,-1,-1,-1,835,75,1515,75,3,1421};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "JoinNATO";
+        class States
+        {
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"BIS_NATOCall = false;" \n
+                         "BIS_NATOJoin = false;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "NATO_call">*/
+                                class NATO_call
+                                {
+                                        itemno = 1;
+                                        priority = 5.000000;
+                                        to="New_task";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(BIS_NATOCall)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "New_task">*/
+                class New_task
+                {
+                        name = "New_task";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "" \n
+                         """NATO"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         """BIS_tskJoinNATO"" call BIS_fnc_missionTasks;" \n
+                         "// [""BIS_tskJoinNATO"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         """BIS_mrkNATO"" setMarkerAlpha 1;" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Close_to_NATO">*/
+                                class Close_to_NATO
+                                {
+                                        itemno = 3;
+                                        priority = 5.000000;
+                                        to="Task_DONE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(BIS_inf distance BIS_NATO < 10)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "NATO_killed">*/
+                                class NATO_killed
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Task_CANCELED";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"({alive _x} count (units BIS_grpNATO) == 0)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Task_DONE">*/
+                class Task_DONE
+                {
+                        name = "Task_DONE";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"BIS_NATOJoin = true;" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "" \n
+                         "{_x setCaptive false} forEach (units BIS_grpNATO); " \n
+                         "" \n
+                         "// BIS_Nato_01 dowatch BIS_inf;" \n
+                         """NATOJoin"" call BIS_fnc_missionConversations;" \n
+                         "// BIS_Nato_01 dowatch objNull;" \n
+                         "" \n
+                         "sleep 0.5;" \n
+                         "If (alive BIS_NATO_01) Then {[BIS_NATO_01] joinSilent (group BIS_inf)};" \n
+                         "If (alive BIS_NATO_02) Then {[BIS_NATO_02] joinSilent (group BIS_inf)};" \n
+                         "If (alive BIS_NATO_03) Then {[BIS_NATO_03] joinSilent (group BIS_inf)};" \n
+                         "" \n
+                         "{_x setUnitPos ""Auto""} forEach [BIS_NATO_01,BIS_NATO_02,BIS_NATO_03];" \n
+                         "{_x enableAI ""move""} forEach [BIS_NATO_01,BIS_NATO_02,BIS_NATO_03];" \n
+                         "" \n
+                         "[""BIS_tskJoinNATO"",""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "sleep 5;" \n
+                         "[""BIS_tskEscape"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="END";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END">*/
+                class END
+                {
+                        name = "END";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Task_CANCELED">*/
+                class Task_CANCELED
+                {
+                        name = "Task_CANCELED";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "" \n
+                         "sleep 5;" \n
+                         "" \n
+                         "[""BIS_tskJoinNATO"",""Canceled""] call BIS_fnc_missionTasks;" \n
+                         """BIS_mrkNATO"" setMarkerColor ""ColorBlack"";" \n
+                         "" \n
+                         "sleep 7.5;" \n
+                         "[""BIS_tskEscape"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="END";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Start";
+        finalStates[] =
+        {
+                "END",
+        };
+};
+/*%FSM</COMPILE>*/

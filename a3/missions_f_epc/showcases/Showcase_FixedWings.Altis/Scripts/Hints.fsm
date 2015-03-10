@@ -1,0 +1,295 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, Hints">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-40.000000,-280.000000,50.000000,-230.000000,0.000000,"Start"};
+item1[] = {"_",8,218,-40.000000,-210.000000,50.000000,-160.000000,0.000000,""};
+item2[] = {"Hint_block",2,250,-40.000000,-140.000000,50.000000,-90.000000,0.000000,"Hint" \n "block"};
+item3[] = {"Flying",4,218,-40.000000,-70.000000,50.000000,-20.000000,0.000000,"Flying"};
+item4[] = {"Hint_Guided___Ti",2,250,-40.000000,140.000000,50.000000,190.000000,0.000000,"Hint" \n "Guided +" \n "Timer"};
+item5[] = {"Supply_Vehicles",4,218,-40.000000,350.000000,50.000000,400.000000,5.000000,"Supply" \n "Vehicles" \n "KO"};
+item6[] = {"Hint_Landing",2,250,-40.000000,420.000000,50.000000,470.000000,0.000000,"Hint" \n "Landing"};
+item7[] = {"_",8,218,-40.000000,490.000000,50.000000,540.000000,0.000000,""};
+item8[] = {"END",1,250,-40.000000,560.000000,50.000000,610.000000,0.000000,"END"};
+item9[] = {"Mayday_or_dead",4,218,70.000000,490.000000,160.000000,540.000000,5.000000,"Mayday" \n "or dead"};
+item10[] = {"",7,210,111.000000,-118.999901,119.000000,-111.000107,0.000000,""};
+item11[] = {"",7,210,111.000000,161.000000,119.000000,169.000000,0.000000,""};
+item12[] = {"",7,210,111.000000,581.000000,119.000000,589.000000,0.000000,""};
+item13[] = {"Hint_Unguided",2,250,-40.000000,280.000000,50.000000,330.000000,0.000000,"Hint" \n "Unguided"};
+item14[] = {"",7,210,111.000000,21.000000,119.000000,29.000000,0.000000,""};
+item15[] = {"",7,210,111.000000,301.000000,119.000000,309.000000,0.000000,""};
+item16[] = {"Set_Timer",2,250,-40.000000,0.000000,50.000000,50.000000,0.000000,"Set" \n "Timer"};
+item17[] = {"Heli_task_receiv",4,218,-40.000000,70.000000,50.000000,120.000000,0.000000,"Heli task" \n "received"};
+item18[] = {"Timeout_20_sec",4,218,-40.000000,210.000000,50.000000,260.000000,0.000000,"Timeout" \n "20 sec"};
+item19[] = {"",7,210,111.000000,441.000000,119.000000,449.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,10};
+link4[] = {3,16};
+link5[] = {4,11};
+link6[] = {4,18};
+link7[] = {5,6};
+link8[] = {6,7};
+link9[] = {6,19};
+link10[] = {7,8};
+link11[] = {9,12};
+link12[] = {10,14};
+link13[] = {11,15};
+link14[] = {12,8};
+link15[] = {13,5};
+link16[] = {13,15};
+link17[] = {14,11};
+link18[] = {15,19};
+link19[] = {16,14};
+link20[] = {16,17};
+link21[] = {17,4};
+link22[] = {18,13};
+link23[] = {19,9};
+globals[] = {10.000000,1,0,0,0,640,480,1,25,6316128,1,-707.306641,755.398987,627.171509,-321.920258,1404,911,1};
+window[] = {2,-1,-1,-1,-1,785,25,1465,25,3,1422};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Hints";
+  class States
+  {
+    /*%FSM<STATE "Start">*/
+    class Start
+    {
+      name = "Start";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Hint_block";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Hint_block">*/
+    class Hint_block
+    {
+      name = "Hint_block";
+      init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+       "" \n
+       "sleep 5;" \n
+       "_null = [[""Vehicle"", ""Controls""], 15] spawn BIS_fnc_advHint;" \n
+       "" \n
+       " sleep 30;" \n
+       "_null = [[""Vehicle"", ""TakeOffPlaneFixedWing""], 15] spawn BIS_fnc_advHint;" \n
+       "" \n
+       "sleep 30;" \n
+       "_null = [[""Vehicle"", ""Radar""], 15] spawn BIS_fnc_advHint;" \n
+       "" \n
+       "sleep 30;" \n
+       "_null = [[""Vehicle"", ""Countermeasures""], 15] spawn BIS_fnc_advHint;" \n
+       "" \n
+       "};" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Mayday_or_dead">*/
+        class Mayday_or_dead
+        {
+          priority = 5.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((damage (vehicle BIS_Player)) == 1) or" \n
+           "(vehicle BIS_Player != BIS_Plane)" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Flying">*/
+        class Flying
+        {
+          priority = 0.000000;
+          to="Set_Timer";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_trgTakeOff" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Hint_Guided___Ti">*/
+    class Hint_Guided___Ti
+    {
+      name = "Hint_Guided___Ti";
+      init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+       "" \n
+       "[] spawn {" \n
+       "" \n
+       "sleep 5;" \n
+       "_null = [[""Vehicle"", ""VehicGuided""], 15] spawn BIS_fnc_advHint;" \n
+       "" \n
+       "}; " \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Mayday_or_dead">*/
+        class Mayday_or_dead
+        {
+          priority = 5.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((damage (vehicle BIS_Player)) == 1) or" \n
+           "(vehicle BIS_Player != BIS_Plane)" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Timeout_20_sec">*/
+        class Timeout_20_sec
+        {
+          priority = 0.000000;
+          to="Hint_Unguided";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"time > _t + 20"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Hint_Landing">*/
+    class Hint_Landing
+    {
+      name = "Hint_Landing";
+      init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+       "" \n
+       " sleep 35;" \n
+       "_null = [[""Vehicle"", ""Landing""], 15] spawn BIS_fnc_advHint;" \n
+       "" \n
+       "};" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Mayday_or_dead">*/
+        class Mayday_or_dead
+        {
+          priority = 5.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((damage (vehicle BIS_Player)) == 1) or" \n
+           "(vehicle BIS_Player != BIS_Plane)" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "END">*/
+    class END
+    {
+      name = "END";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Hint_Unguided">*/
+    class Hint_Unguided
+    {
+      name = "Hint_Unguided";
+      init = /*%FSM<STATEINIT""">*/"_null = [[""Vehicle"", ""VehicUnguided""], 15] spawn BIS_fnc_advHint;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Mayday_or_dead">*/
+        class Mayday_or_dead
+        {
+          priority = 5.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((damage (vehicle BIS_Player)) == 1) or" \n
+           "(vehicle BIS_Player != BIS_Plane)" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Supply_Vehicles">*/
+        class Supply_Vehicles
+        {
+          priority = 5.000000;
+          to="Hint_Landing";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(!(canMove BIS_Convoy_Truck_01)) and" \n
+           "(!(canMove BIS_Convoy_Truck_02)) and" \n
+           "(!(canMove BIS_Convoy_Truck_03))"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Set_Timer">*/
+    class Set_Timer
+    {
+      name = "Set_Timer";
+      init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Mayday_or_dead">*/
+        class Mayday_or_dead
+        {
+          priority = 5.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((damage (vehicle BIS_Player)) == 1) or" \n
+           "(vehicle BIS_Player != BIS_Plane)" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Heli_task_receiv">*/
+        class Heli_task_receiv
+        {
+          priority = 0.000000;
+          to="Hint_Guided___Ti";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_HeliTaskReceived" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Start";
+  finalStates[] =
+  {
+    "END",
+  };
+};
+/*%FSM</COMPILE>*/

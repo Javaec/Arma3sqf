@@ -1,0 +1,202 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, BIS_fnc_helicopterCanFly">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,400.000000,50.000000,500.000000,100.000000,0.000000,"Start"};
+item1[] = {"Loop",4,218,150.000000,75.000000,250.000000,125.000000,1.000000,"Loop"};
+item2[] = {"Damage_Type",2,250,150.000000,0.000000,250.000000,50.000000,0.000000,"Damage Type"};
+item3[] = {"True",8,218,275.000000,50.000000,375.000000,100.000000,0.000000,"True"};
+item4[] = {"On_ground_",2,250,275.000000,225.000000,375.000000,275.000000,0.000000,"On ground?"};
+item5[] = {"On_ground",4,218,150.000000,225.000000,250.000000,275.000000,0.000000,"On ground"};
+item6[] = {"Loop_Init",2,250,150.000000,150.000000,250.000000,200.000000,0.000000,"Loop" \n "Init"};
+item7[] = {"Damaged",4,4314,275.000000,-50.000000,375.000000,0.000000,2.000000,"Damaged"};
+item8[] = {"Damaged",1,250,400.000000,-50.000000,500.000000,0.000000,0.000000,"Damaged"};
+link0[] = {0,3};
+link1[] = {1,2};
+link2[] = {2,1};
+link3[] = {2,3};
+link4[] = {2,7};
+link5[] = {3,4};
+link6[] = {4,5};
+link7[] = {5,6};
+link8[] = {6,1};
+link9[] = {7,8};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,11,6316128,1,17.389328,546.643433,522.380127,-225.732864,636,899,1};
+window[] = {2,-1,-1,-1,-1,773,-1256,-296,24,3,653};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "BIS_fnc_helicopterCanFly";
+  class States
+  {
+    /*%FSM<STATE "Start">*/
+    class Start
+    {
+      name = "Start";
+      itemno = 0;
+      init = /*%FSM<STATEINIT""">*/"_player = [_this,0,player,[objnull]] call bis_fnc_param;" \n
+       "_code = [" \n
+       "	_this," \n
+       "	1," \n
+       "	{" \n
+       "		[""lost"",1,localize ""STR_HSIM_BIS_fnc_helicopterCanFly_Damaged"",false] call bis_fnc_endmission;" \n
+       "	}," \n
+       "	[{}]" \n
+       "] call bis_fnc_param;" \n
+       "" \n
+       "_damageTypes = [" \n
+       "	[""HitEngine"",0.4]," \n
+       "	[""HitHRotor"",0.5]," \n
+       "	[""HitVRotor"",0.5]," \n
+       "	[""HitTransmission"",1.0]," \n
+       "	[""HitHydraulics"",0.9]" \n
+       "];" \n
+       "_damageTypesCount = count _damageTypes;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "True">*/
+        class True
+        {
+          itemno = 3;
+          priority = 0.000000;
+          to="On_ground_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Damage_Type">*/
+    class Damage_Type
+    {
+      name = "Damage_Type";
+      itemno = 2;
+      init = /*%FSM<STATEINIT""">*/"_damageArray = _damageTypes select _i;" \n
+       "" \n
+       "_damageHitpoint = _damageArray select 0;" \n
+       "_damageLimit = _damageArray select 1;" \n
+       "" \n
+       "_i = _i + 1;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Damaged">*/
+        class Damaged
+        {
+          itemno = 7;
+          priority = 2.000000;
+          to="Damaged";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(vehicle _player getHitPointDamage _damageHitpoint) > _damageLimit" \n
+           "&&" \n
+           "alive vehicle _player" \n
+           "&&" \n
+           "alive player"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Loop">*/
+        class Loop
+        {
+          itemno = 1;
+          priority = 1.000000;
+          to="Damage_Type";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_i < _damageTypesCount"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "True">*/
+        class True
+        {
+          itemno = 3;
+          priority = 0.000000;
+          to="On_ground_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "On_ground_">*/
+    class On_ground_
+    {
+      name = "On_ground_";
+      itemno = 4;
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "On_ground">*/
+        class On_ground
+        {
+          itemno = 5;
+          priority = 0.000000;
+          to="Loop_Init";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_veh = vehicle _player;" \n
+           "" \n
+           "istouchingground _veh" \n
+           "&&" \n
+           "_veh iskindof ""Helicopter""" \n
+           "&&" \n
+           "isnil {_veh getvariable ""BIS_fnc_helicoperCanFly_disable""}"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Loop_Init">*/
+    class Loop_Init
+    {
+      name = "Loop_Init";
+      itemno = 6;
+      init = /*%FSM<STATEINIT""">*/"_i = 0;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Loop">*/
+        class Loop
+        {
+          itemno = 1;
+          priority = 1.000000;
+          to="Damage_Type";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_i < _damageTypesCount"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Damaged">*/
+    class Damaged
+    {
+      name = "Damaged";
+      itemno = 8;
+      init = /*%FSM<STATEINIT""">*/"[" \n
+       "	_player," \n
+       "	_damageHitpoint," \n
+       "	vehicle _player getHitPointDamage _damageHitpoint" \n
+       "] call _code;" \n
+       "" \n
+       "vehicle _player setvariable [""BIS_helicopterCanFly"",false];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Start";
+  finalStates[] =
+  {
+    "Damaged",
+  };
+};
+/*%FSM</COMPILE>*/

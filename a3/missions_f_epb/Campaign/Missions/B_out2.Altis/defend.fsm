@@ -1,0 +1,389 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Defend">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Defend",0,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"Defend"};
+item1[] = {"Combat_or_damage",4,218,-75.000000,-25.000000,25.000000,25.000000,0.000000,"Combat or" \n "damaged"};
+item2[] = {"Defend_1",2,250,-75.000000,50.000000,25.000000,100.000000,0.000000,"Defend"};
+item3[] = {"",7,210,-29.000002,-54.000000,-21.000000,-45.999996,0.000000,""};
+item4[] = {"",7,210,-29.000000,270.999969,-21.000002,279.000000,0.000000,""};
+item5[] = {"",7,210,-104.000000,271.000000,-96.000000,279.000000,0.000000,""};
+item6[] = {"",7,210,-104.000000,-54.000000,-96.000000,-46.000000,0.000000,""};
+item7[] = {"",7,210,96.000000,-54.000000,104.000000,-46.000000,0.000000,""};
+item8[] = {"Defending",4,218,50.000000,-25.000000,150.000000,25.000000,0.000000,"Defending"};
+item9[] = {"Wait",2,250,50.000000,50.000000,150.000000,100.000000,0.000000,"Wait"};
+item10[] = {"",7,210,171.000000,71.000000,179.000000,79.000000,0.000000,""};
+item11[] = {"",7,210,171.000000,-54.000000,179.000000,-46.000000,0.000000,""};
+item12[] = {"Alarm",4,218,200.000000,-25.000000,300.000000,25.000000,0.000000,"Alarm"};
+item13[] = {"",7,210,246.000000,-54.000000,254.000000,-46.000000,0.000000,""};
+item14[] = {"Waited",4,218,50.000000,125.000000,150.000000,175.000000,0.000000,"Waited"};
+item15[] = {"Sound_alarm",2,250,50.000000,200.000000,150.000000,250.000000,0.000000,"Sound alarm"};
+item16[] = {"",7,210,96.000000,271.000000,104.000000,279.000000,0.000000,""};
+item17[] = {"React",1,250,200.000000,50.000000,300.000000,100.000000,0.000000,"React"};
+item18[] = {"",7,210,371.000000,-54.000000,379.000000,-46.000000,0.000000,""};
+item19[] = {"Dead_or_reinforc",4,218,325.000000,-25.000000,425.000000,25.000000,0.000000,"Dead or" \n "reinforcing"};
+item20[] = {"Terminate",1,250,325.000000,50.000000,425.000000,100.000000,0.000000,"Terminate"};
+link0[] = {0,3};
+link1[] = {1,2};
+link2[] = {2,4};
+link3[] = {3,1};
+link4[] = {3,7};
+link5[] = {4,5};
+link6[] = {5,6};
+link7[] = {6,3};
+link8[] = {7,8};
+link9[] = {7,11};
+link10[] = {8,9};
+link11[] = {9,10};
+link12[] = {9,14};
+link13[] = {10,11};
+link14[] = {11,13};
+link15[] = {12,17};
+link16[] = {13,12};
+link17[] = {13,18};
+link18[] = {14,15};
+link19[] = {15,16};
+link20[] = {16,4};
+link21[] = {18,19};
+link22[] = {19,20};
+globals[] = {25.000000,1,0,0,0,640,480,1,24,6316128,1,-70.082474,589.917542,434.168457,-192.491333,970,921,1};
+window[] = {2,-1,-1,-1,-1,792,25,1239,25,3,988};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Defend";
+        class States
+        {
+                /*%FSM<STATE "Defend">*/
+                class Defend
+                {
+                        name = "Defend";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private [""_unit"", ""_section""];" \n
+                         "_unit = _this select 0;" \n
+                         "_section = _this select 1;" \n
+                         "" \n
+                         "// Choose the right variables" \n
+                         "private [""_var"", ""_units""];" \n
+                         "_var = format [""%1Defend"", _section];" \n
+                         "_units = missionNamespace getVariable (format [""%1Guards"", _section]);" \n
+                         "" \n
+                         "// Define position" \n
+                         "private [""_pos""];" \n
+                         "_pos = markerPos _var;" \n
+                         "" \n
+                         "private [""_defend""];" \n
+                         "_defend = {" \n
+                         "	private [""_unit"", ""_pos""];" \n
+                         "	_unit = _this select 0;" \n
+                         "	_pos = _this select 1;" \n
+                         "	" \n
+                         "	// Determine group" \n
+                         "	private [""_group""];" \n
+                         "	_group = group _unit;" \n
+                         "	" \n
+                         "	// Add waypoint" \n
+                         "	private [""_wp""];" \n
+                         "	_wp = _group addWaypoint [_pos, 0];" \n
+                         "	_wp setWaypointBehaviour ""COMBAT"";" \n
+                         "	_wp setWaypointSpeed ""NORMAL"";" \n
+                         "	_wp setWaypointType ""SAD"";" \n
+                         "	" \n
+                         "	// Register as defending" \n
+                         "	_unit setVariable [""BIS_defending"", true];" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Defending">*/
+                                class Defending
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""_defending"")" \n
+                                         "&&" \n
+                                         "isNil {missionNamespace getVariable _var}"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Alarm">*/
+                                class Alarm
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="React";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x && !(isNil {_x getVariable ""BIS_defending""})} count _units > 1" \n
+                                         "||" \n
+                                         "!(isNil {missionNamespace getVariable _var})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Dead_or_reinforc">*/
+                                class Dead_or_reinforc
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _unit)" \n
+                                         "||" \n
+                                         "!(isNil {_unit getVariable ""BIS_reinf""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Combat_or_damage">*/
+                                class Combat_or_damage
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Defend_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	behaviour _unit == ""COMBAT""" \n
+                                         "	||" \n
+                                         "	damage _unit > 0" \n
+                                         "	||" \n
+                                         "	!(alive _unit)" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "isNil ""_defending"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Defend_1">*/
+                class Defend_1
+                {
+                        name = "Defend_1";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"private [""_defending""];" \n
+                         "_defending = [_unit, _pos] call _defend;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Defending">*/
+                                class Defending
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""_defending"")" \n
+                                         "&&" \n
+                                         "isNil {missionNamespace getVariable _var}"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Alarm">*/
+                                class Alarm
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="React";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x && !(isNil {_x getVariable ""BIS_defending""})} count _units > 1" \n
+                                         "||" \n
+                                         "!(isNil {missionNamespace getVariable _var})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Dead_or_reinforc">*/
+                                class Dead_or_reinforc
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _unit)" \n
+                                         "||" \n
+                                         "!(isNil {_unit getVariable ""BIS_reinf""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Combat_or_damage">*/
+                                class Combat_or_damage
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Defend_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	behaviour _unit == ""COMBAT""" \n
+                                         "	||" \n
+                                         "	damage _unit > 0" \n
+                                         "	||" \n
+                                         "	!(alive _unit)" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "isNil ""_defending"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Wait">*/
+                class Wait
+                {
+                        name = "Wait";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"private [""_time""];" \n
+                         "_time = time + 3;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Alarm">*/
+                                class Alarm
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="React";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x && !(isNil {_x getVariable ""BIS_defending""})} count _units > 1" \n
+                                         "||" \n
+                                         "!(isNil {missionNamespace getVariable _var})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Dead_or_reinforc">*/
+                                class Dead_or_reinforc
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _unit)" \n
+                                         "||" \n
+                                         "!(isNil {_unit getVariable ""BIS_reinf""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Waited">*/
+                                class Waited
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="Sound_alarm";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Sound_alarm">*/
+                class Sound_alarm
+                {
+                        name = "Sound_alarm";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/"// Set alarm variable" \n
+                         "missionNamespace setVariable [_var, true];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Defending">*/
+                                class Defending
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""_defending"")" \n
+                                         "&&" \n
+                                         "isNil {missionNamespace getVariable _var}"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Alarm">*/
+                                class Alarm
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="React";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x && !(isNil {_x getVariable ""BIS_defending""})} count _units > 1" \n
+                                         "||" \n
+                                         "!(isNil {missionNamespace getVariable _var})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Dead_or_reinforc">*/
+                                class Dead_or_reinforc
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _unit)" \n
+                                         "||" \n
+                                         "!(isNil {_unit getVariable ""BIS_reinf""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Combat_or_damage">*/
+                                class Combat_or_damage
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Defend_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	behaviour _unit == ""COMBAT""" \n
+                                         "	||" \n
+                                         "	damage _unit > 0" \n
+                                         "	||" \n
+                                         "	!(alive _unit)" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "isNil ""_defending"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "React">*/
+                class React
+                {
+                        name = "React";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"// Ensure the alarm goes off" \n
+                         "missionNamespace setVariable [_var, true];" \n
+                         "" \n
+                         "// Make unit defend if it isn't already" \n
+                         "if (isNil {_unit getVariable ""BIS_defending""}) then {" \n
+                         "	[_unit, _pos] call _defend;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 20;
+                        init = /*%FSM<STATEINIT""">*/"// Reset variable" \n
+                         "_unit setVariable [""BIS_defending"", nil];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Defend";
+        finalStates[] =
+        {
+                "React",
+                "Terminate",
+        };
+};
+/*%FSM</COMPILE>*/

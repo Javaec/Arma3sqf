@@ -1,0 +1,862 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Showcase Night Mission Flow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"start",2,250,-75.000000,-175.000000,25.000000,-125.000000,0.000000,"start"};
+item1[] = {"timeout_failure",4,218,50.000000,-25.000000,150.000000,25.000000,2.000000,"timeout" \n "failure"};
+item2[] = {"END2",1,250,425.000000,-25.000000,525.000000,25.000000,0.000000,"END2"};
+item3[] = {"chaos_threshold",4,218,-75.000000,200.000000,25.000000,250.000000,0.000000,"chaos threshold" \n "reached"};
+item4[] = {"extraction",2,250,-75.000000,275.000000,25.000000,325.000000,0.000000,"extraction"};
+item5[] = {"player_at_extrac",4,218,-75.000000,350.000000,25.000000,400.000000,1.000000,"player at" \n "extraction"};
+item6[] = {"END1",1,250,-75.000000,575.000000,25.000000,625.000000,0.000000,"END1"};
+item7[] = {"half_chaos_reach",4,218,-75.000000,50.000000,25.000000,100.000000,0.000000,"half chaos" \n "reached"};
+item8[] = {"enemy_is_anxious",2,250,-75.000000,125.000000,25.000000,175.000000,0.000000,"enemy is" \n "anxious"};
+item9[] = {"",7,210,96.000000,146.000000,104.000000,154.000015,0.000000,""};
+item10[] = {"rook_dead",4,218,50.000000,275.000000,150.000000,325.000000,2.000000,"rook dead"};
+item11[] = {"END3",1,250,175.000000,275.000000,275.000000,325.000000,0.000000,"END3"};
+item12[] = {"chaos_time_over",2,250,175.000000,-25.000000,275.000000,25.000000,0.000000,"chaos time" \n "over"};
+item13[] = {"extraction_compl",2,250,-75.000000,425.000000,25.000000,475.000000,0.000000,"extraction" \n "completed"};
+item14[] = {"rook_dead",4,218,-200.000000,-25.000000,-100.000000,25.000000,1.000000,"rook dead"};
+item15[] = {"END3_1",1,250,-325.000000,-25.000000,-225.000000,25.000000,0.000000,"END3"};
+item16[] = {"player_has_lande",4,218,-75.000000,-100.000000,25.000000,-50.000000,0.000000,"player has landed"};
+item17[] = {"Player_in_land",2,4346,-75.000000,-25.000000,25.000000,25.000000,0.000000,"Player in" \n "land"};
+item18[] = {"init",0,250,-75.000000,-325.000000,25.000000,-275.000000,0.000000,"init"};
+item19[] = {"video_completed",4,218,-75.000000,-250.000000,25.000000,-200.000000,0.000000,"video" \n "completed"};
+item20[] = {"extraction_timeout",4,218,-200.000000,275.000000,-100.000000,325.000000,0.000000,"extraction" \n "timeout warning"};
+item21[] = {"rook_warns_playe",2,250,-325.000000,275.000000,-225.000000,325.000000,0.000000,"rook warns" \n "player"};
+item22[] = {"extraction_timeout",4,218,-450.000000,275.000000,-350.000000,325.000000,0.000000,"extraction" \n "timeout" \n "reached"};
+item23[] = {"driver_leaves",2,250,-575.000000,275.000000,-475.000000,325.000000,0.000000,"driver leaves"};
+item24[] = {"",7,210,-279.000000,371.000000,-271.000000,379.000000,0.000000,""};
+item25[] = {"delay",4,218,-700.000000,275.000000,-600.000000,325.000000,0.000000,"delay"};
+item26[] = {"END4",1,250,-825.000000,275.000000,-725.000000,325.000000,0.000000,"END4"};
+item27[] = {"delay",4,218,-75.000000,500.000000,25.000000,550.000000,0.000000,"delay"};
+item28[] = {"",7,210,96.000000,446.000000,104.000000,454.000000,0.000000,""};
+item29[] = {"delay",4,218,300.000000,-25.000000,400.000000,25.000000,0.000000,"delay"};
+link0[] = {0,16};
+link1[] = {1,12};
+link2[] = {3,4};
+link3[] = {4,5};
+link4[] = {4,10};
+link5[] = {4,20};
+link6[] = {5,13};
+link7[] = {7,8};
+link8[] = {8,3};
+link9[] = {8,9};
+link10[] = {9,1};
+link11[] = {10,11};
+link12[] = {12,29};
+link13[] = {13,27};
+link14[] = {13,28};
+link15[] = {14,15};
+link16[] = {16,17};
+link17[] = {17,1};
+link18[] = {17,7};
+link19[] = {17,14};
+link20[] = {18,19};
+link21[] = {19,0};
+link22[] = {20,21};
+link23[] = {21,22};
+link24[] = {21,24};
+link25[] = {22,23};
+link26[] = {23,25};
+link27[] = {24,5};
+link28[] = {25,26};
+link29[] = {27,6};
+link30[] = {28,10};
+link31[] = {29,2};
+globals[] = {25.000000,1,0,0,0,640,480,1,173,6316128,1,-498.374634,588.857361,726.573730,-357.503754,1034,1031,1};
+window[] = {2,-1,-1,-32000,-32000,992,225,1756,225,3,1052};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Showcase Night Mission Flow";
+        class States
+        {
+                /*%FSM<STATE "start">*/
+                class start
+                {
+                        name = "start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Chaos" \n
+                         "//***************" \n
+                         "//Time to cause chaos" \n
+                         "//1400 seconds" \n
+                         "//If player takes more then this time to fulfill the chaos value mission will be failed" \n
+                         "BIS_chaosTimeout = 1800;" \n
+                         "" \n
+                         "//Chaos Threshold" \n
+                         "//Once Chaos reaches this value the main objective gets succeeded" \n
+                         "BIS_chaosThreshold = 1000;" \n
+                         "" \n
+                         "//Chaos" \n
+                         "BIS_chaos = 0;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Insertion" \n
+                         "//***************" \n
+                         "if ([] call BIS_fnc_isCampaign) then {" \n
+                         "	[] execVM ""scripts\insertionE3.sqf"";" \n
+                         "} else {" \n
+                         "	[] execVM ""scripts\insertion.sqf"";" \n
+                         "};" \n
+                         "" \n
+                         "//***************" \n
+                         "//Zone restriction" \n
+                         "//***************" \n
+                         "//Deserted handler" \n
+                         "[] execVM ""scripts\deserted.sqf"";" \n
+                         "" \n
+                         "//***************" \n
+                         "//Ambient flyby" \n
+                         "//***************" \n
+                         "[" \n
+                         "	getMarkerPos ""BIS_ambientChopperStart""," \n
+                         "	getMarkerPos ""BIS_ambientChopperEnd""," \n
+                         "	25," \n
+                         "	""LIMITED""," \n
+                         "	""O_Heli_Light_02_F""," \n
+                         "	EAST" \n
+                         "] call BIS_fnc_ambientFlyby;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Log" \n
+                         "//***************" \n
+                         "format [" \n
+                         "	""Chaos Timeout: %1 - Chaos Threshold: %2""," \n
+                         "	BIS_chaosTimeout," \n
+                         "	BIS_chaosThreshold" \n
+                         "] call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "player_has_lande">*/
+                                class player_has_lande
+                                {
+                                        itemno = 16;
+                                        priority = 0.000000;
+                                        to="Player_in_land";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"//Flag comes from 'scripts\insertion.sqf'" \n
+                                         "!isNil { BIS_playerHasLanded }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END2">*/
+                class END2
+                {
+                        name = "END2";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//End mission" \n
+                         "//***************" \n
+                         "[[""Showcase_Night"", 1], false] call BIS_fnc_endMission;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "extraction">*/
+                class extraction
+                {
+                        name = "extraction";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Extraction" \n
+                         "//***************" \n
+                         "//The extraction position pool" \n
+                         "private ""_extractionPool"";" \n
+                         "_extractionPool = [" \n
+                         "	[getMarkerPos ""BIS_markerExtraction0"", 250]," \n
+                         "	[getMarkerPos ""BIS_markerExtraction1"", 270]," \n
+                         "	[getMarkerPos ""BIS_markerExtraction2"", 270]," \n
+                         "	[getMarkerPos ""BIS_markerExtraction3"", 145]" \n
+                         "];" \n
+                         "" \n
+                         "//Find the nearest extraction container from the pool" \n
+                         "private ""_extractionContainer"";" \n
+                         "_extractionContainer = ([	_extractionPool, [], { player distance (_x select 0) }, ""ASCEND""] call BIS_fnc_sortBy) select 0;" \n
+                         "" \n
+                         "//The extraction position" \n
+                         "private ""_extractionPosition"";" \n
+                         "_extractionPosition = _extractionContainer select 0;" \n
+                         "" \n
+                         "//The extraction direction (anchor for boat and driver directions)" \n
+                         "private ""_extractionDirection"";" \n
+                         "_extractionDirection = _extractionContainer select 1;" \n
+                         "" \n
+                         "//The boat" \n
+                         "private ""_boat"";" \n
+                         "_boat = createVehicle [""B_Boat_Transport_01_F"", _extractionPosition, [], 0, ""NONE""];" \n
+                         "_boat setDir _extractionDirection;" \n
+                         "_boat setPosASL getPosASL _boat;" \n
+                         "_boat setCaptive true;" \n
+                         "_boat lock true;" \n
+                         "" \n
+                         "//The direction the boat driver will face while waiting for player" \n
+                         "private ""_extractionDriverDirection"";" \n
+                         "_extractionDriverDirection = _extractionDirection + 180;" \n
+                         "" \n
+                         "//The position of the driver" \n
+                         "private ""_extractionDriverPosition"";" \n
+                         "_extractionDriverPosition = [_extractionPosition, 10, _extractionDriverDirection] call BIS_fnc_relPos;" \n
+                         "" \n
+                         "//The driver" \n
+                         "private ""_driver"";" \n
+                         "_driver = (createGroup WEST) createUnit [""B_Soldier_F"", _extractionDriverPosition, [], 0, ""NONE""];" \n
+                         "_driver setFormDir _extractionDriverDirection;" \n
+                         "_driver setDir _extractionDriverDirection;" \n
+                         "_driver setPosASL getPosASL _driver;" \n
+                         "_driver disableAi ""MOVE"";" \n
+                         "_driver disableAi ""FSM"";" \n
+                         "_driver disableAi ""TARGET"";" \n
+                         "_driver disableAi ""AUTOTARGET"";" \n
+                         "_driver setCaptive true;" \n
+                         "_driver setUnitPos ""MIDDLE"";" \n
+                         "_driver unassignItem ""NVGoggles"";" \n
+                         "_driver removeItem ""NVGoggles"";" \n
+                         "removeHeadgear _driver;" \n
+                         "removeVest _driver;" \n
+                         "removeGoggles _driver;" \n
+                         "group _driver setGroupId [""Rook""];" \n
+                         "_driver setIdentity ""PB_B_BoatDriver"";" \n
+                         "_driver addHeadgear ""H_Booniehat_dgtl"";" \n
+                         "" \n
+                         "//Spawn a chemlight near the driver" \n
+                         "private ""_chemlight"";" \n
+                         "_chemlight = createVehicle [""Chemlight_green"", _extractionDriverPosition, [], 0, ""NONE""];" \n
+                         "" \n
+                         "//The time player has to meet extraction unit" \n
+                         "private ""_extractionTime"";" \n
+                         "_extractionTime = 240;" \n
+                         "" \n
+                         "//The half time player has to meet extraction unit, if player take longer then this, unit will tell him to speed up" \n
+                         "private ""_extractionTimeHalf"";" \n
+                         "_extractionTimeHalf = _extractionTime / 2;" \n
+                         "" \n
+                         "//The extraction timeout" \n
+                         "private ""_extractionTimeout"";" \n
+                         "_extractionTimeout = time + _extractionTime;" \n
+                         "" \n
+                         "//The extraction timeout half" \n
+                         "private ""_extractionTimeoutHalf"";" \n
+                         "_extractionTimeoutHalf = time + _extractionTimeHalf;" \n
+                         "" \n
+                         "//Succeed Chaos task" \n
+                         "[""BIS_Chaos"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//Add Extraction task and assign it" \n
+                         "[""BIS_Extraction"", _extractionPosition] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//The global variable must be" \n
+                         "BIS_insertionBoatDriver = _driver;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         "[] spawn {" \n
+                         "	sleep 5;" \n
+                         "	""BIS_chaosThresholdReached"" call BIS_fnc_missionConversations;" \n
+                         "	sleep 20;" \n
+                         "	""BIS_extract"" call BIS_fnc_missionConversations;" \n
+                         "	sleep 30;" \n
+                         "	""BIS_archangleSecure"" call BIS_fnc_missionConversations;" \n
+                         "};" \n
+                         "" \n
+                         "//***************" \n
+                         "//Enemy reinforcements" \n
+                         "//***************" \n
+                         "[] execVM ""scripts\reinforcements.sqf"";" \n
+                         "" \n
+                         "//***************" \n
+                         "//Music" \n
+                         "//***************" \n
+                         "5 fadeMusic 0.4;" \n
+                         "playMusic ""Track11_StageB_stealth"";" \n
+                         "" \n
+                         "//***************" \n
+                         "//Savegame" \n
+                         "//***************" \n
+                         "[] spawn {" \n
+                         "	sleep 15;" \n
+                         "	savegame;" \n
+                         "};" \n
+                         "" \n
+                         "//***************" \n
+                         "//Log" \n
+                         "//***************" \n
+                         "format [" \n
+                         "	""Chaos Threshold has been reached. Mission time: %1 - Chaos Level: %2 - Chaos Timeout: %3 - Chaos Threshold: %4""," \n
+                         "	time," \n
+                         "	BIS_chaos," \n
+                         "	BIS_chaosTimeout," \n
+                         "	BIS_chaosThreshold" \n
+                         "] call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "rook_dead">*/
+                                class rook_dead
+                                {
+                                        itemno = 10;
+                                        priority = 2.000000;
+                                        to="END3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive _driver" \n
+                                         "||" \n
+                                         "!alive _boat" \n
+                                         "||" \n
+                                         "!canMove _boat" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "player_at_extrac">*/
+                                class player_at_extrac
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="extraction_compl";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"player distance _driver < 20" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "extraction_timeout">*/
+                                class extraction_timeout
+                                {
+                                        itemno = 20;
+                                        priority = 0.000000;
+                                        to="rook_warns_playe";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _extractionTimeoutHalf" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END1">*/
+                class END1
+                {
+                        name = "END1";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         "[""BIS_Extraction"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//***************" \n
+                         "//End mission" \n
+                         "//***************" \n
+                         "[[""Showcase_Supports"", 1], true] call BIS_fnc_endMission;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "enemy_is_anxious">*/
+                class enemy_is_anxious
+                {
+                        name = "enemy_is_anxious";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         "[] spawn {" \n
+                         "	sleep 10;" \n
+                         "	" \n
+                         "	if (BIS_chaos < BIS_chaosThreshold) then {" \n
+                         "		""BIS_enemyIsAnxious"" call BIS_fnc_missionConversations;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "//***************" \n
+                         "//Enemy vehicle" \n
+                         "//***************" \n
+                         "private [""_container"", ""_vehicle"", ""_crew"", ""_group""];" \n
+                         "_container	= [getMarkerPos ""BIS_reinforcementsSpawnPosition"", 90, ""O_MRAP_02_hmg_F"", EAST] call BIS_fnc_spawnVehicle;" \n
+                         "_vehicle	= _container select 0;" \n
+                         "_crew		= _container select 1;" \n
+                         "_group		= _container select 2;" \n
+                         "" \n
+                         "//Init group" \n
+                         "[_group] call BIS_fnc_sn_initGroup;" \n
+                         "" \n
+                         "//Randomize sites order" \n
+                         "private ""_sites"";" \n
+                         "_sites = BIS_sites call BIS_fnc_arrayShuffle;" \n
+                         "" \n
+                         "//Make group patrol AO, each camp is a waypoint" \n
+                         "{" \n
+                         "	//The site position" \n
+                         "	private ""_site"";" \n
+                         "	_site = position _x;" \n
+                         "	" \n
+                         "	//The waypoint" \n
+                         "	private ""_waypoint"";" \n
+                         "	_waypoint = _group addWaypoint [_site, 25];" \n
+                         "	_waypoint setWaypointType ""MOVE"";" \n
+                         "	_waypoint setWaypointBehaviour ""SAFE"";" \n
+                         "	_waypoint setWaypointCombatMode ""YELLOW"";" \n
+                         "	_waypoint setWaypointSpeed ""NORMAL"";" \n
+                         "	_waypoint setWaypointCompletionRadius 25;" \n
+                         "	" \n
+                         "	//Add cycle waypoint if this is last site" \n
+                         "	if (_forEachIndex == (count _sites) - 1) then {" \n
+                         "		private ""_waypoint"";" \n
+                         "		_waypoint = _group addWaypoint [_site, 25];" \n
+                         "		_waypoint setWaypointType ""CYCLE"";" \n
+                         "	};" \n
+                         "} forEach _sites;" \n
+                         "" \n
+                         "//Log" \n
+                         "[""Enemy vehicle (%1) is now coming to investigate the south (%2)"", _vehicle, _sites] call BIS_fnc_logFormat;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Savegame" \n
+                         "//***************" \n
+                         "[] spawn {" \n
+                         "	sleep 20;" \n
+                         "	savegame;" \n
+                         "};" \n
+                         "" \n
+                         "//***************" \n
+                         "//Log" \n
+                         "//***************" \n
+                         "format [" \n
+                         "	""Half of the Chaos Threshold has been reached. Mission time: %1 - Chaos Level: %2 - Chaos Timeout: %3 - Chaos Threshold: %4""," \n
+                         "	time," \n
+                         "	BIS_chaos," \n
+                         "	BIS_chaosTimeout," \n
+                         "	BIS_chaosThreshold" \n
+                         "] call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout_failure">*/
+                                class timeout_failure
+                                {
+                                        itemno = 1;
+                                        priority = 2.000000;
+                                        to="chaos_time_over";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= BIS_chaosTimeout" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "chaos_threshold">*/
+                                class chaos_threshold
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="extraction";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_chaos >= BIS_chaosThreshold" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END3">*/
+                class END3
+                {
+                        name = "END3";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//End mission" \n
+                         "//***************" \n
+                         "[[""Showcase_Night"", 2], false] call BIS_fnc_endMission;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "chaos_time_over">*/
+                class chaos_time_over
+                {
+                        name = "chaos_time_over";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         """BIS_timeoutFailure"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Delay" \n
+                         "//***************" \n
+                         "private ""_timeout"";" \n
+                         "_timeout = time + 10;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "delay">*/
+                                class delay
+                                {
+                                        itemno = 29;
+                                        priority = 0.000000;
+                                        to="END2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _timeout" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "extraction_compl">*/
+                class extraction_compl
+                {
+                        name = "extraction_compl";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         """BIS_extractComplete"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Boat driver" \n
+                         "//***************" \n
+                         "_driver enableAi ""MOVE"";" \n
+                         "_driver setUnitPos ""UP"";" \n
+                         "_driver forceSpeed 1.6;" \n
+                         "_driver doMove position _boat;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Delay" \n
+                         "//***************" \n
+                         "private ""_timeout"";" \n
+                         "_timeout = time + 5;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "rook_dead">*/
+                                class rook_dead
+                                {
+                                        itemno = 10;
+                                        priority = 2.000000;
+                                        to="END3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive _driver" \n
+                                         "||" \n
+                                         "!alive _boat" \n
+                                         "||" \n
+                                         "!canMove _boat" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "delay">*/
+                                class delay
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="END1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _timeout" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END3_1">*/
+                class END3_1
+                {
+                        name = "END3_1";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//End mission" \n
+                         "//***************" \n
+                         "[[""Showcase_Night"", 2], false] call BIS_fnc_endMission;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Player_in_land">*/
+                class Player_in_land
+                {
+                        name = "Player_in_land";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         "[""BIS_Chaos"", ""ASSIGNED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         "[] spawn {" \n
+                         "	sleep 5;" \n
+                         "	""BIS_reportArrival"" call BIS_fnc_missionConversations;" \n
+                         "};" \n
+                         "" \n
+                         "//******************************" \n
+                         "//Player reports contact" \n
+                         "//******************************" \n
+                         "//Once player shoots his weapon or someone shoots near him he will let Miller know he is starting the noise" \n
+                         "private ""_noiseReport"";" \n
+                         "_noiseReport = {" \n
+                         "	//Make sure there are enemies near the player" \n
+                         "	if ({ side _x != WEST && _x distance player < 150 && _x knowsAbout player >= 1 } count allUnits > 0) then {" \n
+                         "		//Remove event handlers" \n
+                         "		player removeEventHandler [""Fired"", player getVariable ""BIS_fired""];" \n
+                         "		player removeEventHandler [""FiredNear"", player getVariable ""BIS_firedNear""];" \n
+                         "		" \n
+                         "		//Conversation when player fires or someone fires near him" \n
+                         "		[] spawn {" \n
+                         "			//Some delay" \n
+                         "			sleep 15;" \n
+                         "			" \n
+                         "			//Conversation" \n
+                         "			""BIS_firstContact"" call BIS_fnc_missionConversations;" \n
+                         "		};" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "//Add event handlers and store them" \n
+                         "player setVariable [""BIS_fired"", player addEventhandler [""Fired"", _noiseReport]];" \n
+                         "player setVariable [""BIS_firedNear"", player addEventhandler [""FiredNear"", _noiseReport]];" \n
+                         "" \n
+                         "//***************" \n
+                         "//Triggers" \n
+                         "//***************" \n
+                         "//Timeout warning trigger" \n
+                         "private ""_trigger"";" \n
+                         "_trigger = createTrigger [""EmptyDetector"", position player];" \n
+                         "_trigger setTriggerStatements [""time >= (BIS_chaosTimeout / 2) && time < BIS_chaosTimeout && BIS_chaos < BIS_chaosThreshold"", ""'BIS_timeoutWarning' call BIS_fnc_missionConversations;"", """"];" \n
+                         "" \n
+                         "//***************" \n
+                         "//Savegame" \n
+                         "//***************" \n
+                         "if !([] call BIS_fnc_isCampaign) then {" \n
+                         "	[] spawn {" \n
+                         "		sleep 15;" \n
+                         "		savegame;" \n
+                         "	};" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout_failure">*/
+                                class timeout_failure
+                                {
+                                        itemno = 1;
+                                        priority = 2.000000;
+                                        to="chaos_time_over";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= BIS_chaosTimeout" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "rook_dead">*/
+                                class rook_dead
+                                {
+                                        itemno = 14;
+                                        priority = 1.000000;
+                                        to="END3_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"//Flags comes from 'scripts\insertion.sqf'" \n
+                                         "!isNil { BIS_insertionBoatDestroyed }" \n
+                                         "||" \n
+                                         "!isNil { BIS_insertionBoatDriverKilled }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "half_chaos_reach">*/
+                                class half_chaos_reach
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="enemy_is_anxious";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_chaos >= BIS_chaosThreshold / 2" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 18;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         """BIS_Chaos"" call BIS_fnc_missionTasks;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "video_completed">*/
+                                class video_completed
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="start";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { BIS_fnc_titlecard_finished }" \n
+                                         "&&" \n
+                                         "!isNil { BIS_missionStarted }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "rook_warns_playe">*/
+                class rook_warns_playe
+                {
+                        name = "rook_warns_playe";
+                        itemno = 21;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         """BIS_extractionWarning"" call BIS_fnc_missionConversations;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "player_at_extrac">*/
+                                class player_at_extrac
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="extraction_compl";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"player distance _driver < 20" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "extraction_timeout">*/
+                                class extraction_timeout
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="driver_leaves";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _extractionTimeout" \n
+                                         "&&" \n
+                                         "player distance _driver > 150" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "driver_leaves">*/
+                class driver_leaves
+                {
+                        name = "driver_leaves";
+                        itemno = 23;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//Tasks" \n
+                         "//***************" \n
+                         "[""BIS_Extraction"", ""FAILED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Conversations" \n
+                         "//***************" \n
+                         """BIS_extractionFailure"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Boat driver" \n
+                         "//***************" \n
+                         "//Driver boards the boat" \n
+                         "_driver assignAsCargo _boat;" \n
+                         "[_driver] orderGetIn true;" \n
+                         "_driver moveInDriver _boat;" \n
+                         "" \n
+                         "//the position the driver will move to" \n
+                         "private ""_driverEndPosition"";" \n
+                         "_driverEndPosition = [_boat, 100, getDir _boat] call BIS_fnc_relPos;" \n
+                         "" \n
+                         "//Driver moves away from extraction position" \n
+                         "_driver enableAi ""MOVE"";" \n
+                         "_driver doMove _driverEndPosition;" \n
+                         "" \n
+                         "//***************" \n
+                         "//Delay" \n
+                         "//***************" \n
+                         "private ""_timeout"";" \n
+                         "_timeout = time + 20;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "delay">*/
+                                class delay
+                                {
+                                        itemno = 25;
+                                        priority = 0.000000;
+                                        to="END4";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _timeout" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END4">*/
+                class END4
+                {
+                        name = "END4";
+                        itemno = 26;
+                        init = /*%FSM<STATEINIT""">*/"//***************" \n
+                         "//End mission" \n
+                         "//***************" \n
+                         "[[""Showcase_Supports"", 2], false] call BIS_fnc_endMission;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "END2",
+                "END1",
+                "END3",
+                "END3_1",
+                "END4",
+        };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,2246 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, missionFlow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,10.000000,-2080.000000,100.000000,-2030.000000,0.000000,"Start"};
+item1[] = {"Mission_started",4,218,10.000000,-2010.000000,100.000000,-1960.000000,0.000000,"Mission" \n "started"};
+item2[] = {"Prologue",2,250,10.000000,-1940.000000,100.000000,-1890.000000,0.000000,"Prologue"};
+item3[] = {"Pyrgos_defended",4,218,10.000000,-1030.000000,100.000000,-980.000000,0.000000,"Pyrgos" \n "defended"};
+item4[] = {"Pyrgos_fallen",4,218,120.000000,-1030.000000,210.000000,-980.000000,0.000000,"Pyrgos" \n "fallen"};
+item5[] = {"SPGs_destroyed",4,218,120.000000,-700.000000,210.000000,-650.000000,0.000000,"SPGs" \n "destroyed"};
+item6[] = {"Naval_base_destr",4,218,10.000000,-700.000000,100.000000,-650.000000,0.000000,"Naval base" \n "destroyed"};
+item7[] = {"On_the_way",4,218,10.000000,-1170.000000,100.000000,-1120.000000,0.000000,"On the way"};
+item8[] = {"Attack",2,250,10.000000,-1100.000000,100.000000,-1050.000000,0.000000,"Attack"};
+item9[] = {"",7,210,161.000000,-743.999939,169.000000,-736.000061,0.000000,""};
+item10[] = {"Task_03_DONE",2,250,10.000000,-630.000000,100.000000,-580.000000,0.000000,"Task 03" \n "DONE"};
+item11[] = {"",7,210,161.000000,-1498.999878,169.000000,-1491.000000,0.000000,""};
+item12[] = {"Gunship_in_the_a",4,218,10.000000,-1450.000000,100.000000,-1400.000000,0.000000,"Gunship" \n "in the air"};
+item13[] = {"Fail_01",1,250,190.000000,-1520.000000,280.000000,-1470.000000,0.000000,"Fail 01"};
+item14[] = {"Fail_02",1,250,120.000000,-960.000000,210.000000,-910.000000,0.000000,"Fail 02"};
+item15[] = {"Player_in_gunshi",4,218,10.000000,-1590.000000,100.000000,-1540.000000,0.000000,"Player" \n "in gunship"};
+item16[] = {"Deserted",4,218,190.000000,-1590.000000,280.000000,-1540.000000,0.000000,"Deserted"};
+item17[] = {"Task_01_DONE",2,250,10.000000,-1520.000000,100.000000,-1470.000000,0.000000,"Task 01" \n "DONE"};
+item18[] = {"Report",2,250,10.000000,-1380.000000,100.000000,-1330.000000,0.000000,"Report"};
+item19[] = {"",7,210,161.000000,-1358.999878,169.000000,-1351.000000,0.000000,""};
+item20[] = {"Task_02_DONE_05",2,250,10.000000,-960.000000,100.000000,-910.000000,0.000000,"Task 02" \n "DONE" \n "05 received"};
+item21[] = {"Task_04_DONE",2,250,120.000000,-630.000000,210.000000,-580.000000,0.000000,"Task 04" \n "DONE"};
+item22[] = {"",7,210,-24.000000,-538.999939,-16.000000,-531.000061,0.000000,""};
+item23[] = {"Landed_at_Recon",4,218,230.000000,-340.000000,320.000000,-290.000000,0.000000,"Landed" \n "at Recon"};
+item24[] = {"",7,210,161.000000,-1078.999878,169.000000,-1071.000000,0.000000,""};
+item25[] = {"",7,210,51.000000,-538.999939,59.000000,-531.000122,0.000000,""};
+item26[] = {"",7,210,161.000000,-538.999939,169.000000,-531.000122,0.000000,""};
+item27[] = {"",7,210,-99.000000,-538.999939,-91.000000,-531.000061,0.000000,""};
+item28[] = {"",7,210,-24.000000,-743.999939,-16.000000,-736.000061,0.000000,""};
+item29[] = {"",7,210,-99.000000,-508.999908,-91.000000,-501.000092,0.000000,""};
+item30[] = {"Get_in",2,250,230.000000,-270.000000,320.000000,-220.000000,0.000000,"Get in"};
+item31[] = {"All_in",4,218,230.000000,-50.000000,320.000000,0.000000,0.000000,"All in"};
+item32[] = {"Take_off",2,250,230.000000,20.000000,320.000000,70.000000,0.000000,"Take off"};
+item33[] = {"Away",4,218,230.000000,90.000000,320.000000,140.000000,0.000000,"Away"};
+item34[] = {"Near_gunship",4,218,10.000000,-1730.000000,100.000000,-1680.000000,0.000000,"Near" \n "gunship"};
+item35[] = {"Show_hint",2,250,10.000000,-1660.000000,100.000000,-1610.000000,0.000000,"Show hint"};
+item36[] = {"",7,210,-19.000000,-1918.999878,-11.000000,-1911.000000,0.000000,""};
+item37[] = {"Out_of_truck",4,218,10.000000,-1870.000000,100.000000,-1820.000000,0.000000,"Out of truck"};
+item38[] = {"Delete_ambience",2,250,10.000000,-1800.000000,100.000000,-1750.000000,0.000000,"Delete" \n "ambience"};
+item39[] = {"",7,210,-19.000000,-1778.999878,-11.000000,-1771.000000,0.000000,""};
+item40[] = {"",7,210,231.000046,-1638.999878,238.999954,-1631.000000,0.000000,""};
+item41[] = {"Timeout",4,218,300.000000,-1590.000000,390.000000,-1540.000000,0.000000,"Timeout"};
+item42[] = {"",7,210,341.000031,-1638.999878,348.999969,-1631.000000,0.000000,""};
+item43[] = {"",7,210,341.000000,-938.999939,349.000000,-931.000061,0.000000,""};
+item44[] = {"",7,210,-19.000000,-1638.999878,-11.000000,-1631.000000,0.000000,""};
+item45[] = {"Renegade",4,218,-130.000000,-1880.000000,-40.000000,-1830.000000,0.000000,"Renegade"};
+item46[] = {"Friendly_fire",1,250,-130.000000,-1810.000000,-40.000000,-1760.000000,0.000000,"Friendly fire"};
+item47[] = {"",7,210,-19.000000,-1498.999878,-11.000000,-1491.000000,0.000000,""};
+item48[] = {"",7,210,-19.000000,-1358.999878,-11.000000,-1351.000000,0.000000,""};
+item49[] = {"",7,210,-19.000000,-1078.999878,-11.000000,-1071.000000,0.000000,""};
+item50[] = {"",7,210,-19.000000,-938.999939,-11.000000,-931.000061,0.000000,""};
+item51[] = {"",7,210,231.000000,-1778.999878,239.000000,-1771.000000,0.000000,""};
+item52[] = {"",7,210,231.000000,-1918.999878,239.000000,-1911.000000,0.000000,""};
+item53[] = {"",7,210,-99.000000,41.000061,-91.000000,48.999939,0.000000,""};
+item54[] = {"",7,210,-99.000000,-938.999939,-91.000000,-931.000061,0.000000,""};
+item55[] = {"Left_airfield",4,218,10.000000,-1310.000000,100.000000,-1260.000000,0.000000,"Left airfield"};
+item56[] = {"Begin_bombardmen",2,250,10.000000,-1240.000000,100.000000,-1190.000000,0.000000,"Begin" \n "bombardment"};
+item57[] = {"",7,210,161.000000,-1218.999878,169.000000,-1211.000000,0.000000,""};
+item58[] = {"",7,210,-19.000000,-1218.999878,-11.000000,-1211.000000,0.000000,""};
+item59[] = {"",7,210,51.000000,-743.999939,59.000000,-736.000061,0.000000,""};
+item60[] = {"",7,210,271.000000,-743.999939,279.000000,-736.000061,0.000000,""};
+item61[] = {"Recon_in_trouble",4,218,230.000000,-700.000000,320.000000,-650.000000,0.000000,"Recon in" \n "trouble"};
+item62[] = {"Divert",2,250,230.000000,-630.000000,320.000000,-580.000000,0.000000,"Divert"};
+item63[] = {"Tasks_received",4,218,10.000000,-890.000000,100.000000,-840.000000,0.000000,"Tasks" \n "received"};
+item64[] = {"Head_west",2,250,10.000000,-820.000000,100.000000,-770.000000,0.000000,"Head west"};
+item65[] = {"Return_to_base",2,250,230.000000,160.000000,320.000000,210.000000,0.000000,"Return to base"};
+item66[] = {"",7,210,-99.000000,-248.999939,-91.000000,-241.000061,0.000000,""};
+item67[] = {"",7,210,-99.000000,181.000061,-91.000000,188.999954,0.000000,""};
+item68[] = {"Landed_at_base",4,218,230.000000,230.000000,320.000000,280.000000,0.000000,"Landed" \n "at base"};
+item69[] = {"Start_countdown",2,250,230.000000,360.000000,320.000000,410.000000,0.000000,"Start countdown"};
+item70[] = {"Timeout_passed",4,218,230.000000,430.000000,320.000000,480.000000,0.000000,"Timeout" \n "passed"};
+item71[] = {"Moving_again",4,218,110.000000,300.000000,200.000000,350.000000,0.000000,"Moving" \n "again"};
+item72[] = {"_",2,250,110.000000,230.000000,200.000000,280.000000,0.000000,""};
+item73[] = {"Returned_to_Pyrg",2,250,230.000000,500.000000,320.000000,550.000000,0.000000,"Returned to" \n "Pyrgos"};
+item74[] = {"Recon_saved",4,218,230.000000,580.000000,320.000000,630.000000,0.000000,"Recon saved"};
+item75[] = {"",7,210,381.000000,521.000061,389.000000,528.999939,0.000000,""};
+item76[] = {"Recon_dead",4,218,340.000000,580.000000,430.000000,630.000000,0.000000,"Recon dead"};
+item77[] = {"Win_01",1,250,230.000000,660.000000,320.000000,710.000000,0.000000,"Win 01"};
+item78[] = {"Win_02",1,250,340.000000,660.000000,430.000000,710.000000,0.000000,"Win 02"};
+item79[] = {"",7,210,271.000000,-508.999908,279.000000,-501.000092,0.000000,""};
+item80[] = {"",7,210,-99.000000,521.000000,-91.000000,529.000000,0.000000,""};
+item81[] = {"",7,210,-99.000000,381.000000,-91.000000,389.000000,0.000000,""};
+item82[] = {"",7,210,351.000000,-609.000000,359.000000,-601.000000,0.000000,""};
+item83[] = {"Recon_dead",4,218,390.000000,-630.000000,480.000000,-580.000000,0.000000,"Recon dead"};
+item84[] = {"",7,210,351.000000,-249.000000,359.000000,-241.000000,0.000000,""};
+item85[] = {"",7,210,351.000000,41.000000,359.000000,49.000000,0.000000,""};
+item86[] = {"Reprimand",2,250,390.000000,-560.000000,480.000000,-510.000000,0.000000,"Reprimand"};
+item87[] = {"",7,210,431.000000,251.000000,439.000000,259.000000,0.000000,""};
+item88[] = {"",7,210,151.000000,381.000000,159.000000,389.000000,0.000000,""};
+item89[] = {"",7,210,-89.000000,-1919.000000,-81.000000,-1911.000000,0.000000,""};
+item90[] = {"",7,210,-199.000000,-1919.000000,-191.000000,-1911.000000,0.000000,""};
+item91[] = {"Going_down",4,218,-240.000000,-1880.000000,-150.000000,-1830.000000,0.000000,"Going down"};
+item92[] = {"Mayday",2,250,-240.000000,-1810.000000,-150.000000,-1760.000000,0.000000,"Mayday"};
+item93[] = {"Crash_landed",4,218,-240.000000,-1740.000000,-150.000000,-1690.000000,0.000000,"Crash-landed"};
+item94[] = {"Start_countdown_1",2,250,-240.000000,-1670.000000,-150.000000,-1620.000000,0.000000,"Start countdown"};
+item95[] = {"Timeout_passed",4,218,-240.000000,-1600.000000,-150.000000,-1550.000000,0.000000,"Timeout" \n "passed"};
+item96[] = {"Fail_03",1,250,-240.000000,-1530.000000,-150.000000,-1480.000000,0.000000,"Fail 03"};
+item97[] = {"Moving_again",4,218,-350.000000,-1670.000000,-260.000000,-1620.000000,0.000000,"Moving again"};
+item98[] = {"__1",2,250,-350.000000,-1740.000000,-260.000000,-1690.000000,0.000000,""};
+item99[] = {"Approaching_reco",4,218,230.000000,-480.000000,320.000000,-430.000000,0.000000,"Approaching" \n "recon"};
+item100[] = {"Start_attack",2,250,230.000000,-410.000000,320.000000,-360.000000,0.000000,"Start attack"};
+item101[] = {"",7,210,-99.000000,-389.000000,-91.000000,-381.000000,0.000000,""};
+item102[] = {"",7,210,351.000000,-389.000000,359.000000,-381.000000,0.000000,""};
+item103[] = {"",7,210,161.000000,-249.000000,169.000000,-241.000000,0.000000,""};
+item104[] = {"Timeout_passed",4,218,120.000000,-220.000000,210.000000,-170.000000,0.000000,"Timeout" \n "passed"};
+item105[] = {"Force_in",2,250,120.000000,-150.000000,210.000000,-100.000000,0.000000,"Force in"};
+item106[] = {"",7,210,-99.000000,-129.000000,-91.000000,-121.000000,0.000000,""};
+item107[] = {"",7,210,161.000000,-79.000000,169.000000,-71.000000,0.000000,""};
+item108[] = {"",7,210,271.000000,-79.000000,279.000000,-71.000000,0.000000,""};
+item109[] = {"",7,210,351.000000,-79.000000,359.000000,-71.000000,0.000000,""};
+item110[] = {"",7,210,-19.000000,-799.000000,-10.999999,-791.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,36};
+link3[] = {2,37};
+link4[] = {2,52};
+link5[] = {3,20};
+link6[] = {4,14};
+link7[] = {5,21};
+link8[] = {6,10};
+link9[] = {7,8};
+link10[] = {8,3};
+link11[] = {8,24};
+link12[] = {8,49};
+link13[] = {9,5};
+link14[] = {9,60};
+link15[] = {10,25};
+link16[] = {11,19};
+link17[] = {12,18};
+link18[] = {15,17};
+link19[] = {16,13};
+link20[] = {17,11};
+link21[] = {17,12};
+link22[] = {17,47};
+link23[] = {18,19};
+link24[] = {18,48};
+link25[] = {18,55};
+link26[] = {19,57};
+link27[] = {20,50};
+link28[] = {20,63};
+link29[] = {21,26};
+link30[] = {22,27};
+link31[] = {22,28};
+link32[] = {23,30};
+link33[] = {24,4};
+link34[] = {25,22};
+link35[] = {26,25};
+link36[] = {27,54};
+link37[] = {28,59};
+link38[] = {29,27};
+link39[] = {30,84};
+link40[] = {30,103};
+link41[] = {30,108};
+link42[] = {31,32};
+link43[] = {32,33};
+link44[] = {32,53};
+link45[] = {32,85};
+link46[] = {33,65};
+link47[] = {34,35};
+link48[] = {35,15};
+link49[] = {35,40};
+link50[] = {35,44};
+link51[] = {36,89};
+link52[] = {37,38};
+link53[] = {38,34};
+link54[] = {38,39};
+link55[] = {38,51};
+link56[] = {39,36};
+link57[] = {40,16};
+link58[] = {40,42};
+link59[] = {41,43};
+link60[] = {42,41};
+link61[] = {43,14};
+link62[] = {44,39};
+link63[] = {45,46};
+link64[] = {47,44};
+link65[] = {48,47};
+link66[] = {49,58};
+link67[] = {50,49};
+link68[] = {51,40};
+link69[] = {52,51};
+link70[] = {53,106};
+link71[] = {54,50};
+link72[] = {55,56};
+link73[] = {56,7};
+link74[] = {56,57};
+link75[] = {56,58};
+link76[] = {57,24};
+link77[] = {58,48};
+link78[] = {59,6};
+link79[] = {59,9};
+link80[] = {60,61};
+link81[] = {61,62};
+link82[] = {62,79};
+link83[] = {62,82};
+link84[] = {63,64};
+link85[] = {64,59};
+link86[] = {64,110};
+link87[] = {65,67};
+link88[] = {65,68};
+link89[] = {66,101};
+link90[] = {67,53};
+link91[] = {68,69};
+link92[] = {69,70};
+link93[] = {69,88};
+link94[] = {70,73};
+link95[] = {71,72};
+link96[] = {72,68};
+link97[] = {73,74};
+link98[] = {73,75};
+link99[] = {73,80};
+link100[] = {74,77};
+link101[] = {75,76};
+link102[] = {76,78};
+link103[] = {79,29};
+link104[] = {79,99};
+link105[] = {80,81};
+link106[] = {81,67};
+link107[] = {82,83};
+link108[] = {83,86};
+link109[] = {84,102};
+link110[] = {85,109};
+link111[] = {86,87};
+link112[] = {87,68};
+link113[] = {88,71};
+link114[] = {88,81};
+link115[] = {89,45};
+link116[] = {89,90};
+link117[] = {90,91};
+link118[] = {91,92};
+link119[] = {92,93};
+link120[] = {93,94};
+link121[] = {94,95};
+link122[] = {94,97};
+link123[] = {95,96};
+link124[] = {97,98};
+link125[] = {98,93};
+link126[] = {99,100};
+link127[] = {100,23};
+link128[] = {100,101};
+link129[] = {100,102};
+link130[] = {101,29};
+link131[] = {102,82};
+link132[] = {103,66};
+link133[] = {103,104};
+link134[] = {104,105};
+link135[] = {105,106};
+link136[] = {105,107};
+link137[] = {106,66};
+link138[] = {107,108};
+link139[] = {108,31};
+link140[] = {108,109};
+link141[] = {109,84};
+link142[] = {110,50};
+globals[] = {10.000000,1,0,0,0,640,480,1,392,6316128,1,-212.800659,452.435425,-336.986389,-1005.342712,1066,1071,1};
+window[] = {2,-1,-1,-1,-1,875,25,1465,25,3,1084};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "missionFlow";
+        class States
+        {
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"// tasks" \n
+                         "" \n
+                         "// 01 - defend Pyrgos - if fail > failMission" \n
+                         "// 02 - destroy enemy naval base - must accomplish" \n
+                         "// 03 - destroy enemy SPGs - must accomplish" \n
+                         "// 04 - save friendly recon team - could fail" \n
+                         "// 05 - RTB (given when tasks 1,2,3,4 done or 1,2,3 done and 4 fail" \n
+                         "" \n
+                         "" \n
+                         "BIS_attack01 = false;" \n
+                         "BIS_attack02 = false;" \n
+                         "BIS_reconProblems = false;" \n
+                         "" \n
+                         "BIS_task01Done = false;" \n
+                         "BIS_task02Done = false;" \n
+                         "BIS_task03Done = false;" \n
+                         "BIS_task04Done = false;" \n
+                         "BIS_task05Done = false;" \n
+                         "" \n
+                         "" \n
+                         "// To prevent player to unintentionally fulfills tasks that " \n
+                         "// are not active yet - would result in error" \n
+                         "BIS_newTasksReceived = false;" \n
+                         "" \n
+                         "" \n
+                         "// when player knows about enemy helis" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "WaitUntil {(BIS_player knowsAbout BIS_AH9 > 0) or (BIS_player knowsAbout BIS_AH99 > 0) or (BIS_player knowsAbout BIS_B_Ship01 > 0) or (BIS_player knowsAbout BIS_B_Ship02 > 0) or (BIS_player knowsAbout BIS_B_Ship03 > 0)};" \n
+                         "sleep 2.5;" \n
+                         "" \n
+                         """10_Contact"" call BIS_fnc_missionConversations;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Mission_started">*/
+                                class Mission_started
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Prologue";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_missionStarted"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Prologue">*/
+                class Prologue
+                {
+                        name = "Prologue";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"private [""_time""];" \n
+                         "_time = time + 300;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Deserted">*/
+                                class Deserted
+                                {
+                                        itemno = 16;
+                                        priority = 0.000000;
+                                        to="Fail_01";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle BIS_player distance BIS_Airfield >= 250"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 41;
+                                        priority = 0.000000;
+                                        to="Fail_02";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Out_of_truck">*/
+                                class Out_of_truck
+                                {
+                                        itemno = 37;
+                                        priority = 0.000000;
+                                        to="Delete_ambience";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(BIS_player in BIS_Zamak)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Attack">*/
+                class Attack
+                {
+                        name = "Attack";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"BIS_attack01 = true;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Pyrgos_fallen">*/
+                                class Pyrgos_fallen
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Fail_02";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time" \n
+                                         "&&" \n
+                                         "!(BIS_task02Done)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Pyrgos_defended">*/
+                                class Pyrgos_defended
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Task_02_DONE_05";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canFire _x} count BIS_Attackers == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Task_03_DONE">*/
+                class Task_03_DONE
+                {
+                        name = "Task_03_DONE";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"BIS_task03Done = true;" \n
+                         "BIS_missionScope setVariable [""NavalBase"",""Destroyed""];" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: task 03 done"";" \n
+                         "	" \n
+                         "	sleep (5 + random 5);" \n
+                         "	" \n
+                         "	{_x call BIS_fnc_missionTasks} forEach [""BIS_tskNavalBase"", ""BIS_tskSaD""];" \n
+                         "	" \n
+                         "	if (!(BIS_task04Done)) then {" \n
+                         "		""25_NavalBaseDestroyed"" call BIS_fnc_missionConversations;" \n
+                         "	} else {" \n
+                         "		// Signal attack on Recon" \n
+                         "		BIS_reconProblems = true;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "SPGs_destroyed">*/
+                                class SPGs_destroyed
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Task_04_DONE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canFire _x} count BIS_Artillery == 0" \n
+                                         "&&" \n
+                                         "!(BIS_task04Done)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Recon_in_trouble">*/
+                                class Recon_in_trouble
+                                {
+                                        itemno = 61;
+                                        priority = 0.000000;
+                                        to="Divert";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_reconProblems"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Naval_base_destr">*/
+                                class Naval_base_destr
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="Task_03_DONE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	!(alive BIS_GuardTower)" \n
+                                         "	||" \n
+                                         "	{alive _x} count BIS_Naval <= (count BIS_Naval / 2)" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(canFire BIS_Hunter01)" \n
+                                         "&&" \n
+                                         "!(BIS_task03Done)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Fail_01">*/
+                class Fail_01
+                {
+                        name = "Fail_01";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"BIS_courtMartial = true;" \n
+                         "" \n
+                         "// Update tasks" \n
+                         "{_x call BIS_fnc_missionTasks} forEach [""BIS_tskRearm"", ""BIS_tskHeli"", ""BIS_tskPyrgos""];" \n
+                         "" \n
+                         "[""Fail01"", false] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Fail_02">*/
+                class Fail_02
+                {
+                        name = "Fail_02";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"BIS_courtMartial = true;" \n
+                         "" \n
+                         "// Update tasks" \n
+                         "{_x call BIS_fnc_missionTasks} forEach [""BIS_tskRearm"", ""BIS_tskHeli"", ""BIS_tskPyrgos""];" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: fail 02"";" \n
+                         "	" \n
+                         "	""x05_PyrgosLost"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	sleep 1;" \n
+                         "	" \n
+                         "	[""Fail02"", false] call BIS_fnc_endMission;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Task_01_DONE">*/
+                class Task_01_DONE
+                {
+                        name = "Task_01_DONE";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"_time = time + 900;" \n
+                         "BIS_task01Done = true;" \n
+                         "" \n
+                         "{_x call BIS_fnc_missionTasks} forEach [""BIS_tskHeli"", ""BIS_tskPyrgos""];" \n
+                         "" \n
+                         "// Remove the friendly fire tracking for the helicopter" \n
+                         "{_x removeEventHandler [""Killed"", _x getVariable ""BIS_killedEH""]} forEach [BIS_gunner, BIS_Mi48];" \n
+                         "" \n
+                         "// Lock the helicopter" \n
+                         "BIS_Mi48 lock true;" \n
+                         "" \n
+                         "// Unlock cargo seats" \n
+                         "BIS_Mi48 lockCargo false;" \n
+                         "" \n
+                         "// Show hint" \n
+                         "[[""Vehicle"", ""TakeOff""]] call BIS_fnc_advHint;" \n
+                         "" \n
+                         "// Unhide ambient tanks" \n
+                         "[units BIS_grpAmbient02, 1] call BIS_hideUnits;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Pyrgos_fallen">*/
+                                class Pyrgos_fallen
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Fail_02";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time" \n
+                                         "&&" \n
+                                         "!(BIS_task02Done)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Gunship_in_the_a">*/
+                                class Gunship_in_the_a
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Report";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(BIS_Mi48) distance BIS_Airfield > 100" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Report">*/
+                class Report
+                {
+                        name = "Report";
+                        itemno = 18;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: report"";" \n
+                         "	" \n
+                         "	sleep 10;" \n
+                         "	" \n
+                         "	saveGame;" \n
+                         "	" \n
+                         "	sleep 1;" \n
+                         "	" \n
+                         "	0 fadeMusic 0.6;" \n
+                         "	playMusic ""Track12_StageC_action"";" \n
+                         "	" \n
+                         "	// Unhide more ambient tanks" \n
+                         "	[units BIS_grpAmbient03, 1] call BIS_hideUnits;" \n
+                         "	" \n
+                         "	sleep 5;" \n
+                         "	" \n
+                         "	""05_InTheAir"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	sleep 3;" \n
+                         "	" \n
+                         "	// Radar hint" \n
+                         "	[[""Vehicle"", ""Radar""]] call BIS_fnc_advHint;" \n
+                         "	" \n
+                         "	sleep 20;" \n
+                         "	" \n
+                         "	// Shooting hint" \n
+                         "	[[""Vehicle"", ""Firing""]] call BIS_fnc_advHint;" \n
+                         "	" \n
+                         "	sleep 20;" \n
+                         "	" \n
+                         "	// Flares hint" \n
+                         "	[[""Vehicle"", ""Countermeasures""]] call BIS_fnc_advHint;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Pyrgos_fallen">*/
+                                class Pyrgos_fallen
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Fail_02";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time" \n
+                                         "&&" \n
+                                         "!(BIS_task02Done)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Left_airfield">*/
+                                class Left_airfield
+                                {
+                                        itemno = 55;
+                                        priority = 0.000000;
+                                        to="Begin_bombardmen";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((vehicle BIS_player) distance BIS_Airfield > 2000)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Task_02_DONE_05">*/
+                class Task_02_DONE_05
+                {
+                        name = "Task_02_DONE_05";
+                        itemno = 20;
+                        init = /*%FSM<STATEINIT""">*/"BIS_missionScope setVariable [""Pyrgos"",""Defended""];" \n
+                         "BIS_task02Done = true;" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: task 02 done, 05 received"";" \n
+                         "	" \n
+                         "	sleep (10 + random 10);" \n
+                         "	" \n
+                         "	""BIS_tskPyrgos"" call BIS_fnc_missionTasks;" \n
+                         "	" \n
+                         "	""15_PyrgosDefended"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	saveGame;" \n
+                         "	" \n
+                         "	sleep 1;" \n
+                         "	" \n
+                         "	// Unhide artillery marker" \n
+                         "	""BIS_mrkArtillery"" setMarkerAlpha 1;" \n
+                         "	" \n
+                         "	{_x call BIS_fnc_missionTasks} forEach [""BIS_tskNavalBase"", ""BIS_tskSaD""];" \n
+                         "	" \n
+                         "	// Register that the tasks have been added" \n
+                         "	BIS_newTasksReceived = true;" \n
+                         "	" \n
+                         "	""20_NewTasks"" call BIS_fnc_missionConversations;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Tasks_received">*/
+                                class Tasks_received
+                                {
+                                        itemno = 63;
+                                        priority = 0.000000;
+                                        to="Head_west";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_newTasksReceived"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Task_04_DONE">*/
+                class Task_04_DONE
+                {
+                        name = "Task_04_DONE";
+                        itemno = 21;
+                        init = /*%FSM<STATEINIT""">*/"BIS_task04Done = true;" \n
+                         "BIS_missionScope setVariable [""SPGs"",""Destroyed""];" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: task 04 done"";" \n
+                         "	" \n
+                         "	sleep (2 + random 3);" \n
+                         "	" \n
+                         "	{_x call BIS_fnc_missionTasks} forEach [""BIS_tskSaD"", ""BIS_tskNavalBase""];" \n
+                         "	" \n
+                         "	if (!(BIS_task03Done)) then {" \n
+                         "		""30_SPGsDestroyed"" call BIS_fnc_missionConversations;" \n
+                         "	} else {" \n
+                         "		// Signal attack on Recon" \n
+                         "		BIS_reconProblems = true;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "SPGs_destroyed">*/
+                                class SPGs_destroyed
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Task_04_DONE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canFire _x} count BIS_Artillery == 0" \n
+                                         "&&" \n
+                                         "!(BIS_task04Done)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Recon_in_trouble">*/
+                                class Recon_in_trouble
+                                {
+                                        itemno = 61;
+                                        priority = 0.000000;
+                                        to="Divert";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_reconProblems"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Naval_base_destr">*/
+                                class Naval_base_destr
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="Task_03_DONE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	!(alive BIS_GuardTower)" \n
+                                         "	||" \n
+                                         "	{alive _x} count BIS_Naval <= (count BIS_Naval / 2)" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(canFire BIS_Hunter01)" \n
+                                         "&&" \n
+                                         "!(BIS_task03Done)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Get_in">*/
+                class Get_in
+                {
+                        name = "Get_in";
+                        itemno = 30;
+                        init = /*%FSM<STATEINIT""">*/"// Allow 90 seconds for them to get in" \n
+                         "_time = time + 90;" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: get in"";" \n
+                         "	" \n
+                         "	// Store used sequences" \n
+                         "	private [""_used""];" \n
+                         "	_used = [];" \n
+                         "	" \n
+                         "	while {count _used < 7} do {" \n
+                         "		private [""_move""];" \n
+                         "		_move = nil;" \n
+                         "		" \n
+                         "		// Find a sequence that hasn't been used yet" \n
+                         "		while {isNil ""_move""} do {" \n
+                         "			private [""_count""];" \n
+                         "			_count = round (1 + random 6);" \n
+                         "			if (!(_count in _used)) then {_move = _count};" \n
+                         "		};" \n
+                         "		" \n
+                         "		_used = _used + [_move];" \n
+                         "		" \n
+                         "		// Play sequence" \n
+                         "		private [""_sequence"", ""_script""];" \n
+                         "		_sequence = missionNamespace getVariable format [""BIS_recon%1Move"", _move];" \n
+                         "		_script = [] spawn _sequence;" \n
+                         "		" \n
+                         "		waitUntil {scriptDone _script};" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Timeout_passed">*/
+                                class Timeout_passed
+                                {
+                                        itemno = 104;
+                                        priority = 0.000000;
+                                        to="Force_in";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time" \n
+                                         "&&" \n
+                                         "isTouchingGround BIS_Mi48"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "All_in">*/
+                                class All_in
+                                {
+                                        itemno = 31;
+                                        priority = 0.000000;
+                                        to="Take_off";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x && _x in BIS_Mi48} count BIS_Recon == {alive _x} count BIS_Recon"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Recon_dead">*/
+                                class Recon_dead
+                                {
+                                        itemno = 83;
+                                        priority = 0.000000;
+                                        to="Reprimand";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	(" \n
+                                         "		time >= _time" \n
+                                         "		&&" \n
+                                         "		!(BIS_attack02)" \n
+                                         "	)" \n
+                                         "	||" \n
+                                         "	{alive _x} count BIS_Recon == 0" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(BIS_task05Done)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Take_off">*/
+                class Take_off
+                {
+                        name = "Take_off";
+                        itemno = 32;
+                        init = /*%FSM<STATEINIT""">*/"private [""_pos""];" \n
+                         "_pos = position BIS_Mi48;" \n
+                         "" \n
+                         """45_AllIn"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "// Remove the waypoint" \n
+                         "[""BIS_tskSave"", objNull] call BIS_fnc_taskSetDestination;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Recon_dead">*/
+                                class Recon_dead
+                                {
+                                        itemno = 83;
+                                        priority = 0.000000;
+                                        to="Reprimand";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	(" \n
+                                         "		time >= _time" \n
+                                         "		&&" \n
+                                         "		!(BIS_attack02)" \n
+                                         "	)" \n
+                                         "	||" \n
+                                         "	{alive _x} count BIS_Recon == 0" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(BIS_task05Done)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Away">*/
+                                class Away
+                                {
+                                        itemno = 33;
+                                        priority = 0.000000;
+                                        to="Return_to_base";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_Mi48 distance _pos >= 500"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Show_hint">*/
+                class Show_hint
+                {
+                        name = "Show_hint";
+                        itemno = 35;
+                        init = /*%FSM<STATEINIT""">*/"[[""Vehicle"", ""Entering""]] call BIS_fnc_advHint;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Deserted">*/
+                                class Deserted
+                                {
+                                        itemno = 16;
+                                        priority = 0.000000;
+                                        to="Fail_01";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle BIS_player distance BIS_Airfield >= 250"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 41;
+                                        priority = 0.000000;
+                                        to="Fail_02";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Player_in_gunshi">*/
+                                class Player_in_gunshi
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="Task_01_DONE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"driver BIS_Mi48 == BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Delete_ambience">*/
+                class Delete_ambience
+                {
+                        name = "Delete_ambience";
+                        itemno = 38;
+                        init = /*%FSM<STATEINIT""">*/"// Delete the ambient units" \n
+                         "{" \n
+                         "	private [""_unit""];" \n
+                         "	_unit = _x;" \n
+                         "	{deleteVehicle _x} forEach ([commander _unit,  gunner _unit, driver _unit, _unit] + crew _unit);" \n
+                         "} forEach BIS_Ambient;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Deserted">*/
+                                class Deserted
+                                {
+                                        itemno = 16;
+                                        priority = 0.000000;
+                                        to="Fail_01";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle BIS_player distance BIS_Airfield >= 250"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 41;
+                                        priority = 0.000000;
+                                        to="Fail_02";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Near_gunship">*/
+                                class Near_gunship
+                                {
+                                        itemno = 34;
+                                        priority = 0.000000;
+                                        to="Show_hint";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player distance BIS_Mi48 <= 20"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Friendly_fire">*/
+                class Friendly_fire
+                {
+                        name = "Friendly_fire";
+                        itemno = 46;
+                        init = /*%FSM<STATEINIT""">*/"BIS_courtMartial = true;" \n
+                         "" \n
+                         "// Update tasks" \n
+                         "{if (_x call BIS_fnc_taskExists) then {_x call BIS_fnc_missionTasks}} forEach [""BIS_tskRearm"", ""BIS_tskHeli"", ""BIS_tskPyrgos"", ""BIS_tskNavalBase"", ""BIS_tskSaD"", ""BIS_tskSave"", ""BIS_tskRTB""];" \n
+                         "" \n
+                         "[""friendlyFire"", false] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Begin_bombardmen">*/
+                class Begin_bombardmen
+                {
+                        name = "Begin_bombardmen";
+                        itemno = 56;
+                        init = /*%FSM<STATEINIT""">*/"// Start bombarding Pyrgos with artillery" \n
+                         "{_x execFSM ""artillery.fsm""} forEach BIS_Artillery;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Pyrgos_fallen">*/
+                                class Pyrgos_fallen
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Fail_02";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time" \n
+                                         "&&" \n
+                                         "!(BIS_task02Done)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "On_the_way">*/
+                                class On_the_way
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Attack";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle BIS_player) distance BIS_Airfield > 4000" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Divert">*/
+                class Divert
+                {
+                        name = "Divert";
+                        itemno = 62;
+                        init = /*%FSM<STATEINIT""">*/"// 10 minutes to rescue recon" \n
+                         "_time = time + 600;" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: divert"";" \n
+                         "	" \n
+                         "	""35_ObjectivesCompleted"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	saveGame;" \n
+                         "	" \n
+                         "	sleep 1;" \n
+                         "	" \n
+                         "	// Unhide recon team and attackers" \n
+                         "	[BIS_Recon + BIS_Pursuers, 1] call BIS_hideUnits;" \n
+                         "	BIS_Wreck01 setDamage 1;" \n
+                         "	" \n
+                         "	""40_ReconDistressCall"" call BIS_fnc_missionConversations;" \n
+                         "	{_x setMarkerAlpha 1} forEach [""BIS_Arrow01"", ""BIS_Arrow02"", ""BIS_Arrow03""];" \n
+                         "	" \n
+                         "	""BIS_tskSave"" call BIS_fnc_missionTasks;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Recon_dead">*/
+                                class Recon_dead
+                                {
+                                        itemno = 83;
+                                        priority = 0.000000;
+                                        to="Reprimand";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	(" \n
+                                         "		time >= _time" \n
+                                         "		&&" \n
+                                         "		!(BIS_attack02)" \n
+                                         "	)" \n
+                                         "	||" \n
+                                         "	{alive _x} count BIS_Recon == 0" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(BIS_task05Done)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Approaching_reco">*/
+                                class Approaching_reco
+                                {
+                                        itemno = 99;
+                                        priority = 0.000000;
+                                        to="Start_attack";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_Mi48 distance markerPos ""BIS_mrkRecon"" <= 2000"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Head_west">*/
+                class Head_west
+                {
+                        name = "Head_west";
+                        itemno = 64;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "SPGs_destroyed">*/
+                                class SPGs_destroyed
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Task_04_DONE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canFire _x} count BIS_Artillery == 0" \n
+                                         "&&" \n
+                                         "!(BIS_task04Done)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Recon_in_trouble">*/
+                                class Recon_in_trouble
+                                {
+                                        itemno = 61;
+                                        priority = 0.000000;
+                                        to="Divert";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_reconProblems"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Naval_base_destr">*/
+                                class Naval_base_destr
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="Task_03_DONE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	!(alive BIS_GuardTower)" \n
+                                         "	||" \n
+                                         "	{alive _x} count BIS_Naval <= (count BIS_Naval / 2)" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(canFire BIS_Hunter01)" \n
+                                         "&&" \n
+                                         "!(BIS_task03Done)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Return_to_base">*/
+                class Return_to_base
+                {
+                        name = "Return_to_base";
+                        itemno = 65;
+                        init = /*%FSM<STATEINIT""">*/"saveGame;" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: return to base"";" \n
+                         "	" \n
+                         "	sleep 1;" \n
+                         "	" \n
+                         "	BIS_task05Done = true;" \n
+                         "	BIS_missionScope setVariable [""Recon"",""Saved""];" \n
+                         "	" \n
+                         "	{_x call BIS_fnc_missionTasks} forEach [""BIS_tskSave"", ""BIS_tskRTB"", ""BIS_tskRearm""];" \n
+                         "	" \n
+                         "	0 fadeMusic 0;" \n
+                         "	3 fadeMusic 0.6;" \n
+                         "	playMusic [""Track09_Night_percussions"", 94];" \n
+                         "	" \n
+                         "	// Remove rearm task's waypoint" \n
+                         "	[""BIS_tskRearm"", objNull] call BIS_fnc_taskSetDestination;" \n
+                         "	" \n
+                         "	""50_ReconSaved"" spawn BIS_fnc_missionConversations;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Landed_at_base">*/
+                                class Landed_at_base
+                                {
+                                        itemno = 68;
+                                        priority = 0.000000;
+                                        to="Start_countdown";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isTouchingGround BIS_Mi48" \n
+                                         "&&" \n
+                                         "BIS_Mi48 distance markerPos ""BIS_mrkEnd"" <= 50"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Start_countdown">*/
+                class Start_countdown
+                {
+                        name = "Start_countdown";
+                        itemno = 69;
+                        init = /*%FSM<STATEINIT""">*/"_time = time + 3;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Moving_again">*/
+                                class Moving_again
+                                {
+                                        itemno = 71;
+                                        priority = 0.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isTouchingGround BIS_Mi48)" \n
+                                         "||" \n
+                                         "BIS_Mi48 distance markerPos ""BIS_mrkEnd"" > 50"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Timeout_passed">*/
+                                class Timeout_passed
+                                {
+                                        itemno = 70;
+                                        priority = 0.000000;
+                                        to="Returned_to_Pyrg";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 72;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Landed_at_base">*/
+                                class Landed_at_base
+                                {
+                                        itemno = 68;
+                                        priority = 0.000000;
+                                        to="Start_countdown";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isTouchingGround BIS_Mi48" \n
+                                         "&&" \n
+                                         "BIS_Mi48 distance markerPos ""BIS_mrkEnd"" <= 50"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Returned_to_Pyrg">*/
+                class Returned_to_Pyrg
+                {
+                        name = "Returned_to_Pyrg";
+                        itemno = 73;
+                        init = /*%FSM<STATEINIT""">*/"{_x call BIS_fnc_missionTasks} forEach [""BIS_tskRearm"", ""BIS_tskRTB""];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Recon_dead">*/
+                                class Recon_dead
+                                {
+                                        itemno = 76;
+                                        priority = 0.000000;
+                                        to="Win_02";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(BIS_missionScope getVariable ""Recon"" == ""Dead"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Recon_saved">*/
+                                class Recon_saved
+                                {
+                                        itemno = 74;
+                                        priority = 0.000000;
+                                        to="Win_01";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(BIS_missionScope getVariable ""Recon"" == ""Saved"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Win_01">*/
+                class Win_01
+                {
+                        name = "Win_01";
+                        itemno = 77;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: win 01"";" \n
+                         "	" \n
+                         "	sleep 6;" \n
+                         "	" \n
+                         "	""Win01"" call BIS_fnc_endMission;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Win_02">*/
+                class Win_02
+                {
+                        name = "Win_02";
+                        itemno = 78;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: win 02"";" \n
+                         "	" \n
+                         "	sleep 6;" \n
+                         "	" \n
+                         "	""Win02"" call BIS_fnc_endMission;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Reprimand">*/
+                class Reprimand
+                {
+                        name = "Reprimand";
+                        itemno = 86;
+                        init = /*%FSM<STATEINIT""">*/"BIS_task05Done = true;" \n
+                         "BIS_missionScope setVariable [""Recon"",""Dead""];" \n
+                         "" \n
+                         "{_x call BIS_fnc_missionTasks} forEach [""BIS_tskSave"", ""BIS_tskRTB""];" \n
+                         "" \n
+                         """x15_ReconDead"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Landed_at_base">*/
+                                class Landed_at_base
+                                {
+                                        itemno = 68;
+                                        priority = 0.000000;
+                                        to="Start_countdown";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isTouchingGround BIS_Mi48" \n
+                                         "&&" \n
+                                         "BIS_Mi48 distance markerPos ""BIS_mrkEnd"" <= 50"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Mayday">*/
+                class Mayday
+                {
+                        name = "Mayday";
+                        itemno = 92;
+                        init = /*%FSM<STATEINIT""">*/"BIS_courtMartial = true;" \n
+                         "" \n
+                         "// Update tasks" \n
+                         "{if (_x call BIS_fnc_taskExists) then {_x call BIS_fnc_missionTasks}} forEach [""BIS_tskRearm"", ""BIS_tskHeli"", ""BIS_tskPyrgos"", ""BIS_tskNavalBase"", ""BIS_tskSaD"", ""BIS_tskSave"", ""BIS_tskRTB""];" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: mayday"";" \n
+                         "	" \n
+                         "	sleep 1;" \n
+                         "	" \n
+                         "	""x10_ShotDown"" call BIS_fnc_missionConversations;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Crash_landed">*/
+                                class Crash_landed
+                                {
+                                        itemno = 93;
+                                        priority = 0.000000;
+                                        to="Start_countdown_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isTouchingGround BIS_Mi48" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Start_countdown_1">*/
+                class Start_countdown_1
+                {
+                        name = "Start_countdown_1";
+                        itemno = 94;
+                        init = /*%FSM<STATEINIT""">*/"_time = time + 3;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Moving_again">*/
+                                class Moving_again
+                                {
+                                        itemno = 97;
+                                        priority = 0.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isTouchingGround BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Timeout_passed">*/
+                                class Timeout_passed
+                                {
+                                        itemno = 95;
+                                        priority = 0.000000;
+                                        to="Fail_03";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Fail_03">*/
+                class Fail_03
+                {
+                        name = "Fail_03";
+                        itemno = 96;
+                        init = /*%FSM<STATEINIT""">*/"[""Fail03"", false] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__1">*/
+                class __1
+                {
+                        name = "__1";
+                        itemno = 98;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Crash_landed">*/
+                                class Crash_landed
+                                {
+                                        itemno = 93;
+                                        priority = 0.000000;
+                                        to="Start_countdown_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isTouchingGround BIS_Mi48" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Start_attack">*/
+                class Start_attack
+                {
+                        name = "Start_attack";
+                        itemno = 100;
+                        init = /*%FSM<STATEINIT""">*/"// Start attack on recon team" \n
+                         "BIS_attack02 = true;" \n
+                         "{_x setCombatMode ""YELLOW""} forEach BIS_Recon;" \n
+                         "" \n
+                         "// Create smoke shell" \n
+                         """SmokeShellRed"" createVehicle markerPos ""BIS_mrkRecon"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Recon_dead">*/
+                                class Recon_dead
+                                {
+                                        itemno = 83;
+                                        priority = 0.000000;
+                                        to="Reprimand";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	(" \n
+                                         "		time >= _time" \n
+                                         "		&&" \n
+                                         "		!(BIS_attack02)" \n
+                                         "	)" \n
+                                         "	||" \n
+                                         "	{alive _x} count BIS_Recon == 0" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(BIS_task05Done)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Landed_at_Recon">*/
+                                class Landed_at_Recon
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="Get_in";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isTouchingGround BIS_Mi48" \n
+                                         "&&" \n
+                                         "BIS_Mi48 distance markerPos ""BIS_mrkRecon"" <= 100"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Force_in">*/
+                class Force_in
+                {
+                        name = "Force_in";
+                        itemno = 105;
+                        init = /*%FSM<STATEINIT""">*/"// Force units into the helicopter" \n
+                         "{" \n
+                         "	if (alive _x) then {" \n
+                         "		_x assignAsCargo BIS_Mi48;" \n
+                         "		_x moveInCargo BIS_Mi48;" \n
+                         "	};" \n
+                         "} forEach BIS_Recon;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Going_down">*/
+                                class Going_down
+                                {
+                                        itemno = 91;
+                                        priority = 0.000000;
+                                        to="Mayday";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player in BIS_Mi48" \n
+                                         "&&" \n
+                                         "!(canMove BIS_Mi48)" \n
+                                         "&&" \n
+                                         "!(isEngineOn BIS_Mi48)" \n
+                                         "&&" \n
+                                         "{!(alive _x)} count [BIS_player, BIS_Mi48] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "All_in">*/
+                                class All_in
+                                {
+                                        itemno = 31;
+                                        priority = 0.000000;
+                                        to="Take_off";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x && _x in BIS_Mi48} count BIS_Recon == {alive _x} count BIS_Recon"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Recon_dead">*/
+                                class Recon_dead
+                                {
+                                        itemno = 83;
+                                        priority = 0.000000;
+                                        to="Reprimand";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	(" \n
+                                         "		time >= _time" \n
+                                         "		&&" \n
+                                         "		!(BIS_attack02)" \n
+                                         "	)" \n
+                                         "	||" \n
+                                         "	{alive _x} count BIS_Recon == 0" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(BIS_task05Done)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Renegade">*/
+                                class Renegade
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="Friendly_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	{side _x == sideEnemy} count [BIS_player, BIS_gunner] > 0" \n
+                                         "	||" \n
+                                         "	!(isNil ""BIS_courtMartial"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "alive BIS_player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Start";
+        finalStates[] =
+        {
+                "Fail_01",
+                "Fail_02",
+                "Friendly_fire",
+                "Win_01",
+                "Win_02",
+                "Fail_03",
+        };
+};
+/*%FSM</COMPILE>*/

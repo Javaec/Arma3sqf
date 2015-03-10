@@ -1,0 +1,1348 @@
+/*%FSM<COMPILE "C:\bis\fsmeditor\entityFSM.cfg, Formation">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-240.000000,-140.000000,-150.000000,-90.000000,0.000000,"Init"};
+item1[] = {"No_cover",8,218,-360.000000,190.000000,-270.000000,240.000000,1.000000,"No cover"};
+item2[] = {"Always",8,218,-240.000000,-60.000000,-150.000000,-10.000000,0.000000,"Always"};
+item3[] = {"Stop_covering",4,218,-580.000000,410.000000,-490.000000,460.000000,1.000000,"Stop covering"};
+item4[] = {"Combat",4,218,-240.000000,140.000000,-150.000000,190.000000,1.000000,"Combat"};
+item5[] = {"No_combat",8,218,-11.948370,43.026672,78.051636,93.026672,0.000000,"No combat"};
+item6[] = {"Combat",2,250,-240.000000,230.000000,-150.000000,280.000000,0.000000,"Combat"};
+item7[] = {"Test_reload",2,250,240.000000,500.000000,330.000000,550.000000,0.000000,"Test reload"};
+item8[] = {"Leader_near_tgt",4,218,-120.000000,170.000000,-30.000000,220.000000,1.000000,"Leader" \n "near tgt"};
+item9[] = {"Always",8,218,-240.000000,300.000000,-150.000000,350.000000,0.000000,"Always"};
+item10[] = {"Search_path__Covering",2,250,-240.000000,370.000000,-150.000000,420.000000,0.000000,"Search path" \n "(Covering)"};
+item11[] = {"Next_target__Out",2,250,-430.000000,570.000000,-340.000000,620.000000,0.000000,"Next target" \n "(Out)"};
+item12[] = {"Start",2,250,-240.000000,30.000000,-150.000000,80.000000,0.000000,"Start"};
+item13[] = {"Provide_cover__Out",2,250,-320.000000,470.000000,-230.000000,520.000000,0.000000,"Provide cover" \n "(Out)"};
+item14[] = {"Clean_up",2,250,-510.000000,230.000000,-420.000000,280.000000,0.000000,"Clean-up"};
+item15[] = {"",7,210,-482.712372,546.561768,-474.712372,554.561768,0.000000,""};
+item16[] = {"Leader",2,250,-20.000000,220.000000,70.000000,270.000000,0.000000,"Leader"};
+item17[] = {"Always",8,218,-20.000000,300.000000,70.000000,350.000000,0.000000,"Always"};
+item18[] = {"Search_path__No",2,250,-20.000000,370.000000,70.000000,420.000000,0.000000,"Search path" \n "(No Cover)"};
+item19[] = {"",7,210,269.030945,320.929382,277.030945,328.929382,0.000000,""};
+item20[] = {"Always",8,218,-500.000000,140.000000,-410.000000,190.000000,0.000000,"Always"};
+item21[] = {"Vehicle",4,218,-40.000000,100.000000,50.000000,150.000000,2.000000,"Vehicle"};
+item22[] = {"Reload",4,218,-490.000000,470.000000,-400.000000,520.000000,2.000000,"Reload"};
+item23[] = {"Reload",4,218,310.000000,400.000000,400.000000,450.000000,3.000000,"Reload"};
+item24[] = {"Drop_to_ground",2,250,310.000000,300.000000,400.000000,350.000000,0.000000,"Drop to ground"};
+item25[] = {"Reload",2,250,310.000000,110.000000,400.000000,160.000000,0.000000,"Reload"};
+item26[] = {"Always",8,218,310.000000,210.000000,400.000000,260.000000,0.000000,"Always"};
+item27[] = {"Excluded",2,250,110.000000,210.000000,200.000000,260.000000,0.000000,"Excluded"};
+item28[] = {"Cover_reached",4,218,-140.000000,470.000000,-50.000000,520.000000,4.000000,"Cover reached"};
+item29[] = {"Abort_Vehicle",4,218,-750.000000,440.000000,-660.000000,490.000000,3.000000,"Abort" \n "Vehicle"};
+item30[] = {"Abort_No_combat",4,218,-650.000000,440.000000,-560.000000,490.000000,3.000000,"Abort" \n "No combat"};
+item31[] = {"Reload__Hiden_",2,250,-360.000000,340.000000,-270.000000,390.000000,0.000000,"Reload" \n "(Hiden)"};
+item32[] = {"Always",8,218,-340.000000,400.000000,-250.000000,450.000000,0.000000,"Always"};
+item33[] = {"No_cover",8,218,130.000000,500.000000,220.000000,550.000000,1.000000,"No cover"};
+item34[] = {"Always",8,218,110.000000,300.000000,200.000000,350.000000,0.000000,"Always"};
+item35[] = {"Search_path__No_1",2,250,110.000000,370.000000,200.000000,420.000000,0.000000,"Search path" \n "(No Cover)"};
+item36[] = {"No_cover",8,218,220.000000,-40.000000,310.000000,10.000000,1.000000,"No cover"};
+item37[] = {"Hide_in_cover__Hidden",2,250,-130.000000,560.000000,-40.000000,610.000000,0.000000,"Hide in cover" \n "(Hidden)"};
+item38[] = {"Random_delay",4,218,-280.000000,550.000000,-190.000000,600.000000,0.000000,"Random delay"};
+item39[] = {"Hide_or_Out_",2,250,-280.000000,690.000000,-190.000000,740.000000,0.000000,"Hide or Out?"};
+item40[] = {"Otherwise",8,218,-130.000000,660.000000,-40.000000,710.000000,0.000000,"Otherwise"};
+item41[] = {"Random",8,218,-430.000000,650.000000,-340.000000,700.000000,1.000000,"Random"};
+item42[] = {"",7,210,-217.152145,527.834045,-209.152145,535.834045,0.000000,""};
+item43[] = {"",7,210,-295.925781,527.834106,-287.925751,535.834106,0.000000,""};
+item44[] = {"Drop_to_ground_1",2,250,-460.000000,400.000000,-370.000000,450.000000,0.000000,"Drop to ground"};
+item45[] = {"Always",8,218,-460.000000,340.000000,-370.000000,390.000000,0.000000,"Always"};
+link0[] = {0,2};
+link1[] = {1,12};
+link2[] = {2,12};
+link3[] = {3,14};
+link4[] = {4,6};
+link5[] = {5,27};
+link6[] = {6,8};
+link7[] = {6,9};
+link8[] = {7,19};
+link9[] = {7,23};
+link10[] = {8,16};
+link11[] = {9,10};
+link12[] = {10,1};
+link13[] = {10,28};
+link14[] = {11,15};
+link15[] = {11,38};
+link16[] = {12,4};
+link17[] = {12,5};
+link18[] = {12,21};
+link19[] = {13,15};
+link20[] = {13,38};
+link21[] = {14,20};
+link22[] = {15,3};
+link23[] = {15,22};
+link24[] = {15,29};
+link25[] = {15,30};
+link26[] = {16,17};
+link27[] = {17,18};
+link28[] = {18,28};
+link29[] = {18,33};
+link30[] = {19,36};
+link31[] = {20,12};
+link32[] = {21,27};
+link33[] = {22,44};
+link34[] = {23,24};
+link35[] = {24,26};
+link36[] = {25,36};
+link37[] = {26,25};
+link38[] = {27,34};
+link39[] = {28,13};
+link40[] = {29,14};
+link41[] = {30,14};
+link42[] = {31,32};
+link43[] = {32,13};
+link44[] = {33,7};
+link45[] = {34,35};
+link46[] = {35,19};
+link47[] = {35,28};
+link48[] = {36,12};
+link49[] = {37,38};
+link50[] = {37,42};
+link51[] = {38,39};
+link52[] = {39,40};
+link53[] = {39,41};
+link54[] = {40,37};
+link55[] = {41,11};
+link56[] = {42,43};
+link57[] = {43,15};
+link58[] = {44,45};
+link59[] = {45,31};
+globals[] = {10.000000,1,0,1,16777215,640,480,1,188,6316128,1,-558.318420,120.665680,849.442688,257.683289,1191,1038,1};
+window[] = {2,-1,-1,-1,-1,837,66,1041,87,3,1209};
+*//*%FSM</HEAD>*/
+class Formation
+{
+  class States
+  {
+    /*%FSM<STATE "Init">*/
+    class Init
+    {
+      name = "Init";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "formationInit";
+        parameters[] = {};
+        thresholds[] = {{0, 0.5, 0.5}}; // set slot 0 to 0.5
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          priority = 0.000000;
+          to="Start";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0; // slot 0 is used       
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Combat">*/
+    class Combat
+    {
+      name = "Combat";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "nothing";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Leader_near_tgt">*/
+        class Leader_near_tgt
+        {
+          priority = 1.000000;
+          to="Leader";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "formationIsLeader";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          priority = 0.000000;
+          to="Search_path__Covering";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Test_reload">*/
+    class Test_reload
+    {
+      name = "Test_reload";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "nothing";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Reload">*/
+        class Reload
+        {
+          priority = 3.000000;
+          to="Drop_to_ground";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "reloadNeeded";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "No_cover">*/
+        class No_cover
+        {
+          priority = 1.000000;
+          to="Start";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Search_path__Covering">*/
+    class Search_path__Covering
+    {
+      name = "Search_path__Covering";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "searchPath";
+        parameters[] = {10,5};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Cover_reached">*/
+        class Cover_reached
+        {
+          priority = 4.000000;
+          to="Provide_cover__Out";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "coverReached";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "No_cover">*/
+        class No_cover
+        {
+          priority = 1.000000;
+          to="Start";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Next_target__Out">*/
+    class Next_target__Out
+    {
+      name = "Next_target__Out";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "formationNextTarget";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Abort_Vehicle">*/
+        class Abort_Vehicle
+        {
+          priority = 3.000000;
+          to="Clean_up";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "vehicle";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Abort_No_combat">*/
+        class Abort_No_combat
+        {
+          priority = 3.000000;
+          to="Clean_up";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "1-behaviourCombat";
+            parameters[] = {};
+            threshold = 0; // slot 0 is used
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Reload">*/
+        class Reload
+        {
+          priority = 2.000000;
+          to="Drop_to_ground_1";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "reloadNeeded";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};            
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Stop_covering">*/
+        class Stop_covering
+        {
+          priority = 1.000000;
+          to="Clean_up";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "formationCanLeaveCover";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Random_delay">*/
+        class Random_delay
+        {
+          priority = 0.000000;
+          to="Hide_or_Out_";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "randomDelay";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Start">*/
+    class Start
+    {
+      name = "Start";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "nothing";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Vehicle">*/
+        class Vehicle
+        {
+          priority = 2.000000;
+          to="Excluded";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "vehicle";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Combat">*/
+        class Combat
+        {
+          priority = 1.000000;
+          to="Combat";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "behaviourCombat";
+            parameters[] = {};
+            threshold = 0;  
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "No_combat">*/
+        class No_combat
+        {
+          priority = 0.000000;
+          to="Excluded";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0; // slot 0 is used
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Provide_cover__Out">*/
+    class Provide_cover__Out
+    {
+      name = "Provide_cover__Out";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "formationProvideCover";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Abort_Vehicle">*/
+        class Abort_Vehicle
+        {
+          priority = 3.000000;
+          to="Clean_up";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "vehicle";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Abort_No_combat">*/
+        class Abort_No_combat
+        {
+          priority = 3.000000;
+          to="Clean_up";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "1-behaviourCombat";
+            parameters[] = {};
+            threshold = 0; // slot 0 is used
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Reload">*/
+        class Reload
+        {
+          priority = 2.000000;
+          to="Drop_to_ground_1";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "reloadNeeded";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};            
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Stop_covering">*/
+        class Stop_covering
+        {
+          priority = 1.000000;
+          to="Clean_up";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "formationCanLeaveCover";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Random_delay">*/
+        class Random_delay
+        {
+          priority = 0.000000;
+          to="Hide_or_Out_";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "randomDelay";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Clean_up">*/
+    class Clean_up
+    {
+      name = "Clean_up";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "formationCleanUp";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          priority = 0.000000;
+          to="Start";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0; // slot 0 is used       
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};           
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Leader">*/
+    class Leader
+    {
+      name = "Leader";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "formationLeader";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          priority = 0.000000;
+          to="Search_path__No";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0; // slot 0 is used
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Search_path__No">*/
+    class Search_path__No
+    {
+      name = "Search_path__No";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "searchPath";
+        parameters[] = {0,0};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Cover_reached">*/
+        class Cover_reached
+        {
+          priority = 4.000000;
+          to="Provide_cover__Out";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "coverReached";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "No_cover">*/
+        class No_cover
+        {
+          priority = 1.000000;
+          to="Test_reload";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Drop_to_ground">*/
+    class Drop_to_ground
+    {
+      name = "Drop_to_ground";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "setUnitPosToDown";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          priority = 0.000000;
+          to="Reload";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0; // slot 0 is used
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Reload">*/
+    class Reload
+    {
+      name = "Reload";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "reload";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "No_cover">*/
+        class No_cover
+        {
+          priority = 1.000000;
+          to="Start";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Excluded">*/
+    class Excluded
+    {
+      name = "Excluded";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "formationExcluded";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          priority = 0.000000;
+          to="Search_path__No_1";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0; // slot 0 is used
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Reload__Hiden_">*/
+    class Reload__Hiden_
+    {
+      name = "Reload__Hiden_";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "reload";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          priority = 0.000000;
+          to="Provide_cover__Out";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};  
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Search_path__No_1">*/
+    class Search_path__No_1
+    {
+      name = "Search_path__No_1";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "searchPath";
+        parameters[] = {0,0};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Cover_reached">*/
+        class Cover_reached
+        {
+          priority = 4.000000;
+          to="Provide_cover__Out";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "coverReached";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "No_cover">*/
+        class No_cover
+        {
+          priority = 1.000000;
+          to="Start";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Hide_in_cover__Hidden">*/
+    class Hide_in_cover__Hidden
+    {
+      name = "Hide_in_cover__Hidden";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "formationHideInCover";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Abort_Vehicle">*/
+        class Abort_Vehicle
+        {
+          priority = 3.000000;
+          to="Clean_up";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "vehicle";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Abort_No_combat">*/
+        class Abort_No_combat
+        {
+          priority = 3.000000;
+          to="Clean_up";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "1-behaviourCombat";
+            parameters[] = {};
+            threshold = 0; // slot 0 is used
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Reload">*/
+        class Reload
+        {
+          priority = 2.000000;
+          to="Drop_to_ground_1";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "reloadNeeded";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};            
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Stop_covering">*/
+        class Stop_covering
+        {
+          priority = 1.000000;
+          to="Clean_up";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "formationCanLeaveCover";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Random_delay">*/
+        class Random_delay
+        {
+          priority = 0.000000;
+          to="Hide_or_Out_";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "randomDelay";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Hide_or_Out_">*/
+    class Hide_or_Out_
+    {
+      name = "Hide_or_Out_";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        function = "formationInit";
+        parameters[] = {};
+        /*
+        set slot 1 to random value
+        the offset of the values from 0..1
+        determines the ratio between hiden and out
+        (The higher, the less are we out)
+        */
+        thresholds[] = {{1, 0.2, 1.2}};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Random">*/
+        class Random
+        {
+          priority = 1.000000;
+          to="Next_target__Out";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 1; // slot 1 is random 0..2
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};  
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "Otherwise">*/
+        class Otherwise
+        {
+          priority = 0.000000;
+          to="Hide_in_cover__Hidden";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0;
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};  
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Drop_to_ground_1">*/
+    class Drop_to_ground_1
+    {
+      name = "Drop_to_ground_1";
+      class Init
+      {
+        /*%FSM<STATEINIT>*/
+        // note: when in cover, AI will ignore the instruction
+        function = "setUnitPosToDown";
+        parameters[] = {};
+        thresholds[] = {};
+        /*%FSM</STATEINIT>*/
+      };
+      class Links
+      {
+
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          priority = 0.000000;
+          to="Reload__Hiden_";
+          class Condition
+          {
+            /*%FSM<CONDITION>*/
+            function = "true";
+            parameters[] = {};
+            threshold = 0; // slot 0 is used
+            /*%FSM</CONDITION>*/
+          };
+          class Action
+          {
+            /*%FSM<ACTION>*/
+            function = "nothing";
+            parameters[] = {};
+            thresholds[] = {};
+            /*%FSM</ACTION>*/
+          };
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Init";
+  finalStates[] =
+  {
+  };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,402 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, ambientHelicopters">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"ambient_Helicopt",0,4346,-125.000000,-250.000000,-25.000000,-200.000000,0.000000,"ambient" \n "Helicopters"};
+item1[] = {"Return",8,218,-125.000000,-175.000000,-25.000000,-125.000000,0.000000,"Return"};
+item2[] = {"Loop_Reset",2,250,-275.000000,50.000000,-175.000000,100.000000,0.000000,"Loop Reset"};
+item3[] = {"Wait",4,218,-125.000000,50.000000,-25.000000,100.000000,0.000000,"Wait"};
+item4[] = {"Vehicle_Settings",2,250,25.000000,50.000000,125.000000,100.000000,0.000000,"Vehicle" \n "Settings"};
+item5[] = {"Loop",4,218,25.000000,-25.000000,125.000000,25.000000,1.000000,"Loop"};
+item6[] = {"Wait",2,250,-125.000000,-25.000000,-25.000000,25.000000,0.000000,"Wait"};
+item7[] = {"",7,210,71.000000,-154.000000,79.000000,-146.000000,0.000000,""};
+item8[] = {"",7,210,196.000000,71.000000,204.000000,79.000000,0.000000,""};
+item9[] = {"Delete",4,218,275.000000,-25.000000,375.000000,25.000000,2.000000,"Delete"};
+item10[] = {"",7,210,196.000000,-154.000031,204.000000,-145.999969,0.000000,""};
+item11[] = {"Delete",2,250,275.000000,-100.000000,375.000000,-50.000000,0.000000,"Delete"};
+item12[] = {"Create",4,218,150.000000,-25.000000,250.000000,25.000000,2.000000,"Create"};
+item13[] = {"Create",2,250,150.000000,-100.000000,250.000000,-50.000000,0.000000,"Create"};
+item14[] = {"No_vehicles",4,218,-125.000000,-325.000000,-25.000000,-275.000000,1.000000,"No vehicles"};
+item15[] = {"Exit",1,250,-125.000000,-400.000000,-25.000000,-350.000000,0.000000,"Exit"};
+item16[] = {"",7,210,321.000000,71.000000,329.000000,79.000000,0.000000,""};
+item17[] = {"",7,210,321.000000,-154.000000,329.000000,-146.000015,0.000000,""};
+link0[] = {0,1};
+link1[] = {0,14};
+link2[] = {1,2};
+link3[] = {2,3};
+link4[] = {3,4};
+link5[] = {4,1};
+link6[] = {4,5};
+link7[] = {4,8};
+link8[] = {4,16};
+link9[] = {5,6};
+link10[] = {6,3};
+link11[] = {7,1};
+link12[] = {7,5};
+link13[] = {8,12};
+link14[] = {9,11};
+link15[] = {10,7};
+link16[] = {11,17};
+link17[] = {12,13};
+link18[] = {13,10};
+link19[] = {14,15};
+link20[] = {16,9};
+link21[] = {17,7};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,22,6316128,1,-337.214844,510.738586,397.369324,-801.231323,636,899,1};
+window[] = {2,-1,-1,-1,-1,965,-1064,-104,216,3,653};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "ambientHelicopters";
+  class States
+  {
+    /*%FSM<STATE "ambient_Helicopt">*/
+    class ambient_Helicopt
+    {
+      name = "ambient_Helicopt";
+      itemno = 0;
+      init = /*%FSM<STATEINIT""">*/"_vehCountMax =	[_this,0,3,[0]] call bis_fnc_param;" \n
+       "_schnobble =	[_this,1,3000,[0]] call bis_fnc_param;" \n
+       "_schnobbleMax = _schnobble * 2;" \n
+       "_schnobbleMin = _schnobble / 2;" \n
+       "" \n
+       "//--- Detect all heliports" \n
+       "_locationTypes = [""Heliport"",""HeliportHospital"",""HeliportTrauma""];" \n
+       "_areaPos = position ([] call BIS_fnc_worldArea);" \n
+       "_areaSize = (triggerarea ([] call BIS_fnc_worldArea)) select 0;" \n
+       "_areaSize = [_areaSize,_areaSize] distance [0,0];" \n
+       "" \n
+       "_heliportsAll = nearestlocations [" \n
+       "	_areaPos," \n
+       "	_locationTypes," \n
+       "	_areaSize" \n
+       "];" \n
+       "" \n
+       "//////////////////////////////////////////////////////////////////////////////////" \n
+       "//--- Get helicopter classes" \n
+       "_listClasses = [];" \n
+       "_cfgVehicles = configfile >> ""cfgvehicles"";" \n
+       "for ""_c"" from 0 to (count _cfgVehicles - 1) do {" \n
+       "	_current = _cfgVehicles select _c;" \n
+       "	if (isclass _current) then {" \n
+       "		_currentClass = configname _current;" \n
+       "		if (_currentClass iskindof ""helicopter"") then {" \n
+       "			_scope = getnumber (_current >> ""scope"");" \n
+       "			_ambientType = getnumber (_current >> ""ambientType"");" \n
+       "			if (_scope > 1 && _ambientType > 0) then {" \n
+       "				_listClasses set [count _listClasses,_currentClass];" \n
+       "			};" \n
+       "		};" \n
+       "	};" \n
+       "};" \n
+       "" \n
+       "//////////////////////////////////////////////////////////////////////////////////" \n
+       "//--- Create vehicles" \n
+       "_listVehs = [];" \n
+       "_listClassesTemp = [];" \n
+       "for ""_i"" from 0 to (_vehCountMax - 1) do {" \n
+       "" \n
+       "	//--- Classes exceeded; reset" \n
+       "	if (count _listClassesTemp < 1) then {_listClassesTemp = _listClasses};" \n
+       "	_class = _listClassesTemp call bis_fnc_selectrandom;" \n
+       "	_listClassesTemp = _listClassesTemp - [_class];" \n
+       "" \n
+       "	_vehArray = [" \n
+       "		[99,99,99 * _i]," \n
+       "		0," \n
+       "		_class," \n
+       "		side player" \n
+       "	] call bis_fnc_spawnVehicle;" \n
+       "" \n
+       "	_veh = _vehArray select 0;" \n
+       "	_vehGrp = _vehArray select 1;" \n
+       "	_listVehs set [count _listVehs,_veh];" \n
+       "	_veh enablesimulation false;" \n
+       "	_veh hideobject true;" \n
+       "	_veh flyinheight (200 + 20 * _i)" \n
+       "};" \n
+       "_listVehsCount = count _listVehs - 1;" \n
+       "" \n
+       "//////////////////////////////////////////////////////////////////////////////////" \n
+       "" \n
+       "//--- Blacklist init" \n
+       "0 call bis_fnc_ambientBlacklist;" \n
+       "" \n
+       "_vSpawned = 0;" \n
+       "_time = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "No_vehicles">*/
+        class No_vehicles
+        {
+          itemno = 14;
+          priority = 1.000000;
+          to="Exit";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count _listVehs < 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="Loop_Reset";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Loop_Reset">*/
+    class Loop_Reset
+    {
+      name = "Loop_Reset";
+      itemno = 2;
+      init = /*%FSM<STATEINIT""">*/"_player = vehicle cameraon;" \n
+       "" \n
+       "//--- Loop vars" \n
+       "_v = 0;" \n
+       "_time = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Wait">*/
+        class Wait
+        {
+          itemno = 3;
+          priority = 0.000000;
+          to="Vehicle_Settings";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _time) > 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Vehicle_Settings">*/
+    class Vehicle_Settings
+    {
+      name = "Vehicle_Settings";
+      itemno = 4;
+      init = /*%FSM<STATEINIT""">*/"_veh = _listVehs select _v;" \n
+       "_pos = position _player;" \n
+       "" \n
+       "//--- Get nearby heliports" \n
+       "_heliportsCount = count nearestlocations [" \n
+       "	position _player," \n
+       "	_locationTypes," \n
+       "	_schnobbleMax" \n
+       "];" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Create">*/
+        class Create
+        {
+          itemno = 12;
+          priority = 2.000000;
+          to="Create";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_pos distance _veh > _schnobble)" \n
+           "&&" \n
+           "_vSpawned < _heliportsCount" \n
+           "&&" \n
+           "!(_pos call bis_fnc_ambientBlacklist)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Delete">*/
+        class Delete
+        {
+          itemno = 9;
+          priority = 2.000000;
+          to="Delete";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(" \n
+           "	(_pos distance _veh > _schnobble)" \n
+           "	&&" \n
+           "	_vSpawned >= _heliportsCount" \n
+           "	&&" \n
+           "	simulationenabled _veh" \n
+           ")" \n
+           "||" \n
+           "!alive _veh"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Loop">*/
+        class Loop
+        {
+          itemno = 5;
+          priority = 1.000000;
+          to="Wait";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_v = _v + 1;" \n
+           "_v < _listVehsCount"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="Loop_Reset";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Wait">*/
+    class Wait
+    {
+      name = "Wait";
+      itemno = 6;
+      init = /*%FSM<STATEINIT""">*/"_time = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Wait">*/
+        class Wait
+        {
+          itemno = 3;
+          priority = 0.000000;
+          to="Vehicle_Settings";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _time) > 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Delete">*/
+    class Delete
+    {
+      name = "Delete";
+      itemno = 11;
+      init = /*%FSM<STATEINIT""">*/"_vSpawned = _vSpawned - 1;" \n
+       "" \n
+       "_veh setpos [99,99,99];" \n
+       "_veh enablesimulation false;" \n
+       "_veh hideobject true;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Loop">*/
+        class Loop
+        {
+          itemno = 5;
+          priority = 1.000000;
+          to="Wait";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_v = _v + 1;" \n
+           "_v < _listVehsCount"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="Loop_Reset";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Create">*/
+    class Create
+    {
+      name = "Create";
+      itemno = 13;
+      init = /*%FSM<STATEINIT""">*/"_pos = [" \n
+       "	_pos," \n
+       "	_schnobbleMin + random _schnobbleMin," \n
+       "	direction _player - 30 + random 60" \n
+       "] call bis_fnc_relpos;" \n
+       "_posZ = 200 + 20 * _v;" \n
+       "_pos set [2,_posZ];" \n
+       "_dirTo = random 360;" \n
+       "" \n
+       "_veh setpos _pos;" \n
+       "_veh setdir _dirto;" \n
+       "_veh setvelocity [0,0,0];" \n
+       "" \n
+       "_pos = [" \n
+       "	position _veh," \n
+       "	10000," \n
+       "	_dirTo" \n
+       "] call bis_fnc_relpos;" \n
+       "if !(_pos call bis_fnc_ambientBlacklist) then {" \n
+       "	_pos set [2,_posZ];" \n
+       "	_veh move _pos;" \n
+       "};" \n
+       "" \n
+       "if (!simulationenabled _veh) then {" \n
+       "	_vSpawned = _vSpawned + 1;" \n
+       "	_veh enablesimulation true;" \n
+       "	_veh hideobject false;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Loop">*/
+        class Loop
+        {
+          itemno = 5;
+          priority = 1.000000;
+          to="Wait";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_v = _v + 1;" \n
+           "_v < _listVehsCount"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="Loop_Reset";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Exit">*/
+    class Exit
+    {
+      name = "Exit";
+      itemno = 15;
+      init = /*%FSM<STATEINIT""">*/"""No helicopters created"" call bis_fnc_error;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="ambient_Helicopt";
+  finalStates[] =
+  {
+    "Exit",
+  };
+};
+/*%FSM</COMPILE>*/

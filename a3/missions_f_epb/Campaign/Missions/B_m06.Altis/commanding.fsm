@@ -1,0 +1,224 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, Commanding">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init_H__Quick",0,250,-200.000000,-825.000000,-100.000000,-775.000000,0.000000,"Init" \n "H: Quick"};
+item1[] = {"timeout_60_sec",6,250,-200.000000,-450.000000,-100.000000,-400.000000,0.000000,"timeout" \n "60 sec"};
+item2[] = {"convoy_go",2,250,-200.000000,-375.000000,-100.000000,-325.000000,0.000000,"convoy go"};
+item3[] = {"team_in_vehicles",4,218,-200.000000,-750.000000,-100.000000,-700.000000,0.000000,"team in" \n "vehicles"};
+item4[] = {"task_done_H__Way",2,250,-200.000000,-675.000000,-100.000000,-625.000000,0.000000,"task done" \n "H: Waypoints"};
+item5[] = {"team_away",4,218,-200.000000,-600.000000,-100.000000,-550.000000,0.000000,"team away"};
+item6[] = {"task_done",2,4346,-200.000000,-525.000000,-100.000000,-475.000000,0.000000,"task done"};
+item7[] = {"ambushed",4,218,-200.000000,-300.000000,-100.000000,-250.000000,0.000000,"ambushed"};
+item8[] = {"task_done_1",1,250,-200.000000,-225.000000,-100.000000,-175.000000,0.000000,"task done"};
+item9[] = {"got_out",4,218,-75.000000,-375.000000,25.000000,-325.000000,0.000000,"got out"};
+item10[] = {"H__Complex",2,250,-75.000000,-300.000000,25.000000,-250.000000,0.000000,"H: Complex"};
+item11[] = {"ambush_done",4,218,-75.000000,-525.000000,25.000000,-475.000000,0.000000,"ambush" \n "done"};
+item12[] = {"terminate",1,250,-75.000000,-450.000000,25.000000,-400.000000,0.000000,"terminate"};
+link0[] = {0,3};
+link1[] = {1,2};
+link2[] = {2,7};
+link3[] = {2,9};
+link4[] = {3,4};
+link5[] = {4,5};
+link6[] = {5,6};
+link7[] = {6,1};
+link8[] = {6,11};
+link9[] = {7,8};
+link10[] = {9,10};
+link11[] = {10,7};
+link12[] = {11,12};
+globals[] = {25.000000,1,0,0,0,640,480,1,169,6316128,1,-337.332489,124.136459,-136.240173,-842.134033,674,1031,1};
+window[] = {2,-1,-1,-1,-1,817,50,1264,50,3,692};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Commanding";
+        class States
+        {
+                /*%FSM<STATE "Init_H__Quick">*/
+                class Init_H__Quick
+                {
+                        name = "Init_H__Quick";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_null = [[""Command"", ""Quick""], 60] spawn BIS_fnc_advHint;" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "team_in_vehicles">*/
+                                class team_in_vehicles
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="task_done_H__Way";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{vehicle _x == _x && !isPlayer _x} count units BIS_inf == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "convoy_go">*/
+                class convoy_go
+                {
+                        name = "convoy_go";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"BIS_convoyGo = TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "got_out">*/
+                                class got_out
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="H__Complex";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{vehicle _x == _x && !isPlayer _x} count units BIS_inf > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "ambushed">*/
+                                class ambushed
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="task_done_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{behaviour _x == ""COMBAT""} count units BIS_grpConvoy > 0 && !(""BIS_objAmbush"" call BIS_fnc_taskCompleted)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done_H__Way">*/
+                class task_done_H__Way
+                {
+                        name = "task_done_H__Way";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objCommand_GetIn"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "[""BIS_objCommand_Move"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "_null = [[""Command"", ""Waypoints""], 20] spawn BIS_fnc_advHint;" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "team_away">*/
+                                class team_away
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="task_done";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{_x distance markerPos ""cars"" < 75} count units BIS_inf == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done">*/
+                class task_done
+                {
+                        name = "task_done";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objCommand_Move"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "if (!(""BIS_objAmbush"" call BIS_fnc_taskCompleted)) then {" \n
+                         "	""BIS_objCommand_Setup"" call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         "" \n
+                         "_t = time;" \n
+                         "" \n
+                         "[""AddTopic"", [""i01_Ambush"", ""B_m06"", localize ""STR_A3_campaign_b_m06_instructor01""]] call BIS_fnc_InstructorFigure;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "ambush_done">*/
+                                class ambush_done
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"""BIS_objAmbush"" call BIS_fnc_taskCompleted"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "timeout_60_sec">*/
+                                class timeout_60_sec
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="convoy_go";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 60"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done_1">*/
+                class task_done_1
+                {
+                        name = "task_done_1";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objCommand_Setup"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "[""BIS_objAmbush"", ""Current""] call BIS_fnc_missionTasks;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "H__Complex">*/
+                class H__Complex
+                {
+                        name = "H__Complex";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"_null = [[""Command"", ""Complex""], 20] spawn BIS_fnc_advHint;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "ambushed">*/
+                                class ambushed
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="task_done_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{behaviour _x == ""COMBAT""} count units BIS_grpConvoy > 0 && !(""BIS_objAmbush"" call BIS_fnc_taskCompleted)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "terminate">*/
+                class terminate
+                {
+                        name = "terminate";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init_H__Quick";
+        finalStates[] =
+        {
+                "task_done_1",
+                "terminate",
+        };
+};
+/*%FSM</COMPILE>*/

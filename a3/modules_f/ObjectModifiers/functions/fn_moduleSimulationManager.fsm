@@ -1,0 +1,285 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, Simulation manager">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"START",0,4346,-250.000000,-300.000000,-150.000000,-250.000000,0.000000,"START"};
+item1[] = {"Sites_init_done",4,218,-250.000000,-225.000000,-150.000000,-175.000000,0.000000,"Sites" \n "init done"};
+item2[] = {"hide_distant_obj",2,250,-250.000000,-150.000000,-150.000000,-100.000000,0.000000,"hide" \n "distant objects"};
+item3[] = {"moved_far_enough",4,218,-250.000000,-75.000000,-150.000000,-25.000000,0.000000,"moved far" \n "enough"};
+item4[] = {"setPos_d",4,218,-150.000000,-75.000000,-50.000000,-25.000000,0.000000,"setPos'd"};
+item5[] = {"airborne",4,218,-450.000000,-75.000000,-350.000000,-25.000000,0.000000,"airborne"};
+item6[] = {"adjust_freeze_di",2,250,-450.000000,0.000000,-350.000000,50.000000,0.000000,"adjust" \n "freeze distance"};
+item7[] = {"on_land",4,218,-350.000000,-75.000000,-250.000000,-25.000000,0.000000,"on land"};
+item8[] = {"rescan_new_objec",4,218,-50.000000,-75.000000,50.000000,-25.000000,0.000000,"rescan new" \n "objects"};
+item9[] = {"scan_for_new_obj",2,250,-50.000000,0.000000,50.000000,50.000000,0.000000,"scan for" \n "new objects"};
+item10[] = {"always",8,218,-250.000000,75.000000,-150.000000,125.000000,0.000000,"always"};
+item11[] = {"",7,210,71.000000,96.000000,79.000000,104.000000,0.000000,""};
+item12[] = {"",7,210,71.000000,-129.000000,79.000000,-121.000000,0.000000,""};
+item13[] = {"adjust_freeze_di_1",2,250,-350.000000,0.000000,-250.000000,50.000000,0.000000,"adjust" \n "freeze distance"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,4};
+link4[] = {2,5};
+link5[] = {2,7};
+link6[] = {2,8};
+link7[] = {3,2};
+link8[] = {4,2};
+link9[] = {5,6};
+link10[] = {6,10};
+link11[] = {7,13};
+link12[] = {8,9};
+link13[] = {9,10};
+link14[] = {10,11};
+link15[] = {11,12};
+link16[] = {12,2};
+link17[] = {13,10};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,181,6316128,1,-399.096558,82.240532,275.286499,-451.184753,593,1031,1};
+window[] = {2,-1,-1,-1,-1,830,100,1360,100,3,611};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Simulation manager";
+        class States
+        {
+                /*%FSM<STATE "START">*/
+                class START
+                {
+                        name = "START";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_logic = [_this,0,objnull,[objnull]] call bis_fnc_param;" \n
+                         "" \n
+                         "_freezeDist = 2000; if (!isNil {_logic getVariable ""radius""}) then {_freezeDist = (_logic getVariable ""radius"")};" \n
+                         "_excludeAir = FALSE; if (!isNil {_logic getVariable ""excludeAir""}) then {_excludeAir = (_logic getVariable ""excludeAir""); _excludeAir = ([FALSE, TRUE] select (_logic getVariable ""excludeAir""))};" \n
+                         "" \n
+                         "BIS_fps_simulSteps = 0;" \n
+                         "BIS_fps_rescanNewObjects = FALSE;" \n
+                         "_afterStartCheck = FALSE;" \n
+                         "_airborne = FALSE;" \n
+                         "_missionObjs = [];" \n
+                         "_toHide = [];" \n
+                         "_t = time;" \n
+                         "" \n
+                         "if (isNil ""BIS_persistent"") then {BIS_persistent = []};" \n
+                         "" \n
+                         "_grabMissionObjs = {" \n
+                         "	_ret = [];" \n
+                         "	{" \n
+                         "		if (!(isNull _x || typeOf _x == """" || _x isKindOf ""Logic"" || _x isKindOf ""Helper_Base_F"" || (_x in BIS_simulationManager_checkFor))) then {" \n
+                         "			_ret = _ret + [_x];" \n
+                         "			if (!(_x isKindOf ""Man"")) then {_veh = _x; {if (!(_x in _ret)) then {_ret = _ret + [_x]}} forEach crew _veh}" \n
+                         "		}" \n
+                         "	} forEach allMissionObjects ""All"";" \n
+                         "	{if ((vehicleVarName _x != """" || if (_excludeAir) then {_x isKindOf ""Air""} else {FALSE}) && !(_x in BIS_persistent)) then {BIS_persistent = BIS_persistent + [_x]}} forEach _ret;" \n
+                         "	{if (vehicle _x != _x && !(vehicle _x  in BIS_persistent)) then {BIS_persistent = BIS_persistent + [vehicle _x]}} forEach BIS_persistent;" \n
+                         "	_ret" \n
+                         "};" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	while {TRUE} do {" \n
+                         "		_checkFor_grps = [];" \n
+                         "		_checkFor = [];" \n
+                         "		{if (!(group _x in _checkFor_grps)) then {_checkFor_grps = _checkFor_grps + [group _x]}} forEach (playableUnits + switchableUnits);" \n
+                         "		{_checkFor = _checkFor + units _x} forEach _checkFor_grps;" \n
+                         "		if !(cameraOn in _checkFor) then {_checkFor pushBack cameraOn};" \n
+                         "		BIS_simulationManager_checkFor = _checkFor;" \n
+                         "		sleep 5;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Sites_init_done">*/
+                                class Sites_init_done
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="hide_distant_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"if (count allSites > 0) then {!isNil ""BIS_initSitesDone"" && !isNil ""BIS_simulationManager_checkFor""} else {!isNil ""BIS_simulationManager_checkFor""}"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "hide_distant_obj">*/
+                class hide_distant_obj
+                {
+                        name = "hide_distant_obj";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"_oldPersistent = +BIS_persistent;" \n
+                         "_t = time;" \n
+                         "" \n
+                         "_hidden = +_toHide;" \n
+                         "_toHide = [];" \n
+                         "" \n
+                         "{_x setVariable [""BIS_FPS_lastPos"", position vehicle _x]} forEach BIS_simulationManager_checkFor;" \n
+                         "" \n
+                         "if (count _missionObjs == 0) then {_missionObjs = call _grabMissionObjs};" \n
+                         "" \n
+                         "{" \n
+                         "	_obj = _x;" \n
+                         "	if (count crew _obj == 0 && !((side _obj) in [sideLogic, sideUnknown])) then {" \n
+                         "		if ({_obj distance _x < _freezeDist} count BIS_simulationManager_checkFor == 0 && !(_obj in _toHide)) then {" \n
+                         "			_toHide = _toHide + [_obj];" \n
+                         "		}" \n
+                         "	} else {" \n
+                         "		if (!(_obj in _toHide) && !((side _obj) in [sideLogic, sideUnknown])) then {" \n
+                         "			if ({_obj distance _x < _freezeDist} count BIS_simulationManager_checkFor == 0 && leader _obj == _obj) then {" \n
+                         "				{_toHide = _toHide + [_x]; if (!(vehicle _x in _toHide)) then {_toHide = _toHide + [vehicle _x]}} forEach units group _obj;" \n
+                         "			}" \n
+                         "		}" \n
+                         "	}" \n
+                         "} forEach _missionObjs;" \n
+                         "" \n
+                         "{_x hideObjectGlobal FALSE; _x enableSimulationGlobal  TRUE; if (_x isKindOf ""Ship"" && count crew _x == 0) then {_x setVelocity [0, 0, -5]}} forEach (_hidden - _toHide + BIS_persistent);" \n
+                         "{_x hideObjectGlobal TRUE; _x enableSimulationGlobal  FALSE} forEach (_toHide - _hidden - BIS_persistent);" \n
+                         "" \n
+                         "if (isNil ""BIS_fps_manager_init"") then {BIS_fps_manager_init = TRUE};" \n
+                         "" \n
+                         "BIS_fps_simulSteps = BIS_fps_simulSteps + 0.01;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "setPos_d">*/
+                                class setPos_d
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="hide_distant_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{vehicle _x distance (_x getVariable ""BIS_FPS_lastPos"") > (_freezeDist / 4)} count BIS_simulationManager_checkFor > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "airborne">*/
+                                class airborne
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="adjust_freeze_di";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!_airborne && {vehicle _x isKindOf ""Air"" && alive _x} count BIS_simulationManager_checkFor > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "on_land">*/
+                                class on_land
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="adjust_freeze_di_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_airborne && {vehicle _x isKindOf ""Air"" && alive _x} count BIS_simulationManager_checkFor == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "rescan_new_objec">*/
+                                class rescan_new_objec
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="scan_for_new_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_fps_rescanNewObjects || (count _oldPersistent != count BIS_persistent) || (time > 0 && !_afterStartCheck)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "moved_far_enough">*/
+                                class moved_far_enough
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="hide_distant_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 10 && {vehicle _x distance (_x getVariable ""BIS_FPS_lastPos"") > (_freezeDist / 4)} count BIS_simulationManager_checkFor > 0" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "adjust_freeze_di">*/
+                class adjust_freeze_di
+                {
+                        name = "adjust_freeze_di";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"_freezeDist = _freezeDist * 2;" \n
+                         "" \n
+                         "_airborne = TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="hide_distant_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "scan_for_new_obj">*/
+                class scan_for_new_obj
+                {
+                        name = "scan_for_new_obj";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"_afterStartCheck = TRUE;" \n
+                         "BIS_fps_rescanNewObjects = FALSE;" \n
+                         "" \n
+                         "_missionObjs = call _grabMissionObjs;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="hide_distant_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "adjust_freeze_di_1">*/
+                class adjust_freeze_di_1
+                {
+                        name = "adjust_freeze_di_1";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"_freezeDist = _freezeDist / 2;" \n
+                         "" \n
+                         "_airborne = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="hide_distant_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="START";
+        finalStates[] =
+        {
+        };
+};
+/*%FSM</COMPILE>*/

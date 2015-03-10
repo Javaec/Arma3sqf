@@ -1,0 +1,118 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, PREDLOHA">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"React",0,250,-148.442688,-132.013092,-48.442719,-82.013107,0.000000,"React"};
+item1[] = {"",7,210,-102.438477,48.426529,-94.438538,56.426514,0.000000,""};
+item2[] = {"__",8,218,-245.799591,27.887707,-155.799591,77.887695,0.000000,"-"};
+item3[] = {"END",1,250,-249.361267,105.329407,-149.361450,155.329422,0.000000,"END"};
+item4[] = {"Just_the_same_shit_as_yesterday__man__Vehicle_tear_down_",4, 218, 0.0,150,300.0,200,1.0,"Just_the_same_shit_as_yesterday__man__Vehicle_tear_down_"};
+item5[] = {"What__we_re_on_that_for_the_whole_week_",1, 250, 350.0, 187, 650.0,237, 1.0,_What__we_re_on_that_for_the_whole_week__};
+item6[] = {"Yup__At_least_until_the_contractors_get_here__we_re_the_junkyard_dogs_",4, 218, 0.0,225,300.0,275,1.0,"Yup__At_least_until_the_contractors_get_here__we_re_the_junkyard_dogs_"};
+item7[] = {"____I_literally_cannot_wait_to_get_off_this_fucking_rock_",1, 250, 350.0, 262, 650.0,312, 1.0,____I_literally_cannot_wait_to_get_off_this_fucking_rock__};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {1,4};
+link4[] = {4,5};
+link5[] = {1,6};
+link6[] = {6,7};
+globals[] = {0.000000,0,0,0,0,640,480,2,10,6316128,1,-395.949066,712.081299,795.476807,-312.553558,870,870,1};
+window[] = {2,-1,-1,-1,-1,898,162,1184,162,3,890};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "PREDLOHA";
+  class States
+  {
+    /*%FSM<STATE "React">*/
+    class React
+    {
+      name = "React";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Just_the_same_shit_as_yesterday__man__Vehicle_tear_down_">*/
+        class Just_the_same_shit_as_yesterday__man__Vehicle_tear_down_
+        {
+          priority = 1.000000;
+          to="What__we_re_on_that_for_the_whole_week_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""a_hub_090_ambient_special_00_ALPB_0""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Yup__At_least_until_the_contractors_get_here__we_re_the_junkyard_dogs_">*/
+        class Yup__At_least_until_the_contractors_get_here__we_re_the_junkyard_dogs_
+        {
+          priority = 1.000000;
+          to="____I_literally_cannot_wait_to_get_off_this_fucking_rock_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""a_hub_090_ambient_special_00_ALPB_1""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "__">*/
+        class __
+        {
+          priority = 0.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "END">*/
+    class END
+    {
+      name = "END";
+      init = /*%FSM<STATEINIT""">*/"//hint""Unexpected Exception""" \n "" \n "debugLog ""VD31- here B"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+     /*%FSM<STATE "What__we_re_on_that_for_the_whole_week_">*/
+    class What__we_re_on_that_for_the_whole_week_
+    {
+      name = "What__we_re_on_that_for_the_whole_week_";
+      init = /*%FSM<STATEINIT""">*/
+	" _this kbTell [_from, _topic,""a_hub_090_ambient_special_00_ALPA_1""];"
+	/*%FSM</STATEINIT""">*/;
+	
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+     /*%FSM<STATE "____I_literally_cannot_wait_to_get_off_this_fucking_rock_">*/
+    class ____I_literally_cannot_wait_to_get_off_this_fucking_rock_
+    {
+      name = "____I_literally_cannot_wait_to_get_off_this_fucking_rock_";
+      init = /*%FSM<STATEINIT""">*/
+	" _this kbTell [_from, _topic,""a_hub_090_ambient_special_00_ALPA_2""];"
+	/*%FSM</STATEINIT""">*/;
+	
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="React";
+  finalStates[] =
+  {
+    "END",
+	"What__we_re_on_that_for_the_whole_week_",
+	"____I_literally_cannot_wait_to_get_off_this_fucking_rock_",
+  };
+};
+/*%FSM</COMPILE>*/

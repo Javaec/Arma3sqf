@@ -1,0 +1,687 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, Mission Flow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-200.000000,-225.000000,-100.000000,-175.000000,0.000000,"init"};
+item1[] = {"",7,210,96.000008,-204.000000,103.999992,-196.000000,0.000000,""};
+item2[] = {"cheat1",4,218,50.000000,-150.000000,150.000000,-100.000000,1.000000,"cheat1"};
+item3[] = {"skip_to_solar_pl",2,250,50.000000,-75.000000,150.000000,-25.000000,0.000000,"skip to" \n "solar plant"};
+item4[] = {"solar_station_se",4,218,-75.000000,-75.000000,25.000000,-25.000000,0.000000,"solar station" \n "secure"};
+item5[] = {"_",2,250,-200.000000,0.000000,-100.000000,50.000000,0.000000,""};
+item6[] = {"rendezvoused",4,218,-75.000000,0.000000,25.000000,50.000000,1.000000,"rendezvoused"};
+item7[] = {"attack_kalochori",2,4346,-200.000000,150.000000,-100.000000,200.000000,0.000000,"attack" \n "kalochori"};
+item8[] = {"",7,210,220.999969,-204.000000,229.000015,-196.000000,0.000000,""};
+item9[] = {"cheat2",4,218,175.000000,-150.000000,275.000000,-100.000000,2.000000,"cheat2"};
+item10[] = {"skip_to_attack_k",2,250,175.000000,-75.000000,275.000000,-25.000000,0.000000,"skip to" \n "attack kalochori"};
+item11[] = {"",7,210,220.999985,20.999952,229.000000,29.000046,0.000000,""};
+item12[] = {"kalochori_secure",4,218,-75.000000,150.000000,25.000000,200.000000,0.000000,"kalochori" \n "secure"};
+item13[] = {"defend_kalochori",2,250,-200.000000,225.000000,-100.000000,275.000000,0.000000,"defend" \n "kalochori"};
+item14[] = {"",7,210,346.000000,-204.000000,353.999969,-196.000000,0.000000,""};
+item15[] = {"cheat3",4,218,300.000000,-150.000000,400.000000,-100.000000,3.000000,"cheat3"};
+item16[] = {"skip_to_defend_k",2,250,300.000000,-75.000000,400.000000,-25.000000,0.000000,"skip to" \n "defend kalochori"};
+item17[] = {"",7,210,346.000000,170.999939,354.000031,179.000046,0.000000,""};
+item18[] = {"kalochori_defend",4,218,-75.000000,225.000000,25.000000,275.000000,1.000000,"kalochori" \n "defended"};
+item19[] = {"WIN1",1,250,-75.000000,300.000000,25.000000,350.000000,0.000000,"WIN1"};
+item20[] = {"quotation_finish",4,218,-200.000000,-150.000000,-100.000000,-100.000000,0.000000,"quotation" \n "finished"};
+item21[] = {"attack_solar_sta",2,250,-200.000000,-75.000000,-100.000000,-25.000000,0.000000,"attack" \n "solar station"};
+item22[] = {"kalochori_lost",4,218,-325.000000,225.000000,-225.000000,275.000000,0.000000,"kalochori" \n "lost"};
+item23[] = {"FAIL1",1,250,-325.000000,300.000000,-225.000000,350.000000,0.000000,"FAIL1"};
+item24[] = {"near_kalochori_or",4,218,-325.000000,0.000000,-225.000000,50.000000,0.000000,"near kalochori" \n "or" \n "AMV destroyed"};
+item25[] = {"__1",2,250,-75.000000,75.000000,25.000000,125.000000,0.000000,""};
+item26[] = {"__2",2,250,-325.000000,75.000000,-225.000000,125.000000,0.000000,""};
+item27[] = {"always",4,218,-200.000000,75.000000,-100.000000,125.000000,0.000000,"always"};
+link0[] = {0,1};
+link1[] = {0,20};
+link2[] = {1,2};
+link3[] = {1,8};
+link4[] = {2,3};
+link5[] = {3,4};
+link6[] = {4,5};
+link7[] = {5,6};
+link8[] = {5,24};
+link9[] = {6,25};
+link10[] = {7,12};
+link11[] = {8,9};
+link12[] = {8,14};
+link13[] = {9,10};
+link14[] = {10,11};
+link15[] = {11,6};
+link16[] = {12,13};
+link17[] = {13,18};
+link18[] = {13,22};
+link19[] = {14,15};
+link20[] = {15,16};
+link21[] = {16,17};
+link22[] = {17,12};
+link23[] = {18,19};
+link24[] = {20,21};
+link25[] = {21,4};
+link26[] = {22,23};
+link27[] = {24,26};
+link28[] = {25,27};
+link29[] = {26,27};
+link30[] = {27,7};
+globals[] = {25.000000,1,0,0,0,640,480,1,67,6316128,1,-496.108276,431.181274,442.835022,-314.646057,1114,1031,1};
+window[] = {2,-1,-1,-1,-1,1005,125,1519,125,3,1132};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Mission Flow";
+        class States
+        {
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"//Lock input, screen and audio" \n
+                         "0 fadeSound 0;" \n
+                         "0 fadeMusic 0;" \n
+                         "0 fadeRadio 0;" \n
+                         "0 fadeSpeech 0;" \n
+                         "enableRadio false;" \n
+                         "enableSentences false;" \n
+                         "enableEnvironment false;" \n
+                         "(format [""BIS_%1_blackScreen"", missionName]) call BIS_fnc_blackOut;" \n
+                         "[0, nil, false] spawn BIS_fnc_cinemaBorder;" \n
+                         "" \n
+                         "//Friendly fire handling" \n
+                         "private ""_friendlies"";" \n
+                         "_friendlies = [];" \n
+                         "{ if (side group _x == WEST) then { _friendlies set [count _friendlies, _x]; }; } forEach allUnits;" \n
+                         "[""Init"", [_friendlies, true]] call BIS_fnc_moduleFriendlyFire;" \n
+                         "" \n
+                         "//Instructor figure" \n
+                         "[""Init""] call BIS_fnc_InstructorFigure;" \n
+                         "" \n
+                         "//Quotation" \n
+                         "private ""_quotation"";" \n
+                         "_quotation = [""\A3\Missions_F_EPC\video\C_out1_quotation.ogv"", localize ""STR_A3_campaign_quote_42""] call BIS_fnc_quotations;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cheat3">*/
+                                class cheat3
+                                {
+                                        itemno = 15;
+                                        priority = 3.000000;
+                                        to="skip_to_defend_k";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cheat3"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cheat2">*/
+                                class cheat2
+                                {
+                                        itemno = 9;
+                                        priority = 2.000000;
+                                        to="skip_to_attack_k";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cheat2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cheat1">*/
+                                class cheat1
+                                {
+                                        itemno = 2;
+                                        priority = 1.000000;
+                                        to="skip_to_solar_pl";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cheat1"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "quotation_finish">*/
+                                class quotation_finish
+                                {
+                                        itemno = 20;
+                                        priority = 0.000000;
+                                        to="attack_solar_sta";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"scriptDone _quotation" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "skip_to_solar_pl">*/
+                class skip_to_solar_pl
+                {
+                        name = "skip_to_solar_pl";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"5 fadeSound 1;" \n
+                         "5 fadeMusic 0.3;" \n
+                         "5 fadeRadio 1;" \n
+                         "5 fadeSpeech 1;" \n
+                         "enableRadio false;" \n
+                         "enableSentences false;" \n
+                         "enableEnvironment false;" \n
+                         "(format [""BIS_%1_blackScreen"", missionName]) call BIS_fnc_blackIn;" \n
+                         "[1, nil, false] spawn BIS_fnc_cinemaBorder;" \n
+                         "" \n
+                         "//Move player team" \n
+                         "{" \n
+                         "	if (group _x != group driver BIS_heli) then {" \n
+                         "		_x setPos getMarkerPos ""BIS_insertion"";" \n
+                         "	};" \n
+                         "} forEach crew BIS_heli;" \n
+                         "" \n
+                         "//Delete stuff" \n
+                         "{" \n
+                         "	deleteVehicle _x;" \n
+                         "} forEach crew BIS_jet1 + crew BIS_jet2 + crew BIS_heli + [BIS_jet1, BIS_jet2, BIS_heli];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "solar_station_se">*/
+                                class solar_station_se
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_triggerSolar" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"//Remove Instructor Figure topic" \n
+                         "if ([""TopicExists"",[ ""i00_friendlies"" ] ] call BIS_fnc_InstructorFigure != -1) then {" \n
+                         "	[""RemoveTopic"", [""i00_friendlies""] ] call BIS_fnc_InstructorFigure;" \n
+                         "};" \n
+                         "" \n
+                         "private ""_thread"";" \n
+                         "_thread = [] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: solar plant secured"";" \n
+                         "	" \n
+                         "	//Task about seizing enemy solar station" \n
+                         "	[""BIS_solar"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "	" \n
+                         "	//Conversation" \n
+                         "	""BIS_solarPowerSecure"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	//Save" \n
+                         "	savegame;" \n
+                         "	" \n
+                         "	// If player is not near Kalochori and AMV is still operational" \n
+                         "	// We add regroup task, otherwise we skip it" \n
+                         "	if (player distance getMarkerPos ""BIS_base"" >= player distance getMarkerPos ""BIS_rally"" && { canMove BIS_amv }) then {" \n
+                         "		""BIS_regroup"" call BIS_fnc_missionTasks;" \n
+                         "	} else {" \n
+                         "		[""BIS_base"", ""ASSIGNED""] call BIS_fnc_missionTasks;" \n
+                         "	};" \n
+                         "	" \n
+                         "	//Add instructor figure" \n
+                         "	[""AddTopic"", [""i05_uav"",""C_out1"", localize ""STR_A3_Campaign_C_out1_Instructor_Uav""] ] call BIS_fnc_InstructorFigure;" \n
+                         "	[""AddTopic"", [""i10_snipers"",""C_out1"", localize ""STR_A3_Campaign_C_out1_Instructor_Snipers""] ] call BIS_fnc_InstructorFigure;" \n
+                         "	" \n
+                         "	//Hint" \n
+                         "	[[""UAV"", ""Basics""], 15] spawn BIS_fnc_advHint;" \n
+                         "	" \n
+                         "	//Some delay" \n
+                         "	sleep 10;" \n
+                         "	" \n
+                         "	//We allow artillery unit to be used by player" \n
+                         "	[BIS_inf, BIS_requester, BIS_providerArty] call BIS_fnc_addSupportLink;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "rendezvoused">*/
+                                class rendezvoused
+                                {
+                                        itemno = 6;
+                                        priority = 1.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_triggerRegroup" \n
+                                         "&&" \n
+                                         "{ scriptDone _thread }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "near_kalochori_or">*/
+                                class near_kalochori_or
+                                {
+                                        itemno = 24;
+                                        priority = 0.000000;
+                                        to="__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	player distance getMarkerPos ""BIS_base"" < player distance getMarkerPos ""BIS_rally""" \n
+                                         "	||" \n
+                                         "	{ !canMove BIS_amv }" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "{ scriptDone _thread }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "attack_kalochori">*/
+                class attack_kalochori
+                {
+                        name = "attack_kalochori";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"//Remove Instructor Figure topic" \n
+                         "if ([""TopicExists"",[ ""i10_snipers"" ] ] call BIS_fnc_InstructorFigure != -1) then {" \n
+                         "	[""RemoveTopic"", [""i10_snipers""] ] call BIS_fnc_InstructorFigure;" \n
+                         "};" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: hit defenses"";" \n
+                         "	" \n
+                         "	//Save" \n
+                         "	savegame;" \n
+                         "	" \n
+                         "	//Seize kalochori task" \n
+                         "	[""BIS_base"", ""ASSIGNED""] call BIS_fnc_missionTasks;" \n
+                         "	" \n
+                         "	//Earth Quake delay" \n
+                         "	sleep 30 + random 30;" \n
+                         "	" \n
+                         "	//Earth Quake" \n
+                         "	[4] spawn BIS_fnc_earthQuake;" \n
+                         "	" \n
+                         "	//Some delay" \n
+                         "	sleep 1.5;" \n
+                         "	" \n
+                         "	//Conversation" \n
+                         "	""BIS_earthQuake"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	//Add instructor figure" \n
+                         "	[""AddTopic"", [""i15_enemyVehicle"",""C_out1"", localize ""STR_A3_Campaign_C_out1_Instructor_EnemyVehicle""] ] call BIS_fnc_InstructorFigure;" \n
+                         "	" \n
+                         "	//Music" \n
+                         "	playMusic ""BackgroundTrack01_F_EPC"";" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "kalochori_secure">*/
+                                class kalochori_secure
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="defend_kalochori";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_triggerKalochori" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "skip_to_attack_k">*/
+                class skip_to_attack_k
+                {
+                        name = "skip_to_attack_k";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"5 fadeSound 1;" \n
+                         "5 fadeMusic 0.3;" \n
+                         "5 fadeRadio 1;" \n
+                         "5 fadeSpeech 1;" \n
+                         "enableRadio false;" \n
+                         "enableSentences false;" \n
+                         "enableEnvironment false;" \n
+                         "(format [""BIS_%1_blackScreen"", missionName]) call BIS_fnc_blackIn;" \n
+                         "[1, nil, false] spawn BIS_fnc_cinemaBorder;" \n
+                         "" \n
+                         "//Move player team" \n
+                         "{" \n
+                         "	if (group _x != group driver BIS_heli) then {" \n
+                         "		_x setPos getMarkerPos ""BIS_solar"";" \n
+                         "	};" \n
+                         "} forEach crew BIS_heli;" \n
+                         "" \n
+                         "//Delete stuff" \n
+                         "{" \n
+                         "	deleteVehicle _x;" \n
+                         "} forEach crew BIS_jet1 + crew BIS_jet2 + crew BIS_heli + [BIS_jet1, BIS_jet2, BIS_heli];" \n
+                         "" \n
+                         "//Delete enemy" \n
+                         "{" \n
+                         "	if (side _x == RESISTANCE && _x distance getMarkerPos ""BIS_solar"" < 200) then {" \n
+                         "		deleteVehicle _x;" \n
+                         "	};" \n
+                         "} forEach allUnits;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "rendezvoused">*/
+                                class rendezvoused
+                                {
+                                        itemno = 6;
+                                        priority = 1.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_triggerRegroup" \n
+                                         "&&" \n
+                                         "{ scriptDone _thread }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "defend_kalochori">*/
+                class defend_kalochori
+                {
+                        name = "defend_kalochori";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"//Unhide enemy counter attack vehicles" \n
+                         "{" \n
+                         "	_x enableSimulation true;" \n
+                         "	_x hideObject false;" \n
+                         "} forEach BIS_vehiclesAttack;" \n
+                         "" \n
+                         "//Unhide enemy counter attack infantry" \n
+                         "{" \n
+                         "	_x enableSimulation true;" \n
+                         "	_x hideObject false;" \n
+                         "	_x enableAi ""MOVE"";" \n
+                         "} forEach units group BIS_enemyInfantryAttack_1 + units group BIS_enemyInfantryAttack_2;" \n
+                         "" \n
+                         "//Remove Instructor Figure topic" \n
+                         "if ([""TopicExists"",[ ""i15_enemyVehicle"" ] ] call BIS_fnc_InstructorFigure != -1) then {" \n
+                         "	[""RemoveTopic"", [""i15_enemyVehicle""] ] call BIS_fnc_InstructorFigure;" \n
+                         "};" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: counterattack inbound"";" \n
+                         "	" \n
+                         "	//Succeed seize enemy base task" \n
+                         "	[""BIS_base"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "	" \n
+                         "	//Conversations" \n
+                         "	""BIS_kalochoriSecure"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	//Save game" \n
+                         "	saveGame;" \n
+                         "	" \n
+                         "	//Task to defend kalochori" \n
+                         "	[""BIS_defend"", ""ASSIGNED""] call BIS_fnc_missionTasks;" \n
+                         "	" \n
+                         "	//Music" \n
+                         "	playMusic ""LeadTrack05_F_EPC"";" \n
+                         "	" \n
+                         "	//Some delay" \n
+                         "	sleep 10;" \n
+                         "	" \n
+                         "	//Make CAS available for tasking" \n
+                         "	[BIS_inf, BIS_requester, BIS_providerCAS] call BIS_fnc_addSupportLink;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "kalochori_defend">*/
+                                class kalochori_defend
+                                {
+                                        itemno = 18;
+                                        priority = 1.000000;
+                                        to="WIN1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{ canMove _x } count BIS_vehiclesAttack < 1" \n
+                                         "&&" \n
+                                         "{ count (units group BIS_enemyInfantryAttack_1 + units group BIS_enemyInfantryAttack_2) < count units group player }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "kalochori_lost">*/
+                                class kalochori_lost
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="FAIL1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_supportHeli" \n
+                                         "&&" \n
+                                         "{ !canMove BIS_amv }" \n
+                                         "&&" \n
+                                         "{ { canMove _x && _x distance getMarkerPos ""BIS_defend"" < 250 } count BIS_vehiclesAttack > 0 }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "skip_to_defend_k">*/
+                class skip_to_defend_k
+                {
+                        name = "skip_to_defend_k";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/"5 fadeSound 1;" \n
+                         "5 fadeMusic 0.3;" \n
+                         "5 fadeRadio 1;" \n
+                         "5 fadeSpeech 1;" \n
+                         "enableRadio false;" \n
+                         "enableSentences false;" \n
+                         "enableEnvironment false;" \n
+                         "(format [""BIS_%1_blackScreen"", missionName]) call BIS_fnc_blackIn;" \n
+                         "[1, nil, false] spawn BIS_fnc_cinemaBorder;" \n
+                         "" \n
+                         "//Move player team" \n
+                         "{" \n
+                         "	if (group _x != group driver BIS_heli) then {" \n
+                         "		_x setPos getMarkerPos ""BIS_defenses"";" \n
+                         "	};" \n
+                         "} forEach crew BIS_heli;" \n
+                         "" \n
+                         "//Delete stuff" \n
+                         "{" \n
+                         "	deleteVehicle _x;" \n
+                         "} forEach crew BIS_jet1 + crew BIS_jet2 + crew BIS_heli + [BIS_jet1, BIS_jet2, BIS_heli];" \n
+                         "" \n
+                         "//Delete enemy" \n
+                         "{" \n
+                         "	if (side _x == RESISTANCE && (_x distance getMarkerPos ""BIS_solar"" < 200 || _x distance getMarkerPos ""BIS_defenses"" < 200)) then {" \n
+                         "		deleteVehicle _x;" \n
+                         "	};" \n
+                         "} forEach allUnits;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "kalochori_secure">*/
+                                class kalochori_secure
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="defend_kalochori";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_triggerKalochori" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "WIN1">*/
+                class WIN1
+                {
+                        name = "WIN1";
+                        itemno = 19;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: success"";" \n
+                         "	" \n
+                         "	//Delay" \n
+                         "	sleep (10 + random 10);" \n
+                         "	" \n
+                         "	//Tasks" \n
+                         "	[""BIS_defend"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "	" \n
+                         "	//Conversation" \n
+                         "	""BIS_reinforcementsNeutralized"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	sleep 12;" \n
+                         "	" \n
+                         "	//End mission" \n
+                         "	[[""C_out2"", 1], true] call BIS_fnc_endMission;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "attack_solar_sta">*/
+                class attack_solar_sta
+                {
+                        name = "attack_solar_sta";
+                        itemno = 21;
+                        init = /*%FSM<STATEINIT""">*/"//Unlock input, screen and audio" \n
+                         "5 fadeSound 1;" \n
+                         "5 fadeMusic 0.5;" \n
+                         "5 fadeRadio 1;" \n
+                         "5 fadeSpeech 1;" \n
+                         "enableRadio false;" \n
+                         "enableSentences false;" \n
+                         "enableEnvironment false;" \n
+                         "[] spawn { sleep 3; (format [""BIS_%1_blackScreen"", missionName]) call BIS_fnc_blackIn; };" \n
+                         "" \n
+                         "//Music" \n
+                         "playMusic ""LeadTrack04_F_EPC"";" \n
+                         "" \n
+                         "//Start insertion" \n
+                         "[] execFSM ""fsms\insertion.fsm"";" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "solar_station_se">*/
+                                class solar_station_se
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_triggerSolar" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "FAIL1">*/
+                class FAIL1
+                {
+                        name = "FAIL1";
+                        itemno = 23;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: fail"";" \n
+                         "	" \n
+                         "	//Delay" \n
+                         "	sleep (10 + random 10);" \n
+                         "	" \n
+                         "	//Tasks" \n
+                         "	[""BIS_defend"", ""FAILED""] call BIS_fnc_missionTasks;" \n
+                         "	" \n
+                         "	//Conversation" \n
+                         "	""BIS_overrun"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	sleep 12;" \n
+                         "	" \n
+                         "	//End mission" \n
+                         "	[[""C_out1"", 1], false] call BIS_fnc_endMission;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__1">*/
+                class __1
+                {
+                        name = "__1";
+                        itemno = 25;
+                        init = /*%FSM<STATEINIT""">*/"// Succeed task" \n
+                         "[""BIS_regroup"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "// Conversation" \n
+                         """BIS_rallyPoint"" spawn BIS_fnc_missionConversations;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="attack_kalochori";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__2">*/
+                class __2
+                {
+                        name = "__2";
+                        itemno = 26;
+                        init = /*%FSM<STATEINIT""">*/"// Cancel task if it was assigned" \n
+                         "if (""BIS_regroup"" call BIS_fnc_taskExists) then {" \n
+                         "	[""BIS_regroup"", ""CANCELED""] call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="attack_kalochori";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "WIN1",
+                "FAIL1",
+        };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,107 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, VR: Topic Selection (Community)">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"INIT",0,4346,-100.000000,-975.000000,0.000000,-925.000000,0.000000,"INIT"};
+item1[] = {"player_near",4,218,-100.000000,-900.000000,0.000000,-850.000000,0.000000,"player near"};
+item2[] = {"show_menu",2,250,-100.000000,-825.000000,0.000000,-775.000000,0.000000,"show menu"};
+item3[] = {"player_away",4,218,-100.000000,-750.000000,0.000000,-700.000000,0.000000,"player" \n "away"};
+item4[] = {"hide_menu",2,250,-100.000000,-675.000000,0.000000,-625.000000,0.000000,"hide menu"};
+item5[] = {"",7,210,21.000000,-654.000000,29.000000,-646.000000,0.000000,""};
+item6[] = {"",7,210,21.000000,-879.000000,29.000000,-871.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {3,4};
+link4[] = {4,5};
+link5[] = {5,6};
+link6[] = {6,1};
+globals[] = {25.000000,1,0,0,0,640,480,1,224,6316128,1,-340.315125,260.456573,-277.440186,-1181.667358,685,1031,1};
+window[] = {2,-1,-1,-1,-1,917,150,1364,150,3,703};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "VR: Topic Selection (Community)";
+        class States
+        {
+                /*%FSM<STATE "INIT">*/
+                class INIT
+                {
+                        name = "INIT";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "player_near">*/
+                                class player_near
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="show_menu";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"([player, _this] call BIS_fnc_distance2D) <= BIS_topicSelectDist"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "show_menu">*/
+                class show_menu
+                {
+                        name = "show_menu";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"_null = BIS_topicsUnofficial spawn BIS_fnc_VR_topicSelectUnofficial;" \n
+                         "" \n
+                         "_this setVariable [""BIS_VR_speed"", 10];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "player_away">*/
+                                class player_away
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="hide_menu";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"([player, _this] call BIS_fnc_distance2D) > BIS_topicSelectDist && BIS_topic < 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "hide_menu">*/
+                class hide_menu
+                {
+                        name = "hide_menu";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"showCommandingMenu """";" \n
+                         "" \n
+                         "if (cursorTarget != _this) then {" \n
+                         "	_this setVariable [""BIS_VR_speed"", 1];" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "player_near">*/
+                                class player_near
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="show_menu";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"([player, _this] call BIS_fnc_distance2D) <= BIS_topicSelectDist"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="INIT";
+        finalStates[] =
+        {
+        };
+};
+/*%FSM</COMPILE>*/

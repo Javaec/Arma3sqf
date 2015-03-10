@@ -1,0 +1,147 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, PREDLOHA">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"React",0,250,-148.442688,-132.013092,-48.442719,-82.013107,0.000000,"React"};
+item1[] = {"",7,210,-102.438477,48.426529,-94.438538,56.426514,0.000000,""};
+item2[] = {"__",8,218,-245.799591,27.887707,-155.799591,77.887695,0.000000,"-"};
+item3[] = {"END",1,250,-249.361267,105.329407,-149.361450,155.329422,0.000000,"END"};
+item4[] = {"Maybe_we_should_have_seen_it_coming__you_know_",4, 218, 0.0,150,300.0,200,1.0,"Maybe_we_should_have_seen_it_coming__you_know_"};
+item5[] = {"What_do_you_mean_",1, 250, 350.0, 187, 650.0,237, 1.0,_What_do_you_mean__};
+item6[] = {"Civil_war_s_one_thing___that_was_just___I_dunno_",4, 218, 0.0,225,300.0,275,1.0,"Civil_war_s_one_thing___that_was_just___I_dunno_"};
+item7[] = {"Well__everything_s_so_lethal__So__on_target___You_know_",1, 250, 350.0, 262, 650.0,312, 1.0,_Well__everything_s_so_lethal__So__on_target___You_know__};
+item8[] = {"Yeah__I_get_it__man_",4, 218, 0.0,300,300.0,350,1.0,"Yeah__I_get_it__man_"};
+item9[] = {"Makes_me_wonder_how_much_longer_we_can_actually_hold_out_",1, 250, 350.0, 337, 650.0,387, 1.0,_Makes_me_wonder_how_much_longer_we_can_actually_hold_out__};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {1,4};
+link4[] = {4,5};
+link5[] = {1,6};
+link6[] = {6,7};
+link7[] = {1,8};
+link8[] = {8,9};
+globals[] = {0.000000,0,0,0,0,640,480,2,10,6316128,1,-395.949066,712.081299,795.476807,-312.553558,870,870,1};
+window[] = {2,-1,-1,-1,-1,898,162,1184,162,3,890};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "PREDLOHA";
+  class States
+  {
+    /*%FSM<STATE "React">*/
+    class React
+    {
+      name = "React";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Maybe_we_should_have_seen_it_coming__you_know_">*/
+        class Maybe_we_should_have_seen_it_coming__you_know_
+        {
+          priority = 1.000000;
+          to="What_do_you_mean_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""a_hub_075_ambient_talk_05_ALPB_0""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Civil_war_s_one_thing___that_was_just___I_dunno_">*/
+        class Civil_war_s_one_thing___that_was_just___I_dunno_
+        {
+          priority = 1.000000;
+          to="Well__everything_s_so_lethal__So__on_target___You_know_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""a_hub_075_ambient_talk_05_ALPB_2""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Yeah__I_get_it__man_">*/
+        class Yeah__I_get_it__man_
+        {
+          priority = 1.000000;
+          to="Makes_me_wonder_how_much_longer_we_can_actually_hold_out_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""a_hub_075_ambient_talk_05_ALPB_3""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "__">*/
+        class __
+        {
+          priority = 0.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "END">*/
+    class END
+    {
+      name = "END";
+      init = /*%FSM<STATEINIT""">*/"//hint""Unexpected Exception""" \n "" \n "debugLog ""VD31- here B"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+     /*%FSM<STATE "What_do_you_mean_">*/
+    class What_do_you_mean_
+    {
+      name = "What_do_you_mean_";
+      init = /*%FSM<STATEINIT""">*/
+	" _this kbTell [_from, _topic,""a_hub_075_ambient_talk_05_ALPA_0""];"
+	/*%FSM</STATEINIT""">*/;
+	
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+     /*%FSM<STATE "Well__everything_s_so_lethal__So__on_target___You_know_">*/
+    class Well__everything_s_so_lethal__So__on_target___You_know_
+    {
+      name = "Well__everything_s_so_lethal__So__on_target___You_know_";
+      init = /*%FSM<STATEINIT""">*/
+	" _this kbTell [_from, _topic,""a_hub_075_ambient_talk_05_ALPA_1""];"
+	/*%FSM</STATEINIT""">*/;
+	
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+     /*%FSM<STATE "Makes_me_wonder_how_much_longer_we_can_actually_hold_out_">*/
+    class Makes_me_wonder_how_much_longer_we_can_actually_hold_out_
+    {
+      name = "Makes_me_wonder_how_much_longer_we_can_actually_hold_out_";
+      init = /*%FSM<STATEINIT""">*/
+	" _this kbTell [_from, _topic,""a_hub_075_ambient_talk_05_ALPA_2""];"
+	/*%FSM</STATEINIT""">*/;
+	
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="React";
+  finalStates[] =
+  {
+    "END",
+	"What_do_you_mean_",
+	"Well__everything_s_so_lethal__So__on_target___You_know_",
+	"Makes_me_wonder_how_much_longer_we_can_actually_hold_out_",
+  };
+};
+/*%FSM</COMPILE>*/

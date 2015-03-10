@@ -1,0 +1,606 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, Mission Commander - Main">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-50.000000,-150.000000,50.000000,-100.000000,0.000000,"init"};
+item1[] = {"is_server",4,4314,-50.000000,-75.000000,50.000000,-25.000000,0.000000,"is server"};
+item2[] = {"waiting",2,250,-50.000000,150.000000,50.000000,200.000000,0.000000,"waiting"};
+item3[] = {"timeout",4,218,-50.000000,225.000000,50.000000,275.000000,0.000000,"timeout"};
+item4[] = {"assess_all_sites",2,250,-50.000000,300.000000,50.000000,350.000000,0.000000,"assess" \n "all sites"};
+item5[] = {"assign_mission",2,250,-50.000000,875.000000,50.000000,925.000000,0.000000,"assign" \n "mission"};
+item6[] = {"finished",4,218,-50.000000,75.000000,50.000000,125.000000,0.000000,"finished"};
+item7[] = {"assess_groups",2,250,-50.000000,0.000000,50.000000,50.000000,0.000000,"assess" \n "groups"};
+item8[] = {"recon_avail",4,218,-50.000000,425.000000,50.000000,475.000000,1.000000,"recon" \n "avail"};
+item9[] = {"nothing",8,218,100.000000,500.000000,200.000000,550.000000,0.000000,"nothing"};
+item10[] = {"assign_mission_1",2,250,-50.000000,500.000000,50.000000,550.000000,0.000000,"assign" \n "mission"};
+item11[] = {"",7,210,346.000000,396.000000,354.000000,404.000000,0.000000,""};
+item12[] = {"",7,210,-4.000000,396.000000,4.000000,404.000000,0.000000,""};
+item13[] = {"no_recon_avail",8,218,-175.000000,425.000000,-75.000000,475.000000,0.000000,"no recon" \n "avail"};
+item14[] = {"",7,210,-129.000000,396.000000,-121.000008,404.000000,0.000000,""};
+item15[] = {"assess_infantry",2,250,-50.000000,700.000000,50.000000,750.000000,0.000000,"assess" \n "infantry"};
+item16[] = {"infantry_availab",4,218,-50.000000,800.000000,50.000000,850.000000,1.000000,"infantry" \n "available"};
+item17[] = {"no_infantry_avai",8,218,-175.000000,800.000000,-75.000000,850.000000,0.000000,"no infantry" \n "available"};
+item18[] = {"",7,210,-3.999992,771.000000,3.999992,779.000000,0.000000,""};
+item19[] = {"",7,210,-129.000000,771.000000,-120.999992,779.000000,0.000000,""};
+item20[] = {"",7,210,-329.000000,821.000000,-321.000000,829.000000,0.000000,""};
+item21[] = {"",7,210,-329.000000,171.000000,-321.000000,179.000000,0.000000,""};
+item22[] = {"",7,210,346.000000,771.000000,354.000000,779.000000,0.000000,""};
+item23[] = {"loiter",2,250,225.000000,500.000000,325.000000,550.000000,0.000000,"loiter"};
+item24[] = {"",7,210,346.000000,521.000000,354.000000,529.000000,0.000000,""};
+item25[] = {"intel_needed",4,218,100.000000,575.000000,200.000000,625.000000,1.000000,"intel" \n "needed"};
+item26[] = {"establish_OP",2,250,225.000000,575.000000,325.000000,625.000000,0.000000,"establish" \n "OP"};
+item27[] = {"",7,210,71.000000,521.000000,79.000000,529.000000,0.000000,""};
+item28[] = {"",7,210,71.000000,596.000000,79.000000,604.000000,0.000000,""};
+item29[] = {"",7,210,346.000000,596.000000,354.000000,604.000000,0.000000,""};
+item30[] = {"",7,210,-129.000000,721.000000,-121.000000,729.000000,0.000000,""};
+item31[] = {"nothing",8,218,100.000000,875.000000,200.000000,925.000000,0.000000,"nothing"};
+item32[] = {"patrol",2,250,225.000000,875.000000,325.000000,925.000000,0.000000,"patrol"};
+item33[] = {"",7,210,345.999969,896.000000,354.000031,904.000000,0.000000,""};
+item34[] = {"empty_sectors",4,218,100.000000,950.000000,200.000000,1000.000000,1.000000,"empty" \n "sectors"};
+item35[] = {"probe",2,250,225.000000,950.000000,325.000000,1000.000000,0.000000,"probe"};
+item36[] = {"",7,210,70.999985,896.000000,79.000015,904.000000,0.000000,""};
+item37[] = {"",7,210,70.999985,971.000000,79.000015,979.000000,0.000000,""};
+item38[] = {"",7,210,345.999969,971.000000,354.000031,979.000000,0.000000,""};
+item39[] = {"SIDE_COMMANDER",-1,250,75.000000,75.000000,325.000000,175.000000,0.000000,"SIDE" \n "COMMANDER"};
+version=1;
+class LayoutItems
+{
+	class Item39
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=18;
+			FontWeight=700;
+			lStyle=1;
+		};
+	};
+};
+link0[] = {0,1};
+link1[] = {1,7};
+link2[] = {2,3};
+link3[] = {3,4};
+link4[] = {4,12};
+link5[] = {5,36};
+link6[] = {6,2};
+link7[] = {7,6};
+link8[] = {8,10};
+link9[] = {9,23};
+link10[] = {10,27};
+link11[] = {11,12};
+link12[] = {12,8};
+link13[] = {12,14};
+link14[] = {13,30};
+link15[] = {14,13};
+link16[] = {15,18};
+link17[] = {16,5};
+link18[] = {17,20};
+link19[] = {18,16};
+link20[] = {18,19};
+link21[] = {19,17};
+link22[] = {20,21};
+link23[] = {21,2};
+link24[] = {22,18};
+link25[] = {23,24};
+link26[] = {24,11};
+link27[] = {25,26};
+link28[] = {26,29};
+link29[] = {27,9};
+link30[] = {27,28};
+link31[] = {28,25};
+link32[] = {29,24};
+link33[] = {30,15};
+link34[] = {31,32};
+link35[] = {32,33};
+link36[] = {33,22};
+link37[] = {34,35};
+link38[] = {35,38};
+link39[] = {36,31};
+link40[] = {36,37};
+link41[] = {37,34};
+link42[] = {38,33};
+globals[] = {25.000000,1,0,0,0,640,480,1,78,6316128,1,-1038.975220,719.356689,716.223083,-425.501923,1403,911,1};
+window[] = {2,-1,-1,-1,-1,1004,560,2251,27,3,1421};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Mission Commander - Main";
+  class States
+  {
+    /*%FSM<STATE "init">*/
+    class init
+    {
+      name = "init";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "is_server">*/
+        class is_server
+        {
+          priority = 0.000000;
+          to="assess_groups";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isServer and (!isNil ""BIS_initSitesCoreDone"");"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_side = [_this, 0, EAST] call bis_fnc_param;" \n
+           "_logic = [_this, 1, objNull] call bis_fnc_param;" \n
+           "_sideStr = ""OPFOR"";" \n
+           "switch (_side) do {" \n
+           "	case WEST: {" \n
+           "		_sideStr = ""BLUFOR"";" \n
+           "	};" \n
+           "	case EAST: {" \n
+           "		_sideStr = ""OPFOR"";" \n
+           "	};" \n
+           "	case RESISTANCE: {" \n
+           "		_sideStr = ""RESISTANCE"";" \n
+           "	};" \n
+           "	case CIVILIAN: {" \n
+           "		_sideStr = ""CIVILIAN"";" \n
+           "	};" \n
+           "};" \n
+           "" \n
+           "//Force Size Generator" \n
+           "BIS_fnc_esc_forceLevel = {" \n
+           "	private[""_sector"",""_side"",""_siteDanger"",""_force""];" \n
+           "	_sector = [_this, 0, objNull] call bis_fnc_param;" \n
+           "	_side = [_this, 1, EAST] call bis_fnc_param;" \n
+           "	_siteDanger = _sector getVariable [format[""danger_%1"",_side],0];" \n
+           "	_force = switch (_siteDanger) do {" \n
+           "		case 0: {""sentry""};" \n
+           "		//case 1: {""squad""};" \n
+           "		//case 2: {""motorized""};" \n
+           "		default {""squad""};" \n
+           "	};" \n
+           "	_force;" \n
+           "};" \n
+           "" \n
+           "//Declarations" \n
+           "_sectorsMine = missionNamespace getVariable [format[""sectors%1"",_side],[]];" \n
+           "_sectorList = [];" \n
+           "_baseList = [];" \n
+           "_myGroups = [];" \n
+           "blufor_basehq = objNull;" \n
+           "opfor_basehq = objNull;" \n
+           "resistance_basehq = objNull;" \n
+           "" \n
+           "//Variables" \n
+           "_waitTime = 15;" \n
+           "" \n
+           "//Load sites" \n
+           "{" \n
+           "	if (!(_x in _sectorList) and !(_x in _baseList)) then {" \n
+           "		//Get site details" \n
+           "		_siteType = (_x getVariable ""siteType"");" \n
+           "		" \n
+           "		//Check if a sector" \n
+           "		if (_siteType == ""Military_Sector"") then {" \n
+           "			_sectorList set [count _sectorList,_x];" \n
+           "		};" \n
+           "		" \n
+           "		//Check if a base" \n
+           "		if (_siteType == ""Military_Sector_Base"") then {" \n
+           "			_baseList set [count _baseList,_x];" \n
+           "			switch (_x getVariable ""side"") do {" \n
+           "				case ""BLUFOR"": {blufor_basehq = _x};" \n
+           "				case ""OPFOR"": {opfor_basehq = _x};" \n
+           "				case ""Independent"": {resistance_basehq = _x};" \n
+           "				case ""Civilian"": {civilian_basehq = _x}		" \n
+           "			};" \n
+           "		};" \n
+           "	};" \n
+           "} forEach allSites;" \n
+           "" \n
+           "//Categorize them" \n
+           "{" \n
+           "	_sectorSide = (_x getVariable ""side"");" \n
+           "	if (_sectorSide == _sideStr) then {" \n
+           "		_sectorsMine set [count _sectorsMine,_x];" \n
+           "	};" \n
+           "	//create sector commander if needed" \n
+           "	_hasComd = _x getVariable [format[""comd_%1"",_side],false];" \n
+           "	if (!_hasComd) then {" \n
+           "		_id = [_side,_x] execFSM ""\A3\Modules_f\sites\behaviour\sector_comd.fsm"";" \n
+           "		_x setVariable [format[""comd_%1"",_side],true];" \n
+           "	};" \n
+           "} forEach _sectorList;" \n
+           "" \n
+           "_list = synchronizedObjects _logic;" \n
+           "{" \n
+           "	_check = vehicle _x;" \n
+           "	//_check = _x;" \n
+           "	_group = group _check;" \n
+           "	//hint format[""Group checked: %1"",_group];" \n
+           "	if (_check isKindOf ""Helicopter"") then {" \n
+           "		[_side,_x] execFSM ""\A3\Modules_f\sites\behaviour\group_rotary.fsm"";" \n
+           "	};" \n
+           "	if (_check isKindOf ""Man"") then {" \n
+           "		_myGroups set [count _myGroups,_group];" \n
+           "		[_group] execFSM ""\A3\Modules_f\sites\behaviour\group_comd.fsm"";" \n
+           "	};" \n
+           "} forEach _list;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "waiting">*/
+    class waiting
+    {
+      name = "waiting";
+      init = /*%FSM<STATEINIT""">*/"_waitr = time;" \n
+       "_resourceMen = [];" \n
+       "_resourceRecon = [];" \n
+       "{" \n
+       "	if (_x getVariable[""task"",""none""] == ""none"") then {" \n
+       "		_resourceMen set [count _resourceMen,_x];" \n
+       "	};" \n
+       "} forEach _resourceMenTotal;" \n
+       "" \n
+       "{" \n
+       "	if (_x getVariable[""task"",""none""] == ""none"") then {" \n
+       "		_resourceRecon set [count _resourceRecon,_x];" \n
+       "	};" \n
+       "} forEach _resourceReconTotal;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "timeout">*/
+        class timeout
+        {
+          priority = 0.000000;
+          to="assess_all_sites";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _waitr) > _waitTime;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "assess_all_sites">*/
+    class assess_all_sites
+    {
+      name = "assess_all_sites";
+      init = /*%FSM<STATEINIT""">*/"_sectorsMine = [];" \n
+       "_sectorsEmpty = [];" \n
+       "_sectorsEnemy = [];" \n
+       "_sectorsAction = [];" \n
+       "{" \n
+       "	_sectorSide = (_x getVariable ""side"");" \n
+       "	_hasRecon = !isNull (_x getVariable [(""recon_"" + str(_side)),grpNull]);" \n
+       "	if (_sectorSide == _sideStr) then {" \n
+       "		_sectorsMine set [count _sectorsMine,_x];" \n
+       "	} else {;" \n
+       "		if (!_hasRecon) then {" \n
+       "			_sectorsAction set [count _sectorsAction,_x];" \n
+       "		};" \n
+       "		if (_sectorSide == ""Empty"") then {" \n
+       "			_sectorsEmpty set [count _sectorsEmpty,_x];" \n
+       "		} else {" \n
+       "			_sectorsEnemy set [count _sectorsEnemy,_x];" \n
+       "		};" \n
+       "	};" \n
+       "} forEach _sectorList;" \n
+       "" \n
+       "/*" \n
+       "_sectorPriority = [];" \n
+       "while {count _sectorsAction > 0} do {" \n
+       "	_check = _sectorsAction select 0;" \n
+       "	{" \n
+       "		" \n
+       "	} forEach (_sectorsAction - [_check]);" \n
+       "};" \n
+       "*/"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "recon_avail">*/
+        class recon_avail
+        {
+          priority = 1.000000;
+          to="assign_mission_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count _resourceRecon > 0;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no_recon_avail">*/
+        class no_recon_avail
+        {
+          priority = 0.000000;
+          to="assess_infantry";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "assign_mission">*/
+    class assign_mission
+    {
+      name = "assign_mission";
+      init = /*%FSM<STATEINIT""">*/"_infantryUnit = _resourceMen select 0;" \n
+       "_resourceMen = _resourceMen - [_infantryUnit];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "empty_sectors">*/
+        class empty_sectors
+        {
+          priority = 1.000000;
+          to="probe";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(count _sectorsEmpty > 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "nothing">*/
+        class nothing
+        {
+          priority = 0.000000;
+          to="patrol";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "assess_groups">*/
+    class assess_groups
+    {
+      name = "assess_groups";
+      init = /*%FSM<STATEINIT""">*/"_resourceMen = [];" \n
+       "_resourceRecon = [];" \n
+       "" \n
+       "{" \n
+       "	_group = _x;" \n
+       "	_units = count units _group;" \n
+       "	_group setVariable [""nomRoll"",_units];" \n
+       "	_class = getText (configFile >> ""CfgVehicles"" >>(typeOf leader _group) >> ""vehicleClass"");" \n
+       "	switch (_class) do {" \n
+       "		default {" \n
+       "			_resourceMen set [count _resourceMen,_group];" \n
+       "		};" \n
+       "		case ""Recon"": {" \n
+       "			_resourceRecon set [count _resourceRecon,_group];" \n
+       "		};" \n
+       "	};" \n
+       "} forEach _myGroups;" \n
+       "" \n
+       "_resourceMenTotal = _resourceMen;" \n
+       "_resourceReconTotal = _resourceRecon;" \n
+       "" \n
+       "//hint format [""%1 = %2 = %3"",count _resourceRecon,_resourceMen,_myGroups];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "finished">*/
+        class finished
+        {
+          priority = 0.000000;
+          to="waiting";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "assign_mission_1">*/
+    class assign_mission_1
+    {
+      name = "assign_mission_1";
+      init = /*%FSM<STATEINIT""">*/"_reconUnit = _resourceRecon select 0;" \n
+       "_resourceRecon = _resourceRecon - [_reconUnit];" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "intel_needed">*/
+        class intel_needed
+        {
+          priority = 1.000000;
+          to="establish_OP";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(count _sectorsAction > 0)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "nothing">*/
+        class nothing
+        {
+          priority = 0.000000;
+          to="loiter";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "assess_infantry">*/
+    class assess_infantry
+    {
+      name = "assess_infantry";
+      init = /*%FSM<STATEINIT""">*/"//player sidechat format[""%1 infantry avail"",count _resourceMen];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "infantry_availab">*/
+        class infantry_availab
+        {
+          priority = 1.000000;
+          to="assign_mission";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count _resourceMen > 0;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no_infantry_avai">*/
+        class no_infantry_avai
+        {
+          priority = 0.000000;
+          to="waiting";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "loiter">*/
+    class loiter
+    {
+      name = "loiter";
+      init = /*%FSM<STATEINIT""">*/"_rnd = floor(random (count _sectorList));" \n
+       "_sector = _sectorList select _rnd;" \n
+       "_reconUnit setVariable [""sector"",_sector];" \n
+       "_reconUnit setVariable [""task"",""patrol""];" \n
+       "_id = [_reconUnit,_sector] execFSM ""\A3\Modules_f\sites\behaviour\task_patrol.fsm"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "recon_avail">*/
+        class recon_avail
+        {
+          priority = 1.000000;
+          to="assign_mission_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count _resourceRecon > 0;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no_recon_avail">*/
+        class no_recon_avail
+        {
+          priority = 0.000000;
+          to="assess_infantry";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "establish_OP">*/
+    class establish_OP
+    {
+      name = "establish_OP";
+      init = /*%FSM<STATEINIT""">*/"_sector = _sectorsAction select 0;" \n
+       "_reconUnit setVariable [""sector"",_sector];" \n
+       "_reconUnit setVariable [""task"",""recon""];" \n
+       "_sector setVariable [(""recon_"" + str(_side)),_reconUnit];" \n
+       "_sectorsAction = _sectorsAction - [_sector];" \n
+       "_id = [_reconUnit,_sector] execFSM ""\A3\Modules_f\sites\behaviour\task_patrol.fsm"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "recon_avail">*/
+        class recon_avail
+        {
+          priority = 1.000000;
+          to="assign_mission_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count _resourceRecon > 0;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no_recon_avail">*/
+        class no_recon_avail
+        {
+          priority = 0.000000;
+          to="assess_infantry";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "patrol">*/
+    class patrol
+    {
+      name = "patrol";
+      init = /*%FSM<STATEINIT""">*/"_rnd = floor(random (count _sectorList));" \n
+       "_sector = _sectorList select _rnd;" \n
+       "_infantryUnit setVariable [""sector"",_sector];" \n
+       "_infantryUnit setVariable [""task"",""patrol""];" \n
+       "_id = [_infantryUnit,_sector] execFSM ""\A3\Modules_f\sites\behaviour\task_patrol.fsm"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "infantry_availab">*/
+        class infantry_availab
+        {
+          priority = 1.000000;
+          to="assign_mission";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count _resourceMen > 0;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no_infantry_avai">*/
+        class no_infantry_avai
+        {
+          priority = 0.000000;
+          to="waiting";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "probe">*/
+    class probe
+    {
+      name = "probe";
+      init = /*%FSM<STATEINIT""">*/"_sector = _sectorsEmpty select 0;" \n
+       "_infantryUnit setVariable [""sector"",_sector];" \n
+       "_infantryUnit setVariable [""task"",""probe""];" \n
+       "_sector setVariable [(""infantry_"" + str(_side)),_infantryUnit];" \n
+       "_sectorsEmpty = _sectorsEmpty - [_sector];" \n
+       "_id = [_infantryUnit,_sector] execFSM ""\A3\Modules_f\sites\behaviour\task_probe.fsm"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "infantry_availab">*/
+        class infantry_availab
+        {
+          priority = 1.000000;
+          to="assign_mission";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count _resourceMen > 0;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no_infantry_avai">*/
+        class no_infantry_avai
+        {
+          priority = 0.000000;
+          to="waiting";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="init";
+  finalStates[] =
+  {
+  };
+};
+/*%FSM</COMPILE>*/

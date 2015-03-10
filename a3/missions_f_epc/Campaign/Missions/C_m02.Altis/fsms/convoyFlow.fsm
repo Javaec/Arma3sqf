@@ -1,0 +1,201 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, Convoy Flow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-30.000000,10.000000,60.000000,60.000000,0.000000,"init"};
+item1[] = {"always",4,218,-30.000000,80.000000,60.000000,130.000000,0.000000,"always"};
+item2[] = {"normal",2,250,-30.000000,160.000000,60.000000,210.000000,0.000000,"normal"};
+item3[] = {"far",4,218,-30.000000,280.000000,60.000000,330.000000,0.000000,"far"};
+item4[] = {"slow_down",2,4346,100.000000,280.000000,200.000000,330.000000,0.000000,"slow down"};
+item5[] = {"close",4,218,100.000000,160.000000,200.000000,210.000000,0.000000,"close"};
+item6[] = {"",7,210,146.000000,366.000000,154.000000,374.000000,0.000000,""};
+item7[] = {"",7,210,-99.000000,181.000000,-90.999992,189.000000,0.000000,""};
+item8[] = {"",7,210,-99.000000,366.000000,-90.999992,374.000000,0.000000,""};
+item9[] = {"not_in_list",4,218,-140.000000,440.000000,-50.000000,490.000000,2.000000,"not in" \n "list"};
+item10[] = {"EXIT",1,250,-140.000000,550.000000,-50.000000,600.000000,0.000000,"EXIT"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,7};
+link4[] = {3,4};
+link5[] = {4,5};
+link6[] = {4,6};
+link7[] = {5,2};
+link8[] = {6,8};
+link9[] = {7,8};
+link10[] = {8,9};
+link11[] = {9,10};
+globals[] = {10.000000,1,0,0,0,640,480,1,58,6316128,1,-257.940308,388.708008,670.758728,-148.276581,814,910,1};
+window[] = {2,-1,-1,-1,-1,763,26,1286,26,3,832};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Convoy Flow";
+  class States
+  {
+    /*%FSM<STATE "init">*/
+    class init
+    {
+      name = "init";
+      init = /*%FSM<STATEINIT""">*/"//Parameters" \n
+       "private [""_first"", ""_last"", ""_log""];" \n
+       "_first	= [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+       "_last	= [_this, 1, objNull, [objNull]] call BIS_fnc_param;" \n
+       "_log	= [_this, 2, false, [true]] call BIS_fnc_param;" \n
+       "" \n
+       "//The driver" \n
+       "private ""_driver"";" \n
+       "_driver	= driver _first;" \n
+       "" \n
+       "//The convoy size" \n
+       "private ""_convoySize"";" \n
+       "_convoySize = 200;" \n
+       "" \n
+       "//Log" \n
+       "[""FSM ConvoyFlow: Convoy Flow initialized: Front Vehicle (%1), Back Vehicle (%2)"", _first, _last] call BIS_fnc_logFormat;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "always">*/
+        class always
+        {
+          priority = 0.000000;
+          to="normal";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "normal">*/
+    class normal
+    {
+      name = "normal";
+      init = /*%FSM<STATEINIT""">*/"//Speed" \n
+       "private ""_speed"";" \n
+       "_speed	 = missionNameSpace getVariable [""BIS_convoySpeed"", 5];" \n
+       "" \n
+       "//Convoy speed" \n
+       "missionNameSpace setVariable [""BIS_convoySpeedReal"", _speed];" \n
+       "" \n
+       "//Driver force speed" \n
+       "_driver forceSpeed _speed;" \n
+       "" \n
+       "//Log" \n
+       "if (_log) then {" \n
+       "	""FSM ConvoyFlow: Convoy moving at normal speed"" call BIS_fnc_log;" \n
+       "};" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "not_in_list">*/
+        class not_in_list
+        {
+          priority = 2.000000;
+          to="EXIT";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNil { missionNameSpace getVariable ""BIS_convoyVehicles"" }" \n
+           "||" \n
+           "{ !(_first in (missionNameSpace getVariable ""BIS_convoyVehicles"")) }" \n
+           "||" \n
+           "{ !(_last in (missionNameSpace getVariable ""BIS_convoyVehicles"")) }" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "far">*/
+        class far
+        {
+          priority = 0.000000;
+          to="slow_down";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"([_first, _last] call BIS_fnc_distance2D) >= _convoySize * 1.2" \n
+           "&&" \n
+           "{ isNil { missionNameSpace getVariable ""BIS_convoyCanMove"" } || { missionNameSpace getVariable ""BIS_convoyCanMove"" } }" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "slow_down">*/
+    class slow_down
+    {
+      name = "slow_down";
+      init = /*%FSM<STATEINIT""">*/"//Speed" \n
+       "private ""_speed"";" \n
+       "_speed	 = (missionNameSpace getVariable [""BIS_convoySpeed"", 5]) / 2;" \n
+       "" \n
+       "//Convoy speed" \n
+       "missionNameSpace setVariable [""BIS_convoySpeedReal"", _speed];" \n
+       "" \n
+       "//Driver force speed" \n
+       "_driver forceSpeed _speed;" \n
+       "" \n
+       "//Log" \n
+       "if (_log) then {" \n
+       "	""FSM ConvoyFlow: Convoy slowing down"" call BIS_fnc_log;" \n
+       "};" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "not_in_list">*/
+        class not_in_list
+        {
+          priority = 2.000000;
+          to="EXIT";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNil { missionNameSpace getVariable ""BIS_convoyVehicles"" }" \n
+           "||" \n
+           "{ !(_first in (missionNameSpace getVariable ""BIS_convoyVehicles"")) }" \n
+           "||" \n
+           "{ !(_last in (missionNameSpace getVariable ""BIS_convoyVehicles"")) }" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "close">*/
+        class close
+        {
+          priority = 0.000000;
+          to="normal";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"([_first, _last] call BIS_fnc_distance2D) <= _convoySize * 1.2" \n
+           "&&" \n
+           "{ isNil { missionNameSpace getVariable ""BIS_convoyCanMove"" } || { missionNameSpace getVariable ""BIS_convoyCanMove"" } }" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "EXIT">*/
+    class EXIT
+    {
+      name = "EXIT";
+      init = /*%FSM<STATEINIT""">*/"//Reset" \n
+       "_driver forceSpeed -1;" \n
+       "" \n
+       "//Log" \n
+       "[""Convoy Flow terminated (%1 / %2)"", _first, _last] call BIS_fnc_logFormat;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="init";
+  finalStates[] =
+  {
+    "EXIT",
+  };
+};
+/*%FSM</COMPILE>*/

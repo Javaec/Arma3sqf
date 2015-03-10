@@ -1,0 +1,276 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Combat Get In">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-75.000000,-350.000000,25.000000,-300.000000,0.000000,"Init"};
+item1[] = {"combat",4,218,-200.000000,175.000000,-100.000000,225.000000,0.000000,"combat"};
+item2[] = {"get_in",1,250,-200.000000,250.000000,-100.000000,300.000000,0.000000,"get in"};
+item3[] = {"always",8,218,-75.000000,25.000000,25.000000,75.000000,0.000000,"always"};
+item4[] = {"check_behaviour",2,250,-75.000000,100.000000,25.000000,150.000000,0.000000,"check" \n "behaviour"};
+item5[] = {"always",8,218,-75.000000,-200.000000,25.000000,-150.000000,0.000000,"always"};
+item6[] = {"all_dead",4,218,50.000000,175.000000,150.000000,225.000000,0.000000,"all dead"};
+item7[] = {"timeout_5s",6,250,-200.000000,100.000000,-100.000000,150.000000,0.000000,"timeout" \n "5s"};
+item8[] = {"vehicles_immobil",4,218,-75.000000,175.000000,25.000000,225.000000,0.000000,"vehicles" \n "immobile"};
+item9[] = {"terminate",1,250,50.000000,250.000000,150.000000,300.000000,0.000000,"terminate"};
+item10[] = {"assign_vehicles",2,4346,-75.000000,-50.000000,25.000000,0.000000,0.000000,"assign vehicles"};
+item11[] = {"synced_w__a_Site",4,218,50.000000,-350.000000,150.000000,-300.000000,1.000000,"synced" \n "w/ a Site"};
+item12[] = {"wait_for_Sites_i",2,250,50.000000,-275.000000,150.000000,-225.000000,0.000000,"wait for" \n "Sites init"};
+item13[] = {"Sites_init_done",4,218,50.000000,-200.000000,150.000000,-150.000000,0.000000,"Sites init" \n "done"};
+item14[] = {"nothing",2,250,50.000000,-125.000000,150.000000,-75.000000,0.000000,"nothing"};
+item15[] = {"timeout_1s",6,250,50.000000,-50.000000,150.000000,0.000000,0.000000,"timeout" \n "1s"};
+link0[] = {0,5};
+link1[] = {0,11};
+link2[] = {1,2};
+link3[] = {3,4};
+link4[] = {4,1};
+link5[] = {4,6};
+link6[] = {4,7};
+link7[] = {4,8};
+link8[] = {5,10};
+link9[] = {6,9};
+link10[] = {7,4};
+link11[] = {8,9};
+link12[] = {10,3};
+link13[] = {11,12};
+link14[] = {12,13};
+link15[] = {13,14};
+link16[] = {14,15};
+link17[] = {15,10};
+globals[] = {25.000000,1,0,0,0,640,480,1,107,6316128,1,-485.024048,450.686401,561.996460,-250.739655,1187,1031,1};
+window[] = {2,-1,-1,-32000,-32000,967,200,1649,200,3,1205};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Combat Get In";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_module = _this select 0;" \n
+                         "_syncedSites = [];" \n
+                         "" \n
+                         "_grpPool = [];" \n
+                         "_crewPool = [];" \n
+                         "_vehPool = [];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "synced_w__a_Site">*/
+                                class synced_w__a_Site
+                                {
+                                        itemno = 11;
+                                        priority = 1.000000;
+                                        to="wait_for_Sites_i";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{typeOf _x in [""Site_BLUFOR"", ""Site_OPFOR"", ""Site_Independent""]} count synchronizedObjects _module > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="assign_vehicles";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "get_in">*/
+                class get_in
+                {
+                        name = "get_in";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"{" \n
+                         "	_curWP = currentWaypoint _x;" \n
+                         "	_wp1 = _x addWaypoint [position (_vehPool select 0), 0, _curWP];" \n
+                         "	_wp1 setWaypointType ""GETIN"";" \n
+                         "	if (count waypoints _x <= 2 && isNil {_x getVariable ""site""}) then {" \n
+                         "		_wp2 = _x addWaypoint [position leader _x, 25, _curWP + 1];" \n
+                         "		_wp2 setWaypointType ""GUARD"";" \n
+                         "	};" \n
+                         "} forEach _grpPool;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "check_behaviour">*/
+                class check_behaviour
+                {
+                        name = "check_behaviour";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "all_dead">*/
+                                class all_dead
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x} count _crewPool == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "timeout_5s">*/
+                                class timeout_5s
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="check_behaviour";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 5"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "vehicles_immobil">*/
+                                class vehicles_immobil
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canMove _x} count _vehPool == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "combat">*/
+                                class combat
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="get_in";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{behaviour _x == ""COMBAT""} count _crewPool > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "terminate">*/
+                class terminate
+                {
+                        name = "terminate";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "assign_vehicles">*/
+                class assign_vehicles
+                {
+                        name = "assign_vehicles";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"{" \n
+                         "	if (isNull group _x) then {" \n
+                         "		_vehPool = _vehPool + [_x]" \n
+                         "	} else {" \n
+                         "		if (!((group _x) in _grpPool) && side _x != sideLogic) then {" \n
+                         "			_grpPool = _grpPool + [group _x];" \n
+                         "		};" \n
+                         "	};" \n
+                         "} forEach synchronizedObjects _module;" \n
+                         "" \n
+                         "{" \n
+                         "	_grpPool = _grpPool + [(_x getVariable ""garrison"") select 0];" \n
+                         "} forEach _syncedSites;" \n
+                         "" \n
+                         "{" \n
+                         "	_grp = _x;" \n
+                         "	{_grp addVehicle _x} forEach _vehPool;" \n
+                         "	{" \n
+                         "		if (vehicle _x == _x) then {" \n
+                         "			_crewPool = _crewPool + [_x];" \n
+                         "		};" \n
+                         "	} forEach units _grp;" \n
+                         "} forEach _grpPool;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="check_behaviour";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "wait_for_Sites_i">*/
+                class wait_for_Sites_i
+                {
+                        name = "wait_for_Sites_i";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"{" \n
+                         "	if (typeOf _x in [""Site_BLUFOR"", ""Site_OPFOR"", ""Site_Independent""]) then {" \n
+                         "		_syncedSites = _syncedSites + [_x];" \n
+                         "	};" \n
+                         "} forEach synchronizedObjects _module;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Sites_init_done">*/
+                                class Sites_init_done
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="nothing";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{isNil {_x getVariable ""garrison""}} count _syncedSites == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "nothing">*/
+                class nothing
+                {
+                        name = "nothing";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout_1s">*/
+                                class timeout_1s
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="assign_vehicles";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 1;"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "get_in",
+                "terminate",
+        };
+};
+/*%FSM</COMPILE>*/

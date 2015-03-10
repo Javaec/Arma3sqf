@@ -1,0 +1,243 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, FPS manager">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"START",0,250,-200.000000,-300.000000,-100.000000,-250.000000,0.000000,"START"};
+item1[] = {"Sites_init_done",4,218,-200.000000,-225.000000,-100.000000,-175.000000,0.000000,"Sites" \n "init done"};
+item2[] = {"hide_distant_obj",2,4346,-200.000000,-150.000000,-100.000000,-100.000000,0.000000,"hide" \n "distant objects"};
+item3[] = {"moved_far_enough",4,218,-250.000000,-75.000000,-150.000000,-25.000000,0.000000,"moved far" \n "enough"};
+item4[] = {"setPos_d",4,218,-150.000000,-75.000000,-50.000000,-25.000000,0.000000,"setPos'd"};
+item5[] = {"airborne",4,218,-350.000000,-75.000000,-250.000000,-25.000000,0.000000,"airborne"};
+item6[] = {"show_all_objects",2,250,-250.000000,0.000000,-150.000000,50.000000,0.000000,"show" \n "all objects"};
+item7[] = {"on_land",4,218,-250.000000,75.000000,-150.000000,125.000000,0.000000,"on land"};
+item8[] = {"",7,210,-379.000000,95.999992,-371.000000,104.000000,0.000000,""};
+item9[] = {"",7,210,-379.000000,-129.000000,-371.000000,-121.000000,0.000000,""};
+item10[] = {"rescan_new_objec",4,218,-50.000000,-75.000000,50.000000,-25.000000,0.000000,"rescan new" \n "objects"};
+item11[] = {"scan_for_new_obj",2,250,-150.000000,0.000000,-50.000000,50.000000,0.000000,"scan for" \n "new objects"};
+item12[] = {"always",8,218,-150.000000,75.000000,-50.000000,125.000000,0.000000,"always"};
+item13[] = {"",7,210,71.000000,96.000000,79.000000,104.000000,0.000000,""};
+item14[] = {"",7,210,71.000000,-129.000000,79.000000,-121.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,4};
+link4[] = {2,5};
+link5[] = {2,10};
+link6[] = {3,2};
+link7[] = {4,2};
+link8[] = {5,6};
+link9[] = {6,7};
+link10[] = {7,8};
+link11[] = {8,9};
+link12[] = {9,2};
+link13[] = {10,11};
+link14[] = {11,12};
+link15[] = {12,13};
+link16[] = {13,14};
+link17[] = {14,2};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,180,6316128,1,-499.642944,187.944717,235.123749,-371.611145,1012,1031,1};
+window[] = {2,-1,-1,-1,-1,805,75,1335,75,3,1030};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "FPS manager";
+        class States
+        {
+                /*%FSM<STATE "START">*/
+                class START
+                {
+                        name = "START";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"BIS_fps_rescanNewObjects = FALSE;" \n
+                         "_afterStartCheck = FALSE;" \n
+                         "_missionObjs = [];" \n
+                         "_toHide = [];" \n
+                         "_t = time;" \n
+                         "_t2 = time;" \n
+                         "_virtualSpeed = 15;" \n
+                         "" \n
+                         "_freezeDist = 2000;" \n
+                         "" \n
+                         "if (isNil ""BIS_persistent"") then {BIS_persistent = []};" \n
+                         "" \n
+                         "_spawnedBySites = [];" \n
+                         "{" \n
+                         "	if (!(isNil {_x getVariable ""garrison""})) then {" \n
+                         "		_site = _x;" \n
+                         "		{_spawnedBySites = _spawnedBySites + units _x} forEach (_site getVariable ""garrison"")" \n
+                         "	}" \n
+                         "} forEach allSites;" \n
+                         "" \n
+                         "_grabMissionObjs = {" \n
+                         "	_ret = [];" \n
+                         "	{" \n
+                         "		if (typeOf _x != """" && !(_x in (units player + BIS_persistent)) && !(_x isKindOf ""Logic"")) then {" \n
+                         "			_ret = _ret + [_x];" \n
+                         "			if (vehicle _x != _x && !(vehicle _x  in _ret)) then {_ret = _ret + [vehicle _x]}" \n
+                         "		}" \n
+                         "	} forEach _spawnedBySites;" \n
+                         "	{if (vehicleVarName _x != """" && !(_x in BIS_persistent)) then {BIS_persistent = BIS_persistent + [_x]}} forEach _ret;" \n
+                         "	{if (vehicle _x != _x && !(vehicle _x  in BIS_persistent)) then {BIS_persistent = BIS_persistent + [vehicle _x]}} forEach BIS_persistent;" \n
+                         "	_ret" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Sites_init_done">*/
+                                class Sites_init_done
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="hide_distant_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil ""BIS_initSitesDone"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "hide_distant_obj">*/
+                class hide_distant_obj
+                {
+                        name = "hide_distant_obj";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"_oldPersistent = +BIS_persistent;" \n
+                         "_t = time;" \n
+                         "" \n
+                         "if (count _missionObjs == 0) then {_missionObjs = call _grabMissionObjs;};" \n
+                         "" \n
+                         "_hidden = +_toHide;" \n
+                         "_toHide = [];" \n
+                         "" \n
+                         "_checkFor_grps = [];" \n
+                         "_checkFor = [];" \n
+                         "{if (!(group _x in _checkFor_grps)) then {_checkFor_grps = _checkFor_grps + [group _x]}} forEach (playableUnits + switchableUnits);" \n
+                         "{_checkFor = _checkFor + units _x} forEach _checkFor_grps;" \n
+                         "{_x setVariable [""BIS_FPS_lastPos"", position vehicle _x, TRUE]} forEach _checkFor;" \n
+                         "" \n
+                         "{" \n
+                         "	_obj = _x;" \n
+                         "	if (count crew _obj == 0 && !((side _obj) in [sideLogic, sideUnknown])) then {" \n
+                         "		if ({_obj distance _x < _freezeDist} count _checkFor == 0 && !(_obj in _toHide)) then {" \n
+                         "			_toHide = _toHide + [_obj];" \n
+                         "		}" \n
+                         "	} else {" \n
+                         "		if (!(_obj in _toHide) && !((side _obj) in [sideLogic, sideUnknown])) then {" \n
+                         "			if ({_obj distance _x < _freezeDist} count _checkFor == 0 && leader _obj == _obj) then {" \n
+                         "				{_toHide = _toHide + [_x]; if (!(vehicle _x in _toHide)) then {_toHide = _toHide + [vehicle _x]}} forEach units group _obj;" \n
+                         "			}" \n
+                         "		}" \n
+                         "	}" \n
+                         "} forEach _missionObjs;" \n
+                         "" \n
+                         "{_x hideObject FALSE; _x enableSimulation TRUE} forEach (_hidden - _toHide + BIS_persistent);" \n
+                         "{_x hideObject TRUE; _x enableSimulation FALSE} forEach (_toHide - _hidden);" \n
+                         "" \n
+                         "if (isNil ""BIS_fps_manager_init"") then {BIS_fps_manager_init = TRUE};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "setPos_d">*/
+                                class setPos_d
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="hide_distant_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{vehicle _x distance (_x getVariable ""BIS_FPS_lastPos"") > (_freezeDist / 4)} count _checkFor > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "airborne">*/
+                                class airborne
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="show_all_objects";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{vehicle _x isKindOf ""Air""} count _checkFor > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "rescan_new_objec">*/
+                                class rescan_new_objec
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="scan_for_new_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_fps_rescanNewObjects || (count _oldPersistent != count BIS_persistent) || (time > 0 && !_afterStartCheck)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "moved_far_enough">*/
+                                class moved_far_enough
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="hide_distant_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 10 && {vehicle _x distance (_x getVariable ""BIS_FPS_lastPos"") > (_freezeDist / 4)} count _checkFor > 0" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "show_all_objects">*/
+                class show_all_objects
+                {
+                        name = "show_all_objects";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"{_x hideObject FALSE; _x enableSimulation TRUE} forEach _missionObjs;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "on_land">*/
+                                class on_land
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="hide_distant_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{vehicle _x isKindOf ""Air""} count _checkFor == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "scan_for_new_obj">*/
+                class scan_for_new_obj
+                {
+                        name = "scan_for_new_obj";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"_afterStartCheck = TRUE;" \n
+                         "BIS_fps_rescanNewObjects = FALSE;" \n
+                         "" \n
+                         "_missionObjs = call _grabMissionObjs;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="hide_distant_obj";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="START";
+        finalStates[] =
+        {
+        };
+};
+/*%FSM</COMPILE>*/

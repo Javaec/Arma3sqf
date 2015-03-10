@@ -1,0 +1,933 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, VR: Target Designation - Stage 2">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"INIT",0,250,-100.000000,-1275.000000,0.000000,-1225.000000,0.000000,"INIT"};
+item1[] = {"timeout",6,250,-100.000000,-1050.000000,0.000000,-1000.000000,0.000000,"timeout"};
+item2[] = {"hint",2,250,-100.000000,-975.000000,0.000000,-925.000000,0.000000,"hint"};
+item3[] = {"lasing",4,218,-100.000000,-600.000000,0.000000,-550.000000,0.000000,"lasing"};
+item4[] = {"save_laser",2,250,-100.000000,-525.000000,0.000000,-475.000000,0.000000,"save laser"};
+item5[] = {"not_lasing",4,218,-175.000000,-450.000000,-75.000000,-400.000000,0.000000,"not lasing"};
+item6[] = {"on_target",4,218,-25.000000,-450.000000,75.000000,-400.000000,0.000000,"on target"};
+item7[] = {"tip",2,250,-25.000000,-375.000000,75.000000,-325.000000,0.000000,"tip"};
+item8[] = {"nothing",2,250,-175.000000,-375.000000,-75.000000,-325.000000,0.000000,"nothing"};
+item9[] = {"",7,210,-204.000000,-354.000000,-196.000000,-346.000000,0.000000,""};
+item10[] = {"",7,210,-204.000000,-579.000000,-196.000000,-571.000000,0.000000,""};
+item11[] = {"timeout",6,250,-25.000000,-300.000000,75.000000,-250.000000,0.000000,"timeout"};
+item12[] = {"marked__drop_ord",2,250,-25.000000,-225.000000,75.000000,-175.000000,0.000000,"marked," \n "drop ordnance"};
+item13[] = {"target_hit",4,218,-25.000000,-150.000000,75.000000,-100.000000,0.000000,"target hit"};
+item14[] = {"destroy_target",2,250,-25.000000,-75.000000,75.000000,-25.000000,0.000000,"destroy target"};
+item15[] = {"timeout",6,250,-25.000000,0.000000,75.000000,50.000000,0.000000,"timeout"};
+item16[] = {"target_lost",4,218,-175.000000,-300.000000,-75.000000,-250.000000,0.000000,"target lost"};
+item17[] = {"tip_1",2,250,-175.000000,-225.000000,-75.000000,-175.000000,0.000000,"tip"};
+item18[] = {"",7,210,-204.000000,-204.000000,-196.000000,-196.000000,0.000000,""};
+item19[] = {"DONE",1,250,-25.000000,75.000000,75.000000,125.000000,0.000000,"DONE"};
+item20[] = {"UAV_dead",4,218,125.000000,-350.000000,225.000000,-300.000000,10.000000,"UAV" \n "dead"};
+item21[] = {"TERMINATE",1,250,250.000000,-350.000000,350.000000,-300.000000,0.000000,"TERMINATE"};
+item22[] = {"fail",4,218,-375.000000,-450.000000,-275.000000,-400.000000,10.000000,"fail"};
+item23[] = {"TERMINATE_1",1,250,-500.000000,-450.000000,-400.000000,-400.000000,0.000000,"TERMINATE"};
+item24[] = {"task_done_new_ta",2,250,-100.000000,-675.000000,0.000000,-625.000000,0.000000,"task done" \n "new task"};
+item25[] = {"UAV_connected",4,218,-100.000000,-900.000000,0.000000,-850.000000,0.000000,"UAV connected"};
+item26[] = {"loaded",4,218,-100.000000,-1200.000000,0.000000,-1150.000000,0.000000,"loaded"};
+item27[] = {"add_task",2,4346,-100.000000,-1125.000000,0.000000,-1075.000000,0.000000,"add task"};
+item28[] = {"in_blast_radius",4,218,-375.000000,-375.000000,-275.000000,-325.000000,0.000000,"in blast" \n "radius"};
+item29[] = {"show_warn",2,250,-375.000000,-300.000000,-275.000000,-250.000000,0.000000,"show warn"};
+item30[] = {"outside_blast_ra",4,218,-375.000000,-225.000000,-275.000000,-175.000000,0.000000,"outside" \n "blast radius"};
+item31[] = {"hide_warn",2,250,-375.000000,-150.000000,-275.000000,-100.000000,0.000000,"hide warn"};
+item32[] = {"",7,210,-404.000000,-128.999969,-396.000000,-121.000038,0.000000,""};
+item33[] = {"",7,210,-404.000000,-354.000000,-396.000000,-346.000000,0.000000,""};
+item34[] = {"task_done_new_ta_1",2,250,-100.000000,-825.000000,0.000000,-775.000000,0.000000,"task done" \n "new task"};
+item35[] = {"gunner",4,218,-100.000000,-750.000000,0.000000,-700.000000,0.000000,"gunner"};
+link0[] = {0,26};
+link1[] = {1,2};
+link2[] = {2,20};
+link3[] = {2,22};
+link4[] = {2,25};
+link5[] = {3,4};
+link6[] = {4,5};
+link7[] = {4,6};
+link8[] = {4,20};
+link9[] = {4,22};
+link10[] = {4,28};
+link11[] = {5,8};
+link12[] = {6,7};
+link13[] = {7,11};
+link14[] = {7,16};
+link15[] = {7,20};
+link16[] = {7,22};
+link17[] = {7,28};
+link18[] = {8,9};
+link19[] = {8,20};
+link20[] = {8,22};
+link21[] = {8,28};
+link22[] = {9,10};
+link23[] = {10,3};
+link24[] = {11,12};
+link25[] = {12,13};
+link26[] = {12,20};
+link27[] = {12,22};
+link28[] = {13,14};
+link29[] = {14,15};
+link30[] = {15,19};
+link31[] = {16,17};
+link32[] = {17,18};
+link33[] = {17,20};
+link34[] = {17,22};
+link35[] = {17,28};
+link36[] = {18,9};
+link37[] = {20,21};
+link38[] = {22,23};
+link39[] = {24,3};
+link40[] = {24,20};
+link41[] = {24,22};
+link42[] = {24,28};
+link43[] = {25,34};
+link44[] = {26,27};
+link45[] = {27,1};
+link46[] = {27,20};
+link47[] = {27,22};
+link48[] = {28,29};
+link49[] = {29,20};
+link50[] = {29,22};
+link51[] = {29,30};
+link52[] = {30,31};
+link53[] = {31,3};
+link54[] = {31,20};
+link55[] = {31,22};
+link56[] = {31,32};
+link57[] = {32,33};
+link58[] = {33,28};
+link59[] = {34,20};
+link60[] = {34,22};
+link61[] = {34,35};
+link62[] = {35,24};
+globals[] = {25.000000,1,0,0,0,640,480,1,276,6316128,1,-378.403076,383.421387,-499.282532,-1397.612427,759,1031,1};
+window[] = {2,-1,-1,-1,-1,992,225,1439,225,3,777};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "VR: Target Designation - Stage 2";
+        class States
+        {
+                /*%FSM<STATE "INIT">*/
+                class INIT
+                {
+                        name = "INIT";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_centerPos = markerPos ""BIS_center"";" \n
+                         "" \n
+                         "_pos = [_centerPos, 500, 0] call BIS_fnc_relPos;" \n
+                         "BIS_target = ""O_APC_Tracked_02_cannon_F"" createVehicle _pos;" \n
+                         "BIS_target setPos _pos;" \n
+                         "BIS_target setDir 90;" \n
+                         "BIS_target call BIS_fnc_VR_handleVehicle;" \n
+                         "" \n
+                         "createVehicleCrew BIS_target;" \n
+                         "driver BIS_target move position BIS_target;" \n
+                         "" \n
+                         "{_x setCombatMode ""BLUE""; _x allowFleeing 0; _x disableAI ""TARGET""; _x disableAI ""AUTOTARGET""} forEach crew BIS_target;" \n
+                         "" \n
+                         "_pad = ""VR_Area_01_circle_4_yellow_F"" createVehicle position BIS_target;" \n
+                         "_pad setPos [(position BIS_target select 0) - 1.5, position BIS_target select 1, 0];" \n
+                         "" \n
+                         "_pos = [_centerPos, 300, 180] call BIS_fnc_relPos;" \n
+                         "_pos set [2, 400];" \n
+                         "BIS_UAV = createVehicle [""B_UAV_02_F"", _pos, [], 0, ""FLY""];" \n
+                         "BIS_UAV setPos _pos;" \n
+                         "BIS_UAV setDir 0;" \n
+                         "" \n
+                         "{BIS_UAV removeWeapon _x} forEach (weapons BIS_UAV - [""Laserdesignator_mounted""]);" \n
+                         "" \n
+                         "createVehicleCrew BIS_UAV;" \n
+                         "BIS_UAV flyInHeight 400;" \n
+                         "" \n
+                         "_wp = group driver BIS_UAV addWaypoint [position BIS_target, 0];" \n
+                         "_wp setWaypointType ""LOITER"";" \n
+                         "_wp setWaypointSpeed ""LIMITED"";" \n
+                         "" \n
+                         "_wp setWaypointVisible FALSE;" \n
+                         "" \n
+                         "BIS_gridCenter = [_centerPos, 248, 0] call BIS_fnc_relPos; [FALSE] call BIS_fnc_VRDrawGrid;" \n
+                         "" \n
+                         "player addItem ""B_UavTerminal"";" \n
+                         "player assignItem ""B_UavTerminal"";" \n
+                         "" \n
+                         "player addWeapon ""arifle_MX_Black_F"";" \n
+                         "player selectWeapon ""arifle_MX_Black_F"";" \n
+                         "" \n
+                         "player switchMove ""amovpercmstpsraswrfldnon"";" \n
+                         "" \n
+                         "BIS_startTimer = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "loaded">*/
+                                class loaded
+                                {
+                                        itemno = 26;
+                                        priority = 0.000000;
+                                        to="add_task";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_interruptable"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "hint">*/
+                class hint
+                {
+                        name = "hint";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"if !(BIS_startTimer) then {" \n
+                         "	_null = [[""UAV"", ""Connection""], nil, nil, 1e4, ""BIS_hideHint"", nil, TRUE] spawn BIS_fnc_advHint;" \n
+                         "" \n
+                         "	BIS_startTimer = TRUE;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "fail">*/
+                                class fail
+                                {
+                                        itemno = 22;
+                                        priority = 10.000000;
+                                        to="TERMINATE_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "UAV_dead">*/
+                                class UAV_dead
+                                {
+                                        itemno = 20;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_UAV || BIS_UAV distance BIS_target > 1750"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "UAV_connected">*/
+                                class UAV_connected
+                                {
+                                        itemno = 25;
+                                        priority = 0.000000;
+                                        to="task_done_new_ta_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isUavConnected BIS_UAV"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "save_laser">*/
+                class save_laser
+                {
+                        name = "save_laser";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_laser = allMissionObjects ""LaserTargetW"" select 0;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "UAV_dead">*/
+                                class UAV_dead
+                                {
+                                        itemno = 20;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_UAV || BIS_UAV distance BIS_target > 1750"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "fail">*/
+                                class fail
+                                {
+                                        itemno = 22;
+                                        priority = 10.000000;
+                                        to="TERMINATE_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "on_target">*/
+                                class on_target
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="tip";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_laser distance BIS_target < 10"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "in_blast_radius">*/
+                                class in_blast_radius
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="show_warn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_UAV distance BIS_target < 150"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "not_lasing">*/
+                                class not_lasing
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="nothing";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isNull _laser"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "tip">*/
+                class tip
+                {
+                        name = "tip";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"_null = [localize ""STR_A3_VR_targetdesignation_keep_marking"", 0, 0.2, 4, 0.5] spawn BIS_fnc_dynamicText;" \n
+                         "" \n
+                         "_t = time + 5;" \n
+                         "" \n
+                         "_timerSound = [] spawn {" \n
+                         "	while {TRUE} do {" \n
+                         "		playSound ""ReadoutClick"";" \n
+                         "		sleep 1;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "UAV_dead">*/
+                                class UAV_dead
+                                {
+                                        itemno = 20;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_UAV || BIS_UAV distance BIS_target > 1750"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "fail">*/
+                                class fail
+                                {
+                                        itemno = 22;
+                                        priority = 10.000000;
+                                        to="TERMINATE_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "target_lost">*/
+                                class target_lost
+                                {
+                                        itemno = 16;
+                                        priority = 0.000000;
+                                        to="tip_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_laser distance BIS_target > 10 || isNull _laser"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "in_blast_radius">*/
+                                class in_blast_radius
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="show_warn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_UAV distance BIS_target < 150"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "timeout">*/
+                                class timeout
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="marked__drop_ord";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "nothing">*/
+                class nothing
+                {
+                        name = "nothing";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "fail">*/
+                                class fail
+                                {
+                                        itemno = 22;
+                                        priority = 10.000000;
+                                        to="TERMINATE_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "UAV_dead">*/
+                                class UAV_dead
+                                {
+                                        itemno = 20;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_UAV || BIS_UAV distance BIS_target > 1750"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "lasing">*/
+                                class lasing
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="save_laser";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count allMissionObjects ""LaserTargetW"" > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "in_blast_radius">*/
+                                class in_blast_radius
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="show_warn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_UAV distance BIS_target < 150"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "marked__drop_ord">*/
+                class marked__drop_ord
+                {
+                        name = "marked__drop_ord";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"_pos = position BIS_target;" \n
+                         "_shell = ""Sh_155mm_AMOS"" createVehicle _pos; _shell setPos [_pos select 0, _pos select 1, 200]; _shell setVelocity [0,0,-100];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "UAV_dead">*/
+                                class UAV_dead
+                                {
+                                        itemno = 20;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_UAV || BIS_UAV distance BIS_target > 1750"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "fail">*/
+                                class fail
+                                {
+                                        itemno = 22;
+                                        priority = 10.000000;
+                                        to="TERMINATE_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "target_hit">*/
+                                class target_hit
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="destroy_target";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage BIS_target > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "destroy_target">*/
+                class destroy_target
+                {
+                        name = "destroy_target";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"BIS_target setDamage 1;" \n
+                         "" \n
+                         "_t = time + 0.5;" \n
+                         "" \n
+                         "BIS_stopTimer = TRUE;" \n
+                         "" \n
+                         "if !(isNil ""_timerSound"") then {terminate _timerSound};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout">*/
+                                class timeout
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="DONE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "tip_1">*/
+                class tip_1
+                {
+                        name = "tip_1";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"_null = [localize ""STR_A3_VR_targetdesignation_target_lost"", 0, 0.2, 2, 0.5] spawn BIS_fnc_dynamicText;" \n
+                         "" \n
+                         "if !(isNil ""_timerSound"") then {terminate _timerSound};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "fail">*/
+                                class fail
+                                {
+                                        itemno = 22;
+                                        priority = 10.000000;
+                                        to="TERMINATE_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "UAV_dead">*/
+                                class UAV_dead
+                                {
+                                        itemno = 20;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_UAV || BIS_UAV distance BIS_target > 1750"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "lasing">*/
+                                class lasing
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="save_laser";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count allMissionObjects ""LaserTargetW"" > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "in_blast_radius">*/
+                                class in_blast_radius
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="show_warn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_UAV distance BIS_target < 150"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "DONE">*/
+                class DONE
+                {
+                        name = "DONE";
+                        itemno = 19;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_obj7"", ""Succeeded""] call BIS_fnc_taskSetState;" \n
+                         "" \n
+                         "BIS_stage = BIS_stage + 1;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "TERMINATE">*/
+                class TERMINATE
+                {
+                        name = "TERMINATE";
+                        itemno = 21;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn BIS_fnc_VR_stageFailed;" \n
+                         "" \n
+                         "if !(isNil ""_timerSound"") then {terminate _timerSound};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "TERMINATE_1">*/
+                class TERMINATE_1
+                {
+                        name = "TERMINATE_1";
+                        itemno = 23;
+                        init = /*%FSM<STATEINIT""">*/"if !(isNil ""_timerSound"") then {terminate _timerSound};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done_new_ta">*/
+                class task_done_new_ta
+                {
+                        name = "task_done_new_ta";
+                        itemno = 24;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_obj763"", ""Succeeded""] call BIS_fnc_taskSetState;" \n
+                         "" \n
+                         "[" \n
+                         "	player," \n
+                         "	""BIS_obj7""," \n
+                         "	[" \n
+                         "		(localize ""STR_A3_VR_targetdesignation_task3_text"") + ""<br/><br/>"" + localize ""STR_A3_vr_consult_manual""," \n
+                         "		localize ""STR_A3_VR_targetdesignation_task1_title""," \n
+                         "		""""" \n
+                         "	]," \n
+                         "	objNull," \n
+                         "	TRUE" \n
+                         "] call BIS_fnc_taskCreate;" \n
+                         "" \n
+                         "_t = time + 1.5;" \n
+                         "" \n
+                         "BIS_icon attachTo [BIS_target, [0,0,-3.5]];" \n
+                         "BIS_iconGrp setGroupIconParams [BIS_TT_colorWarning, """", 1, TRUE];" \n
+                         "" \n
+                         "_null = [] spawn {" \n
+                         "	while {BIS_interruptable} do {" \n
+                         "		if (BIS_UAV distance BIS_target > 1000) then {" \n
+                         "			_null = [""Return to the Course area!"", 0, 0.2, 2, 0.5] spawn BIS_fnc_dynamicText;" \n
+                         "		};" \n
+                         "		sleep 2;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "UAV_dead">*/
+                                class UAV_dead
+                                {
+                                        itemno = 20;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_UAV || BIS_UAV distance BIS_target > 1750"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "fail">*/
+                                class fail
+                                {
+                                        itemno = 22;
+                                        priority = 10.000000;
+                                        to="TERMINATE_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "in_blast_radius">*/
+                                class in_blast_radius
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="show_warn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_UAV distance BIS_target < 150"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "lasing">*/
+                                class lasing
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="save_laser";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count allMissionObjects ""LaserTargetW"" > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "add_task">*/
+                class add_task
+                {
+                        name = "add_task";
+                        itemno = 27;
+                        init = /*%FSM<STATEINIT""">*/"[" \n
+                         "	player," \n
+                         "	""BIS_obj6""," \n
+                         "	[" \n
+                         "		(localize ""STR_A3_VR_targetdesignation_task2_text"") + ""<br/><br/>"" + localize ""STR_A3_vr_consult_manual""," \n
+                         "		localize ""STR_A3_VR_targetdesignation_task2_title""," \n
+                         "		""""" \n
+                         "	]," \n
+                         "	objNull," \n
+                         "	TRUE" \n
+                         "] call BIS_fnc_taskCreate;" \n
+                         "" \n
+                         "_t = time + 3;" \n
+                         "" \n
+                         "BIS_icon attachTo [BIS_UAV, [0,0,-3.5]];" \n
+                         "BIS_iconGrp setGroupIconParams [BIS_TT_colorWarning, """", 1, TRUE];" \n
+                         "" \n
+                         "_script = [] spawn {" \n
+                         "	waitUntil {!isNull (findDisplay 160)};" \n
+                         "	BIS_hideHint = TRUE;" \n
+                         "	sleep 0.5;" \n
+                         "	BIS_hideHint = FALSE;" \n
+                         "	_null = [[""UAV"", ""Connection""], nil, nil, 1e4, ""BIS_hideHint"", nil, TRUE] spawn BIS_fnc_advHint;" \n
+                         "	BIS_startTimer = TRUE;" \n
+                         "};" \n
+                         "" \n
+                         "BIS_VR_spawnArray = BIS_VR_spawnArray + [_script];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "UAV_dead">*/
+                                class UAV_dead
+                                {
+                                        itemno = 20;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_UAV || BIS_UAV distance BIS_target > 1750"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "fail">*/
+                                class fail
+                                {
+                                        itemno = 22;
+                                        priority = 10.000000;
+                                        to="TERMINATE_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "timeout">*/
+                                class timeout
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="hint";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "show_warn">*/
+                class show_warn
+                {
+                        name = "show_warn";
+                        itemno = 29;
+                        init = /*%FSM<STATEINIT""">*/"_null = [localize ""STR_A3_VR_targetdesignation_blast_warn"", 0, 0.2, 1000, 0.5] spawn BIS_fnc_dynamicText;" \n
+                         "" \n
+                         "if !(isNil ""_timerSound"") then {terminate _timerSound};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "fail">*/
+                                class fail
+                                {
+                                        itemno = 22;
+                                        priority = 10.000000;
+                                        to="TERMINATE_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "UAV_dead">*/
+                                class UAV_dead
+                                {
+                                        itemno = 20;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_UAV || BIS_UAV distance BIS_target > 1750"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "outside_blast_ra">*/
+                                class outside_blast_ra
+                                {
+                                        itemno = 30;
+                                        priority = 0.000000;
+                                        to="hide_warn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_UAV distance BIS_target >= 150"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "hide_warn">*/
+                class hide_warn
+                {
+                        name = "hide_warn";
+                        itemno = 31;
+                        init = /*%FSM<STATEINIT""">*/"_null = ["""", 0, 0.2, 1000, 0] spawn BIS_fnc_dynamicText;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "UAV_dead">*/
+                                class UAV_dead
+                                {
+                                        itemno = 20;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_UAV || BIS_UAV distance BIS_target > 1750"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "fail">*/
+                                class fail
+                                {
+                                        itemno = 22;
+                                        priority = 10.000000;
+                                        to="TERMINATE_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "in_blast_radius">*/
+                                class in_blast_radius
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="show_warn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_UAV distance BIS_target < 150"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "lasing">*/
+                                class lasing
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="save_laser";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count allMissionObjects ""LaserTargetW"" > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done_new_ta_1">*/
+                class task_done_new_ta_1
+                {
+                        name = "task_done_new_ta_1";
+                        itemno = 34;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_obj6"", ""Succeeded""] call BIS_fnc_taskSetState;" \n
+                         "" \n
+                         "[" \n
+                         "	player," \n
+                         "	""BIS_obj763""," \n
+                         "	[" \n
+                         "		(localize ""STR_useract_uav_takegunnercontrols"") + ""."" + ""<br/><br/>"" + localize ""STR_A3_vr_consult_manual""," \n
+                         "		localize ""STR_useract_uav_takegunnercontrols""," \n
+                         "		""""" \n
+                         "	]," \n
+                         "	objNull," \n
+                         "	TRUE" \n
+                         "] call BIS_fnc_taskCreate;" \n
+                         "" \n
+                         "BIS_iconGrp setGroupIconParams [BIS_TT_colorWarning, """", 1, FALSE];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "fail">*/
+                                class fail
+                                {
+                                        itemno = 22;
+                                        priority = 10.000000;
+                                        to="TERMINATE_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "UAV_dead">*/
+                                class UAV_dead
+                                {
+                                        itemno = 20;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_UAV || BIS_UAV distance BIS_target > 1750"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "gunner">*/
+                                class gunner
+                                {
+                                        itemno = 35;
+                                        priority = 0.000000;
+                                        to="task_done_new_ta";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(uavControl BIS_UAV) select 1 == ""GUNNER"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="INIT";
+        finalStates[] =
+        {
+                "DONE",
+                "TERMINATE",
+                "TERMINATE_1",
+        };
+};
+/*%FSM</COMPILE>*/

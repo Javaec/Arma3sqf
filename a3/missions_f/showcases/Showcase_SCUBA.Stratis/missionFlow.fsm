@@ -1,0 +1,210 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, SCUBA">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-125.000000,-750.000000,-25.000000,-700.000000,0.000000,"Init"};
+item1[] = {"heli_down",4,218,-125.000000,-675.000000,-25.000000,-625.000000,0.000000,"heli down"};
+item2[] = {"task_done",2,4346,-125.000000,-600.000000,-25.000000,-550.000000,0.000000,"task done"};
+item3[] = {"met_team",4,218,-200.000000,-375.000000,-100.000000,-325.000000,0.000000,"met team"};
+item4[] = {"end__1",1,250,-200.000000,-300.000000,-100.000000,-250.000000,0.000000,"end #1"};
+item5[] = {"mines_disabled",4,218,-125.000000,-525.000000,-25.000000,-475.000000,0.000000,"mines" \n "disabled"};
+item6[] = {"exfiltrate",2,250,-125.000000,-450.000000,-25.000000,-400.000000,0.000000,"exfiltrate"};
+item7[] = {"launcher_found",4,218,0.000000,-750.000000,100.000000,-700.000000,0.000000,"launcher found"};
+item8[] = {"task_done_1",2,250,0.000000,-675.000000,100.000000,-625.000000,0.000000,"task done"};
+item9[] = {"exfiltrated",4,218,-25.000000,-375.000000,75.000000,-325.000000,0.000000,"exfiltrated"};
+item10[] = {"end__1_1",1,250,-25.000000,-300.000000,75.000000,-250.000000,0.000000,"end #1"};
+link0[] = {0,1};
+link1[] = {0,7};
+link2[] = {1,2};
+link3[] = {2,5};
+link4[] = {3,4};
+link5[] = {5,6};
+link6[] = {6,3};
+link7[] = {6,9};
+link8[] = {7,8};
+link9[] = {8,1};
+link10[] = {9,10};
+globals[] = {25.000000,1,0,0,0,640,480,1,85,6316128,1,-280.375702,218.479431,-68.922974,-824.164795,681,1031,1};
+window[] = {2,-1,-1,-1,-1,992,225,1439,225,3,699};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "SCUBA";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "launcher_found">*/
+                                class launcher_found
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="task_done_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player hasWeapon ""launch_O_Titan_F"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "heli_down">*/
+                                class heli_down
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="task_done";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_heli"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done">*/
+                class task_done
+                {
+                        name = "task_done";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objHeli"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "if ((""BIS_objLauncher"" call BIS_fnc_taskState) != ""Succeeded"") then {" \n
+                         "	[""BIS_objLauncher"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         "" \n
+                         "[""BIS_objAirPatrol"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "if ((""BIS_objDisarm"" call BIS_fnc_taskState) != ""Succeeded"") then {" \n
+                         "	if ((""BIS_objMine1"" call BIS_fnc_taskState) != ""Succeeded"") then {[""BIS_objMine1"", ""Current""] call BIS_fnc_missionTasks} else {" \n
+                         "		if ((""BIS_objMine2"" call BIS_fnc_taskState) != ""Succeeded"") then {[""BIS_objMine2"", ""Current""] call BIS_fnc_missionTasks} else {" \n
+                         "			if ((""BIS_objMine3"" call BIS_fnc_taskState) != ""Succeeded"") then {[""BIS_objMine3"", ""Current""] call BIS_fnc_missionTasks}" \n
+                         "		};" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         """chopper"" spawn BIS_fnc_missionConversations;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "mines_disabled">*/
+                                class mines_disabled
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="exfiltrate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{mineActive _x} count [BIS_mine1, BIS_mine2, BIS_mine3] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "end__1">*/
+                class end__1
+                {
+                        name = "end__1";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objExfil"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         """end"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "exfiltrate">*/
+                class exfiltrate
+                {
+                        name = "exfiltrate";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"""BIS_objExfil"" call BIS_fnc_missionTasks;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "exfiltrated">*/
+                                class exfiltrated
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="end__1_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player distance markerPos ""maxwell"" < 500"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "met_team">*/
+                                class met_team
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="end__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_player distance markerPos ""start"" < 50"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done_1">*/
+                class task_done_1
+                {
+                        name = "task_done_1";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objLauncher"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "[""BIS_objHeli"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "_null = [[""Weapons_basic"", ""Launcher""], 15] spawn BIS_fnc_advHint;" \n
+                         "" \n
+                         "playMusic """";" \n
+                         "0 fadeMusic 0;" \n
+                         "3 fadeMusic 0.15;" \n
+                         "[[""Track07_ActionDark""]] call BIS_fnc_music;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "heli_down">*/
+                                class heli_down
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="task_done";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_heli"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "end__1_1">*/
+                class end__1_1
+                {
+                        name = "end__1_1";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objExfil"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "[""end1""] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "end__1",
+                "end__1_1",
+        };
+};
+/*%FSM</COMPILE>*/

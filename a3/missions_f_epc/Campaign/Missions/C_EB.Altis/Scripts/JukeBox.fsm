@@ -1,0 +1,254 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, JukeBox">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-40.000000,-280.000000,50.000000,-230.000000,0.000000,"Start"};
+item1[] = {"Track_selection",2,250,-40.000000,-140.000000,50.000000,-90.000000,0.000000,"Track" \n "selection"};
+item2[] = {"The_sound_of_sil",1,250,70.000000,140.000000,160.000000,190.000000,0.000000,"The sound" \n "of silence"};
+item3[] = {"Dead",4,218,70.000000,70.000000,160.000000,120.000000,5.000000,"Dead"};
+item4[] = {"Music_finished",4,218,-40.000000,-70.000000,50.000000,-20.000000,0.000000,"Music" \n "finished"};
+item5[] = {"",7,210,-109.000008,91.000008,-100.999992,98.999992,0.000000,""};
+item6[] = {"",7,210,-109.000000,-119.000000,-101.000000,-111.000000,0.000000,""};
+item7[] = {"Timeout",4,218,-40.000000,-210.000000,50.000000,-160.000000,0.000000,"Timeout"};
+item8[] = {"Set_timer",2,250,-40.000000,0.000000,50.000000,50.000000,0.000000,"Set timer"};
+item9[] = {"Timeout",4,218,-40.000000,70.000000,50.000000,120.000000,0.000000,"Timeout"};
+item10[] = {"",7,210,111.000000,-118.999992,119.000000,-111.000000,0.000000,""};
+item11[] = {"",7,210,111.000000,21.000011,119.000000,28.999989,0.000000,""};
+item12[] = {"Escaped",4,218,70.000000,-280.000000,160.000000,-230.000000,0.000000,"Escaped"};
+item13[] = {"Farewell_music_",1,250,180.000000,-280.000000,270.000000,-230.000000,0.000000,"Farewell" \n "music" \n "(endmission)"};
+item14[] = {"____FAKE____",9,589824,0.000000,0.000000,0.000000,0.000000,0.000000,"____FAKE____"};
+link0[] = {0,12};
+link1[] = {1,4};
+link2[] = {1,10};
+link3[] = {3,2};
+link4[] = {4,8};
+link5[] = {5,6};
+link6[] = {6,1};
+link7[] = {7,1};
+link8[] = {8,9};
+link9[] = {8,11};
+link10[] = {9,5};
+link11[] = {10,11};
+link12[] = {11,3};
+link13[] = {12,13};
+link14[] = {14,7};
+globals[] = {10.000000,1,0,0,0,640,480,1,51,6316128,1,-351.902802,369.605835,215.127823,-314.697998,1404,1031,1};
+window[] = {2,-1,-1,-1,-1,785,25,1465,25,3,1422};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "JukeBox";
+        class States
+        {
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"removeAllMusicEventHandlers ""MusicStop"";" \n
+                         "" \n
+                         "0 fadeMusic 1;" \n
+                         "" \n
+                         "BIS_NextTrack = false;" \n
+                         "BIS_NoRepeat = [];" \n
+                         "" \n
+                         "_t = time;" \n
+                         "" \n
+                         "" \n
+                         "BIS_Music = " \n
+                         "" \n
+                         "	[" \n
+                         "		""AmbientTrack01_F""," \n
+                         "		""BackgroundTrack01_F_EPB""," \n
+                         "		""LeadTrack02_F_EPB""," \n
+                         "		""SkyNet""," \n
+                         "		""Wasteland""" \n
+                         "	];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Escaped">*/
+                                class Escaped
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Farewell_music_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_Win"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Track_selection">*/
+                class Track_selection
+                {
+                        name = "Track_selection";
+                        itemno = 1;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "0 fadeMusic 0;" \n
+                         "" \n
+                         "_number =  (floor (random ((count BIS_Music) - 0.55)));" \n
+                         "" \n
+                         "playMusic (BIS_Music select _number);" \n
+                         "" \n
+                         "BIS_Music = (BIS_Music - [BIS_Music select _number]);" \n
+                         "" \n
+                         "7.5 fadeMusic 0.25;" \n
+                         "" \n
+                         "_silence = addMusicEventHandler [""MusicStop"", {BIS_NextTrack = true}];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Dead">*/
+                                class Dead
+                                {
+                                        itemno = 3;
+                                        priority = 5.000000;
+                                        to="The_sound_of_sil";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive player)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Music_finished">*/
+                                class Music_finished
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Set_timer";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(BIS_NextTrack) or" \n
+                                         "(time > _t + 215)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "The_sound_of_sil">*/
+                class The_sound_of_sil
+                {
+                        name = "The_sound_of_sil";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"5 fadeMusic 0;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Set_timer">*/
+                class Set_timer
+                {
+                        name = "Set_timer";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "BIS_NextTrack = false;" \n
+                         "removeAllMusicEventHandlers ""MusicStop"";" \n
+                         "" \n
+                         "If (count BIS_Music == 1) Then" \n
+                         "" \n
+                         "	{" \n
+                         "		BIS_NoRepeat = BIS_Music" \n
+                         "	};" \n
+                         "" \n
+                         "If (count BIS_Music == 0) Then" \n
+                         "" \n
+                         "	 {" \n
+                         "		BIS_Music = " \n
+                         "	[" \n
+                         "		""AmbientTrack01_F""," \n
+                         "		""BackgroundTrack01_F_EPB""," \n
+                         "		""LeadTrack02_F_EPB""," \n
+                         "		""SkyNet""," \n
+                         "		""Wasteland""" \n
+                         "	];" \n
+                         "		BIS_Music = BIS_Music - BIS_NoRepeat;" \n
+                         "	};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Dead">*/
+                                class Dead
+                                {
+                                        itemno = 3;
+                                        priority = 5.000000;
+                                        to="The_sound_of_sil";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive player)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="Track_selection";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > (_t + 15 + (random 15))" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Farewell_music_">*/
+                class Farewell_music_
+                {
+                        name = "Farewell_music_";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"playMusic ""EventTrack01_F_EPC"";" \n
+                         "" \n
+                         "_silence = addMusicEventHandler [""MusicStop"", {BIS_musicStopped = true}];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "____FAKE____">*/
+                class ____FAKE____
+                {
+                        name = "____FAKE____";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Track_selection";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > ( _t + 15)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Start";
+        finalStates[] =
+        {
+                "The_sound_of_sil",
+                "Farewell_music_",
+        };
+};
+/*%FSM</COMPILE>*/

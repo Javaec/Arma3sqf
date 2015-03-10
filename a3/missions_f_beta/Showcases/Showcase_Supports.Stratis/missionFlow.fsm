@@ -1,0 +1,174 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, Supports">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-200.000000,-750.000000,-100.000000,-700.000000,0.000000,"Init"};
+item1[] = {"base_seized",4,218,-200.000000,-525.000000,-100.000000,-475.000000,0.000000,"base seized"};
+item2[] = {"end__1",1,4346,-200.000000,-450.000000,-100.000000,-400.000000,0.000000,"end #1"};
+item3[] = {"heavy_losses",4,218,-75.000000,-525.000000,25.000000,-475.000000,0.000000,"heavy" \n "losses"};
+item4[] = {"end__2",1,250,-75.000000,-450.000000,25.000000,-400.000000,0.000000,"end #2"};
+item5[] = {"in_position",4,218,-200.000000,-675.000000,-100.000000,-625.000000,0.000000,"in position"};
+item6[] = {"add_supports",2,250,-200.000000,-600.000000,-100.000000,-550.000000,0.000000,"add supports"};
+item7[] = {"",7,210,-28.999998,-729.000000,-21.000002,-721.000000,0.000000,""};
+item8[] = {"cheat1",4,218,-325.000000,-600.000000,-225.000000,-550.000000,0.000000,"cheat1"};
+item9[] = {"end__1__cheat_",1,250,-325.000000,-450.000000,-225.000000,-400.000000,0.000000,"end #1" \n "(cheat)"};
+link0[] = {0,5};
+link1[] = {0,7};
+link2[] = {0,8};
+link3[] = {1,2};
+link4[] = {3,4};
+link5[] = {5,6};
+link6[] = {6,1};
+link7[] = {6,3};
+link8[] = {6,8};
+link9[] = {7,3};
+link10[] = {8,9};
+globals[] = {25.000000,1,0,0,0,640,480,1,153,6316128,1,-344.015228,126.821671,-180.094437,-892.917969,681,1031,1};
+window[] = {2,-1,-1,-1,-1,842,75,1289,75,3,699};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Supports";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cheat1">*/
+                                class cheat1
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="end__1__cheat_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"false"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "heavy_losses">*/
+                                class heavy_losses
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="end__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_heli && {alive _x} count crew BIS_charlieCar < 2 && {alive _x} count (units BIS_grpBravo + units BIS_grpCharlie) < 4"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "in_position">*/
+                                class in_position
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="add_supports";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_op && !isNil ""BIS_missionStarted"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "end__1">*/
+                class end__1
+                {
+                        name = "end__1";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"{if (!(_x call BIS_fnc_taskCompleted)) then {[_x, ""Canceled""] call BIS_fnc_taskSetState}} forEach [""BIS_objAA"", ""BIS_objHeli"", ""BIS_objInf""];" \n
+                         "" \n
+                         "[""BIS_objBase"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         """base_clear"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "end__2">*/
+                class end__2
+                {
+                        name = "end__2";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objBase"", ""Failed""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         """casaulties"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "add_supports">*/
+                class add_supports
+                {
+                        name = "add_supports";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"""start"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "heavy_losses">*/
+                                class heavy_losses
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="end__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_heli && {alive _x} count crew BIS_charlieCar < 2 && {alive _x} count (units BIS_grpBravo + units BIS_grpCharlie) < 4"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cheat1">*/
+                                class cheat1
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="end__1__cheat_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"false"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "base_seized">*/
+                                class base_seized
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="end__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"""Car"" countType list BIS_area == 0 && (""Man"" countType list BIS_area < 6 || (time > (BIS_timeTeamsSentIn + 45)))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "end__1__cheat_">*/
+                class end__1__cheat_
+                {
+                        name = "end__1__cheat_";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"[""End1""] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "end__1",
+                "end__2",
+                "end__1__cheat_",
+        };
+};
+/*%FSM</COMPILE>*/

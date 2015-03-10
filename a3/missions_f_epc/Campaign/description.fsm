@@ -1,0 +1,296 @@
+/*%FSM<COMPILE "c:\BIS\FSMEditor\campaignFSMA3.cfg, Project Splendid">*//*%FSM<HEAD>*//*item0[] = {"persistent",4,218,400.000000,-1350.000000,500.000000,-1300.000000,0.000000,"persistent"};
+item1[] = {"reset",4,218,550.000000,-1250.000000,650.000000,-1200.000000,0.000000,"reset"};
+item2[] = {"reset",4,218,400.000000,-1175.000000,500.000000,-1125.000000,0.000000,"reset"};
+item3[] = {"reset",4,218,550.000000,-1100.000000,650.000000,-1050.000000,0.000000,"reset"};
+item4[] = {"persistent",4,218,550.000000,-925.000000,650.000000,-875.000000,0.000000,"persistent"};
+item5[] = {"reset",4,218,400.000000,-850.000000,500.000000,-800.000000,0.000000,"reset"};
+item6[] = {"persistent",4,218,550.000000,-775.000000,650.000000,-725.000000,0.000000,"persistent"};
+item7[] = {"C_in1",0,250,400.000000,-1450.000000,500.000000,-1400.000000,0.000000,"C_in1"};
+item8[] = {"C_in2",2,250,550.000000,-1350.000000,650.000000,-1300.000000,0.000000,"C_in2"};
+item9[] = {"C_m01",2,250,400.000000,-1250.000000,500.000000,-1200.000000,0.000000,"C_m01"};
+item10[] = {"C_m02",2,250,400.000000,-1100.000000,500.000000,-1050.000000,0.000000,"C_m02"};
+item11[] = {"C_out1",2,250,550.000000,-1000.000000,650.000000,-950.000000,0.000000,"C_out1"};
+item12[] = {"C_out2",2,250,550.000000,-850.000000,650.000000,-800.000000,0.000000,"C_out2"};
+item13[] = {"C_EA",1,250,400.000000,-650.000000,500.000000,-600.000000,0.000000,"C_EA"};
+item14[] = {"C_EB",1,250,550.000000,-650.000000,650.000000,-600.000000,0.000000,"C_EB"};
+link0[] = {0,8};
+link1[] = {1,9};
+link2[] = {2,10};
+link3[] = {3,11};
+link4[] = {4,12};
+link5[] = {5,13};
+link6[] = {6,14};
+link7[] = {7,0};
+link8[] = {8,1};
+link9[] = {9,2};
+link10[] = {10,3};
+link11[] = {11,4};
+link12[] = {12,5};
+link13[] = {12,6};
+globals[] = {25.000000,1,0,0,0,640,480,1,166,6316128,1,-246.419373,1149.968750,-534.594238,-1582.640503,1387,1041,1};
+window[] = {2,-1,-1,-1,-1,1144,150,1430,150,3,1405};
+*//*%FSM</HEAD>*/
+#define _CAMPAIGN	1
+class C_in1: MissionDefault
+{
+        endDefault = C_in2;
+        isHub = 1;
+        C_in2 = C_in2;
+        C_in2_1 = C_in2;
+        C_in2_2 = C_in2;
+        C_in2_3 = C_in2;
+        C_in2_4 = C_in2;
+        C_in2_5 = C_in2;
+        C_in2_6 = C_in2;
+        links[] = {"C_in1","C_in2"};
+        linkConditions[] = {"",""};
+        lost = C_in1;
+        lost_1 = C_in1;
+        lost_2 = C_in1;
+        lost_3 = C_in1;
+        lost_4 = C_in1;
+        lost_5 = C_in1;
+        lost_6 = C_in1;
+        template = C_in1.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\C_in1.Stratis\description.ext"
+        };
+        #endif
+};
+class C_in2: MissionDefault
+{
+        endDefault = C_m01;
+        isHubMission = 1;
+        C_m01 = C_m01;
+        C_m01_1 = C_m01;
+        C_m01_2 = C_m01;
+        C_m01_3 = C_m01;
+        C_m01_4 = C_m01;
+        C_m01_5 = C_m01;
+        C_m01_6 = C_m01;
+        links[] = {"C_in2","C_m01"};
+        linkConditions[] = {"",""};
+        lost = C_in2;
+        lost_1 = C_in2;
+        lost_2 = C_in2;
+        lost_3 = C_in2;
+        lost_4 = C_in2;
+        lost_5 = C_in2;
+        lost_6 = C_in2;
+        template = C_in2.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\C_in2.Altis\description.ext"
+        };
+        #endif
+};
+class C_m01: MissionDefault
+{
+        endDefault = C_m02;
+        isHubMission = 1;
+        C_m02 = C_m02;
+        C_m02_1 = C_m02;
+        C_m02_2 = C_m02;
+        C_m02_3 = C_m02;
+        C_m02_4 = C_m02;
+        C_m02_5 = C_m02;
+        C_m02_6 = C_m02;
+        links[] = {"C_m01","C_m02"};
+        linkConditions[] = {"",""};
+        lost = C_m01;
+        lost_1 = C_m01;
+        lost_2 = C_m01;
+        lost_3 = C_m01;
+        lost_4 = C_m01;
+        lost_5 = C_m01;
+        lost_6 = C_m01;
+        template = C_m01.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\C_m01.Altis\description.ext"
+        };
+        #endif
+};
+class C_m02: MissionDefault
+{
+        endDefault = C_out1;
+        isHubMission = 1;
+        C_out1 = C_out1;
+        C_out1_1 = C_out1;
+        C_out1_2 = C_out1;
+        C_out1_3 = C_out1;
+        C_out1_4 = C_out1;
+        C_out1_5 = C_out1;
+        C_out1_6 = C_out1;
+        links[] = {"C_m02","C_out1"};
+        linkConditions[] = {"",""};
+        lost = C_m02;
+        lost_1 = C_m02;
+        lost_2 = C_m02;
+        lost_3 = C_m02;
+        lost_4 = C_m02;
+        lost_5 = C_m02;
+        lost_6 = C_m02;
+        template = C_m02.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\C_m02.Altis\description.ext"
+        };
+        #endif
+};
+class C_out1: MissionDefault
+{
+        endDefault = C_out2;
+        isHubMission = 1;
+        C_out2 = C_out2;
+        C_out2_1 = C_out2;
+        C_out2_2 = C_out2;
+        C_out2_3 = C_out2;
+        C_out2_4 = C_out2;
+        C_out2_5 = C_out2;
+        C_out2_6 = C_out2;
+        links[] = {"C_out1","C_out2"};
+        linkConditions[] = {"",""};
+        lost = C_out1;
+        lost_1 = C_out1;
+        lost_2 = C_out1;
+        lost_3 = C_out1;
+        lost_4 = C_out1;
+        lost_5 = C_out1;
+        lost_6 = C_out1;
+        template = C_out1.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\C_out1.Altis\description.ext"
+        };
+        #endif
+};
+class C_out2: MissionDefault
+{
+        endDefault = C_EA;
+        isHubMission = 1;
+        C_EB = C_EB;
+        C_EB_1 = C_EB;
+        C_EB_2 = C_EB;
+        C_EB_3 = C_EB;
+        C_EB_4 = C_EB;
+        C_EB_5 = C_EB;
+        C_EB_6 = C_EB;
+        C_EA = C_EA;
+        C_EA_1 = C_EA;
+        C_EA_2 = C_EA;
+        C_EA_3 = C_EA;
+        C_EA_4 = C_EA;
+        C_EA_5 = C_EA;
+        C_EA_6 = C_EA;
+        links[] = {"C_out2","C_EB","C_EA"};
+        linkConditions[] = {"","",""};
+        lost = C_out2;
+        lost_1 = C_out2;
+        lost_2 = C_out2;
+        lost_3 = C_out2;
+        lost_4 = C_out2;
+        lost_5 = C_out2;
+        lost_6 = C_out2;
+        template = C_out2.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\C_out2.Altis\description.ext"
+        };
+        #endif
+};
+class C_EA: MissionDefault
+{
+        isOutro = 1;
+        isHubMission = 1;
+        links[] = {"C_EA","end1"};
+        linkConditions[] = {""};
+        lost = C_EA;
+        lost_1 = C_EA;
+        lost_2 = C_EA;
+        lost_3 = C_EA;
+        lost_4 = C_EA;
+        lost_5 = C_EA;
+        lost_6 = C_EA;
+        template = C_EA.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\C_EA.Altis\description.ext"
+        };
+        #endif
+};
+class C_EB: MissionDefault
+{
+        isOutro = 1;
+        isHubMission = 1;
+        links[] = {"C_EB","end1"};
+        linkConditions[] = {""};
+        lost = C_EB;
+        lost_1 = C_EB;
+        lost_2 = C_EB;
+        lost_3 = C_EB;
+        lost_4 = C_EB;
+        lost_5 = C_EB;
+        lost_6 = C_EB;
+        template = C_EB.Altis;
+        terrain = Altis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\C_EB.Altis\description.ext"
+        };
+        #endif
+};
+#ifdef _EMPTY
+//////////////////////////////////////////////////////////////
+// FSM System
+//////////////////////////////////////////////////////////////
+/*%FSM<STATE "C_in1">*//*%FSM<STATEINIT>*/endDefault = C_in2;
+isHub = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "persistent">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "C_in2">*//*%FSM<STATEINIT>*/endDefault = C_m01;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "reset">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "C_m01">*//*%FSM<STATEINIT>*/endDefault = C_m02;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "reset">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "C_m02">*//*%FSM<STATEINIT>*/endDefault = C_out1;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "reset">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "C_out1">*//*%FSM<STATEINIT>*/endDefault = C_out2;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "persistent">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "C_out2">*//*%FSM<STATEINIT>*/endDefault = C_EA;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "persistent">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "reset">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "C_EA">*//*%FSM<STATEINIT>*/isOutro = 1;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM</STATE>*//*%FSM<STATE "C_EB">*//*%FSM<STATEINIT>*/isOutro = 1;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Altis/*%FSM</STATEPRECONDITION>*/
+/*%FSM</STATE>*/
+#endif
+/*%FSM</COMPILE>*/

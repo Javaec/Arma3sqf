@@ -1,0 +1,224 @@
+/*%FSM<COMPILE "O:\fsmeditor\scriptedFSM.cfg, Showcase: Scuba (Hints)">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-125.000000,-450.000000,-25.000000,-400.000000,0.000000,"Init"};
+item1[] = {"BasicDive",2,250,-125.000000,-300.000000,-25.000000,-250.000000,0.000000,"BasicDive"};
+item2[] = {"timeout_15_sec",6,250,-125.000000,-375.000000,-25.000000,-325.000000,0.000000,"timeout" \n "15 sec"};
+item3[] = {"Underwater",2,250,-125.000000,-150.000000,-25.000000,-100.000000,0.000000,"Underwater"};
+item4[] = {"timeout_25_sec",6,250,-125.000000,-225.000000,-25.000000,-175.000000,0.000000,"timeout" \n "25 sec"};
+item5[] = {"leaving_water",4,218,-125.000000,75.000000,-25.000000,125.000000,0.000000,"leaving" \n "water"};
+item6[] = {"ArtilleryCall",2,250,-125.000000,150.000000,-25.000000,200.000000,0.000000,"ArtilleryCall"};
+item7[] = {"on_land",4,218,0.000000,0.000000,100.000000,50.000000,1.000000,"on land"};
+item8[] = {"Reload",2,250,0.000000,75.000000,100.000000,125.000000,0.000000,"Reload"};
+item9[] = {"on_land",4,218,-125.000000,225.000000,-25.000000,275.000000,0.000000,"on land"};
+item10[] = {"Reload_1",1,4346,-125.000000,300.000000,-25.000000,350.000000,0.000000,"Reload"};
+item11[] = {"timeout_25_sec",6,250,-125.000000,-75.000000,-25.000000,-25.000000,0.000000,"timeout" \n "25 sec"};
+item12[] = {"Disarm",2,250,-125.000000,0.000000,-25.000000,50.000000,0.000000,"Disarm"};
+link0[] = {0,2};
+link1[] = {1,4};
+link2[] = {2,1};
+link3[] = {3,11};
+link4[] = {4,3};
+link5[] = {5,6};
+link6[] = {6,9};
+link7[] = {7,8};
+link8[] = {8,5};
+link9[] = {9,10};
+link10[] = {11,12};
+link11[] = {12,5};
+link12[] = {12,7};
+globals[] = {25.000000,1,0,0,0,640,480,1,146,6316128,1,-355.765198,464.066040,469.869019,-480.583313,772,895,1};
+window[] = {2,-1,-1,-1,-1,842,1995,3209,75,3,790};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Showcase: Scuba (Hints)";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "_reloadDone = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout_15_sec">*/
+                                class timeout_15_sec
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="BasicDive";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 15"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "BasicDive">*/
+                class BasicDive
+                {
+                        name = "BasicDive";
+                        itemno = 1;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "_null = [[""InfantryMovement"", ""BasicDive""], 15] spawn BIS_fnc_advHint"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout_25_sec">*/
+                                class timeout_25_sec
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Underwater";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 25"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Underwater">*/
+                class Underwater
+                {
+                        name = "Underwater";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "_null = [[""Weapons"", ""Underwater""], 15] spawn BIS_fnc_advHint"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout_25_sec">*/
+                                class timeout_25_sec
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="Disarm";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 25"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "ArtilleryCall">*/
+                class ArtilleryCall
+                {
+                        name = "ArtilleryCall";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "_null = [[""Tactics"", ""ArtilleryCall""], 15] spawn BIS_fnc_advHint"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "on_land">*/
+                                class on_land
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="Reload_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 25 && !surfaceIsWater position BIS_player && !_reloadDone"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Reload">*/
+                class Reload
+                {
+                        name = "Reload";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"_null = [[""Weapons_basic"", ""Reload""], 15] spawn BIS_fnc_advHint;" \n
+                         "" \n
+                         "_reloadDone = TRUE;" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "leaving_water">*/
+                                class leaving_water
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="ArtilleryCall";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 180 || ((BIS_player distance markerPos ""tempest"" < 150 || !surfaceIsWater position BIS_player) && time > _t + 25)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Reload_1">*/
+                class Reload_1
+                {
+                        name = "Reload_1";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"_null = [[""Weapons_basic"", ""Reload""], 15] spawn BIS_fnc_advHint;" \n
+                         "" \n
+                         "_reloadDone = TRUE;" \n
+                         "" \n
+                         "_t = time + 30;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Disarm">*/
+                class Disarm
+                {
+                        name = "Disarm";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "_null = [[""Weapons"", ""Disarm""], 15] spawn BIS_fnc_advHint"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "on_land">*/
+                                class on_land
+                                {
+                                        itemno = 7;
+                                        priority = 1.000000;
+                                        to="Reload";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!surfaceIsWater position BIS_player && time > _t + 25"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "leaving_water">*/
+                                class leaving_water
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="ArtilleryCall";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 180 || ((BIS_player distance markerPos ""tempest"" < 150 || !surfaceIsWater position BIS_player) && time > _t + 25)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "Reload_1",
+        };
+};
+/*%FSM</COMPILE>*/

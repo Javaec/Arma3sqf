@@ -1,0 +1,395 @@
+/*%FSM<COMPILE "O:\fsmeditor\scriptedFSM.cfg, CAS - Bombing">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,50.000000,100.000000,150.000000,150.000000,0.000000,"Init"};
+item1[] = {"request",4,218,50.000000,175.000000,150.000000,225.000000,0.000000,"request"};
+item2[] = {"support_run_fini",2,250,50.000000,775.000000,150.000000,825.000000,0.000000,"support run" \n "finished"};
+item3[] = {"support_run",2,250,50.000000,475.000000,150.000000,525.000000,0.000000,"support run"};
+item4[] = {"",7,210,171.000015,796.000000,178.999985,804.000000,0.000000,""};
+item5[] = {"",7,210,171.000046,196.000015,178.999969,204.000000,0.000000,""};
+item6[] = {"failed",4,4314,-200.000000,475.000000,-100.000000,525.000000,0.000000,"failed"};
+item7[] = {"cancel",2,250,-200.000000,175.000000,-100.000000,225.000000,0.000000,"cancel"};
+item8[] = {"virtual",4,218,125.000000,850.000000,225.000000,900.000000,1.000000,"virtual"};
+item9[] = {"delete_assets",1,250,125.000000,1075.000000,225.000000,1125.000000,0.000000,"delete assets"};
+item10[] = {"nothing",2,250,125.000000,925.000000,225.000000,975.000000,0.000000,"nothing"};
+item11[] = {"back_home",4,218,125.000000,1000.000000,225.000000,1050.000000,0.000000,"back home"};
+item12[] = {"",7,210,-153.999985,871.000000,-146.000015,879.000000,0.000000,""};
+item13[] = {"player_",2,250,50.000000,250.000000,150.000000,300.000000,0.000000,"player?"};
+item14[] = {"no",4,218,50.000000,325.000000,150.000000,375.000000,0.000000,"no"};
+item15[] = {"yes",4,218,-75.000000,325.000000,25.000000,375.000000,1.000000,"yes"};
+item16[] = {"create_task",2,250,-75.000000,400.000000,25.000000,450.000000,0.000000,"create task"};
+item17[] = {"done",4,218,-75.000000,775.000000,25.000000,825.000000,0.000000,"done"};
+item18[] = {"near",4,218,50.000000,550.000000,150.000000,600.000000,0.000000,"near"};
+item19[] = {"set_timer",2,250,50.000000,625.000000,150.000000,675.000000,0.000000,"set timer"};
+link0[] = {0,1};
+link1[] = {1,13};
+link2[] = {2,4};
+link3[] = {3,6};
+link4[] = {3,18};
+link5[] = {4,5};
+link6[] = {4,8};
+link7[] = {5,1};
+link8[] = {6,7};
+link9[] = {7,1};
+link10[] = {7,12};
+link11[] = {8,10};
+link12[] = {10,11};
+link13[] = {11,9};
+link14[] = {12,8};
+link15[] = {13,14};
+link16[] = {13,15};
+link17[] = {14,3};
+link18[] = {15,16};
+link19[] = {16,6};
+link20[] = {16,17};
+link21[] = {17,2};
+link22[] = {18,19};
+link23[] = {19,6};
+link24[] = {19,17};
+globals[] = {25.000000,1,0,0,0,640,480,1,310,6316128,1,-348.724304,155.864868,1129.976563,13.599930,466,1031,1};
+window[] = {2,-1,-1,-1,-1,1009,25,1222,25,3,484};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "CAS - Bombing";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_home = position _this;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "request">*/
+                                class request
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="player_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_this getVariable ""BIS_SUPP_supporting"" && ((_this getVariable ""BIS_SUPP_supportType"") == ""CAS_Bombing"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "support_run_fini">*/
+                class support_run_fini
+                {
+                        name = "support_run_fini";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"if (!isPlayer _this) then {deleteWaypoint _wp1};" \n
+                         "" \n
+                         "_this kbTell [_requester, ""BIS_SUPP_protocol"", ""CAS_Bombing_Accomplished"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];" \n
+                         "" \n
+                         "if (isPlayer _this) then {[""BIS_SUPP_task_CAS_Bombing"", ""Succeeded""] call BIS_fnc_taskSetState};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "virtual">*/
+                                class virtual
+                                {
+                                        itemno = 8;
+                                        priority = 1.000000;
+                                        to="nothing";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil {_this getVariable ""BIS_SUPP_virtual""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "request">*/
+                                class request
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="player_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_this getVariable ""BIS_SUPP_supporting"" && ((_this getVariable ""BIS_SUPP_supportType"") == ""CAS_Bombing"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "support_run">*/
+                class support_run
+                {
+                        name = "support_run";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"vehicle _this enableSimulation TRUE;" \n
+                         "" \n
+                         "deleteWaypoint [group _this, currentWaypoint group _this];" \n
+                         "" \n
+                         "private [""_wp1""];" \n
+                         "" \n
+                         "_requester = _this getVariable ""BIS_SUPP_requester"";" \n
+                         "_coords =  _this getVariable ""BIS_SUPP_supportRunCoords"";" \n
+                         "_ammo = _this getVariable ""BIS_SUPP_ammoType"";" \n
+                         "" \n
+                         "if (_ammo == 0) then {" \n
+                         "	if (side group _this == WEST) then {BIS_SUPP_laserTGT = ""LaserTargetW"" createVehicle _coords};" \n
+                         "	if (side group _this == EAST) then {BIS_SUPP_laserTGT = ""LaserTargetE"" createVehicle _coords};" \n
+                         "	if (side group _this == RESISTANCE) then {" \n
+                         "		if (WEST getFriend RESISTANCE == 1) then {BIS_SUPP_laserTGT = ""LaserTargetW"" createVehicle _coords} else {BIS_SUPP_laserTGT = ""LaserTargetE"" createVehicle _coords}" \n
+                         "	};" \n
+                         "	BIS_SUPP_laserTGT setPos _coords;" \n
+                         "	[_this, BIS_SUPP_laserTGT] spawn {" \n
+                         "		while {(_this select 0) getVariable ""BIS_SUPP_supporting""} do {" \n
+                         "			_this select 1 setPos position (_this select 1);" \n
+                         "			(_this select 0) reveal (_this select 1);" \n
+                         "			sleep 5" \n
+                         "		};" \n
+                         "		sleep 10;" \n
+                         "		deleteVehicle (_this select 1)" \n
+                         "	};" \n
+                         "	_wp1 = group _this addWaypoint [_coords, 0];" \n
+                         "	_wp1 setWaypointType ""Destroy"";" \n
+                         "	_wp1 waypointAttachVehicle BIS_SUPP_laserTGT;" \n
+                         "} else {" \n
+                         "	_wp1 = group _this addWaypoint [_coords, 0];" \n
+                         "	_wp1 setWaypointType ""SAD"";" \n
+                         "};" \n
+                         "" \n
+                         "vehicle _this addEventHandler [""Fired"", {if (assignedTarget driver (_this select 0) isKindOf ""LaserTarget"") then {driver (_this select 0) setVariable [""BIS_SUPP_supporting"", FALSE]}}];" \n
+                         "" \n
+                         "_wp2 = group _this addWaypoint [_home, 0];" \n
+                         "_wp2 setWaypointType ""Move"";" \n
+                         "_wp2 setWaypointStatements [""TRUE"", ""vehicle this land """"LAND""""""];" \n
+                         "" \n
+                         "call BIS_SUPP_refreshMainWindow;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "near">*/
+                                class near
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="set_timer";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_this distance _coords < 1500"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "failed">*/
+                                class failed
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _this) || vehicle _this == _this || !(isNil {_this getVariable ""BIS_SUPP_failed""}) || time > _t + 600"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "cancel">*/
+                class cancel
+                {
+                        name = "cancel";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"if (isNil {_this getVariable ""BIS_SUPP_failed""}) then {" \n
+                         "	_requester kbTell [(_requester getVariable ""BIS_SUPP_HQ""), ""BIS_SUPP_protocol"", ""Ping_CAS_Bombing_Destroyed"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group (_requester getVariable ""BIS_SUPP_HQ""))];" \n
+                         "};" \n
+                         "" \n
+                         "if (!isPlayer _this) then {deleteWaypoint _wp1};" \n
+                         "" \n
+                         "if (isPlayer _this) then {[""BIS_SUPP_task_CAS_Bombing"", ""Failed""] call BIS_fnc_taskSetState};" \n
+                         "" \n
+                         "_requester setVariable [""BIS_SUPP_used_CAS_Bombing"", (_requester getVariable ""BIS_SUPP_used_CAS_Bombing"") - 1, TRUE];" \n
+                         "_this setVariable [""BIS_SUPP_supporting"", FALSE, TRUE];" \n
+                         "_this setVariable [""BIS_SUPP_failed"", nil];" \n
+                         "" \n
+                         "call BIS_SUPP_refreshMainWindow;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "virtual">*/
+                                class virtual
+                                {
+                                        itemno = 8;
+                                        priority = 1.000000;
+                                        to="nothing";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil {_this getVariable ""BIS_SUPP_virtual""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "request">*/
+                                class request
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="player_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_this getVariable ""BIS_SUPP_supporting"" && ((_this getVariable ""BIS_SUPP_supportType"") == ""CAS_Bombing"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "delete_assets">*/
+                class delete_assets
+                {
+                        name = "delete_assets";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"_grp = group _this;" \n
+                         "" \n
+                         "deleteVehicle vehicle _this;" \n
+                         "{deleteVehicle _x} forEach units _this;" \n
+                         "deleteGroup _grp;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "nothing">*/
+                class nothing
+                {
+                        name = "nothing";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "back_home">*/
+                                class back_home
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="delete_assets";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_this distance _home < 1000"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "player_">*/
+                class player_
+                {
+                        name = "player_";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"_requester = _this getVariable ""BIS_SUPP_requester"";" \n
+                         "_coords =  _this getVariable ""BIS_SUPP_supportRunCoords"";" \n
+                         "" \n
+                         "_requester setVariable [""BIS_SUPP_used_CAS_Bombing"", (_requester getVariable ""BIS_SUPP_used_CAS_Bombing"") + 1, TRUE];" \n
+                         "" \n
+                         "_t = 10e10;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 15;
+                                        priority = 1.000000;
+                                        to="create_task";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isPlayer _this"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="support_run";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "create_task">*/
+                class create_task
+                {
+                        name = "create_task";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/"_coords = _this getVariable ""BIS_SUPP_supportRunCoords"";" \n
+                         "" \n
+                         "call BIS_SUPP_refreshMainWindow;" \n
+                         "" \n
+                         "[_this, ""BIS_SUPP_task_CAS_Bombing"", [format [""<br/>Type: %1<br/><br/>Grid: %2<br/><br/>"", _this getVariable ""BIS_SUPP_ammoType"", mapGridPosition _coords], localize ""STR_A3_mdl_supp_disp_cas_bombing"", toUpper localize ""STR_menu_target""], _coords] call BIS_fnc_taskCreate"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "done">*/
+                                class done
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="support_run_fini";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(_this getVariable ""BIS_SUPP_supporting"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "failed">*/
+                                class failed
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _this) || vehicle _this == _this || !(isNil {_this getVariable ""BIS_SUPP_failed""}) || time > _t + 600"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "set_timer">*/
+                class set_timer
+                {
+                        name = "set_timer";
+                        itemno = 19;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "done">*/
+                                class done
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="support_run_fini";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(_this getVariable ""BIS_SUPP_supporting"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "failed">*/
+                                class failed
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _this) || vehicle _this == _this || !(isNil {_this getVariable ""BIS_SUPP_failed""}) || time > _t + 600"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "delete_assets",
+        };
+};
+/*%FSM</COMPILE>*/

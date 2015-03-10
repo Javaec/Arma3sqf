@@ -1,0 +1,386 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, ambientBoats">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"ambientBoats",0,250,-75.000000,-175.000000,25.000000,-125.000000,0.000000,"ambientBoats"};
+item1[] = {"Return",8,218,-75.000000,-100.000000,25.000000,-50.000000,0.000000,"Return"};
+item2[] = {"Vehicle_settings",2,250,75.000000,125.000000,175.000000,175.000000,0.000000,"Vehicle" \n "settings"};
+item3[] = {"Loop",4,218,75.000000,50.000000,175.000000,100.000000,1.000000,"Loop"};
+item4[] = {"Loop_Reset",2,250,-225.000000,125.000000,-125.000000,175.000000,0.000000,"Loop" \n "Reset"};
+item5[] = {"Create",4,4314,200.000000,50.000000,300.000000,100.000000,2.000000,"Create"};
+item6[] = {"Delete",4,218,325.000000,50.000000,425.000000,100.000000,2.000000,"Delete"};
+item7[] = {"Delete",2,250,325.000000,-25.000000,425.000000,25.000000,0.000000,"Delete"};
+item8[] = {"Create",2,250,200.000000,-25.000000,300.000000,25.000000,0.000000,"Create"};
+item9[] = {"",7,210,246.000031,-79.000000,253.999954,-71.000000,0.000000,""};
+item10[] = {"",7,210,120.999992,-79.000015,129.000000,-70.999992,0.000000,""};
+item11[] = {"",7,210,245.999969,146.000000,254.000015,154.000000,0.000000,""};
+item12[] = {"",7,210,371.000000,146.000015,379.000000,154.000000,0.000000,""};
+item13[] = {"",7,210,371.000000,-79.000000,379.000000,-71.000000,0.000000,""};
+item14[] = {"Wait",2,250,-75.000000,50.000000,25.000000,100.000000,0.000000,"Wait"};
+item15[] = {"Wait",4,218,-75.000000,125.000000,25.000000,175.000000,0.000000,"Wait"};
+item16[] = {"No_vehicles",4,218,-75.000000,-250.000000,25.000000,-200.000000,1.000000,"No vehicles"};
+item17[] = {"Exit",1,250,-75.000000,-325.000000,25.000000,-275.000000,0.000000,"Exit"};
+link0[] = {0,1};
+link1[] = {0,16};
+link2[] = {1,4};
+link3[] = {2,1};
+link4[] = {2,3};
+link5[] = {2,11};
+link6[] = {2,12};
+link7[] = {3,14};
+link8[] = {4,15};
+link9[] = {5,8};
+link10[] = {6,7};
+link11[] = {7,13};
+link12[] = {8,9};
+link13[] = {9,10};
+link14[] = {10,1};
+link15[] = {10,3};
+link16[] = {11,5};
+link17[] = {12,6};
+link18[] = {13,10};
+link19[] = {14,15};
+link20[] = {15,2};
+link21[] = {16,17};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,20,6316128,1,-161.363266,456.793579,480.339722,-411.427368,427,616,1};
+window[] = {0,-1,-1,-1,-1,965,-1064,-104,216,1,444};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "ambientBoats";
+  class States
+  {
+    /*%FSM<STATE "ambientBoats">*/
+    class ambientBoats
+    {
+      name = "ambientBoats";
+      itemno = 0;
+      init = /*%FSM<STATEINIT""">*/"_vehCountMax =	[_this,0,10,[0]] call bis_fnc_param;" \n
+       "_schnobble =	[_this,1,3000,[0]] call bis_fnc_param;" \n
+       "_schnobbleMin = _schnobble / 2;" \n
+       "" \n
+       "//////////////////////////////////////////////////////////////////////////////////" \n
+       "//--- Get plane classes" \n
+       "_listClasses = [];" \n
+       "_cfgVehicles = configfile >> ""cfgvehicles"";" \n
+       "for ""_c"" from 0 to (count _cfgVehicles - 1) do {" \n
+       "	_current = _cfgVehicles select _c;" \n
+       "	if (isclass _current) then {" \n
+       "		_currentClass = configname _current;" \n
+       "		if (_currentClass iskindof ""ship"") then {" \n
+       "			_scope = getnumber (_current >> ""scope"");" \n
+       "			_ambientType = getnumber (_current >> ""ambientType"");" \n
+       "			if (_scope > 1 && _ambientType > 0) then {" \n
+       "				_listClasses set [count _listClasses,_currentClass];" \n
+       "			};" \n
+       "		};" \n
+       "	};" \n
+       "};" \n
+       "" \n
+       "//////////////////////////////////////////////////////////////////////////////////" \n
+       "//--- Create vehicles" \n
+       "_listVehs = [];" \n
+       "_listClassesTemp = [];" \n
+       "for ""_i"" from 0 to (_vehCountMax - 1) do {" \n
+       "" \n
+       "	//--- Classes exceeded; reset" \n
+       "	if (count _listClassesTemp < 1) then {_listClassesTemp = _listClasses};" \n
+       "	_class = _listClassesTemp call bis_fnc_selectrandom;" \n
+       "	_listClassesTemp = _listClassesTemp - [_class];" \n
+       "" \n
+       "	_vehArray = [" \n
+       "		[99,99,9 * _i]," \n
+       "		0,		" \n
+       "		_class," \n
+       "		side player" \n
+       "	] call bis_fnc_spawnVehicle;" \n
+       "" \n
+       "	_veh = _vehArray select 0;" \n
+       "	_vehGrp = _vehArray select 1;" \n
+       "	_listVehs set [count _listVehs,_veh];" \n
+       "	_veh enablesimulation false;" \n
+       "	_veh hideobject true;" \n
+       "};" \n
+       "_listVehsCount = count _listVehs - 1;" \n
+       "" \n
+       "//////////////////////////////////////////////////////////////////////////////////" \n
+       "" \n
+       "//--- Blacklist init" \n
+       "0 call bis_fnc_ambientBlacklist;" \n
+       "" \n
+       "_time = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "No_vehicles">*/
+        class No_vehicles
+        {
+          itemno = 16;
+          priority = 1.000000;
+          to="Exit";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count _listVehs < 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="Loop_Reset";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Vehicle_settings">*/
+    class Vehicle_settings
+    {
+      name = "Vehicle_settings";
+      itemno = 2;
+      init = /*%FSM<STATEINIT""">*/"_veh = _listVehs select _v;" \n
+       "" \n
+       "//--- Select center in front of player" \n
+       "_posCenter = position _player;" \n
+       "_dir = direction _player;" \n
+       "_dis = (speed _player * 10) max _schnobbleMin;" \n
+       "_posCenter = [" \n
+       "	(_posCenter select 0) + (sin _dir * _dis)," \n
+       "	(_posCenter select 1) + (cos _dir * _dis)," \n
+       "	0" \n
+       "];" \n
+       "" \n
+       "//""test"" setmarkerpos _posCenter;" \n
+       "" \n
+       "//--- Select water places around center" \n
+       "_bestPlace = selectbestplaces [" \n
+       "	_posCenter," \n
+       "	_schnobbleMin," \n
+       "	""sea""," \n
+       "	100," \n
+       "	1" \n
+       "];" \n
+       "_pos = (((_bestPlace) select 0) select 0);"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Create">*/
+        class Create
+        {
+          itemno = 5;
+          priority = 2.000000;
+          to="Create";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(surfaceiswater _pos)" \n
+           "&&" \n
+           "(_pos distance _veh > _schnobble)" \n
+           "&&" \n
+           "(_pos distance _player > _schnobbleMin)" \n
+           "&&" \n
+           "(_veh distance _player > _schnobbleMin)" \n
+           "&&" \n
+           "!(_pos call bis_fnc_ambientBlacklist)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Delete">*/
+        class Delete
+        {
+          itemno = 6;
+          priority = 2.000000;
+          to="Delete";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(surfaceiswater _pos)" \n
+           "&&" \n
+           "(_posCenter distance _veh > _schnobble)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Loop">*/
+        class Loop
+        {
+          itemno = 3;
+          priority = 1.000000;
+          to="Wait";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_v = _v + 1;" \n
+           "_v < _listVehsCount"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="Loop_Reset";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Loop_Reset">*/
+    class Loop_Reset
+    {
+      name = "Loop_Reset";
+      itemno = 4;
+      init = /*%FSM<STATEINIT""">*/"_player = vehicle cameraon;" \n
+       "" \n
+       "//--- Loop vars" \n
+       "_v = 0;" \n
+       "_time = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Wait">*/
+        class Wait
+        {
+          itemno = 15;
+          priority = 0.000000;
+          to="Vehicle_settings";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _time) > 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Delete">*/
+    class Delete
+    {
+      name = "Delete";
+      itemno = 7;
+      init = /*%FSM<STATEINIT""">*/"_veh setpos [99,99,99];" \n
+       "_veh enablesimulation false;" \n
+       "_veh hideobject true;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Loop">*/
+        class Loop
+        {
+          itemno = 3;
+          priority = 1.000000;
+          to="Wait";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_v = _v + 1;" \n
+           "_v < _listVehsCount"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="Loop_Reset";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Create">*/
+    class Create
+    {
+      name = "Create";
+      itemno = 8;
+      init = /*%FSM<STATEINIT""">*/"_pos set [2,-5];" \n
+       "_veh setpos _pos;" \n
+       "_dir = random 360;" \n
+       "_veh setdir _dir;" \n
+       "_veh setvelocity [0,0,0];" \n
+       "" \n
+       "//--- Move" \n
+       "_posCenter = [" \n
+       "	(_pos select 0) + (cos _dir * 1000)," \n
+       "	(_pos select 1) + (sin _dir * 1000)," \n
+       "	0" \n
+       "];" \n
+       "if !(_pos call bis_fnc_ambientBlacklist) then {" \n
+       "	_veh move _pos;" \n
+       "};" \n
+       "" \n
+       "_veh enablesimulation true;" \n
+       "_veh hideobject false;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Loop">*/
+        class Loop
+        {
+          itemno = 3;
+          priority = 1.000000;
+          to="Wait";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_v = _v + 1;" \n
+           "_v < _listVehsCount"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="Loop_Reset";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Wait">*/
+    class Wait
+    {
+      name = "Wait";
+      itemno = 14;
+      init = /*%FSM<STATEINIT""">*/"_time = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Wait">*/
+        class Wait
+        {
+          itemno = 15;
+          priority = 0.000000;
+          to="Vehicle_settings";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _time) > 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Exit">*/
+    class Exit
+    {
+      name = "Exit";
+      itemno = 17;
+      init = /*%FSM<STATEINIT""">*/"""No boats created"" call bis_fnc_error;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="ambientBoats";
+  finalStates[] =
+  {
+    "Exit",
+  };
+};
+/*%FSM</COMPILE>*/

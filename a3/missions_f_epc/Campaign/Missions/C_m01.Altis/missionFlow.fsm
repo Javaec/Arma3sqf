@@ -1,0 +1,528 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, C_m01">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-100.000000,-825.000000,0.000000,-775.000000,0.000000,"Init"};
+item1[] = {"in_truck",4,218,-100.000000,-750.000000,0.000000,-700.000000,0.000000,"in truck"};
+item2[] = {"convo",2,250,-100.000000,-675.000000,0.000000,-625.000000,0.000000,"convo"};
+item3[] = {"heli_overhead",4,218,-100.000000,-600.000000,0.000000,-550.000000,0.000000,"heli overhead"};
+item4[] = {"convo_1",2,250,-100.000000,-525.000000,0.000000,-475.000000,0.000000,"convo"};
+item5[] = {"APCs_ready",4,218,-100.000000,-450.000000,0.000000,-400.000000,0.000000,"APCs ready"};
+item6[] = {"convo_2",2,250,-100.000000,-375.000000,0.000000,-325.000000,0.000000,"convo"};
+item7[] = {"in_Lakka",4,218,-100.000000,-300.000000,0.000000,-250.000000,0.000000,"in Lakka"};
+item8[] = {"",7,210,21.000008,-654.000000,28.999992,-646.000000,0.000000,""};
+item9[] = {"",7,210,21.000008,-429.000000,28.999992,-421.000000,0.000000,""};
+item10[] = {"task_done",2,250,-100.000000,-225.000000,0.000000,-175.000000,0.000000,"task done"};
+item11[] = {"all_out",4,218,-100.000000,-150.000000,0.000000,-100.000000,0.000000,"all out"};
+item12[] = {"join_up",2,250,-100.000000,-75.000000,0.000000,-25.000000,0.000000,"join up"};
+item13[] = {"armor_eliminated",4,218,-100.000000,0.000000,0.000000,50.000000,0.000000,"armor" \n "eliminated"};
+item14[] = {"task_done__convo",2,250,-100.000000,225.000000,0.000000,275.000000,0.000000,"task done," \n "convo"};
+item15[] = {"heli_under_fire",4,218,-100.000000,600.000000,0.000000,650.000000,0.000000,"heli under fire"};
+item16[] = {"new_task__convo",2,4346,-100.000000,675.000000,0.000000,725.000000,0.000000,"new task," \n "convo"};
+item17[] = {"AA_neutralized",4,218,-100.000000,750.000000,0.000000,800.000000,0.000000,"AA neutralized"};
+item18[] = {"end__1",1,250,-100.000000,825.000000,0.000000,875.000000,0.000000,"end #1"};
+item19[] = {"LZ_clear",4,218,-100.000000,300.000000,0.000000,350.000000,0.000000,"LZ clear"};
+item20[] = {"task_done__convo_1",2,250,-100.000000,525.000000,0.000000,575.000000,0.000000,"task done," \n "convo"};
+item21[] = {"task_done__assembled",2,250,-100.000000,375.000000,0.000000,425.000000,0.000000,"task done," \n "assembled" \n "already?"};
+item22[] = {"assembled",4,218,-100.000000,450.000000,0.000000,500.000000,1.000000,"assembled"};
+item23[] = {"no",4,218,25.000000,375.000000,125.000000,425.000000,0.000000,"no"};
+item24[] = {"new_task",2,250,25.000000,450.000000,125.000000,500.000000,0.000000,"new task"};
+item25[] = {"run_countdown",2,250,-100.000000,75.000000,0.000000,125.000000,0.000000,"run countdown"};
+item26[] = {"timeout_5_min",6,250,-175.000000,150.000000,-75.000000,200.000000,0.000000,"timeout" \n "5 min"};
+item27[] = {"area_clear",4,218,-25.000000,150.000000,75.000000,200.000000,0.000000,"area clear"};
+item28[] = {"timeout_10_min",6,250,25.000000,-825.000000,125.000000,-775.000000,0.000000,"timeout" \n "10 min"};
+item29[] = {"fail__1",1,250,25.000000,-750.000000,125.000000,-700.000000,0.000000,"fail #1"};
+item30[] = {"truck_immobile",4,218,-225.000000,-525.000000,-125.000000,-475.000000,0.000000,"truck" \n "immobile"};
+item31[] = {"fail__FF",1,250,-350.000000,-525.000000,-250.000000,-475.000000,0.000000,"fail #FF"};
+item32[] = {"",7,210,-179.000000,-804.000000,-171.000000,-796.000000,0.000000,""};
+item33[] = {"",7,210,-179.000000,-204.000000,-171.000000,-196.000000,0.000000,""};
+item34[] = {"player_out",4,218,25.000000,-225.000000,125.000000,-175.000000,0.000000,"player out"};
+item35[] = {"lock_the_truck",2,250,25.000000,-150.000000,125.000000,-100.000000,0.000000,"lock the truck"};
+link0[] = {0,1};
+link1[] = {0,28};
+link2[] = {0,32};
+link3[] = {1,2};
+link4[] = {2,3};
+link5[] = {2,8};
+link6[] = {3,4};
+link7[] = {4,5};
+link8[] = {5,6};
+link9[] = {6,7};
+link10[] = {7,10};
+link11[] = {8,9};
+link12[] = {9,5};
+link13[] = {10,11};
+link14[] = {10,33};
+link15[] = {10,34};
+link16[] = {11,12};
+link17[] = {12,13};
+link18[] = {13,25};
+link19[] = {14,19};
+link20[] = {15,16};
+link21[] = {16,17};
+link22[] = {17,18};
+link23[] = {19,21};
+link24[] = {20,15};
+link25[] = {21,22};
+link26[] = {21,23};
+link27[] = {22,20};
+link28[] = {23,24};
+link29[] = {24,22};
+link30[] = {25,26};
+link31[] = {25,27};
+link32[] = {26,14};
+link33[] = {27,14};
+link34[] = {28,29};
+link35[] = {30,31};
+link36[] = {32,30};
+link37[] = {33,30};
+link38[] = {34,35};
+link39[] = {35,11};
+globals[] = {25.000000,1,0,0,0,640,480,1,169,6316128,1,-332.101440,157.388153,924.091492,44.888336,574,1031,1};
+window[] = {2,-1,-1,-32000,-32000,842,75,1289,75,3,592};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "C_m01";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_t2 = time + 600;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout_10_min">*/
+                                class timeout_10_min
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="fail__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "truck_immobile">*/
+                                class truck_immobile
+                                {
+                                        itemno = 30;
+                                        priority = 0.000000;
+                                        to="fail__FF";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_truck"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "in_truck">*/
+                                class in_truck
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="convo";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle BIS_inf == BIS_truck"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "convo">*/
+                class convo
+                {
+                        name = "convo";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"_null = ""hello"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "BIS_truck lock TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "APCs_ready">*/
+                                class APCs_ready
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="convo_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_truck distance BIS_APC1 < 400"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "heli_overhead">*/
+                                class heli_overhead
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="convo_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_heli distance BIS_truck < 250 || BIS_heli distance markerPos ""BIS_pt1"" < 200"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "convo_1">*/
+                class convo_1
+                {
+                        name = "convo_1";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_null = ""lift_overhead"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "APCs_ready">*/
+                                class APCs_ready
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="convo_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_truck distance BIS_APC1 < 400"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "convo_2">*/
+                class convo_2
+                {
+                        name = "convo_2";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"_null = ""support_ready"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "in_Lakka">*/
+                                class in_Lakka
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="task_done";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_truck distance markerPos ""BIS_lakka"" < 200"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done">*/
+                class task_done
+                {
+                        name = "task_done";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"_null = [""BIS_objMove"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "_null = [""BIS_objSeize"", ""Current""] call BIS_fnc_missionTasks; " \n
+                         "" \n
+                         "BIS_truck lock FALSE;" \n
+                         "" \n
+                         "{_x enableSimulation TRUE; _x hideObject FALSE} forEach list BIS_complexArea;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "player_out">*/
+                                class player_out
+                                {
+                                        itemno = 34;
+                                        priority = 0.000000;
+                                        to="lock_the_truck";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle BIS_inf == BIS_inf"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "truck_immobile">*/
+                                class truck_immobile
+                                {
+                                        itemno = 30;
+                                        priority = 0.000000;
+                                        to="fail__FF";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_truck"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "all_out">*/
+                                class all_out
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="join_up";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count crew BIS_truck < 3"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "join_up">*/
+                class join_up
+                {
+                        name = "join_up";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"units BIS_grpFIA joinSilent group BIS_inf;" \n
+                         "" \n
+                         "BIS_truck lock TRUE;" \n
+                         "" \n
+                         "{_x setCaptive FALSE; _x setBehaviour ""AWARE""; _x setCombatMode ""YELLOW""} forEach BIS_factoryGarrison;" \n
+                         "" \n
+                         "saveGame;" \n
+                         "" \n
+                         "BIS_suppReq_APCs = [BIS_inf, ""APCs""] call BIS_fnc_addCommMenuItem;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "armor_eliminated">*/
+                                class armor_eliminated
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="run_countdown";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canMove _x} count [BIS_eAPC1, BIS_eAPC2, BIS_eAPC3] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done__convo">*/
+                class task_done__convo
+                {
+                        name = "task_done__convo";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"_null = ""complex_seized"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "LZ_clear">*/
+                                class LZ_clear
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="task_done__assembled";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_LZ"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "new_task__convo">*/
+                class new_task__convo
+                {
+                        name = "new_task__convo";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/"_null = ""lift_going_down"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "{_x enableSimulation TRUE; _x hideObject FALSE} forEach ((list BIS_airbaseForce) - [BIS_landTarget1]);"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "AA_neutralized">*/
+                                class AA_neutralized
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="end__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(!alive BIS_shilka || count crew BIS_shilka == 0) && triggerActivated BIS_texas"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "end__1">*/
+                class end__1
+                {
+                        name = "end__1";
+                        itemno = 18;
+                        init = /*%FSM<STATEINIT""">*/"_null = ""aa_neutralized"" spawn BIS_fnc_missionConversations"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done__convo_1">*/
+                class task_done__convo_1
+                {
+                        name = "task_done__convo_1";
+                        itemno = 20;
+                        init = /*%FSM<STATEINIT""">*/"_null = ""lz_secured"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "_t2 = time + 70;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "heli_under_fire">*/
+                                class heli_under_fire
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="new_task__convo";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_heliAttacked || time > _t2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done__assembled">*/
+                class task_done__assembled
+                {
+                        name = "task_done__assembled";
+                        itemno = 21;
+                        init = /*%FSM<STATEINIT""">*/"_null = [""BIS_objLZ"", ""Succeeded""] call BIS_fnc_missionTasks;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "assembled">*/
+                                class assembled
+                                {
+                                        itemno = 22;
+                                        priority = 1.000000;
+                                        to="task_done__convo_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{_x distance BIS_LZ > 100} count units BIS_inf == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="new_task";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"TRUE"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "new_task">*/
+                class new_task
+                {
+                        name = "new_task";
+                        itemno = 24;
+                        init = /*%FSM<STATEINIT""">*/"_null = ""BIS_objAssemble"" call BIS_fnc_missionTasks;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "assembled">*/
+                                class assembled
+                                {
+                                        itemno = 22;
+                                        priority = 1.000000;
+                                        to="task_done__convo_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{_x distance BIS_LZ > 100} count units BIS_inf == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "run_countdown">*/
+                class run_countdown
+                {
+                        name = "run_countdown";
+                        itemno = 25;
+                        init = /*%FSM<STATEINIT""">*/"_t2 = time + 300;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "area_clear">*/
+                                class area_clear
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="task_done__convo";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_factory"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "timeout_5_min">*/
+                                class timeout_5_min
+                                {
+                                        itemno = 26;
+                                        priority = 0.000000;
+                                        to="task_done__convo";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "fail__1">*/
+                class fail__1
+                {
+                        name = "fail__1";
+                        itemno = 29;
+                        init = /*%FSM<STATEINIT""">*/"[[missionName, 1], FALSE] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "fail__FF">*/
+                class fail__FF
+                {
+                        name = "fail__FF";
+                        itemno = 31;
+                        init = /*%FSM<STATEINIT""">*/"[""FriendlyFire"", FALSE] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "lock_the_truck">*/
+                class lock_the_truck
+                {
+                        name = "lock_the_truck";
+                        itemno = 35;
+                        init = /*%FSM<STATEINIT""">*/"BIS_truck lock TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "all_out">*/
+                                class all_out
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="join_up";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count crew BIS_truck < 3"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "end__1",
+                "fail__1",
+                "fail__FF",
+        };
+};
+/*%FSM</COMPILE>*/

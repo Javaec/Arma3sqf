@@ -1,0 +1,257 @@
+/*%FSM<COMPILE "O:\fsmeditor\scriptedFSM.cfg, Mines">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-125.000000,-600.000000,-25.000000,-550.000000,0.000000,"Init"};
+item1[] = {"always",8,218,-125.000000,-525.000000,-25.000000,-475.000000,0.000000,"always"};
+item2[] = {"check_mines",2,250,-125.000000,-450.000000,-25.000000,-400.000000,0.000000,"check mines"};
+item3[] = {"mine_disabled",4,218,-125.000000,-375.000000,-25.000000,-325.000000,0.000000,"mine disabled"};
+item4[] = {"task_done",2,250,-125.000000,-300.000000,-25.000000,-250.000000,0.000000,"task done"};
+item5[] = {"mine__1_still_ac",4,218,-325.000000,-225.000000,-225.000000,-175.000000,3.000000,"mine #1" \n "still active"};
+item6[] = {"mine__2_still_ac",4,218,-200.000000,-225.000000,-100.000000,-175.000000,2.000000,"mine #2" \n "still active"};
+item7[] = {"mine__3_still_ac",4,218,-50.000000,-225.000000,50.000000,-175.000000,1.000000,"mine #3" \n "still active"};
+item8[] = {"all_mines_disabl",4,218,75.000000,-225.000000,175.000000,-175.000000,0.000000,"all mines" \n "disabled"};
+item9[] = {"set_as_current",2,250,-325.000000,-150.000000,-225.000000,-100.000000,0.000000,"set as current"};
+item10[] = {"set_as_current_1",2,250,-200.000000,-150.000000,-100.000000,-100.000000,0.000000,"set as current"};
+item11[] = {"set_as_current_2",2,250,-50.000000,-150.000000,50.000000,-100.000000,0.000000,"set as current"};
+item12[] = {"terminate",1,4346,75.000000,-150.000000,175.000000,-100.000000,0.000000,"terminate"};
+item13[] = {"always",8,218,-125.000000,-75.000000,-25.000000,-25.000000,0.000000,"always"};
+item14[] = {"",7,210,195.999985,-54.000004,204.000000,-45.999996,0.000000,""};
+item15[] = {"",7,210,196.000000,-429.000000,204.000000,-421.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {3,4};
+link4[] = {4,5};
+link5[] = {4,6};
+link6[] = {4,7};
+link7[] = {4,8};
+link8[] = {5,9};
+link9[] = {6,10};
+link10[] = {7,11};
+link11[] = {8,12};
+link12[] = {9,13};
+link13[] = {10,13};
+link14[] = {11,13};
+link15[] = {13,14};
+link16[] = {14,15};
+link17[] = {15,2};
+globals[] = {25.000000,1,0,0,0,640,480,1,90,6316128,1,-531.232056,244.539978,66.294968,-626.995483,1134,1031,1};
+window[] = {2,-1,-1,-1,-1,942,175,1389,175,3,1152};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Mines";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_disabled = [];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="check_mines";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "check_mines">*/
+                class check_mines
+                {
+                        name = "check_mines";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "mine_disabled">*/
+                                class mine_disabled
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="task_done";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{!mineActive _x} count [BIS_mine1, BIS_mine2, BIS_mine3] > count _disabled"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done">*/
+                class task_done
+                {
+                        name = "task_done";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"{" \n
+                         "	if (!(mineActive _x) && !(_x in _disabled)) then {" \n
+                         "		_disabled = _disabled + [_x];" \n
+                         "		_taskID = ""BIS_objMine"" + str (_forEachIndex + 1);" \n
+                         "		[_taskID, ""Succeeded""] call BIS_fnc_missionTasks" \n
+                         "	}" \n
+                         "} forEach [BIS_mine1, BIS_mine2, BIS_mine3];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "mine__1_still_ac">*/
+                                class mine__1_still_ac
+                                {
+                                        itemno = 5;
+                                        priority = 3.000000;
+                                        to="set_as_current";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"mineActive BIS_mine1"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "mine__2_still_ac">*/
+                                class mine__2_still_ac
+                                {
+                                        itemno = 6;
+                                        priority = 2.000000;
+                                        to="set_as_current_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"mineActive BIS_mine2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "mine__3_still_ac">*/
+                                class mine__3_still_ac
+                                {
+                                        itemno = 7;
+                                        priority = 1.000000;
+                                        to="set_as_current_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"mineActive BIS_mine3"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "all_mines_disabl">*/
+                                class all_mines_disabl
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "set_as_current">*/
+                class set_as_current
+                {
+                        name = "set_as_current";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objMine1"", ""Current""] call BIS_fnc_missionTasks"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="check_mines";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "set_as_current_1">*/
+                class set_as_current_1
+                {
+                        name = "set_as_current_1";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objMine2"", ""Current""] call BIS_fnc_missionTasks"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="check_mines";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "set_as_current_2">*/
+                class set_as_current_2
+                {
+                        name = "set_as_current_2";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objMine3"", ""Current""] call BIS_fnc_missionTasks"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="check_mines";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "terminate">*/
+                class terminate
+                {
+                        name = "terminate";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"BIS_player removeItem ""Toolkit"";" \n
+                         "" \n
+                         "[""BIS_objDisarm"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "if ((""BIS_objAirPatrol"" call BIS_fnc_taskState) != ""Succeeded"") then {" \n
+                         "	if ((""BIS_objLauncher"" call BIS_fnc_taskState) != ""Succeeded"") then {" \n
+                         "		[""BIS_objLauncher"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "	} else {" \n
+                         "		[""BIS_objHeli"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "	}" \n
+                         "};" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	sleep 4;" \n
+                         "	saveGame;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "terminate",
+        };
+};
+/*%FSM</COMPILE>*/

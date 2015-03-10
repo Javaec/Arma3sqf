@@ -1,0 +1,299 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, Spec Ops">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-40.000000,-140.000000,50.000000,-90.000000,0.000000,"init"};
+item1[] = {"player_detected",4,4314,80.000000,-140.000000,170.000000,-90.000000,1.000000,"player" \n "detected"};
+item2[] = {"assassination_ti",4,218,-40.000000,-60.000000,50.000000,-10.000000,0.000000,"assassination" \n "time"};
+item3[] = {"assassination",2,250,-40.000000,180.000000,50.000000,230.000000,0.000000,"assassination"};
+item4[] = {"engage_player",1,250,200.000000,-140.000000,290.000000,-90.000000,0.000000,"engage" \n "player"};
+item5[] = {"timeout",2,250,-40.000000,20.000000,50.000000,70.000000,0.000000,"timeout"};
+item6[] = {"delay",4,218,-40.000000,100.000000,50.000000,150.000000,0.000000,"delay"};
+item7[] = {"civilians_dead",4,218,-40.000000,260.000000,50.000000,310.000000,0.000000,"civilians" \n "dead"};
+item8[] = {"patrol_area",1,250,-40.000000,340.000000,50.000000,390.000000,0.000000,"patrol" \n "area"};
+link0[] = {0,1};
+link1[] = {0,2};
+link2[] = {1,4};
+link3[] = {2,5};
+link4[] = {3,7};
+link5[] = {5,6};
+link6[] = {6,3};
+link7[] = {7,8};
+globals[] = {10.000000,1,0,0,0,640,480,1,108,6316128,1,-361.856079,543.190063,596.551025,-299.799194,1041,1031,1};
+window[] = {2,-1,-1,-1,-1,1050,200,1640,200,3,1059};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Spec Ops";
+        class States
+        {
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"//****************************************" \n
+                         "//The parameters" \n
+                         "//****************************************" \n
+                         "private [""_groupEnemies"", ""_groupCivilians""];" \n
+                         "_groupEnemies	= [_this, 0, grpNull, [grpNull]] call BIS_fnc_param;" \n
+                         "_groupCivilians	= [_this, 1, grpNull, [grpNull]] call BIS_fnc_param;" \n
+                         "" \n
+                         "//****************************************" \n
+                         "//Timers" \n
+                         "//****************************************" \n
+                         "private ""_timeAssassination"";" \n
+                         "_timeAssassination = time + 180;" \n
+                         "" \n
+                         "//****************************************" \n
+                         "//Log" \n
+                         "//****************************************" \n
+                         """Assassination scene initialized"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "player_detected">*/
+                                class player_detected
+                                {
+                                        itemno = 1;
+                                        priority = 1.000000;
+                                        to="engage_player";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	_x knowsAbout player >= 1" \n
+                                         "} count units _groupEnemies > 0" \n
+                                         "||" \n
+                                         "{ !isNil { BIS_playerDetected } }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "assassination_ti">*/
+                                class assassination_ti
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="timeout";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _timeAssassination" \n
+                                         "||" \n
+                                         "{" \n
+                                         "	cursorTarget == _x" \n
+                                         "	&&" \n
+                                         "	{ cameraView == ""GUNNER"" }" \n
+                                         "} count units _groupCivilians > 0" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "assassination">*/
+                class assassination
+                {
+                        name = "assassination";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"//****************************************" \n
+                         "//Flag" \n
+                         "//****************************************" \n
+                         "BIS_enemyWarCrime = true;" \n
+                         "" \n
+                         "//****************************************" \n
+                         "//Civilians" \n
+                         "//****************************************" \n
+                         "private ""_groupWest"";" \n
+                         "_groupWest = createGroup WEST;" \n
+                         "" \n
+                         "//Join civilians to the group" \n
+                         "units _groupCivilians joinSilent _groupWest;" \n
+                         "" \n
+                         "{" \n
+                         "	//Reveal civilian" \n
+                         "	_groupEnemies reveal [_x, 4];" \n
+                         "	" \n
+                         "	//The enemy unit" \n
+                         "	private ""_enemy"";" \n
+                         "	_enemy = (units _groupEnemies) select _forEachIndex;" \n
+                         "	" \n
+                         "	//Play animation" \n
+                         "	_enemy playMoveNow ""amovpercmstpsraswrfldnon"";" \n
+                         "	" \n
+                         "	//Engage civilian" \n
+                         "	_enemy enableAi ""ANIM"";" \n
+                         "	_enemy doWatch _x;" \n
+                         "	_enemy doTarget _x;" \n
+                         "	_enemy doFire _x;" \n
+                         "" \n
+                         "} forEach units _groupWest;" \n
+                         "" \n
+                         "//****************************************" \n
+                         "//Log" \n
+                         "//****************************************" \n
+                         """Enemy is assassinating the civilians"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "civilians_dead">*/
+                                class civilians_dead
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="patrol_area";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{ alive _x } count units _groupCivilians < 1" \n
+                                         "&&" \n
+                                         "{ behaviour _x == ""COMBAT"" } count units _groupEnemies < 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "engage_player">*/
+                class engage_player
+                {
+                        name = "engage_player";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"//****************************************" \n
+                         "//Enemies" \n
+                         "//****************************************" \n
+                         "_groupEnemies reveal [player, 4];" \n
+                         "_groupEnemies allowFleeing 0;" \n
+                         "" \n
+                         "{" \n
+                         "	//Enable" \n
+                         "	_x enableAi ""MOVE"";" \n
+                         "	_x enableAi ""ANIM"";" \n
+                         "	" \n
+                         "	//Play animation" \n
+                         "	_x playMoveNow ""amovpercmstpsraswrfldnon"";" \n
+                         "} forEach units _groupEnemies;" \n
+                         "" \n
+                         "//Add seek and destroy waypoint to enemy group" \n
+                         "private ""_waypoint"";" \n
+                         "_waypoint = _groupEnemies addWaypoint [position player, 0];" \n
+                         "_waypoint setWaypointType ""SAD"";" \n
+                         "_waypoint setWaypointCombatMode ""RED"";" \n
+                         "_waypoint setWaypointBehaviour ""COMBAT"";" \n
+                         "_waypoint setWaypointSpeed ""FULL"";" \n
+                         "_waypoint setWaypointFormation ""DIAMOND"";" \n
+                         "" \n
+                         "//****************************************" \n
+                         "//Civilians" \n
+                         "//****************************************" \n
+                         "_groupCivilians allowFleeing 0;" \n
+                         "" \n
+                         "{" \n
+                         "	//Enable" \n
+                         "	_x enableAi ""MOVE"";" \n
+                         "	_x enableAi ""ANIM"";" \n
+                         "	" \n
+                         "	//Disable" \n
+                         "	_x disableAi ""FSM"";" \n
+                         "	" \n
+                         "	//Play animation" \n
+                         "	_x switchMove """";" \n
+                         "} forEach units _groupCivilians;" \n
+                         "" \n
+                         "//The position where the civilian will run away to" \n
+                         "private ""_position"";" \n
+                         "_position = [position leader _groupCivilians, 1500, 90] call BIS_fnc_relPos;" \n
+                         "" \n
+                         "//Add move waypoint to civilian group" \n
+                         "private ""_waypoint"";" \n
+                         "_waypoint = _groupCivilians addWaypoint [_position, 0];" \n
+                         "_waypoint setWaypointType ""MOVE"";" \n
+                         "_waypoint setWaypointCombatMode ""BLUE"";" \n
+                         "_waypoint setWaypointBehaviour ""AWARE"";" \n
+                         "_waypoint setWaypointSpeed ""FULL"";" \n
+                         "_waypoint setWaypointFormation ""FILE"";" \n
+                         "" \n
+                         "//****************************************" \n
+                         "//Log" \n
+                         "//****************************************" \n
+                         """Player detected by the enemy special forces and will now be engaged"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "timeout">*/
+                class timeout
+                {
+                        name = "timeout";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"//****************************************" \n
+                         "//Delay" \n
+                         "//****************************************" \n
+                         "private ""_delay"";" \n
+                         "_delay = time + 2.5;" \n
+                         "" \n
+                         "//****************************************" \n
+                         "//Log" \n
+                         "//****************************************" \n
+                         """Player is looking at the civilians"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "delay">*/
+                                class delay
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="assassination";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _delay" \n
+                                         "||" \n
+                                         "time > _timeAssassination" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "patrol_area">*/
+                class patrol_area
+                {
+                        name = "patrol_area";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"//****************************************" \n
+                         "//Enemies" \n
+                         "//****************************************" \n
+                         "{" \n
+                         "	_x enableAi ""MOVE"";" \n
+                         "	_x enableAi ""ANIM"";" \n
+                         "	_x enableAi ""FSM"";" \n
+                         "	_x enableAi ""TARGET"";" \n
+                         "	_x enableAi ""AUTOTARGET"";" \n
+                         "} forEach units _groupEnemies;" \n
+                         "" \n
+                         "//Patrol the area" \n
+                         "[_groupEnemies, position leader _groupEnemies, 100] call BIS_fnc_taskPatrol;" \n
+                         "" \n
+                         "//****************************************" \n
+                         "//Log" \n
+                         "//****************************************" \n
+                         """Enemy special forces are now patroling the area"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "engage_player",
+                "patrol_area",
+        };
+};
+/*%FSM</COMPILE>*/

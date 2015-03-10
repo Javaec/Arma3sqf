@@ -1,0 +1,729 @@
+/*%FSM<COMPILE "O:\fsmeditor\scriptedFSM.cfg, Helicopter Transport">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,300.000000,-1175.000000,400.000000,-1125.000000,0.000000,"Init"};
+item1[] = {"request",4,218,300.000000,-1100.000000,400.000000,-1050.000000,0.000000,"request"};
+item2[] = {"support_run_fini",2,250,300.000000,-50.000000,400.000000,0.000000,0.000000,"support run" \n "finished"};
+item3[] = {"fly_to_LZ",2,250,300.000000,-800.000000,400.000000,-750.000000,0.000000,"fly to LZ"};
+item4[] = {"",7,210,421.000000,-29.000000,429.000000,-21.000000,0.000000,""};
+item5[] = {"",7,210,421.000000,-1079.000000,429.000000,-1070.999878,0.000000,""};
+item6[] = {"failed",4,218,-50.000000,-650.000000,50.000000,-600.000000,0.000000,"failed"};
+item7[] = {"cancel",2,250,-50.000000,-1100.000000,50.000000,-1050.000000,0.000000,"cancel"};
+item8[] = {"virtual",4,218,375.000000,25.000000,475.000000,75.000000,1.000000,"virtual"};
+item9[] = {"delete_assets",1,250,375.000000,250.000000,475.000000,300.000000,0.000000,"delete assets"};
+item10[] = {"",7,210,-3.999981,46.000031,3.999981,53.999969,0.000000,""};
+item11[] = {"nothing",2,250,375.000000,100.000000,475.000000,150.000000,0.000000,"nothing"};
+item12[] = {"back_home",4,218,375.000000,175.000000,475.000000,225.000000,0.000000,"back home"};
+item13[] = {"player_",2,250,300.000000,-1025.000000,400.000000,-975.000000,0.000000,"player?"};
+item14[] = {"no",4,218,300.000000,-950.000000,400.000000,-900.000000,0.000000,"no"};
+item15[] = {"yes",4,218,175.000000,-950.000000,275.000000,-900.000000,1.000000,"yes"};
+item16[] = {"create_task",2,250,175.000000,-875.000000,275.000000,-825.000000,0.000000,"create task"};
+item17[] = {"done",4,218,175.000000,-50.000000,275.000000,0.000000,0.000000,"done"};
+item18[] = {"requester_inside",4,218,300.000000,-575.000000,400.000000,-525.000000,0.000000,"requester" \n "inside"};
+item19[] = {"requester_selects",2,250,300.000000,-500.000000,400.000000,-450.000000,0.000000,"requester selects" \n "unload pos"};
+item20[] = {"unload_selected",4,218,300.000000,-425.000000,400.000000,-375.000000,1.000000,"unload selected"};
+item21[] = {"fly_to_unload",2,250,300.000000,-350.000000,400.000000,-300.000000,0.000000,"fly to unload"};
+item22[] = {"unloaded",4,218,300.000000,-125.000000,400.000000,-75.000000,0.000000,"unloaded"};
+item23[] = {"at_the_LZ",4,218,300.000000,-725.000000,400.000000,-675.000000,0.000000,"at the LZ"};
+item24[] = {"wait",2,250,300.000000,-650.000000,400.000000,-600.000000,0.000000,"wait"};
+item25[] = {"timeout_60_sec",6,250,100.000000,-575.000000,200.000000,-525.000000,0.000000,"timeout" \n "60 sec"};
+item26[] = {"cancelled",4,218,100.000000,-500.000000,200.000000,-450.000000,0.000000,"cancelled"};
+item27[] = {"got_out",4,218,100.000000,-425.000000,200.000000,-375.000000,0.000000,"got out"};
+item28[] = {"wait_1",2,250,100.000000,-350.000000,200.000000,-300.000000,0.000000,"wait"};
+item29[] = {"at_the_LZ",4,218,300.000000,-275.000000,400.000000,-225.000000,0.000000,"at the LZ"};
+item30[] = {"report",2,250,300.000000,-200.000000,400.000000,-150.000000,0.000000,"report"};
+item31[] = {"",7,210,271.000000,-329.000000,279.000000,-321.000000,0.000000,""};
+item32[] = {"",7,210,271.000000,-104.000000,279.000000,-96.000000,0.000000,""};
+item33[] = {"re_open_comm_men",2,250,-125.000000,-500.000000,-25.000000,-450.000000,0.000000,"re-open" \n "comm menu"};
+item34[] = {"back_inside",4,218,100.000000,-275.000000,200.000000,-225.000000,0.000000,"back inside"};
+item35[] = {"unload_changed",4,4314,450.000000,-350.000000,550.000000,-300.000000,0.000000,"unload changed"};
+link0[] = {0,1};
+link1[] = {1,13};
+link2[] = {2,4};
+link3[] = {3,6};
+link4[] = {3,23};
+link5[] = {4,5};
+link6[] = {4,8};
+link7[] = {5,1};
+link8[] = {6,7};
+link9[] = {7,1};
+link10[] = {7,10};
+link11[] = {8,11};
+link12[] = {10,8};
+link13[] = {11,12};
+link14[] = {12,9};
+link15[] = {13,14};
+link16[] = {13,15};
+link17[] = {14,3};
+link18[] = {15,16};
+link19[] = {16,6};
+link20[] = {16,17};
+link21[] = {17,2};
+link22[] = {18,19};
+link23[] = {19,6};
+link24[] = {19,20};
+link25[] = {19,26};
+link26[] = {19,27};
+link27[] = {20,21};
+link28[] = {21,6};
+link29[] = {21,29};
+link30[] = {21,31};
+link31[] = {21,35};
+link32[] = {22,2};
+link33[] = {23,24};
+link34[] = {24,6};
+link35[] = {24,18};
+link36[] = {24,25};
+link37[] = {25,7};
+link38[] = {26,33};
+link39[] = {27,28};
+link40[] = {28,6};
+link41[] = {28,25};
+link42[] = {28,34};
+link43[] = {29,30};
+link44[] = {30,6};
+link45[] = {30,22};
+link46[] = {30,35};
+link47[] = {31,32};
+link48[] = {32,22};
+link49[] = {33,20};
+link50[] = {33,25};
+link51[] = {33,26};
+link52[] = {33,27};
+link53[] = {34,33};
+link54[] = {35,21};
+globals[] = {25.000000,1,0,0,0,640,480,1,310,6316128,1,-128.195129,635.273926,85.035095,-808.423096,881,1031,1};
+window[] = {2,-1,-1,-1,-1,898,150,1110,150,3,899};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Helicopter Transport";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_home = position _this;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "request">*/
+                                class request
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="player_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_this getVariable ""BIS_SUPP_supporting"" && ((_this getVariable ""BIS_SUPP_supportType"") == ""Transport"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "support_run_fini">*/
+                class support_run_fini
+                {
+                        name = "support_run_fini";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"_this setVariable [""BIS_SUPP_supporting"", FALSE, TRUE];" \n
+                         "" \n
+                         "_wp5 = group _this addWaypoint [_home, 0];" \n
+                         "_wp5 setWaypointType ""Move"";" \n
+                         "_wp5 setWaypointStatements [""TRUE"", ""vehicle this land """"LAND""""""];" \n
+                         "_wp5 setWaypointBehaviour _oldBehav;" \n
+                         "" \n
+                         "if (isPlayer _this) then {[""BIS_SUPP_task_Transport"", ""Succeeded""] call BIS_fnc_taskSetState};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "virtual">*/
+                                class virtual
+                                {
+                                        itemno = 8;
+                                        priority = 1.000000;
+                                        to="nothing";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil {_this getVariable ""BIS_SUPP_virtual""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "request">*/
+                                class request
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="player_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_this getVariable ""BIS_SUPP_supporting"" && ((_this getVariable ""BIS_SUPP_supportType"") == ""Transport"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "fly_to_LZ">*/
+                class fly_to_LZ
+                {
+                        name = "fly_to_LZ";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"deleteWaypoint [group _this, currentWaypoint group _this];" \n
+                         "" \n
+                         "_oldBehav = behaviour _this;" \n
+                         "" \n
+                         "_wp1 = group _this addWaypoint [_coords, 0];" \n
+                         "_wp1 setWaypointType ""MOVE"";" \n
+                         "_wp1 setWaypointStatements [""TRUE"", ""vehicle this land """"GET IN""""""];" \n
+                         "_wp1 setWaypointBehaviour ""CARELESS"";" \n
+                         "" \n
+                         "//_wp2 = group _this addWaypoint [_coords, 0];" \n
+                         "//_wp2 setWaypointType ""MOVE"";" \n
+                         "//_wp2 setWaypointStatements [""(this getVariable 'BIS_SUPP_requester') in vehicle this"", """"];" \n
+                         "" \n
+                         "call BIS_SUPP_refreshMainWindow;" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "at_the_LZ">*/
+                                class at_the_LZ
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 10 && unitReady _this && ((position _this) select 2 < 10)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "failed">*/
+                                class failed
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _this) || vehicle _this == _this || !(isNil {_this getVariable ""BIS_SUPP_failed""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "cancel">*/
+                class cancel
+                {
+                        name = "cancel";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"_requester setVariable [""BIS_SUPP_used_Transport"", (_requester getVariable ""BIS_SUPP_used_Transport"") - 1, TRUE];" \n
+                         "_requester setVariable [""BIS_SUPP_transmitting"", FALSE, TRUE];" \n
+                         "_this setVariable [""BIS_SUPP_supporting"", FALSE, TRUE];" \n
+                         "_this setVariable [""BIS_SUPP_failed"", nil];" \n
+                         "call BIS_SUPP_refreshMainWindow;" \n
+                         "" \n
+                         "if (!(alive _this) || vehicle _this == _this || !(isNil {_this getVariable ""BIS_SUPP_failed""})) then {" \n
+                         "	_requester kbTell [(_requester getVariable ""BIS_SUPP_HQ""), ""BIS_SUPP_protocol"", ""Ping_Transport_Destroyed"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group (_requester getVariable ""BIS_SUPP_HQ""))]" \n
+                         "} else {" \n
+                         "	[_this, _requester, _home, _oldBehav] spawn {" \n
+                         "		_requester = _this select 1;" \n
+                         "		_home = _this select 2;" \n
+                         "		_oldBehav = _this select 3;" \n
+                         "		_this = _this select 0;" \n
+                         "		vehicle _this land ""GET OUT"";" \n
+                         "		waitUntil {(position (vehicle _this)) select 2 < 4};" \n
+                         "		{if (vehicle _x == vehicle _this) then {unassignVehicle _x; _x action [""Eject"", vehicle _x]}} forEach units _requester;" \n
+                         "		sleep 4;" \n
+                         "		_wp6 = group _this addWaypoint [_home, 0];" \n
+                         "		_wp6 setWaypointType ""Move"";" \n
+                         "		_wp6 setWaypointStatements [""TRUE"", ""vehicle this land """"LAND""""""];" \n
+                         "		_wp6 setWaypointBehaviour _oldBehav;" \n
+                         "	}" \n
+                         "};" \n
+                         "" \n
+                         "if (isPlayer _this) then {[""BIS_SUPP_task_Transport"", ""Failed""] call BIS_fnc_taskSetState};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "virtual">*/
+                                class virtual
+                                {
+                                        itemno = 8;
+                                        priority = 1.000000;
+                                        to="nothing";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil {_this getVariable ""BIS_SUPP_virtual""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "request">*/
+                                class request
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="player_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_this getVariable ""BIS_SUPP_supporting"" && ((_this getVariable ""BIS_SUPP_supportType"") == ""Transport"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "delete_assets">*/
+                class delete_assets
+                {
+                        name = "delete_assets";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"_grp = group _this;" \n
+                         "" \n
+                         "deleteVehicle vehicle _this;" \n
+                         "{deleteVehicle _x} forEach units _this;" \n
+                         "deleteGroup _grp;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "nothing">*/
+                class nothing
+                {
+                        name = "nothing";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "back_home">*/
+                                class back_home
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="delete_assets";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_this distance _home < 500"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "player_">*/
+                class player_
+                {
+                        name = "player_";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"_requester = _this getVariable ""BIS_SUPP_requester"";" \n
+                         "_coords =  _this getVariable ""BIS_SUPP_supportRunCoords"";" \n
+                         "" \n
+                         "_requester setVariable [""BIS_SUPP_used_Transport"", (_requester getVariable ""BIS_SUPP_used_Transport"") + 1, TRUE];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 15;
+                                        priority = 1.000000;
+                                        to="create_task";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isPlayer _this"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="fly_to_LZ";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "create_task">*/
+                class create_task
+                {
+                        name = "create_task";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/"_coords = _this getVariable ""BIS_SUPP_supportRunCoords"";" \n
+                         "" \n
+                         "call BIS_SUPP_refreshMainWindow;" \n
+                         "" \n
+                         "[_this, ""BIS_SUPP_task_Transport"", [format [""<br/>%2: %1<br/><br/>"", mapGridPosition _coords, localize ""STR_A3_mdl_supp_task_grid""], localize ""STR_A3_mdl_supp_disp_transport"", localize ""STR_A3_mdl_supp_task_lz""], _coords] call BIS_fnc_taskCreate"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "done">*/
+                                class done
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="support_run_fini";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(_this getVariable ""BIS_SUPP_supporting"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "failed">*/
+                                class failed
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _this) || vehicle _this == _this || !(isNil {_this getVariable ""BIS_SUPP_failed""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "requester_selects">*/
+                class requester_selects
+                {
+                        name = "requester_selects";
+                        itemno = 19;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_requester, ""BIS_SUPP_protocol"", ""Transport_Welcome"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];" \n
+                         "" \n
+                         "_requester setVariable [""BIS_SUPP_transmitting"", TRUE, TRUE];" \n
+                         "" \n
+                         "_requester setVariable [""BIS_SUPP_unloadCoords"", [], TRUE];" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "unload_selected">*/
+                                class unload_selected
+                                {
+                                        itemno = 20;
+                                        priority = 1.000000;
+                                        to="fly_to_unload";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(_requester getVariable ""BIS_SUPP_transmitting"") && vehicle _requester == vehicle _this"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cancelled">*/
+                                class cancelled
+                                {
+                                        itemno = 26;
+                                        priority = 0.000000;
+                                        to="re_open_comm_men";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"commandingMenu == """" && time > _t + 2 && (count (_requester getVariable ""BIS_SUPP_unloadCoords"") < 1)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "got_out">*/
+                                class got_out
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="wait_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle _requester == _requester"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "failed">*/
+                                class failed
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _this) || vehicle _this == _this || !(isNil {_this getVariable ""BIS_SUPP_failed""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "fly_to_unload">*/
+                class fly_to_unload
+                {
+                        name = "fly_to_unload";
+                        itemno = 21;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_requester, ""BIS_SUPP_protocol"", ""Transport_LZ_Selected"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];" \n
+                         "" \n
+                         "_unloadCoords = _requester getVariable ""BIS_SUPP_unloadCoords"";" \n
+                         "" \n
+                         "if !(isNil ""_wp3"") then {deleteWaypoint _wp3};" \n
+                         "if !(isNil ""_landing"") then {terminate _landing};" \n
+                         "" \n
+                         "_wp3 = group _this addWaypoint [_unloadCoords, 0];" \n
+                         "_wp3 setWaypointType ""MOVE"";" \n
+                         "_wp3 setWaypointStatements [""TRUE"", ""vehicle this land """"GET OUT""""""];" \n
+                         "" \n
+                         "//_wp4 = group _this addWaypoint [_unloadCoords, 0];" \n
+                         "//_wp4 setWaypointType ""MOVE"";" \n
+                         "//_wp4 setWaypointStatements [""!((this getVariable 'BIS_SUPP_requester') in vehicle this)"", """"];" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "at_the_LZ">*/
+                                class at_the_LZ
+                                {
+                                        itemno = 29;
+                                        priority = 0.000000;
+                                        to="report";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 5 && unitReady _this && ((position _this) select 2 < 10)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "unload_changed">*/
+                                class unload_changed
+                                {
+                                        itemno = 35;
+                                        priority = 0.000000;
+                                        to="fly_to_unload";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!((_requester getVariable ""BIS_SUPP_unloadCoords"") isEqualTo _unloadCoords) && (count (_requester getVariable ""BIS_SUPP_unloadCoords"") > 1)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "unloaded">*/
+                                class unloaded
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="support_run_fini";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle _requester != vehicle _this"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "failed">*/
+                                class failed
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _this) || vehicle _this == _this || !(isNil {_this getVariable ""BIS_SUPP_failed""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "wait">*/
+                class wait
+                {
+                        name = "wait";
+                        itemno = 24;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "_this spawn BIS_SUPP_landingFailsafe;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "requester_inside">*/
+                                class requester_inside
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="requester_selects";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_requester in vehicle _this"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "timeout_60_sec">*/
+                                class timeout_60_sec
+                                {
+                                        itemno = 25;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 120"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "failed">*/
+                                class failed
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _this) || vehicle _this == _this || !(isNil {_this getVariable ""BIS_SUPP_failed""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "wait_1">*/
+                class wait_1
+                {
+                        name = "wait_1";
+                        itemno = 28;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "showCommandingMenu """";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout_60_sec">*/
+                                class timeout_60_sec
+                                {
+                                        itemno = 25;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 120"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "back_inside">*/
+                                class back_inside
+                                {
+                                        itemno = 34;
+                                        priority = 0.000000;
+                                        to="re_open_comm_men";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "failed">*/
+                                class failed
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _this) || vehicle _this == _this || !(isNil {_this getVariable ""BIS_SUPP_failed""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "report">*/
+                class report
+                {
+                        name = "report";
+                        itemno = 30;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_requester, ""BIS_SUPP_protocol"", ""Transport_Accomplished"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];" \n
+                         "" \n
+                         "_landing = _this spawn BIS_SUPP_landingFailsafe;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "unloaded">*/
+                                class unloaded
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="support_run_fini";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle _requester != vehicle _this"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "unload_changed">*/
+                                class unload_changed
+                                {
+                                        itemno = 35;
+                                        priority = 0.000000;
+                                        to="fly_to_unload";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!((_requester getVariable ""BIS_SUPP_unloadCoords"") isEqualTo _unloadCoords) && (count (_requester getVariable ""BIS_SUPP_unloadCoords"") > 1)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "failed">*/
+                                class failed
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive _this) || vehicle _this == _this || !(isNil {_this getVariable ""BIS_SUPP_failed""})"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "re_open_comm_men">*/
+                class re_open_comm_men
+                {
+                        name = "re_open_comm_men";
+                        itemno = 33;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "	sleep 0.1;" \n
+                         "	showCommandingMenu ""#USER:BIS_SUPP_commMenu""" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "unload_selected">*/
+                                class unload_selected
+                                {
+                                        itemno = 20;
+                                        priority = 1.000000;
+                                        to="fly_to_unload";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(_requester getVariable ""BIS_SUPP_transmitting"") && vehicle _requester == vehicle _this"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cancelled">*/
+                                class cancelled
+                                {
+                                        itemno = 26;
+                                        priority = 0.000000;
+                                        to="re_open_comm_men";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"commandingMenu == """" && time > _t + 2 && (count (_requester getVariable ""BIS_SUPP_unloadCoords"") < 1)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "got_out">*/
+                                class got_out
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="wait_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle _requester == _requester"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "timeout_60_sec">*/
+                                class timeout_60_sec
+                                {
+                                        itemno = 25;
+                                        priority = 0.000000;
+                                        to="cancel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 120"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "delete_assets",
+        };
+};
+/*%FSM</COMPILE>*/

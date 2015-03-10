@@ -1,0 +1,192 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Waving control">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Waving_control",0,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"Waving control"};
+item1[] = {"Looking_at_leade",4,218,-75.000000,-50.000000,25.000000,0.000000,0.000000,"Looking at" \n "leader"};
+item2[] = {"Not_looking",4,218,-200.000000,25.000000,-100.000000,75.000000,0.000000,"Not looking"};
+item3[] = {"",7,210,-154.000000,-104.000000,-146.000000,-96.000000,0.000000,""};
+item4[] = {"Wave",1,250,-75.000000,175.000000,25.000000,225.000000,0.000000,"Wave"};
+item5[] = {"",7,210,46.000000,-104.000000,54.000000,-96.000000,0.000000,""};
+item6[] = {"Opportunity_pass",4,218,75.000000,-125.000000,175.000000,-75.000000,0.000000,"Opportunity" \n "passed"};
+item7[] = {"Start_countdown",2,250,-75.000000,25.000000,25.000000,75.000000,0.000000,"Start countdown"};
+item8[] = {"Timeout_passed",4,218,-75.000000,100.000000,25.000000,150.000000,0.000000,"Timeout" \n "passed"};
+item9[] = {"",7,210,46.000000,46.000000,54.000000,54.000000,0.000000,""};
+item10[] = {"Terminate",1,250,75.000000,-50.000000,175.000000,0.000000,0.000000,"Terminate"};
+link0[] = {0,1};
+link1[] = {0,5};
+link2[] = {1,7};
+link3[] = {2,3};
+link4[] = {3,0};
+link5[] = {5,6};
+link6[] = {6,10};
+link7[] = {7,2};
+link8[] = {7,8};
+link9[] = {7,9};
+link10[] = {8,4};
+link11[] = {9,5};
+globals[] = {25.000000,1,0,0,0,640,480,1,25,6316128,1,-320.091095,320.089996,258.749146,-203.727783,861,622,1};
+window[] = {0,-1,-1,-1,-1,867,100,1314,100,1,879};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Waving control";
+        class States
+        {
+                /*%FSM<STATE "Waving_control">*/
+                class Waving_control
+                {
+                        name = "Waving_control";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private [""_unit""];" \n
+                         "_unit = _this;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Opportunity_pass">*/
+                                class Opportunity_pass
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{!(isNil _x)} count [""BIS_atSurvivors"", ""BIS_outOfTime"", ""BIS_atRV"", ""BIS_courtMartial""] > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Looking_at_leade">*/
+                                class Looking_at_leade
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Start_countdown";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_inf distance _unit <= 75" \n
+                                         "&&" \n
+                                         "vehicle BIS_inf == BIS_inf" \n
+                                         "&&" \n
+                                         "cursorTarget == _unit"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Wave">*/
+                class Wave
+                {
+                        name = "Wave";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_unit reveal BIS_inf;" \n
+                         "_unit doWatch BIS_inf;" \n
+                         "" \n
+                         "private [""_anim""];" \n
+                         "_anim = if (vehicle BIS_inf distance _unit >= 50) then {" \n
+                         "	// Wave from afar" \n
+                         "	""Acts_PercMstpSlowWrflDnon_handup1c""" \n
+                         "} else {" \n
+                         "	// Close wave" \n
+                         "	""Acts_PercMstpSlowWrflDnon_handup1b""" \n
+                         "};" \n
+                         "" \n
+                         "// Make the unit wave" \n
+                         "_unit disableAI ""ANIM"";" \n
+                         "_unit playMove _anim;" \n
+                         "" \n
+                         "private [""_animEH""];" \n
+                         "_animEH = _unit addEventHandler [" \n
+                         "	""AnimDone""," \n
+                         "	{" \n
+                         "		private [""_unit"", ""_anim""];" \n
+                         "		_unit = _this select 0;" \n
+                         "		_anim = _this select 1;" \n
+                         "		" \n
+                         "		if ((toLower _anim) in [""acts_percmstpslowwrfldnon_handup1c"", ""acts_percmstpslowwrfldnon_handup1b""]) then {" \n
+                         "			_unit removeEventHandler [""AnimDone"", _unit getVariable ""BIS_animEH""];" \n
+                         "			_unit enableAI ""ANIM"";" \n
+                         "			_unit reveal BIS_inf;" \n
+                         "			_unit doWatch BIS_inf;" \n
+                         "		};" \n
+                         "	}" \n
+                         "];" \n
+                         "" \n
+                         "_unit setVariable [""BIS_animEH"", _animEH];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Start_countdown">*/
+                class Start_countdown
+                {
+                        name = "Start_countdown";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"private [""_waveTimeOut""];" \n
+                         "_waveTimeOut = time + 1;" \n
+                         "" \n
+                         "_unit reveal BIS_inf;" \n
+                         "_unit doWatch BIS_inf;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Timeout_passed">*/
+                                class Timeout_passed
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Wave";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _waveTimeOut"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Opportunity_pass">*/
+                                class Opportunity_pass
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{!(isNil _x)} count [""BIS_atSurvivors"", ""BIS_outOfTime"", ""BIS_atRV"", ""BIS_courtMartial""] > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Not_looking">*/
+                                class Not_looking
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="Waving_control";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"cursorTarget != _unit" \n
+                                         "||" \n
+                                         "BIS_inf distance _unit > 75" \n
+                                         "||" \n
+                                         "vehicle BIS_inf != BIS_inf"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Waving_control";
+        finalStates[] =
+        {
+                "Wave",
+                "Terminate",
+        };
+};
+/*%FSM</COMPILE>*/

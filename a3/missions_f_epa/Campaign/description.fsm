@@ -1,0 +1,598 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\campaignFSMA3.cfg, Project Splendid">*//*%FSM<HEAD>*//*item0[] = {"A_in",0,250,-75.000000,-450.000000,25.000000,-400.000000,0.000000,"A_in"};
+item1[] = {"A_in2",2,250,-75.000000,-300.000000,25.000000,-250.000000,0.000000,"A_in2"};
+item2[] = {"A_hub01",2,250,450.000000,150.000000,550.000000,200.000000,0.000000,"A_hub01"};
+item3[] = {"A_m01",2,250,50.000000,-100.000000,150.000000,-50.000000,0.000000,"A_m01"};
+item4[] = {"A_m02",2,250,200.000000,-100.000000,300.000000,-50.000000,0.000000,"A_m02"};
+item5[] = {"A_m03",2,250,325.000000,-100.000000,425.000000,-50.000000,0.000000,"A_m03"};
+item6[] = {"A_m05",2,250,450.000000,-100.000000,550.000000,-50.000000,0.000000,"A_m05"};
+item7[] = {"A_skirmish01",2,250,625.000000,-100.000000,725.000000,-50.000000,0.000000,"A_skirmish01"};
+item8[] = {"A_m04",2,250,900.000000,-100.000000,1000.000000,-50.000000,0.000000,"A_m04"};
+item9[] = {"A_hub02",2,250,750.000000,150.000000,850.000000,200.000000,0.000000,"A_hub02"};
+item10[] = {"A_skirmish02",2,250,875.000000,325.000000,975.000000,375.000000,0.000000,"A_skirmish02"};
+item11[] = {"A_out",1,250,750.000000,325.000000,850.000000,375.000000,0.000000,"A_out"};
+item12[] = {"OPTIONAL_MISSION",-1,250,600.000000,-125.000000,750.000000,-25.000000,0.000000,"OPTIONAL MISSION" \n "" \n "" \n "" \n "" \n ""};
+item13[] = {"MISSION_POOL___",-1,250,175.000000,-125.000000,575.000000,-25.000000,0.000000,"MISSION POOL" \n "" \n "" \n "" \n "" \n ""};
+item14[] = {"STAGE_A_HUB____",-1,250,425.000000,125.000000,575.000000,225.000000,0.000000,"STAGE A HUB" \n "" \n "" \n "" \n "" \n "NORMAL"};
+item15[] = {"STAGE_A_HUB_____1",-1,250,725.000000,125.000000,875.000000,225.000000,0.000000,"STAGE A HUB" \n "" \n "" \n "" \n "" \n "DESTROYED"};
+item16[] = {"_",4,218,-75.000000,-225.000000,25.000000,-175.000000,0.000000,""};
+item17[] = {"__6",4,218,200.000000,0.000000,300.000000,50.000000,0.000000,""};
+item18[] = {"_",4,218,50.000000,0.000000,150.000000,50.000000,0.000000,""};
+item19[] = {"__1",4,218,325.000000,0.000000,425.000000,50.000000,0.000000,""};
+item20[] = {"__2",4,218,900.000000,0.000000,1000.000000,50.000000,0.000000,""};
+item21[] = {"__3",4,218,450.000000,0.000000,550.000000,50.000000,0.000000,""};
+item22[] = {"__1",4,4314,750.000000,250.000000,850.000000,300.000000,0.000000,""};
+item23[] = {"PROJECT_SPLENDID",-1,250,1625.000000,-200.000000,1900.000000,0.000000,0.000000,"PROJECT SPLENDID" \n "CAMPAIGN FSM" \n "" \n "- State names are mission classes" \n "" \n "- Condition names can be anything (even empty)" \n "" \n "- Condition ""conditions"" field can contain code which has to" \n "return true in order to make the mission available." \n "Other missions' classes can be used as variables." \n "Empty field returns true by default"};
+item24[] = {"__4",4,218,625.000000,0.000000,725.000000,50.000000,0.000000,""};
+item25[] = {"",7,210,671.000000,-204.000015,679.000000,-196.000000,0.000000,""};
+item26[] = {"",7,210,496.000000,-203.999985,503.999969,-196.000031,0.000000,""};
+item27[] = {"",7,210,945.999878,-204.000015,954.000122,-195.999969,0.000000,""};
+item28[] = {"",7,210,371.000000,-203.999985,379.000031,-196.000000,0.000000,""};
+item29[] = {"",7,210,95.999969,-203.999985,104.000031,-196.000031,0.000000,""};
+item30[] = {"",7,210,245.999985,-204.000000,254.000015,-196.000000,0.000000,""};
+item31[] = {"",7,210,-29.000017,170.999985,-20.999983,179.000000,0.000000,""};
+item32[] = {"",7,210,1296.000000,-204.000015,1304.000000,-196.000000,0.000000,""};
+item33[] = {"",7,210,1296.000000,170.999985,1304.000000,179.000000,0.000000,""};
+item34[] = {"_",4,218,1125.000000,150.000000,1225.000000,200.000000,0.000000,""};
+item35[] = {"_",4,218,875.000000,250.000000,975.000000,300.000000,0.000000,""};
+item36[] = {"",7,210,1171.000000,346.000000,1179.000000,354.000000,0.000000,""};
+item37[] = {"",7,210,1071.000000,171.000000,1079.000000,179.000000,0.000000,""};
+item38[] = {"__5",4,218,600.000000,150.000000,700.000000,200.000000,0.000000,""};
+item39[] = {"_",4,218,-75.000000,-375.000000,25.000000,-325.000000,0.000000,""};
+version=1;
+class LayoutItems
+{
+	class Item12
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			lStyle=2;
+		};
+	};
+	class Item13
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			lStyle=2;
+		};
+	};
+	class Item14
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			lStyle=2;
+		};
+	};
+	class Item15
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			lStyle=2;
+		};
+	};
+	class Item23
+	{
+		class ItemInfo
+		{
+			FontFace="Calibri";
+			FontHeight=10;
+			lStyle=1;
+			Align=0;
+		};
+	};
+};
+link0[] = {0,39};
+link1[] = {1,16};
+link2[] = {2,17};
+link3[] = {2,18};
+link4[] = {2,19};
+link5[] = {2,20};
+link6[] = {2,21};
+link7[] = {2,24};
+link8[] = {2,38};
+link9[] = {3,29};
+link10[] = {4,30};
+link11[] = {5,28};
+link12[] = {6,26};
+link13[] = {7,25};
+link14[] = {8,27};
+link15[] = {9,22};
+link16[] = {9,35};
+link17[] = {10,36};
+link18[] = {16,31};
+link19[] = {17,4};
+link20[] = {18,3};
+link21[] = {19,5};
+link22[] = {20,8};
+link23[] = {21,6};
+link24[] = {22,11};
+link25[] = {24,7};
+link26[] = {25,26};
+link27[] = {26,28};
+link28[] = {27,32};
+link29[] = {28,30};
+link30[] = {29,16};
+link31[] = {30,29};
+link32[] = {31,2};
+link33[] = {32,33};
+link34[] = {33,34};
+link35[] = {34,37};
+link36[] = {35,10};
+link37[] = {36,34};
+link38[] = {37,9};
+link39[] = {38,9};
+link40[] = {39,1};
+globals[] = {25.000000,1,0,0,0,640,480,1,156,6316128,1,-495.381775,1554.170288,706.774597,-668.933838,1536,1031,1};
+window[] = {2,-1,-1,-1,-1,1119,125,1405,125,3,1554};
+*//*%FSM</HEAD>*/
+#define _CAMPAIGN	1
+class A_in: MissionDefault
+{
+        endDefault = A_in2;
+        noWeaponPool = 1;
+        isIntro = 1;
+        A_in2 = A_in2;
+        A_in2_1 = A_in2;
+        A_in2_2 = A_in2;
+        A_in2_3 = A_in2;
+        A_in2_4 = A_in2;
+        A_in2_5 = A_in2;
+        A_in2_6 = A_in2;
+        links[] = {"A_in","A_in2"};
+        linkConditions[] = {"",""};
+        lost = A_in;
+        lost_1 = A_in;
+        lost_2 = A_in;
+        lost_3 = A_in;
+        lost_4 = A_in;
+        lost_5 = A_in;
+        lost_6 = A_in;
+        template = A_in.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\A_in.Stratis\description.ext"
+        };
+        #endif
+};
+class A_in2: MissionDefault
+{
+        endDefault = A_hub01;
+        noWeaponPool = 1;
+        isIntro = 1;
+        A_hub01 = A_hub01;
+        A_hub01_1 = A_hub01;
+        A_hub01_2 = A_hub01;
+        A_hub01_3 = A_hub01;
+        A_hub01_4 = A_hub01;
+        A_hub01_5 = A_hub01;
+        A_hub01_6 = A_hub01;
+        links[] = {"A_in2","A_hub01"};
+        linkConditions[] = {"","isnil 'BIS_A_m04'"};
+        lost = A_in2;
+        lost_1 = A_in2;
+        lost_2 = A_in2;
+        lost_3 = A_in2;
+        lost_4 = A_in2;
+        lost_5 = A_in2;
+        lost_6 = A_in2;
+        template = A_in2.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\A_in2.Stratis\description.ext"
+        };
+        #endif
+};
+class A_hub01: MissionDefault
+{
+        repeat = 1;
+        isHub = 1;
+        A_m01 = A_m01;
+        A_m01_1 = A_m01;
+        A_m01_2 = A_m01;
+        A_m01_3 = A_m01;
+        A_m01_4 = A_m01;
+        A_m01_5 = A_m01;
+        A_m01_6 = A_m01;
+        A_m03 = A_m03;
+        A_m03_1 = A_m03;
+        A_m03_2 = A_m03;
+        A_m03_3 = A_m03;
+        A_m03_4 = A_m03;
+        A_m03_5 = A_m03;
+        A_m03_6 = A_m03;
+        A_m04 = A_m04;
+        A_m04_1 = A_m04;
+        A_m04_2 = A_m04;
+        A_m04_3 = A_m04;
+        A_m04_4 = A_m04;
+        A_m04_5 = A_m04;
+        A_m04_6 = A_m04;
+        A_m05 = A_m05;
+        A_m05_1 = A_m05;
+        A_m05_2 = A_m05;
+        A_m05_3 = A_m05;
+        A_m05_4 = A_m05;
+        A_m05_5 = A_m05;
+        A_m05_6 = A_m05;
+        A_skirmish01 = A_skirmish01;
+        A_skirmish01_1 = A_skirmish01;
+        A_skirmish01_2 = A_skirmish01;
+        A_skirmish01_3 = A_skirmish01;
+        A_skirmish01_4 = A_skirmish01;
+        A_skirmish01_5 = A_skirmish01;
+        A_skirmish01_6 = A_skirmish01;
+        A_hub02 = A_hub02;
+        A_hub02_1 = A_hub02;
+        A_hub02_2 = A_hub02;
+        A_hub02_3 = A_hub02;
+        A_hub02_4 = A_hub02;
+        A_hub02_5 = A_hub02;
+        A_hub02_6 = A_hub02;
+        A_m02 = A_m02;
+        A_m02_1 = A_m02;
+        A_m02_2 = A_m02;
+        A_m02_3 = A_m02;
+        A_m02_4 = A_m02;
+        A_m02_5 = A_m02;
+        A_m02_6 = A_m02;
+        links[] = {"A_hub01","A_m01","A_m03","A_m04","A_m05","A_skirmish01","A_hub02","A_m02"};
+        linkConditions[] = {"","","!isnil 'BIS_A_m01'","{!isnil _x} count ['BIS_A_m02','BIS_A_m03','BIS_A_m05'] == 3","!isnil 'BIS_A_m01'","true","false","!isnil 'BIS_A_m01'"};
+        lost = A_hub01;
+        lost_1 = A_hub01;
+        lost_2 = A_hub01;
+        lost_3 = A_hub01;
+        lost_4 = A_hub01;
+        lost_5 = A_hub01;
+        lost_6 = A_hub01;
+        template = A_hub01.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\A_hub01.Stratis\description.ext"
+        };
+        #endif
+};
+class A_m01: MissionDefault
+{
+        endDefault = A_hub01;
+        isHubMission = 1;
+        A_hub01 = A_hub01;
+        A_hub01_1 = A_hub01;
+        A_hub01_2 = A_hub01;
+        A_hub01_3 = A_hub01;
+        A_hub01_4 = A_hub01;
+        A_hub01_5 = A_hub01;
+        A_hub01_6 = A_hub01;
+        links[] = {"A_m01","A_hub01"};
+        linkConditions[] = {"","isnil 'BIS_A_m04'"};
+        lost = A_m01;
+        lost_1 = A_m01;
+        lost_2 = A_m01;
+        lost_3 = A_m01;
+        lost_4 = A_m01;
+        lost_5 = A_m01;
+        lost_6 = A_m01;
+        template = A_m01.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\A_m01.Stratis\description.ext"
+        };
+        #endif
+};
+class A_m02: MissionDefault
+{
+        endDefault = A_hub01;
+        isHubMission = 1;
+        A_hub01 = A_hub01;
+        A_hub01_1 = A_hub01;
+        A_hub01_2 = A_hub01;
+        A_hub01_3 = A_hub01;
+        A_hub01_4 = A_hub01;
+        A_hub01_5 = A_hub01;
+        A_hub01_6 = A_hub01;
+        links[] = {"A_m02","A_hub01"};
+        linkConditions[] = {"","isnil 'BIS_A_m04'"};
+        lost = A_m02;
+        lost_1 = A_m02;
+        lost_2 = A_m02;
+        lost_3 = A_m02;
+        lost_4 = A_m02;
+        lost_5 = A_m02;
+        lost_6 = A_m02;
+        template = A_m02.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\A_m02.Stratis\description.ext"
+        };
+        #endif
+};
+class A_m03: MissionDefault
+{
+        endDefault = A_hub01;
+        isHubMission = 1;
+        A_hub01 = A_hub01;
+        A_hub01_1 = A_hub01;
+        A_hub01_2 = A_hub01;
+        A_hub01_3 = A_hub01;
+        A_hub01_4 = A_hub01;
+        A_hub01_5 = A_hub01;
+        A_hub01_6 = A_hub01;
+        links[] = {"A_m03","A_hub01"};
+        linkConditions[] = {"","isnil 'BIS_A_m04'"};
+        lost = A_m03;
+        lost_1 = A_m03;
+        lost_2 = A_m03;
+        lost_3 = A_m03;
+        lost_4 = A_m03;
+        lost_5 = A_m03;
+        lost_6 = A_m03;
+        template = A_m03.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\A_m03.Stratis\description.ext"
+        };
+        #endif
+};
+class A_m05: MissionDefault
+{
+        endDefault = A_hub01;
+        isHubMission = 1;
+        A_hub01 = A_hub01;
+        A_hub01_1 = A_hub01;
+        A_hub01_2 = A_hub01;
+        A_hub01_3 = A_hub01;
+        A_hub01_4 = A_hub01;
+        A_hub01_5 = A_hub01;
+        A_hub01_6 = A_hub01;
+        links[] = {"A_m05","A_hub01"};
+        linkConditions[] = {"","isnil 'BIS_A_m04'"};
+        lost = A_m05;
+        lost_1 = A_m05;
+        lost_2 = A_m05;
+        lost_3 = A_m05;
+        lost_4 = A_m05;
+        lost_5 = A_m05;
+        lost_6 = A_m05;
+        template = A_m05.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\A_m05.Stratis\description.ext"
+        };
+        #endif
+};
+class A_skirmish01: MissionDefault
+{
+        endDefault = A_hub01;
+        repeat = 1;
+        isSkirmish = 1;
+        A_hub01 = A_hub01;
+        A_hub01_1 = A_hub01;
+        A_hub01_2 = A_hub01;
+        A_hub01_3 = A_hub01;
+        A_hub01_4 = A_hub01;
+        A_hub01_5 = A_hub01;
+        A_hub01_6 = A_hub01;
+        links[] = {"A_skirmish01","A_hub01"};
+        linkConditions[] = {"","isnil 'BIS_A_m04'"};
+        lost = A_skirmish01;
+        lost_1 = A_skirmish01;
+        lost_2 = A_skirmish01;
+        lost_3 = A_skirmish01;
+        lost_4 = A_skirmish01;
+        lost_5 = A_skirmish01;
+        lost_6 = A_skirmish01;
+        template = A_skirmish01.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\A_skirmish01.Stratis\description.ext"
+        };
+        #endif
+};
+class A_m04: MissionDefault
+{
+        endDefault = A_hub02;
+        isHubMission = 1;
+        A_hub02 = A_hub02;
+        A_hub02_1 = A_hub02;
+        A_hub02_2 = A_hub02;
+        A_hub02_3 = A_hub02;
+        A_hub02_4 = A_hub02;
+        A_hub02_5 = A_hub02;
+        A_hub02_6 = A_hub02;
+        links[] = {"A_m04","A_hub02"};
+        linkConditions[] = {"",""};
+        lost = A_m04;
+        lost_1 = A_m04;
+        lost_2 = A_m04;
+        lost_3 = A_m04;
+        lost_4 = A_m04;
+        lost_5 = A_m04;
+        lost_6 = A_m04;
+        template = A_m04.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\A_m04.Stratis\description.ext"
+        };
+        #endif
+};
+class A_hub02: MissionDefault
+{
+        repeat = 1;
+        isHub = 1;
+        A_skirmish02 = A_skirmish02;
+        A_skirmish02_1 = A_skirmish02;
+        A_skirmish02_2 = A_skirmish02;
+        A_skirmish02_3 = A_skirmish02;
+        A_skirmish02_4 = A_skirmish02;
+        A_skirmish02_5 = A_skirmish02;
+        A_skirmish02_6 = A_skirmish02;
+        A_out = A_out;
+        A_out_1 = A_out;
+        A_out_2 = A_out;
+        A_out_3 = A_out;
+        A_out_4 = A_out;
+        A_out_5 = A_out;
+        A_out_6 = A_out;
+        links[] = {"A_hub02","A_skirmish02","A_out"};
+        linkConditions[] = {"","",""};
+        lost = A_hub02;
+        lost_1 = A_hub02;
+        lost_2 = A_hub02;
+        lost_3 = A_hub02;
+        lost_4 = A_hub02;
+        lost_5 = A_hub02;
+        lost_6 = A_hub02;
+        template = A_hub02.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\A_hub02.Stratis\description.ext"
+        };
+        #endif
+};
+class A_skirmish02: MissionDefault
+{
+        endDefault = A_hub02;
+        repeat = 1;
+        isSkirmish = 1;
+        A_hub02 = A_hub02;
+        A_hub02_1 = A_hub02;
+        A_hub02_2 = A_hub02;
+        A_hub02_3 = A_hub02;
+        A_hub02_4 = A_hub02;
+        A_hub02_5 = A_hub02;
+        A_hub02_6 = A_hub02;
+        links[] = {"A_skirmish02","A_hub02"};
+        linkConditions[] = {"",""};
+        lost = A_skirmish02;
+        lost_1 = A_skirmish02;
+        lost_2 = A_skirmish02;
+        lost_3 = A_skirmish02;
+        lost_4 = A_skirmish02;
+        lost_5 = A_skirmish02;
+        lost_6 = A_skirmish02;
+        template = A_skirmish02.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\A_skirmish02.Stratis\description.ext"
+        };
+        #endif
+};
+class A_out: MissionDefault
+{
+        isOutro = 1;
+        isHubMission = 1;
+        links[] = {"A_out","end1"};
+        linkConditions[] = {""};
+        lost = A_out;
+        lost_1 = A_out;
+        lost_2 = A_out;
+        lost_3 = A_out;
+        lost_4 = A_out;
+        lost_5 = A_out;
+        lost_6 = A_out;
+        template = A_out.Stratis;
+        terrain = Stratis;
+        #ifndef _DISABLE_DESCRIPTION
+        class Description
+        {
+                #include "Missions\A_out.Stratis\description.ext"
+        };
+        #endif
+};
+#ifdef _EMPTY
+//////////////////////////////////////////////////////////////
+// FSM System
+//////////////////////////////////////////////////////////////
+/*%FSM<STATE "A_in">*//*%FSM<STATEINIT>*/endDefault = A_in2;
+noWeaponPool = 1;
+isIntro = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "A_in2">*//*%FSM<STATEINIT>*/endDefault = A_hub01;
+noWeaponPool = 1;
+isIntro = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*/isnil 'BIS_A_m04'/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "A_hub01">*//*%FSM<STATEINIT>*/repeat = 1;
+isHub = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__1">*///--- Link: /*%FSM<CONDITION>*/!isnil 'BIS_A_m01'/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__2">*///--- Link: /*%FSM<CONDITION>*/{!isnil _x} count ['BIS_A_m02','BIS_A_m03','BIS_A_m05'] == 3/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__3">*///--- Link: /*%FSM<CONDITION>*/!isnil 'BIS_A_m01'/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__4">*///--- Link: /*%FSM<CONDITION>*/true/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__5">*///--- Link: /*%FSM<CONDITION>*/false/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__6">*///--- Link: /*%FSM<CONDITION>*/!isnil 'BIS_A_m01'/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "A_m01">*//*%FSM<STATEINIT>*/endDefault = A_hub01;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*/isnil 'BIS_A_m04'/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "A_m02">*//*%FSM<STATEINIT>*/endDefault = A_hub01;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*/isnil 'BIS_A_m04'/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "A_m03">*//*%FSM<STATEINIT>*/endDefault = A_hub01;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*/isnil 'BIS_A_m04'/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "A_m05">*//*%FSM<STATEINIT>*/endDefault = A_hub01;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*/isnil 'BIS_A_m04'/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "A_skirmish01">*//*%FSM<STATEINIT>*/endDefault = A_hub01;
+repeat = 1;
+isSkirmish = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*/isnil 'BIS_A_m04'/*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "A_m04">*//*%FSM<STATEINIT>*/endDefault = A_hub02;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "A_hub02">*//*%FSM<STATEINIT>*/repeat = 1;
+isHub = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM<LINK "__1">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "A_skirmish02">*//*%FSM<STATEINIT>*/endDefault = A_hub02;
+repeat = 1;
+isSkirmish = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM<LINK "_">*///--- Link: /*%FSM<CONDITION>*//*%FSM</CONDITION>*/ /*%FSM<ACTION>*//*%FSM</ACTION>*/ /*%FSM<CONDPRECONDITION>*//*%FSM</CONDPRECONDITION>*/
+/*%FSM</LINK>*//*%FSM</STATE>*//*%FSM<STATE "A_out">*//*%FSM<STATEINIT>*/isOutro = 1;
+isHubMission = 1;/*%FSM</STATEINIT>*/
+/*%FSM<STATEPRECONDITION>*/Stratis/*%FSM</STATEPRECONDITION>*/
+/*%FSM</STATE>*/
+#endif
+/*%FSM</COMPILE>*/

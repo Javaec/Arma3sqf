@@ -1,0 +1,271 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, Trident">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Wait",4,218,-100.000000,50.000000,0.000000,100.000000,0.000000,"Wait"};
+item1[] = {"Get_relationship",2,250,-100.000000,125.000000,0.000000,175.000000,0.000000,"Get relationship"};
+item2[] = {"Enemies",4,218,25.000000,50.000000,125.000000,100.000000,1.000000,"Enemies"};
+item3[] = {"Allies",4,218,-225.000000,50.000000,-125.000000,100.000000,1.000000,"Allies"};
+item4[] = {"Continue",8,218,-100.000000,-100.000000,0.000000,-50.000000,0.000000,"Continue"};
+item5[] = {"Loop",2,250,-100.000000,-25.000000,0.000000,25.000000,0.000000,"Loop"};
+item6[] = {"Init",0,4346,-100.000000,-175.000000,0.000000,-125.000000,0.000000,"Init"};
+item7[] = {"Become_friends",2,250,-225.000000,-25.000000,-125.000000,25.000000,0.000000,"Become" \n "friends"};
+item8[] = {"Become_enemies",2,250,25.000000,-25.000000,125.000000,25.000000,0.000000,"Become" \n "enemies"};
+link0[] = {0,1};
+link1[] = {1,0};
+link2[] = {1,2};
+link3[] = {1,3};
+link4[] = {2,8};
+link5[] = {3,7};
+link6[] = {4,5};
+link7[] = {5,0};
+link8[] = {6,4};
+link9[] = {7,4};
+link10[] = {8,4};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,30,6316128,1,-422.172241,333.098511,463.925507,-394.336700,814,925,1};
+window[] = {2,-1,-1,-32000,-32000,998,-1482,-399,228,3,831};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Trident";
+        class States
+        {
+                /*%FSM<STATE "Get_relationship">*/
+                class Get_relationship
+                {
+                        name = "Get_relationship";
+                        itemno = 1;
+                        init = /*%FSM<STATEINIT""">*/"//--- Slowly return relationship back to 0" \n
+                         "_relationshipOrig = [_sideA,_sideB] call bis_fnc_tridentGetRelationship;" \n
+                         "" \n
+                         "_coef = if (_relationshipOrig < 0) then {+1} else {-1};" \n
+                         "_relationship = [_sideA,_sideB,_relationshipDecay * _coef] call bis_fnc_tridentSetRelationship;" \n
+                         "" \n
+                         "_areFriendly = [_sideA,_sideB] call bis_fnc_areFriendly;" \n
+                         "_time = time + _delay;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Enemies">*/
+                                class Enemies
+                                {
+                                        itemno = 2;
+                                        priority = 1.000000;
+                                        to="Become_enemies";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_relationship <= _thresholdEnemies" \n
+                                         "&&" \n
+                                         "_areFriendly"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Allies">*/
+                                class Allies
+                                {
+                                        itemno = 3;
+                                        priority = 1.000000;
+                                        to="Become_friends";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_relationship >= _thresholdAllies" \n
+                                         "&&" \n
+                                         "!_areFriendly"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Wait">*/
+                                class Wait
+                                {
+                                        itemno = 0;
+                                        priority = 0.000000;
+                                        to="Get_relationship";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Loop">*/
+                class Loop
+                {
+                        name = "Loop";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"_time = time + _delay;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Wait">*/
+                                class Wait
+                                {
+                                        itemno = 0;
+                                        priority = 0.000000;
+                                        to="Get_relationship";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"_logic = _this select 0;" \n
+                         "" \n
+                         "_sideDefault = sideUnknown call bis_fnc_sideID;" \n
+                         "_sideIDA = _logic getvariable [""sideA"",_sideDefault];" \n
+                         "_sideIDB = _logic getvariable [""sideB"",_sideDefault];" \n
+                         "_sideA = (parsenumber _sideIDA) call bis_fnc_sideType;" \n
+                         "_sideB = (parsenumber _sideIDB) call bis_fnc_sideType;" \n
+                         "" \n
+                         "_relationshipDecay = (_logic getvariable [""decay"",0.07]) call bis_fnc_parsenumber;" \n
+                         "" \n
+                         "_thresholdAllies = 0;" \n
+                         "_thresholdEnemies = -1.9;" \n
+                         "" \n
+                         "_init = true;" \n
+                         "_delay = 5;" \n
+                         "_history = [];" \n
+                         "" \n
+                         "//--- Add custom channels" \n
+                         "_curator = objnull;" \n
+                         "{" \n
+                         "	if (_x call bis_fnc_iscurator) then {_curator = _x;};" \n
+                         "} foreach (synchronizedobjects _logic);" \n
+                         "" \n
+                         "if !(isnull _curator) then {" \n
+                         "	_channelSideA = radiochannelcreate [" \n
+                         "		[1,1,0,1]," \n
+                         "		format [""%1 / %2 channel"",localize ""STR_A3_curator"",_sideA call bis_fnc_sidename]," \n
+                         "		""%UNIT_SIDE (%UNIT_NAME)""," \n
+                         "		[]," \n
+                         "		false" \n
+                         "	];" \n
+                         "	_channelSideB = radiochannelcreate [" \n
+                         "		[1,1,0,1]," \n
+                         "		format [""%1 / %1 channel"",localize ""STR_A3_curator"",_sideB call bis_fnc_sidename]," \n
+                         "		""%UNIT_SIDE (%UNIT_NAME)""," \n
+                         "		[]," \n
+                         "		false" \n
+                         "	];" \n
+                         "	_channelSides = radiochannelcreate [" \n
+                         "		[1,1,1,1]," \n
+                         "		format [""%1 / %2 channel"",_sideA call bis_fnc_sidename,_sideB call bis_fnc_sidename]," \n
+                         "		""%UNIT_SIDE (%UNIT_NAME)""," \n
+                         "		[]," \n
+                         "		false" \n
+                         "	];" \n
+                         "	_curator setvariable [" \n
+                         "		""BIS_fnc_moduleTrident_channels""," \n
+                         "		[_channelSideA,_channelSideB,_channelSides]," \n
+                         "		true" \n
+                         "	];" \n
+                         "};" \n
+                         "" \n
+                         "//--- Local settings" \n
+                         "[_sideA,_sideB,0,false] call bis_fnc_tridentSetRelationship;" \n
+                         "[" \n
+                         "	[""init"",_logic,_sideA,_sideB,_curator]," \n
+                         "	""bis_fnc_tridentClient""," \n
+                         "	true," \n
+                         "	true" \n
+                         "] call bis_fnc_mp;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Continue">*/
+                                class Continue
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Loop";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Become_friends">*/
+                class Become_friends
+                {
+                        name = "Become_friends";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"_sideA setfriend [_sideB,1];" \n
+                         "_sideB setfriend [_sideA,1];" \n
+                         "" \n
+                         "[" \n
+                         "	[""friend"",_logic,_sideA,_sideB]," \n
+                         "	""bis_fnc_tridentClient""," \n
+                         "	true" \n
+                         "] call bis_fnc_mp;" \n
+                         "" \n
+                         "[" \n
+                         "	missionnamespace," \n
+                         "	""BIS_fnc_moduleTrident_updated""," \n
+                         "	[_sideA,_sideB,true]" \n
+                         "] call bis_fnc_callScriptedEventHandler;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Continue">*/
+                                class Continue
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Loop";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Become_enemies">*/
+                class Become_enemies
+                {
+                        name = "Become_enemies";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"_sideA setfriend [_sideB,0];" \n
+                         "_sideB setfriend [_sideA,0];" \n
+                         "" \n
+                         "[" \n
+                         "	[""enemy"",_logic,_sideA,_sideB]," \n
+                         "	""bis_fnc_tridentClient""," \n
+                         "	true" \n
+                         "] call bis_fnc_mp;" \n
+                         "" \n
+                         "[" \n
+                         "	missionnamespace," \n
+                         "	""BIS_fnc_moduleTrident_updated""," \n
+                         "	[_sideA,_sideB,false]" \n
+                         "] call bis_fnc_callScriptedEventHandler;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Continue">*/
+                                class Continue
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Loop";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+        };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,309 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, INFANTRY_FSM">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,4346,-75.000000,-275.000000,25.000000,-225.000000,0.000000,"init"};
+item1[] = {"player_landed",4,218,-75.000000,-200.000000,25.000000,-150.000000,0.000000,"player" \n "landed"};
+item2[] = {"protect_solar_st",1,250,-75.000000,25.000000,25.000000,75.000000,0.000000,"protect" \n "solar station"};
+item3[] = {"support_at_solar",2,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"support at" \n "solar station"};
+item4[] = {"waypoint_complet",4,218,-200.000000,-125.000000,-100.000000,-75.000000,0.000000,"waypoint" \n "completed"};
+item5[] = {"solar_station_se",4,218,-75.000000,-50.000000,25.000000,0.000000,1.000000,"solar station" \n "secure"};
+item6[] = {"killed",4,218,50.000000,-125.000000,150.000000,-75.000000,2.000000,"killed"};
+item7[] = {"exit",1,250,175.000000,-125.000000,275.000000,-75.000000,0.000000,"exit"};
+item8[] = {"reset",2,250,-325.000000,-125.000000,-225.000000,-75.000000,0.000000,"reset"};
+item9[] = {"always",4,218,-325.000000,-200.000000,-225.000000,-150.000000,0.000000,"always"};
+item10[] = {"",7,210,-153.999908,-179.000015,-146.000092,-170.999985,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,3};
+link2[] = {3,4};
+link3[] = {3,5};
+link4[] = {3,6};
+link5[] = {4,8};
+link6[] = {5,2};
+link7[] = {6,7};
+link8[] = {8,9};
+link9[] = {9,10};
+link10[] = {10,3};
+globals[] = {25.000000,1,0,0,0,640,480,1,71,6316128,1,-284.248932,177.308395,274.080841,-304.830597,822,1031,1};
+window[] = {2,-1,-1,-1,-1,905,25,1419,25,3,840};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "INFANTRY_FSM";
+        class States
+        {
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"//Parameters" \n
+                         "private [""_group""];" \n
+                         "_group = [_this, 0, grpNull, [grpNull]] call BIS_fnc_param;" \n
+                         "" \n
+                         "//The positions/waypoints" \n
+                         "private [""_positionSolar""];" \n
+                         "_positionSolar = getMarkerPos ""BIS_solar"";" \n
+                         "" \n
+                         "//Go through all units in the group" \n
+                         "{" \n
+                         "	//Do not move for now" \n
+                         "	_x disableAi ""MOVE"";" \n
+                         "	_x setUnitPos ""MIDDLE"";" \n
+                         "	_x allowDamage false;" \n
+                         "	" \n
+                         "	//Leader can only receive damage by the player" \n
+                         "	if (_x == leader group _x) then {" \n
+                         "		[""on"", [_x]] call BIS_fnc_C_out1_playerDamageOnly;" \n
+                         "	};" \n
+                         "} forEach units _group;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "player_landed">*/
+                                class player_landed
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="support_at_solar";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle player == player" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "protect_solar_st">*/
+                class protect_solar_st
+                {
+                        name = "protect_solar_st";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"//The waypoint" \n
+                         "private ""_waypoint"";" \n
+                         "_waypoint = _group addWaypoint [_positionSolar, 0];" \n
+                         "" \n
+                         "//Waypoint properties" \n
+                         "_waypoint setWaypointType ""GUARD"";" \n
+                         "_waypoint setWaypointBehaviour ""COMBAT"";" \n
+                         "_waypoint setWaypointCombatMode ""GREEN"";" \n
+                         "_waypoint setWaypointFormation ""DIAMOND"";" \n
+                         "" \n
+                         "//The total amount of units in the group" \n
+                         "private ""_availableUnits"";" \n
+                         "_availableUnits = units _group - [leader _group];" \n
+                         "" \n
+                         "//make sure we have at least one unit available" \n
+                         "if (count _availableUnits > 0) then {" \n
+                         "	//Available static weapons" \n
+                         "	private ""_staticWeapons"";" \n
+                         "	_staticWeapons = _positionSolar nearObjects [""I_HMG_01_high_F"", 100];" \n
+                         "	" \n
+                         "	//If there are too many static weapons we resize the list" \n
+                         "	if (count _staticWeapons > count _availableUnits) then {" \n
+                         "		_staticWeapons resize _availableUnits;" \n
+                         "	};" \n
+                         "	" \n
+                         "	//Make units board the weapons" \n
+                         "	{" \n
+                         "		private ""_unit"";" \n
+                         "		_unit = _availableUnits select _forEachIndex;" \n
+                         "		" \n
+                         "		//Make unit board the weapon" \n
+                         "		_unit assignAsGunner _x;" \n
+                         "		" \n
+                         "		//Remove unit from available" \n
+                         "		_availableUnits = _availableUnits - [_unit];" \n
+                         "	} forEach _staticWeapons;" \n
+                         "	" \n
+                         "	//Log" \n
+                         "	""Infantry is maning static weapons at the solar station"" call BIS_fnc_log;" \n
+                         "	" \n
+                         "	//Do we have units to send to the top of the towers?" \n
+                         "	if (count _availableUnits > 0) then {" \n
+                         "		//We only need two" \n
+                         "		if (count _availableUnits > 2) then {" \n
+                         "			_availableUnits resize 2;" \n
+                         "		};" \n
+                         "		" \n
+                         "		//The tower objects" \n
+                         "		private ""_towers"";" \n
+                         "		_towers = _positionSolar nearObjects [""Land_spp_Tower_F"", 250];" \n
+                         "		" \n
+                         "		//Go through each unit and make them move to the top of the towers" \n
+                         "		{" \n
+                         "			//The unit and new group" \n
+                         "			private [""_unit"", ""_group""];" \n
+                         "			_unit 	= _x;" \n
+                         "			_group 	= createGroup WEST;" \n
+                         "			" \n
+                         "			//Unit joins it's own group" \n
+                         "			[_unit] joinSilent _group;" \n
+                         "			" \n
+                         "			//The tower" \n
+                         "			private ""_tower"";" \n
+                         "			_tower = _towers select _forEachIndex;" \n
+                         "			" \n
+                         "			//Available building positions and final waypoint position" \n
+                         "			private [""_available"", ""_position""];" \n
+                         "			_available 	= [_tower] call BIS_fnc_buildingPositions;" \n
+                         "			_position	= _available select 4;" \n
+                         "			" \n
+                         "			//The waypoint" \n
+                         "			_unit doMove _position;" \n
+                         "			_unit setCombatMode ""BLUE"";" \n
+                         "			_unit setBehaviour ""AWARE"";" \n
+                         "			_unit setSpeedMode ""FULL"";" \n
+                         "			_unit setUnitPos ""UP"";" \n
+                         "		} forEach _availableUnits;" \n
+                         "		" \n
+                         "		//Log" \n
+                         "		""Infantry units going up the towers"" call BIS_fnc_log;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "//Log" \n
+                         """Infantry is protecting the solar station"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "support_at_solar">*/
+                class support_at_solar
+                {
+                        name = "support_at_solar";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"//Position near player" \n
+                         "private ""_positionNearPlayer"";" \n
+                         "_positionNearPlayer = [player, 90, 50] call BIS_fnc_relPos;" \n
+                         "" \n
+                         "//The waypoint" \n
+                         "private ""_waypoint"";" \n
+                         "_waypoint = _group addWaypoint [_positionNearPlayer, 50];" \n
+                         "" \n
+                         "//Waypoint properties" \n
+                         "_waypoint setWaypointType ""MOVE"";" \n
+                         "_waypoint setWaypointSpeed ""FULL"";" \n
+                         "_waypoint setWaypointBehaviour ""COMBAT"";" \n
+                         "_waypoint setWaypointCombatMode ""RED"";" \n
+                         "_waypoint setWaypointFormation ""LINE"";" \n
+                         "_waypoint setWaypointStatements [""true"", ""group this setVariable ['BIS_waypointSolar', true];""];" \n
+                         "" \n
+                         "//Allow moving" \n
+                         "if (isNil { _group getVariable ""BIS_canMove"" }) then {" \n
+                         "	//Flag" \n
+                         "	_group setVariable [""BIS_canMove"", true];" \n
+                         "	" \n
+                         "	//Allow moving" \n
+                         "	{" \n
+                         "		_x enableAi ""MOVE"";" \n
+                         "		_x setUnitPos ""AUTO"";" \n
+                         "		_x allowDamage true;" \n
+                         "	} forEach units _group;" \n
+                         "};" \n
+                         "" \n
+                         "//Log" \n
+                         """Infantry is supporting at the solar station"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "killed">*/
+                                class killed
+                                {
+                                        itemno = 6;
+                                        priority = 2.000000;
+                                        to="exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{ alive _x } count units _group < 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "solar_station_se">*/
+                                class solar_station_se
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="protect_solar_st";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_triggerSolar" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "waypoint_complet">*/
+                                class waypoint_complet
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="reset";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { _group getVariable ""BIS_waypointSolar"" }" \n
+                                         "&&" \n
+                                         "{ leader _group distance player > 75 }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "exit">*/
+                class exit
+                {
+                        name = "exit";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"//Delete group" \n
+                         "if (!isNull _group) then {" \n
+                         "	deleteGroup _group;" \n
+                         "};" \n
+                         "" \n
+                         "//Log" \n
+                         """Infantry units are dead"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "reset">*/
+                class reset
+                {
+                        name = "reset";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"//Reset waypoint flag" \n
+                         "_group setVariable [""BIS_waypointSolar"", nil];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="support_at_solar";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "protect_solar_st",
+                "exit",
+        };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,416 @@
+/*%FSM<COMPILE "C:\Bis\FSMEditor\scriptedFSM.cfg, UAV Control">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"UAV_Control",0,250,-150.000000,1275.000000,-50.000000,1325.000000,0.000000,"UAV Control"};
+item1[] = {"Wait",2,250,-150.000000,1575.000000,-50.000000,1625.000000,0.000000,"Wait"};
+item2[] = {"Target_painted",4,218,-150.000000,1500.000000,-50.000000,1550.000000,0.000000,"Target painted"};
+item3[] = {"Waited",4,218,-150.000000,1650.000000,-50.000000,1700.000000,0.000000,"Waited"};
+item4[] = {"Spotters_found",2,250,-150.000000,1725.000000,-50.000000,1775.000000,0.000000,"Spotters" \n "found"};
+item5[] = {"Target_lost",4,218,-275.000000,1575.000000,-175.000000,1625.000000,0.000000,"Target lost"};
+item6[] = {"",7,210,-229.000000,1446.000000,-221.000000,1454.000000,0.000000,""};
+item7[] = {"",7,210,-28.999981,1446.000000,-21.000021,1454.000000,0.000000,""};
+item8[] = {"",7,210,-28.999985,1596.000000,-21.000015,1604.000000,0.000000,""};
+item9[] = {"UAV_destroyed",4,218,0.000000,1325.000000,100.000000,1375.000000,0.000000,"UAV destroyed"};
+item10[] = {"",7,210,46.000011,1296.000000,53.999989,1304.000000,0.000000,""};
+item11[] = {"Find_on_foot",1,250,0.000000,1400.000000,100.000000,1450.000000,0.000000,"Find on foot"};
+item12[] = {"",7,210,171.000015,1296.000000,178.999985,1304.000000,0.000000,""};
+item13[] = {"Mortar_threat_el",4,218,125.000000,1325.000000,225.000000,1375.000000,0.000000,"Mortar threat" \n "eliminated"};
+item14[] = {"UAV_not_needed",1,250,125.000000,1400.000000,225.000000,1450.000000,0.000000,"UAV not" \n "needed"};
+item15[] = {"Search___Destroy",4,218,-150.000000,1350.000000,-50.000000,1400.000000,0.000000,"Search &" \n "Destroy"};
+item16[] = {"_",2,250,-150.000000,1425.000000,-50.000000,1475.000000,0.000000,""};
+item17[] = {"",7,210,-29.000000,1296.000000,-21.000000,1304.000000,0.000000,""};
+item18[] = {"Timeout_reached",4,218,-150.000000,1800.000000,-50.000000,1850.000000,0.000000,"Timeout" \n "reached"};
+item19[] = {"Kill_spotters",1,250,-150.000000,1875.000000,-50.000000,1925.000000,0.000000,"Kill spotters"};
+link0[] = {0,15};
+link1[] = {0,17};
+link2[] = {1,3};
+link3[] = {1,5};
+link4[] = {1,8};
+link5[] = {2,1};
+link6[] = {3,4};
+link7[] = {4,18};
+link8[] = {5,6};
+link9[] = {6,16};
+link10[] = {7,17};
+link11[] = {8,7};
+link12[] = {9,11};
+link13[] = {10,9};
+link14[] = {10,12};
+link15[] = {12,13};
+link16[] = {13,14};
+link17[] = {15,16};
+link18[] = {16,2};
+link19[] = {16,7};
+link20[] = {17,10};
+link21[] = {18,19};
+globals[] = {25.000000,1,0,0,0,640,480,1,27,6316128,1,-410.534790,331.865265,1911.177734,1163.909424,915,1071,1};
+window[] = {2,-1,-1,-1,-1,942,175,1389,175,3,933};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "UAV Control";
+        class States
+        {
+                /*%FSM<STATE "UAV_Control">*/
+                class UAV_Control
+                {
+                        name = "UAV_Control";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "UAV_destroyed">*/
+                                class UAV_destroyed
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="Find_on_foot";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove BIS_UAV)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Mortar_threat_el">*/
+                                class Mortar_threat_el
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="UAV_not_needed";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{!(isNil _x)} count [""BIS_spottersDead"", ""BIS_mortarDead""] > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Search___Destroy">*/
+                                class Search___Destroy
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_SAD"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Wait">*/
+                class Wait
+                {
+                        name = "Wait";
+                        itemno = 1;
+                        init = /*%FSM<STATEINIT""">*/"private [""_UAVTimeOut""];" \n
+                         "_UAVTimeOut = time + 3;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Target_lost">*/
+                                class Target_lost
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{laserTarget BIS_UAV distance _x <= 10} count BIS_spotters == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "UAV_destroyed">*/
+                                class UAV_destroyed
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="Find_on_foot";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove BIS_UAV)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Mortar_threat_el">*/
+                                class Mortar_threat_el
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="UAV_not_needed";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{!(isNil _x)} count [""BIS_spottersDead"", ""BIS_mortarDead""] > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Waited">*/
+                                class Waited
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Spotters_found";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _UAVTimeOut"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Spotters_found">*/
+                class Spotters_found
+                {
+                        name = "Spotters_found";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"// Register that the spotters were found" \n
+                         "BIS_spottersFound = true;" \n
+                         "" \n
+                         """BIS_designated"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "{_x setCaptive false} forEach BIS_spotters;" \n
+                         "" \n
+                         "{" \n
+                         "	private [""_unit""];" \n
+                         "	_unit = _x;" \n
+                         "	" \n
+                         "	// Move Charlie" \n
+                         "	private [""_marker""];" \n
+                         "	_marker = format [""BIS_spotters%1_engage%1"", BIS_spotterPos, _forEachIndex + 1];" \n
+                         "	_unit setPos markerPos _marker;" \n
+                         "	_unit setDir markerDir _marker;" \n
+                         "	" \n
+                         "	_unit setBehaviour ""AWARE"";" \n
+                         "	_unit setCombatMode ""RED"";" \n
+                         "	_unit setUnitPos ""AUTO"";" \n
+                         "	_unit setSkill 1;" \n
+                         "	_unit selectWeapon primaryWeapon _unit;" \n
+                         "	" \n
+                         "	_unit setCaptive false;" \n
+                         "	_unit enableAI ""MOVE"";" \n
+                         "	" \n
+                         "	private [""_anim""];" \n
+                         "	_anim = if (_forEachIndex == 0 && BIS_spotterPos == 1) then {""AmovPpneMstpSrasWrflDnon""} else {""AmovPknlMstpSrasWrflDnon""};" \n
+                         "	_unit switchMove _anim;" \n
+                         "	" \n
+                         "	// Reveal spotters to Charlie" \n
+                         "	{_unit reveal _x} forEach BIS_spotters;" \n
+                         "} forEach units BIS_BLU_group1;" \n
+                         "" \n
+                         "// Make Charlie engage the spotters" \n
+                         "[] spawn {" \n
+                         "	scriptName ""UAVControl.fsm: spotters found"";" \n
+                         "	" \n
+                         "	while {" \n
+                         "		{!(isNil _x)} count [""BIS_retreat"", ""BIS_spottersDead"", ""BIS_mortarDead""] == 0" \n
+                         "		&&" \n
+                         "		{alive _x} count units BIS_BLU_group1 > 0" \n
+                         "	} do {" \n
+                         "		// Move to spotters' location" \n
+                         "		private [""_wp""];" \n
+                         "		_wp = BIS_BLU_group1 addWaypoint [position (vehicle leader BIS_IA_group3), 0];" \n
+                         "		_wp setWaypointType ""MOVE"";" \n
+                         "		_wp setWaypointStatements [""true"", ""BIS_charlieReady = true""];" \n
+                         "		" \n
+                         "		BIS_BLU_group1 setCurrentWaypoint _wp;" \n
+                         "		" \n
+                         "		waitUntil {" \n
+                         "			{!(isNil _x)} count [""BIS_charlieReady"", ""BIS_retreat"", ""BIS_spottersDead"", ""BIS_mortarDead""] > 0" \n
+                         "			||" \n
+                         "			{alive _x} count units BIS_BLU_group1 == 0" \n
+                         "		};" \n
+                         "		" \n
+                         "		if (!(isNil ""BIS_charlieReady"")) then {" \n
+                         "			BIS_charlieReady = nil;" \n
+                         "		};" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""UAVControl.fsm: engage spotters"";" \n
+                         "	" \n
+                         "	while {" \n
+                         "		{!(isNil _x)} count [""BIS_retreat"", ""BIS_spottersDead"", ""BIS_mortarDead""] == 0" \n
+                         "		&&" \n
+                         "		{alive _x} count units BIS_BLU_group1 > 0" \n
+                         "	} do {" \n
+                         "		private [""_spotter""];" \n
+                         "		{if (alive _x) exitWith {_spotter = _x}} forEach BIS_spotters;" \n
+                         "		" \n
+                         "		if (!(isNil ""_spotter"")) then {" \n
+                         "			{" \n
+                         "				_x doTarget _spotter;" \n
+                         "				_x doFire _spotter;" \n
+                         "			} forEach units BIS_BLU_group1;" \n
+                         "			" \n
+                         "			waitUntil {" \n
+                         "				{!(isNil _x)} count [""BIS_retreat"", ""BIS_spottersDead"", ""BIS_mortarDead""] > 0" \n
+                         "				||" \n
+                         "				{alive _x} count units BIS_BLU_group1 == 0" \n
+                         "				||" \n
+                         "				!(alive _spotter)" \n
+                         "			};" \n
+                         "		};" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "private [""_timeout""];" \n
+                         "_timeout = time + 12;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Timeout_reached">*/
+                                class Timeout_reached
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="Kill_spotters";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _timeout" \n
+                                         "||" \n
+                                         "!(isNil ""BIS_spottersDead"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Find_on_foot">*/
+                class Find_on_foot
+                {
+                        name = "Find_on_foot";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"// Remove Instructor Figure" \n
+                         "[""RemoveTopic"", [""i05_UAV_Scouting""]] call BIS_fnc_InstructorFigure;" \n
+                         "" \n
+                         "if (!(isNil ""BIS_SAD"")) then {" \n
+                         "	""BIS_UAVDestroyed"" spawn BIS_fnc_missionConversations;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "UAV_not_needed">*/
+                class UAV_not_needed
+                {
+                        name = "UAV_not_needed";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "UAV_destroyed">*/
+                                class UAV_destroyed
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="Find_on_foot";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove BIS_UAV)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Mortar_threat_el">*/
+                                class Mortar_threat_el
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="UAV_not_needed";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{!(isNil _x)} count [""BIS_spottersDead"", ""BIS_mortarDead""] > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Target_painted">*/
+                                class Target_painted
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{laserTarget BIS_UAV distance _x <= 10} count BIS_spotters > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Kill_spotters">*/
+                class Kill_spotters
+                {
+                        name = "Kill_spotters";
+                        itemno = 19;
+                        init = /*%FSM<STATEINIT""">*/"// Kill spotters" \n
+                         "[] spawn {" \n
+                         "	scriptName ""UAVControl.fsm: kill spotters"";" \n
+                         "	" \n
+                         "	private [""_kill""];" \n
+                         "	_kill = {" \n
+                         "		private [""_unit""];" \n
+                         "		_unit = _this;" \n
+                         "		" \n
+                         "		// Spawn grenade on a unit's position" \n
+                         "		private [""_gl""];" \n
+                         "		_gl = ""G_40mm_HE"" createVehicle [" \n
+                         "			position _unit select 0," \n
+                         "			position _unit select 1," \n
+                         "			50" \n
+                         "		];" \n
+                         "		" \n
+                         "		_gl setVelocity [0,0,-9999];" \n
+                         "		" \n
+                         "		// Ensure unit is killed" \n
+                         "		waitUntil {!(alive _gl)};" \n
+                         "		sleep 0.5;" \n
+                         "		if (alive _unit) then {_unit setDamage 1};" \n
+                         "	};" \n
+                         "	" \n
+                         "	{" \n
+                         "		if (alive _x) then {" \n
+                         "			if (_forEachIndex == 0) then {" \n
+                         "				_x call _kill;" \n
+                         "				" \n
+                         "				private [""_next""];" \n
+                         "				_next = BIS_spotters select (_forEachIndex + 1);" \n
+                         "				" \n
+                         "				if (alive _next) then {" \n
+                         "					if (_next distance _x < 30) then {" \n
+                         "						// Kill unit" \n
+                         "						_next setDamage 1;" \n
+                         "					} else {" \n
+                         "						// Wait to kill the next" \n
+                         "						sleep 1;" \n
+                         "					};" \n
+                         "				};" \n
+                         "			} else {" \n
+                         "				// Kill second unit with a grenade" \n
+                         "				_x call _kill;" \n
+                         "			};" \n
+                         "		};" \n
+                         "	} forEach BIS_spotters;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="UAV_Control";
+        finalStates[] =
+        {
+                "Find_on_foot",
+                "UAV_not_needed",
+                "Kill_spotters",
+        };
+};
+/*%FSM</COMPILE>*/

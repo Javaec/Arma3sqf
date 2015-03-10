@@ -1,0 +1,1705 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, fn_feedbackMain">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"START",0,250,-125.000000,-1825.000000,-25.000000,-1775.000000,0.000000,"START"};
+item1[] = {"Fall_unconscious",4,218,-500.000000,-1425.000000,-400.000000,-1375.000000,0.000000,"Fall unconscious" \n "cam: Internal"};
+item2[] = {"fast_greyout",2,250,-500.000000,-1350.000000,-400.000000,-1300.000000,0.000000,"fast greyout"};
+item3[] = {"_",8,218,-125.000000,-1600.000000,-25.000000,-1550.000000,0.000000,""};
+item4[] = {"damage_changed_",4,218,0.000000,-1375.000000,100.000000,-1325.000000,1.000000,"damage" \n "changed?"};
+item5[] = {"Death_after_unco",4,218,-525.000000,-1050.000000,-425.000000,-1000.000000,1.000000,"Death" \n "after unconscious"};
+item6[] = {"blackout_blackin",2,250,-525.000000,-975.000000,-425.000000,-925.000000,0.000000,"blackout/blackin" \n "desaturated"};
+item7[] = {"Sudden_death",4,218,0.000000,-1225.000000,100.000000,-1175.000000,1.000000,"Sudden" \n "death"};
+item8[] = {"blackout_blackin_1",2,250,0.000000,-1150.000000,100.000000,-1100.000000,0.000000,"blackout/blackin" \n "radial, desaturated"};
+item9[] = {"_",8,218,-125.000000,-550.000000,-25.000000,-500.000000,0.000000,""};
+item10[] = {"Choose_PP",2,250,-125.000000,-1525.000000,-25.000000,-1475.000000,0.000000,"Choose PP"};
+item11[] = {"blue_out",2,250,0.000000,-1000.000000,100.000000,-950.000000,0.000000,"blue out"};
+item12[] = {"suffocating",4,218,0.000000,-1075.000000,100.000000,-1025.000000,1.000000,"suffocating"};
+item13[] = {"destroy",4,218,0.000000,-1525.000000,100.000000,-1475.000000,1.000000,"destroy"};
+item14[] = {"destroy_all_PP",2,250,0.000000,-1750.000000,100.000000,-1700.000000,0.000000,"destroy all PP"};
+item15[] = {"is_CONSCIOUS_again",4,218,-625.000000,-1425.000000,-525.000000,-1375.000000,0.000000,"is CONSCIOUS" \n "again?"};
+item16[] = {"UNCONSCIOUS_PP_OFF",2,250,-625.000000,-1350.000000,-525.000000,-1300.000000,0.000000,"UNCONSCIOUS" \n "PP OFF" \n "TOTAL DAMAGE ON"};
+item17[] = {"not_suffocating",4,218,0.000000,-775.000000,100.000000,-725.000000,1.000000,"not" \n "suffocating"};
+item18[] = {"cancel_blue_out",2,250,0.000000,-700.000000,100.000000,-650.000000,0.000000,"cancel blue out"};
+item19[] = {"allowHealthPP_",4,218,-125.000000,-1750.000000,-25.000000,-1700.000000,0.000000,"allowHealthPP?"};
+item20[] = {"INIT",2,250,-125.000000,-1675.000000,-25.000000,-1625.000000,0.000000,"INIT"};
+item21[] = {"change_grey_red",2,250,0.000000,-1300.000000,100.000000,-1250.000000,0.000000,"change grey" \n "red blink" \n "blood, dirt, healing"};
+item22[] = {"__grayout_finish",4,218,-650.000000,-1275.000000,-550.000000,-1225.000000,0.000000,"?grayout finished"};
+item23[] = {"PULSING",2,250,-650.000000,-1175.000000,-550.000000,-1125.000000,0.000000,"PULSING"};
+item24[] = {"Total_Damage",2,250,-525.000000,-1175.000000,-425.000000,-1125.000000,0.000000,"Total Damage"};
+item25[] = {"EMPTY",4,218,-525.000000,-1275.000000,-425.000000,-1225.000000,0.000000,"EMPTY"};
+item26[] = {"not_burning",4,218,0.000000,-625.000000,100.000000,-575.000000,1.000000,"not burning"};
+item27[] = {"burning_timer",2,250,0.000000,-550.000000,100.000000,-500.000000,0.000000,"burning timer"};
+item28[] = {"fatigue_start",4,4314,0.000000,-925.000000,100.000000,-875.000000,1.000000,"fatigue start"};
+item29[] = {"start_effects",2,250,0.000000,-850.000000,100.000000,-800.000000,0.000000,"start effects"};
+item30[] = {"",7,210,-229.000000,-1504.000000,-221.000000,-1496.000000,0.000000,""};
+item31[] = {"_",8,218,-125.000000,-1450.000000,-25.000000,-1400.000000,0.000000,""};
+item32[] = {"_",8,218,-125.000000,-1300.000000,-25.000000,-1250.000000,0.000000,""};
+item33[] = {"Check_Death",2,250,-650.000000,-1050.000000,-550.000000,-1000.000000,0.000000,"Check" \n "Death"};
+item34[] = {"_",8,218,-650.000000,-975.000000,-550.000000,-925.000000,0.000000,""};
+item35[] = {"Check_Sudden_Dea",2,250,-125.000000,-1225.000000,-25.000000,-1175.000000,0.000000,"Check" \n "Sudden Death"};
+item36[] = {"_",8,218,-125.000000,-1150.000000,-25.000000,-1100.000000,0.000000,""};
+item37[] = {"Check_Suffocatin",2,250,-125.000000,-1075.000000,-25.000000,-1025.000000,0.000000,"Check" \n "Suffocating"};
+item38[] = {"_",8,218,-125.000000,-1000.000000,-25.000000,-950.000000,0.000000,""};
+item39[] = {"Check_Fatigue",2,250,-125.000000,-925.000000,-25.000000,-875.000000,0.000000,"Check" \n "Fatigue"};
+item40[] = {"_",8,218,-125.000000,-850.000000,-25.000000,-800.000000,0.000000,""};
+item41[] = {"Check_Not_Suffoc",2,250,-125.000000,-775.000000,-25.000000,-725.000000,0.000000,"Check" \n "Not Suffocating"};
+item42[] = {"_",8,218,-125.000000,-700.000000,-25.000000,-650.000000,0.000000,""};
+item43[] = {"Check_Not_Burnin",2,250,-125.000000,-625.000000,-25.000000,-575.000000,0.000000,"Check" \n "Not Burning"};
+item44[] = {"",7,210,-229.000000,-529.000000,-221.000000,-521.000000,0.000000,""};
+item45[] = {"Check_Damage",2,250,-125.000000,-1375.000000,-25.000000,-1325.000000,0.000000,"Check" \n "Damage"};
+item46[] = {"____FAKE____",9,1840,0.000000,0.000000,0.000000,0.000000,0.000000,"____FAKE____"};
+link0[] = {0,19};
+link1[] = {1,2};
+link2[] = {2,15};
+link3[] = {3,10};
+link4[] = {4,21};
+link5[] = {5,6};
+link6[] = {6,34};
+link7[] = {7,8};
+link8[] = {8,36};
+link9[] = {9,44};
+link10[] = {10,13};
+link11[] = {10,31};
+link12[] = {11,38};
+link13[] = {12,11};
+link14[] = {13,14};
+link15[] = {14,19};
+link16[] = {15,16};
+link17[] = {17,18};
+link18[] = {18,42};
+link19[] = {19,20};
+link20[] = {20,3};
+link21[] = {21,32};
+link22[] = {22,23};
+link23[] = {23,25};
+link24[] = {25,24};
+link25[] = {26,27};
+link26[] = {27,9};
+link27[] = {28,29};
+link28[] = {29,40};
+link29[] = {30,10};
+link30[] = {31,45};
+link31[] = {32,35};
+link32[] = {33,5};
+link33[] = {33,34};
+link34[] = {35,7};
+link35[] = {35,36};
+link36[] = {36,37};
+link37[] = {37,12};
+link38[] = {37,38};
+link39[] = {38,39};
+link40[] = {39,28};
+link41[] = {39,40};
+link42[] = {40,41};
+link43[] = {41,17};
+link44[] = {41,42};
+link45[] = {42,43};
+link46[] = {43,9};
+link47[] = {43,26};
+link48[] = {44,30};
+link49[] = {45,4};
+link50[] = {45,32};
+link51[] = {46,1};
+link52[] = {46,22};
+link53[] = {34,46};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,340,6316128,1,-519.804871,175.310623,-433.374451,-1189.419800,810,881,1};
+window[] = {2,-1,-1,-1,-1,954,200,1271,200,3,828};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "fn_feedbackMain";
+  class States
+  {
+    /*%FSM<STATE "START">*/
+    class START
+    {
+      name = "START";
+      itemno = 0;
+      init = /*%FSM<STATEINIT""">*/"//global variables" \n
+       "BIS_fnc_feedback_allowPP = true;" \n
+       "BIS_fnc_feedback_allowDeathScreen = false;	//used in onPlayerRespawnAsSeagull.sqs" \n
+       "" \n
+       "" \n
+       "" \n
+       "" \n
+       "" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "allowHealthPP_">*/
+        class allowHealthPP_
+        {
+          itemno = 19;
+          priority = 0.000000;
+          to="INIT";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!isnull player" \n
+           "&&" \n
+           "BIS_fnc_feedback_allowPP"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "fast_greyout">*/
+    class fast_greyout
+    {
+      name = "fast_greyout";
+      itemno = 2;
+      init = /*%FSM<STATEINIT""">*/"//debugLog ""PP - bezvedomi"";" \n
+       "//debugLog ""PP - lifeState: "";" \n
+       "//debugLog lifeState player;" \n
+       "//debugLog ""PP - getFactorSum: "";" \n
+       "//debugLog getFactorSum player;" \n
+       "" \n
+       "BIS_applyPP1 = false;" \n
+       "" \n
+       "if( lifeState player == ""INCAPACITATED"" ) then" \n
+       "{" \n
+       "	//player is unconscious (damage over 0.85) - change BIS_oldLifeState to ""INCAPACITATED""" \n
+       "	BIS_oldLifeState = lifeState player;" \n
+       "};" \n
+       "" \n
+       "//else" \n
+       "//{" \n
+       "	//NOT NEEDED according to new Health analysis" \n
+       "	//player is not unconscious, only too tired - update BIS_oldFatigue" \n
+       "	//BIS_oldFatigue = getFactorSum player;" \n
+       "//};" \n
+       "" \n
+       "" \n
+       "" \n
+       "[] spawn" \n
+       "{" \n
+       "	scriptname ""TES_HealthPP / Fast Unconsious"";" \n
+       "	private[""_control_1"", ""_control_2"", ""_control_3"", ""_control_0""];" \n
+       "" \n
+       "	//enable radial and gaussian blur first" \n
+       "	//BIS_UncRadialBlur ppEffectAdjust [0.05, 0.05, 0.1, 0.1];" \n
+       "	//BIS_UncRadialBlur ppEffectEnable TRUE;" \n
+       "	//BIS_UncRadialBlur ppEffectCommit 3.5;" \n
+       "" \n
+       "	//BIS_UncBlur ppEffectAdjust [3.15]; //2" \n
+       "	//BIS_UncBlur ppEffectEnable TRUE; " \n
+       "	//BIS_UncBlur ppEffectCommit 3.5;" \n
+       "" \n
+       "	//desaturated image" \n
+       "	BIS_UncCC ppEffectAdjust [1,1,0,[0,0,0,0],[1,1,1,0.2],[0.35,0.35,0.35,0]];" \n
+       "	BIS_UncCC ppEffectEnable TRUE;" \n
+       "	BIS_UncCC ppEffectCommit 3.5;" \n
+       "" \n
+       "	//slight radial blur" \n
+       "	BIS_UncRadialBlur ppEffectAdjust [0.011,0.011,0.1,0.1]; // [0.006,0.012,0.1,0.1];" \n
+       "	BIS_UncRadialBlur ppEffectEnable TRUE;" \n
+       "	BIS_UncRadialBlur ppEffectCommit 3.5;" \n
+       "" \n
+       "	//add gaussian blur to make radial blur look better" \n
+       "	BIS_UncBlur ppEffectAdjust [3.15];" \n
+       "	BIS_UncBlur ppEffectEnable TRUE; " \n
+       "	BIS_UncBlur ppEffectCommit 3.5;" \n
+       "" \n
+       "" \n
+       "	//fade out: BLOOD - 3 textures" \n
+       "	disableSerialization;" \n
+       "	_control_1 = (uinamespace getvariable ""RscHealthTextures"") displayctrl 1001;" \n
+       "	_control_1 ctrlsetfade 1;	" \n
+       "	_control_1 ctrlcommit 2.5;" \n
+       "" \n
+       "	_control_2 = (uinamespace getvariable ""RscHealthTextures"") displayctrl 1002;" \n
+       "	_control_2 ctrlsetfade 1;	" \n
+       "	_control_2 ctrlcommit 2.5;" \n
+       "" \n
+       "	_control_3 = (uinamespace getvariable ""RscHealthTextures"") displayctrl 1003;" \n
+       "	_control_3 ctrlsetfade 1;	" \n
+       "	_control_3 ctrlcommit 2.5;" \n
+       "" \n
+       "	//fade out: DIRT" \n
+       "	_control_0 = (uinamespace getvariable ""RscHealthTextures"") displayctrl 1000;" \n
+       "	_control_0 ctrlsetfade 1;	" \n
+       "	_control_0 ctrlcommit 2.5;" \n
+       "" \n
+       "	//fade out: FLAMES" \n
+       "	_control_0 = (uinamespace getvariable ""RscHealthTextures"") displayctrl 1007;" \n
+       "	_control_0 ctrlsetfade 1;	" \n
+       "	_control_0 ctrlcommit 2.5;" \n
+       "" \n
+       "	sleep 2.5; //1.5;" \n
+       "	" \n
+       "	//enable CC - grayout - was removed" \n
+       "	//BIS_UncCC ppEffectAdjust [1,1,0,[0.2, 0.2, 0.2, 1.0],[1, 1, 1, 0.1],[0.3,0.3,0.3,0]];" \n
+       "	//BIS_UncCC ppEffectAdjust [1,1,0,[0.09,0,0,0.8],[1,1,1,0.25],[0.35,0.35,0.35,0]];" \n
+       "	//BIS_UncCC ppEffectEnable TRUE;" \n
+       "	//BIS_UncCC ppEffectCommit 2.5;" \n
+       "" \n
+       "	//sleep 2.5;" \n
+       "" \n
+       "	//1919 cutText ["""", ""BLACK OUT"", 0.5];" \n
+       "//-----switched off---new health system is being implemented-----------------------------" \n
+       "//	([""HealthPP_black""] call bis_fnc_rscLayer) cutText ["""",""BLACK OUT"",0.5];" \n
+       "//	sleep 0.5;" \n
+       "//-----switched off---new health system is being implemented-----------------------------" \n
+       "" \n
+       "	//remove textures for BLOOD, DIRT, FLAMES - even if they didn't faded out completely" \n
+       "	//1918 cutrsc [""RscHealthTextures"",""PLAIN""];" \n
+       "	([""HealthPP_blood""] call bis_fnc_rscLayer) cutrsc [""RscHealthTextures"",""PLAIN""];" \n
+       "	([""HealthPP_dirt""] call bis_fnc_rscLayer) cutrsc [""RscHealthTextures"",""PLAIN""];" \n
+       "	([""HealthPP_fire""] call bis_fnc_rscLayer) cutrsc [""RscHealthTextures"",""PLAIN""];" \n
+       "	" \n
+       "" \n
+       "//-------Camera switching----------------WAS REMOVED--------------------" \n
+       "	//remember player's camera" \n
+       "//	if (cameraOn == player) then" \n
+       "//	{" \n
+       "//		BIS_oldCam = cameraView;" \n
+       "//	};" \n
+       "	//switch camera to external" \n
+       "//	if (cameraOn == player && cameraView == ""INTERNAL"") then" \n
+       "//	{" \n
+       "//		 player switchCamera ""EXTERNAL"";" \n
+       "//	};" \n
+       "//-------Camera switching----------------WAS REMOVED--------------------" \n
+       "" \n
+       "" \n
+       "	//disable TOTAL DAMAGE branch (we don't want Tot.Dmg. PP to start when healing from unconscious)" \n
+       "	//Tot.Dmg. will be started again when player becomes conscious" \n
+       "	//BIS_applyPP3 = false;" \n
+       "" \n
+       "//-------Switching TOTAL DAMAGE OFF----------------WAS REMOVED--------------------" \n
+       "	// switch off TOTAL DAMAGE PP, but don't destroy it in case he gets conscious again" \n
+       "//	BIS_TotDesatCC ppEffectAdjust [1,1,0,[0,0,0,0],[1,1,1,1],[0,0,0,0]];" \n
+       "//	BIS_TotDesatCC ppEffectCommit 0;" \n
+       "//	BIS_TotDesatCC ppEffectEnable FALSE;" \n
+       "" \n
+       "//	BIS_TotCC ppEffectAdjust [1,1,0,[0,0,0,0],[1,1,1,1],[0,0,0,0], [0, 0, 0, 0, 0, 0, 0]];" \n
+       "//	BIS_TotCC ppEffectCommit 0;" \n
+       "//	BIS_TotCC ppEffectEnable FALSE;" \n
+       "" \n
+       "//	BIS_TotRadialBlur ppEffectAdjust [0.0, 0.0, 0.5, 0.5];" \n
+       "//	BIS_TotRadialBlur ppEffectCommit 0;" \n
+       "//	BIS_TotRadialBlur ppEffectEnable FALSE;" \n
+       "" \n
+       "//	BIS_TotBlur ppEffectAdjust [0];" \n
+       "//	BIS_TotBlur ppEffectCommit 0;" \n
+       "//	BIS_TotBlur ppEffectEnable FALSE;" \n
+       "//-------Switching TOTAL DAMAGE OFF----------------WAS REMOVED--------------------" \n
+       "" \n
+       "" \n
+       "	//switch off UNCONSCIOUS BLUR - NO because it makes radial blur look better" \n
+       "	//BIS_UncBlur ppEffectAdjust [0];" \n
+       "	//BIS_UncBlur ppEffectCommit 0;" \n
+       "	//BIS_UncBlur ppEffectEnable FALSE;" \n
+       "" \n
+       "	" \n
+       "" \n
+       "//-----switched off---new health system is being implemented-----------------------------" \n
+       "	//1919 cutText ["""", ""BLACK IN"", 0.5];" \n
+       "//	([""HealthPP_black""] call bis_fnc_rscLayer) cutText ["""",""BLACK IN"",0.5];" \n
+       "//	sleep 0.5;" \n
+       "//-----switched off---new health system is being implemented-----------------------------" \n
+       "	" \n
+       "//should be before pulsing, because Conscious and Dead PPs are waiting for this and we need to allow them to switch immediately" \n
+       "	BIS_applyPP1 = true;" \n
+       "" \n
+       "//------------------------radial blur PULSING when unconscious--WAS REMOVED------------------------------------------------" \n
+       "" \n
+       "	//player is unconscious or fell unconscious because beeing too tired and his fatigue didn't lowered under 0.9 yet" \n
+       "	//while { (  ( (lifeState player == ""INCAPACITATED"") || (getFactorSum player >= 0.9) ) && (lifeState player != ""DEAD"") ) } do" \n
+       "" \n
+       "	//Removed ((getFactorSum player >= 1.0) && (BIS_oldFatigue < 1.0))" \n
+       "	//was: while {( (lifeState player == ""INCAPACITATED"") || ((getFactorSum player >= 1.0) && (BIS_oldFatigue < 1.0)) )} do" \n
+       "" \n
+       "" \n
+       "" \n
+       "	//make pulses until player is conscious again or dead (player is unconscious because of damage or fatigue)" \n
+       "	//while { (lifeState player == ""INCAPACITATED"") } do" \n
+       "	//{" \n
+       "		//_count = _count + 1;" \n
+       "		//hint str _count;" \n
+       "" \n
+       "		//desaturated image - we don't want pulsing for desaturation - TODO: decide whether yes or no" \n
+       "		// BIS_UncCC ppEffectAdjust [1,1,0,[0,0,0,0],[1,1,1,0.2],[0.35,0.35,0.35,0]];" \n
+       "		// BIS_UncCC ppEffectEnable TRUE;" \n
+       "		// BIS_UncCC ppEffectCommit _delay;" \n
+       "" \n
+       "		//_delay = (0.8965 * BIS_pulsingFreq) * acctime; //looks good 1.3   //BIS_pulsingFreq is initialized in init state" \n
+       "		//slight radial blur - LOWER" \n
+       "		//BIS_UncRadialBlur ppEffectAdjust [0.008, 0.01, 0.3, 0.3]; // [0.006,0.012,0.1,0.1];" \n
+       "		//BIS_UncRadialBlur ppEffectEnable TRUE;" \n
+       "		//BIS_UncRadialBlur ppEffectCommit _delay;" \n
+       "		" \n
+       "		//add gaussian blur to make radial blur look better - LOWER" \n
+       "		//BIS_UncBlur ppEffectAdjust [0.28];" \n
+       "		//BIS_UncBlur ppEffectEnable TRUE;" \n
+       "		//BIS_UncBlur ppEffectCommit _delay; " \n
+       "		" \n
+       "		//sleep _delay;" \n
+       "" \n
+       "		//_delay = (0.1034 * BIS_pulsingFreq) * acctime;  //looks good 0.15" \n
+       "		//slight radial blur - HIGHER" \n
+       "		//BIS_UncRadialBlur ppEffectAdjust [0.008, 0.01, 0.1, 0.1]; // [0.006,0.012,0.1,0.1];" \n
+       "		//BIS_UncRadialBlur ppEffectCommit _delay;" \n
+       "" \n
+       "		//add gaussian blur to make radial blur look better - HIGHER" \n
+       "		//BIS_UncBlur ppEffectAdjust [0.6];" \n
+       "		//BIS_UncBlur ppEffectCommit _delay;" \n
+       "		" \n
+       "		//sleep _delay;	" \n
+       "	//};" \n
+       "" \n
+       "//------------------------radial blur PULSING when unconscious-------WAS REMOVED-------------------------------------------" \n
+       "" \n
+       "" \n
+       "" \n
+       "	" \n
+       "" \n
+       "//debugLog lifeState player;" \n
+       "" \n
+       "" \n
+       "}; //spawn"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "is_CONSCIOUS_again">*/
+        class is_CONSCIOUS_again
+        {
+          itemno = 15;
+          priority = 0.000000;
+          to="UNCONSCIOUS_PP_OFF";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(((lifeState player == ""HEALTHY"") || (lifeState player == ""INJURED"")) && (BIS_oldLifeState == ""INCAPACITATED"")) && BIS_applyPP1 && BIS_applyPP8 && BIS_fnc_feedback_allowPP" \n
+           "" \n
+           "// is fatigue level (not from injuries) decreased to 0.9 OR damage was lowered under 0.85" \n
+           "//&& (lifeState player != ""INCAPACITATED"") in the condition for fatigue - we don't want the player to get conscious" \n
+           "//when he was hit and fell unconscious during fatigue" \n
+           "" \n
+           "// BIS_applyPP1 - can start only after unconscious PP ended. TEST BIS_applyPP1 removed and unconscious state connected to" \n
+           "//				     this state instead." \n
+           "" \n
+           "//UNCONSCIOUS was replaced by INCAPACITATED" \n
+           "" \n
+           "" \n
+           "//27.2.2012 - (getFactorSum player < 0.9) && (BIS_oldFatigue >= 0.9) removed. Is not present in current Health analysis." \n
+           "//before removal was: ( (getFactorSum player < 0.9) && (BIS_oldFatigue >= 0.9) && (lifeState player != ""INCAPACITATED"")) || (((lifeState player == ""HEALTHY"") || (lifeState player == ""INJURED"")) && (BIS_oldLifeState == ""INCAPACITATED"")) && BIS_applyPP1 && BIS_applyPP8 && BIS_fnc_feedback_allowPP"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "blackout_blackin">*/
+    class blackout_blackin
+    {
+      name = "blackout_blackin";
+      itemno = 6;
+      init = /*%FSM<STATEINIT""">*/"BIS_performPP = true;" \n
+       "BIS_applyPP2 = false;" \n
+       "" \n
+       "[] spawn" \n
+       "{" \n
+       "	scriptname ""TES_HealthPP / Death After Unconsious"";" \n
+       "" \n
+       "//hint ""unconscious death"";" \n
+       "" \n
+       "//run script that opens menu" \n
+       "//	BIS_killedArray execVM ""onplayerkilled.sqf"";" \n
+       "" \n
+       "" \n
+       "	//create PP handles" \n
+       "	//BIS_DuncBlur = ppEffectCreate [""DynamicBlur"", 150];" \n
+       "	//BIS_DuncCC = ppEffectCreate [""ColorCorrections"", 1500];" \n
+       "" \n
+       "	//TEST-added from sudden death-changed 12.1.2012" \n
+       "	//BIS_UncRadialBlur ppEffectAdjust [0.018, 0.018, 0.1, 0.1];    //[0.05, 0.05, 0.1, 0.1];" \n
+       "	//BIS_UncRadialBlur ppEffectCommit 2; //1.5;" \n
+       "" \n
+       "" \n
+       "	//Test 28.5. - using BIS_TotRadialBlur instead of BIS_UncRadialBlur" \n
+       "	BIS_UncRadialBlur ppEffectAdjust [0.018, 0.018, 0, 0]; // [0.006,0.012,0.1,0.1];" \n
+       "	BIS_UncRadialBlur ppEffectEnable TRUE;" \n
+       "  BIS_UncRadialBlur ppEffectCommit 2;" \n
+       "	" \n
+       "	//BIS_TotRadialBlur ppEffectAdjust [0.018, 0.018, 0, 0]; // [0.006,0.012,0.1,0.1];" \n
+       "  //BIS_TotRadialBlur ppEffectEnable TRUE;	" \n
+       "  //BIS_TotRadialBlur ppEffectCommit 1.7;" \n
+       "	" \n
+       "" \n
+       "	//add gaussian blur to make radial blur look better - is already in BIS_fnc_incapacitatedEffect" \n
+       "	//BIS_UncBlur ppEffectAdjust [0.5];" \n
+       "	//BIS_UncBlur ppEffectCommit 2;" \n
+       "	" \n
+       "	sleep 1.5;		" \n
+       "" \n
+       "	//layer number must be higher than the ""screen"" layer number (1918)" \n
+       "	//1919 cutText ["""", ""BLACK OUT"", 2];" \n
+       "	([""HealthPP_black""] call bis_fnc_rscLayer) cutText ["""",""BLACK OUT"",2];" \n
+       "	sleep 2;" \n
+       "" \n
+       "	//remove UNCONSCIOUS PP used also for death from unconscious" \n
+       "	if(!(isNil ""BIS_UncCC"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_UncCC;" \n
+       "	};" \n
+       "" \n
+       "	if(!(isNil ""BIS_UncRadialBlur"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_UncRadialBlur;" \n
+       "	};" \n
+       "" \n
+       "	if(!(isNil ""BIS_UncBlur"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_UncBlur;" \n
+       "	};" \n
+       "" \n
+       "	//remove suffocating PP if they exist-------------------------" \n
+       "	if(!(isNil ""BIS_SuffCC"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_SuffCC;" \n
+       "	};" \n
+       "" \n
+       "	if(!(isNil ""BIS_SuffRadialBlur"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_SuffRadialBlur;" \n
+       "	};" \n
+       "" \n
+       "	if(!(isNil ""BIS_SuffBlur"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_SuffBlur;" \n
+       "	};" \n
+       "" \n
+       "	//remove TOTAL DAMAGE PP-----------------------------------" \n
+       "	if(!(isNil ""BIS_TotDesatCC"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_TotDesatCC;" \n
+       "	};" \n
+       "" \n
+       "	if(!(isNil ""BIS_TotCC"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_TotCC;" \n
+       "	};" \n
+       "" \n
+       "	if(!(isNil ""BIS_TotRadialBlur"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_TotRadialBlur;" \n
+       "	};" \n
+       "" \n
+       "	if(!(isNil ""BIS_TotBlur"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_TotBlur;" \n
+       "	};" \n
+       "" \n
+       "	//remove textures for BLOOD, DIRT, FLAMES" \n
+       "	//disableSerialization;" \n
+       "	//_control = (uinamespace getvariable ""RscHealthTextures"") displayctrl 1001;" \n
+       "	//_control ctrlsetfade 1;	" \n
+       "	//_control ctrlcommit 0;" \n
+       "" \n
+       "" \n
+       "//------------Not needed since we use Death camera (see CA\Functions_F\Misc\fn_death.sqf)----------------------------" \n
+       "" \n
+       "	//slightly desaturated with light red mask" \n
+       "	//BIS_UncCC ppEffectAdjust [1,1,0,[0.09,0,0,0.8],[1,1,1,0.25],[0.35,0.35,0.35,0]];" \n
+       "	//BIS_UncCC ppEffectCommit 0;" \n
+       "" \n
+       "	//BIS_UncBlur ppEffectAdjust [6];" \n
+       "	//BIS_UncBlur ppEffectCommit 0;" \n
+       "" \n
+       "	//1919 cutText ["""", ""BLACK IN"", 2.5];" \n
+       "	//sleep 1.5;" \n
+       "" \n
+       "	//BIS_UncBlur ppEffectAdjust [0.0];" \n
+       "	//BIS_UncBlur ppEffectCommit 2.5;" \n
+       "	//sleep 2.5;" \n
+       "//------------Not needed since we use Death camera (see CA\Functions_F\Misc\fn_death.sqf)----------------------------" \n
+       "" \n
+       "	sleep 1; //wait a bit" \n
+       "" \n
+       "	//to force Death camera wait for this" \n
+       "	BIS_applyPP2 = true;" \n
+       "" \n
+       "	//run script that opens menu" \n
+       "	//BIS_killedArray execVM ""onplayerkilled.sqf"";" \n
+       "" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 34;
+          priority = 0.000000;
+          to="____FAKE____";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "blackout_blackin_1">*/
+    class blackout_blackin_1
+    {
+      name = "blackout_blackin_1";
+      itemno = 8;
+      init = /*%FSM<STATEINIT""">*/"BIS_applyPP4 = false;" \n
+       "" \n
+       "[] spawn" \n
+       "{" \n
+       "	scriptname ""TES_HealthPP / Sudden Death"";" \n
+       "" \n
+       "" \n
+       "//run script that opens menu" \n
+       "//	BIS_killedArray execVM ""onplayerkilled.sqf"";" \n
+       "	" \n
+       "	//private[""_damage""];" \n
+       "	//_damage = damage player;" \n
+       "	//add radial blur" \n
+       "  //BIS_DeathRadialBlur ppEffectAdjust [0.05, 0.05, 0.1, 0.1];" \n
+       "	BIS_DeathRadialBlur ppEffectAdjust [0.025, 0.025, 0, 0];" \n
+       "	BIS_DeathRadialBlur ppEffectEnable TRUE;" \n
+       "	BIS_DeathRadialBlur ppEffectCommit 2; //1.5;" \n
+       "" \n
+       "	//add gaussian blur to make radial blur look better" \n
+       "	BIS_DeathBlur ppEffectAdjust [3.15];" \n
+       "	BIS_DeathBlur ppEffectEnable TRUE;" \n
+       "	BIS_DeathBlur ppEffectCommit 2;" \n
+       "" \n
+       "	//moved here from fn_death.sqf" \n
+       "	//3.5 fadesound 0;" \n
+       "	sleep 1.5;		" \n
+       "	//cutText ["""", ""BLACK OUT"", 1];" \n
+       "	//1919 cutText ["""", ""BLACK OUT"", 2];" \n
+       "	//([""HealthPP_black""] call bis_fnc_rscLayer) cutText ["""",""BLACK OUT"",2];" \n
+       "	sleep 2;  //let there be dark for a while" \n
+       "" \n
+       "	//remove radial blur" \n
+       "	ppEffectDestroy BIS_DeathRadialBlur;" \n
+       "" \n
+       "	//remove suffocating PP if they exist-------------------------" \n
+       "	if(!(isNil ""BIS_SuffCC"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_SuffCC;" \n
+       "	};" \n
+       "" \n
+       "	if(!(isNil ""BIS_SuffRadialBlur"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_SuffRadialBlur;" \n
+       "	};" \n
+       "" \n
+       "	if(!(isNil ""BIS_SuffBlur"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_SuffBlur;" \n
+       "	};" \n
+       "" \n
+       "	//remove TOTAL DAMAGE PP-----------------------------------" \n
+       "	if(!(isNil ""BIS_TotDesatCC"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_TotDesatCC;" \n
+       "	};" \n
+       "" \n
+       "	if(!(isNil ""BIS_TotCC"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_TotCC;" \n
+       "	};" \n
+       "" \n
+       "	if(!(isNil ""BIS_TotRadialBlur"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_TotRadialBlur;" \n
+       "	};" \n
+       "	" \n
+       "	if(!(isNil ""BIS_TotBlur"")) then" \n
+       "	{" \n
+       "		ppEffectDestroy BIS_TotBlur;" \n
+       "	};" \n
+       "" \n
+       "	//remove textures for BLOOD, DIRT, FLAMES---------------" \n
+       "	//1918 cutrsc [""RscHealthTextures"",""PLAIN""];" \n
+       "	([""HealthPP_blood""] call bis_fnc_rscLayer) cutrsc [""RscHealthTextures"",""PLAIN""];" \n
+       "	([""HealthPP_dirt""] call bis_fnc_rscLayer) cutrsc [""RscHealthTextures"",""PLAIN""];" \n
+       "	([""HealthPP_fire""] call bis_fnc_rscLayer) cutrsc [""RscHealthTextures"",""PLAIN""];" \n
+       "	" \n
+       "" \n
+       "	//to force Death camera wait for this" \n
+       "	BIS_applyPP4 = true;" \n
+       "" \n
+       "" \n
+       "	BIS_fnc_feedback_allowDeathScreen = TRUE; //test" \n
+       "" \n
+       "		//added by MUF" \n
+       "	//1919 cutText ["""", ""BLACK IN"", 2.5];" \n
+       "	//sleep 1.5;" \n
+       "	//BIS_DeathBlur ppEffectAdjust [0.0];" \n
+       "	//BIS_DeathBlur ppEffectCommit 2.5;" \n
+       "	//sleep 1.5;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 36;
+          priority = 0.000000;
+          to="Check_Suffocatin";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Choose_PP">*/
+    class Choose_PP
+    {
+      name = "Choose_PP";
+      itemno = 10;
+      init = /*%FSM<STATEINIT""">*/"BIS_ppType = """";" \n
+       "BIS_ppDestroyed = false;" \n
+       "" \n
+       "" \n
+       "//if(lifeState player == ""INCAPACITATED"") then" \n
+       "//{" \n
+       "//	BIS_ppType = ""fallUnconscious"";" \n
+       "//} else {" \n
+       "//	BIS_ppType = """";" \n
+       "//};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "destroy">*/
+        class destroy
+        {
+          itemno = 13;
+          priority = 1.000000;
+          to="destroy_all_PP";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(!BIS_fnc_feedback_allowPP || BIS_teamSwitched || BIS_respawned || BIS_EnginePPReset) && (!BIS_respawnInProgress)" \n
+           "" \n
+           "// if BIS_EnginePPReset == true then player clicked Cancel or something else in Video Options and all PP" \n
+           "// are destroyed by the engine so reinit them again" \n
+           "" \n
+           "//added all waiting conditions - should be TRUE, so no PP is running and we are allowed to destroy them" \n
+           "// && (BIS_applyPP1 && BIS_applyPP2 && BIS_applyPP3 && BIS_applyPP4 && BIS_applyPP5 && BIS_applyPP8)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 31;
+          priority = 0.000000;
+          to="Check_Damage";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "blue_out">*/
+    class blue_out
+    {
+      name = "blue_out";
+      itemno = 11;
+      init = /*%FSM<STATEINIT""">*/"//BIS_oldWasDiving = true;" \n
+       "BIS_oldOxygen = GetOxygenRemaining player;" \n
+       "BIS_applyPP5 = false;" \n
+       "" \n
+       "[] spawn" \n
+       "{" \n
+       "	scriptname ""TES_HealthPP / Suffocating"";" \n
+       "	private[""_oxygen""];	" \n
+       "" \n
+       "	_oxygen = GetOxygenRemaining player; //---------TODO - getOxygen ukazuje zasobu kysliku, tj. pri duseni se snizuje 1.0->0.0" \n
+       "" \n
+       "	//_blendColorAlpha = 0.0;" \n
+       "" \n
+       "	//_helper = 0.0 max (1.0 - (_oxygen^0.4)); //clamp to 0.0  //0.16" \n
+       "	//_blendColorAlpha = 0.95 min (_oxygen - 0.1);   //clamp to 0.4  // 0.005 //0.16" \n
+       "" \n
+       "	//OLD PPs" \n
+       "	//BIS_SuffCC1 ppEffectAdjust [1,1,0,[0.009019, 0.016078, 0.08, 1],[1, 1, 1, 1],[0.09,0.1,0.8,0], [(_oxygen^0.6), (_oxygen^0.6), 0, 0, 0, _oxygen/10, 0.5]];" \n
+       "	//BIS_SuffCC1 ppEffectAdjust [1,1,0,[0.009019, 0.016078, 0.08, 2-(2^(1.25*_oxygen))],[1, 1, 1, 1],[0.09,0.1,0.8,0], [0.1 max ((1.25*(0.8 min _oxygen))^0.4), 0.1 max ((1.25*(0.8 min _oxygen))^0.4), 0, 0, 0, 0.001, 0.8]];" \n
+       "	" \n
+       "" \n
+       "	//BIS_SuffCC ppEffectAdjust [1,1,0,[0.009019, 0.016078, 0.08, 0.9 max (1.055+(1/((20*(0.8 min _oxygen))-16.95))) ],[1, 1, 1, 1],[0,0,0,0], [0.446-((1/((20*(0.8 min _oxygen))-17.8))), 0.446-((1/((20*(0.8 min _oxygen))-17.8))), 0, 0, 0, 0.001, 0.5]];" \n
+       "	" \n
+       "" \n
+       "	BIS_SuffCC ppEffectAdjust [1,1,0,[0.009019, 0.016078, 0.08, 0 max (-((0.845*_oxygen+0.3)^4)+0.9) ],  //was too slow: 0 max (0.9-1.125*_oxygen)" \n
+       "										 [1, 1, 1, 1]," \n
+       "										 [0,0,0,0]," \n
+       "										 [1 min (0.676*_oxygen+0.3)^4+0.5, 1 min (0.676*_oxygen+0.3)^4+0.5, 0, 0, 0, 0.001, 0.5]];" \n
+       "" \n
+       "" \n
+       "	//BIS_SuffCC ppEffectAdjust [1,1,0,[0.0, 0.0, 0.5, 0.8], [1, 1, 1, 1], [0,0,0,0], [0.3, 0.3, 0, 0, 0, 0.001, 0.5]];" \n
+       "" \n
+       "" \n
+       "	BIS_SuffCC ppEffectEnable TRUE;" \n
+       "	BIS_SuffCC ppEffectForceInNVG TRUE;" \n
+       "	BIS_SuffCC ppEffectCommit 1; //1" \n
+       "" \n
+       "	BIS_SuffRadialBlur ppEffectAdjust [0.02, 0.02, (0.02 max (1 / (-_oxygen + 2)) - 0.5)+0.166, (0.02 max (1 / (-_oxygen + 2)) - 0.5)+0.166];  //quite good: 0.02 max (1 - (1 / (_oxygen + 1))), 0.02 max (1 - (1 / (_oxygen + 1)));" \n
+       "	BIS_SuffRadialBlur ppEffectEnable TRUE;" \n
+       "	BIS_SuffRadialBlur ppEffectCommit 1; //1" \n
+       "" \n
+       "	BIS_SuffBlur ppEffectAdjust [0 max (3-(3.75*_oxygen))];   //[(3-(3*_oxygen))]; //2 when oxygen=0 blur should be 3" \n
+       "	BIS_SuffBlur ppEffectEnable TRUE; " \n
+       "	BIS_SuffBlur ppEffectCommit 1; //1" \n
+       "" \n
+       "	sleep 1; //to give time to other PPs" \n
+       "" \n
+       "	BIS_applyPP5 = true;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 38;
+          priority = 0.000000;
+          to="Check_Fatigue";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "destroy_all_PP">*/
+    class destroy_all_PP
+    {
+      name = "destroy_all_PP";
+      itemno = 14;
+      init = /*%FSM<STATEINIT""">*/"//debuglog ""FSMPP - respawn"";" \n
+       "" \n
+       "BIS_respawnInProgress = true;" \n
+       "" \n
+       "//hint ""deleting all PP"";" \n
+       "" \n
+       "" \n
+       "//clear the screen in case any textures from class ""screen"" (used for health PP-see: TEST_description_screen.hpp) are displaying" \n
+       "//1918 cutrsc [""RscHealthTextures"",""plain""];" \n
+       "([""HealthPP_blood""] call bis_fnc_rscLayer) cutrsc [""RscHealthTextures"",""PLAIN""];" \n
+       "([""HealthPP_dirt""] call bis_fnc_rscLayer) cutrsc [""RscHealthTextures"",""PLAIN""];" \n
+       "([""HealthPP_fire""] call bis_fnc_rscLayer) cutrsc [""RscHealthTextures"",""PLAIN""];" \n
+       "" \n
+       "" \n
+       "" \n
+       "//consider removing all event handlers here" \n
+       "" \n
+       "if(!(isNil ""BIS_TotCC"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_TotCC;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_TotDesatCC"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_TotDesatCC;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_TotRadialBlur"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_TotRadialBlur;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_TotBlur"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_TotBlur;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_BleedCC"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_BleedCC;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_HitCC"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_HitCC;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_UncCC"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_UncCC;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_UncRadialBlur"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_UncRadialBlur;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_UncBlur"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_UncBlur;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_DeathCC"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_DeathCC;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_DeathRadialBlur"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_DeathRadialBlur;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_DeathBlur"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_DeathBlur;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_SuffCC"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_SuffCC;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_SuffRadialBlur"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_SuffRadialBlur;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_SuffBlur"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_SuffBlur;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_BurnCC"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_BurnCC;" \n
+       "};" \n
+       "" \n
+       "if(!(isNil ""BIS_BurnWet"")) then" \n
+       "{" \n
+       "	ppEffectDestroy BIS_BurnWet;" \n
+       "};" \n
+       "" \n
+       "BIS_respawnInProgress = false;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "allowHealthPP_">*/
+        class allowHealthPP_
+        {
+          itemno = 19;
+          priority = 0.000000;
+          to="INIT";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!isnull player" \n
+           "&&" \n
+           "BIS_fnc_feedback_allowPP"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "UNCONSCIOUS_PP_OFF">*/
+    class UNCONSCIOUS_PP_OFF
+    {
+      name = "UNCONSCIOUS_PP_OFF";
+      itemno = 16;
+      init = /*%FSM<STATEINIT""">*/"//debugLog ""PP - probrani z bezvedomi"";" \n
+       "" \n
+       "" \n
+       "" \n
+       "BIS_applyPP8 = false;" \n
+       "" \n
+       "//enable unconscious PP to start again - NOT NEEDED according to new Health analysis" \n
+       "//BIS_oldFatigue = getFactorSum player;" \n
+       "" \n
+       "//set neutral values to all UNCONSCIOUS PP" \n
+       "[] spawn" \n
+       "{" \n
+       "	scriptname ""TES_HealthPP / Unconsious again?"";" \n
+       "" \n
+       "	//1919 cutText ["""", ""BLACK OUT"", 0.2];" \n
+       "" \n
+       "" \n
+       "//-----switched off---new health system is being implemented-----------------------------" \n
+       "//	([""HealthPP_black""] call bis_fnc_rscLayer) cutText ["""",""BLACK OUT"",0.2];" \n
+       "//	sleep 0.2;" \n
+       "//-----switched off---new health system is being implemented-----------------------------	" \n
+       "" \n
+       "" \n
+       "//-----------------------SWITCHED OFF--------------------------------------------------------------------------" \n
+       "//apply Total Damage PP again - the same settings as in Total DMG" \n
+       "" \n
+       "		//private[""_damage"", ""_helper""];" \n
+       "" \n
+       "		//_damage = damage player;" \n
+       "		//_helper = 0.0 max (1 - (_damage^0.6));" \n
+       "" \n
+       "" \n
+       "		//desaturated image" \n
+       "		//BIS_TotDesatCC ppEffectAdjust [1,1,0,[0,0,0,0],[1, 1, 1, 0.02 max (( -1.5 * _damage^2 ) + 1.0)],[0.35,0.35,0.35,0]];   //max alpha 0.2 when damage is approx 0.85" \n
+       "		//BIS_TotDesatCC ppEffectEnable TRUE;" \n
+       "		//BIS_TotDesatCC ppEffectCommit 0;" \n
+       "" \n
+       "		//for blend color use BIS_blendColorAlpha as soon as radial CC is available" \n
+       "		//BIS_TotCC ppEffectAdjust [1,1,0,[0.5, 0.5, 0.5, 1.0 min ((_damage^0.5)+(_damage/7.6))],[1, 1, 1, _helper],[0.3,0.3,0.3,0], [0.1 max (1-(0.5*(_damage^4))), 0.1 max (1-(0.5*(_damage^4))), 0, 0, 0, 0.001, 0.8]];" \n
+       "		" \n
+       "" \n
+       "		//BIS_TotCC ppEffectAdjust [1,1,0,[0.2, 0.2, 0.2, 1.0 min ( (((0.0 max (_damage-0.1))^0.5)+((0.0 max (_damage-0.1))/7.6)))]," \n
+       "		//								[1, 1, 1, _helper]," \n
+       "		//								[0.3, 0.3, 0.3, 0]," \n
+       "		//								[0.1 max (1-((((1.1*_damage)-0.048))^6)), 0.1 max (1-((((1.1*_damage)-0.048))^6)), 0, 0, 0, 0.001, 0.8]];" \n
+       "		//BIS_TotCC ppEffectEnable TRUE;" \n
+       "		//BIS_TotRadialBlur ppEffectAdjust [0.009, 0.009, 0.02 max (( -0.6 * _damage^2 ) + 0.5),  0.02 max (( -0.6 * _damage^2 ) + 0.5)];" \n
+       "		//BIS_TotRadialBlur ppEffectEnable TRUE;" \n
+       "		//BIS_TotRadialBlur ppEffectCommit 0;  //2.5" \n
+       "" \n
+       "		//BIS_TotBlur ppEffectAdjust [_damage/2];" \n
+       "		//BIS_TotBlur ppEffectEnable TRUE;" \n
+       "		//BIS_TotBlur ppEffectCommit 0;  //2.5" \n
+       "//-----------------------SWITCHED OFF--------------------------------------------------------------------------" \n
+       "" \n
+       "//-------Camera switching----------------WAS REMOVED--------------------" \n
+       "	//switch camera back" \n
+       "//	if (cameraOn == player) then" \n
+       "//	{" \n
+       "//		 player switchCamera BIS_oldCam;" \n
+       "// 	};" \n
+       "//-------Camera switching----------------WAS REMOVED--------------------" \n
+       "" \n
+       "//start changing the PPs and a bit later run the black in" \n
+       "	BIS_UncCC ppEffectAdjust [1,1,0,[0,0,0,0],[1,1,1,1],[0,0,0,0]];" \n
+       "	BIS_UncCC ppEffectCommit 3.5; //2.5" \n
+       "" \n
+       "	BIS_UncRadialBlur ppEffectAdjust [0.0, 0.0, 0.5, 0.5];" \n
+       "	BIS_UncRadialBlur ppEffectCommit 3.5;  //2.5" \n
+       "" \n
+       "	BIS_UncBlur ppEffectAdjust [0];" \n
+       "	BIS_UncBlur ppEffectCommit 3.5;  //2.5" \n
+       "" \n
+       "	sleep 3.5;  //for BIS_UncCC" \n
+       "" \n
+       "" \n
+       "	//must come before we allow other PP to launch" \n
+       "	//1919 cutText ["""", ""BLACK IN"", 4];  //0.5" \n
+       "//-----switched off---new health system is being implemented-----------------------------	" \n
+       "//	([""HealthPP_black""] call bis_fnc_rscLayer) cutText ["""",""BLACK IN"",4];" \n
+       "//	sleep 6.5;  //to wait for black in and also Unc PP to fade out" \n
+       "//-----switched off---new health system is being implemented-----------------------------	" \n
+       "" \n
+       "	// switch unconscious PP off" \n
+       "	//sleep 2; //wait until commit of PP finishes and then switch them off" \n
+       "	BIS_UncCC ppEffectEnable FALSE;" \n
+       "	BIS_UncRadialBlur ppEffectEnable FALSE;" \n
+       "	BIS_UncBlur ppEffectEnable FALSE;" \n
+       "" \n
+       "	//change BIS_oldLifeState to ""HEALTHY"" or ""INJURED"" again - must be here to wait until former TotDMG fades in (enable Total Damage computing again)" \n
+       "	BIS_oldLifeState = lifeState player;" \n
+       "	" \n
+       "	//enable this PP" \n
+       "	BIS_applyPP8 = true;" \n
+       "" \n
+       "" \n
+       "//REMOVE THIS AFTER MP SESSION" \n
+       "sleep 5;" \n
+       "player switchmove """";" \n
+       "" \n
+       "" \n
+       "" \n
+       "};" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "cancel_blue_out">*/
+    class cancel_blue_out
+    {
+      name = "cancel_blue_out";
+      itemno = 18;
+      init = /*%FSM<STATEINIT""">*/"//BIS_oldWasDiving = false;" \n
+       "BIS_oldOxygen = GetOxygenRemaining player;  //prevents this code from executing twice" \n
+       "" \n
+       "[] spawn" \n
+       "{" \n
+       "	scriptname ""TES_HealthPP / Not suffocating"";" \n
+       "	BIS_SuffCC ppEffectAdjust [1,1,0,[0, 0, 0, 0],[1, 1, 1, 1],[0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]];" \n
+       "	BIS_SuffCC ppEffectEnable TRUE;" \n
+       "	BIS_SuffCC ppEffectCommit 8;" \n
+       "" \n
+       "	BIS_SuffRadialBlur ppEffectAdjust [0.0, 0.0, 0.5, 0.5];" \n
+       "	BIS_SuffRadialBlur ppEffectEnable TRUE;" \n
+       "	BIS_SuffRadialBlur ppEffectCommit 8;" \n
+       "" \n
+       "	BIS_SuffBlur ppEffectAdjust [0];" \n
+       "	BIS_SuffBlur ppEffectEnable TRUE; " \n
+       "	BIS_SuffBlur ppEffectCommit 8;" \n
+       "" \n
+       "	sleep 8;" \n
+       "" \n
+       "	//switch PP off" \n
+       "	BIS_SuffCC ppEffectEnable FALSE;" \n
+       "	BIS_SuffRadialBlur ppEffectEnable FALSE;" \n
+       "	BIS_SuffBlur ppEffectEnable FALSE;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 42;
+          priority = 0.000000;
+          to="Check_Not_Burnin";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "INIT">*/
+    class INIT
+    {
+      name = "INIT";
+      itemno = 20;
+      init = /*%FSM<STATEINIT""">*/"call BIS_fnc_feedbackInit;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 3;
+          priority = 0.000000;
+          to="Choose_PP";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "change_grey_red">*/
+    class change_grey_red
+    {
+      name = "change_grey_red";
+      itemno = 21;
+      init = /*%FSM<STATEINIT""">*/"call BIS_fnc_damageChanged;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 32;
+          priority = 0.000000;
+          to="Check_Sudden_Dea";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "PULSING">*/
+    class PULSING
+    {
+      name = "PULSING";
+      itemno = 23;
+      init = /*%FSM<STATEINIT""">*/"//------------------------radial blur PULSING when unconscious--------------------------------------------------" \n
+       "" \n
+       "private[""_delay""];" \n
+       "" \n
+       "[]spawn" \n
+       "{" \n
+       "	//player is unconscious or fell unconscious because beeing too tired and his fatigue didn't lowered under 0.9 yet" \n
+       "	//while { (  ( (lifeState player == ""INCAPACITATED"") || (getFactorSum player >= 0.9) ) && (lifeState player != ""DEAD"") ) } do" \n
+       "" \n
+       "	//make pulses until player is conscious again or dead" \n
+       "	while { (lifeState player == ""INCAPACITATED"") } do" \n
+       "	{" \n
+       "		//_count = _count + 1;" \n
+       "		//hint str _count;" \n
+       "" \n
+       "		//desaturated image - we don't want pulsing for desaturation - TODO: decide whether yes or no" \n
+       "		// BIS_UncCC ppEffectAdjust [1,1,0,[0,0,0,0],[1,1,1,0.2],[0.35,0.35,0.35,0]];" \n
+       "		// BIS_UncCC ppEffectEnable TRUE;" \n
+       "		// BIS_UncCC ppEffectCommit _delay;" \n
+       "" \n
+       "		_delay = (1 + random 1.5) * acctime;" \n
+       "		//slight radial blur - LOWER" \n
+       "		BIS_UncRadialBlur ppEffectAdjust [0.011,0.011,0.3,0.3]; // [0.006,0.012,0.1,0.1];" \n
+       "		BIS_UncRadialBlur ppEffectCommit _delay;" \n
+       "		" \n
+       "		//add gaussian blur to make radial blur look better - LOWER" \n
+       "		BIS_UncBlur ppEffectAdjust [0.25];" \n
+       "		BIS_UncBlur ppEffectCommit _delay; " \n
+       "		" \n
+       "		sleep _delay;" \n
+       "" \n
+       "		_delay = (0.5 + random 0.5) * acctime;" \n
+       "		//slight radial blur - HIGHER" \n
+       "		BIS_UncRadialBlur ppEffectAdjust [0.011,0.011,0.1,0.1]; // [0.006,0.012,0.1,0.1];" \n
+       "		BIS_UncRadialBlur ppEffectEnable TRUE;" \n
+       "		BIS_UncRadialBlur ppEffectCommit _delay;" \n
+       "" \n
+       "		//add gaussian blur to make radial blur look better - HIGHER" \n
+       "		BIS_UncBlur ppEffectAdjust [0.5];" \n
+       "		BIS_UncBlur ppEffectEnable TRUE;" \n
+       "		BIS_UncBlur ppEffectCommit _delay;" \n
+       "		" \n
+       "		sleep _delay;	" \n
+       "	};" \n
+       "};" \n
+       "" \n
+       "//------------------------radial blur PULSING when unconscious--------------------------------------------------" \n
+       "" \n
+       "" \n
+       "" \n
+       "/*" \n
+       "[]spawn" \n
+       "{" \n
+       "while { (lifeState player == ""INCAPACITATED"") } do" \n
+       "{" \n
+       "		//_count = _count + 1;" \n
+       "		hint ""bla"";" \n
+       "		sleep 1;" \n
+       "};" \n
+       "};" \n
+       "*/" \n
+       "" \n
+       "/*" \n
+       "[]spawn" \n
+       "{" \n
+       "	hint ""test"";" \n
+       "	//_TESTcount = _TESTcount + 1;" \n
+       "	sleep 1;" \n
+       "};" \n
+       "*/"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "EMPTY">*/
+        class EMPTY
+        {
+          itemno = 25;
+          priority = 0.000000;
+          to="Total_Damage";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Total_Damage">*/
+    class Total_Damage
+    {
+      name = "Total_Damage";
+      itemno = 24;
+      init = /*%FSM<STATEINIT""">*/"//-----------------Total damage changed - adjust gray PP-----------------------------------------" \n
+       "" \n
+       "//Total damage that was present all the time. Was preplaced pulsing PP" \n
+       "" \n
+       "" \n
+       "	if(_damage >= 0.1) then" \n
+       "	{" \n
+       "	     //_damage = damage player;  //is set immediately after hit (on top of the page)" \n
+       "" \n
+       "		//apply post process that is dependent on BIS_fakeDamage" \n
+       "		_helper = 0.0 max (1 - (_damage^0.6));//was too much: (1.0 - (_damage^0.3)); //clamp to 0.0 //was too quick 1.0 - (_damage^0.16)" \n
+       "" \n
+       "		//let everything desaturate a bit, then start applying gray mask" \n
+       "		if(_damage > 0.45) then" \n
+       "		{" \n
+       "			BIS_blendColorAlpha = 0.4 min ( (_damage^0.7) - (_damage/2) );   //clamp to 0.4 //was too much: BIS_blendColorAlpha + 0.005" \n
+       "		} else {" \n
+       "			BIS_blendColorAlpha = 0;" \n
+       "		};" \n
+       "" \n
+       "		//desaturated image" \n
+       "		BIS_TotDesatCC ppEffectAdjust [1,1,0,[0,0,0,0],[1, 1, 1, 0.4 max (( -1.6 * _damage^6 ) + 1.0)], [0.35,0.35,0.35,0]];   //max alpha 0.2 when damage is approx 0.85" \n
+       "		BIS_TotDesatCC ppEffectEnable TRUE;" \n
+       "		BIS_TotDesatCC ppEffectForceInNVG TRUE;" \n
+       "		BIS_TotDesatCC ppEffectCommit 0;" \n
+       "" \n
+       "		//for blend color use BIS_blendColorAlpha as soon as radial CC is available" \n
+       "		//BIS_TotCC ppEffectAdjust [1,1,0,[0.5, 0.5, 0.5, 1.0 min ((_damage^0.5)+(_damage/7.6))],[1, 1, 1, _helper],[0.3,0.3,0.3,0], [0.1 max (1-(0.5*(_damage^4))), 0.1 max (1-(0.5*(_damage^4))), 0, 0, 0, 0.001, 0.8]];" \n
+       "		//BIS_TotCC ppEffectAdjust [1,1,0,[0.2, 0.2, 0.2, 1.0 min ( (((0.0 max (_damage-0.1))^0.5)+((0.0 max (_damage-0.1))/7.6)))],[1, 1, 1, _helper],[0.3,0.3,0.3,0], [0.1 max (1-((((1.1*_damage)-0.1))^4)), 0.1 max (1-((((1.1*_damage)-0.1))^4)), 0, 0, 0, 0.001, 0.8]];" \n
+       "" \n
+       "" \n
+       "		BIS_TotCC ppEffectAdjust [1,1,0,[0.2, 0.2, 0.2, 0.85 min ( (((0.0 max (_damage-0.1))^0.5)+((0.0 max (_damage-0.1))/7.6)))]," \n
+       "										[1, 1, 1, _helper]," \n
+       "										[0.3, 0.3, 0.3, 0]," \n
+       "										[0.513 max (1-((((1.1*_damage)-0.048))^6)), 0.513 max (1-((((1.1*_damage)-0.048))^6)), 0, 0, 0, 0.001, 0.8]];" \n
+       "" \n
+       "		//--- TEST - bit less aggressive CC for Total Damage" \n
+       "		//BIS_TotCC ppEffectAdjust [1,1,0,[0.3, 0.3, 0.3,  0.4 min ( (((0.0 max (_damage-0.1))^0.5)+((0.0 max (_damage-0.1))/7.6)))]," \n
+       "		//								       [0, 0, 0, 1]," \n
+       "		//									 [1, 1, 1, 0]," \n
+       "		//									 [0.513 max (1-((((1.1*_damage)-0.048))^6)), 0.513 max (1-((((1.1*_damage)-0.048))^6)), 0, 0, 0, 0.001, 0.8]];" \n
+       "" \n
+       "		BIS_TotCC ppEffectEnable TRUE;" \n
+       "		BIS_TotCC ppEffectForceInNVG TRUE;" \n
+       "		BIS_TotCC ppEffectCommit 0;//(0.1 + (BIS_deltaDMG * 5)); //0.1;" \n
+       "" \n
+       "		//BIS_TotRadialBlur ppEffectAdjust [0.009, 0.009, 0.02 max ( (1 / (_damage+1)) - 0.5),  0.02 max ((1 / (_damage+1)) - 0.5)]; //was too slow:  0.02 max (0.5-(_damage^2)),  0.02 max (0.5-(_damage^2))];" \n
+       "		//BIS_TotRadialBlur ppEffectAdjust [0.009, 0.009, 0.02 max (( -0.6 * _damage^2 ) + 0.5),  0.02 max (( -0.6 * _damage^2 ) + 0.5)];" \n
+       "		BIS_TotRadialBlur ppEffectAdjust [0.009, 0.009, 0.02 max (( -0.6 * (0.1 max _damage)^4 ) + 0.5),  0.02 max (( -0.6 * (0.1 max _damage)^4 ) + 0.5)];" \n
+       "		BIS_TotRadialBlur ppEffectEnable TRUE;" \n
+       "		BIS_TotRadialBlur ppEffectCommit 0; //(0.1 + (BIS_deltaDMG * 5));//0.1;" \n
+       "" \n
+       "		//BIS_TotBlur ppEffectAdjust [_damage/2]; //2 //3.5 seems to be too much" \n
+       "" \n
+       "		BIS_TotBlur ppEffectAdjust [0 max ((_damage-0.1)/1.8)];  //start when damage is greater than 0.1" \n
+       "		BIS_TotBlur ppEffectEnable TRUE;" \n
+       "		BIS_TotBlur ppEffectCommit 0; //(0.1 + (BIS_deltaDMG * 5));//0.1;" \n
+       "	}" \n
+       "	else" \n
+       "	{" \n
+       "		//damage < 0.1, disable total damage PPs" \n
+       "		BIS_TotDesatCC ppEffectEnable FALSE;" \n
+       "		BIS_TotCC ppEffectEnable FALSE;" \n
+       "		BIS_TotRadialBlur ppEffectEnable FALSE;" \n
+       "		BIS_TotBlur ppEffectEnable FALSE;" \n
+       "	};" \n
+       "" \n
+       "" \n
+       "" \n
+       "		//sleep (0.1 + (BIS_deltaDMG * 5)); //TODO---no sleep here to allow another execution" \n
+       "" \n
+       "		BIS_applyPP3 = true;" \n
+       "" \n
+       "//-----------------Total damage changed - adjust gray PP-----------------------------------------"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "burning_timer">*/
+    class burning_timer
+    {
+      name = "burning_timer";
+      itemno = 27;
+      init = /*%FSM<STATEINIT""">*/"if (BIS_fnc_feedback_burningTimer != 0) then {" \n
+       "	if ((time - BIS_fnc_feedback_burningTimer) > 0.2) then {" \n
+       "		BIS_PP_burning = false; " \n
+       "		BIS_fnc_feedback_burningTimer = 0; " \n
+       "		call BIS_fnc_radialRedOut;" \n
+       "	};" \n
+       "} else {" \n
+       "	BIS_fnc_feedback_burningTimer = time;		//timer is defined now" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 9;
+          priority = 0.000000;
+          to="Choose_PP";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "start_effects">*/
+    class start_effects
+    {
+      name = "start_effects";
+      itemno = 29;
+      init = /*%FSM<STATEINIT""">*/"BIS_fnc_feedback_fatiguePP = true;" \n
+       "call BIS_fnc_fatigueEffect;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 40;
+          priority = 0.000000;
+          to="Check_Not_Suffoc";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Check_Death">*/
+    class Check_Death
+    {
+      name = "Check_Death";
+      itemno = 33;
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Death_after_unco">*/
+        class Death_after_unco
+        {
+          itemno = 5;
+          priority = 1.000000;
+          to="blackout_blackin";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(BIS_oldLifeState == ""INCAPACITATED"") && (lifeState player == ""DEAD"") && BIS_applyPP1 && BIS_applyPP2 && BIS_fnc_feedback_allowPP" \n
+           "" \n
+           "//BIS_applyPP1 - is here to wait for Uncounscious PP to finish.  TEST BIS_applyPP1 removed and unconscious state connected to" \n
+           "//				     this state instead." \n
+           "" \n
+           "//damage player >= 0.7 && BIS_applyPP2 ---for testing" \n
+           "//BIS_ppType == ""unconsciousDie"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 34;
+          priority = 0.000000;
+          to="____FAKE____";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Check_Sudden_Dea">*/
+    class Check_Sudden_Dea
+    {
+      name = "Check_Sudden_Dea";
+      itemno = 35;
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Sudden_death">*/
+        class Sudden_death
+        {
+          itemno = 7;
+          priority = 1.000000;
+          to="blackout_blackin_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((BIS_oldLifeState == ""HEALTHY"") || (BIS_oldLifeState == ""INJURED"")) &&  (lifeState player == ""DEAD"") && BIS_applyPP4 && (!BIS_fnc_feedback_allowDeathScreen) && BIS_fnc_feedback_allowPP" \n
+           "" \n
+           "//BIS_ppType == ""suddenDeath""" \n
+           "// 24.7. - added condition - when player is Seagull in MP, do not launch death PP, even if lifeState player == ""DEAD"" returns TRUE"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 36;
+          priority = 0.000000;
+          to="Check_Suffocatin";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Check_Suffocatin">*/
+    class Check_Suffocatin
+    {
+      name = "Check_Suffocatin";
+      itemno = 37;
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "suffocating">*/
+        class suffocating
+        {
+          itemno = 12;
+          priority = 1.000000;
+          to="blue_out";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"//starts when oxygen amount is less than 0.8" \n
+           "" \n
+           "//TEST-removed && (IsDiving player) from the condition" \n
+           "" \n
+           "(lifeState player != ""DEAD"") && (GetOxygenRemaining player < 0.8) && (abs((GetOxygenRemaining player) - BIS_oldOxygen) > 0.0001) && BIS_applyPP5 && BIS_fnc_feedback_allowPP && !(player isKindOf ""Animal_Base_F"") && (getNumber (configFile >> ""cfgVehicles"" >> (typeOf (vehicle player)) >> ""isUav"") != 1) &&  (((uavControl (getConnectedUav player)) select 1) == """")" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 38;
+          priority = 0.000000;
+          to="Check_Fatigue";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Check_Fatigue">*/
+    class Check_Fatigue
+    {
+      name = "Check_Fatigue";
+      itemno = 39;
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "fatigue_start">*/
+        class fatigue_start
+        {
+          itemno = 28;
+          priority = 1.000000;
+          to="start_effects";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!BIS_fnc_feedback_fatiguePP && ((getFatigue player) > 0.6) &&  (((uavControl (getConnectedUav player)) select 1) == """")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 40;
+          priority = 0.000000;
+          to="Check_Not_Suffoc";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Check_Not_Suffoc">*/
+    class Check_Not_Suffoc
+    {
+      name = "Check_Not_Suffoc";
+      itemno = 41;
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "not_suffocating">*/
+        class not_suffocating
+        {
+          itemno = 17;
+          priority = 1.000000;
+          to="cancel_blue_out";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"//was diving but now isn't => breaths in => cancel suffocating PP" \n
+           "//BIS_oldWasDiving && !(IsDiving player) && BIS_fnc_feedback_allowPP" \n
+           "" \n
+           "//TEST - removed   added (GetOxygenRemaining player >= 0.8) to check the change of oxygen" \n
+           "" \n
+           "(GetOxygenRemaining player >= 0.8) && (BIS_oldOxygen < 0.8) && BIS_fnc_feedback_allowPP" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 42;
+          priority = 0.000000;
+          to="Check_Not_Burnin";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Check_Not_Burnin">*/
+    class Check_Not_Burnin
+    {
+      name = "Check_Not_Burnin";
+      itemno = 43;
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "not_burning">*/
+        class not_burning
+        {
+          itemno = 26;
+          priority = 1.000000;
+          to="burning_timer";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_PP_burning && !(isBurning player)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 9;
+          priority = 0.000000;
+          to="Choose_PP";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Check_Damage">*/
+    class Check_Damage
+    {
+      name = "Check_Damage";
+      itemno = 45;
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "damage_changed_">*/
+        class damage_changed_
+        {
+          itemno = 4;
+          priority = 1.000000;
+          to="change_grey_red";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"//damage changed" \n
+           "(lifeState player != ""DEAD"") && (abs((damage player) - BIS_oldDMG) > 0.0001) && BIS_applyPP3 && BIS_fnc_feedback_allowPP && (((uavControl (getConnectedUav player)) select 1) == """")" \n
+           "" \n
+           "" \n
+           "" \n
+           "" \n
+           "" \n
+           "" \n
+           "" \n
+           "" \n
+           "" \n
+           "" \n
+           "" \n
+           "" \n
+           "" \n
+           "" \n
+           "// Hit and Total damage will be processed everytime after Bleeding, Burning, Suffocating etc.," \n
+           "// but Total damage must still be here to change when healing" \n
+           "" \n
+           "//0.0001 because of using float; add another parameter to recognize bleeding" \n
+           "//!((BIS_oldWasBurning || (IsBurning player)) && !(BIS_oldWasBurning && (IsBurning player))) && ((BIS_oldBleedFreq - (GetBleedingFrequency player)) < 0.0001) && (lifeState player != ""DEAD"") && (BIS_oldLifeState != ""INCAPACITATED"") && (abs((damage player) - BIS_oldDMG) > 0.0001) && BIS_applyPP3 && BIS_fnc_feedback_allowPP" \n
+           "" \n
+           "//(BIS_oldWasBurning == (IsBurning player)) &&" \n
+           "" \n
+           "// bleeding - hit that didn't cause bleeding (bleeding frequency didn't changed - lowering bleeding is done elsewhere)" \n
+           "// burn - hit that was't caused by fire (burning) - burning state didn't changed, but player got damage" \n
+           "//		- using NOXOR - both values must be the same to result in TRUE (no change in burning)" \n
+           "" \n
+           "//(BIS_oldFatigue < 0.05) - not to change dammage PP when unconscious PP was launched because" \n
+           "// of high fatigue (caused e.g. by long sprint)" \n
+           "" \n
+           "// && (BIS_oldLifeState != ""INCAPACITATED"") - replaced by lifeState player != ""INCAPACITATED"" - we don't want to show" \n
+           "//Total damage PP when player is unconscious" \n
+           "" \n
+           "//27.2.2012 - ( (getFactorSum player < 0.9) && (BIS_oldFatigue < 0.9)) removed. Is not present in current Health analysis." \n
+           "// before removal was: (lifeState player != ""DEAD"") && (lifeState player != ""INCAPACITATED"") && ( (getFactorSum player < 0.9) && (BIS_oldFatigue < 0.9)) && (abs((damage player) - BIS_oldDMG) > 0.0001) && BIS_applyPP3 && BIS_fnc_feedback_allowPP" \n
+           "" \n
+           "//28.2.2012 - incapacitated state will be part of damage handling" \n
+           "//before change was: (lifeState player != ""DEAD"") && (lifeState player != ""INCAPACITATED"") && (abs((damage player) - BIS_oldDMG) > 0.0001) && BIS_applyPP3 && BIS_fnc_feedback_allowPP" \n
+           "" \n
+           "//16.5." \n
+           "//According to the analysis Total damage starts when damage >= 0.1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          itemno = 32;
+          priority = 0.000000;
+          to="Check_Sudden_Dea";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "____FAKE____">*/
+    class ____FAKE____
+    {
+      name = "____FAKE____";
+      itemno = 46;
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "__grayout_finish">*/
+        class __grayout_finish
+        {
+          itemno = 22;
+          priority = 0.000000;
+          to="PULSING";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_applyPP1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Fall_unconscious">*/
+        class Fall_unconscious
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="fast_greyout";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((lifeState player == ""INCAPACITATED"") && ((BIS_oldLifeState == ""HEALTHY"") || (BIS_oldLifeState == ""INJURED""))) && BIS_applyPP1 && BIS_applyPP8 && BIS_fnc_feedback_allowPP" \n
+           "" \n
+           "" \n
+           "" \n
+           "//damage player >= 0.85 && BIS_applyPP1  ---for testing" \n
+           "" \n
+           "//BIS_ppType == ""fallUnconscious""" \n
+           "" \n
+           "" \n
+           "//Explanation:" \n
+           "//- 2 conditions - only tired from fatigue (not unconscious) OR unconscious because of injuries" \n
+           "//- BIS_applyPP1 added not to launch another unconscious PP when the previous has not finished yet" \n
+           "// getFactorSum player - 0-not tired, 1<= starts tired PP (same as unconscious), < 0.9 ends PP" \n
+           "" \n
+           "// (BIS_oldFatigue < 0.05) added to injury condition to not launch the unconscious PP when this PP was already launched" \n
+           "// by fatigue and is in progress (e.g. player is tired-PP starts, then player is damaged and falls unconscious). It also waits" \n
+           "// with launching unconscious PP until the previous unconscious PP slowly disappears" \n
+           "" \n
+           "// BIS_applyPP8 - can start only when PP for recovering from unconscious ended" \n
+           "" \n
+           "//Fatigue can be set in console via: player setFactor [""FatigueShortTerm"", 1]; - number provided will be divided by 3," \n
+           "// result is same as what getFactorSum player returns" \n
+           "" \n
+           "//27.2.2012 - (getFactorSum player >= 1.0) && (BIS_oldFatigue < 1.0) removed. Is not present in current Health analysis." \n
+           "// before removal was: //(( (getFactorSum player >= 1.0) && (BIS_oldFatigue < 1.0) ) || ((lifeState player == ""INCAPACITATED"") && (BIS_oldFatigue < 0.9) && ((BIS_oldLifeState == ""HEALTHY"") || (BIS_oldLifeState == ""INJURED"")))) && BIS_applyPP1 && BIS_applyPP8 && BIS_fnc_feedback_allowPP"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="START";
+  finalStates[] =
+  {
+  };
+};
+/*%FSM</COMPILE>*/

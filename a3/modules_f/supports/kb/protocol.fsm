@@ -1,0 +1,371 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, PREDLOHA">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"React",0,250,-150.000000,-75.000000,-50.000000,-25.000000,0.000000,"React"};
+item1[] = {"",7,210,-103.999969,46.000008,-96.000031,53.999992,0.000000,""};
+item2[] = {"__",8,218,-300.000000,25.000000,-200.000000,75.000000,0.000000,"-"};
+item3[] = {"END",1,250,-300.000000,100.000000,-200.000000,150.000000,0.000000,"END"};
+item4[] = {"Transport_Reques",4,218,25.000000,25.000000,325.000000,75.000000,1.000000,"Transport_Request"};
+item5[] = {"Transport_Acknow",1,250,350.000000,25.000000,650.000000,75.000000,0.000000,"Transport_Acknowledged"};
+item6[] = {"Artillery_Reques",4,218,25.000000,100.000000,325.000000,150.000000,1.000000,"Artillery_Request"};
+item7[] = {"Artillery_Acknow",1,250,350.000000,100.000000,650.000000,150.000000,0.000000,"Artillery_Acknowledged"};
+item8[] = {"Drop_Request",4,218,25.000000,175.000000,325.000000,225.000000,1.000000,"Drop_Request"};
+item9[] = {"Drop_Acknowledge",1,250,350.000000,175.000000,650.000000,225.000000,0.000000,"Drop_Acknowledged"};
+item10[] = {"CAS_Heli_Request",4,218,25.000000,250.000000,325.000000,300.000000,1.000000,"CAS_Heli_Request"};
+item11[] = {"CAS_Heli_Acknowl",1,250,350.000000,250.000000,650.000000,300.000000,0.000000,"CAS_Heli_Acknowledged"};
+item12[] = {"CAS_Bombing_Requ",4,218,25.000000,325.000000,325.000000,375.000000,1.000000,"CAS_Bombing_Request"};
+item13[] = {"CAS_Bombing_Ackn",1,250,350.000000,325.000000,650.000000,375.000000,0.000000,"CAS_Bombing_Acknowledged"};
+item14[] = {"Ping_New_Availab",4,218,25.000000,475.000000,325.000000,525.000000,1.000000,"Ping_New_Available"};
+item15[] = {"Misc_New_Availab",1,250,350.000000,475.000000,650.000000,525.000000,0.000000,"Misc_New_Available"};
+item16[] = {"Ping_Transport_D",4,218,25.000000,550.000000,325.000000,600.000000,1.000000,"Ping_Transport_Destroyed"};
+item17[] = {"Ping_Artillery_D",4,218,25.000000,625.000000,325.000000,675.000000,1.000000,"Ping_Artillery_Destroyed"};
+item18[] = {"Ping_CAS_Heli_De",4,218,25.000000,700.000000,325.000000,750.000000,1.000000,"Ping_CAS_Heli_Destroyed"};
+item19[] = {"Ping_CAS_Bombing",4,218,25.000000,775.000000,325.000000,825.000000,1.000000,"Ping_CAS_Bombing_Destroyed"};
+item20[] = {"Ping_Drop_Destro",4,218,25.000000,850.000000,325.000000,900.000000,1.000000,"Ping_Drop_Destroyed"};
+item21[] = {"Transport_Destro",1,250,350.000000,550.000000,650.000000,600.000000,0.000000,"Transport_Destroyed"};
+item22[] = {"Artillery_Destro",1,250,350.000000,625.000000,650.000000,675.000000,0.000000,"Artillery_Destroyed"};
+item23[] = {"CAS_Heli_Destroy",1,250,350.000000,700.000000,650.000000,750.000000,0.000000,"CAS_Heli_Destroyed"};
+item24[] = {"CAS_Bombing_Dest",1,250,350.000000,775.000000,650.000000,825.000000,0.000000,"CAS_Bombing_Destroyed"};
+item25[] = {"Drop_Destroyed",1,250,350.000000,850.000000,650.000000,900.000000,0.000000,"Drop_Destroyed"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {1,4};
+link3[] = {1,6};
+link4[] = {1,8};
+link5[] = {1,10};
+link6[] = {1,12};
+link7[] = {1,14};
+link8[] = {1,16};
+link9[] = {1,17};
+link10[] = {1,18};
+link11[] = {1,19};
+link12[] = {1,20};
+link13[] = {2,3};
+link14[] = {4,5};
+link15[] = {6,7};
+link16[] = {8,9};
+link17[] = {10,11};
+link18[] = {12,13};
+link19[] = {14,15};
+link20[] = {16,21};
+link21[] = {17,22};
+link22[] = {18,23};
+link23[] = {19,24};
+link24[] = {20,25};
+globals[] = {25.000000,1,0,0,0,640,480,2,31,6316128,1,-190.734055,679.820557,1060.934326,31.645426,872,1031,1};
+window[] = {2,-1,-1,-1,-1,936,200,1222,200,3,890};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "PREDLOHA";
+        class States
+        {
+                /*%FSM<STATE "React">*/
+                class React
+                {
+                        name = "React";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Ping_New_Availab">*/
+                                class Ping_New_Availab
+                                {
+                                        itemno = 14;
+                                        priority = 1.000000;
+                                        to="Misc_New_Availab";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_sentenceId == ""Ping_New_Available"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Transport_Reques">*/
+                                class Transport_Reques
+                                {
+                                        itemno = 4;
+                                        priority = 1.000000;
+                                        to="Transport_Acknow";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_sentenceId == ""Transport_Request"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Artillery_Reques">*/
+                                class Artillery_Reques
+                                {
+                                        itemno = 6;
+                                        priority = 1.000000;
+                                        to="Artillery_Acknow";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_sentenceId == ""Artillery_Request"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Drop_Request">*/
+                                class Drop_Request
+                                {
+                                        itemno = 8;
+                                        priority = 1.000000;
+                                        to="Drop_Acknowledge";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_sentenceId == ""Drop_Request"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "CAS_Heli_Request">*/
+                                class CAS_Heli_Request
+                                {
+                                        itemno = 10;
+                                        priority = 1.000000;
+                                        to="CAS_Heli_Acknowl";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_sentenceId == ""CAS_Heli_Request"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "CAS_Bombing_Requ">*/
+                                class CAS_Bombing_Requ
+                                {
+                                        itemno = 12;
+                                        priority = 1.000000;
+                                        to="CAS_Bombing_Ackn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_sentenceId == ""CAS_Bombing_Request"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Ping_Transport_D">*/
+                                class Ping_Transport_D
+                                {
+                                        itemno = 16;
+                                        priority = 1.000000;
+                                        to="Transport_Destro";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_sentenceId == ""Ping_Transport_Destroyed"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Ping_Artillery_D">*/
+                                class Ping_Artillery_D
+                                {
+                                        itemno = 17;
+                                        priority = 1.000000;
+                                        to="Artillery_Destro";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_sentenceId == ""Ping_Artillery_Destroyed"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Ping_CAS_Heli_De">*/
+                                class Ping_CAS_Heli_De
+                                {
+                                        itemno = 18;
+                                        priority = 1.000000;
+                                        to="CAS_Heli_Destroy";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_sentenceId == ""Ping_CAS_Heli_Destroyed"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Ping_CAS_Bombing">*/
+                                class Ping_CAS_Bombing
+                                {
+                                        itemno = 19;
+                                        priority = 1.000000;
+                                        to="CAS_Bombing_Dest";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_sentenceId == ""Ping_CAS_Bombing_Destroyed"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Ping_Drop_Destro">*/
+                                class Ping_Drop_Destro
+                                {
+                                        itemno = 20;
+                                        priority = 1.000000;
+                                        to="Drop_Destroyed";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_sentenceId == ""Ping_Drop_Destroyed"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "__">*/
+                                class __
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="END";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END">*/
+                class END
+                {
+                        name = "END";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"//hint""Unexpected Exception""" \n
+                         "" \n
+                         "debugLog ""VD31- here B"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Transport_Acknow">*/
+                class Transport_Acknow
+                {
+                        name = "Transport_Acknow";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_from, _topic,""Transport_Acknowledged"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Artillery_Acknow">*/
+                class Artillery_Acknow
+                {
+                        name = "Artillery_Acknow";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_from, _topic,""Artillery_Acknowledged"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Drop_Acknowledge">*/
+                class Drop_Acknowledge
+                {
+                        name = "Drop_Acknowledge";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_from, _topic,""Drop_Acknowledged"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "CAS_Heli_Acknowl">*/
+                class CAS_Heli_Acknowl
+                {
+                        name = "CAS_Heli_Acknowl";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_from, _topic,""CAS_Heli_Acknowledged"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "CAS_Bombing_Ackn">*/
+                class CAS_Bombing_Ackn
+                {
+                        name = "CAS_Bombing_Ackn";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_from, _topic,""CAS_Bombing_Acknowledged"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Misc_New_Availab">*/
+                class Misc_New_Availab
+                {
+                        name = "Misc_New_Availab";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_from, _topic,""Misc_New_Available"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Transport_Destro">*/
+                class Transport_Destro
+                {
+                        name = "Transport_Destro";
+                        itemno = 21;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_from, _topic,""Transport_Destroyed"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Artillery_Destro">*/
+                class Artillery_Destro
+                {
+                        name = "Artillery_Destro";
+                        itemno = 22;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_from, _topic,""Artillery_Destroyed"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "CAS_Heli_Destroy">*/
+                class CAS_Heli_Destroy
+                {
+                        name = "CAS_Heli_Destroy";
+                        itemno = 23;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_from, _topic,""CAS_Heli_Destroyed"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "CAS_Bombing_Dest">*/
+                class CAS_Bombing_Dest
+                {
+                        name = "CAS_Bombing_Dest";
+                        itemno = 24;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_from, _topic,""CAS_Bombing_Destroyed"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Drop_Destroyed">*/
+                class Drop_Destroyed
+                {
+                        name = "Drop_Destroyed";
+                        itemno = 25;
+                        init = /*%FSM<STATEINIT""">*/"_this kbTell [_from, _topic,""Drop_Destroyed"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group _this)];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="React";
+        finalStates[] =
+        {
+                "END",
+                "Transport_Acknow",
+                "Artillery_Acknow",
+                "Drop_Acknowledge",
+                "CAS_Heli_Acknowl",
+                "CAS_Bombing_Ackn",
+                "Misc_New_Availab",
+                "Transport_Destro",
+                "Artillery_Destro",
+                "CAS_Heli_Destroy",
+                "CAS_Bombing_Dest",
+                "Drop_Destroyed",
+        };
+};
+/*%FSM</COMPILE>*/

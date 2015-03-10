@@ -1,0 +1,122 @@
+/*%FSM<COMPILE "C:\Bis\FSMEditor\scriptedFSM.cfg, Forward Observers Control">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Forward_Observers",0,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"Forward" \n "Observers" \n "Control"};
+item1[] = {"Too_close",4,218,-75.000000,-50.000000,25.000000,0.000000,0.000000,"Too close"};
+item2[] = {"Defend",1,250,-75.000000,25.000000,25.000000,75.000000,0.000000,"Defend"};
+item3[] = {"All_dead",4,218,50.000000,-50.000000,150.000000,0.000000,0.000000,"All dead"};
+item4[] = {"Terminate",1,250,50.000000,25.000000,150.000000,75.000000,0.000000,"Terminate"};
+item5[] = {"Damaged",4,218,-200.000000,-50.000000,-100.000000,0.000000,0.000000,"Damaged"};
+link0[] = {0,1};
+link1[] = {0,3};
+link2[] = {0,5};
+link3[] = {1,2};
+link4[] = {3,4};
+link5[] = {5,2};
+globals[] = {25.000000,1,0,0,0,640,480,1,11,6316128,1,-300.000000,300.000000,229.659317,-212.224442,998,735,1};
+window[] = {0,-1,-1,-1,-1,905,25,1419,25,1,1016};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Forward Observers Control";
+        class States
+        {
+                /*%FSM<STATE "Forward_Observers">*/
+                class Forward_Observers
+                {
+                        name = "Forward_Observers";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "All_dead">*/
+                                class All_dead
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x} count BIS_FOUnits == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Damaged">*/
+                                class Damaged
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Defend";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{damage _x > 0} count BIS_FOUnits > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Too_close">*/
+                                class Too_close
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Defend";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	private [""_unit""];" \n
+                                         "	_unit = _x;" \n
+                                         "	" \n
+                                         "	{" \n
+                                         "		vehicle _x distance _unit <= 100" \n
+                                         "		&&" \n
+                                         "		_unit knowsAbout vehicle _x >= 1.5" \n
+                                         "	} count units group BIS_inf > 0" \n
+                                         "} count BIS_FOUnits > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Defend">*/
+                class Defend
+                {
+                        name = "Defend";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"// Let them engage" \n
+                         "{" \n
+                         "	_x enableAI ""ANIM"";" \n
+                         "	_x setUnitPos ""AUTO"";" \n
+                         "	" \n
+                         "	private [""_group"", ""_wp""];" \n
+                         "	_group = group _x;" \n
+                         "	_wp = _group addWaypoint [position vehicle _x, 0];" \n
+                         "	_wp setWaypointBehaviour ""COMBAT"";" \n
+                         "	_wp setWaypointCombatMode ""YELLOW"";" \n
+                         "	_wp setWaypointType ""SAD"";" \n
+                         "	_group setCurrentWaypoint _wp;" \n
+                         "} forEach BIS_FOUnits;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Forward_Observers";
+        finalStates[] =
+        {
+                "Defend",
+                "Terminate",
+        };
+};
+/*%FSM</COMPILE>*/

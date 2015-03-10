@@ -1,0 +1,1025 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, Showcase: Helicopters">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-125.000000,-825.000000,-25.000000,-775.000000,0.000000,"Init"};
+item1[] = {"cheat_to_helicopter",4,218,-50.000000,-600.000000,50.000000,-550.000000,0.000000,"cheat to" \n "helicopter?"};
+item2[] = {"player_entered_h",2,250,-125.000000,-525.000000,-25.000000,-475.000000,0.000000,"player entered" \n "helicopter"};
+item3[] = {"on_pilot_seat_",4,218,-200.000000,-600.000000,-100.000000,-550.000000,0.000000,"on pilot" \n "seat?"};
+item4[] = {"mission_started",4,218,-125.000000,-750.000000,-25.000000,-700.000000,0.000000,"mission started"};
+item5[] = {"on_airfield__loop",2,250,-125.000000,-675.000000,-25.000000,-625.000000,0.000000,"on airfield" \n "<loop>"};
+item6[] = {"heli_is_full",4,218,-125.000000,-450.000000,-25.000000,-400.000000,0.000000,"heli is full"};
+item7[] = {"waiting_for_player",2,250,-125.000000,-375.000000,-25.000000,-325.000000,0.000000,"waiting for" \n "player to lift-off" \n "<loop>"};
+item8[] = {"lifted_",4,218,-125.000000,-300.000000,-25.000000,-250.000000,0.000000,"lifted?"};
+item9[] = {"Fly_to_Kamino_ba",2,250,-125.000000,-225.000000,-25.000000,-175.000000,0.000000,"Fly to" \n "Kamino base"};
+item10[] = {"landed_",4,218,-125.000000,300.000000,-25.000000,350.000000,0.000000,"landed?"};
+item11[] = {"unload_troops",2,250,-125.000000,375.000000,-25.000000,425.000000,0.000000,"unload troops"};
+item12[] = {"close_to_enemy_v",4,218,-250.000000,-150.000000,-150.000000,-100.000000,0.000000,"close to" \n "enemy vehicles"};
+item13[] = {"mortars_detected",4,218,125.000000,75.000000,225.000000,125.000000,10.000000,"mortars" \n "detected"};
+item14[] = {"destroy_mortars",2,250,125.000000,225.000000,225.000000,275.000000,0.000000,"destroy" \n "mortars"};
+item15[] = {"cars_destroyed_",4,218,-125.000000,150.000000,-25.000000,200.000000,0.000000,"cars" \n "destroyed?"};
+item16[] = {"send_player_to_re",2,250,125.000000,600.000000,225.000000,650.000000,0.000000,"send player to" \n "re-supply"};
+item17[] = {"resupplied_",4,218,125.000000,825.000000,225.000000,875.000000,0.000000,"resupplied?"};
+item18[] = {"destroy_mortar_site",2,4346,125.000000,1050.000000,225.000000,1100.000000,0.000000,"destroy mortar" \n "site on" \n "Kamino isle"};
+item19[] = {"this_is_the_end",1,250,-125.000000,1350.000000,-25.000000,1400.000000,0.000000,"this is the end"};
+item20[] = {"cheat_to__enemy",4,218,-125.000000,-150.000000,-25.000000,-100.000000,1000.000000,"cheat to " \n "enemy vehicles"};
+item21[] = {"time_runs_out",4,218,0.000000,-150.000000,100.000000,-100.000000,0.000000,"time runs out"};
+item22[] = {"reveal_enemy_veh",2,250,-125.000000,-75.000000,-25.000000,-25.000000,0.000000,"reveal enemy" \n "vehicles"};
+item23[] = {"task_added_",4,218,-125.000000,0.000000,-25.000000,50.000000,0.000000,"task added?"};
+item24[] = {"combat_the_vehic",2,250,-125.000000,75.000000,-25.000000,125.000000,0.000000,"combat" \n "the" \n "vehicles"};
+item25[] = {"mortars_destroye",4,218,125.000000,300.000000,225.000000,350.000000,0.000000,"mortars destroyed"};
+item26[] = {"mortars_destroye",4,218,0.000000,1050.000000,100.000000,1100.000000,0.000000,"mortars" \n "destroyed"};
+item27[] = {"send_player_home",2,250,-125.000000,1050.000000,-25.000000,1100.000000,0.000000,"send player" \n "home"};
+item28[] = {"landed_on_base",4,218,-125.000000,1125.000000,-25.000000,1175.000000,0.000000,"landed on base"};
+item29[] = {"landed_at_Camp_Rogain",4,218,125.000000,675.000000,225.000000,725.000000,0.000000,"landed at" \n "Camp Rogain?"};
+item30[] = {"resupplying",2,250,125.000000,750.000000,225.000000,800.000000,0.000000,"resupplying"};
+item31[] = {"landed",2,250,-125.000000,1200.000000,-25.000000,1250.000000,0.000000,"landed"};
+item32[] = {"timeout",4,218,-125.000000,1275.000000,-25.000000,1325.000000,0.000000,"timeout"};
+item33[] = {"true",8,218,125.000000,525.000000,225.000000,575.000000,-1000.000000,"true"};
+item34[] = {"Kamino_mortars_already",4,218,-125.000000,750.000000,-25.000000,800.000000,0.000000,"Kamino mortars" \n "already destroyed"};
+item35[] = {"troops_unloaded",4,218,-125.000000,450.000000,-25.000000,500.000000,0.000000,"troops" \n "unloaded"};
+item36[] = {"send_player_to_land",2,250,-125.000000,225.000000,-25.000000,275.000000,0.000000,"send player" \n "to land" \n "<fake>"};
+item37[] = {"bombardment_star",4,218,0.000000,225.000000,100.000000,275.000000,20.000000,"bombardment" \n "started"};
+item38[] = {"too_much_slackin",4,218,25.000000,-375.000000,125.000000,-325.000000,-1000.000000,"too much" \n "slacking"};
+item39[] = {"End__3___FAIL__",1,250,25.000000,-300.000000,125.000000,-250.000000,0.000000,"End #3" \n "- FAIL -"};
+item40[] = {"",7,210,70.999985,-654.000000,79.000015,-646.000000,0.000000,""};
+item41[] = {"",7,210,71.000000,-504.000000,79.000000,-496.000000,0.000000,""};
+item42[] = {"nil",2,250,-125.000000,525.000000,-25.000000,575.000000,0.000000,"nil"};
+item43[] = {"nil_1",2,250,125.000000,375.000000,225.000000,425.000000,0.000000,"nil"};
+item44[] = {"",7,210,171.000000,-204.000000,179.000015,-196.000000,0.000000,""};
+item45[] = {"cars_reached_base",4,218,-250.000000,150.000000,-150.000000,200.000000,0.000000,"cars" \n "reached base?"};
+item46[] = {"troops_NOT_unloa",4,218,0.000000,375.000000,100.000000,425.000000,10.000000,"troops NOT" \n "unloaded"};
+item47[] = {"send_to_land__real",2,250,0.000000,300.000000,100.000000,350.000000,0.000000,"send to land" \n "<real>"};
+item48[] = {"resupplied",2,250,125.000000,900.000000,225.000000,950.000000,0.000000,"resupplied"};
+item49[] = {"true",8,218,125.000000,975.000000,225.000000,1025.000000,-1000.000000,"true"};
+link0[] = {0,4};
+link1[] = {1,2};
+link2[] = {2,6};
+link3[] = {2,41};
+link4[] = {3,2};
+link5[] = {4,5};
+link6[] = {5,1};
+link7[] = {5,3};
+link8[] = {5,40};
+link9[] = {6,7};
+link10[] = {7,8};
+link11[] = {7,38};
+link12[] = {8,9};
+link13[] = {9,12};
+link14[] = {9,20};
+link15[] = {9,21};
+link16[] = {9,44};
+link17[] = {10,11};
+link18[] = {11,35};
+link19[] = {11,37};
+link20[] = {12,22};
+link21[] = {13,14};
+link22[] = {14,25};
+link23[] = {15,36};
+link24[] = {16,29};
+link25[] = {17,48};
+link26[] = {18,26};
+link27[] = {20,22};
+link28[] = {21,22};
+link29[] = {22,23};
+link30[] = {23,24};
+link31[] = {24,13};
+link32[] = {24,15};
+link33[] = {24,37};
+link34[] = {24,45};
+link35[] = {25,43};
+link36[] = {26,27};
+link37[] = {27,28};
+link38[] = {28,31};
+link39[] = {29,30};
+link40[] = {30,17};
+link41[] = {31,32};
+link42[] = {32,19};
+link43[] = {33,16};
+link44[] = {34,27};
+link45[] = {35,42};
+link46[] = {36,10};
+link47[] = {36,13};
+link48[] = {36,37};
+link49[] = {37,14};
+link50[] = {38,39};
+link51[] = {40,41};
+link52[] = {41,38};
+link53[] = {42,33};
+link54[] = {42,34};
+link55[] = {43,33};
+link56[] = {43,34};
+link57[] = {43,46};
+link58[] = {44,13};
+link59[] = {45,36};
+link60[] = {46,47};
+link61[] = {47,10};
+link62[] = {48,34};
+link63[] = {48,49};
+link64[] = {49,18};
+globals[] = {25.000000,1,0,0,0,640,480,1,162,6316128,1,-468.377075,480.610840,727.349304,-156.083542,912,849,1};
+window[] = {2,0,0,-32000,-32000,1094,100,1380,100,3,930};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Showcase: Helicopters";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private[""_t"",""_maxTakeoffTime"",""_conversation"",""_progress""];" \n
+                         "" \n
+                         "//create initial tasks" \n
+                         "[""TRANSPORT""] call BIS_fnc_missionTasks;" \n
+                         "[""TAKE_OFF""] call BIS_fnc_missionTasks;" \n
+                         "[""FLY_TO_KAMINO""] call BIS_fnc_missionTasks;" \n
+                         "[""UNLOAD""] call BIS_fnc_missionTasks;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "mission_started">*/
+                                class mission_started
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="on_airfield__loop";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{(isNil _x)} count [""BIS_MissionStarted"",""BIS_InitFinished""] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "player_entered_h">*/
+                class player_entered_h
+                {
+                        name = "player_entered_h";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"//lock helicopter" \n
+                         "Bis_Heli lock true;" \n
+                         "" \n
+                         "//play 2nd intro conversation" \n
+                         "[""IN_HELI""] spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//remove task waypoint" \n
+                         "[""TAKE_OFF"",[""UPDATE_DESTINATION"",objNull]] call BIS_fnc_missionTasks;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "heli_is_full">*/
+                                class heli_is_full
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="waiting_for_player";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"({vehicle _x != Bis_Heli} count ((units Bis_GrpStrikeTeam) + [player])) == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "too_much_slackin">*/
+                                class too_much_slackin
+                                {
+                                        itemno = 38;
+                                        priority = -1000.000000;
+                                        to="End__3___FAIL__";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"//hintSilent (str floor (_maxTakeoffTime - time));" \n
+                                         "time > _maxTakeoffTime"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "on_airfield__loop">*/
+                class on_airfield__loop
+                {
+                        name = "on_airfield__loop";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"//un-freeze units for ""startup scene""" \n
+                         "Bis_Units_StartupScene call Bis_enableUnit;" \n
+                         "" \n
+                         "[""INTRO""] spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "_t = time + 60;" \n
+                         "_maxTakeoffTime = time + 180;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/"if (time > _t) then" \n
+                         "{" \n
+                         "	[""IDLE_GETIN""] spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "	_t = time + 20;" \n
+                         "};"/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "on_pilot_seat_">*/
+                                class on_pilot_seat_
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="player_entered_h";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"player == driver Bis_Heli"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cheat_to_helicopter">*/
+                                class cheat_to_helicopter
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="player_entered_h";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"false"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"//move player into the helicopter" \n
+                                         "player moveInDriver Bis_Heli;" \n
+                                         "" \n
+                                         "//move copilot into the helicopter" \n
+                                         "Bis_Player assignAsDriver Bis_Heli;" \n
+                                         "Bis_CoPilot assignAsTurret [Bis_Heli,[0]];" \n
+                                         "Bis_CoPilot moveInTurret [Bis_Heli,[0]];" \n
+                                         "" \n
+                                         "//start engine" \n
+                                         "Bis_Heli engineOn true;" \n
+                                         "" \n
+                                         "//load special forces into the 3 helicopters" \n
+                                         "private[""_group"",""_units"",""_helicopters"",""_heli""];" \n
+                                         "" \n
+                                         "_helicopters = [Bis_Heli,Bis_Heli2,Bis_Heli3];" \n
+                                         "" \n
+                                         "{" \n
+                                         "	_group = _x;" \n
+                                         "	_units = units _x;" \n
+                                         "" \n
+                                         "	_heli = _helicopters select _forEachIndex;" \n
+                                         "" \n
+                                         "	{" \n
+                                         "		_x moveInCargo _heli;" \n
+                                         "	}" \n
+                                         "	forEach _units;" \n
+                                         "}" \n
+                                         "forEach [Bis_GrpStrikeTeam,Bis_GrpStrikeTeam2,Bis_GrpStrikeTeam3];"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "too_much_slackin">*/
+                                class too_much_slackin
+                                {
+                                        itemno = 38;
+                                        priority = -1000.000000;
+                                        to="End__3___FAIL__";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"//hintSilent (str floor (_maxTakeoffTime - time));" \n
+                                         "time > _maxTakeoffTime"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "waiting_for_player">*/
+                class waiting_for_player
+                {
+                        name = "waiting_for_player";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"_t = time + 60;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/"if (time > _t) then" \n
+                         "{" \n
+                         "	[""IDLE_TAKEOFF""] spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "	_t = time + 20;" \n
+                         "};"/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "lifted_">*/
+                                class lifted_
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Fly_to_Kamino_ba";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((getPosAtl Bis_Heli) select 2) > 1"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "too_much_slackin">*/
+                                class too_much_slackin
+                                {
+                                        itemno = 38;
+                                        priority = -1000.000000;
+                                        to="End__3___FAIL__";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"//hintSilent (str floor (_maxTakeoffTime - time));" \n
+                                         "time > _maxTakeoffTime"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Fly_to_Kamino_ba">*/
+                class Fly_to_Kamino_ba
+                {
+                        name = "Fly_to_Kamino_ba";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"[""TAKE_OFF"",""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "[""FLY_TO_KAMINO"",""CURRENT""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "_t = time + 40;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cheat_to__enemy">*/
+                                class cheat_to__enemy
+                                {
+                                        itemno = 20;
+                                        priority = 1000.000000;
+                                        to="reveal_enemy_veh";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"false"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"Bis_Heli setPos [3207.09,5028.25,50];" \n
+                                         "Bis_Heli setDir 134.879;" \n
+                                         "" \n
+                                         "//cheat2 = false;		//reset the cheat2 variable"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "mortars_detected">*/
+                                class mortars_detected
+                                {
+                                        itemno = 13;
+                                        priority = 10.000000;
+                                        to="destroy_mortars";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"({(group player knowsAbout _x) > 2} count [Bis_Mortar1,Bis_Mortar2] > 0)" \n
+                                         "&& ({canMove _x} count [Bis_Mortar1,Bis_Mortar2] > 0)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"Bis_MortarsDetected = true;" \n
+                                         "" \n
+                                         "[""MORTARS_DETECTED""] spawn BIS_fnc_missionConversations;" \n
+                                         "" \n
+                                         "//start bombardment" \n
+                                         "[] spawn Bis_startMike26Bombardment;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "time_runs_out">*/
+                                class time_runs_out
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="reveal_enemy_veh";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"//hint (str floor (_t - time));" \n
+                                         "time > _t"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "close_to_enemy_v">*/
+                                class close_to_enemy_v
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="reveal_enemy_veh";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"player distance (leader Bis_GrpEnemyTransport) < 1000"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "unload_troops">*/
+                class unload_troops
+                {
+                        name = "unload_troops";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"//play notification conversation" \n
+                         "[""LANDED_AT_MIKE26""] spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//unload the troops" \n
+                         "{" \n
+                         "	doGetOut _x;" \n
+                         "	unassignVehicle _x;" \n
+                         "	" \n
+                         "	_x setUnitPos ""Up"";" \n
+                         "}" \n
+                         "forEach (units Bis_GrpStrikeTeam);" \n
+                         "" \n
+                         "[] spawn" \n
+                         "{" \n
+                         "	waitUntil{{(vehicle _x == Bis_Heli) && (canMove _x)} count (units Bis_GrpStrikeTeam) == 0};" \n
+                         "" \n
+                         "	//play conversation(s) & do the task(s)" \n
+                         "	[""SQUAD_UNLOADED""] spawn BIS_fnc_missionConversations;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "bombardment_star">*/
+                                class bombardment_star
+                                {
+                                        itemno = 37;
+                                        priority = 20.000000;
+                                        to="destroy_mortars";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(Bis_BombardmentRunning) && ({canMove _x} count [Bis_Mortar1,Bis_Mortar2] > 0)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"[""BOMBARDMENT_STARTED""] spawn BIS_fnc_missionConversations;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "troops_unloaded">*/
+                                class troops_unloaded
+                                {
+                                        itemno = 35;
+                                        priority = 0.000000;
+                                        to="nil";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"({(vehicle _x == Bis_Heli) && (canMove _x)} count (units Bis_GrpStrikeTeam) == 0)" \n
+                                         "&& ({canMove _x} count [Bis_Mortar1,Bis_Mortar2] == 0)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "destroy_mortars">*/
+                class destroy_mortars
+                {
+                        name = "destroy_mortars";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"//remove captive flag from player's helicopter" \n
+                         "Bis_Heli setCaptive false;" \n
+                         "" \n
+                         "//cancel obsolete tasks" \n
+                         "if ((""DESTROY_ENEMY_VEHICLES"" call BIS_fnc_taskState) in [""ASSIGNED"",""CREATED""]) then" \n
+                         "{" \n
+                         "	[""DESTROY_ENEMY_VEHICLES"",""CANCELED""] call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         "" \n
+                         "if ((""FLY_TO_KAMINO"" call BIS_fnc_taskState) in [""ASSIGNED"",""CREATED""]) then" \n
+                         "{" \n
+                         "	[""FLY_TO_KAMINO"",""CANCELED""] call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         "" \n
+                         "if ((""UNLOAD"" call BIS_fnc_taskState) in [""ASSIGNED"",""CREATED""]) then" \n
+                         "{" \n
+                         "	[""UNLOAD"",""CANCELED""] call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         "" \n
+                         "if ((""TRANSPORT"" call BIS_fnc_taskState) in [""ASSIGNED"",""CREATED""]) then" \n
+                         "{" \n
+                         "	[""TRANSPORT"",""CANCELED""] call BIS_fnc_missionTasks;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "mortars_destroye">*/
+                                class mortars_destroye
+                                {
+                                        itemno = 25;
+                                        priority = 0.000000;
+                                        to="nil_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canMove _x} count [Bis_Mortar1,Bis_Mortar2] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"//play conversations & complete DESTROY_MORTARS task & assign DEPLOY_TROOPS task" \n
+                                         "[""MORTARS_DESTROYED""] spawn BIS_fnc_missionConversations;" \n
+                                         "" \n
+                                         "Bis_BombardmentRunning = false;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "send_player_to_re">*/
+                class send_player_to_re
+                {
+                        name = "send_player_to_re";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/"//reveal enemy to deployed squad" \n
+                         "{" \n
+                         "	Bis_GrpStrikeTeam reveal [_x, 4.0];" \n
+                         "}" \n
+                         "forEach (units Bis_GrpMikeAttackers);" \n
+                         "" \n
+                         "//send play to resupply at Camp Rogain" \n
+                         "[""RESUPPLY""] spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "landed_at_Camp_Rogain">*/
+                                class landed_at_Camp_Rogain
+                                {
+                                        itemno = 29;
+                                        priority = 0.000000;
+                                        to="resupplying";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"[Bis_Heli,Bis_HelipadCampRogain,25] call BIS_hasLanded"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"//play notification conversation" \n
+                                         "[""LANDED_AT_CAMP_ROGAIN""] spawn BIS_fnc_missionConversations;" \n
+                                         "" \n
+                                         "//unpause the ambient convoy near Camp Rogain" \n
+                                         "[Bis_GrpConvoyCampRogain] call Bis_enableUnit;" \n
+                                         "" \n
+                                         "//start bombardment of Kamino base" \n
+                                         "[] spawn Bis_startKaminoBombardment;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "destroy_mortar_site">*/
+                class destroy_mortar_site
+                {
+                        name = "destroy_mortar_site";
+                        itemno = 18;
+                        init = /*%FSM<STATEINIT""">*/"[""DESTROY_MORTARS_KAMINO""] spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "mortars_destroye">*/
+                                class mortars_destroye
+                                {
+                                        itemno = 26;
+                                        priority = 0.000000;
+                                        to="send_player_home";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canMove _x} count [Bis_KaminoMortar1,Bis_KaminoMortar2,Bis_KaminoMortar3] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"[""MORTARS_DESTROYED_KAMINO""] spawn BIS_fnc_missionConversations;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "this_is_the_end">*/
+                class this_is_the_end
+                {
+                        name = "this_is_the_end";
+                        itemno = 19;
+                        init = /*%FSM<STATEINIT""">*/"[[""Showcase_Vehicles"", 1],true] call Bis_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "reveal_enemy_veh">*/
+                class reveal_enemy_veh
+                {
+                        name = "reveal_enemy_veh";
+                        itemno = 22;
+                        init = /*%FSM<STATEINIT""">*/"//reveal enemy vehicles to player" \n
+                         "_conversation = [""ENEMY_VEHICLES_REVEALED""] spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//add captive flag from player's helicopter" \n
+                         "//to prevent ""unauthorized vehicles"" Ai to screw the mission" \n
+                         "Bis_Heli setCaptive true;" \n
+                         "" \n
+                         "//enable the enemy vehicles moving towards Mike-26" \n
+                         "Bis_Units_EnemyCars call Bis_enableUnit;" \n
+                         "" \n
+                         "//gameplay fix: we kill the crew of the disabled vehicle and the vehicle" \n
+                         "{" \n
+                         "	_x spawn" \n
+                         "	{" \n
+                         "		//wait for vehicle being disabled" \n
+                         "		waitUntil" \n
+                         "		{" \n
+                         "			sleep 1;" \n
+                         "			" \n
+                         "			!(canMove _this)" \n
+                         "		};" \n
+                         "" \n
+                         "		//kill all current crew" \n
+                         "		{" \n
+                         "			_x setDamage 1;	" \n
+                         "		}" \n
+                         "		forEach (crew _this);" \n
+                         "	};" \n
+                         "}" \n
+                         "forEach [Bis_EnemyTransport1,Bis_EnemyTransport2];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "task_added_">*/
+                                class task_added_
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="combat_the_vehic";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"scriptDone _conversation"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "combat_the_vehic">*/
+                class combat_the_vehic
+                {
+                        name = "combat_the_vehic";
+                        itemno = 24;
+                        init = /*%FSM<STATEINIT""">*/"private[""_cars""];" \n
+                         "" \n
+                         "_cars = [Bis_EnemyTransport1,Bis_EnemyTransport2];" \n
+                         "" \n
+                         "_t = time + 1;" \n
+                         "" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/"if (time > _t) then" \n
+                         "{" \n
+                         "	if (count _cars == 2) then" \n
+                         "	{" \n
+                         "		//update task waypoint" \n
+                         "		_cars = [_cars,[Bis_Heli],{_input0 distance _x},""ASCEND"",{canMove _x}] call BIS_fnc_sortBy;" \n
+                         "" \n
+                         "		if (count _cars > 0) then" \n
+                         "		{" \n
+                         "			[""DESTROY_ENEMY_VEHICLES"",[""UPDATE_DESTINATION"",[_cars select 0,true]]] call BIS_fnc_missionTasks;" \n
+                         "		};" \n
+                         "" \n
+                         "		//1 car was just destroyed" \n
+                         "		if (count _cars == 1) then" \n
+                         "		{" \n
+                         "			[""ENEMY_VEHICLE_DESTROYED""] spawn BIS_fnc_missionConversations;" \n
+                         "		};" \n
+                         "	}; " \n
+                         "" \n
+                         "	//start bombardment if too close to Mike-26" \n
+                         "	if (Bis_Heli distance Bis_HelipadMike26 < 400) then" \n
+                         "	{" \n
+                         "		[] spawn Bis_startMike26Bombardment;" \n
+                         "	};" \n
+                         "" \n
+                         "	_t = time + 1;" \n
+                         "};"/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "bombardment_star">*/
+                                class bombardment_star
+                                {
+                                        itemno = 37;
+                                        priority = 20.000000;
+                                        to="destroy_mortars";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(Bis_BombardmentRunning) && ({canMove _x} count [Bis_Mortar1,Bis_Mortar2] > 0)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"[""BOMBARDMENT_STARTED""] spawn BIS_fnc_missionConversations;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "mortars_detected">*/
+                                class mortars_detected
+                                {
+                                        itemno = 13;
+                                        priority = 10.000000;
+                                        to="destroy_mortars";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"({(group player knowsAbout _x) > 2} count [Bis_Mortar1,Bis_Mortar2] > 0)" \n
+                                         "&& ({canMove _x} count [Bis_Mortar1,Bis_Mortar2] > 0)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"Bis_MortarsDetected = true;" \n
+                                         "" \n
+                                         "[""MORTARS_DETECTED""] spawn BIS_fnc_missionConversations;" \n
+                                         "" \n
+                                         "//start bombardment" \n
+                                         "[] spawn Bis_startMike26Bombardment;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cars_reached_base">*/
+                                class cars_reached_base
+                                {
+                                        itemno = 45;
+                                        priority = 0.000000;
+                                        to="send_player_to_land";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"Bis_CarsNearM26"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"//report failing on destruction of enemy transport vehicles" \n
+                                         "[""ENEMY_VEHICLES_NEAR_BASE""] spawn BIS_fnc_missionConversations;" \n
+                                         "" \n
+                                         "private[""_group"",""_units""];" \n
+                                         "" \n
+                                         "//unload enemy troops to transport vehicles" \n
+                                         "{" \n
+                                         "	_group = _x;" \n
+                                         "	_units = units _group;" \n
+                                         "" \n
+                                         "	{" \n
+                                         "		unassignVehicle _x;" \n
+                                         "		doGetOut _x;" \n
+                                         "" \n
+                                         "		_x allowDamage true;" \n
+                                         "		_x setCaptive false;" \n
+                                         "	}" \n
+                                         "	forEach _units;" \n
+                                         "" \n
+                                         "	{" \n
+                                         "		_group reveal [_x,4];" \n
+                                         "	}" \n
+                                         "	forEach ((units Bis_GrpMikeDefenders1) + (units Bis_GrpMikeDefenders2));" \n
+                                         "}" \n
+                                         "forEach [Bis_GrpEnemyTransport1Cargo,Bis_GrpEnemyTransport2Cargo];" \n
+                                         ""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cars_destroyed_">*/
+                                class cars_destroyed_
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="send_player_to_land";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canMove _x} count [Bis_EnemyTransport1,Bis_EnemyTransport2] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"//report destruction of enemy transport vehicles" \n
+                                         "[""ENEMY_VEHICLES_DESTROYED""] spawn BIS_fnc_missionConversations;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "send_player_home">*/
+                class send_player_home
+                {
+                        name = "send_player_home";
+                        itemno = 27;
+                        init = /*%FSM<STATEINIT""">*/"[""FLY_HOME""] spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "landed_on_base">*/
+                                class landed_on_base
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="landed";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"[Bis_Heli,Bis_AirBaseHelipad1,50,{alive _this}] call BIS_hasLanded"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "resupplying">*/
+                class resupplying
+                {
+                        name = "resupplying";
+                        itemno = 30;
+                        init = /*%FSM<STATEINIT""">*/"//resupplying handled in initMission.hpp by the generic resupply monitor thread" \n
+                         "Bis_SendToRessuply = true;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "resupplied_">*/
+                                class resupplied_
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="resupplied";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"Bis_Resupplied"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "landed">*/
+                class landed
+                {
+                        name = "landed";
+                        itemno = 31;
+                        init = /*%FSM<STATEINIT""">*/"_t = time + 5;" \n
+                         "" \n
+                         "Bis_AtHome = true;" \n
+                         "" \n
+                         "[""AT_HOME""] spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timeout">*/
+                                class timeout
+                                {
+                                        itemno = 32;
+                                        priority = 0.000000;
+                                        to="this_is_the_end";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "send_player_to_land">*/
+                class send_player_to_land
+                {
+                        name = "send_player_to_land";
+                        itemno = 36;
+                        init = /*%FSM<STATEINIT""">*/"//remove captive flag from player's helicopter" \n
+                         "Bis_Heli setCaptive false;" \n
+                         "" \n
+                         "//command player to unload troops at Mike-26 & change his tasks" \n
+                         "[""LAND_AT_MIKE26""] spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/"//start bombardment" \n
+                         "if (Bis_Heli distance Bis_HelipadMike26 < 400) then" \n
+                         "{" \n
+                         "	[] spawn Bis_startMike26Bombardment;" \n
+                         "};"/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "bombardment_star">*/
+                                class bombardment_star
+                                {
+                                        itemno = 37;
+                                        priority = 20.000000;
+                                        to="destroy_mortars";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(Bis_BombardmentRunning) && ({canMove _x} count [Bis_Mortar1,Bis_Mortar2] > 0)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"[""BOMBARDMENT_STARTED""] spawn BIS_fnc_missionConversations;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "mortars_detected">*/
+                                class mortars_detected
+                                {
+                                        itemno = 13;
+                                        priority = 10.000000;
+                                        to="destroy_mortars";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"({(group player knowsAbout _x) > 2} count [Bis_Mortar1,Bis_Mortar2] > 0)" \n
+                                         "&& ({canMove _x} count [Bis_Mortar1,Bis_Mortar2] > 0)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"Bis_MortarsDetected = true;" \n
+                                         "" \n
+                                         "[""MORTARS_DETECTED""] spawn BIS_fnc_missionConversations;" \n
+                                         "" \n
+                                         "//start bombardment" \n
+                                         "[] spawn Bis_startMike26Bombardment;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "landed_">*/
+                                class landed_
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="unload_troops";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"[Bis_Heli,Bis_HelipadMike26,35] call BIS_hasLanded"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"Bis_LandedAtMike26 = true;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End__3___FAIL__">*/
+                class End__3___FAIL__
+                {
+                        name = "End__3___FAIL__";
+                        itemno = 39;
+                        init = /*%FSM<STATEINIT""">*/"[[missionName, 1],false] call Bis_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "nil">*/
+                class nil
+                {
+                        name = "nil";
+                        itemno = 42;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Kamino_mortars_already">*/
+                                class Kamino_mortars_already
+                                {
+                                        itemno = 34;
+                                        priority = 0.000000;
+                                        to="send_player_home";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canMove _x} count [Bis_KaminoMortar1,Bis_KaminoMortar2,Bis_KaminoMortar3] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 33;
+                                        priority = -1000.000000;
+                                        to="send_player_to_re";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "nil_1">*/
+                class nil_1
+                {
+                        name = "nil_1";
+                        itemno = 43;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "troops_NOT_unloa">*/
+                                class troops_NOT_unloa
+                                {
+                                        itemno = 46;
+                                        priority = 10.000000;
+                                        to="send_to_land__real";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{(vehicle _x == Bis_Heli) && (canMove _x)} count (units Bis_GrpStrikeTeam) > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Kamino_mortars_already">*/
+                                class Kamino_mortars_already
+                                {
+                                        itemno = 34;
+                                        priority = 0.000000;
+                                        to="send_player_home";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canMove _x} count [Bis_KaminoMortar1,Bis_KaminoMortar2,Bis_KaminoMortar3] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 33;
+                                        priority = -1000.000000;
+                                        to="send_player_to_re";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "send_to_land__real">*/
+                class send_to_land__real
+                {
+                        name = "send_to_land__real";
+                        itemno = 47;
+                        init = /*%FSM<STATEINIT""">*/"[""LAND_AT_MIKE26_AFTER_MORTARS""] spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "landed_">*/
+                                class landed_
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="unload_troops";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"[Bis_Heli,Bis_HelipadMike26,35] call BIS_hasLanded"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"Bis_LandedAtMike26 = true;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "resupplied">*/
+                class resupplied
+                {
+                        name = "resupplied";
+                        itemno = 48;
+                        init = /*%FSM<STATEINIT""">*/"[""RESUPPLIED""] spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Kamino_mortars_already">*/
+                                class Kamino_mortars_already
+                                {
+                                        itemno = 34;
+                                        priority = 0.000000;
+                                        to="send_player_home";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canMove _x} count [Bis_KaminoMortar1,Bis_KaminoMortar2,Bis_KaminoMortar3] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 49;
+                                        priority = -1000.000000;
+                                        to="destroy_mortar_site";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "this_is_the_end",
+                "End__3___FAIL__",
+        };
+};
+/*%FSM</COMPILE>*/

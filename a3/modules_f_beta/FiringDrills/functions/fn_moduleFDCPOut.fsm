@@ -1,0 +1,301 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Firing Drill - CP Out">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"CP_Out",0,250,-510.000000,-390.000000,-410.000000,-340.000000,0.000000,"CP Out"};
+item1[] = {"Normal_CP",2,250,-440.000000,-80.000000,-330.000000,-30.000000,0.000000,"Normal CP"};
+item2[] = {"Start",1,250,-630.000000,-80.000000,-540.000000,-30.000000,0.000000,"Start"};
+item3[] = {"Start",4,218,-630.000000,-170.000000,-540.000000,-120.000000,1.000000,"Start"};
+item4[] = {"Normal_CP",8,218,-430.000000,-170.000000,-340.000000,-120.000000,0.000000,"Normal CP"};
+item5[] = {"Clear",8,218,-350.000000,10.000000,-260.000000,60.000000,0.000000,"Clear"};
+item6[] = {"Not_clear",4,218,-510.000000,10.000000,-420.000000,60.000000,1.000000,"Not clear"};
+item7[] = {"Not_clear",1,4346,-510.000000,100.000000,-420.000000,150.000000,0.000000,"Not clear"};
+item8[] = {"Clear",1,250,-350.000000,100.000000,-260.000000,150.000000,0.000000,"Clear"};
+item9[] = {"Finish",1,250,-760.000000,-80.000000,-670.000000,-30.000000,0.000000,"Finish"};
+item10[] = {"Finish",4,218,-760.000000,-170.000000,-670.000000,-120.000000,2.000000,"Finish"};
+item11[] = {"Cannot_be_active",4,218,-640.000000,-320.000000,-530.000000,-270.000000,1.000000,"Cannot be active"};
+item12[] = {"End",1,250,-770.000000,-320.000000,-680.000000,-270.000000,0.000000,"End"};
+item13[] = {"CP_exited",2,250,-510.000000,-240.000000,-420.000000,-190.000000,0.000000,"CP exited"};
+item14[] = {"Otherwise",8,218,-510.000000,-320.000000,-420.000000,-270.000000,0.000000,"Otherwise"};
+link0[] = {0,11};
+link1[] = {0,14};
+link2[] = {1,5};
+link3[] = {1,6};
+link4[] = {3,2};
+link5[] = {4,1};
+link6[] = {5,8};
+link7[] = {6,7};
+link8[] = {10,9};
+link9[] = {11,12};
+link10[] = {13,3};
+link11[] = {13,4};
+link12[] = {13,10};
+link13[] = {14,13};
+globals[] = {10.000000,1,0,0,0,640,480,1,211,6316128,1,-871.476135,-97.007675,352.705322,-514.261597,921,911,1};
+window[] = {2,-1,-1,-1,-1,792,25,1239,25,3,939};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Firing Drill - CP Out";
+        class States
+        {
+                /*%FSM<STATE "CP_Out">*/
+                class CP_Out
+                {
+                        name = "CP_Out";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private [""_cp""];" \n
+                         "_cp = _this getVariable ""CP"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Cannot_be_active">*/
+                                class Cannot_be_active
+                                {
+                                        itemno = 11;
+                                        priority = 1.000000;
+                                        to="End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"private [""_cannotDeactivate""];" \n
+                                         "_cannotDeactivate = true;" \n
+                                         "switch (BIS_FD_rule1) do  " \n
+                                         "{" \n
+                                         "	case 0: {_cannotDeactivate = false;}; //CPs off" \n
+                                         "	case 1: " \n
+                                         "	{" \n
+                                         "		//CPs Normal - this CP must have been activated or be the next one" \n
+                                         "		_cannotDeactivate = (_cp > BIS_FD_nextCP);" \n
+                                         "	};" \n
+                                         "	case 2: " \n
+                                         "	{" \n
+                                         "		//CPs Strict - this CP must be the active one" \n
+                                         "		_cannotDeactivate = !(_cp in [BIS_FD_activeCP, BIS_FD_nextCP]);" \n
+                                         "	};" \n
+                                         "};" \n
+                                         "" \n
+                                         "_cannotDeactivate || BIS_FD_ended"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Otherwise">*/
+                                class Otherwise
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="CP_exited";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Normal_CP">*/
+                class Normal_CP
+                {
+                        name = "Normal_CP";
+                        itemno = 1;
+                        init = /*%FSM<STATEINIT""">*/"//Hide all target markers for this CP" \n
+                         "{" \n
+                         "	[_x, 0] spawn BIS_fnc_moduleFDFadeMarker;" \n
+                         "} forEach (_this getVariable [""targetMarkers"", []]);" \n
+                         "" \n
+                         "//Disable PiP feedback again" \n
+                         "if (isPiPEnabled) then " \n
+                         "{" \n
+                         "	[] spawn BIS_FD_endPiP;" \n
+                         "};" \n
+                         "" \n
+                         "[] spawn " \n
+                         "{" \n
+                         "	waitUntil {(time - BIS_FD_CPIn) > 0.5};" \n
+                         "	RscFiringDrillCheckpoint_done = true;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Not_clear">*/
+                                class Not_clear
+                                {
+                                        itemno = 6;
+                                        priority = 1.000000;
+                                        to="Not_clear";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(_this getVariable [""clear"", false])"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Clear">*/
+                                class Clear
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Clear";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"BIS_FD_started = true;" \n
+                         "" \n
+                         "BIS_FD_atStart = false;" \n
+                         "" \n
+                         "_cpMarker setMarkerType ""mil_objective"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Not_clear">*/
+                class Not_clear
+                {
+                        name = "Not_clear";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"if (BIS_FD_rule1 == 2) then " \n
+                         "{" \n
+                         "	//Pop-down all targets for this CP" \n
+                         "	{" \n
+                         "		if ((_x getVariable [""state"", -1]) == 2) then " \n
+                         "		{" \n
+                         "			private [""_onDeactivate""];" \n
+                         "			_onDeactivate = _x getVariable [""onDeactivate"", """"];" \n
+                         "			if (_onDeactivate != """") then " \n
+                         "			{" \n
+                         "				private [""_handle""]; _handle = [_x] execVM _onDeactivate;" \n
+                         "			} " \n
+                         "			else " \n
+                         "			{" \n
+                         "				//Use onHit in case there is no onDeactivate" \n
+                         "				private [""_onHit""];" \n
+                         "				_onHit = _x getVariable [""onHit"", """"];" \n
+                         "				if (_onHit != """") then {private [""_handle""]; _handle = [_x, [0, 0, 0]] execVM _onHit;};" \n
+                         "			};" \n
+                         "" \n
+                         "			_x setVariable [""state"", 1];" \n
+                         "		};" \n
+                         "	} forEach (_this getVariable ""targets"");" \n
+                         "};" \n
+                         "" \n
+                         "if (BIS_FD_rule1 != 0) then " \n
+                         "{" \n
+                         "	playSound ""FD_CP_Not_Clear_F"";" \n
+                         "" \n
+                         "	[""CheckPoints"", ""Firing_Drills"", [[[""ROF"", 19], [""ROF"", 20], [""ROF"", 21]] call BIS_fnc_selectRandom, true], ""SIDE""] spawn BIS_fnc_kbTell;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Clear">*/
+                class Clear
+                {
+                        name = "Clear";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"//TODO: targets remaining? Results?" \n
+                         "" \n
+                         "private [""_boxMarkers""];" \n
+                         "_boxMarkers = _this getVariable [""markersShootingBox"", []];" \n
+                         "{" \n
+                         "	[_x, 0] spawn BIS_fnc_moduleFDFadeMarker;" \n
+                         "} forEach _boxMarkers;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Finish">*/
+                class Finish
+                {
+                        name = "Finish";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End">*/
+                class End
+                {
+                        name = "End";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "CP_exited">*/
+                class CP_exited
+                {
+                        name = "CP_exited";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"private [""_cpMarker""];" \n
+                         "_cpMarker = _this getVariable [""marker"", """"];" \n
+                         "[_cpMarker, 0.6] spawn BIS_fnc_moduleFDFadeMarker;" \n
+                         "[_this getVariable [""markerArea"", """"], 0.5] spawn BIS_fnc_moduleFDFadeMarker;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Finish">*/
+                                class Finish
+                                {
+                                        itemno = 10;
+                                        priority = 2.000000;
+                                        to="Finish";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_cp == (count BIS_FD_CPs)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Start">*/
+                                class Start
+                                {
+                                        itemno = 3;
+                                        priority = 1.000000;
+                                        to="Start";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_cp == 1"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Normal_CP">*/
+                                class Normal_CP
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Normal_CP";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="CP_Out";
+        finalStates[] =
+        {
+                "Start",
+                "Not_clear",
+                "Clear",
+                "Finish",
+                "End",
+        };
+};
+/*%FSM</COMPILE>*/

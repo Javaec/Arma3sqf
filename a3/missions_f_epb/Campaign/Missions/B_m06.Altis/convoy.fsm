@@ -1,0 +1,181 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, Convoy">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-200.000000,-825.000000,-100.000000,-775.000000,0.000000,"Init"};
+item1[] = {"time_to_go",4,218,-200.000000,-750.000000,-100.000000,-700.000000,0.000000,"time to go"};
+item2[] = {"go",2,4346,-200.000000,-675.000000,-100.000000,-625.000000,0.000000,"go"};
+item3[] = {"under_attack",4,218,-200.000000,-600.000000,-100.000000,-550.000000,0.000000,"under attack"};
+item4[] = {"troops_disembark",2,250,-200.000000,-525.000000,-100.000000,-475.000000,0.000000,"troops disembark," \n "spotters go home"};
+item5[] = {"supplies_hit",4,218,-200.000000,-450.000000,-100.000000,-400.000000,0.000000,"supplies" \n "hit"};
+item6[] = {"driver_out",1,250,-200.000000,-375.000000,-100.000000,-325.000000,0.000000,"driver out"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {3,4};
+link4[] = {4,5};
+link5[] = {5,6};
+globals[] = {25.000000,1,0,0,0,640,480,1,178,6316128,1,-329.970520,157.643219,-105.810333,-851.698853,674,895,1};
+window[] = {2,-1,-1,-1,-1,792,1945,3159,25,3,692};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Convoy";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_newGrp = grpNull;" \n
+                         "" \n
+                         "_roadArray = [""BIS_failSafe_C"", ""BIS_failSafe_B"", ""BIS_failSafe_A"", ""BIS_failSafe""];" \n
+                         "_i = 1;" \n
+                         "" \n
+                         "while {markerType format [""BIS_failSafe_%1"", _i] != """"} do {" \n
+                         "	_roadArray = _roadArray + [format [""BIS_failSafe_%1"", _i]];" \n
+                         "	_i = _i + 1;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "time_to_go">*/
+                                class time_to_go
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="go";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_inf distance BIS_supplies < 1000 || time > 600 || BIS_convoyGo"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "go">*/
+                class go
+                {
+                        name = "go";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"BIS_convoyGo = TRUE;" \n
+                         "" \n
+                         "_roadArray spawn {" \n
+                         "	_roadArray = _this;" \n
+                         "	_vehsToCheck = [BIS_convoyGuardVeh1, BIS_supplies, BIS_convoyGuardVeh2];" \n
+                         "	sleep 20;" \n
+                         "	{_x setVariable [""BIS_lastPos"", position _x]} forEach _vehsToCheck;" \n
+                         "	while {{behaviour _x == ""COMBAT""} count units BIS_grpConvoy == 0 && side group driver BIS_supplies == EAST && alive driver BIS_supplies} do {" \n
+                         "		_justMoved = FALSE;" \n
+                         "		sleep 10;" \n
+                         "		{" \n
+                         "			_lastPos = _x getVariable ""BIS_lastPos"";" \n
+                         "			if (_x distance _lastPos < 10 && BIS_inf distance BIS_convoyGuardVeh1 > 500 && !_justMoved) then {" \n
+                         "				_justMoved = TRUE;" \n
+                         "				_moveToRoad = ""BIS_lastPos"";" \n
+                         "				_roadIndex = 0;" \n
+                         "				{" \n
+                         "					if ((BIS_convoyGuardVeh1 distance markerPos _x) < (BIS_convoyGuardVeh1 distance markerPos _moveToRoad)) then {_moveToRoad = _x; _roadIndex = _roadArray find _moveToRoad};" \n
+                         "				} forEach _roadArray;" \n
+                         "				_moveToRoad2 = _roadArray select (_roadIndex - 1);" \n
+                         "				_moveToRoad3 = _roadArray select (_roadIndex - 2);" \n
+                         "				{_x setVelocity [0,0,0]} forEach _vehsToCheck;" \n
+                         "				BIS_convoyGuardVeh2 setPos markerPos _moveToRoad3;" \n
+                         "				BIS_convoyGuardVeh2 setDir markerDir _moveToRoad3;" \n
+                         "				BIS_supplies setPos markerPos _moveToRoad2;" \n
+                         "				BIS_supplies setDir markerDir _moveToRoad2;" \n
+                         "				BIS_convoyGuardVeh1 setPos markerPos _moveToRoad;" \n
+                         "				BIS_convoyGuardVeh1 setDir markerDir _moveToRoad;" \n
+                         "			};" \n
+                         "		} forEach _vehsToCheck;" \n
+                         "		{_x setVariable [""BIS_lastPos"", position _x]} forEach _vehsToCheck;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "under_attack">*/
+                                class under_attack
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="troops_disembark";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{behaviour _x == ""COMBAT""} count units BIS_grpConvoy > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "troops_disembark">*/
+                class troops_disembark
+                {
+                        name = "troops_disembark";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_newGrp = createGroup EAST;" \n
+                         "" \n
+                         "{" \n
+                         "	[_x] joinSilent _newGrp;" \n
+                         "	unassignVehicle _x;" \n
+                         "	[_x] orderGetIn FALSE;" \n
+                         "} forEach crew BIS_trooperTransport;" \n
+                         "" \n
+                         "_wp1 = _newGrp addWaypoint [position BIS_trooperTransport, 10];" \n
+                         "_wp1 setWaypointType ""GUARD"";" \n
+                         "" \n
+                         "BIS_convoyAttacked = TRUE;" \n
+                         "" \n
+                         "{" \n
+                         "	if (unitReady _x) then {" \n
+                         "		_x setBehaviour ""STEALTH"";" \n
+                         "		_x setUnitPos ""AUTO"";" \n
+                         "		_x move markerPos ""home"";" \n
+                         "	};" \n
+                         "} forEach [BIS_spotter1, BIS_spotter2, BIS_spotter3, BIS_spotter4];" \n
+                         "" \n
+                         "[""RemoveTopic"", [""i01_Ambush""]] call BIS_fnc_InstructorFigure;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "supplies_hit">*/
+                                class supplies_hit
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="driver_out";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage BIS_supplies > 0.05 ||" \n
+                                         "({_x distance BIS_supplies < 15} count units BIS_inf > 0 && {_x distance BIS_supplies < 25} count units _newGrp == 0) ||" \n
+                                         "!alive BIS_suppliesDriver ||" \n
+                                         "vehicle BIS_suppliesDriver == BIS_suppliesDriver"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "driver_out">*/
+                class driver_out
+                {
+                        name = "driver_out";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"unassignVehicle BIS_suppliesDriver;" \n
+                         "[BIS_suppliesDriver] orderGetIn FALSE;" \n
+                         "[BIS_suppliesDriver] join _newGrp;" \n
+                         "" \n
+                         "BIS_suppliesDriver setCaptive FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "driver_out",
+        };
+};
+/*%FSM</COMPILE>*/

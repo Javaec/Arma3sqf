@@ -1,0 +1,216 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, Failures">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-40.000000,-190.000000,50.000000,-140.000000,0.000000,"Start"};
+item1[] = {"Transport_destroyed",4,218,70.000000,-50.000000,160.000000,0.000000,0.000000,"Transport" \n "destroyed" \n "(not by aP)"};
+item2[] = {"",7,210,1.000000,-99.000000,9.000000,-91.000000,0.000000,""};
+item3[] = {"",7,210,-109.000008,-99.000000,-101.000000,-91.000000,0.000000,""};
+item4[] = {"",7,210,111.000000,-99.000000,119.000000,-91.000000,0.000000,""};
+item5[] = {"Player__had_an_a",4,218,-150.000000,-50.000000,-60.000000,0.000000,1.000000,"Player " \n "had an" \n "accident"};
+item6[] = {"Player_leaving_A",4,218,-40.000000,-50.000000,50.000000,0.000000,1.000000,"Player" \n "leaving" \n "AO"};
+item7[] = {"No_response",2,250,70.000000,20.000000,160.000000,70.000000,0.000000,"No response"};
+item8[] = {"Response",2,250,-150.000000,20.000000,-60.000000,70.000000,0.000000,"Response"};
+item9[] = {"Response_1",2,250,-40.000000,20.000000,50.000000,70.000000,0.000000,"Response"};
+item10[] = {"Both_failures_oc",4,218,-40.000000,90.000000,50.000000,140.000000,0.000000,"Both failures" \n "occured"};
+item11[] = {"End_of_Failures",1,250,-40.000000,160.000000,50.000000,210.000000,0.000000,"End of" \n "Failures"};
+item12[] = {"",7,210,-109.000000,111.000000,-101.000000,119.000000,0.000000,""};
+link0[] = {0,2};
+link1[] = {1,7};
+link2[] = {2,3};
+link3[] = {2,4};
+link4[] = {2,6};
+link5[] = {3,5};
+link6[] = {4,1};
+link7[] = {5,8};
+link8[] = {6,9};
+link9[] = {7,6};
+link10[] = {8,6};
+link11[] = {8,12};
+link12[] = {9,5};
+link13[] = {9,10};
+link14[] = {10,11};
+link15[] = {12,10};
+globals[] = {10.000000,1,0,0,0,640,480,1,60,6316128,1,-377.592773,388.505859,279.375000,-283.194580,1404,1031,1};
+window[] = {2,-1,-1,-1,-1,900,50,1490,50,3,1422};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Failures";
+        class States
+        {
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"BIS_away = false;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Player__had_an_a">*/
+                                class Player__had_an_a
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="Response";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove BIS_transport) and (driver BIS_transport == BIS_player) and !(BIS_away)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Player_leaving_A">*/
+                                class Player_leaving_A
+                                {
+                                        itemno = 6;
+                                        priority = 1.000000;
+                                        to="Response_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(BIS_away) and (canMove BIS_transport)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Transport_destroyed">*/
+                                class Transport_destroyed
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="No_response";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove BIS_transport) and (driver BIS_transport != BIS_player)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "No_response">*/
+                class No_response
+                {
+                        name = "No_response";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"// As player wasn't the driver, he can't blame himself..."/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Player_leaving_A">*/
+                                class Player_leaving_A
+                                {
+                                        itemno = 6;
+                                        priority = 1.000000;
+                                        to="Response_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(BIS_away) and (canMove BIS_transport)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Response">*/
+                class Response
+                {
+                        name = "Response";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "" \n
+                         "sleep 2.5;" \n
+                         "" \n
+                         "[""x01_Transport_Immobile"", ""Showcase_Commanding_I"", nil, ""GROUP"", {sleep 1}, nil, 1] call BIS_fnc_kbTell;" \n
+                         "player addRating - 150;" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Player_leaving_A">*/
+                                class Player_leaving_A
+                                {
+                                        itemno = 6;
+                                        priority = 1.000000;
+                                        to="Response_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(BIS_away) and (canMove BIS_transport)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Both_failures_oc">*/
+                                class Both_failures_oc
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="End_of_Failures";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove BIS_transport) and (BIS_away)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Response_1">*/
+                class Response_1
+                {
+                        name = "Response_1";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "" \n
+                         "[""x15_Away"", ""Showcase_Commanding_I"", nil, ""GROUP"", {sleep 1}, nil, 1] call BIS_fnc_kbTell;" \n
+                         "player addRating - 150;" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Player__had_an_a">*/
+                                class Player__had_an_a
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="Response";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove BIS_transport) and (driver BIS_transport == BIS_player) and !(BIS_away)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Both_failures_oc">*/
+                                class Both_failures_oc
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="End_of_Failures";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove BIS_transport) and (BIS_away)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End_of_Failures">*/
+                class End_of_Failures
+                {
+                        name = "End_of_Failures";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Start";
+        finalStates[] =
+        {
+                "End_of_Failures",
+        };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,119 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, PREDLOHA">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"React",0,250,-148.442688,-132.013092,-48.442719,-82.013107,0.000000,"React"};
+item1[] = {"",7,210,-102.438477,48.426529,-94.438538,56.426514,0.000000,""};
+item2[] = {"__",8,218,-245.799591,27.887707,-155.799591,77.887695,0.000000,"-"};
+item3[] = {"END",1,250,-249.361267,105.329407,-149.361450,155.329422,0.000000,"END"};
+item4[] = {"This_is_Hawkeye___in_position_above_the_airbase___eyes_on_target_",4, 218, 0.0,150,300.0,200,1.0,"This_is_Hawkeye___in_position_above_the_airbase___eyes_on_target_"};
+item5[] = {"Copy_that__Hawkeye__CAS_and_mortar_teams_are_on_standby__And__be_advised__ETA_on_the_shells_is_40_seconds_from_request_acknowledgement__About_the_same_for_the_gunship__too__Be_sure_to_factor_this_in_for_any_moving_targets_",1, 250, 350.0, 187, 650.0,237, 1.0,_Copy_that__Hawkeye__CAS_and_mortar_teams_are_on_standby____n__And__be_advised__ETA_on_the_shells_is_40_seconds_from_request_acknowledgement__About_the_same_for_the_gunship__too__Be_sure_to_factor_this_in_for_any_moving_targets__};
+item6[] = {"Roger_that_",4, 218, 0.0,225,300.0,275,1.0,"Roger_that_"};
+item7[] = {"Ok__Proceed_with_the_operation__Good_luck__Papa_Bear_out_",1, 250, 350.0, 262, 650.0,312, 1.0,_Ok__Proceed_with_the_operation__Good_luck__Papa_Bear_out__};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {1,4};
+link4[] = {4,5};
+link5[] = {1,6};
+link6[] = {6,7};
+globals[] = {0.000000,0,0,0,0,640,480,2,10,6316128,1,-395.949066,712.081299,795.476807,-312.553558,870,870,1};
+window[] = {2,-1,-1,-1,-1,898,162,1184,162,3,890};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "PREDLOHA";
+  class States
+  {
+    /*%FSM<STATE "React">*/
+    class React
+    {
+      name = "React";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "This_is_Hawkeye___in_position_above_the_airbase___eyes_on_target_">*/
+        class This_is_Hawkeye___in_position_above_the_airbase___eyes_on_target_
+        {
+          priority = 1.000000;
+          to="Copy_that__Hawkeye__CAS_and_mortar_teams_are_on_standby__And__be_advised__ETA_on_the_shells_is_40_seconds_from_request_acknowledgement__About_the_same_for_the_gunship__too__Be_sure_to_factor_this_in_for_any_moving_targets_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""showcase_supports_01_sitrep_HAW_0""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Roger_that_">*/
+        class Roger_that_
+        {
+          priority = 1.000000;
+          to="Ok__Proceed_with_the_operation__Good_luck__Papa_Bear_out_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""showcase_supports_01_sitrep_HAW_1""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+
+        /*%FSM<LINK "__">*/
+        class __
+        {
+          priority = 0.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "END">*/
+    class END
+    {
+      name = "END";
+      init = /*%FSM<STATEINIT""">*/"//hint""Unexpected Exception""" \n "" \n "debugLog ""VD31- here B"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+     /*%FSM<STATE "Copy_that__Hawkeye__CAS_and_mortar_teams_are_on_standby__And__be_advised__ETA_on_the_shells_is_40_seconds_from_request_acknowledgement__About_the_same_for_the_gunship__too__Be_sure_to_factor_this_in_for_any_moving_targets_">*/
+    class Copy_that__Hawkeye__CAS_and_mortar_teams_are_on_standby__And__be_advised__ETA_on_the_shells_is_40_seconds_from_request_acknowledgement__About_the_same_for_the_gunship__too__Be_sure_to_factor_this_in_for_any_moving_targets_
+    {
+      name = "Copy_that__Hawkeye__CAS_and_mortar_teams_are_on_standby__And__be_advised__ETA_on_the_shells_is_40_seconds_from_request_acknowledgement__About_the_same_for_the_gunship__too__Be_sure_to_factor_this_in_for_any_moving_targets_";
+      init = /*%FSM<STATEINIT""">*/
+	" _this kbTell [_from, _topic,""showcase_supports_01_sitrep_BHQ_1""];"
+	 \n	" _this kbTell [_from, _topic,""showcase_supports_01_sitrep_BHQ_2""];"
+	/*%FSM</STATEINIT""">*/;
+	
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+     /*%FSM<STATE "Ok__Proceed_with_the_operation__Good_luck__Papa_Bear_out_">*/
+    class Ok__Proceed_with_the_operation__Good_luck__Papa_Bear_out_
+    {
+      name = "Ok__Proceed_with_the_operation__Good_luck__Papa_Bear_out_";
+      init = /*%FSM<STATEINIT""">*/
+	" _this kbTell [_from, _topic,""showcase_supports_01_sitrep_BHQ_3""];"
+	/*%FSM</STATEINIT""">*/;
+	
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="React";
+  finalStates[] =
+  {
+    "END",
+	"Copy_that__Hawkeye__CAS_and_mortar_teams_are_on_standby__And__be_advised__ETA_on_the_shells_is_40_seconds_from_request_acknowledgement__About_the_same_for_the_gunship__too__Be_sure_to_factor_this_in_for_any_moving_targets_",
+	"Ok__Proceed_with_the_operation__Good_luck__Papa_Bear_out_",
+  };
+};
+/*%FSM</COMPILE>*/

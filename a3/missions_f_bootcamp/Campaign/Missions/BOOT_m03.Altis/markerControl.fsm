@@ -1,0 +1,633 @@
+/*%FSM<COMPILE "C:\Bis\FSMEditor\scriptedFSM.cfg, Marker Control">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Marker_Control",0,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"Marker Control"};
+item1[] = {"Marker_placed",4,218,-75.000000,0.000000,25.000000,50.000000,0.000000,"Marker placed"};
+item2[] = {"Grab_marker",2,250,-75.000000,75.000000,25.000000,125.000000,0.000000,"Grab marker"};
+item3[] = {"Wrong_position",8,218,-200.000000,75.000000,-100.000000,125.000000,0.000000,"Wrong position"};
+item4[] = {"",7,210,-29.000002,-54.000000,-21.000000,-46.000000,0.000000,""};
+item5[] = {"",7,210,-29.000000,-29.000000,-21.000000,-21.000000,0.000000,""};
+item6[] = {"Position_marked",4,218,-75.000000,150.000000,25.000000,200.000000,1.000000,"Position" \n "marked"};
+item7[] = {"Try_again",2,250,-200.000000,0.000000,-100.000000,50.000000,0.000000,"Try again"};
+item8[] = {"",7,210,-154.000000,-28.999998,-146.000000,-21.000000,0.000000,""};
+item9[] = {"",7,210,96.000000,-29.000000,104.000000,-21.000000,0.000000,""};
+item10[] = {"Failed_once",4,218,50.000000,0.000000,150.000000,50.000000,0.000000,"Failed once"};
+item11[] = {"",7,210,221.000000,-29.000000,229.000000,-21.000000,0.000000,""};
+item12[] = {"Failed_twice",4,218,175.000000,0.000000,275.000000,50.000000,0.000000,"Failed twice"};
+item13[] = {"Warn",2,250,50.000000,75.000000,150.000000,125.000000,0.000000,"Warn"};
+item14[] = {"",7,210,96.000008,296.000000,104.000000,304.000000,0.000000,""};
+item15[] = {"",7,210,221.000000,296.000000,229.000000,304.000000,0.000000,""};
+item16[] = {"Mark",2,250,175.000000,75.000000,275.000000,125.000000,0.000000,"Mark"};
+item17[] = {"",7,210,421.000000,296.000000,429.000000,304.000000,0.000000,""};
+item18[] = {"",7,210,421.000000,-54.000000,429.000000,-46.000000,0.000000,""};
+item19[] = {"End",1,250,-75.000000,225.000000,25.000000,275.000000,0.000000,"End"};
+item20[] = {"",7,210,346.000000,-29.000000,354.000000,-21.000000,0.000000,""};
+item21[] = {"Map_closed",4,218,300.000000,0.000000,400.000000,50.000000,0.000000,"Map closed"};
+item22[] = {"Wait",2,250,300.000000,75.000000,400.000000,125.000000,0.000000,"Wait"};
+item23[] = {"Map_opened",4,218,300.000000,150.000000,400.000000,200.000000,0.000000,"Map opened"};
+item24[] = {"Continue",2,250,300.000000,225.000000,400.000000,275.000000,0.000000,"Continue"};
+item25[] = {"",7,210,346.000000,296.000000,354.000000,304.000000,0.000000,""};
+link0[] = {0,4};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,6};
+link4[] = {3,7};
+link5[] = {4,5};
+link6[] = {5,1};
+link7[] = {5,9};
+link8[] = {6,19};
+link9[] = {7,8};
+link10[] = {8,5};
+link11[] = {9,10};
+link12[] = {9,11};
+link13[] = {10,13};
+link14[] = {11,12};
+link15[] = {11,20};
+link16[] = {12,16};
+link17[] = {13,14};
+link18[] = {14,15};
+link19[] = {15,25};
+link20[] = {16,15};
+link21[] = {17,18};
+link22[] = {18,4};
+link23[] = {20,21};
+link24[] = {21,22};
+link25[] = {22,23};
+link26[] = {23,24};
+link27[] = {24,25};
+link28[] = {25,17};
+globals[] = {25.000000,1,0,0,0,640,480,1,30,6316128,1,-320.629974,598.007202,410.952393,-265.599060,998,735,1};
+window[] = {0,-1,-1,-1,-1,1005,125,1519,125,1,1016};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Marker Control";
+        class States
+        {
+                /*%FSM<STATE "Marker_Control">*/
+                class Marker_Control
+                {
+                        name = "Marker_Control";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private [""_trigger"", ""_var"", ""_zoom"", ""_warnConv"", ""_markConv""];" \n
+                         "_trigger = [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "_var = [_this, 1, """", [""""]] call BIS_fnc_param;" \n
+                         "_zoom = [_this, 2, 0.01, [0]] call BIS_fnc_param;" \n
+                         "_warnConv = [_this, 3, [], ["""", []]] call BIS_fnc_param;" \n
+                         "_markConv = [_this, 4, [], ["""", []]] call BIS_fnc_param;" \n
+                         "" \n
+                         "if (typeName _warnConv == typeName """") then {_warnConv = [_warnConv]};" \n
+                         "if (typeName _markConv == typeName """") then {_markConv = [_markConv]};" \n
+                         "" \n
+                         "// Find trigger's marker" \n
+                         "private [""_marker""];" \n
+                         "_marker = (triggerText _trigger) + ""_area"";" \n
+                         "" \n
+                         "// Warnings" \n
+                         "private [""_warn"", ""_warnTime"", ""_warned""];" \n
+                         "_warn = false;" \n
+                         "_warnTime = time + 30;" \n
+                         "_warned = false;" \n
+                         "" \n
+                         "// Mark" \n
+                         "private [""_mark"", ""_markTime"", ""_marked""];" \n
+                         "_mark = false;" \n
+                         "_markTime = _warnTime + 10e10;" \n
+                         "_marked = false;" \n
+                         "" \n
+                         "private [""_markerCount""];" \n
+                         "_markerCount = count allMapMarkers;" \n
+                         "" \n
+                         "// Prevent markers from being deleted" \n
+                         "private [""_grabMarker""];" \n
+                         "_grabMarker = {" \n
+                         "	// Find placed marker" \n
+                         "	private [""_marker""];" \n
+                         "	_marker = allMapMarkers select (count allMapMarkers - 1);" \n
+                         "	BIS_markerCount = BIS_markerCount + 1;" \n
+                         "	" \n
+                         "	// Create new marker (prevents deleting)" \n
+                         "	private [""_name""];" \n
+                         "	_name = format [""BIS_placedMarker%1"", BIS_markerCount];" \n
+                         "	" \n
+                         "	createMarker [_name, [10,10,10]];" \n
+                         "	_name setMarkerPos markerPos _marker;" \n
+                         "	_name setMarkerType markerType _marker;" \n
+                         "	_name setMarkerColor markerColor _marker;" \n
+                         "	_name setMarkerText markerText _marker;" \n
+                         "	" \n
+                         "	// Delete the old marker" \n
+                         "	deleteMarker _marker;" \n
+                         "	" \n
+                         "	// Return the new one" \n
+                         "	_name" \n
+                         "};" \n
+                         "" \n
+                         "// Marker IDD" \n
+                         "private [""_IDD""];" \n
+                         "_IDD = 54;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Failed_once">*/
+                                class Failed_once
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Warn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	time > _warnTime" \n
+                                         "	||" \n
+                                         "	_warn" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(_warned)" \n
+                                         "&&" \n
+                                         "isNull (findDisplay _IDD)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Failed_twice">*/
+                                class Failed_twice
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Mark";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	time > _markTime" \n
+                                         "	||" \n
+                                         "	_mark" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(_marked)" \n
+                                         "&&" \n
+                                         "isNull (findDisplay _IDD)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Map_closed">*/
+                                class Map_closed
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(visibleMap)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Marker_placed">*/
+                                class Marker_placed
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Grab_marker";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count allMapMarkers > _markerCount"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Grab_marker">*/
+                class Grab_marker
+                {
+                        name = "Grab_marker";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"private [""_newMarker""];" \n
+                         "_newMarker = [] call _grabMarker;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Position_marked">*/
+                                class Position_marked
+                                {
+                                        itemno = 6;
+                                        priority = 1.000000;
+                                        to="End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"[" \n
+                                         "	_trigger," \n
+                                         "	markerPos _newMarker" \n
+                                         "] call BIS_fnc_inTrigger"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Wrong_position">*/
+                                class Wrong_position
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Try_again";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Try_again">*/
+                class Try_again
+                {
+                        name = "Try_again";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"private [""_markerCount""];" \n
+                         "_markerCount = count allMapMarkers;" \n
+                         "" \n
+                         "// Assist player" \n
+                         "if (!(_warn)) then {_warn = true} else {_mark = true};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Failed_once">*/
+                                class Failed_once
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Warn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	time > _warnTime" \n
+                                         "	||" \n
+                                         "	_warn" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(_warned)" \n
+                                         "&&" \n
+                                         "isNull (findDisplay _IDD)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Failed_twice">*/
+                                class Failed_twice
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Mark";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	time > _markTime" \n
+                                         "	||" \n
+                                         "	_mark" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(_marked)" \n
+                                         "&&" \n
+                                         "isNull (findDisplay _IDD)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Map_closed">*/
+                                class Map_closed
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(visibleMap)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Marker_placed">*/
+                                class Marker_placed
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Grab_marker";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count allMapMarkers > _markerCount"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Warn">*/
+                class Warn
+                {
+                        name = "Warn";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"private [""_warned"", ""_warn""];" \n
+                         "_warned = true;" \n
+                         "_warn = true;" \n
+                         "" \n
+                         "// Change mark time" \n
+                         "private [""_markTime""];" \n
+                         "_markTime = time + 30;" \n
+                         "" \n
+                         "if (count _warnConv > 0) then {" \n
+                         "	_warnConv spawn {" \n
+                         "		private [""_warnConv""];" \n
+                         "		_warnConv = _this;" \n
+                         "		" \n
+                         "		scriptName (format [""markerControl.fsm: warn conversations - [%1]"", _warnConv]);" \n
+                         "		" \n
+                         "		{" \n
+                         "			if (_x != """") then {" \n
+                         "				_x call BIS_fnc_missionConversations;" \n
+                         "			};" \n
+                         "		} forEach _warnConv;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Failed_once">*/
+                                class Failed_once
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Warn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	time > _warnTime" \n
+                                         "	||" \n
+                                         "	_warn" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(_warned)" \n
+                                         "&&" \n
+                                         "isNull (findDisplay _IDD)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Failed_twice">*/
+                                class Failed_twice
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Mark";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	time > _markTime" \n
+                                         "	||" \n
+                                         "	_mark" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(_marked)" \n
+                                         "&&" \n
+                                         "isNull (findDisplay _IDD)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Map_closed">*/
+                                class Map_closed
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(visibleMap)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Marker_placed">*/
+                                class Marker_placed
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Grab_marker";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count allMapMarkers > _markerCount"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Mark">*/
+                class Mark
+                {
+                        name = "Mark";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/"private [""_marked"", ""_mark""];" \n
+                         "_marked = true;" \n
+                         "_mark = true;" \n
+                         "" \n
+                         "if (count _markConv > 0) then {" \n
+                         "	// Unhide marker" \n
+                         "	_marker setMarkerAlpha 1;" \n
+                         "	" \n
+                         "	// Show with map" \n
+                         "	[_marker, _zoom] spawn {" \n
+                         "		disableSerialization;" \n
+                         "		" \n
+                         "		private [""_marker"", ""_zoom""];" \n
+                         "		_marker = _this select 0;" \n
+                         "		_zoom = _this select 1;" \n
+                         "		" \n
+                         "		scriptName (format [""markerControl.fsm: mark - [%1, %2]"", _marker, _zoom]);" \n
+                         "		" \n
+                         "		waitUntil {!(isNull (findDisplay 12))};" \n
+                         "		" \n
+                         "		private [""_display"", ""_control""];" \n
+                         "		_display = findDisplay 12;" \n
+                         "		_control = _display displayCtrl 51;" \n
+                         "		" \n
+                         "		// Move the map to the position" \n
+                         "		_control ctrlMapAnimAdd [0.5, _zoom, markerPos _marker];" \n
+                         "		ctrlMapAnimCommit _control;" \n
+                         "	};" \n
+                         "	" \n
+                         "	_markConv spawn {" \n
+                         "		private [""_markConv""];" \n
+                         "		_markConv = _this;" \n
+                         "		" \n
+                         "		scriptName (format [""markerControl.fsm: mark conversations - [%1]"", _markConv]);" \n
+                         "		" \n
+                         "		{" \n
+                         "			if (_x != """") then {" \n
+                         "				_x call BIS_fnc_missionConversations;" \n
+                         "			};" \n
+                         "		} forEach _markConv;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Failed_once">*/
+                                class Failed_once
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Warn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	time > _warnTime" \n
+                                         "	||" \n
+                                         "	_warn" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(_warned)" \n
+                                         "&&" \n
+                                         "isNull (findDisplay _IDD)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Failed_twice">*/
+                                class Failed_twice
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Mark";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	time > _markTime" \n
+                                         "	||" \n
+                                         "	_mark" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(_marked)" \n
+                                         "&&" \n
+                                         "isNull (findDisplay _IDD)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Map_closed">*/
+                                class Map_closed
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(visibleMap)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Marker_placed">*/
+                                class Marker_placed
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Grab_marker";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count allMapMarkers > _markerCount"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End">*/
+                class End
+                {
+                        name = "End";
+                        itemno = 19;
+                        init = /*%FSM<STATEINIT""">*/"// Ensure marker is hidden" \n
+                         "_marker setMarkerAlpha 0;" \n
+                         "" \n
+                         "// Return marker" \n
+                         "missionNamespace setVariable [_var, _newMarker];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Wait">*/
+                class Wait
+                {
+                        name = "Wait";
+                        itemno = 22;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Map_opened">*/
+                                class Map_opened
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="Continue";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"visibleMap"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Continue">*/
+                class Continue
+                {
+                        name = "Continue";
+                        itemno = 24;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Failed_once">*/
+                                class Failed_once
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Warn";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	time > _warnTime" \n
+                                         "	||" \n
+                                         "	_warn" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(_warned)" \n
+                                         "&&" \n
+                                         "isNull (findDisplay _IDD)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Failed_twice">*/
+                                class Failed_twice
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Mark";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	time > _markTime" \n
+                                         "	||" \n
+                                         "	_mark" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "!(_marked)" \n
+                                         "&&" \n
+                                         "isNull (findDisplay _IDD)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Map_closed">*/
+                                class Map_closed
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(visibleMap)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Marker_placed">*/
+                                class Marker_placed
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Grab_marker";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count allMapMarkers > _markerCount"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Marker_Control";
+        finalStates[] =
+        {
+                "End",
+        };
+};
+/*%FSM</COMPILE>*/

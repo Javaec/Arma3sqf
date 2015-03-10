@@ -1,0 +1,330 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, VehicleMonitor">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,75.000000,-625.000000,175.000000,-575.000000,0.000000,"init"};
+item1[] = {"default_state",2,250,75.000000,-475.000000,175.000000,-425.000000,0.000000,"default state"};
+item2[] = {"entered_vehicle",4,218,75.000000,-550.000000,175.000000,-500.000000,-1.000000,"entered" \n "vehicle"};
+item3[] = {"vehicle_destroye",4,218,75.000000,-400.000000,175.000000,-350.000000,-1.000000,"vehicle" \n "destroyed"};
+item4[] = {"car_damaged__1",2,250,75.000000,-325.000000,175.000000,-275.000000,0.000000,"car damaged" \n "#1"};
+item5[] = {"fail",1,250,-50.000000,200.000000,50.000000,250.000000,0.000000,"fail"};
+item6[] = {"outside",4,218,200.000000,-475.000000,300.000000,-425.000000,100.000000,"outside"};
+item7[] = {"outside",2,4346,200.000000,-550.000000,300.000000,-500.000000,0.000000,"outside"};
+item8[] = {"far_away",4,218,-50.000000,-475.000000,50.000000,-425.000000,1000.000000,"far away"};
+item9[] = {"_",2,250,-50.000000,-250.000000,50.000000,-200.000000,0.000000,""};
+item10[] = {"timer_rdy",4,218,-50.000000,-175.000000,50.000000,-125.000000,0.000000,"timer rdy"};
+item11[] = {"say_away_msg",2,250,-50.000000,-100.000000,50.000000,-50.000000,0.000000,"say away msg"};
+item12[] = {"",7,210,-129.000000,-79.000000,-121.000008,-71.000000,0.000000,""};
+item13[] = {"__1",2,250,-50.000000,-550.000000,50.000000,-500.000000,0.000000,""};
+item14[] = {"",7,210,-129.000000,-229.000000,-121.000000,-221.000000,0.000000,""};
+item15[] = {"",7,210,-129.000000,-379.000000,-121.000000,-371.000000,0.000000,""};
+item16[] = {"true",8,218,-175.000000,-550.000000,-75.000000,-500.000000,-1.000000,"true"};
+item17[] = {"__rd_warning",4,218,-50.000000,-25.000000,50.000000,25.000000,0.000000,"3rd warning"};
+item18[] = {"__2",2,250,-50.000000,50.000000,50.000000,100.000000,0.000000,""};
+item19[] = {"sleep",4,218,-50.000000,125.000000,50.000000,175.000000,0.000000,"sleep"};
+item20[] = {"player_is_out",4,218,200.000000,-400.000000,300.000000,-350.000000,-1.000000,"player is" \n "out"};
+link0[] = {0,2};
+link1[] = {1,3};
+link2[] = {1,6};
+link3[] = {1,8};
+link4[] = {2,1};
+link5[] = {3,4};
+link6[] = {4,20};
+link7[] = {6,7};
+link8[] = {7,2};
+link9[] = {8,9};
+link10[] = {9,10};
+link11[] = {9,14};
+link12[] = {10,11};
+link13[] = {11,12};
+link14[] = {11,17};
+link15[] = {12,14};
+link16[] = {13,2};
+link17[] = {14,15};
+link18[] = {15,16};
+link19[] = {16,13};
+link20[] = {17,18};
+link21[] = {18,19};
+link22[] = {19,5};
+link23[] = {20,1};
+globals[] = {25.000000,1,0,0,0,640,480,1,389,6316128,1,-256.437134,543.253540,285.832886,-644.310486,895,1041,1};
+window[] = {2,-1,-1,-1,-1,893,125,1325,125,3,913};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "VehicleMonitor";
+        class States
+        {
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private[""_t"",""_kb"",""_t2"",""_awayCounter"",""_prevDistance"",""_car""];" \n
+                         "" \n
+                         "_t  = time;" \n
+                         "_t2 = time;" \n
+                         "" \n
+                         "_awayCounter = 0;" \n
+                         "_prevDistance = 0;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "entered_vehicle">*/
+                                class entered_vehicle
+                                {
+                                        itemno = 2;
+                                        priority = -1.000000;
+                                        to="default_state";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player != player)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "default_state">*/
+                class default_state
+                {
+                        name = "default_state";
+                        itemno = 1;
+                        init = /*%FSM<STATEINIT""">*/"[""[VehicleMonitor] Waiting in default state.""] call BIS_fnc_logFormat;" \n
+                         "" \n
+                         "BIS_cutsceneCar = vehicle player;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "far_away">*/
+                                class far_away
+                                {
+                                        itemno = 8;
+                                        priority = 1000.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"((vehicle player) distance (getMarkerPos ""BIS_ActionCenter"") > 1500) && ((vehicle player) distance (getMarkerPos ""BIS_ActionCenter"") > _prevDistance)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "outside">*/
+                                class outside
+                                {
+                                        itemno = 6;
+                                        priority = 100.000000;
+                                        to="outside";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player == player)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "vehicle_destroye">*/
+                                class vehicle_destroye
+                                {
+                                        itemno = 3;
+                                        priority = -1.000000;
+                                        to="car_damaged__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player != player) && !(canMove vehicle player)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "car_damaged__1">*/
+                class car_damaged__1
+                {
+                        name = "car_damaged__1";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_car = vehicle player;" \n
+                         "" \n
+                         "[""[VehicleMonitor] Vehicle is damaged.""] call BIS_fnc_logFormat;" \n
+                         "" \n
+                         "[BIS_topic,BIS_container] call BIS_fnc_kbSkip;" \n
+                         "" \n
+                         "_kb = ""x01_CarDamaged"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//cancel the re-fuel task if not completed yet" \n
+                         "if !([""BIS_refuel""] call BIS_fnc_taskCompleted) then" \n
+                         "{" \n
+                         "	[""BIS_refuel"",""CANCELED""] call BIS_fnc_taskSetState;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "player_is_out">*/
+                                class player_is_out
+                                {
+                                        itemno = 20;
+                                        priority = -1.000000;
+                                        to="default_state";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player == player) && (scriptDone _kb)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "fail">*/
+                class fail
+                {
+                        name = "fail";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"[""END1"",true] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "outside">*/
+                class outside
+                {
+                        name = "outside";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"[""[VehicleMonitor] Waiting for player to get into vehicle.""] call BIS_fnc_logFormat;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "entered_vehicle">*/
+                                class entered_vehicle
+                                {
+                                        itemno = 2;
+                                        priority = -1.000000;
+                                        to="default_state";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player != player)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"_prevDistance = (vehicle player) distance (getMarkerPos ""BIS_ActionCenter"");"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "timer_rdy">*/
+                                class timer_rdy
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="say_away_msg";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(time > _t2) && !([BIS_inf] call BIS_fnc_kbIsSpeaking) && !([BIS_journalist] call BIS_fnc_kbIsSpeaking)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 16;
+                                        priority = -1.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "say_away_msg">*/
+                class say_away_msg
+                {
+                        name = "say_away_msg";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"if(vehicle player == vehicle BIS_journalist) then" \n
+                         "{" \n
+                         "	_kb = ([""x15_WrongWay"",""x20_WrongWay"",""x25_WrongWay""] select (_awayCounter % 3)) spawn BIS_fnc_missionConversations;" \n
+                         "};" \n
+                         "" \n
+                         "_t2 = time + 7;" \n
+                         "_awayCounter = _awayCounter + 1;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "__rd_warning">*/
+                                class __rd_warning
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_awayCounter == 2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 16;
+                                        priority = -1.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__1">*/
+                class __1
+                {
+                        name = "__1";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "entered_vehicle">*/
+                                class entered_vehicle
+                                {
+                                        itemno = 2;
+                                        priority = -1.000000;
+                                        to="default_state";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player != player)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__2">*/
+                class __2
+                {
+                        name = "__2";
+                        itemno = 18;
+                        init = /*%FSM<STATEINIT""">*/"_t = time + 15;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "sleep">*/
+                                class sleep
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="fail";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "fail",
+        };
+};
+/*%FSM</COMPILE>*/

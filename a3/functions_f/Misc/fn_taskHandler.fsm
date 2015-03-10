@@ -1,0 +1,519 @@
+/*%FSM<COMPILE "C:\bis\fsmeditor\scriptedFSM.cfg, Tasks">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init__set_up_pri",0,4346,-225.000000,-650.000000,-125.000000,-600.000000,0.000000,"Init," \n "set up" \n "priorities"};
+item1[] = {"has_some_tasks",4,218,75.000000,-650.000000,175.000000,-600.000000,0.000000,"has some" \n "tasks"};
+item2[] = {"update_tasks_lis",2,250,-225.000000,-575.000000,-125.000000,-525.000000,0.000000,"update" \n "tasks list"};
+item3[] = {"new_task",4,218,-375.000000,-500.000000,-275.000000,-450.000000,2.000000,"new task"};
+item4[] = {"task_completed",4,218,-75.000000,-500.000000,25.000000,-450.000000,1.000000,"task" \n "completed"};
+item5[] = {"was_it_set_as_current",2,250,-75.000000,-425.000000,25.000000,-375.000000,0.000000,"was it" \n "set as current?"};
+item6[] = {"yes",4,218,-150.000000,-350.000000,-50.000000,-300.000000,1.000000,"yes"};
+item7[] = {"no",4,218,0.000000,-350.000000,100.000000,-300.000000,0.000000,"no"};
+item8[] = {"was_the_current",2,250,-375.000000,-125.000000,-275.000000,-75.000000,0.000000,"was the" \n "current task" \n "player-selected?"};
+item9[] = {"is_any_of_them_higer",2,250,-375.000000,-275.000000,-275.000000,-225.000000,0.000000,"is any of them" \n "higer priority than" \n "current?"};
+item10[] = {"",7,210,46.000019,-554.000000,53.999981,-546.000000,0.000000,""};
+item11[] = {"yes",4,218,-300.000000,-200.000000,-200.000000,-150.000000,1.000000,"yes"};
+item12[] = {"no",4,218,-450.000000,-200.000000,-350.000000,-150.000000,0.000000,"no"};
+item13[] = {"",7,210,-404.000000,-554.000000,-396.000000,-546.000000,0.000000,""};
+item14[] = {"yes",4,218,-450.000000,-50.000000,-350.000000,0.000000,1.000000,"yes"};
+item15[] = {"no",4,218,-300.000000,-50.000000,-200.000000,0.000000,0.000000,"no"};
+item16[] = {"find_next_and_set",2,250,-225.000000,25.000000,-125.000000,75.000000,0.000000,"find next and" \n "set as current"};
+item17[] = {"no_task_set_as_c",4,218,-225.000000,-500.000000,-125.000000,-450.000000,3.000000,"no task set" \n "as current"};
+item18[] = {"yes",4,218,-150.000000,-200.000000,-50.000000,-150.000000,1.000000,"yes"};
+item19[] = {"no",4,218,0.000000,-200.000000,100.000000,-150.000000,0.000000,"no"};
+item20[] = {"___nothing__",2,250,0.000000,-25.000000,100.000000,25.000000,0.000000,"< nothing >"};
+item21[] = {"are_there_any_more",2,250,-75.000000,-275.000000,25.000000,-225.000000,0.000000,"are there any" \n "more tasks?"};
+item22[] = {"___nothing___1",2,250,-375.000000,-425.000000,-275.000000,-375.000000,0.000000,"< nothing >"};
+item23[] = {"wait_for_other_t",4,218,-375.000000,-350.000000,-275.000000,-300.000000,0.000000,"wait for" \n "other tasks"};
+item24[] = {"",7,210,121.000023,46.000000,128.999985,54.000000,0.000000,""};
+item25[] = {"hard_termination",4,218,-350.000000,-650.000000,-250.000000,-600.000000,0.000000,"hard" \n "termination"};
+item26[] = {"terminate",1,250,-475.000000,-650.000000,-375.000000,-600.000000,0.000000,"terminate"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,4};
+link4[] = {2,17};
+link5[] = {2,25};
+link6[] = {3,22};
+link7[] = {4,5};
+link8[] = {5,6};
+link9[] = {5,7};
+link10[] = {6,21};
+link11[] = {7,10};
+link12[] = {8,14};
+link13[] = {8,15};
+link14[] = {9,11};
+link15[] = {9,12};
+link16[] = {10,2};
+link17[] = {11,8};
+link18[] = {12,13};
+link19[] = {13,2};
+link20[] = {14,13};
+link21[] = {15,16};
+link22[] = {16,24};
+link23[] = {17,16};
+link24[] = {18,16};
+link25[] = {19,20};
+link26[] = {20,24};
+link27[] = {21,18};
+link28[] = {21,19};
+link29[] = {22,23};
+link30[] = {23,9};
+link31[] = {24,1};
+link32[] = {25,26};
+globals[] = {25.000000,1,0,0,0,640,480,1,180,6316128,1,-447.970337,210.816620,-128.633789,-811.905334,861,893,1};
+window[] = {2,-1,-1,-1,-1,955,207,1167,207,3,879};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Tasks";
+  class States
+  {
+    /*%FSM<STATE "Init__set_up_pri">*/
+    class Init__set_up_pri
+    {
+      name = "Init__set_up_pri";
+      itemno = 0;
+      init = /*%FSM<STATEINIT""">*/"_subject = (_this select 0);" \n
+       "" \n
+       "_i = (units group _subject) find _subject;" \n
+       "" \n
+       "BIS_missionScope setVariable [""BIS_taskHandlerParams"", (_this select 1)];" \n
+       "" \n
+       "_subject setVariable [""BIS_taskHandler_stop"", FALSE];" \n
+       "" \n
+       "if (isNil ""BIS_taskHandler_respawnEH"") then {" \n
+       "	BIS_taskHandler_respawnEH = _subject addEventHandler [""Respawn"", {" \n
+       "		{" \n
+       "			if (typeName (BIS_missionScope getVariable (_x select 0)) == ""TASK"") then {" \n
+       "				_objArray = (BIS_missionScope getVariable ((_x select 0) + ""Objects""));" \n
+       "				_i = 0;" \n
+       "				{if (isNull _x) then {_i = _objArray find _x}} forEach _objArray;" \n
+       "				_objArray set [_i, _this select 0];" \n
+       "				BIS_missionScope setVariable [((_x select 0) + ""Objects""), _objArray, TRUE]" \n
+       "			}" \n
+       "		} forEach (BIS_missionScope getVariable ""BIS_taskHandlerParams"");" \n
+       "" \n
+       "		BIS_taskHandler = [(_this select 0), BIS_missionScope getVariable ""BIS_taskHandlerParams""] execFSM ""A3\functions_f\misc\fn_taskHandler.fsm"";" \n
+       "		(_this select 0) setVariable [""BIS_tasksPriorityLadder"", (BIS_missionScope getVariable ""BIS_taskHandlerParams""), TRUE];" \n
+       "		if ((_this select 0) call BIS_checkAITasks) then {BIS_AITasks = (_this select 0) execFSM ""A3\functions_f\misc\fn_AITasks.fsm""}" \n
+       "	}]" \n
+       "};" \n
+       "" \n
+       "textLogFormat [""[Task Handler] :: Starting for %1"", _subject];" \n
+       "" \n
+       "private [""_lastAutoAssigned"", ""_lastAdded"", ""_lastCompleted"", ""_taskList"", ""_completed"", ""_remainingPriorities""];" \n
+       "" \n
+       "_taskList = [];" \n
+       "_completed = [];" \n
+       "_remainingPriorities = [];" \n
+       "_lastCompleted = taskNull;" \n
+       "_lastAutoAssigned = taskNull;" \n
+       "_lastAdded = taskNull;" \n
+       "" \n
+       "//	priorityLadder stores links to tasks and their priorities" \n
+       "//	taskLadder stores subject's actual tasks" \n
+       "" \n
+       "BIS_taskHandler setFSMVariable [""priorityLadder"", []];" \n
+       "BIS_taskHandler setFSMVariable [""taskLadder"", []];" \n
+       "" \n
+       "//	both ladders are being constantly updated with tasks the subject currently has" \n
+       "" \n
+       "_this spawn {" \n
+       "	_subject = (_this select 0);" \n
+       "	_added = [];" \n
+       "	while {alive _subject && (isPlayer _subject || _subject == leader player)} do {" \n
+       "		{" \n
+       "			if (typeName (BIS_missionScope getVariable (_x select 0)) == ""TASK"" && {_x in (BIS_taskHandler getFSMVariable ""taskLadder"")} count (BIS_missionScope getVariable ((_x select 0) + ""taskArray"")) == 0) then {" \n
+       "				BIS_taskHandler setFSMVariable [""priorityLadder"", (BIS_taskHandler getFSMVariable ""priorityLadder"") + [_x]];" \n
+       "				{" \n
+       "					if (_x in simpleTasks _subject) then {BIS_taskHandler setFSMVariable [""taskLadder"", (BIS_taskHandler getFSMVariable ""taskLadder"") + [_x]]}" \n
+       "				} forEach (BIS_missionScope getVariable ((_x select 0) + ""taskArray""))" \n
+       "			}" \n
+       "		} forEach (_this select 1);" \n
+       "		sleep 1;" \n
+       "	}" \n
+       "};" \n
+       "" \n
+       "_findClosestTask = {" \n
+       "	_pool = _this;" \n
+       "	_ret = """";" \n
+       "	_which = _pool select 0;" \n
+       "	{if (!(isNil {taskDestination (BIS_missionScope getVariable _x)})) then {_which = _x}} forEach _pool;" \n
+       "	_sourcePos = position _subject;" \n
+       "	{if (!(isNil {taskDestination (BIS_missionScope getVariable _x)})) then {" \n
+       "		if ((taskDestination (BIS_missionScope getVariable _which)) distance _sourcePos > (taskDestination (BIS_missionScope getVariable _x)) distance _sourcePos) then {_which = _x}" \n
+       "	}} forEach _pool;" \n
+       "	_which" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "has_some_tasks">*/
+        class has_some_tasks
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="update_tasks_lis";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count (simpleTasks _subject) > 0 && {taskCompleted _x} count (BIS_taskHandler getFSMVariable ""TaskLadder"") < count (BIS_taskHandler getFSMVariable ""TaskLadder"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "update_tasks_lis">*/
+    class update_tasks_lis
+    {
+      name = "update_tasks_lis";
+      itemno = 2;
+      init = /*%FSM<STATEINIT""">*/"//	all tasks created for the subject are stored here so we can find out that a new task has been created for him" \n
+       "" \n
+       "{" \n
+       "	_title = (_x select 0);" \n
+       "	{" \n
+       "		if (_x in simpleTasks _subject && !(_x in _taskList)) then {_taskList = _taskList + [_x]}" \n
+       "	} forEach (BIS_missionScope getVariable (_title + ""taskArray""))" \n
+       "} forEach (BIS_taskHandler getFSMVariable ""priorityLadder"");" \n
+       "" \n
+       "//	we also need to store completed tasks so we can find out that another task was completed" \n
+       "" \n
+       "{" \n
+       "	if (taskCompleted _x) then {_completed = _completed + [_x]}" \n
+       "} forEach _taskList;" \n
+       "" \n
+       "//	last task that has been created" \n
+       "" \n
+       "if (!(_lastAdded in simpleTasks _subject)) then {_lastAdded = (BIS_missionScope getVariable (((BIS_taskHandler getFSMVariable ""priorityLadder"") select (count (BIS_taskHandler getFSMVariable ""priorityLadder"") - 1)) select 0))};" \n
+       "" \n
+       "textLogFormat [""[Task Handler] :: Updating task list for %1"", _subject];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "no_task_set_as_c">*/
+        class no_task_set_as_c
+        {
+          itemno = 17;
+          priority = 3.000000;
+          to="find_next_and_set";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{" \n
+           "	(currentTask _subject) in (BIS_missionScope getVariable ((_x select 0) + ""taskArray""))" \n
+           "} count (BIS_taskHandler getFSMVariable ""priorityLadder"") == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "new_task">*/
+        class new_task
+        {
+          itemno = 3;
+          priority = 2.000000;
+          to="___nothing___1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count (simpleTasks _subject) > count _taskList &&" \n
+           "count (BIS_taskHandler getFSMVariable ""priorityLadder"") == count (simpleTasks _subject) &&" \n
+           "count (BIS_taskHandler getFSMVariable ""taskLadder"") == count (simpleTasks _subject)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "task_completed">*/
+        class task_completed
+        {
+          itemno = 4;
+          priority = 1.000000;
+          to="was_it_set_as_current";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"({taskCompleted _x && !(_x in _completed)} count _taskList > 0) || (taskCompleted (currentTask _subject) && !(isNull (currentTask _subject)))"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "hard_termination">*/
+        class hard_termination
+        {
+          itemno = 25;
+          priority = 0.000000;
+          to="terminate";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_subject getVariable ""BIS_taskHandler_stop"" || !(alive _subject)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "was_it_set_as_current">*/
+    class was_it_set_as_current
+    {
+      name = "was_it_set_as_current";
+      itemno = 5;
+      init = /*%FSM<STATEINIT""">*/"{" \n
+       "	if (taskCompleted _x && !(_x in _completed)) then {_lastCompleted = _x}" \n
+       "} forEach _taskList;" \n
+       "" \n
+       "textLogFormat [""[Task Handler] :: %1 completed a task"", _subject];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "yes">*/
+        class yes
+        {
+          itemno = 6;
+          priority = 1.000000;
+          to="are_there_any_more";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(currentTask _subject) == _lastCompleted || taskCompleted (currentTask _subject)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no">*/
+        class no
+        {
+          itemno = 7;
+          priority = 0.000000;
+          to="update_tasks_lis";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "was_the_current">*/
+    class was_the_current
+    {
+      name = "was_the_current";
+      itemno = 8;
+      init = /*%FSM<STATEINIT""">*/"textLogFormat [""[Task Handler] :: Some of %1's new tasks are higher priority than the current one"", _subject];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "yes">*/
+        class yes
+        {
+          itemno = 14;
+          priority = 1.000000;
+          to="update_tasks_lis";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"currentTask _subject != _lastAutoAssigned"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no">*/
+        class no
+        {
+          itemno = 15;
+          priority = 0.000000;
+          to="find_next_and_set";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "is_any_of_them_higer">*/
+    class is_any_of_them_higer
+    {
+      name = "is_any_of_them_higer";
+      itemno = 9;
+      init = /*%FSM<STATEINIT""">*/"_lastAddedPool = [];" \n
+       "" \n
+       "{" \n
+       "	if (!(_x in _taskList) && (BIS_taskHandler getFSMVariable ""taskLadder"") find _x >= 0) then {_lastAddedPool = _lastAddedPool + [_x]}" \n
+       "} forEach (simpleTasks _subject);" \n
+       "" \n
+       "_lastAdded = _lastAddedPool select ((count _lastAddedPool) - 1);" \n
+       "" \n
+       "textLogFormat [""[Task Handler] :: Scanned for all %2's new tasks, they are: %1"", _lastAddedPool, _subject];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "yes">*/
+        class yes
+        {
+          itemno = 11;
+          priority = 1.000000;
+          to="was_the_current";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{" \n
+           "	((BIS_taskHandler getFSMVariable ""priorityLadder"") select ((BIS_taskHandler getFSMVariable ""taskLadder"") find _x)) select 1 <" \n
+           "	((BIS_taskHandler getFSMVariable ""priorityLadder"") select ((BIS_taskHandler getFSMVariable ""taskLadder"") find (currentTask _subject))) select 1" \n
+           "} count _lastAddedPool > 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no">*/
+        class no
+        {
+          itemno = 12;
+          priority = 0.000000;
+          to="update_tasks_lis";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"if (_lastAdded in (BIS_taskHandler getFSMVariable ""taskLadder"")) then {true} else {false}"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "find_next_and_set">*/
+    class find_next_and_set
+    {
+      name = "find_next_and_set";
+      itemno = 16;
+      init = /*%FSM<STATEINIT""">*/"_findHis = {(BIS_missionScope getVariable (_this + ""TaskArray"")) select ((BIS_missionScope getVariable (_this + ""Objects"")) find _subject)};" \n
+       "" \n
+       "{" \n
+       "	if (((_x select 0) call _findHis) in simpleTasks _subject && !(taskCompleted (BIS_missionScope getVariable (_x select 0)))) then {_remainingPriorities = _remainingPriorities + [_x select 1]}" \n
+       "} forEach (BIS_taskHandler getFSMVariable ""priorityLadder"");" \n
+       "" \n
+       "private [""_which""];" \n
+       "_which = """";" \n
+       "{if (((_x select 0) call _findHis) in simpleTasks _subject) then {_which = _x}} forEach (BIS_taskHandler getFSMVariable ""priorityLadder"");" \n
+       "" \n
+       "_topPrio = (_remainingPriorities call BIS_fnc_lowestNum);" \n
+       "_samePrioPool = [];" \n
+       "" \n
+       "{" \n
+       "	if (((_x select 0) call _findHis) in simpleTasks _subject && (_x select 1) == _topPrio && {_x == currentTask _subject} count (BIS_missionScope getVariable ((_x select 0) + ""taskArray"")) == 0 && !(taskCompleted (BIS_missionScope getVariable (_x select 0)))) then {" \n
+       "		_samePrioPool = _samePrioPool + [_x select 0];" \n
+       "	}" \n
+       "} forEach (BIS_taskHandler getFSMVariable ""priorityLadder"");" \n
+       "" \n
+       "_which = (_samePrioPool call _findClosestTask);" \n
+       "" \n
+       "_nic = [objNull, _subject, rSETCURRENTTASK, _which] call RE;" \n
+       "" \n
+       "_remainingPriorities = [];" \n
+       "" \n
+       "_lastAutoAssigned = (BIS_missionScope getVariable ((_which + ""taskArray"")) select ((BIS_missionScope getVariable (_which + ""Objects"")) find _subject));" \n
+       "" \n
+       "textLogFormat [""[Task Handler] :: Setting highest priority task (%1) as current for %2"", _which, _subject];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "has_some_tasks">*/
+        class has_some_tasks
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="update_tasks_lis";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count (simpleTasks _subject) > 0 && {taskCompleted _x} count (BIS_taskHandler getFSMVariable ""TaskLadder"") < count (BIS_taskHandler getFSMVariable ""TaskLadder"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing__">*/
+    class ___nothing__
+    {
+      name = "___nothing__";
+      itemno = 20;
+      init = /*%FSM<STATEINIT""">*/"textLogFormat [""[Task Handler] :: No more tasks to set as current for %1"", _subject];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "has_some_tasks">*/
+        class has_some_tasks
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="update_tasks_lis";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count (simpleTasks _subject) > 0 && {taskCompleted _x} count (BIS_taskHandler getFSMVariable ""TaskLadder"") < count (BIS_taskHandler getFSMVariable ""TaskLadder"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "are_there_any_more">*/
+    class are_there_any_more
+    {
+      name = "are_there_any_more";
+      itemno = 21;
+      init = /*%FSM<STATEINIT""">*/"textLogFormat [""[Task Handler] :: %1's last task was set as current"", _subject];" \n
+       "" \n
+       "_t = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "yes">*/
+        class yes
+        {
+          itemno = 18;
+          priority = 1.000000;
+          to="find_next_and_set";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count (simpleTasks _subject) > 0 &&" \n
+           "{taskCompleted _x} count (BIS_taskHandler getFSMVariable ""TaskLadder"") < count (BIS_taskHandler getFSMVariable ""TaskLadder"") &&" \n
+           "time > _t + 1.5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no">*/
+        class no
+        {
+          itemno = 19;
+          priority = 0.000000;
+          to="___nothing__";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"time > _t + 1.5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___1">*/
+    class ___nothing___1
+    {
+      name = "___nothing___1";
+      itemno = 22;
+      init = /*%FSM<STATEINIT""">*/"textLogFormat [""[Task Handler] :: New task added for %1"", _subject];" \n
+       "" \n
+       "_t = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "wait_for_other_t">*/
+        class wait_for_other_t
+        {
+          itemno = 23;
+          priority = 0.000000;
+          to="is_any_of_them_higer";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"//	in case that more tasks were added at once, we need to be sure that we picked the one with highest priority" \n
+           "" \n
+           "time > _t + 1.5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "terminate">*/
+    class terminate
+    {
+      name = "terminate";
+      itemno = 26;
+      init = /*%FSM<STATEINIT""">*/"textLogFormat [""[Task Handler] :: Terminating for %1"", _subject];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Init__set_up_pri";
+  finalStates[] =
+  {
+    "terminate",
+  };
+};
+/*%FSM</COMPILE>*/

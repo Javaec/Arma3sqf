@@ -1,0 +1,261 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, Sector">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"START",0,250,-400.000000,-350.000000,-300.000000,-300.000000,0.000000,"START"};
+item1[] = {"Players_Far",4,218,-475.000000,-125.000000,-375.000000,-75.000000,0.000000,"Players" \n "Far"};
+item2[] = {"Disable_Sector",2,250,-475.000000,-50.000000,-375.000000,0.000000,0.000000,"Disable" \n "Sector"};
+item3[] = {"Players_Near",4,218,-325.000000,-125.000000,-225.000000,-75.000000,0.000000,"Players" \n "Near"};
+item4[] = {"Enable_Sector",2,250,-325.000000,-50.000000,-225.000000,0.000000,0.000000,"Enable" \n "Sector"};
+item5[] = {"Captured",4,218,-400.000000,25.000000,-300.000000,75.000000,1.000000,"Captured"};
+item6[] = {"Captured",1,4346,-400.000000,100.000000,-300.000000,150.000000,0.000000,"Captured"};
+item7[] = {"Init",4,218,-400.000000,-275.000000,-300.000000,-225.000000,0.000000,"Init"};
+item8[] = {"Init",2,250,-400.000000,-200.000000,-300.000000,-150.000000,0.000000,"Init"};
+link0[] = {0,7};
+link1[] = {1,4};
+link2[] = {2,1};
+link3[] = {2,5};
+link4[] = {3,2};
+link5[] = {4,3};
+link6[] = {4,5};
+link7[] = {5,6};
+link8[] = {7,8};
+link9[] = {8,1};
+link10[] = {8,3};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,9,6316128,1,-680.328369,-80.328293,181.248047,-418.752075,781,925,1};
+window[] = {2,-1,-1,-1,-1,866,-1614,-531,96,3,798};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Sector";
+        class States
+        {
+                /*%FSM<STATE "START">*/
+                class START
+                {
+                        name = "START";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_sector = _this select 0;" \n
+                         "_logic = _this select 1;" \n
+                         "" \n
+                         "_playerSides = _logic getvariable [""playerSides"",[]];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Init">*/
+                                class Init
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isnil {_sector getvariable ""areas""}"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Disable_Sector">*/
+                class Disable_Sector
+                {
+                        name = "Disable_Sector";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"if (count _editingAreas > 0) then {" \n
+                         "	{" \n
+                         "		[bis_curator,_x] call BIS_fnc_curatorRemoveEditingArea;" \n
+                         "	} foreach _editingAreas;" \n
+                         "	_editingAreas = [];" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Captured">*/
+                                class Captured
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="Captured";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!simulationenabled _sector || isnull _sector"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Players_Far">*/
+                                class Players_Far
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Enable_Sector";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"if (time > _time) then {" \n
+                                         "	_time = time + 1;" \n
+                                         "	{" \n
+                                         "		{side _x in _playerSides} count list _x > 0" \n
+                                         "	} count _lockAreas == 0" \n
+                                         "} else {" \n
+                                         "	false" \n
+                                         "};"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Enable_Sector">*/
+                class Enable_Sector
+                {
+                        name = "Enable_Sector";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_editingAreas = [];" \n
+                         "{" \n
+                         "	_editingArea = [" \n
+                         "		bis_curator," \n
+                         "		position _x," \n
+                         "		triggerarea _x select 0" \n
+                         "	] call BIS_fnc_curatorAddEditingArea;" \n
+                         "	_editingAreas set [count _editingAreas,_editingArea];" \n
+                         "} foreach _areas;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Captured">*/
+                                class Captured
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="Captured";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!simulationenabled _sector || isnull _sector"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Players_Near">*/
+                                class Players_Near
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Disable_Sector";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"if (time > _time) then {" \n
+                                         "	_time = time + 1;" \n
+                                         "	{" \n
+                                         "		{side _x in _playerSides} count list _x > 0" \n
+                                         "	} count _lockAreas > 0" \n
+                                         "} else {" \n
+                                         "	false" \n
+                                         "};"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Captured">*/
+                class Captured
+                {
+                        name = "Captured";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"if (count _editingAreas > 0) then {" \n
+                         "	{" \n
+                         "		[bis_curator,_x] call BIS_fnc_curatorRemoveEditingArea;" \n
+                         "	} foreach _editingAreas;" \n
+                         "};" \n
+                         "" \n
+                         "_owner = _sector getvariable [""owner"",sideunknown];" \n
+                         "_owner call bis_fnc_log;" \n
+                         "{" \n
+                         "	_message = if (_x == _owner) then {""BIS_sectorCaptured""} else {""BIS_sectorNotCaptured""};" \n
+                         "	[" \n
+                         "		[_message,[_logic],""BIS_fnc_moduleMPTypeSeize_missionConversations""]," \n
+                         "		""bis_fnc_missionConversations""," \n
+                         "		_x" \n
+                         "	] call bis_fnc_mp;" \n
+                         "} foreach _playersides;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"_areas = _sector getvariable ""areas"";" \n
+                         "" \n
+                         "_lockAreas = [];" \n
+                         "{" \n
+                         "	if (_x iskindof ""MiscLock_F"") then {" \n
+                         "		{" \n
+                         "			if (_x iskindof ""EmptyDetector"") then {" \n
+                         "				_x settriggeractivation [""any"",""present"",false];" \n
+                         "				_x settriggerstatements [""false"","""",""""];" \n
+                         "				_x settriggertype ""none"";" \n
+                         "				_lockAreas set [count _lockAreas,_x];" \n
+                         "			}" \n
+                         "		} foreach (synchronizedobjects _x);" \n
+                         "	};" \n
+                         "} foreach (synchronizedobjects _sector);" \n
+                         "" \n
+                         "if (count _lockAreas == 0) then {_lockAreas = _areas;};" \n
+                         "" \n
+                         "{" \n
+                         "	_xPos = position _x;" \n
+                         "	_xArea = triggerarea _x;" \n
+                         "	_xSize = (_xArea select 0) max (_xArea select 1);" \n
+                         "	[_xPos,_xSize] call bis_fnc_curatorAutomaticPositions;" \n
+                         "} foreach _areas;" \n
+                         "" \n
+                         "_editingAreas = [];" \n
+                         "_time = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Players_Near">*/
+                                class Players_Near
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Disable_Sector";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"if (time > _time) then {" \n
+                                         "	_time = time + 1;" \n
+                                         "	{" \n
+                                         "		{side _x in _playerSides} count list _x > 0" \n
+                                         "	} count _lockAreas > 0" \n
+                                         "} else {" \n
+                                         "	false" \n
+                                         "};"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Players_Far">*/
+                                class Players_Far
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Enable_Sector";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"if (time > _time) then {" \n
+                                         "	_time = time + 1;" \n
+                                         "	{" \n
+                                         "		{side _x in _playerSides} count list _x > 0" \n
+                                         "	} count _lockAreas == 0" \n
+                                         "} else {" \n
+                                         "	false" \n
+                                         "};"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="START";
+        finalStates[] =
+        {
+                "Captured",
+        };
+};
+/*%FSM</COMPILE>*/

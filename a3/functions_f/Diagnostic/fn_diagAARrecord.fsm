@@ -1,0 +1,458 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, AAR Record">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"START",0,250,-125.000000,-475.000000,-25.000000,-425.000000,0.000000,"START"};
+item1[] = {"Wait",8,218,-125.000000,-100.000000,-25.000000,-50.000000,0.000000,"Wait"};
+item2[] = {"Loop_Init",2,250,-125.000000,-25.000000,-25.000000,25.000000,0.000000,"Loop Init"};
+item3[] = {"Loop",4,218,0.000000,-25.000000,100.000000,25.000000,1.000000,"Loop"};
+item4[] = {"Get_unit_data",2,250,0.000000,50.000000,100.000000,100.000000,0.000000,"Get unit" \n "data"};
+item5[] = {"Wait",4,218,-250.000000,-25.000000,-150.000000,25.000000,0.000000,"Wait"};
+item6[] = {"End",8,218,-125.000000,50.000000,-25.000000,100.000000,0.000000,"End"};
+item7[] = {"Save",2,250,-250.000000,50.000000,-150.000000,100.000000,0.000000,"Save"};
+item8[] = {"Player_dead",4,218,-250.000000,125.000000,-150.000000,175.000000,1.000000,"Player dead"};
+item9[] = {"EXIT",1,250,-250.000000,350.000000,-150.000000,400.000000,0.000000,"EXIT"};
+item10[] = {"One_last_save",2,250,-250.000000,200.000000,-150.000000,250.000000,0.000000,"One last" \n "save"};
+item11[] = {"Exit",4,218,-250.000000,275.000000,-150.000000,325.000000,1.000000,"Exit"};
+item12[] = {"Return",8,218,-375.000000,200.000000,-275.000000,250.000000,0.000000,"Return"};
+item13[] = {"Return",2,250,-375.000000,-25.000000,-275.000000,25.000000,0.000000,"Return"};
+item14[] = {"Recording_ON",4,218,-125.000000,-400.000000,-25.000000,-350.000000,1.000000,"Recording" \n "ON"};
+item15[] = {"Init",2,4346,-125.000000,-175.000000,-25.000000,-125.000000,0.000000,"Init"};
+item16[] = {"Recording_OFF",8,218,0.000000,-475.000000,100.000000,-425.000000,1.000000,"Recording" \n "OFF"};
+item17[] = {"Exit_1",1,250,125.000000,-475.000000,225.000000,-425.000000,0.000000,"Exit"};
+item18[] = {"Record_mismatch",4,218,-125.000000,125.000000,-25.000000,175.000000,2.000000,"Record mismatch"};
+item19[] = {"EXIT_2",1,250,-125.000000,350.000000,-25.000000,400.000000,0.000000,"EXIT"};
+item20[] = {"Check_mission_and",2,250,-125.000000,-325.000000,-25.000000,-275.000000,0.000000,"Check" \n "mission" \n "and author"};
+item21[] = {"Mission",4,218,-125.000000,-250.000000,-25.000000,-200.000000,1.000000,"Mission"};
+item22[] = {"Intro___Outro",8,218,0.000000,-325.000000,100.000000,-275.000000,0.000000,"Intro / Outro"};
+link0[] = {0,14};
+link1[] = {0,16};
+link2[] = {1,2};
+link3[] = {2,3};
+link4[] = {3,4};
+link5[] = {4,3};
+link6[] = {4,6};
+link7[] = {5,2};
+link8[] = {6,7};
+link9[] = {7,5};
+link10[] = {7,8};
+link11[] = {7,18};
+link12[] = {8,10};
+link13[] = {10,11};
+link14[] = {10,12};
+link15[] = {11,9};
+link16[] = {12,13};
+link17[] = {13,5};
+link18[] = {14,20};
+link19[] = {15,1};
+link20[] = {16,17};
+link21[] = {18,19};
+link22[] = {20,21};
+link23[] = {20,22};
+link24[] = {21,15};
+link25[] = {22,17};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,23,6316128,1,-327.739075,254.440186,455.608154,-630.240845,638,955,1};
+window[] = {2,-1,-1,-1,-1,771,22,982,22,3,655};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "AAR Record";
+        class States
+        {
+                /*%FSM<STATE "START">*/
+                class START
+                {
+                        name = "START";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_enabled = getnumber (missionconfigfile >> ""diagAAR"") > 0;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Recording_OFF">*/
+                                class Recording_OFF
+                                {
+                                        itemno = 16;
+                                        priority = 1.000000;
+                                        to="Exit_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!_enabled"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Recording_ON">*/
+                                class Recording_ON
+                                {
+                                        itemno = 14;
+                                        priority = 1.000000;
+                                        to="Check_mission_and";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_enabled" \n
+                                         "&&" \n
+                                         "time > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Loop_Init">*/
+                class Loop_Init
+                {
+                        name = "Loop_Init";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"_allunits = switch _units do {" \n
+                         "	case 1: {" \n
+                         "		units player" \n
+                         "	};" \n
+                         "	case 2: {" \n
+                         "		allunits + alldead" \n
+                         "	};" \n
+                         "	default {" \n
+                         "		[player]" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "_allunitsCount = count _allunits;" \n
+                         "_a = 0;" \n
+                         "_array = [time];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Loop">*/
+                                class Loop
+                                {
+                                        itemno = 3;
+                                        priority = 1.000000;
+                                        to="Get_unit_data";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_a < _allunitsCount"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Get_unit_data">*/
+                class Get_unit_data
+                {
+                        name = "Get_unit_data";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_unit = (_allunits select _a);" \n
+                         "_veh = vehicle _unit;" \n
+                         "" \n
+                         "_side = [east,west,resistance,civilian] find (side _unit);" \n
+                         "if (_side >= 0) then {" \n
+                         "	_array set [" \n
+                         "		count _array," \n
+                         "		[" \n
+                         "			str _unit," \n
+                         "			typeof _veh," \n
+                         "			_side," \n
+                         "			damage _unit," \n
+                         "			position _veh," \n
+                         "			direction _veh," \n
+                         "			_unit == effectivecommander _veh" \n
+                         "		]" \n
+                         "	];" \n
+                         "};" \n
+                         "" \n
+                         "_a = _a + 1;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Loop">*/
+                                class Loop
+                                {
+                                        itemno = 3;
+                                        priority = 1.000000;
+                                        to="Get_unit_data";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_a < _allunitsCount"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "End">*/
+                                class End
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="Save";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Save">*/
+                class Save
+                {
+                        name = "Save";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"_time = time + _delay;" \n
+                         "" \n
+                         "_terminate = false;" \n
+                         "with profilenamespace do {" \n
+                         "	_terminate = if (!isnil ""BIS_fnc_diagAAR_data"") then {" \n
+                         "		if (count BIS_fnc_diagAAR_data > _missionID2) then {" \n
+                         "			_missionArray = BIS_fnc_diagAAR_data select _missionID2;" \n
+                         "			if (count _missionArray > _id) then {" \n
+                         "				_recordArray = _missionArray select _id;" \n
+                         "				_recordMeta = _recordArray select 0;" \n
+                         "				_recordSeed = _recordMeta select 1;" \n
+                         "				if (_seed == _recordSeed) then {" \n
+                         "					_recordArray set [count _recordArray,_array];" \n
+                         "					//saveprofilenamespace;" \n
+                         "					false" \n
+                         "				} else {true};" \n
+                         "			} else {true};" \n
+                         "		} else {true};" \n
+                         "	} else {true};" \n
+                         "};" \n
+                         "" \n
+                         "" \n
+                         "//[count _allunits,_array] call bis_fnc_log;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Record_mismatch">*/
+                                class Record_mismatch
+                                {
+                                        itemno = 18;
+                                        priority = 2.000000;
+                                        to="EXIT_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_terminate"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Player_dead">*/
+                                class Player_dead
+                                {
+                                        itemno = 8;
+                                        priority = 1.000000;
+                                        to="One_last_save";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive player"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Wait">*/
+                                class Wait
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Loop_Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "EXIT">*/
+                class EXIT
+                {
+                        name = "EXIT";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"""Debug recording stopped - player died"" call bis_fnc_log;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "One_last_save">*/
+                class One_last_save
+                {
+                        name = "One_last_save";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Exit">*/
+                                class Exit
+                                {
+                                        itemno = 11;
+                                        priority = 1.000000;
+                                        to="EXIT";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_lastsave"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Return">*/
+                                class Return
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Return";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Return">*/
+                class Return
+                {
+                        name = "Return";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"_lastsave = true;" \n
+                         "_time = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Wait">*/
+                                class Wait
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Loop_Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/"_fnc_scriptName = ""BIS_fnc_diagAAR"";" \n
+                         "_version = 1.01;" \n
+                         "_seed = round (random 9999);" \n
+                         "" \n
+                         "//--- Who to record?" \n
+                         "_units = getnumber (missionconfigfile >> ""diagAARunits"");" \n
+                         "" \n
+                         "//--- Delay between recording steps" \n
+                         "_delay = getnumber (missionconfigfile >> ""diagAARdelay"");" \n
+                         "_lastsave = false;" \n
+                         "" \n
+                         "_missionName = missionname;" \n
+                         "" \n
+                         "_id = -1;" \n
+                         "_missionID = -1;" \n
+                         "_missionID2 = -1;" \n
+                         "" \n
+                         "with profilenamespace do {" \n
+                         "" \n
+                         "	if (isnil ""BIS_fnc_diagAAR_data"") then {BIS_fnc_diagAAR_data = [];};" \n
+                         "" \n
+                         "	_missionID = BIS_fnc_diagAAR_data find _missionName;" \n
+                         "	if (_missionID < 0) then {" \n
+                         "		_missionID = count BIS_fnc_diagAAR_data;" \n
+                         "		BIS_fnc_diagAAR_data set [_missionID,_missionName]; //--- Mission name" \n
+                         "		BIS_fnc_diagAAR_data set [_missionID + 1,[worldname]]; //--- Mission meta data" \n
+                         "		BIS_fnc_diagAAR_data set [_missionID + 2,[]]; //--- Mission recordings" \n
+                         "	};" \n
+                         "	_missionID2 = _missionID + 2;" \n
+                         "" \n
+                         "	_missionArray = BIS_fnc_diagAAR_data select (_missionID + 2);" \n
+                         "" \n
+                         "	//--- Store recording meta data" \n
+                         "	_id = count _missionArray;" \n
+                         "	_missionArray set [_id,[[_version,_seed,str player,profileName,_units,_delay]]];" \n
+                         "" \n
+                         "};" \n
+                         "" \n
+                         "addmissioneventhandler [""ended"",{saveprofilenamespace}];" \n
+                         "" \n
+                         "" \n
+                         "[""Debug recording started | Units: %1 | Delay: %2"",_units,_delay] call bis_fnc_log;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Wait">*/
+                                class Wait
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Loop_Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Exit_1">*/
+                class Exit_1
+                {
+                        name = "Exit_1";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "EXIT_2">*/
+                class EXIT_2
+                {
+                        name = "EXIT_2";
+                        itemno = 19;
+                        init = /*%FSM<STATEINIT""">*/"""Debug recording stopped - recording data mismatch"" call bis_fnc_log;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Check_mission_and">*/
+                class Check_mission_and
+                {
+                        name = "Check_mission_and";
+                        itemno = 20;
+                        init = /*%FSM<STATEINIT""">*/"_enabledAuthor = getnumber (missionConfigFile >> ""diagAARauthor"") > 0;" \n
+                         "_author = gettext (missionConfigFile >> ""dev"");"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Mission">*/
+                                class Mission
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isnull (finddisplay 46)" \n
+                                         "&&" \n
+                                         "(profileName != _author || _enabledAuthor)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Intro___Outro">*/
+                                class Intro___Outro
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="Exit_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="START";
+        finalStates[] =
+        {
+                "EXIT",
+                "Exit_1",
+                "EXIT_2",
+        };
+};
+/*%FSM</COMPILE>*/

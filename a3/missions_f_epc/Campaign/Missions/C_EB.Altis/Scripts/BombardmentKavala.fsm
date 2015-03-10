@@ -1,0 +1,202 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, BombardmentKavala">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-40.348839,-115.116272,49.651161,-65.116272,0.000000,"Start"};
+item1[] = {"_",8,218,-40.000000,-40.000000,50.000000,10.000000,0.000000,""};
+item2[] = {"Crossroad",2,250,-40.000000,30.000000,50.000000,80.000000,0.000000,"Crossroad"};
+item3[] = {"Enough",4,218,70.000000,100.000000,160.000000,150.000000,0.000000,"Enough"};
+item4[] = {"Ready",4,218,-40.000000,100.000000,50.000000,150.000000,0.000000,"Ready"};
+item5[] = {"Feuer_frei_",2,250,-40.000000,170.000000,50.000000,220.000000,0.000000,"Feuer frei!"};
+item6[] = {"Timeout",4,218,-150.000000,100.000000,-60.000000,150.000000,0.000000,"Timeout"};
+item7[] = {"Restore_ammo",2,250,-150.000000,30.000000,-60.000000,80.000000,0.000000,"Restore" \n "ammo"};
+item8[] = {"END",1,4346,70.000000,170.000000,160.000000,220.000000,0.000000,"END"};
+item9[] = {"",7,210,111.000000,50.999996,119.000000,59.000004,0.000000,""};
+item10[] = {"",7,210,-109.000000,190.999985,-100.999992,199.000000,0.000000,""};
+item11[] = {"",7,210,-109.000000,-19.000004,-100.999992,-10.999996,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,4};
+link3[] = {2,9};
+link4[] = {3,8};
+link5[] = {4,5};
+link6[] = {5,10};
+link7[] = {6,7};
+link8[] = {7,11};
+link9[] = {9,3};
+link10[] = {10,6};
+link11[] = {11,1};
+globals[] = {10.000000,1,0,0,0,640,480,1,13,6316128,1,-300.000000,300.000000,273.076904,-167.521378,1404,1031,1};
+window[] = {2,-1,-1,-1,-1,900,50,1490,50,3,1422};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "BombardmentKavala";
+        class States
+        {
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"// **********************" \n
+                         "// BIS_SPG_03 shelling Kavala" \n
+                         "// **********************" \n
+                         "" \n
+                         "BIS_KavalaShells = 0;" \n
+                         "" \n
+                         "_arty = _this;" \n
+                         "_center = markerPos ""BIS_mrkKavalaTarget"";" \n
+                         "_radius = 1000;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Crossroad";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Crossroad">*/
+                class Crossroad
+                {
+                        name = "Crossroad";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"_pos = [" \n
+                         "	(_center select 0) - _radius + (2 * random _radius)," \n
+                         "	(_center select 1) - _radius + (2 * random _radius)," \n
+                         "	0" \n
+                         "];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Enough">*/
+                                class Enough
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="END";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canFire BIS_SPG_03) or " \n
+                                         "!(canMove BIS_SPG_03) or" \n
+                                         "(BIS_KavalaShells > 100)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Ready">*/
+                                class Ready
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Feuer_frei_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(canFire BIS_SPG_03) and " \n
+                                         "(canMove BIS_SPG_03) and" \n
+                                         "(BIS_KavalaShells <= 100)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Feuer_frei_">*/
+                class Feuer_frei_
+                {
+                        name = "Feuer_frei_";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "_arty commandArtilleryFire [" \n
+                         "	_pos," \n
+                         "	getArtilleryAmmo [_arty] select 0," \n
+                         "	1" \n
+                         "];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="Restore_ammo";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > ((_t + 20) + (random 5))" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Restore_ammo">*/
+                class Restore_ammo
+                {
+                        name = "Restore_ammo";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"_arty setVehicleAmmo 1;" \n
+                         "" \n
+                         "BIS_KavalaShells = BIS_KavalaShells + 1;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Crossroad";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END">*/
+                class END
+                {
+                        name = "END";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"_arty setVehicleAmmo 0.35;" \n
+                         "" \n
+                         "{_arty removeMagazines _x} forEach" \n
+                         "[" \n
+                         "	""2Rnd_155mm_Mo_Cluster""," \n
+                         "	""2Rnd_155mm_Mo_Guided""," \n
+                         "	""2Rnd_155mm_Mo_LG""," \n
+                         "	""6Rnd_155mm_Mo_AT_mine""," \n
+                         "	""6Rnd_155mm_Mo_mine""," \n
+                         "	""6Rnd_155mm_Mo_smoke""" \n
+                         "];" \n
+                         "" \n
+                         "" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Start";
+        finalStates[] =
+        {
+                "END",
+        };
+};
+/*%FSM</COMPILE>*/

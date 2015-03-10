@@ -1,0 +1,807 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, VR: Commanding Movement - Stage 2">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-40.000000,-260.000000,50.000000,-210.000000,0.000000,"Start"};
+item1[] = {"Mission_started",4,218,-40.000000,-190.000000,50.000000,-140.000000,0.000000,"Mission" \n "started"};
+item2[] = {"Move__A",2,250,-40.000000,-120.000000,50.000000,-70.000000,0.000000,"Move:" \n "A"};
+item3[] = {"Done",4,218,-40.000000,-50.000000,50.000000,0.000000,0.000000,"Done"};
+item4[] = {"Formation_Line",2,250,-40.000000,20.000000,50.000000,70.000000,0.000000,"Formation" \n "Line"};
+item5[] = {"Done",4,218,-40.000000,230.000000,50.000000,280.000000,0.000000,"Done"};
+item6[] = {"Move__B",2,250,-40.000000,300.000000,50.000000,350.000000,0.000000,"Move:" \n "B"};
+item7[] = {"Done",4,218,-40.000000,370.000000,50.000000,420.000000,0.000000,"Done"};
+item8[] = {"Formation__Colum",2,250,-40.000000,440.000000,50.000000,490.000000,0.000000,"Formation:" \n "Column"};
+item9[] = {"Done",4,218,-40.000000,510.000000,50.000000,560.000000,0.000000,"Done"};
+item10[] = {"Course_finished",2,250,-40.000000,720.000000,50.000000,770.000000,0.000000,"Course" \n "finished"};
+item11[] = {"Timeout",4,218,-40.000000,790.000000,50.000000,840.000000,0.000000,"Timeout"};
+item12[] = {"END",1,250,-40.000000,860.000000,50.000000,910.000000,0.000000,"END"};
+item13[] = {"Fail",4,218,70.000000,790.000000,160.000000,840.000000,10.000000,"Fail"};
+item14[] = {"TERMINATE",1,250,70.000000,860.000000,160.000000,910.000000,0.000000,"TERMINATE"};
+item15[] = {"",7,210,111.000000,741.000000,118.999992,749.000000,0.000000,""};
+item16[] = {"",7,210,111.000000,461.000031,119.000000,468.999969,0.000000,""};
+item17[] = {"",7,210,111.000000,321.000000,119.000000,329.000000,0.000000,""};
+item18[] = {"",7,210,111.000000,41.000008,119.000000,48.999992,0.000000,""};
+item19[] = {"",7,210,111.000000,-98.999992,119.000000,-91.000008,0.000000,""};
+item20[] = {"Move__C",2,250,-40.000000,580.000000,50.000000,630.000000,0.000000,"Move:" \n "C"};
+item21[] = {"Done",4,218,-40.000000,650.000000,50.000000,700.000000,0.000000,"Done"};
+item22[] = {"",7,210,111.000000,601.000000,118.999992,609.000000,0.000000,""};
+item23[] = {"Hint",2,250,-40.000000,160.000000,50.000000,210.000000,0.000000,"Hint"};
+item24[] = {"Timeout",4,218,-40.000000,90.000000,50.000000,140.000000,0.000000,"Timeout"};
+item25[] = {"",7,210,111.000000,181.000000,119.000000,188.999985,0.000000,""};
+item26[] = {"FAIL",1,250,180.000000,860.000000,280.000000,910.000000,0.000000,"FAIL"};
+item27[] = {"Friendly_fire",4,218,180.000000,790.000000,270.000000,840.000000,0.000000,"Friendly" \n "fire"};
+item28[] = {"",7,210,221.000031,740.999939,228.999954,749.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,19};
+link4[] = {3,4};
+link5[] = {4,18};
+link6[] = {4,24};
+link7[] = {5,6};
+link8[] = {6,7};
+link9[] = {6,17};
+link10[] = {7,8};
+link11[] = {8,9};
+link12[] = {8,16};
+link13[] = {9,20};
+link14[] = {10,11};
+link15[] = {10,15};
+link16[] = {11,12};
+link17[] = {13,14};
+link18[] = {15,13};
+link19[] = {15,28};
+link20[] = {16,22};
+link21[] = {17,16};
+link22[] = {18,25};
+link23[] = {19,18};
+link24[] = {20,21};
+link25[] = {20,22};
+link26[] = {21,10};
+link27[] = {22,15};
+link28[] = {23,5};
+link29[] = {23,25};
+link30[] = {24,23};
+link31[] = {25,17};
+link32[] = {27,26};
+link33[] = {28,27};
+globals[] = {10.000000,1,0,0,0,640,480,1,31,6316128,1,-461.781799,489.263367,1059.811890,-307.730103,717,1031,1};
+window[] = {2,-1,-1,-1,-1,975,125,1565,125,3,735};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "VR: Commanding Movement - Stage 2";
+        class States
+        {
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"player linkItem ""ItemRadio"";" \n
+                         "" \n
+                         "BIS_stageArea = 225;" \n
+                         "" \n
+                         "enablesentences false;" \n
+                         "" \n
+                         "_centerPos = markerPos ""BIS_center"";" \n
+                         "" \n
+                         "_posPlayer = [_centerPos, 20, 0] call BIS_fnc_relPos;" \n
+                         "_pos01 = [_posPlayer, 50,0] call BIS_fnc_relPos;" \n
+                         "_pos02 = [_pos01, 50, 270] call BIS_fnc_relPos;" \n
+                         "_pos03 = [_pos02, 50, 0] call BIS_fnc_relPos;" \n
+                         "" \n
+                         "_posSub01 = [_posPlayer, 5, 25] call BIS_fnc_relPos;" \n
+                         "_posSub02 = [_posPlayer, 5, 335] call BIS_fnc_relPos;" \n
+                         "" \n
+                         "(group player) setBehaviour ""Safe"";" \n
+                         "(group player) setFormation ""Wedge"";" \n
+                         "" \n
+                         "player setPos _posPlayer;" \n
+                         "" \n
+                         "BIS_Subordinate01 = group player createUnit " \n
+                         "[" \n
+                         "	""B_Soldier_VR_F"", " \n
+                         "	_posSub01, " \n
+                         "	[], 0, ""FORM""" \n
+                         "];" \n
+                         "" \n
+                         "//BIS_Subordinate01 addUniform ""U_B_Soldier_VR"";" \n
+                         "[BIS_Subordinate01, 2] call BIS_fnc_VR_equipUnit;" \n
+                         "" \n
+                         "BIS_Subordinate02 = group player createUnit " \n
+                         "[" \n
+                         "	""B_Soldier_VR_F"", " \n
+                         "	_posSub02, " \n
+                         "	[], 0, ""FORM""" \n
+                         "];" \n
+                         "" \n
+                         "//BIS_Subordinate02 addUniform ""U_B_Soldier_VR"";" \n
+                         "[BIS_Subordinate02, 2] call BIS_fnc_VR_equipUnit;" \n
+                         "" \n
+                         "{_x disableAI ""move""} forEach [BIS_Subordinate01,BIS_Subordinate02];" \n
+                         "" \n
+                         "player addWeapon ""arifle_MX_Black_F"";" \n
+                         "player selectWeapon ""arifle_MX_Black_F"";" \n
+                         "" \n
+                         "player switchMove ""amovpercmstpsraswrfldnon"";" \n
+                         "" \n
+                         "_cover01 = [_pos01, 5, 190] call BIS_fnc_relPos;" \n
+                         "_cover02 = [_pos01, 10, 155] call BIS_fnc_relPos;" \n
+                         "_cover03 = [_pos01, 15, 210] call BIS_fnc_relPos;" \n
+                         "_cover04 = [_pos01, 20, 170] call BIS_fnc_relPos;" \n
+                         "_cover05 = [_pos01, 25,185] call BIS_fnc_relPos;" \n
+                         "_cover06 = [_pos01, 30, 195] call BIS_fnc_relPos;" \n
+                         "_cover07 = [_pos01, 35, 180] call BIS_fnc_relPos;" \n
+                         "_cover08 = [_pos01, 35, 170] call BIS_fnc_relPos;" \n
+                         "_cover09 = [_pos01, 40, 177.5] call BIS_fnc_relPos;" \n
+                         "_cover10 = [_pos01, 40, 182.5] call BIS_fnc_relPos;" \n
+                         "_cover11 = [_pos02, 5, 70] call BIS_fnc_relPos;" \n
+                         "_cover12 = [_pos02, 10, 100] call BIS_fnc_relPos;" \n
+                         "_cover13 = [_pos02, 15, 90] call BIS_fnc_relPos;" \n
+                         "_cover14 = [_pos02, 25, 85] call BIS_fnc_relPos;" \n
+                         "_cover15 = [_pos02, 30, 100] call BIS_fnc_relPos;" \n
+                         "_cover16 = [_pos02, 35, 75] call BIS_fnc_relPos;" \n
+                         "_cover17 = [_pos02, 40, 95] call BIS_fnc_relPos;" \n
+                         "_cover18 = [_pos02, 40, 85] call BIS_fnc_relPos;" \n
+                         "_cover19 = [_pos02, 45, 97.5] call BIS_fnc_relPos;" \n
+                         "_cover20 = [_pos02, 45, 80] call BIS_fnc_relPos;" \n
+                         "_cover21 = [_pos03, 5, 165] call BIS_fnc_relPos;" \n
+                         "_cover22 = [_pos03, 10, 195] call BIS_fnc_relPos;" \n
+                         "_cover23 = [_pos03, 15, 180] call BIS_fnc_relPos;" \n
+                         "_cover24 = [_pos03, 25, 175] call BIS_fnc_relPos;" \n
+                         "_cover25 = [_pos03, 25, 160] call BIS_fnc_relPos;" \n
+                         "_cover26 = [_pos03, 30, 200] call BIS_fnc_relPos;" \n
+                         "_cover27 = [_pos03, 35, 165] call BIS_fnc_relPos;" \n
+                         "_cover28 = [_pos03, 40, 180] call BIS_fnc_relPos;" \n
+                         "_cover29 = [_pos03, 40, 155] call BIS_fnc_relPos;" \n
+                         "_cover30 = [_pos03, 45, 195] call BIS_fnc_relPos;" \n
+                         "" \n
+                         "BIS_Cover01 = ""Land_VR_CoverObject_01_kneelHigh_F"" createVehicle _cover01;" \n
+                         "BIS_Cover01 setPos _cover01;" \n
+                         "BIS_Cover01 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover02 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover02;" \n
+                         "BIS_Cover02 setPos _cover02;" \n
+                         "BIS_Cover02 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover03 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover03;" \n
+                         "BIS_Cover03 setPos _cover03;" \n
+                         "BIS_Cover03 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover04 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover04;" \n
+                         "BIS_Cover04 setPos _cover04;" \n
+                         "BIS_Cover04 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover05 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover05;" \n
+                         "BIS_Cover05 setPos _cover05;" \n
+                         "BIS_Cover05 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover06 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover06;" \n
+                         "BIS_Cover06 setPos _cover06;" \n
+                         "BIS_Cover06 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover07 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover07;" \n
+                         "BIS_Cover07 setPos _cover07;" \n
+                         "BIS_Cover07 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover08 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover08;" \n
+                         "BIS_Cover08 setPos _cover08;" \n
+                         "BIS_Cover08 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover09 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover09;" \n
+                         "BIS_Cover09 setPos _cover09;" \n
+                         "BIS_Cover09 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover10 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover10;" \n
+                         "BIS_Cover10 setPos _cover10;" \n
+                         "BIS_Cover10 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover11 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover11;" \n
+                         "BIS_Cover11 setPos _cover11;" \n
+                         "BIS_Cover11 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover12 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover12;" \n
+                         "BIS_Cover12 setPos _cover12;" \n
+                         "BIS_Cover12 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover13 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover13;" \n
+                         "BIS_Cover13 setPos _cover13;" \n
+                         "BIS_Cover13 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover14 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover14;" \n
+                         "BIS_Cover14 setPos _cover14;" \n
+                         "BIS_Cover14 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover15 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover15;" \n
+                         "BIS_Cover15 setPos _cover15;" \n
+                         "BIS_Cover15 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover16 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover16;" \n
+                         "BIS_Cover16 setPos _cover16;" \n
+                         "BIS_Cover16 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover17 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover17;" \n
+                         "BIS_Cover17 setPos _cover17;" \n
+                         "BIS_Cover17 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover18 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover18;" \n
+                         "BIS_Cover18 setPos _cover18;" \n
+                         "BIS_Cover18 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover19 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover19;" \n
+                         "BIS_Cover19 setPos _cover19;" \n
+                         "BIS_Cover19 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover20 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover20;" \n
+                         "BIS_Cover20 setPos _cover20;" \n
+                         "BIS_Cover20 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover21 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover21;" \n
+                         "BIS_Cover21 setPos _cover21;" \n
+                         "BIS_Cover21 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover22 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover22;" \n
+                         "BIS_Cover22 setPos _cover22;" \n
+                         "BIS_Cover22 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover23 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover23;" \n
+                         "BIS_Cover23 setPos _cover23;" \n
+                         "BIS_Cover23 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover24 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover24;" \n
+                         "BIS_Cover24 setPos _cover24;" \n
+                         "BIS_Cover24 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover25 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover25;" \n
+                         "BIS_Cover25 setPos _cover25;" \n
+                         "BIS_Cover25 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover26 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover26;" \n
+                         "BIS_Cover26 setPos _cover26;" \n
+                         "BIS_Cover26 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover27 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover27;" \n
+                         "BIS_Cover27 setPos _cover27;" \n
+                         "BIS_Cover27 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover28 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover28;" \n
+                         "BIS_Cover28 setPos _cover28;" \n
+                         "BIS_Cover28 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover29 = ""Land_VR_CoverObject_01_kneel_F"" createVehicle _cover29;" \n
+                         "BIS_Cover29 setPos _cover29;" \n
+                         "BIS_Cover29 setDir (random 360);" \n
+                         "" \n
+                         "BIS_Cover30 = ""Land_VR_CoverObject_01_standHigh_F"" createVehicle _cover30;" \n
+                         "BIS_Cover30 setPos _cover30;" \n
+                         "BIS_Cover30 setDir (random 360);" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Mission_started">*/
+                                class Mission_started
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Move__A";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_interruptable" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Move__A">*/
+                class Move__A
+                {
+                        name = "Move__A";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"BIS_Flag01 = ""VR_Area_01_square_2x2_yellow_F"" createVehicle _pos01;" \n
+                         "BIS_Flag01 setPos _pos01;" \n
+                         "" \n
+                         "[" \n
+                         "	player," \n
+                         "	""BIS_obj110""," \n
+                         "	[" \n
+                         "		localize ""STR_A3_Task110_desc""," \n
+                         "		localize ""STR_A3_Task110_name""," \n
+                         "		""""" \n
+                         "	]," \n
+                         "	objNull," \n
+                         "	TRUE" \n
+                         "] call BIS_fnc_taskCreate;" \n
+                         "" \n
+                         "BIS_icon attachTo [BIS_Flag01, [0,0,-2]];" \n
+                         "BIS_iconGrp setGroupIconParams [BIS_TT_colorWarning, """", 1, TRUE];" \n
+                         "" \n
+                         "enableSentences true;" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "" \n
+                         "WaitUntil {speed player > 0};" \n
+                         "" \n
+                         "{_x enableAI ""move""} forEach [BIS_Subordinate01,BIS_Subordinate02];" \n
+                         "" \n
+                         "};" \n
+                         "" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Fail">*/
+                                class Fail
+                                {
+                                        itemno = 13;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Friendly_fire">*/
+                                class Friendly_fire
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="FAIL";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(damage BIS_Subordinate01 > 0) or" \n
+                                         "(damage BIS_Subordinate02 > 0)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Done">*/
+                                class Done
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Formation_Line";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player distance BIS_Flag01 < 2.5)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Formation_Line">*/
+                class Formation_Line
+                {
+                        name = "Formation_Line";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"BIS_Flag01 setObjectTexture [0, BIS_inactiveColorTexture];" \n
+                         "" \n
+                         "_t = time;" \n
+                         "" \n
+                         "[""BIS_obj110"", ""Succeeded""] call BIS_fnc_taskSetState;" \n
+                         "" \n
+                         "[" \n
+                         "	player," \n
+                         "	""BIS_obj111""," \n
+                         "	[" \n
+                         "		localize ""STR_A3_Task111_desc""," \n
+                         "		localize ""STR_A3_Task111_name""," \n
+                         "		""""" \n
+                         "	]," \n
+                         "	objNull," \n
+                         "	TRUE" \n
+                         "] call BIS_fnc_taskCreate;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Fail">*/
+                                class Fail
+                                {
+                                        itemno = 13;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Friendly_fire">*/
+                                class Friendly_fire
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="FAIL";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(damage BIS_Subordinate01 > 0) or" \n
+                                         "(damage BIS_Subordinate02 > 0)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 24;
+                                        priority = 0.000000;
+                                        to="Hint";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 3" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Move__B">*/
+                class Move__B
+                {
+                        name = "Move__B";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"BIS_Flag02 = ""VR_Area_01_square_2x2_yellow_F"" createVehicle _pos02;" \n
+                         "BIS_Flag02 setPos _pos02;" \n
+                         "" \n
+                         "[""BIS_obj111"", ""Succeeded""] call BIS_fnc_taskSetState;" \n
+                         "" \n
+                         "[" \n
+                         "	player," \n
+                         "	""BIS_obj112""," \n
+                         "	[" \n
+                         "		localize ""STR_A3_Task112_desc""," \n
+                         "		localize ""STR_A3_Task112_name""," \n
+                         "		""""" \n
+                         "	]," \n
+                         "	objNull," \n
+                         "	TRUE" \n
+                         "] call BIS_fnc_taskCreate;" \n
+                         "" \n
+                         "BIS_icon attachTo [BIS_Flag02, [0,0,-2]];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Fail">*/
+                                class Fail
+                                {
+                                        itemno = 13;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Friendly_fire">*/
+                                class Friendly_fire
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="FAIL";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(damage BIS_Subordinate01 > 0) or" \n
+                                         "(damage BIS_Subordinate02 > 0)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Done">*/
+                                class Done
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Formation__Colum";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player distance BIS_Flag02 < 2.5)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Formation__Colum">*/
+                class Formation__Colum
+                {
+                        name = "Formation__Colum";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"BIS_Flag02 setObjectTexture [0, BIS_inactiveColorTexture];" \n
+                         "" \n
+                         "[""BIS_obj112"", ""Succeeded""] call BIS_fnc_taskSetState;" \n
+                         "" \n
+                         "[" \n
+                         "	player," \n
+                         "	""BIS_obj113""," \n
+                         "	[" \n
+                         "		localize ""STR_A3_Task113_desc""," \n
+                         "		localize ""STR_A3_Task113_name""," \n
+                         "		""""" \n
+                         "	]," \n
+                         "	objNull," \n
+                         "	TRUE" \n
+                         "] call BIS_fnc_taskCreate;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Fail">*/
+                                class Fail
+                                {
+                                        itemno = 13;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Friendly_fire">*/
+                                class Friendly_fire
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="FAIL";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(damage BIS_Subordinate01 > 0) or" \n
+                                         "(damage BIS_Subordinate02 > 0)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Done">*/
+                                class Done
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="Move__C";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"formation (group player) == ""COLUMN""" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Course_finished">*/
+                class Course_finished
+                {
+                        name = "Course_finished";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"BIS_Flag03 setObjectTexture [0, BIS_inactiveColorTexture];" \n
+                         "" \n
+                         "_t = time;" \n
+                         "" \n
+                         "[""BIS_obj114"", ""Succeeded""] call BIS_fnc_taskSetState;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Fail">*/
+                                class Fail
+                                {
+                                        itemno = 13;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Friendly_fire">*/
+                                class Friendly_fire
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="FAIL";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(damage BIS_Subordinate01 > 0) or" \n
+                                         "(damage BIS_Subordinate02 > 0)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="END";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END">*/
+                class END
+                {
+                        name = "END";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"BIS_stage = BIS_stage + 1;" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "" \n
+                         "sleep 4;" \n
+                         "clearRadio;" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "TERMINATE">*/
+                class TERMINATE
+                {
+                        name = "TERMINATE";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"// [] spawn BIS_fnc_VR_stageFailed;" \n
+                         "" \n
+                         "if !(isNil ""_timerSound"") then {terminate _timerSound};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Move__C">*/
+                class Move__C
+                {
+                        name = "Move__C";
+                        itemno = 20;
+                        init = /*%FSM<STATEINIT""">*/"BIS_Flag03 = ""VR_Area_01_square_2x2_yellow_F"" createVehicle _pos03;" \n
+                         "BIS_Flag03 setPos _pos03;" \n
+                         "" \n
+                         "[""BIS_obj113"", ""Succeeded""] call BIS_fnc_taskSetState;" \n
+                         "" \n
+                         "[" \n
+                         "	player," \n
+                         "	""BIS_obj114""," \n
+                         "	[" \n
+                         "		localize ""STR_A3_Task114_desc""," \n
+                         "		localize ""STR_A3_Task114_name""," \n
+                         "		""""" \n
+                         "	]," \n
+                         "	objNull," \n
+                         "	TRUE" \n
+                         "] call BIS_fnc_taskCreate;" \n
+                         "" \n
+                         "BIS_icon attachTo [BIS_Flag03, [0,0,-2]];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Fail">*/
+                                class Fail
+                                {
+                                        itemno = 13;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Friendly_fire">*/
+                                class Friendly_fire
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="FAIL";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(damage BIS_Subordinate01 > 0) or" \n
+                                         "(damage BIS_Subordinate02 > 0)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Done">*/
+                                class Done
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="Course_finished";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player distance BIS_Flag03 < 2.5)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Hint">*/
+                class Hint
+                {
+                        name = "Hint";
+                        itemno = 23;
+                        init = /*%FSM<STATEINIT""">*/"_null = [[""Command"", ""Formations""], nil, nil, 1e4, ""BIS_hideHint"", nil, TRUE] spawn BIS_fnc_advHint;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Fail">*/
+                                class Fail
+                                {
+                                        itemno = 13;
+                                        priority = 10.000000;
+                                        to="TERMINATE";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"damage player > 3e-5 ||" \n
+                                         "!BIS_interruptable" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Friendly_fire">*/
+                                class Friendly_fire
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="FAIL";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(damage BIS_Subordinate01 > 0) or" \n
+                                         "(damage BIS_Subordinate02 > 0)" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Done">*/
+                                class Done
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Move__B";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"formation (group player) == ""Line""" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "FAIL">*/
+                class FAIL
+                {
+                        name = "FAIL";
+                        itemno = 26;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn BIS_fnc_VR_stageFailed;" \n
+                         "" \n
+                         "// if !(isNil ""_timerSound"") then {terminate _timerSound};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Start";
+        finalStates[] =
+        {
+                "END",
+                "TERMINATE",
+                "FAIL",
+        };
+};
+/*%FSM</COMPILE>*/

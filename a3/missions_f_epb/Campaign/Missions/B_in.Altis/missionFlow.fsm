@@ -1,0 +1,592 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, B_in Mission Flow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-75.000000,125.000000,25.000000,175.000000,0.000000,"Start"};
+item1[] = {"intro_finished",4,218,-75.000000,200.000000,25.000000,250.000000,0.000000,"intro" \n "finished"};
+item2[] = {"start_1",2,4346,-75.000000,275.000000,25.000000,325.000000,0.000000,"start"};
+item3[] = {"radio_found",4,218,-75.000000,350.000000,25.000000,400.000000,1.000000,"radio" \n "found"};
+item4[] = {"far_from_start",4,218,50.000000,275.000000,150.000000,325.000000,0.000000,"far" \n "from" \n "start"};
+item5[] = {"add_radio_task",2,250,50.000000,350.000000,150.000000,400.000000,0.000000,"add" \n "radio" \n "task"};
+item6[] = {"radio_comms_with",2,250,-75.000000,425.000000,25.000000,475.000000,0.000000,"radio comms" \n "with" \n "james"};
+item7[] = {"near_james",4,218,50.000000,575.000000,150.000000,625.000000,2.000000,"near" \n "james"};
+item8[] = {"conversation_with",2,250,50.000000,650.000000,150.000000,700.000000,0.000000,"conversation" \n "with james"};
+item9[] = {"thread_finished",4,218,50.000000,725.000000,150.000000,775.000000,0.000000,"thread" \n "finished"};
+item10[] = {"END",1,250,50.000000,800.000000,150.000000,850.000000,0.000000,"END"};
+item11[] = {"contact_on_enemy",4,218,-200.000000,425.000000,-100.000000,475.000000,0.000000,"contact" \n "on enemy"};
+item12[] = {"contact",2,250,-75.000000,500.000000,25.000000,550.000000,0.000000,"contact"};
+item13[] = {"",7,210,-154.000000,521.000000,-146.000000,529.000000,0.000000,""};
+item14[] = {"",7,210,96.000000,521.000000,103.999992,529.000000,0.000000,""};
+item15[] = {"",7,210,96.000000,446.000000,104.000000,454.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,4};
+link4[] = {3,6};
+link5[] = {4,5};
+link6[] = {5,3};
+link7[] = {5,15};
+link8[] = {6,11};
+link9[] = {6,15};
+link10[] = {7,8};
+link11[] = {8,9};
+link12[] = {9,10};
+link13[] = {11,13};
+link14[] = {12,14};
+link15[] = {13,12};
+link16[] = {14,7};
+link17[] = {15,14};
+globals[] = {25.000000,1,0,0,0,640,480,1,107,6316128,1,-367.432251,375.912689,902.152222,74.518112,926,1031,1};
+window[] = {2,-1,-1,-1,-1,842,75,1289,75,3,944};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "B_in Mission Flow";
+        class States
+        {
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"/**********************************" \n
+                         "Tasks" \n
+                         "**********************************/" \n
+                         """BIS_guerrillas"" call BIS_fnc_missionTasks;" \n
+                         """BIS_help"" call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "/**********************************" \n
+                         "Friendly Fire" \n
+                         "**********************************/" \n
+                         "[""Init"", [[BIS_BLU2, BIS_BLU3], true]] call BIS_fnc_moduleFriendlyFire;" \n
+                         "" \n
+                         "/**********************************" \n
+                         "Instructor Figure" \n
+                         "**********************************/" \n
+                         "[""Init""] call BIS_fnc_InstructorFigure;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "intro_finished">*/
+                                class intro_finished
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="start_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { BIS_introSceneFinished }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "start_1">*/
+                class start_1
+                {
+                        name = "start_1";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"/**********************************" \n
+                         "Player event handlers" \n
+                         "**********************************/" \n
+                         "private ""_handlerTake"";" \n
+                         "_handlerTake = player addEventHandler [""Take"", {" \n
+                         "	private [""_container"", ""_item""];" \n
+                         "	_container = _this select 1;" \n
+                         "	_item 		= _this select 2;" \n
+                         "	" \n
+                         "	switch (toLower _item) do {" \n
+                         "		case ""itemradio"" : {" \n
+                         "			if (player distance BIS_BLU1 <= 10) then {" \n
+                         "				BIS_radioFound = true;" \n
+                         "				player assignItem ""ItemRadio"";" \n
+                         "			};" \n
+                         "		};" \n
+                         "		case ""itemmap"" : {" \n
+                         "			if (!isNil { BIS_mapRequired } && isNil { BIS_mapFound }) then {" \n
+                         "				BIS_mapFound = true;" \n
+                         "				if (!isNil { BIS_radioFound }) then {" \n
+                         "					""BIS_mapFound"" spawn BIS_fnc_missionConversations;" \n
+                         "				};" \n
+                         "			};" \n
+                         "		};" \n
+                         "	};" \n
+                         "}];" \n
+                         "" \n
+                         "/**********************************" \n
+                         "Play radio noises until taken" \n
+                         "**********************************/" \n
+                         "[] spawn {" \n
+                         "	scriptName ""initMission.hpp: radio noises"";" \n
+                         "	" \n
+                         "	while { isNil { BIS_radioFound } } do {" \n
+                         "		""BIS_radioBabble"" call BIS_fnc_missionConversations;" \n
+                         "		sleep (4 + random 6);" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "/**********************************" \n
+                         "Only the player can damage" \n
+                         "Members of Team Ice" \n
+                         "**********************************/" \n
+                         "{" \n
+                         "	_x addEventHandler [""HandleDamage"", {" \n
+                         "		private [""_damage"", ""_source""];" \n
+                         "		_damage = _this select 2;" \n
+                         "		_source = _this select 3;" \n
+                         "		" \n
+                         "		if (_source == player || _source == vehicle player) then {" \n
+                         "			_damage;" \n
+                         "		} else {" \n
+                         "			0;" \n
+                         "		};" \n
+                         "	}];" \n
+                         "} forEach [BIS_BLU2, BIS_BLU3];" \n
+                         "" \n
+                         "/**********************************" \n
+                         "Units stuff" \n
+                         "**********************************/" \n
+                         "private ""_fn_equipment"";" \n
+                         "_fn_equipment = {" \n
+                         "	private ""_unit"";" \n
+                         "	_unit = _this select 0;" \n
+                         "	" \n
+                         "	//Prevent units from fleeing" \n
+                         "	_unit allowFleeing 0;" \n
+                         "	" \n
+                         "	//Skill" \n
+                         "	_unit setSkill 0.25;" \n
+                         "	" \n
+                         "	//No radio" \n
+                         "	_unit unassignItem ""ItemRadio"";" \n
+                         "	_unit removeItem ""ItemRadio"";" \n
+                         "	" \n
+                         "	//Determine if it should have binoculars" \n
+                         "	if (random 1 >= 0.1) then {" \n
+                         "		_unit removeWeapon ""Binocular"";" \n
+                         "	};" \n
+                         "	" \n
+                         "	//Determine if it should have NV goggles" \n
+                         "	if (random 1 >= 0.1) then {" \n
+                         "		{" \n
+                         "			_unit unlinkItem _x;" \n
+                         "		} forEach [""NVGoggles_INDEP"", ""NVGoggles_OPFOR""];" \n
+                         "	};" \n
+                         "	" \n
+                         "	//Determine if it should have a map or not" \n
+                         "	/*if (random 1 >= 0.6) then {" \n
+                         "		_unit unassignItem ""ItemMap"";" \n
+                         "		_unit removeItem ""ItemMap"";" \n
+                         "	};*/" \n
+                         "	" \n
+                         "	//Determine if it should have a first aid kit" \n
+                         "	if (random 1 >= 0.5) then {" \n
+                         "		_unit removeItem ""FirstAidKit"";" \n
+                         "	};" \n
+                         "	" \n
+                         "	//Lower equipment upon death" \n
+                         "	_unit addEventHandler [""Killed"", {" \n
+                         "		(_this select 0) setVehicleAmmo (0.3 + random 0.3);" \n
+                         "	}];" \n
+                         "};" \n
+                         "" \n
+                         "{" \n
+                         "	if (side _x in [EAST, RESISTANCE]) then {" \n
+                         "		[_x] call _fn_equipment;" \n
+                         "	};" \n
+                         "} forEach allUnits;" \n
+                         "" \n
+                         "{" \n
+                         "	if (_x != BIS_BLU1) then {" \n
+                         "		[_x] call _fn_equipment;" \n
+                         "	};" \n
+                         "} forEach alldeadMen;" \n
+                         "" \n
+                         "/**********************************" \n
+                         "Traffic & Artillery" \n
+                         "**********************************/" \n
+                         "[] spawn {" \n
+                         "	scriptName ""initMission.hpp: traffic"";" \n
+                         "	" \n
+                         "	while { true } do {" \n
+                         "		//Traffic vehicle" \n
+                         "		if (count (missionNameSpace getVariable [""BIS_trafficGroups"", []]) < 4 && { player distance getMarkerPos ""BIS_traffic_1"" > 150 }) then {" \n
+                         "			//The vehicle" \n
+                         "			[[getMarkerPos ""BIS_traffic_1"", getMarkerPos ""BIS_traffic_2""]] call BIS_fnc_b_in_vehicleTraffic;" \n
+                         "		};" \n
+                         "		" \n
+                         "		//Artillery target" \n
+                         "		private ""_position"";" \n
+                         "		_position = [markerPos ""BIS_city"", random 500, random 360] call BIS_fnc_relPos;" \n
+                         "		_position set [2, 100];" \n
+                         "		" \n
+                         "		//Artillery shell" \n
+                         "		private [""_shell""];" \n
+                         "		_shell = ""Sh_155mm_AMOS"" createVehicle _position;" \n
+                         "		_shell setPosASL _position;" \n
+                         "		_shell setVelocity [random 5, random 5, -25];" \n
+                         "		" \n
+                         "		//Delay" \n
+                         "		sleep 30 + random 30;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "/**********************************" \n
+                         "Scenes" \n
+                         "**********************************/" \n
+                         "[] spawn {" \n
+                         "	scriptName ""initMission.hpp: capture"";" \n
+                         "	" \n
+                         "	private ""_fn_play"";" \n
+                         "	_fn_play = {" \n
+                         "		private [""_class"", ""_movement"", ""_firing""];" \n
+                         "		_class		= [_this, 0, """", [""""]] call BIS_fnc_param;" \n
+                         "		_movement	= [_this, 1, [], [[]]] call BIS_fnc_param;" \n
+                         "		_firing		= [_this, 2, [], [[]]] call BIS_fnc_param;" \n
+                         "		" \n
+                         "		private ""_vehicle"";" \n
+                         "		_vehicle = ([[0,0,0], 0, _class, EAST] call BIS_fnc_spawnVehicle) select 0;" \n
+                         "		" \n
+                         "		[_vehicle, _firing] spawn BIS_fnc_UnitPlayFiring;" \n
+                         "		[_vehicle, _movement] call BIS_fnc_unitPlay;" \n
+                         "" \n
+                         "		_vehicle;" \n
+                         "	};" \n
+                         "	" \n
+                         "	private ""_fn_clean"";" \n
+                         "	_fn_clean = {" \n
+                         "		private ""_vehicle"";" \n
+                         "		_vehicle = [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "		" \n
+                         "		private ""_group"";" \n
+                         "		_group = group driver _vehicle;" \n
+                         "		" \n
+                         "		if (alive _vehicle) then {" \n
+                         "			{ deleteVehicle _x; } forEach crew _vehicle;" \n
+                         "			deleteVehicle _vehicle;" \n
+                         "			deleteGroup _group;" \n
+                         "		};" \n
+                         "	};" \n
+                         "	" \n
+                         "	{" \n
+                         "		private [""_distanceToJames"", ""_vehicleClass"", ""_movementData"", ""_firingData""];" \n
+                         "		_distanceToJames 	= _x select 0;" \n
+                         "		_vehicleClass		= _x select 1;" \n
+                         "		_movementData		= _x select 2;" \n
+                         "		_firingData		= _x select 3;" \n
+                         "		" \n
+                         "		waitUntil {" \n
+                         "			player distance BIS_BLU2 <= _distanceToJames" \n
+                         "		};" \n
+                         "		" \n
+                         "		private ""_vehicle"";" \n
+                         "		_vehicle = [_vehicleClass, call compile preprocessFileLineNumbers _movementData, call compile preprocessFileLineNumbers _firingData] call _fn_play;" \n
+                         "		[_vehicle] call _fn_clean;" \n
+                         "	} forEach [" \n
+                         "		[800, ""O_Heli_Attack_02_black_F"", ""scenes\chopper_1_movement.sqf"", ""scenes\chopper_1_firing.sqf""]," \n
+                         "		[600, ""I_Plane_Fighter_03_CAS_F"", ""scenes\plane_1_movement.sqf"", ""scenes\plane_1_firing.sqf""]," \n
+                         "		[400, ""O_Heli_Attack_02_black_F"", ""scenes\chopper_2_movement.sqf"", ""scenes\chopper_2_firing.sqf""]," \n
+                         "		[200, ""I_Plane_Fighter_03_CAS_F"", ""scenes\plane_2_movement.sqf"", ""scenes\plane_2_firing.sqf""]" \n
+                         "	];" \n
+                         "};" \n
+                         "" \n
+                         "/**********************************" \n
+                         "Ambient firing" \n
+                         "**********************************/" \n
+                         "//[getMarkerPos ""BIS_city""] spawn BIS_fnc_b_in_firing;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "radio_found">*/
+                                class radio_found
+                                {
+                                        itemno = 3;
+                                        priority = 1.000000;
+                                        to="radio_comms_with";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { BIS_radioFound }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "far_from_start">*/
+                                class far_from_start
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="add_radio_task";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"player distance BIS_BLU1 > 50" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "add_radio_task">*/
+                class add_radio_task
+                {
+                        name = "add_radio_task";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"//Radio task" \n
+                         """BIS_radio"" call BIS_fnc_missionTasks;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "near_james">*/
+                                class near_james
+                                {
+                                        itemno = 7;
+                                        priority = 2.000000;
+                                        to="conversation_with";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"player distance BIS_BLU2 < 10" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "radio_found">*/
+                                class radio_found
+                                {
+                                        itemno = 3;
+                                        priority = 1.000000;
+                                        to="radio_comms_with";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { BIS_radioFound }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "radio_comms_with">*/
+                class radio_comms_with
+                {
+                        name = "radio_comms_with";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"//Thread" \n
+                         "[] spawn {" \n
+                         "	//Sorry to fallen soldier" \n
+                         "	""BIS_apologies"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	//Succeed radio task if it exists" \n
+                         "	if (""BIS_radio"" call BIS_fnc_taskExists) then {" \n
+                         "		[""BIS_radio"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "	};" \n
+                         "	" \n
+                         "	//Radio conversation with james" \n
+                         "	""BIS_radioContact"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	//Player has map?" \n
+                         "	if ({ ""itemmap"" == toLower _x } count assignedItems player > 0) then {" \n
+                         "		""BIS_hasMapRV"" call BIS_fnc_missionConversations;" \n
+                         "		""BIS_moreThanOne"" call BIS_fnc_missionConversations;" \n
+                         "		""BIS_hasMapKavala"" call BIS_fnc_missionConversations;" \n
+                         "		""BIS_moving"" call BIS_fnc_missionConversations;" \n
+                         "	} else {" \n
+                         "		""BIS_noMapKavala"" call BIS_fnc_missionConversations;" \n
+                         "		""BIS_moreThanOne"" call BIS_fnc_missionConversations;" \n
+                         "		""BIS_noMapRV"" call BIS_fnc_missionConversations;" \n
+                         "		""BIS_moving"" call BIS_fnc_missionConversations;" \n
+                         "		BIS_mapRequired = true;" \n
+                         "	};" \n
+                         "	" \n
+                         "	//Show markers" \n
+                         "	{" \n
+                         "		_x setMarkerAlpha 1;" \n
+                         "	} forEach [""BIS_survivors"", ""BIS_survivorsArea""];" \n
+                         "	" \n
+                         "	//ORBAT" \n
+                         "	[" \n
+                         "		configFile >> ""CfgORBAT"" >> ""BIS"" >> ""B_Falcon_D""," \n
+                         "		nil,nil,nil,nil,nil,nil,nil,nil,nil,nil," \n
+                         "		localize ""STR_A3_b_ctrg_soldier_m_medic_f0""," \n
+                         "		""LIEUTENANT""" \n
+                         "	] call BIS_fnc_ORBATSetGroupParams;" \n
+                         "	" \n
+                         "	private ""_logic"";" \n
+                         "	_logic = (createGroup SideLogic) createUnit [""Logic"", getMarkerPos ""BIS_iceOrbatMarker"", [], 0, ""none""];" \n
+                         "	_logic setVariable [""Path"", ""configfile >> 'CfgORBAT' >> 'BIS' >> 'B_Falcon_D'""];" \n
+                         "	_logic setVariable [""Parent"", ""configfile >> 'CfgORBAT' >> 'BIS' >> 'B_Falcon_D'""];" \n
+                         "	[_logic] execVM ""A3\Modules_f\StrategicMap\functions\fn_moduleStrategicMapORBAT.sqf"";" \n
+                         "	" \n
+                         "	//Save game" \n
+                         "	savegame;" \n
+                         "	" \n
+                         "	//Instructor Figure" \n
+                         "	[""AddTopic"", [""i01_Supplies"",""B_in"", localize ""STR_A3_Campaign_B_in_Instructor_Supplies""] ] call BIS_fnc_InstructorFigure;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "near_james">*/
+                                class near_james
+                                {
+                                        itemno = 7;
+                                        priority = 2.000000;
+                                        to="conversation_with";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"player distance BIS_BLU2 < 10" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "contact_on_enemy">*/
+                                class contact_on_enemy
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="contact";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	side player getFriend side _x < 0.6" \n
+                                         "	&&" \n
+                                         "	player knowsAbout _x > 1" \n
+                                         "} count allUnits > 0" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "conversation_with">*/
+                class conversation_with
+                {
+                        name = "conversation_with";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"//Flag" \n
+                         "BIS_teamFound = true;" \n
+                         "" \n
+                         "//Enemies become captive" \n
+                         "{" \n
+                         "	_x setCaptive true;" \n
+                         "} forEach allUnits;" \n
+                         "" \n
+                         "//James faces player" \n
+                         "BIS_BLU2 enableAI ""MOVE"";" \n
+                         "BIS_BLU2 disableAI ""FSM"";" \n
+                         "BIS_BLU2 disableAI ""TARGET"";" \n
+                         "BIS_BLU2 disableAI ""AUTOTARGET"";" \n
+                         "BIS_BLU2 setUnitPos ""MIDDLE"";" \n
+                         "BIS_BLU2 reveal player;" \n
+                         "BIS_BLU2 doWatch player;" \n
+                         "BIS_BLU2 lookAt player;" \n
+                         "BIS_BLU2 glanceAt player;" \n
+                         "" \n
+                         "//Remove instructor figure topics if there are any" \n
+                         "{" \n
+                         "	if ([""TopicExists"", [_x]] call BIS_fnc_InstructorFigure != -1) then {" \n
+                         "		[""RemoveTopic"", [_x] ] call BIS_fnc_InstructorFigure;" \n
+                         "	};" \n
+                         "} forEach [" \n
+                         "	""i01_Supplies""," \n
+                         "	""i05_Contact""" \n
+                         "];" \n
+                         "" \n
+                         "//Thread" \n
+                         "private ""_thread"";" \n
+                         "_thread = [] spawn {" \n
+                         "	if (!isNil ""BIS_radioFound"") then {" \n
+                         "		""BIS_hasRadioMeeting"" call BIS_fnc_missionConversations;" \n
+                         "	} else {" \n
+                         "		""BIS_noRadioMeeting"" call BIS_fnc_missionConversations;" \n
+                         "	};" \n
+                         "	" \n
+                         "	//Succeed help task" \n
+                         "	[""BIS_help"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "	" \n
+                         "	//If radio task was added we cancel it now" \n
+                         "	if (""BIS_radio"" call BIS_fnc_taskExists && { ""BIS_radio"" call BIS_fnc_taskState != ""SUCCEEDED"" }) then {" \n
+                         "		[""BIS_radio"", ""CANCELED""] call BIS_fnc_missionTasks;" \n
+                         "	};" \n
+                         "	" \n
+                         "	//Heads down" \n
+                         "	if (stance player == ""STAND"") then {" \n
+                         "		""BIS_headDown"" call BIS_fnc_missionConversations;" \n
+                         "	};" \n
+                         "	" \n
+                         "	//Fade sound and sceen" \n
+                         "	5 fadeSound 0;" \n
+                         "	5 fadeMusic 0;" \n
+                         "	titleCut ["""", ""BLACK OUT"", 5];" \n
+                         "	" \n
+                         "	//Delay before mission ends" \n
+                         "	sleep 5;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "thread_finished">*/
+                                class thread_finished
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="END";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"scriptDone _thread" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END">*/
+                class END
+                {
+                        name = "END";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"//End the mission (uses regular endMission, BIS_fnc_endMission shows screen for a split second)" \n
+                         "//Make sure James and his friend are still alive at this point" \n
+                         "if (alive BIS_BLU2 && { alive BIS_BLU3 }) then {" \n
+                         "	endMission ""B_in2_1"";" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "contact">*/
+                class contact
+                {
+                        name = "contact";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"//Instructor Figure" \n
+                         "[""AddTopic"", [""i05_Contact"",""B_in"", localize ""STR_A3_Campaign_B_in_Instructor_Contact""] ] call BIS_fnc_InstructorFigure;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "near_james">*/
+                                class near_james
+                                {
+                                        itemno = 7;
+                                        priority = 2.000000;
+                                        to="conversation_with";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"player distance BIS_BLU2 < 10" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Start";
+        finalStates[] =
+        {
+                "END",
+        };
+};
+/*%FSM</COMPILE>*/

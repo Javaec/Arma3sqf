@@ -1,0 +1,49 @@
+class CfgPatches
+{
+	class A3_Modules_F
+	{
+		units[]=
+		{
+			"Alice3AreaStandard",
+			"Alice3AreaExclusion",
+			"Alice3AreaPersistent",		
+			Logic,LocationBase_F,LocationOutpost_F,LocationCamp_F,LocationCityCapital_F,LocationCity_F,LocationVillage_F,LocationArea_F,SideBLUFOR_F,SideOPFOR_F,SideResistance_F,MiscUnlock_F,MiscLock_F,Curator_F,Module_F, LocationResupplyPoint_F, LocationFOB_F, LocationEvacPoint_F, LocationRespawnPoint_F, MiscAND_F, MiscOR_F
+		};
+		weapons[]=
+		{
+			"FakeWeapon",
+			"LMG_Minigun_heli",
+			"HMG_127_APC",
+			"GMG_UGV_40mm",
+			"autocannon_Base_F",
+			"autocannon_40mm_CTWS",
+			"autocannon_30mm_CTWS",
+			"LMG_Minigun2",
+			"mortar_155mm_AMOS",
+			"missiles_titan_static",
+			"LMG_coax",
+			"autocannon_30mm",
+			"cannon_120mm_long",
+			"cannon_125mm",
+			"Twin_Cannon_20mm",
+			"Gatling_30mm_Plane_CAS_01_F",
+			"Missile_AA_04_Plane_CAS_01_F",
+			"Missile_AGM_02_Plane_CAS_01_F",
+			"Rocket_04_HE_Plane_CAS_01_F",
+			"Rocket_04_AP_Plane_CAS_01_F",
+			"Bomb_04_Plane_CAS_01_F",
+			"Cannon_30mm_Plane_CAS_02_F",
+			"Missile_AA_03_Plane_CAS_02_F",
+			"Missile_AGM_01_Plane_CAS_02_F",
+			"Rocket_03_HE_Plane_CAS_02_F",
+			"Rocket_03_AP_Plane_CAS_02_F",
+			"Bomb_03_Plane_CAS_02_F",
+			"cannon_105mm",
+			"HMG_127_MBT",
+			"TruckHorn3",
+			"FakeHorn",		
+		};
+		requiredVersion=0.1;
+		requiredAddons[]={"A3_Data_F"};
+	};
+};

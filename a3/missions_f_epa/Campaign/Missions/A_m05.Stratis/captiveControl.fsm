@@ -1,0 +1,141 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Captive Control">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Captive_Control",0,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"Captive Control"};
+item1[] = {"",7,210,46.000000,-104.000000,54.000000,-96.000000,0.000000,""};
+item2[] = {"Not_applicable",4,218,75.000000,-125.000000,175.000000,-75.000000,1.000000,"Not applicable"};
+item3[] = {"Releasing_contro",1,250,200.000000,-125.000000,300.000000,-75.000000,0.000000,"Releasing" \n "control"};
+item4[] = {"In_restricted_ar",4,218,-75.000000,-50.000000,25.000000,0.000000,0.000000,"In restricted" \n "area"};
+item5[] = {"Take_off_captive",2,250,-75.000000,25.000000,25.000000,75.000000,0.000000,"Take off captive"};
+item6[] = {"",7,210,46.000000,46.000004,53.999996,53.999996,0.000000,""};
+item7[] = {"Left_restricted",4,218,-75.000000,100.000000,25.000000,150.000000,0.000000,"Left restricted" \n "area"};
+item8[] = {"",7,210,-103.999992,121.000000,-96.000000,129.000000,0.000000,""};
+item9[] = {"",7,210,-104.000000,-104.000000,-96.000000,-96.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {0,4};
+link2[] = {1,2};
+link3[] = {2,3};
+link4[] = {4,5};
+link5[] = {5,6};
+link6[] = {5,7};
+link7[] = {6,1};
+link8[] = {7,8};
+link9[] = {8,9};
+link10[] = {9,0};
+globals[] = {25.000000,1,0,0,0,640,480,1,15,6316128,1,-223.433868,376.566132,207.424591,-225.522034,862,622,1};
+window[] = {0,-1,-1,-1,-1,867,100,1313,100,1,880};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Captive Control";
+        class States
+        {
+                /*%FSM<STATE "Captive_Control">*/
+                class Captive_Control
+                {
+                        name = "Captive_Control";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"// Set player as captive" \n
+                         "BIS_inf setCaptive true;" \n
+                         "" \n
+                         "// Put enemies on careless" \n
+                         "{if (behaviour _x == ""SAFE"") then {_x setBehaviour ""CARELESS""}} forEach (BIS_town_defenders + units BIS_IA_group1);"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Not_applicable">*/
+                                class Not_applicable
+                                {
+                                        itemno = 2;
+                                        priority = 1.000000;
+                                        to="Releasing_contro";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x} count units group BIS_inf == 1" \n
+                                         "||" \n
+                                         "!(isNil ""BIS_attack"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "In_restricted_ar">*/
+                                class In_restricted_ar
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Take_off_captive";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{_x in list BIS_exclusionTrig} count [vehicle BIS_inf, BIS_inf] > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Releasing_contro">*/
+                class Releasing_contro
+                {
+                        name = "Releasing_contro";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"// Take player off captive" \n
+                         "BIS_inf setCaptive false;" \n
+                         "" \n
+                         "{" \n
+                         "	// Take all enemies off captive" \n
+                         "	if (captive _x) then {_x setCaptive false};" \n
+                         "	" \n
+                         "	// Take all enemies off careless" \n
+                         "	if (behaviour _x == ""CARELESS"") then {_x setBehaviour ""SAFE""};" \n
+                         "} forEach (BIS_town_defenders + units BIS_IA_group1);"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Take_off_captive">*/
+                class Take_off_captive
+                {
+                        name = "Take_off_captive";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"// Take the player off captive" \n
+                         "BIS_inf setCaptive false;" \n
+                         "" \n
+                         "// Take enemies off careless" \n
+                         "{if (behaviour _x == ""CARELESS"") then {_x setBehaviour ""SAFE""}} forEach (BIS_town_defenders + units BIS_IA_group1);"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Not_applicable">*/
+                                class Not_applicable
+                                {
+                                        itemno = 2;
+                                        priority = 1.000000;
+                                        to="Releasing_contro";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x} count units group BIS_inf == 1" \n
+                                         "||" \n
+                                         "!(isNil ""BIS_attack"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Left_restricted">*/
+                                class Left_restricted
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Captive_Control";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{_x in list BIS_exclusionTrig} count [vehicle BIS_inf, BIS_inf] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Captive_Control";
+        finalStates[] =
+        {
+                "Releasing_contro",
+        };
+};
+/*%FSM</COMPILE>*/

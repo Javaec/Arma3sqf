@@ -1,0 +1,882 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, B_m03 Mission Flow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-175.000000,-250.000000,-75.000000,-200.000000,0.000000,"Init"};
+item1[] = {"cistern_dead",4,218,-50.000000,175.000000,50.000000,225.000000,0.000000,"cistern dead"};
+item2[] = {"plan_B",2,250,-50.000000,100.000000,50.000000,150.000000,0.000000,"plan B"};
+item3[] = {"in_cistern",4,218,-300.000000,-25.000000,-200.000000,25.000000,0.000000,"in cistern"};
+item4[] = {"plan_B_1",2,250,-300.000000,100.000000,-200.000000,150.000000,0.000000,"plan B"};
+item5[] = {"cistern_with_Ice",4,218,-50.000000,250.000000,50.000000,300.000000,0.000000,"cistern with Ice"};
+item6[] = {"End__3_HVT__NO_F",1,250,-50.000000,550.000000,50.000000,600.000000,0.000000,"End #3" \n "HVT, NO FUEL"};
+item7[] = {"task__exfil",2,250,-50.000000,325.000000,50.000000,375.000000,0.000000,"task: exfil"};
+item8[] = {"exfiltrated",4,218,-50.000000,475.000000,50.000000,525.000000,0.000000,"exfiltrated"};
+item9[] = {"cistern_dead",4,218,-50.000000,-25.000000,50.000000,25.000000,1.000000,"cistern dead"};
+item10[] = {"new_tasks__HVT_R",2,250,-175.000000,175.000000,-75.000000,225.000000,0.000000,"new tasks:" \n "HVT" \n "RTB"};
+item11[] = {"cistern_in_base",4,218,-450.000000,325.000000,-350.000000,375.000000,0.000000,"cistern in base"};
+item12[] = {"End__2_FUEL__NO",1,250,-450.000000,550.000000,-350.000000,600.000000,0.000000,"End #2" \n "FUEL, NO HVT"};
+item13[] = {"HVT_dead",4,218,-300.000000,250.000000,-200.000000,300.000000,0.000000,"HVT dead"};
+item14[] = {"End__1_FUEL___HV",1,250,-325.000000,550.000000,-225.000000,600.000000,0.000000,"End #1" \n "FUEL + HVT"};
+item15[] = {"Fail__2",1,250,225.000000,250.000000,325.000000,300.000000,0.000000,"Fail #2"};
+item16[] = {"convo__kill_HVT",2,250,75.000000,175.000000,175.000000,225.000000,0.000000,"convo:" \n "kill HVT"};
+item17[] = {"HVT_away",4,218,75.000000,250.000000,175.000000,300.000000,0.000000,"HVT away"};
+item18[] = {"task__exfil_1",2,250,-300.000000,325.000000,-200.000000,375.000000,0.000000,"task: exfil"};
+item19[] = {"exfiltrated",4,218,-325.000000,400.000000,-225.000000,450.000000,0.000000,"exfiltrated"};
+item20[] = {"cistern_dead",4,218,-200.000000,400.000000,-100.000000,450.000000,1.000000,"cistern dead"};
+item21[] = {"task_cenceled",2,250,-200.000000,475.000000,-100.000000,525.000000,0.000000,"task cenceled"};
+item22[] = {"Miller_let_down",4,218,-575.000000,175.000000,-475.000000,225.000000,0.000000,"Miller" \n "let down"};
+item23[] = {"task_cancelled",2,250,-575.000000,250.000000,-475.000000,300.000000,0.000000,"task cancelled"};
+item24[] = {"cistern_dead_1",4,218,-575.000000,325.000000,-475.000000,375.000000,0.000000,"cistern dead"};
+item25[] = {"Fail__2_1",1,250,-575.000000,550.000000,-475.000000,600.000000,0.000000,"Fail #2"};
+item26[] = {"HVT_dead",4,218,-175.000000,250.000000,-75.000000,300.000000,0.000000,"HVT dead"};
+item27[] = {"task_done",2,4346,-175.000000,325.000000,-75.000000,375.000000,0.000000,"task done"};
+item28[] = {"cistern_2_stolen",4,218,-175.000000,-25.000000,-75.000000,25.000000,0.000000,"cistern 2" \n "stolen"};
+item29[] = {"cistern_found",4,218,-425.000000,-25.000000,-325.000000,25.000000,0.000000,"cistern" \n "found"};
+item30[] = {"comment",2,250,-425.000000,100.000000,-325.000000,150.000000,0.000000,"comment"};
+item31[] = {"cistern_sabotage",4,218,150.000000,325.000000,250.000000,375.000000,0.000000,"cistern" \n "sabotaged"};
+item32[] = {"",7,210,196.000000,195.999969,204.000000,204.000046,0.000000,""};
+item33[] = {"road_crossed",4,218,-175.000000,-175.000000,-75.000000,-125.000000,0.000000,"road" \n "crossed"};
+item34[] = {"task_done_1",2,250,-175.000000,-100.000000,-75.000000,-50.000000,0.000000,"task done"};
+item35[] = {"HVT_killed__w_o",4,218,75.000000,375.000000,175.000000,425.000000,0.000000,"HVT killed" \n "(w/o fuel)"};
+item36[] = {"unlock_cistern",2,250,75.000000,450.000000,175.000000,500.000000,0.000000,"unlock cistern"};
+item37[] = {"convoy_alerted",4,218,200.000000,375.000000,300.000000,425.000000,0.000000,"convoy" \n "alerted"};
+item38[] = {"convo__kill_HVT_1",2,250,200.000000,450.000000,300.000000,500.000000,0.000000,"convo:" \n "kill HVT," \n "unlock cistern"};
+link0[] = {0,33};
+link1[] = {1,16};
+link2[] = {2,24};
+link3[] = {2,28};
+link4[] = {3,4};
+link5[] = {4,24};
+link6[] = {4,28};
+link7[] = {5,7};
+link8[] = {7,8};
+link9[] = {7,31};
+link10[] = {7,35};
+link11[] = {7,37};
+link12[] = {8,6};
+link13[] = {9,2};
+link14[] = {10,1};
+link15[] = {10,5};
+link16[] = {10,11};
+link17[] = {10,13};
+link18[] = {10,22};
+link19[] = {11,12};
+link20[] = {13,18};
+link21[] = {16,17};
+link22[] = {16,26};
+link23[] = {17,15};
+link24[] = {18,19};
+link25[] = {18,20};
+link26[] = {19,14};
+link27[] = {20,21};
+link28[] = {21,8};
+link29[] = {22,23};
+link30[] = {23,11};
+link31[] = {23,13};
+link32[] = {23,24};
+link33[] = {24,25};
+link34[] = {26,27};
+link35[] = {27,8};
+link36[] = {28,10};
+link37[] = {29,30};
+link38[] = {30,3};
+link39[] = {30,9};
+link40[] = {30,24};
+link41[] = {30,28};
+link42[] = {31,32};
+link43[] = {32,16};
+link44[] = {33,34};
+link45[] = {34,3};
+link46[] = {34,9};
+link47[] = {34,24};
+link48[] = {34,28};
+link49[] = {34,29};
+link50[] = {35,36};
+link51[] = {36,19};
+link52[] = {36,20};
+link53[] = {37,38};
+link54[] = {38,17};
+link55[] = {38,19};
+link56[] = {38,20};
+link57[] = {38,26};
+globals[] = {25.000000,1,0,0,0,640,480,1,143,6316128,1,-371.251099,285.638519,732.230164,-58.953537,856,1031,1};
+window[] = {2,-1,-1,-1,-1,892,125,1656,125,3,874};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "B_m03 Mission Flow";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "road_crossed">*/
+                                class road_crossed
+                                {
+                                        itemno = 33;
+                                        priority = 0.000000;
+                                        to="task_done_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{triggerActivated _x} count [" \n
+                                         "	BIS_north1," \n
+                                         "	BIS_north2," \n
+                                         "	BIS_north3," \n
+                                         "	BIS_north4," \n
+                                         "	BIS_north5," \n
+                                         "	BIS_north6," \n
+                                         "	BIS_north7," \n
+                                         "	BIS_north8," \n
+                                         "	BIS_north9," \n
+                                         "	BIS_north10," \n
+                                         "	BIS_north11" \n
+                                         "] == 11"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "plan_B">*/
+                class plan_B
+                {
+                        name = "plan_B";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objFuelTruck"", ""Failed""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         """cistern_dead_no_matter"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "[""RemoveTopic"", [""i01_Attacking_Complex_1""]] call BIS_fnc_InstructorFigure;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cistern_2_stolen">*/
+                                class cistern_2_stolen
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="new_tasks__HVT_R";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{vehicle _x == BIS_cistern2} count units BIS_inf > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cistern_dead">*/
+                                class cistern_dead
+                                {
+                                        itemno = 24;
+                                        priority = 0.000000;
+                                        to="Fail__2_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(!canMove BIS_cistern2 && BIS_cistern2 distance markerPos ""BIS_dropOff"" >= 200) || !alive BIS_cistern2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "plan_B_1">*/
+                class plan_B_1
+                {
+                        name = "plan_B_1";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objFuelTruck"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         """cistern_empty"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "[""RemoveTopic"", [""i01_Attacking_Complex_1""]] call BIS_fnc_InstructorFigure;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cistern_2_stolen">*/
+                                class cistern_2_stolen
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="new_tasks__HVT_R";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{vehicle _x == BIS_cistern2} count units BIS_inf > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cistern_dead">*/
+                                class cistern_dead
+                                {
+                                        itemno = 24;
+                                        priority = 0.000000;
+                                        to="Fail__2_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(!canMove BIS_cistern2 && BIS_cistern2 distance markerPos ""BIS_dropOff"" >= 200) || !alive BIS_cistern2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End__3_HVT__NO_F">*/
+                class End__3_HVT__NO_F
+                {
+                        name = "End__3_HVT__NO_F";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objExfil_HVT"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "BIS_B_m03_outcome = 1;" \n
+                         "saveVar ""BIS_B_m03_outcome"";" \n
+                         "" \n
+                         """empty_handed"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task__exfil">*/
+                class task__exfil
+                {
+                        name = "task__exfil";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objHVT"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "[""BIS_objExfil_fuel"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "if (""BIS_objExfil_HVT"" call BIS_fnc_taskExists) then {" \n
+                         "	[""BIS_objExfil_HVT"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "} else {" \n
+                         "	""BIS_objExfil_HVT"" call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         "" \n
+                         """miller_grateful"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cistern_sabotage">*/
+                                class cistern_sabotage
+                                {
+                                        itemno = 31;
+                                        priority = 0.000000;
+                                        to="convo__kill_HVT";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive BIS_cistern2 && !BIS_detonated"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "HVT_killed__w_o">*/
+                                class HVT_killed__w_o
+                                {
+                                        itemno = 35;
+                                        priority = 0.000000;
+                                        to="unlock_cistern";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive BIS_tgt && canMove BIS_cistern2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "convoy_alerted">*/
+                                class convoy_alerted
+                                {
+                                        itemno = 37;
+                                        priority = 0.000000;
+                                        to="convo__kill_HVT_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_trapFailed"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "exfiltrated">*/
+                                class exfiltrated
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="End__3_HVT__NO_F";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_inf distance markerPos ""BIS_dropOff"" < 75"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "new_tasks__HVT_R">*/
+                class new_tasks__HVT_R
+                {
+                        name = "new_tasks__HVT_R";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"""hvt_info"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "if (""BIS_objDepot"" call BIS_fnc_taskExists) then {" \n
+                         "	[""BIS_objDepot"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "} else {" \n
+                         "	[""BIS_objFuelTruck"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         "[""BIS_objExfil_fuel"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "[""RemoveTopic"", [""i05_Attacking_Complex_2""]] call BIS_fnc_InstructorFigure;" \n
+                         "" \n
+                         "_null = [] spawn {" \n
+                         "	waitUntil {BIS_cistern2 distance markerPos ""BIS_fuelDump"" > 500};" \n
+                         "	[BIS_inf, BIS_suppReq_kappa] call BIS_fnc_removeCommMenuItem;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cistern_with_Ice">*/
+                                class cistern_with_Ice
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="task__exfil";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"locked BIS_cistern2 >= 2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cistern_in_base">*/
+                                class cistern_in_base
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="End__2_FUEL__NO";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_cistern2 distance markerPos ""BIS_dropOff"" < 75"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "HVT_dead">*/
+                                class HVT_dead
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="task__exfil_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive BIS_tgt"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Miller_let_down">*/
+                                class Miller_let_down
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="task_cancelled";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > BIS_convoyTime"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cistern_dead">*/
+                                class cistern_dead
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="convo__kill_HVT";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(!canMove BIS_cistern2 && BIS_cistern2 distance markerPos ""BIS_dropOff"" >= 300) || !alive BIS_cistern2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End__2_FUEL__NO">*/
+                class End__2_FUEL__NO
+                {
+                        name = "End__2_FUEL__NO";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objExfil_fuel"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "BIS_B_m03_outcome = 0;" \n
+                         "saveVar ""BIS_B_m03_outcome"";" \n
+                         "" \n
+                         "[[""B_hub02"", 2]] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End__1_FUEL___HV">*/
+                class End__1_FUEL___HV
+                {
+                        name = "End__1_FUEL___HV";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objExfil_fuel"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "BIS_B_m03_outcome = 2;" \n
+                         "saveVar ""BIS_B_m03_outcome"";" \n
+                         "" \n
+                         "[[""B_hub02"", 1]] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Fail__2">*/
+                class Fail__2
+                {
+                        name = "Fail__2";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objHVT_manual"", ""Failed""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "[[missionName, 2], false] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "convo__kill_HVT">*/
+                class convo__kill_HVT
+                {
+                        name = "convo__kill_HVT";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/"""cistern_dead"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "[""BIS_objHVT"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         "[""BIS_objExfil_fuel"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "if (!triggerActivated BIS_away) then {" \n
+                         "	""BIS_objHVT_manual"" call BIS_fnc_missionTasks;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "HVT_dead">*/
+                                class HVT_dead
+                                {
+                                        itemno = 26;
+                                        priority = 0.000000;
+                                        to="task_done";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive BIS_tgt"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "HVT_away">*/
+                                class HVT_away
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="Fail__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_away"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task__exfil_1">*/
+                class task__exfil_1
+                {
+                        name = "task__exfil_1";
+                        itemno = 18;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objHVT"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "[""BIS_objExfil_fuel"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         """miller_impressed"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cistern_dead">*/
+                                class cistern_dead
+                                {
+                                        itemno = 20;
+                                        priority = 1.000000;
+                                        to="task_cenceled";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(!canMove BIS_cistern2 && BIS_cistern2 distance markerPos ""BIS_dropOff"" >= 200) || !alive BIS_cistern2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "exfiltrated">*/
+                                class exfiltrated
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="End__1_FUEL___HV";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_inf distance markerPos ""BIS_dropOff"" < 75 && BIS_cistern2 distance markerPos ""BIS_dropOff"" < 200"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_cenceled">*/
+                class task_cenceled
+                {
+                        name = "task_cenceled";
+                        itemno = 21;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objExfil_fuel"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "if (""BIS_objExfil_HVT"" call BIS_fnc_taskExists) then {" \n
+                         "	[""BIS_objExfil_HVT"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "} else {" \n
+                         "	""BIS_objExfil_HVT"" call BIS_fnc_missionTasks;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "exfiltrated">*/
+                                class exfiltrated
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="End__3_HVT__NO_F";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_inf distance markerPos ""BIS_dropOff"" < 75"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_cancelled">*/
+                class task_cancelled
+                {
+                        name = "task_cancelled";
+                        itemno = 23;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objHVT"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         """miller_angry"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "HVT_dead">*/
+                                class HVT_dead
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="task__exfil_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive BIS_tgt"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cistern_dead">*/
+                                class cistern_dead
+                                {
+                                        itemno = 24;
+                                        priority = 0.000000;
+                                        to="Fail__2_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(!canMove BIS_cistern2 && BIS_cistern2 distance markerPos ""BIS_dropOff"" >= 200) || !alive BIS_cistern2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cistern_in_base">*/
+                                class cistern_in_base
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="End__2_FUEL__NO";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_cistern2 distance markerPos ""BIS_dropOff"" < 75"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Fail__2_1">*/
+                class Fail__2_1
+                {
+                        name = "Fail__2_1";
+                        itemno = 25;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objExfil_fuel"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "[[missionName, 2], false] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done">*/
+                class task_done
+                {
+                        name = "task_done";
+                        itemno = 27;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objHVT_manual"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "if (""BIS_objExfil_HVT"" call BIS_fnc_taskExists) then {" \n
+                         "	[""BIS_objExfil_HVT"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "} else {" \n
+                         "	""BIS_objExfil_HVT"" call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         "" \n
+                         """miller_impressed"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "exfiltrated">*/
+                                class exfiltrated
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="End__3_HVT__NO_F";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_inf distance markerPos ""BIS_dropOff"" < 75"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "comment">*/
+                class comment
+                {
+                        name = "comment";
+                        itemno = 30;
+                        init = /*%FSM<STATEINIT""">*/"""cistern"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cistern_dead">*/
+                                class cistern_dead
+                                {
+                                        itemno = 9;
+                                        priority = 1.000000;
+                                        to="plan_B";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_fuelTruck"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cistern_dead_1">*/
+                                class cistern_dead_1
+                                {
+                                        itemno = 24;
+                                        priority = 0.000000;
+                                        to="Fail__2_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(!canMove BIS_cistern2 && BIS_cistern2 distance markerPos ""BIS_dropOff"" >= 200) || !alive BIS_cistern2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cistern_2_stolen">*/
+                                class cistern_2_stolen
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="new_tasks__HVT_R";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{vehicle _x == BIS_cistern2} count units BIS_inf > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "in_cistern">*/
+                                class in_cistern
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="plan_B_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{vehicle _x == BIS_fuelTruck} count units BIS_inf > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "task_done_1">*/
+                class task_done_1
+                {
+                        name = "task_done_1";
+                        itemno = 34;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objHighway"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "[""BIS_objFuelTruck"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "_null = [] spawn {" \n
+                         "	sleep 2;" \n
+                         "	_null = [""AddTopic"", [""i01_Attacking_Complex_1"", ""B_m03"", localize ""STR_A3_campaign_b_m03_instructor01""]] call BIS_fnc_InstructorFigure;" \n
+                         "	saveGame;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cistern_dead">*/
+                                class cistern_dead
+                                {
+                                        itemno = 9;
+                                        priority = 1.000000;
+                                        to="plan_B";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_fuelTruck"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cistern_dead_1">*/
+                                class cistern_dead_1
+                                {
+                                        itemno = 24;
+                                        priority = 0.000000;
+                                        to="Fail__2_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(!canMove BIS_cistern2 && BIS_cistern2 distance markerPos ""BIS_dropOff"" >= 200) || !alive BIS_cistern2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cistern_2_stolen">*/
+                                class cistern_2_stolen
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="new_tasks__HVT_R";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{vehicle _x == BIS_cistern2} count units BIS_inf > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "cistern_found">*/
+                                class cistern_found
+                                {
+                                        itemno = 29;
+                                        priority = 0.000000;
+                                        to="comment";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_inf knowsAbout BIS_fuelTruck >= 1.5"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "in_cistern">*/
+                                class in_cistern
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="plan_B_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{vehicle _x == BIS_fuelTruck} count units BIS_inf > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "unlock_cistern">*/
+                class unlock_cistern
+                {
+                        name = "unlock_cistern";
+                        itemno = 36;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objExfil_fuel"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "[""BIS_objExfil_HVT"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "BIS_cistern2 lock FALSE;" \n
+                         "" \n
+                         "if (vehicle BIS_ice3 == BIS_cistern2) then {" \n
+                         "	unassignVehicle BIS_ice3;" \n
+                         "	[BIS_ice3] orderGetIn FALSE;" \n
+                         "};" \n
+                         "" \n
+                         """miller_impressed"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cistern_dead">*/
+                                class cistern_dead
+                                {
+                                        itemno = 20;
+                                        priority = 1.000000;
+                                        to="task_cenceled";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(!canMove BIS_cistern2 && BIS_cistern2 distance markerPos ""BIS_dropOff"" >= 200) || !alive BIS_cistern2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "exfiltrated">*/
+                                class exfiltrated
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="End__1_FUEL___HV";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_inf distance markerPos ""BIS_dropOff"" < 75 && BIS_cistern2 distance markerPos ""BIS_dropOff"" < 200"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "convo__kill_HVT_1">*/
+                class convo__kill_HVT_1
+                {
+                        name = "convo__kill_HVT_1";
+                        itemno = 38;
+                        init = /*%FSM<STATEINIT""">*/"""cistern_dead"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "[""BIS_objHVT"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         "[""BIS_objExfil_fuel"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "[""BIS_objExfil_HVT"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         """BIS_objHVT_manual"" call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "if (vehicle BIS_ice3 == BIS_cistern2) then {" \n
+                         "	unassignVehicle BIS_ice3;" \n
+                         "	[BIS_ice3] orderGetIn FALSE;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "cistern_dead">*/
+                                class cistern_dead
+                                {
+                                        itemno = 20;
+                                        priority = 1.000000;
+                                        to="task_cenceled";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(!canMove BIS_cistern2 && BIS_cistern2 distance markerPos ""BIS_dropOff"" >= 200) || !alive BIS_cistern2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "exfiltrated">*/
+                                class exfiltrated
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="End__1_FUEL___HV";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_inf distance markerPos ""BIS_dropOff"" < 75 && BIS_cistern2 distance markerPos ""BIS_dropOff"" < 200"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "HVT_dead">*/
+                                class HVT_dead
+                                {
+                                        itemno = 26;
+                                        priority = 0.000000;
+                                        to="task_done";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive BIS_tgt"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "HVT_away">*/
+                                class HVT_away
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="Fail__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_away"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "End__3_HVT__NO_F",
+                "End__2_FUEL__NO",
+                "End__1_FUEL___HV",
+                "Fail__2",
+                "Fail__2_1",
+        };
+};
+/*%FSM</COMPILE>*/

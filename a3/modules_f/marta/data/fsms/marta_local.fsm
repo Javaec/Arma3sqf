@@ -1,0 +1,669 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Marked Targets - Local">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"MARTA",0,250,175.000000,-225.000000,275.000000,-175.000000,0.000000,"MARTA"};
+item1[] = {"Prele",4,218,175.000000,-125.000000,275.000000,-75.000000,0.000000,"Prele"};
+item2[] = {"Init",2,250,175.000000,-25.000000,275.000000,25.000000,0.000000,"Init"};
+item3[] = {"Wait",4,218,175.000000,75.000000,275.000000,125.000000,1.000000,"Wait"};
+item4[] = {"LOOP_II",2,250,425.000000,275.000000,525.000000,325.000000,0.000000,"LOOP II"};
+item5[] = {"Return",4,218,725.000000,-25.000000,825.000000,25.000000,10.000000,"Return"};
+item6[] = {"Add_icon",4,218,425.000000,575.000000,525.000000,625.000000,1.000000,"Add icon"};
+item7[] = {"Add_icon",2,250,575.000000,575.000000,675.000000,625.000000,0.000000,"Add icon"};
+item8[] = {"Return",8,218,725.000000,275.000000,825.000000,325.000000,0.000000,"Return"};
+item9[] = {"Set_icon",4,218,425.000000,475.000000,525.000000,525.000000,2.000000,"Set icon"};
+item10[] = {"Set_icon",2,4346,725.000000,475.000000,825.000000,525.000000,0.000000,"Set icon"};
+item11[] = {"Hide_Icon",4,218,425.000000,375.000000,525.000000,425.000000,3.000000,"Hide Icon"};
+item12[] = {"Hide_icon",2,250,725.000000,375.000000,825.000000,425.000000,0.000000,"Hide icon"};
+item13[] = {"Continue",8,218,725.000000,575.000000,825.000000,625.000000,0.000000,"Continue"};
+item14[] = {"Always",8,218,425.000000,175.000000,525.000000,225.000000,0.000000,"Always"};
+item15[] = {"LOOP_I",2,250,425.000000,75.000000,525.000000,125.000000,0.000000,"LOOP I"};
+item16[] = {"Raise_counter",2,250,725.000000,75.000000,825.000000,125.000000,0.000000,"Raise counter"};
+item17[] = {"Always",8,218,575.000000,75.000000,675.000000,125.000000,0.000000,"Always"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {3,15};
+link4[] = {4,6};
+link5[] = {4,8};
+link6[] = {4,9};
+link7[] = {4,11};
+link8[] = {5,2};
+link9[] = {6,7};
+link10[] = {7,13};
+link11[] = {8,16};
+link12[] = {9,10};
+link13[] = {10,8};
+link14[] = {11,12};
+link15[] = {12,8};
+link16[] = {13,10};
+link17[] = {14,4};
+link18[] = {15,14};
+link19[] = {16,5};
+link20[] = {16,17};
+link21[] = {17,15};
+globals[] = {25.000000,1,0,1,16777215,640,480,1,26,6316128,1,360.744202,854.944336,544.027649,-265.235596,517,899,1};
+window[] = {2,-1,-1,-32000,-32000,844,-1375,-115,114,3,534};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Marked Targets - Local";
+  class States
+  {
+    /*%FSM<STATE "MARTA">*/
+    class MARTA
+    {
+      name = "MARTA";
+      init = /*%FSM<STATEINIT""">*/"/*" \n
+       "	File: marta_local.sqf" \n
+       "	Author: Karel Moricky" \n
+       "" \n
+       "	Description:" \n
+       "	Core script for MARked TArgets module" \n
+       "*/" \n
+       "" \n
+       "" \n
+       "" \n
+       "debuglog ""Log: [MARTA] Local script executed."";" \n
+       "" \n
+       "_trig = _this select 0;" \n
+       "_logic = BIS_marta_mainscope;" \n
+       "_debug = _logic getvariable ""debug"";" \n
+       "" \n
+       "_delay = 0;" \n
+       "" \n
+       "//--- Local object variables" \n
+       "_logic setvariable [""effect_fade"",[]];" \n
+       "_logic setvariable [""effect_size"",[]];" \n
+       "_logic setvariable [""effect_pos"",[]];" \n
+       "" \n
+       "//--- Global functions" \n
+       "_BIS_marta_path = ""A3\modules_f\marta\data\"";" \n
+       "BIS_marta_getParams = compile preprocessFileLineNumbers (_BIS_marta_path + ""scripts\fnc_getParams.sqf"");" \n
+       "BIS_marta_zone = compile preprocessFileLineNumbers (_BIS_marta_path + ""scripts\fnc_zone.sqf"");" \n
+       "BIS_marta_effect = compile preprocessFileLineNumbers (_BIS_marta_path + ""scripts\fnc_effect.sqf"");" \n
+       "BIS_marta_attach = compile preprocessFileLineNumbers (_BIS_marta_path + ""scripts\fnc_attach.sqf"");" \n
+       "BIS_marta_wp = compile preprocessFileLineNumbers (_BIS_marta_path + ""scripts\marta_wp.sqf"");" \n
+       "BIS_marta_sys_radar = _BIS_marta_path + ""scripts\system_radar.sqf"";" \n
+       "BIS_marta_sys_artyradar = _BIS_marta_path + ""scripts\system_artyradar.sqf"";" \n
+       "BIS_marta_getVisibleGroups  = compile preprocessFileLineNumbers (_BIS_marta_path + ""scripts\fnc_getVisibleGroups.sqf"");" \n
+       "" \n
+       "//--- Local functions" \n
+       "_BIS_marta_path = ""A3\modules_f\marta\data\"";" \n
+       "_fnc_getType = compile preprocessFileLineNumbers (_BIS_marta_path + ""scripts\fnc_getType.sqf"");" \n
+       "_fnc_getSize = compile preprocessFileLineNumbers (_BIS_marta_path + ""scripts\fnc_getSize.sqf"");" \n
+       "" \n
+       "//--- Local variable space" \n
+       "_logic setvariable [""enemygroups"",[]];" \n
+       "" \n
+       "/*" \n
+       "_disabledMarkers = [""MARKERS""] call BIS_Marta_getParams;" \n
+       "_t_WEST = [BIS_marta_trigEdW,BIS_marta_trigGdW,BIS_marta_trigCdW];" \n
+       "_t_EAST = [BIS_marta_trigWdE,BIS_marta_trigGdE,BIS_marta_trigCdE];" \n
+       "_t_GUER = [BIS_marta_trigWdG,BIS_marta_trigEdG,BIS_marta_trigCdG];" \n
+       "_t_CIV = [BIS_marta_trigWdC,BIS_marta_trigEdC,BIS_marta_trigGdC];" \n
+       "*/" \n
+       "" \n
+       "//--- Wait for groups to be loaded" \n
+       "_stepDelay = 0;" \n
+       "_oldPlayer = player;" \n
+       "" \n
+       "//setgroupiconsvisible [true,true];" \n
+       "" \n
+       "_activeGroups = [];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Prele">*/
+        class Prele
+        {
+          priority = 0.000000;
+          to="Init";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!isnil ""bis_fnc_init"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Init">*/
+    class Init
+    {
+      name = "Init";
+      init = /*%FSM<STATEINIT""">*/"_rules = _logic getvariable ""rules"";" \n
+       "_types = _logic getvariable ""types"";" \n
+       "_delay = _logic getvariable ""delay"";" \n
+       "_step = _logic getvariable ""step"";" \n
+       "_duration = _logic getvariable ""duration"";" \n
+       "_minsize = _logic getvariable ""minsize"";" \n
+       "_offset = _logic getvariable ""offset"";" \n
+       "_codeIn = _logic getvariable ""codein"";" \n
+       "_codeOut = _logic getvariable ""codeout"";" \n
+       "_enemygroups = _logic getvariable ""enemygroups"";" \n
+       "_disableEnemyColors = _logic getvariable ""disableEnemyColors"";" \n
+       "if (isnil ""_disableEnemyColors"") then {_disableEnemyColors = false};" \n
+       "" \n
+       "_showrules = player getvariable ""MARTA_SHOWRULES"";" \n
+       "_groupsRevealed = player getvariable ""MARTA_REVEAL"";" \n
+       "_groupsHidden = player getvariable ""MARTA_HIDE"";" \n
+       "" \n
+       "if (isnil ""_enemygroups"") then {group player setvariable [""enemygroups"",[]]};" \n
+       "" \n
+       "_allgroups = allgroups;" \n
+       "{" \n
+       "	_grp = _x;" \n
+       "	 if (count units _grp <= 1) then {" \n
+       "		if ({_x iskindof ""logic""} count units _grp == count units _grp) then {_allgroups = _allgroups - [_grp]};" \n
+       "	};" \n
+       "} foreach _allgroups;" \n
+       "_allgroupstotal = count _allgroups;" \n
+       "" \n
+       "" \n
+       "_listFriends = [];" \n
+       "_listEnemy = [];" \n
+       "_listNeutral = [];" \n
+       "" \n
+       "//--- Player params" \n
+       "_playerFactionId = [faction player] call BIS_fnc_getFactions;" \n
+       "//if (_playerFactionId >= 0) then {_playerParams = _rules select _playerFactionId};" \n
+       "" \n
+       "//--- Pre-definition" \n
+       "_grp = grpnull;" \n
+       "_icon = -1;" \n
+       "" \n
+       "//--- Set delay" \n
+       "_timeNow = time;" \n
+       "_n = 0;" \n
+       "" \n
+       "" \n
+       "//debuglog ""Log:--- MARTA ---------------------------------------------------"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Wait">*/
+        class Wait
+        {
+          priority = 1.000000;
+          to="LOOP_I";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _timeNow) >=_delay;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "LOOP_II">*/
+    class LOOP_II
+    {
+      name = "LOOP_II";
+      init = /*%FSM<STATEINIT""">*/"" \n
+       "" \n
+       "//--- Load custom show rules - in format [sideA,valueA,sideB,valueB,...]" \n
+       "if (!isnil ""_showrules"" && _grpSideId >= 0) then {" \n
+       "	_ruleId = _showrules find _grpFaction;" \n
+       "	if (_ruleId >= 0) then {_rule = _showrules select (_ruleId + 1)};" \n
+       "};" \n
+       "" \n
+       "if (isNil ""_grpFactionId"") then {_grpFactionId=-1;};  //HOTFIX - no idea how _grpFactionId can go nil here ()" \n
+       "//--- Load custom show rules - in format [""factionA"",valueA,""factionB"",valueB,...]" \n
+       "if (!isnil ""_showrules"" && _grpFactionId >= 0) then {" \n
+       "	_ruleId = _showrules find _grpFaction;" \n
+       "	if (_ruleId >= 0) then {_rule = _showrules select (_ruleId + 1)};" \n
+       "};" \n
+       "" \n
+       "//--- Force group revealing or hiding" \n
+       "if (!isnil ""_groupsRevealed"") then {" \n
+       "	if (_grp in _groupsRevealed) then {_rule = 1};" \n
+       "};" \n
+       "if (!isnil {player getvariable ""MARTA_HIDE""}) then {" \n
+       "	if (_grp in (player getvariable ""MARTA_HIDE"")) then {_rule = -1};" \n
+       "};" \n
+       "" \n
+       "//--- Developer's cheat" \n
+       "if (distributionregion == 0) then {if (cheat0) then {_rule = 1}};" \n
+       "" \n
+       "//--- No one's alive" \n
+       "//if (_grpCount == 0) then {_rule = 0};" \n
+       "" \n
+       "//--- Full awareness" \n
+       "if (_rule > 0) then {" \n
+       "	_grpCount = _grpCountReal" \n
+       "};" \n
+       "" \n
+       "//--- Enemy side - add group to list of enemy" \n
+       "if (isnil ""_grpSide"") then {_grpSide = sidelogic};" \n
+       "if (_grpCount > 0 && playerside getfriend _grpSide <= 0.6) then {" \n
+       "	if !(_grp in _enemygroups) then {[_logic,""enemygroups"",[_grp]] call BIS_fnc_variableSpaceAdd};" \n
+       "	_enemygroups = _logic getvariable ""enemygroups"";" \n
+       "};" \n
+       "" \n
+       "" \n
+       "//textLogFormat [""Log: %1...%2...%3"",_n,_grp,_rule];" \n
+       "" \n
+       "//--- Set delay" \n
+       "_timeNow = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Hide_Icon">*/
+        class Hide_Icon
+        {
+          priority = 3.000000;
+          to="Hide_icon";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_grpIconVisible && (_grpCount < _minsize || _rule <= 0) && _n < _allgroupstotal && !isnull _grp;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Set_icon">*/
+        class Set_icon
+        {
+          priority = 2.000000;
+          to="Set_icon";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!isnil ""_icon""" \n
+           "" \n
+           " && " \n
+           "" \n
+           "!isnil ""_iconsize""" \n
+           "" \n
+           " && " \n
+           "" \n
+           "_rule > 0" \n
+           "" \n
+           " && " \n
+           "" \n
+           "_n < _allgroupstotal" \n
+           "" \n
+           " && " \n
+           "" \n
+           "_grpCount >= _minsize" \n
+           "" \n
+           " && " \n
+           "" \n
+           "!isnull _grp;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Add_icon">*/
+        class Add_icon
+        {
+          priority = 1.000000;
+          to="Add_icon";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isnil ""_icon"" && _rule > 0 &&  _n < _allgroupstotal && !isnull _grp;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          priority = 0.000000;
+          to="Raise_counter";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"//--- Reset" \n
+           "_grp = grpnull;" \n
+           "_grpUnits = nil;" \n
+           "_grpCount = -1;" \n
+           "_grpSide = nil;" \n
+           "_grpSideId = -1;" \n
+           "_grpIconParams = nil;" \n
+           "_grpIconVisible = false;" \n
+           "_grpFaction = nil;" \n
+           "_grpFactionId = nil;" \n
+           "" \n
+           "" \n
+           "true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Add_icon">*/
+    class Add_icon
+    {
+      name = "Add_icon";
+      init = /*%FSM<STATEINIT""">*/"//--- Assign TYPE icon" \n
+       "_icon = _grp addgroupicon [""dummy""];" \n
+       "_grp setvariable [""BIS_MARTA_ICON_TYPE"",_icon];" \n
+       "" \n
+       "//--- Assign SIZE icon" \n
+       "_iconsize = _grp addgroupicon [""dummy""];" \n
+       "_grp setvariable [""BIS_MARTA_ICON_SIZE"",_iconsize];" \n
+       "" \n
+       "" \n
+       "_grp setgroupiconparams [[0,0,0,0],"""",1,false];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Continue">*/
+        class Continue
+        {
+          priority = 0.000000;
+          to="Set_icon";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Set_icon">*/
+    class Set_icon
+    {
+      name = "Set_icon";
+      init = /*%FSM<STATEINIT""">*/"//--- Assign TYPE icon" \n
+       "_iconClass = ""dummy"";" \n
+       "_groupSize = 0;" \n
+       " if (isnil ""_customIcon"") then {" \n
+       "" \n
+       "	//--- Automatic icon" \n
+       "	_iconType = _grp call _fnc_getType;" \n
+       "	_iconTypePrefix = _ruleParams select 0;" \n
+       "	_iconClass = _iconTypePrefix + _iconType;" \n
+       "" \n
+       "	//--- Assign SIZE icon" \n
+       "	_iconsize = _grp getvariable ""BIS_MARTA_ICON_SIZE"";" \n
+       "	if (isnil ""_iconsize"") then {" \n
+       "		_iconsize = _grp addgroupicon [""flag""];" \n
+       "		_grp setvariable [""BIS_MARTA_ICON_SIZE"",_iconsize];" \n
+       "	};" \n
+       "	_offsetList = [""o_"",[0,0.2],""b_"",[0,0],""n_"",[0,0.1]];" \n
+       "	_offsetId = _offsetlist find _icontypeprefix;" \n
+       "	_offset = _offsetList select (_offsetId + 1);" \n
+       "	_groupSize = [_grp,_grpUnits,_icontype] call _fnc_getSize;" \n
+       "	_iconsizeclass = if (_groupsize >= 0) then {format [""group_%1"",_groupSize]} else {""Dummy""};" \n
+       "	_grp setgroupicon [_iconsize,_iconsizeclass,_offset];" \n
+       "" \n
+       "} else {" \n
+       "_offset = [0,0];" \n
+       "	//--- Custom icon" \n
+       "	_iconClass = _customIcon select 0;" \n
+       "	//_iconSize = if (count _customIcon > 1) then {_customIcon select 1} else {""dummy""};" \n
+       "	//_grp setgroupicon [_iconsize,_iconsizeclass,_offset];" \n
+       "};" \n
+       "" \n
+       "_iconcolor = if (!_disableEnemyColors && _grpSide == resistance && !(playerside in [resistance,civilian])) then {" \n
+       "	_otherSide = ([west,east] - [playerside]) select 0;" \n
+       "	//debuglog [""Log::::::::::"",_grpside,playerside getfriend _grpSide,_grpSide getfriend _otherSide];" \n
+       "	if (playerside getfriend _grpSide <= 0.6 && _grpSide getfriend _otherSide > 0.6) then {+_enemyParams select 1} else {+_ruleParams select 1};" \n
+       "} else {+_ruleParams select 1};" \n
+       "" \n
+       "_grp setgroupicon [_icon,_iconclass];" \n
+       "" \n
+       "" \n
+       "//--- Group descriptions are planned for patch 1.06 ;)" \n
+       "_icontext = """";" \n
+       "" \n
+       "" \n
+       "//--- Show params" \n
+       "_iconWPcolor = + (_waypointSettings select 1);" \n
+       "for ""_i"" from 0 to 3 do {" \n
+       "	_current = _iconWPcolor select _i;" \n
+       "	_color = if (_current < 0) then {_iconColor select _i} else {_current};" \n
+       "	_iconWPcolor set [_i,_color];" \n
+       "};" \n
+       "_waypointSettings set [1,_iconWPcolor];" \n
+       "_iconSettings = [_iconcolor,_icontext,1,true];" \n
+       "_grp setgroupiconparams (_iconSettings + _waypointSettings);" \n
+       "" \n
+       "" \n
+       "//--- Her first time" \n
+       "if !(_grp in _activeGroups) then {" \n
+       "	_activeGroups = _activeGroups + [_grp];" \n
+       "	_iconcolor set [3,0];" \n
+       "	_grp setgroupiconparams [_iconcolor,_icontext,1,true];" \n
+       "	_iconcolor set [3,1];" \n
+       "" \n
+       "	//--- Fade in" \n
+       "	[""COLOR"",_grp,_iconcolor] spawn BIS_marta_effect;" \n
+       "" \n
+       "};" \n
+       "" \n
+       "" \n
+       "" \n
+       "//textLogFormat [""Log: %1...%2...%3"",_n,_grpCount,typeof leader _grp];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          priority = 0.000000;
+          to="Raise_counter";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"//--- Reset" \n
+           "_grp = grpnull;" \n
+           "_grpUnits = nil;" \n
+           "_grpCount = -1;" \n
+           "_grpSide = nil;" \n
+           "_grpSideId = -1;" \n
+           "_grpIconParams = nil;" \n
+           "_grpIconVisible = false;" \n
+           "_grpFaction = nil;" \n
+           "_grpFactionId = nil;" \n
+           "" \n
+           "" \n
+           "true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Hide_icon">*/
+    class Hide_icon
+    {
+      name = "Hide_icon";
+      init = /*%FSM<STATEINIT""">*/"//--- Remove group from local list" \n
+       "_activeGroups = _activeGroups - [_grp];" \n
+       "" \n
+       "//--- Fake fading icon" \n
+       "//[_grp,_rule] spawn {" \n
+       "//_grp = _this select 0;" \n
+       "//_rule = _this select 1;	" \n
+       "" \n
+       "_grpIconParams = +getgroupiconparams _grp;" \n
+       "_grpIconParams set [3,true];" \n
+       "_grpIconColor = +_grpIconParams select 0;" \n
+       "_fadeTime = if (_rule == 2) then {_duration} else {10};" \n
+       "" \n
+       "_grp setgroupiconparams [[0,0,0,0],"""",1,false];" \n
+       "" \n
+       "_grpFake = creategroup (side _grp);" \n
+       "_grpLogic = _grpFake createunit [""logic"",position leader _grp,[],0,""none""];" \n
+       "_grpLogic setpos position leader _grp;" \n
+       "" \n
+       "{" \n
+       "	_id = _x select 0;" \n
+       "	_icon = _x select 1;" \n
+       "	_offset = _x select 2;" \n
+       "" \n
+       "	//--- Icon is not selector" \n
+       "	if (configname inheritsFrom (configfile >> ""cfggroupicons"" >> _icon) != ""hc_base"") then {" \n
+       "		_newid = _grpFake addgroupicon [_icon,_offset];" \n
+       "		_grpFake setgroupicon [_newid,_icon,_offset];" \n
+       "	};" \n
+       "" \n
+       "} foreach (getGroupIcons _grp);" \n
+       "_grpIconColor set [3,0.5];" \n
+       "_grpIconParams set [0,_grpIconColor];" \n
+       "_grpFake setgroupiconparams _grpIconParams;" \n
+       "_grpIconColor set [3,0];" \n
+       "" \n
+       "//--- Remove from enemy list" \n
+       "if (_grp in _enemygroups) then {[_logic,""enemygroups"",[_grp]] call BIS_fnc_variableSpaceRemove};" \n
+       "" \n
+       "//--- Fade out" \n
+       "[""COLOR"",_grpFake,_grpIconColor,_fadeTime] spawn BIS_marta_effect;" \n
+       "" \n
+       "[_grp,_grpFake,_grpLogic] spawn {" \n
+       "	scriptName ""MARTA: Fake icon hiding"";" \n
+       "	_grp = _this select 0;" \n
+       "	_grpFake = _this select 1;" \n
+       "	_grpLogic = _this select 2;" \n
+       "//	waituntil {(((getgroupiconparams _grpFake select 0) select 3) == 0) || (getgroupiconparams _grp select 3)};" \n
+       "	waituntil {(((getgroupiconparams _grpFake select 0) select 3) == 0) || (if ((count (getgroupiconparams _grp)) > 3) then {(getgroupiconparams _grp select 3)} else {false})};" \n
+       "	deletevehicle _grpLogic;" \n
+       "	deletegroup _grpFake;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          priority = 0.000000;
+          to="Raise_counter";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"//--- Reset" \n
+           "_grp = grpnull;" \n
+           "_grpUnits = nil;" \n
+           "_grpCount = -1;" \n
+           "_grpSide = nil;" \n
+           "_grpSideId = -1;" \n
+           "_grpIconParams = nil;" \n
+           "_grpIconVisible = false;" \n
+           "_grpFaction = nil;" \n
+           "_grpFactionId = nil;" \n
+           "" \n
+           "" \n
+           "true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "LOOP_I">*/
+    class LOOP_I
+    {
+      name = "LOOP_I";
+      init = /*%FSM<STATEINIT""">*/"if (_n >= _allgroupstotal) exitwith {};" \n
+       "" \n
+       "//--- Get group" \n
+       "_grp = _allgroups select _n;" \n
+       "_icon = _grp getvariable ""BIS_MARTA_ICON_TYPE"";" \n
+       "" \n
+       "//--- Null group - abort" \n
+       "if (isnull _grp || isnil ""_grp"") exitwith {};" \n
+       "" \n
+       "" \n
+       "" \n
+       "//--- Custom params" \n
+       "_waypointSettings = _grp getvariable ""marta_waypoint"";" \n
+       "if (isnil ""_waypointSettings"") then {_waypointSettings = [false,[-1,-1,-1,-1]]};" \n
+       "" \n
+       "_customIcon = _grp getvariable ""marta_customicon"";" \n
+       "" \n
+       "" \n
+       "" \n
+       "//--- Group status" \n
+       "_grpUnits = [];" \n
+       "{" \n
+       "	if (alive _x && playerside knowsabout vehicle _x > 3.3) then {_grpUnits = _grpUnits + [_x]};" \n
+       "} foreach units _grp;" \n
+       "_grpCount = count _grpUnits;" \n
+       "_grpCountReal = {alive _x} count units _grp;" \n
+       "_grpSide = side _grp;" \n
+       "_grpSideId = -1;" \n
+       "" \n
+       "//--- Group icon params" \n
+       "_grpIconParams = getgroupiconparams _grp;" \n
+       "//_grpIconVisible = _grpIconParams select 3;" \n
+       "_grpIconVisible = _grp in _activeGroups;" \n
+       "" \n
+       "_grpFaction = ""NIC"";" \n
+       "if (alive leader _grp) then " \n
+       "{" \n
+       "	_grpFaction =faction leader _grp;" \n
+       "}" \n
+       "else" \n
+       "{" \n
+       "	_grpFaction =gettext (configfile >> ""CfgVehicles"" >> typeof (leader _grp) >> ""faction"");" \n
+       "};" \n
+       "" \n
+       "//textLogFormat [""FACTION_ %1 %2"",_grp, [_grpFaction, _n,_allgroupstotal]];" \n
+       "" \n
+       "_grpFactionId = -1;" \n
+       "" \n
+       "//--- Show rules" \n
+       "_rule = if (_grpCount > 0) then {1} else {0};" \n
+       "_ruleNumber = 3;" \n
+       "_ruleParams = [""n_"",[1,1,0,0]];" \n
+       "_enemyParams = [""n_"",[1,1,0,0]];" \n
+       "" \n
+       "if (count _rules == 4) then {" \n
+       "" \n
+       "	//--- Side based rules (default)" \n
+       "	_grpSideId = [east,west,resistance,civilian] find _grpSide;" \n
+       "	if (_grpSideId < 0) then {_grpCount = 0} else {_ruleParams = _rules select _grpSideId;};" \n
+       "	if (_grpSide == playerside) then {_rule = 1};" \n
+       "	_enemyParams = if (playerside getfriend east > 0.6) then {_rules select 1} else {_rules select 0};" \n
+       "" \n
+       "} else {" \n
+       "" \n
+       "	//--- Faction based rules" \n
+       "	_grpFactionid = [_grpFaction] call BIS_fnc_getFactions;" \n
+       "	if (_grpFactionid < 0) then {_grpCount = 0} else {_ruleParams = _rules select _grpFactionId;};" \n
+       "	if (_grpFaction == faction player)then {_rule = 1};" \n
+       "	_enemyParams = if (playerside getfriend east > 0.6) then {_rules select ([""USMC""] call BIS_fnc_getfactions)} else {_rules select ([""RU""] call BIS_fnc_getfactions)};" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          priority = 0.000000;
+          to="LOOP_II";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Raise_counter">*/
+    class Raise_counter
+    {
+      name = "Raise_counter";
+      init = /*%FSM<STATEINIT""">*/"//--- Rise the counter" \n
+       "_n = _n + 1;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          priority = 10.000000;
+          to="Init";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_n >= _allgroupstotal"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          priority = 0.000000;
+          to="LOOP_I";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="MARTA";
+  finalStates[] =
+  {
+  };
+};
+/*%FSM</COMPILE>*/

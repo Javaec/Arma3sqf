@@ -1,0 +1,262 @@
+/*%FSM<COMPILE "C:\Bis\FSMEditor\scriptedFSM.cfg, Plane Control">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Plane_Control",0,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"Plane Control"};
+item1[] = {"Fired",4,218,-75.000000,-25.000000,25.000000,25.000000,0.000000,"Fired"};
+item2[] = {"Inform",2,250,-75.000000,50.000000,25.000000,100.000000,0.000000,"Inform"};
+item3[] = {"",7,210,-29.000000,-53.999996,-21.000002,-46.000004,0.000000,""};
+item4[] = {"",7,210,-29.000023,121.000008,-20.999977,129.000000,0.000000,""};
+item5[] = {"",7,210,-104.000031,121.000008,-95.999969,129.000000,0.000000,""};
+item6[] = {"",7,210,-104.000008,-54.000000,-96.000000,-46.000000,0.000000,""};
+item7[] = {"",7,210,96.000000,-54.000000,104.000000,-46.000000,0.000000,""};
+item8[] = {"Times_up",4,218,50.000000,-25.000000,150.000000,25.000000,0.000000,"Times up"};
+item9[] = {"Disengage",1,250,50.000000,50.000000,150.000000,100.000000,0.000000,"Disengage"};
+item10[] = {"",7,210,221.000000,-54.000000,229.000000,-46.000000,0.000000,""};
+item11[] = {"Shot_down",4,218,175.000000,-25.000000,275.000000,25.000000,0.000000,"Shot down"};
+item12[] = {"Report",1,250,175.000000,50.000000,275.000000,100.000000,0.000000,"Report"};
+item13[] = {"",7,210,346.000000,-54.000000,354.000000,-46.000000,0.000000,""};
+item14[] = {"Defeated",4,218,300.000000,-25.000000,400.000000,25.000000,0.000000,"Defeated"};
+item15[] = {"Terminate",1,250,300.000000,50.000000,400.000000,100.000000,0.000000,"Terminate"};
+link0[] = {0,3};
+link1[] = {1,2};
+link2[] = {2,4};
+link3[] = {3,1};
+link4[] = {3,7};
+link5[] = {4,5};
+link6[] = {5,6};
+link7[] = {6,3};
+link8[] = {7,8};
+link9[] = {7,10};
+link10[] = {8,9};
+link11[] = {10,11};
+link12[] = {10,13};
+link13[] = {11,12};
+link14[] = {13,14};
+link15[] = {14,15};
+globals[] = {25.000000,1,0,0,0,640,480,1,19,6316128,1,-340.367310,470.226654,321.035217,-275.945313,1022,1071,1};
+window[] = {2,-1,-1,-1,-1,1155,275,1669,275,3,1040};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Plane Control";
+        class States
+        {
+                /*%FSM<STATE "Plane_Control">*/
+                class Plane_Control
+                {
+                        name = "Plane_Control";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"// Register that the plane was sent" \n
+                         "BIS_planeSent = true;" \n
+                         "" \n
+                         "[BIS_plane1, BIS_plane1 getVariable ""BIS_alt""] call BIS_fnc_setHeight;" \n
+                         "" \n
+                         "{" \n
+                         "	_x hideObject false;" \n
+                         "	_x enableSimulation true;" \n
+                         "	_x allowDamage true;" \n
+                         "	_x setCaptive false;" \n
+                         "} forEach [BIS_plane1D, BIS_plane1];" \n
+                         "" \n
+                         "BIS_plane1 setVelocity (BIS_plane1 getVariable ""BIS_velocity"");" \n
+                         "" \n
+                         """12_Plane_Sent"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "// Detect when it fires" \n
+                         "private [""_firedEH""];" \n
+                         "_firedEH = BIS_plane1 addEventHandler [" \n
+                         "	""Fired""," \n
+                         "	{" \n
+                         "		private [""_plane"", ""_weapon""];" \n
+                         "		_plane = _this select 0;" \n
+                         "		_weapon = _this select 1;" \n
+                         "		" \n
+                         "		private [""_weapons""];" \n
+                         "		_weapons = [" \n
+                         "			""Missile_AGM_02_Plane_CAS_01_F""," \n
+                         "			""Rocket_04_HE_Plane_CAS_01_F""," \n
+                         "			""Rocket_04_FL_Plane_CAS_01_F""" \n
+                         "		];" \n
+                         "		" \n
+                         "		if (_weapon in _weapons) then {" \n
+                         "			_plane removeEventHandler [""Fired"", _plane getVariable ""BIS_firedEH""];" \n
+                         "			_plane setVariable [""BIS_firedEH"", nil];" \n
+                         "			" \n
+                         "			// Register that it fired" \n
+                         "			BIS_planeFired = true;" \n
+                         "		};" \n
+                         "	}" \n
+                         "];" \n
+                         "" \n
+                         "BIS_plane1 setVariable [""BIS_firedEH"", _firedEH];" \n
+                         "" \n
+                         "// Disengage after some time" \n
+                         "private [""_time""];" \n
+                         "_time = time + 120;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Times_up">*/
+                                class Times_up
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Disengage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Shot_down">*/
+                                class Shot_down
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="Report";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_plane1)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Defeated">*/
+                                class Defeated
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_defeated"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Fired">*/
+                                class Fired
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Inform";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_planeFired"")" \n
+                                         "&&" \n
+                                         "isNil ""_planeFired"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Inform">*/
+                class Inform
+                {
+                        name = "Inform";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"private [""_planeFired""];" \n
+                         "_planeFired = ""13_Plane_Fired"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Times_up">*/
+                                class Times_up
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Disengage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Shot_down">*/
+                                class Shot_down
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="Report";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_plane1)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Defeated">*/
+                                class Defeated
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_defeated"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Fired">*/
+                                class Fired
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Inform";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_planeFired"")" \n
+                                         "&&" \n
+                                         "isNil ""_planeFired"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Disengage">*/
+                class Disengage
+                {
+                        name = "Disengage";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"// Make the plane disengage" \n
+                         "BIS_planeDisengage = true;" \n
+                         """14_Plane_Disengage"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Report">*/
+                class Report
+                {
+                        name = "Report";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "	scriptName ""planeControl.fsm: report"";" \n
+                         "	" \n
+                         "	sleep 5;" \n
+                         "	" \n
+                         "	if (isNil ""BIS_NATOAttacking"") then {" \n
+                         "		""x03_Plane_Destroyed"" call BIS_fnc_missionConversations;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Plane_Control";
+        finalStates[] =
+        {
+                "Disengage",
+                "Report",
+                "Terminate",
+        };
+};
+/*%FSM</COMPILE>*/

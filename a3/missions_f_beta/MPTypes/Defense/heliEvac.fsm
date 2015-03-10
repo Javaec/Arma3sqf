@@ -1,0 +1,405 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, heliEvac">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Get_winning_side",2,250,-75.000000,0.000000,25.000000,50.000000,0.000000,"Get winning side"};
+item1[] = {"Near",4,218,-75.000000,375.000000,25.000000,425.000000,0.000000,"Near"};
+item2[] = {"Land",2,250,-75.000000,450.000000,25.000000,500.000000,0.000000,"Land"};
+item3[] = {"In",4,218,-75.000000,525.000000,25.000000,575.000000,0.000000,"In"};
+item4[] = {"Exfil",2,250,-75.000000,600.000000,25.000000,650.000000,0.000000,"Exfil"};
+item5[] = {"Safe",4,218,-75.000000,675.000000,25.000000,725.000000,0.000000,"Safe"};
+item6[] = {"Evacuated",1,250,-75.000000,750.000000,25.000000,800.000000,0.000000,"Evacuated"};
+item7[] = {"Called",4,218,-75.000000,-75.000000,25.000000,-25.000000,0.000000,"Called"};
+item8[] = {"START",0,250,-75.000000,-150.000000,25.000000,-100.000000,0.000000,"START"};
+item9[] = {"Side_detected",4,218,-75.000000,75.000000,25.000000,125.000000,1.000000,"Side" \n "detected"};
+item10[] = {"Assign_Heli",2,4346,-100.000000,150.000000,50.000000,200.000000,0.000000,"Assign Heli"};
+item11[] = {"No_side",8,218,50.000000,0.000000,150.000000,50.000000,0.000000,"No" \n "side"};
+item12[] = {"EXIT",1,250,175.000000,0.000000,275.000000,50.000000,0.000000,"EXIT"};
+item13[] = {"Wait",4,218,-75.000000,225.000000,25.000000,275.000000,0.000000,"Wait"};
+item14[] = {"Go",2,250,-75.000000,300.000000,25.000000,350.000000,0.000000,"Go"};
+item15[] = {"Destroyed",4,218,50.000000,450.000000,150.000000,500.000000,1.000000,"Destroyed"};
+item16[] = {"Destroyed",1,250,50.000000,750.000000,150.000000,800.000000,0.000000,"Destroyed"};
+link0[] = {0,9};
+link1[] = {0,11};
+link2[] = {1,2};
+link3[] = {2,3};
+link4[] = {2,15};
+link5[] = {3,4};
+link6[] = {4,5};
+link7[] = {4,15};
+link8[] = {5,6};
+link9[] = {7,0};
+link10[] = {8,7};
+link11[] = {9,10};
+link12[] = {10,13};
+link13[] = {11,12};
+link14[] = {13,14};
+link15[] = {14,1};
+link16[] = {14,15};
+link17[] = {15,16};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,21,6316128,1,-222.393463,314.447021,656.333740,-97.197815,659,925,1};
+window[] = {2,-1,-1,-1,-1,998,-1482,-399,228,3,676};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "heliEvac";
+        class States
+        {
+                /*%FSM<STATE "Get_winning_side">*/
+                class Get_winning_side
+                {
+                        name = "Get_winning_side";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_side = BIS_moduleMPTypeDefense_heliEvacSide;" \n
+                         "_sideID = _playerSides find _side;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Side_detected">*/
+                                class Side_detected
+                                {
+                                        itemno = 9;
+                                        priority = 1.000000;
+                                        to="Assign_Heli";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_sideID >= 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "No_side">*/
+                                class No_side
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="EXIT";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Land">*/
+                class Land
+                {
+                        name = "Land";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"_heli domove position _helipad;" \n
+                         "_heli land ""get in"";" \n
+                         "_heli flyinheight 0;" \n
+                         "_time = time + 1;" \n
+                         "" \n
+                         "_smoke = createvehicle [""smokeshellpurple"",position _helipad,[],5,""none""];" \n
+                         "" \n
+                         "_time = time + 00;" \n
+                         "" \n
+                         "[""BIS_heliLand"",[_logic],BIS_fnc_moduleMPTypeDefense_missionConversations] spawn bis_fnc_missionConversations;" \n
+                         "[""BIS_evac"",[_logic,_heli],BIS_fnc_moduleMPTypeDefense_missionTasks] call bis_fnc_missionTasks;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Destroyed">*/
+                                class Destroyed
+                                {
+                                        itemno = 15;
+                                        priority = 1.000000;
+                                        to="Destroyed";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	!canmove _heli" \n
+                                         "	||	" \n
+                                         "	(!alive driver _heli && !isnull driver _heli) " \n
+                                         ")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "In">*/
+                                class In
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Exfil";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_players = [];" \n
+                                         "_groups = [];" \n
+                                         "{" \n
+                                         "	if (side _x in _playerSides) then {" \n
+                                         "		_players set [count _players,_x];" \n
+                                         "		_group = group _x;" \n
+                                         "		if !(_group in _groups) then {" \n
+                                         "			_groups set [count _groups,_group];" \n
+                                         "		};" \n
+                                         "	};" \n
+                                         "} foreach ([] call bis_fnc_listPlayers);" \n
+                                         "" \n
+                                         "//--- All players" \n
+                                         "{isplayer _x && vehicle _x != _heli} count _players == 0" \n
+                                         "" \n
+                                         "//--- Full cargo" \n
+                                         "||" \n
+                                         "(_heli emptypositions ""cargo"") == 0" \n
+                                         "" \n
+                                         "//--- Whole one team in (when enemies)" \n
+                                         "||" \n
+                                         "{" \n
+                                         "	if ([side _x,side _heli] call bis_fnc_areFriendly) then {" \n
+                                         "		{vehicle _x != _heli} count units _x == 0" \n
+                                         "	} else {" \n
+                                         "		false" \n
+                                         "	};" \n
+                                         "} count _groups > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Exfil">*/
+                class Exfil
+                {
+                        name = "Exfil";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_heli setvariable [""exfil"",true];" \n
+                         "_heli flyinheight 100;" \n
+                         "" \n
+                         "//--- Move remaining AI members in " \n
+                         "{" \n
+                         "	if ((assignedvehiclerole _x select 0) == ""cargo"") then {" \n
+                         "		{_x moveincargo _heli} foreach units _x;" \n
+                         "	};" \n
+                         "} foreach crew _heli;" \n
+                         "" \n
+                         "[""BIS_heliLoaded"",[_logic],BIS_fnc_moduleMPTypeDefense_missionConversations] spawn bis_fnc_missionConversations;" \n
+                         "" \n
+                         "" \n
+                         "//--- Set the tasks locally based on who's in helicopter and who's not" \n
+                         "[" \n
+                         "	[""BIS_evac"",[_logic,_heli,false],""BIS_fnc_moduleMPTypeDefense_missionTasks""]," \n
+                         "	""bis_fnc_missionTasks""" \n
+                         "] call bis_fnc_mp;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Destroyed">*/
+                                class Destroyed
+                                {
+                                        itemno = 15;
+                                        priority = 1.000000;
+                                        to="Destroyed";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	!canmove _heli" \n
+                                         "	||	" \n
+                                         "	(!alive driver _heli && !isnull driver _heli) " \n
+                                         ")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Safe">*/
+                                class Safe
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Evacuated";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_heli distance _helipad > 1500" \n
+                                         "||" \n
+                                         "_heli distance _helistart < 500"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Evacuated">*/
+                class Evacuated
+                {
+                        name = "Evacuated";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"_logic setvariable [""evacuated"",true];" \n
+                         "" \n
+                         "//[""BIS_evac"",[_logic,_heli,true],BIS_fnc_moduleMPTypeDefense_missionTasks] call bis_fnc_missionTasks;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "START">*/
+                class START
+                {
+                        name = "START";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"_logic = _this select 0;" \n
+                         "" \n
+                         "_playerSides = _logic getvariable ""playerSides"";" \n
+                         "_playerSideLogics = _logic getvariable ""playerSideLogics"";" \n
+                         "" \n
+                         "BIS_moduleMPTypeDefense_heliEvacSide = sideUnknown;" \n
+                         "publicvariable ""BIS_moduleMPTypeDefense_heliEvacSide"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Called">*/
+                                class Called
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Get_winning_side";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_moduleMPTypeDefense_heliEvacSide != sideunknown"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Assign_Heli">*/
+                class Assign_Heli
+                {
+                        name = "Assign_Heli";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"_sideLogic = _playerSideLogics select _sideID;" \n
+                         "" \n
+                         "_heli = _sideLogic getvariable [""heli"",objnull];" \n
+                         "_helipad = _sideLogic getvariable [""helipad"",_sideLogic];" \n
+                         "_helistart = position _heli;" \n
+                         "" \n
+                         "_logic setvariable [""heli"",_heli];" \n
+                         "" \n
+                         "_heli hideobject false;" \n
+                         "_heli setvehiclelock ""unlocked"";" \n
+                         "_heli lockdriver true;" \n
+                         "_heli lockturret [[0],true];" \n
+                         "_heli setbehaviour ""careless"";" \n
+                         "_heli setcombatmode ""blue"";" \n
+                         "_heli disableai ""target"";" \n
+                         "_heli disableai ""autotarget"";" \n
+                         "_heli allowfleeing 0;" \n
+                         "_heli setvariable [""exfil"",false];" \n
+                         "" \n
+                         "_wpLand = group _heli addwaypoint [position _helipad,0];" \n
+                         "_wpLand setwaypointtype ""move"";" \n
+                         "" \n
+                         "_wpLoad = group _heli addwaypoint [position _helipad,0];" \n
+                         "_wpLoad setwaypointtype ""load"";" \n
+                         "_wpLoad setwaypointstatements [" \n
+                         "	""(vehicle this) getvariable ['exfil',false]""," \n
+                         "	""""" \n
+                         "];" \n
+                         "" \n
+                         "_wpLeave = group _heli addwaypoint [_helistart,0];" \n
+                         "" \n
+                         "//--- Remove the evac heli request" \n
+                         "[[1,_heli],""BIS_fnc_moduleMPTypeDefense_heliEvacLocal""] call bis_fnc_mp;" \n
+                         "" \n
+                         "_enoughCargoPositions = (_heli emptypositions ""cargo"") >= count ([] call bis_fnc_listPlayers);" \n
+                         "" \n
+                         "[" \n
+                         "	""BIS_heliCall""," \n
+                         "	[_logic,[_side],_playerSides - [_side],_enoughCargoPositions]," \n
+                         "	BIS_fnc_moduleMPTypeDefense_missionConversations" \n
+                         "] spawn bis_fnc_missionConversations;" \n
+                         "" \n
+                         "{" \n
+                         "	[""BIS_callHeli"",[_logic,_x,_side,true],""BIS_fnc_moduleMPTypeDefense_missionTasks""] call bis_fnc_missionTasks;" \n
+                         "} foreach _playerSides;" \n
+                         "" \n
+                         "cheat1 = false;" \n
+                         "_time = time + 240;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Wait">*/
+                                class Wait
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="Go";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _time" \n
+                                         "||" \n
+                                         "cheat1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "EXIT">*/
+                class EXIT
+                {
+                        name = "EXIT";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"[""Side %1 is not a valid player side"",_side] call bis_fnc_error;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Go">*/
+                class Go
+                {
+                        name = "Go";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"_heli setcaptive false;" \n
+                         "[[3,_heli],""BIS_fnc_moduleMPTypeDefense_heliEvacLocal""] call bis_fnc_mp;" \n
+                         "" \n
+                         "[""BIS_heliLand"",[_logic],BIS_fnc_moduleMPTypeDefense_missionConversations] spawn bis_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Destroyed">*/
+                                class Destroyed
+                                {
+                                        itemno = 15;
+                                        priority = 1.000000;
+                                        to="Destroyed";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	!canmove _heli" \n
+                                         "	||	" \n
+                                         "	(!alive driver _heli && !isnull driver _heli) " \n
+                                         ")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Near">*/
+                                class Near
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Land";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(currentwaypoint group _heli) > (_wpLand select 1)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Destroyed">*/
+                class Destroyed
+                {
+                        name = "Destroyed";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_evac"",[_logic,_heli,true],BIS_fnc_moduleMPTypeDefense_missionTasks] call bis_fnc_missionTasks;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="START";
+        finalStates[] =
+        {
+                "Evacuated",
+                "EXIT",
+                "Destroyed",
+        };
+};
+/*%FSM</COMPILE>*/

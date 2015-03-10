@@ -1,0 +1,395 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, missionFlow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-40.000000,-210.000000,50.000000,-160.000000,0.000000,"Start"};
+item1[] = {"Mission_started",4,218,-40.000000,-140.000000,50.000000,-90.000000,0.000000,"Mission" \n "started"};
+item2[] = {"Escaped",4,218,-40.000000,0.000000,50.000000,50.000000,10.000000,"Escaped"};
+item3[] = {"Win_01",1,250,-40.000000,70.000000,50.000000,120.000000,0.000000,"Win 01"};
+item4[] = {"Prolog_part",2,250,-40.000000,-70.000000,50.000000,-20.000000,0.000000,"Prolog" \n "part"};
+link0[] = {0,1};
+link1[] = {1,4};
+link2[] = {2,3};
+link3[] = {4,2};
+globals[] = {10.000000,1,0,0,0,640,480,1,59,6316128,1,-309.074799,317.521851,187.242172,-301.427368,1322,1031,1};
+window[] = {2,-1,-1,-1,-1,1010,250,1690,250,3,1340};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "missionFlow";
+        class States
+        {
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"BIS_missionStart = false;" \n
+                         "BIS_Fail = false;" \n
+                         "BIS_Win = false;" \n
+                         "BIS_DeviceTaskReceived = false;" \n
+                         "BIS_Device = false;" \n
+                         "BIS_CarAlarm = 0;" \n
+                         "BIS_BlueOnBlue = false;" \n
+                         "BIS_fnc_endMission_checkAliveState = false;" \n
+                         "BIS_WarIsOver = false;" \n
+                         "" \n
+                         "enableRadio false;" \n
+                         "" \n
+                         "BIS_inf enableSimulation false;" \n
+                         "" \n
+                         "JOIN_NATO = BIS_inf execFSM ""Scripts\JoinNATO.fsm"";" \n
+                         "JOIN_FIA = BIS_inf execFSM ""Scripts\JoinFIA.fsm"";" \n
+                         "" \n
+                         "{_x setMarkerAlpha 0} forEach [" \n
+                         "" \n
+                         "	""BIS_mrkResearchBase""," \n
+                         "	""BIS_mrkNATO""," \n
+                         "	""BIS_mrkFIA""," \n
+                         "	""BIS_mrkPort_01""," \n
+                         "	""BIS_mrkPort_02""," \n
+                         "	""BIS_mrkPort_03""," \n
+                         "	""BIS_mrkPort_04""," \n
+                         "	""BIS_mrkPort_05""," \n
+                         "	""BIS_mrkPort_06""," \n
+                         "	""BIS_mrkPort_07""," \n
+                         "	""BIS_mrkPort_08""," \n
+                         "	""BIS_mrkPort_09""," \n
+                         "	""BIS_mrkPort_10""," \n
+                         "	""BIS_mrkPort_11""," \n
+                         "	""BIS_mrkPort_12""," \n
+                         "	""BIS_mrkPort_13""," \n
+                         "	""BIS_mrkPort_14""," \n
+                         "	""BIS_mrkPort_15""," \n
+                         "	""BIS_mrkPort_16""," \n
+                         "	""BIS_mrkPort_17""," \n
+                         "	""BIS_mrkPort_18""," \n
+                         "	""BIS_mrkPort_19""," \n
+                         "	""BIS_mrkNavalBase_01""," \n
+                         "	""BIS_mrkNavalBase_02""," \n
+                         "	""BIS_mrkNavalBase_03""," \n
+                         "	""BIS_mrkNavalBase_04""," \n
+                         "	""BIS_mrkNavalBase_05""," \n
+                         "	""BIS_mrkHeliport_01""," \n
+                         "	""BIS_mrkHeliport_02""," \n
+                         "	""BIS_mrkHeliport_03""," \n
+                         "	""BIS_mrkHeliport_04""," \n
+                         "	""BIS_mrkHeliport_05""," \n
+                         "	""BIS_mrkHeliport_06""," \n
+                         "	""BIS_mrkHeliport_07""," \n
+                         "	""BIS_mrkHeliport_08""," \n
+                         "	""BIS_mrkHeliport_09""," \n
+                         "	""BIS_mrkHeliport_10""," \n
+                         "	""BIS_mrkAirbase""," \n
+                         "	""BIS_mrkAirfield_01""," \n
+                         "	""BIS_mrkAirfield_02""," \n
+                         "	""BIS_mrkAirfield_03""," \n
+                         "	""BIS_mrkAirfield_04""" \n
+                         "" \n
+                         "];" \n
+                         "" \n
+                         "// ****************" \n
+                         "// Global fuel shortage" \n
+                         "// ****************" \n
+                         "" \n
+                         "_fuelStationClasses =" \n
+                         "[" \n
+                         "	""Land_FuelStation_Feed_F""," \n
+                         "	""Land_fs_feed_F""" \n
+                         "];" \n
+                         "" \n
+                         "for [{_i=0},{_i < (count _fuelStationClasses)},{_i=_i+1}] do" \n
+                         "{" \n
+                         "	_fuelStations = getMarkerPos ""BIS_mapCenter"" nearObjects [_fuelStationClasses select _i, 25000];" \n
+                         "	{_x setFuelCargo 0.0025} forEach _fuelStations;" \n
+                         "};" \n
+                         "" \n
+                         "// ************" \n
+                         "// Global blackout" \n
+                         "// ************" \n
+                         "" \n
+                         "_lampClasses = " \n
+                         "[" \n
+                         "	""Land_LampAirport_F""," \n
+                         "	""Land_LampDecor_F""," \n
+                         "	""Land_LampHalogen_F""," \n
+                         "	""Land_LampHarbour_F""," \n
+                         "	""Land_LampShabby_F""," \n
+                         "	""Land_LampSolar_F""," \n
+                         "	""Land_LampStadium_F""," \n
+                         "	""Land_LampStreet_F""," \n
+                         "	""Land_LampStreet_small_F""," \n
+                         "	""Land_PowerPoleWooden_F""," \n
+                         "	""Land_PowerPoleWooden_L_F""," \n
+                         "	""Land_PowerPoleWooden_small_F""" \n
+                         "];" \n
+                         "" \n
+                         "for [{_i=0},{_i < (count _lampClasses)},{_i=_i+1}] do" \n
+                         "{" \n
+                         "	_lamps = getMarkerPos ""BIS_mapCenter"" nearObjects [_lampClasses select _i, 25000];" \n
+                         "	{_x setDamage 0.95} forEach _lamps;" \n
+                         "};" \n
+                         "" \n
+                         "// ************" \n
+                         "// Runway lights" \n
+                         "// ************" \n
+                         "" \n
+                         "_navigLightsClasses = " \n
+                         "[" \n
+                         "	""Land_NavigLight""," \n
+                         "	""Land_runway_edgelight""," \n
+                         "	""Land_runway_edgelight_blue_F""," \n
+                         "	""Land_Runway_PAPI""," \n
+                         "	""Land_Runway_PAPI_2""," \n
+                         "	""Land_Runway_PAPI_3""," \n
+                         "	""Land_Runway_PAPI_4""" \n
+                         "];" \n
+                         "" \n
+                         "for [{_i=0},{_i < (count _navigLightsClasses)},{_i=_i+1}] do" \n
+                         "{" \n
+                         "	_navigLights = getMarkerPos ""BIS_mapCenter"" nearObjects [_navigLightsClasses select _i, 25000];" \n
+                         "	{_x setDamage 1} forEach _navigLights;" \n
+                         "};" \n
+                         "" \n
+                         "// **********" \n
+                         "// Device TASK" \n
+                         "// **********" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "" \n
+                         "WaitUntil {(BIS_inf distance BIS_ResearchModule < 5)};" \n
+                         "" \n
+                         "WaitUntil " \n
+                         "{" \n
+                         "	(BIS_inf distance BIS_ResearchModule < 5) and " \n
+                         "	(getPosATL BIS_inf select 2 > 0.2) and" \n
+                         "	(getPosATL BIS_inf select 2 <1)" \n
+                         "};" \n
+                         "" \n
+                         "sleep 5;" \n
+                         "[""BIS_tskDevice"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "BIS_Device = true;" \n
+                         """Device"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "sleep 5;" \n
+                         "[""BIS_tskEscape"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "};" \n
+                         "" \n
+                         "// *******************" \n
+                         "// Blinking lamp, sKerry :-)" \n
+                         "// *******************" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "" \n
+                         "While {BIS_CarAlarm < 3} Do {" \n
+                         "" \n
+                         "BIS_FirstLamp setDamage 0;" \n
+                         "sleep (random 2);" \n
+                         "" \n
+                         "BIS_FirstLamp setDamage .95;" \n
+                         "sleep 0.25;" \n
+                         "};" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Mission_started">*/
+                                class Mission_started
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Prolog_part";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_missionStart" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Win_01">*/
+                class Win_01
+                {
+                        name = "Win_01";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "" \n
+                         "sleep 1;" \n
+                         "" \n
+                         "(vehicle BIS_inf) lock true;" \n
+                         "[""BIS_tskEscape"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         """Escaped"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "5 fadeSound 0;" \n
+                         "titleCut ["""", ""BLACK OUT"", 5];" \n
+                         "" \n
+                         "sleep 5;" \n
+                         "" \n
+                         "{_x enableSimulation false; _x allowDamage false; _x  setCaptive true} forEach (units group BIS_inf + [vehicle BIS_inf]);" \n
+                         "" \n
+                         "enableRadio false;" \n
+                         "clearRadio;" \n
+                         "" \n
+                         "sleep 3;" \n
+                         "" \n
+                         "MissionEnd = BIS_inf execVM ""Scripts\theEnd.sqf"";" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Prolog_part">*/
+                class Prolog_part
+                {
+                        name = "Prolog_part";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "" \n
+                         "enableRadio true;" \n
+                         "BIS_inf enableSimulation true;" \n
+                         "" \n
+                         "Battlefield = BIS_inf execVM ""Scripts\BattlefieldSounds.sqf"";" \n
+                         "" \n
+                         "sleep 3;" \n
+                         "0 fadeMusic 0;" \n
+                         "playMusic ""EventTrack03_F_EPC"";" \n
+                         "5 fadeMusic 0.35;" \n
+                         "Silence = addMusicEventHandler [""MusicStop"", {JukeBox = BIS_inf execFSM ""Scripts\JukeBox.fsm"";}];" \n
+                         """Prolog"" call BIS_fnc_missionConversations;" \n
+                         "BIS_inf setBehaviour ""Aware"";" \n
+                         "" \n
+                         "sleep 3;" \n
+                         """Miller"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "[""BIS_tskWait"", ""Canceled""] call BIS_fnc_missionTasks;" \n
+                         """BIS_mrkStart"" setMarkerColor ""ColorBlack"";" \n
+                         "" \n
+                         "sleep 2;" \n
+                         """LeftBehind"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "deleteVehicle BIS_recon;" \n
+                         "" \n
+                         "sleep 2.5;" \n
+                         """SOS"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "240 setFog [0.1,0.125,20];" \n
+                         "1800 setOvercast 0.40;" \n
+                         "900 setRain 0;" \n
+                         "" \n
+                         "sleep 0.01;" \n
+                         "" \n
+                         "_earthquake01 = [2] spawn BIS_fnc_EarthQuake;" \n
+                         "" \n
+                         "// Delete driver door and unlock the car" \n
+                         "" \n
+                         "sleep 1.5;" \n
+                         "BIS_Offroad animate [""HideDoor1"", 1];" \n
+                         "BIS_Offroad lock false;" \n
+                         "" \n
+                         "BIS_Offroad say3D ""AlarmCar"";" \n
+                         "" \n
+                         "While {BIS_CarAlarm < 24} Do {" \n
+                         "If (BIS_CarAlarm == 4) Then {BIS_Offroad say3D ""AlarmCar""};" \n
+                         "If (BIS_CarAlarm == 8) Then {BIS_Offroad say3D ""AlarmCar""};" \n
+                         "If (BIS_CarAlarm == 12) Then {BIS_Offroad say3D ""AlarmCar""};" \n
+                         "If (BIS_CarAlarm == 16) Then {BIS_Offroad say3D ""AlarmCar""};" \n
+                         "BIS_inf action [""lightOn"", BIS_Offroad];" \n
+                         "sleep 0.25;" \n
+                         "" \n
+                         "BIS_inf action [""lightOff"", BIS_Offroad];" \n
+                         "sleep 0.25;" \n
+                         "" \n
+                         "BIS_CarAlarm = BIS_CarAlarm + 1;" \n
+                         "};" \n
+                         "" \n
+                         "sleep 2;" \n
+                         "deleteVehicle BIS_BHQ;" \n
+                         """GameOver"" call BIS_fnc_missionConversations;" \n
+                         "" \n
+                         """BIS_tskEscape"" call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "// sleep 5;" \n
+                         "// ""BIS_tskDevice"" call BIS_fnc_missionTasks;" \n
+                         "// ""BIS_mrkResearchBase"" setMarkerAlpha 1;" \n
+                         "// [""BIS_tskDevice"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "{_x setMarkerAlpha 1} forEach [" \n
+                         "" \n
+                         "	""BIS_mrkPort_01""," \n
+                         "	""BIS_mrkPort_02""," \n
+                         "	""BIS_mrkPort_03""," \n
+                         "	""BIS_mrkPort_04""," \n
+                         "	""BIS_mrkPort_05""," \n
+                         "	""BIS_mrkPort_06""," \n
+                         "	""BIS_mrkPort_07""," \n
+                         "	""BIS_mrkPort_08""," \n
+                         "	""BIS_mrkPort_09""," \n
+                         "	""BIS_mrkPort_10""," \n
+                         "	""BIS_mrkPort_11""," \n
+                         "	""BIS_mrkPort_12""," \n
+                         "	""BIS_mrkPort_13""," \n
+                         "	""BIS_mrkPort_14""," \n
+                         "	""BIS_mrkPort_15""," \n
+                         "	""BIS_mrkPort_16""," \n
+                         "	""BIS_mrkPort_17""," \n
+                         "	""BIS_mrkPort_18""," \n
+                         "	""BIS_mrkPort_19""," \n
+                         "	""BIS_mrkNavalBase_01""," \n
+                         "	""BIS_mrkNavalBase_02""," \n
+                         "	""BIS_mrkNavalBase_03""," \n
+                         "	""BIS_mrkNavalBase_04""," \n
+                         "	""BIS_mrkNavalBase_05""," \n
+                         "	""BIS_mrkHeliport_01""," \n
+                         "	""BIS_mrkHeliport_02""," \n
+                         "	""BIS_mrkHeliport_03""," \n
+                         "	""BIS_mrkHeliport_04""," \n
+                         "	""BIS_mrkHeliport_05""," \n
+                         "	""BIS_mrkHeliport_06""," \n
+                         "	""BIS_mrkHeliport_07""," \n
+                         "	""BIS_mrkHeliport_08""," \n
+                         "	""BIS_mrkHeliport_09""," \n
+                         "	""BIS_mrkHeliport_10""," \n
+                         "	""BIS_mrkAirbase""," \n
+                         "	""BIS_mrkAirfield_01""," \n
+                         "	""BIS_mrkAirfield_02""," \n
+                         "	""BIS_mrkAirfield_03""," \n
+                         "	""BIS_mrkAirfield_04""" \n
+                         "" \n
+                         "];" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Escaped">*/
+                                class Escaped
+                                {
+                                        itemno = 2;
+                                        priority = 10.000000;
+                                        to="Win_01";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_Win" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Start";
+        finalStates[] =
+        {
+                "Win_01",
+        };
+};
+/*%FSM</COMPILE>*/

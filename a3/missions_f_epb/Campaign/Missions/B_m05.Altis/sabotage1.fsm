@@ -1,0 +1,162 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, Sabotage #1">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-125.000000,-750.000000,-25.000000,-700.000000,0.000000,"Init"};
+item1[] = {"patrol_dead",4,218,-125.000000,-675.000000,-25.000000,-625.000000,0.000000,"patrol dead"};
+item2[] = {"allow_chopper",2,250,-125.000000,-600.000000,-25.000000,-550.000000,0.000000,"allow chopper"};
+item3[] = {"chopper_nearby",4,218,-125.000000,-525.000000,-25.000000,-475.000000,0.000000,"chopper" \n "nearby"};
+item4[] = {"nothing",2,250,-125.000000,-450.000000,-25.000000,-400.000000,0.000000,"nothing"};
+item5[] = {"chopper_away",4,4314,-125.000000,-375.000000,-25.000000,-325.000000,0.000000,"chopper away"};
+item6[] = {"fail__1",1,250,-125.000000,-300.000000,-25.000000,-250.000000,0.000000,"fail #1"};
+item7[] = {"depot_raid",4,218,75.000000,-750.000000,175.000000,-700.000000,0.000000,"depot raid"};
+item8[] = {"terminate",1,250,75.000000,-675.000000,175.000000,-625.000000,0.000000,"terminate"};
+link0[] = {0,1};
+link1[] = {0,7};
+link2[] = {1,2};
+link3[] = {2,3};
+link4[] = {2,7};
+link5[] = {3,4};
+link6[] = {4,5};
+link7[] = {5,6};
+link8[] = {7,8};
+globals[] = {25.000000,1,0,0,0,640,480,1,125,6316128,1,-287.528748,244.555298,-108.024986,-913.573547,681,1031,1};
+window[] = {2,-1,-1,-1,-1,917,150,1364,150,3,699};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Sabotage #1";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "depot_raid">*/
+                                class depot_raid
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_sabotage_depot"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "patrol_dead">*/
+                                class patrol_dead
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="allow_chopper";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_sentry1Area"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "allow_chopper">*/
+                class allow_chopper
+                {
+                        name = "allow_chopper";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"BIS_suppReq_heli = [BIS_inf, ""Heli""] call BIS_fnc_addCommMenuItem;" \n
+                         "" \n
+                         "BIS_inf addEventHandler [""Fired"", {" \n
+                         "	if ((_this select 4) in [""SmokeShell"", ""SmokeShellBlue"", ""SmokeShellGreen"", ""SmokeShellOrange"", ""SmokeShellPurple"", ""SmokeShellRed"", ""SmokeShellYellow""]) then {" \n
+                         "		(_this select 6) spawn {" \n
+                         "			sleep 5;" \n
+                         "			BIS_H setPos position _this" \n
+                         "		}" \n
+                         "	}" \n
+                         "}];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "depot_raid">*/
+                                class depot_raid
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_sabotage_depot"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "chopper_nearby">*/
+                                class chopper_nearby
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="nothing";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_heli distance markerPos ""sentry1"" < 1000"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "nothing">*/
+                class nothing
+                {
+                        name = "nothing";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"BIS_smokeTimeout = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "chopper_away">*/
+                                class chopper_away
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="fail__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_heli distance markerPos ""sentry1"" > 2000 && canMove BIS_heli && alive driver BIS_heli"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "fail__1">*/
+                class fail__1
+                {
+                        name = "fail__1";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"[[missionName, 1], FALSE] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "terminate">*/
+                class terminate
+                {
+                        name = "terminate";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "fail__1",
+                "terminate",
+        };
+};
+/*%FSM</COMPILE>*/

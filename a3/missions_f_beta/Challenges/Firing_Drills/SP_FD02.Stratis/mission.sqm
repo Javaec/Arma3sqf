@@ -1,0 +1,735 @@
+version=12;
+class Mission
+{
+	addOns[]=
+	{
+		"A3_Characters_F_BLUFOR",
+		"a3_map_stratis",
+		"A3_Structures_F_System",
+		"A3_Weapons_F_Ammoboxes",
+		"A3_Structures_F_Civ_InfoBoards",
+		"A3_Modules_F_Beta_FiringDrills",
+		"A3_Structures_F_Training",
+		"a3_characters_f_beta",
+		"A3_Structures_F_Items_Electronics"
+	};
+	addOnsAuto[]=
+	{
+		"A3_Characters_F_Beta",
+		"A3_Modules_F_Beta_FiringDrills",
+		"A3_Characters_F_BLUFOR",
+		"A3_Structures_F_System",
+		"A3_Weapons_F_Ammoboxes",
+		"A3_Structures_F_Civ_InfoBoards",
+		"A3_Structures_F_Training",
+		"A3_Structures_F_Items_Electronics",
+		"a3_map_stratis"
+	};
+	randomSeed=9997558;
+	class Intel
+	{
+		startWeather=0.14;
+		startWind=0.099999994;
+		startWaves=0.099999994;
+		forecastWeather=0.32999998;
+		forecastWind=0.099999994;
+		forecastWaves=0.099999994;
+		forecastLightnings=0.099999994;
+		year=2035;
+		month=7;
+		day=11;
+		hour=19;
+		minute=25;
+		startFogDecay=0.0049333;
+		forecastFogDecay=0.0049333;
+	};
+	class Groups
+	{
+		items=3;
+		class Item0
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={6414.5913,7.9499998,5397.4824};
+					azimut=-80.844803;
+					id=0;
+					side="WEST";
+					vehicle="B_Competitor_F";
+					player="PLAYER COMMANDER";
+					leader=1;
+					skill=0.60000002;
+					text="BIS_FD_Competitor";
+				};
+			};
+		};
+		class Item1
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={6418.0498,7.9476609,5398.418};
+					id=1;
+					side="LOGIC";
+					vehicle="ModuleFiringDrill_F";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+				};
+			};
+		};
+		class Item2
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={6413.2329,7.8960767,5401.6592};
+					azimut=-158.336;
+					id=2;
+					side="WEST";
+					vehicle="B_RangeMaster_F";
+					leader=1;
+					skill=0.2;
+					text="BIS_rangeOfficer";
+					init="removeAllWeapons this; this setBehaviour ""CARELESS""; this disableAI ""anim""; BIS_FD_handle = this spawn {waitUntil {time > 0}; _this switchMove ""InBaseMoves_HandsBehindBack2"";};";
+				};
+			};
+		};
+	};
+	class Vehicles
+	{
+		items=11;
+		class Item0
+		{
+			position[]={6380.5615,7.8427272,5402.7471};
+			id=3;
+			side="EMPTY";
+			vehicle="Land_ClutterCutter_medium_F";
+			skill=0.60000002;
+		};
+		class Item1
+		{
+			position[]={6414.4355,7.9499998,5399.4663};
+			azimut=304.40701;
+			id=4;
+			side="EMPTY";
+			vehicle="Box_NATO_Ammo_F";
+			skill=0.60000002;
+			text="BIS_ammoFD3_1";
+		};
+		class Item2
+		{
+			position[]={6412.7202,7.9499998,5396.0664};
+			azimut=199.49001;
+			id=5;
+			side="EMPTY";
+			vehicle="Box_NATO_Wps_F";
+			skill=0.60000002;
+			text="BIS_weaponsFD3";
+		};
+		class Item3
+		{
+			position[]={6413.3857,7.9499998,5399.8496};
+			azimut=295.59698;
+			id=6;
+			side="EMPTY";
+			vehicle="Box_NATO_Ammo_F";
+			skill=0.60000002;
+			text="BIS_ammoFD3_2";
+		};
+		class Item4
+		{
+			position[]={6414.436,7.8817883,5402.2593};
+			azimut=11.017233;
+			id=7;
+			side="EMPTY";
+			vehicle="MapBoard_stratis_F";
+			skill=0.60000002;
+			init="this setObjectTexture [0, ""A3\Missions_F_Beta\data\img\whiteboards\whiteboard_sp_fd02_CO""]";
+		};
+		class Item5
+		{
+			position[]={6410.6401,7.9532151,5395.3569};
+			azimut=-123.263;
+			id=8;
+			side="EMPTY";
+			vehicle="Land_Target_Oval_NoPop_F";
+			skill=0.60000002;
+			text="BIS_FD_ruleSelector1";
+			init="this setObjectTexture [0, ""A3\modules_f_beta\data\FiringDrills\training_blue_ca""]";
+		};
+		class Item6
+		{
+			position[]={6410.2715,7.9503026,5395.9395};
+			azimut=-116.218;
+			id=9;
+			side="EMPTY";
+			vehicle="Land_Target_Oval_NoPop_F";
+			skill=0.60000002;
+			text="BIS_FD_ruleSelector2";
+			init="this setObjectTexture [0, ""A3\modules_f_beta\data\FiringDrills\competitive_blue_ca""]";
+		};
+		class Item7
+		{
+			position[]={6405.7114,8,5381.6172};
+			azimut=510.97501;
+			id=10;
+			side="EMPTY";
+			vehicle="Land_Target_Oval_NoPop_F";
+			skill=0.60000002;
+			text="BIS_FD_restartSelector1";
+			init="this setObjectTexture [0, ""A3\modules_f_beta\data\FiringDrills\restart_blue_ca""]";
+		};
+		class Item8
+		{
+			position[]={6393.7822,8,5387.002};
+			azimut=399.61954;
+			id=11;
+			side="EMPTY";
+			vehicle="Box_NATO_Ammo_F";
+			skill=0.60000002;
+			text="BIS_ammoFD3_3";
+		};
+		class Item9
+		{
+			position[]={6405.0737,8,5381.3223};
+			azimut=516.81348;
+			id=12;
+			side="EMPTY";
+			vehicle="Land_Target_Oval_NoPop_F";
+			skill=0.60000002;
+			text="BIS_FD_quitSelector1";
+			init="this setObjectTexture [0, ""A3\modules_f_beta\data\FiringDrills\quit_ca""]";
+		};
+		class Item10
+		{
+			position[]={6413.5386,7.9509106,5395.8179};
+			azimut=15.16829;
+			id=13;
+			side="EMPTY";
+			vehicle="Land_FMradio_F";
+			skill=0.60000002;
+		};
+	};
+	class Markers
+	{
+		items=2;
+		class Item0
+		{
+			position[]={6323.1436,4.0602126,5443.9268};
+			name="BIS_target3_11_5_WP1";
+			type="Empty";
+			a=0.5;
+			b=0.5;
+			angle=126.759;
+		};
+		class Item1
+		{
+			position[]={6325.4136,4.0209508,5444.9224};
+			name="BIS_target3_11_6_WP1";
+			type="Empty";
+			a=0.5;
+			b=0.5;
+			angle=135.64999;
+		};
+	};
+	class Sensors
+	{
+		items=29;
+		class Item0
+		{
+			position[]={6393.3438,7.8857532,5397.6714};
+			a=24;
+			b=22;
+			angle=165.284;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_firingDrills3";
+			class Effects
+			{
+			};
+		};
+		class Item1
+		{
+			position[]={6403.7817,7.8937697,5400.1689};
+			a=2;
+			b=1;
+			angle=-229.592;
+			rectangular=1;
+			activationBy="WEST";
+			interruptable=1;
+			age="UNKNOWN";
+			text="Hint: BasicLean";
+			name="BIS_hintBasicLean2";
+			expCond="BIS_FD_Competitor in thisList";
+			expActiv="[[""InfantryMovement"", ""BasicLean""], 5, ""!(player in (list BIS_hintBasicLean2))""] call BIS_fnc_advHint";
+			class Effects
+			{
+			};
+		};
+		class Item2
+		{
+			position[]={6399.418,7.7469859,5405.814};
+			a=3;
+			b=3.5;
+			angle=-228.78999;
+			rectangular=1;
+			activationBy="WEST";
+			interruptable=1;
+			age="UNKNOWN";
+			text="Hint: BasicStances";
+			name="BIS_hintBasicStances3";
+			expCond="(BIS_FD_Competitor in thisList) && (BIS_hintStances < 2)";
+			expActiv="BIS_hintStances = BIS_hintStances + 1; [[""InfantryMovement"", ""BasicStances""], 5, ""!(player in (list BIS_hintBasicStances3))""] call BIS_fnc_advHint";
+			class Effects
+			{
+			};
+		};
+		class Item3
+		{
+			position[]={6396.7544,7.9860802,5389.856};
+			a=4;
+			b=4;
+			angle=-228.78999;
+			activationBy="WEST";
+			interruptable=1;
+			age="UNKNOWN";
+			text="Hint: Reload";
+			expCond="(BIS_FD_Competitor in thisList) && (BIS_hintReload < 2)";
+			expActiv="BIS_hintReload = BIS_hintReload + 1; [[""Weapons_basic"", ""Reload""], 5, """"] call BIS_fnc_advHint";
+			class Effects
+			{
+			};
+		};
+		class Item4
+		{
+			position[]={6386.0449,7.9073386,5398.9707};
+			a=1.5;
+			b=2;
+			angle=-229.592;
+			rectangular=1;
+			activationBy="WEST";
+			interruptable=1;
+			age="UNKNOWN";
+			text="Hint: Switch";
+			name="BIS_hintSwitch1";
+			expCond="BIS_FD_Competitor in thisList";
+			expActiv="[[""Weapons_basic"", ""Switch""], 5, ""!(player in (list BIS_hintSwitch1))""] call BIS_fnc_advHint";
+			class Effects
+			{
+			};
+		};
+		class Item5
+		{
+			position[]={6413.5596,7.9499998,5397.9536};
+			a=2.5;
+			b=3.5;
+			angle=194.371;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP1";
+			class Effects
+			{
+			};
+		};
+		class Item6
+		{
+			position[]={6403.6611,7.88448,5400.4775};
+			a=1.8;
+			b=2;
+			angle=38.754601;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP2";
+			class Effects
+			{
+			};
+		};
+		class Item7
+		{
+			position[]={6401.48,7.7269421,5406.4604};
+			a=1.5;
+			b=1.5;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP3";
+			class Effects
+			{
+			};
+		};
+		class Item8
+		{
+			position[]={6396.7275,7.7651467,5406.6069};
+			a=2;
+			b=2;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP4";
+			class Effects
+			{
+			};
+		};
+		class Item9
+		{
+			position[]={6393.1245,7.7076669,5413.9043};
+			a=2.5;
+			b=2.5;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP5";
+			class Effects
+			{
+			};
+		};
+		class Item10
+		{
+			position[]={6392.0552,7.7902942,5405.2573};
+			a=2;
+			b=2;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP6";
+			class Effects
+			{
+			};
+		};
+		class Item11
+		{
+			position[]={6394.916,7.8671703,5398.5132};
+			a=2;
+			b=2;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP7";
+			class Effects
+			{
+			};
+		};
+		class Item12
+		{
+			position[]={6401.1914,7.9240699,5396.7563};
+			a=2;
+			b=2;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP8";
+			class Effects
+			{
+			};
+		};
+		class Item13
+		{
+			position[]={6393.4502,7.9939942,5388.6006};
+			a=1.5;
+			b=1.5;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP9";
+			class Effects
+			{
+			};
+		};
+		class Item14
+		{
+			position[]={6390.4443,7.9679518,5391.5938};
+			a=1.5;
+			b=1.5;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP10";
+			class Effects
+			{
+			};
+		};
+		class Item15
+		{
+			position[]={6390.2036,7.9169288,5396.4321};
+			a=2.5;
+			b=2.5;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP11";
+			class Effects
+			{
+			};
+		};
+		class Item16
+		{
+			position[]={6385.5806,7.9047852,5399.5146};
+			a=2.5;
+			b=2.5;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP12";
+			class Effects
+			{
+			};
+		};
+		class Item17
+		{
+			position[]={6404.3174,8,5385.1821};
+			a=1.5;
+			b=2.5;
+			angle=43.915798;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP13";
+			class Effects
+			{
+			};
+		};
+		class Item18
+		{
+			position[]={6403.3799,7.8891773,5400.0869};
+			a=0.64999998;
+			b=0.64999998;
+			angle=38.9081;
+			rectangular=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP2_Box";
+			class Effects
+			{
+			};
+		};
+		class Item19
+		{
+			position[]={6401.3818,7.7256346,5406.5352};
+			a=0.85000002;
+			b=0.94999999;
+			angle=43.208401;
+			rectangular=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP3_Box";
+			class Effects
+			{
+			};
+		};
+		class Item20
+		{
+			position[]={6396.5532,7.7660022,5406.5229};
+			a=0.94999999;
+			b=0.94999999;
+			angle=-138.339;
+			rectangular=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP4_Box";
+			class Effects
+			{
+			};
+		};
+		class Item21
+		{
+			position[]={6392.7622,7.7067833,5414.2622};
+			a=0.75;
+			b=1.05;
+			angle=43.208401;
+			rectangular=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP5_Box";
+			class Effects
+			{
+			};
+		};
+		class Item22
+		{
+			position[]={6392.3755,7.7893848,5405.165};
+			a=1.05;
+			b=1.65;
+			angle=42.558899;
+			rectangular=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP6_Box";
+			class Effects
+			{
+			};
+		};
+		class Item23
+		{
+			position[]={6395.1509,7.8742871,5398.2285};
+			a=0.85000002;
+			b=0.94999999;
+			angle=41.841999;
+			rectangular=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP7_Box";
+			class Effects
+			{
+			};
+		};
+		class Item24
+		{
+			position[]={6401.6523,7.9310207,5396.5244};
+			a=0.60000002;
+			b=0.94999999;
+			angle=42.4259;
+			rectangular=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP8_Box";
+			class Effects
+			{
+			};
+		};
+		class Item25
+		{
+			position[]={6393.248,7.9947023,5388.5298};
+			a=0.75;
+			b=1.05;
+			angle=-227.19559;
+			rectangular=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP9_Box";
+			class Effects
+			{
+			};
+		};
+		class Item26
+		{
+			position[]={6390.1255,7.9702477,5391.4438};
+			a=0.75;
+			b=0.94999999;
+			angle=-44.810799;
+			rectangular=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP10_Box";
+			class Effects
+			{
+			};
+		};
+		class Item27
+		{
+			position[]={6390.3281,7.8984766,5397.4688};
+			a=0.75;
+			b=0.85000002;
+			angle=40.771801;
+			rectangular=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP11_Box";
+			class Effects
+			{
+			};
+		};
+		class Item28
+		{
+			position[]={6385.5732,7.8969741,5399.9673};
+			a=0.85000002;
+			b=0.94999999;
+			angle=40.981998;
+			rectangular=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="BIS_FD_CP12_Box";
+			class Effects
+			{
+			};
+		};
+	};
+};
+class Intro
+{
+	addOns[]=
+	{
+		"a3_map_stratis"
+	};
+	addOnsAuto[]=
+	{
+		"a3_map_stratis"
+	};
+	randomSeed=15089742;
+	class Intel
+	{
+		timeOfChanges=1800.0002;
+		startWeather=0.30000001;
+		startWind=0.1;
+		startWaves=0.1;
+		forecastWeather=0.30000001;
+		forecastWind=0.1;
+		forecastWaves=0.1;
+		forecastLightnings=0.1;
+		year=2035;
+		month=7;
+		day=6;
+		hour=14;
+		minute=15;
+		startFogDecay=0.0049333;
+		forecastFogDecay=0.0049333;
+	};
+};
+class OutroWin
+{
+	addOns[]=
+	{
+		"a3_map_stratis"
+	};
+	addOnsAuto[]=
+	{
+		"a3_map_stratis"
+	};
+	randomSeed=14600878;
+	class Intel
+	{
+		timeOfChanges=1800.0002;
+		startWeather=0.30000001;
+		startWind=0.1;
+		startWaves=0.1;
+		forecastWeather=0.30000001;
+		forecastWind=0.1;
+		forecastWaves=0.1;
+		forecastLightnings=0.1;
+		year=2035;
+		month=7;
+		day=6;
+		hour=14;
+		minute=15;
+		startFogDecay=0.0049333;
+		forecastFogDecay=0.0049333;
+	};
+};
+class OutroLoose
+{
+	addOns[]=
+	{
+		"a3_map_stratis"
+	};
+	addOnsAuto[]=
+	{
+		"a3_map_stratis"
+	};
+	randomSeed=5706247;
+	class Intel
+	{
+		timeOfChanges=1800.0002;
+		startWeather=0.30000001;
+		startWind=0.1;
+		startWaves=0.1;
+		forecastWeather=0.30000001;
+		forecastWind=0.1;
+		forecastWaves=0.1;
+		forecastLightnings=0.1;
+		year=2035;
+		month=7;
+		day=6;
+		hour=14;
+		minute=15;
+		startFogDecay=0.0049333;
+		forecastFogDecay=0.0049333;
+	};
+};

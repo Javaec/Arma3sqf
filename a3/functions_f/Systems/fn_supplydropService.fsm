@@ -1,0 +1,173 @@
+/*%FSM<COMPILE "C:\bis\fsmeditor\scriptedFSM.cfg, Supply drop">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"not_in_pool",4,218,-75.000000,-825.000000,25.000000,-775.000000,4.000000,"not in pool"};
+item1[] = {"terminate",1,250,50.000000,-825.000000,150.000000,-775.000000,0.000000,"terminate"};
+item2[] = {"support_unavaila",4,218,-75.000000,-675.000000,25.000000,-625.000000,2.000000,"support" \n "unavailable"};
+item3[] = {"inform__terminat",1,250,50.000000,-675.000000,150.000000,-625.000000,0.000000,"inform," \n "terminate"};
+item4[] = {"vehicle_destroye",4,218,-75.000000,-750.000000,25.000000,-700.000000,3.000000,"vehicle" \n "destroyed"};
+item5[] = {"inform__terminat_1",1,250,50.000000,-750.000000,150.000000,-700.000000,0.000000,"inform," \n "terminate"};
+item6[] = {"Init",0,250,-250.000000,-750.000000,-150.000000,-700.000000,0.000000,"Init"};
+item7[] = {"vehicle_moves_to",1,4346,-550.000000,-800.000000,-450.000000,-750.000000,0.000000,"vehicle moves to" \n "drop pos."};
+item8[] = {"_",8,218,-75.000000,-900.000000,25.000000,-850.000000,0.000000,""};
+item9[] = {"phase__1",4,218,-425.000000,-700.000000,-325.000000,-650.000000,1.000000,"phase #1"};
+item10[] = {"alternate_pickup",1,250,-550.000000,-700.000000,-450.000000,-650.000000,0.000000,"alternate" \n "pickup pos."};
+item11[] = {"phase__0",4,218,-425.000000,-800.000000,-325.000000,-750.000000,1.000000,"phase #0"};
+link0[] = {0,1};
+link1[] = {2,3};
+link2[] = {4,5};
+link3[] = {6,0};
+link4[] = {6,2};
+link5[] = {6,4};
+link6[] = {6,8};
+link7[] = {6,9};
+link8[] = {6,11};
+link9[] = {8,1};
+link10[] = {9,10};
+link11[] = {11,7};
+globals[] = {25.000000,1,0,0,0,640,480,1,149,6316128,1,-688.022217,313.229340,499.727203,-1138.343018,533,872,1};
+window[] = {2,-1,-1,-1,-1,775,27,987,27,3,553};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Supply drop";
+  class States
+  {
+    /*%FSM<STATE "terminate">*/
+    class terminate
+    {
+      name = "terminate";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "inform__terminat">*/
+    class inform__terminat
+    {
+      name = "inform__terminat";
+      init = /*%FSM<STATEINIT""">*/"hint localize ""STR_helisupplydrop.fsm_FSM_States_inform__terminate_0"""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "inform__terminat_1">*/
+    class inform__terminat_1
+    {
+      name = "inform__terminat_1";
+      init = /*%FSM<STATEINIT""">*/"hint localize ""STR_helisupplydrop.fsm_FSM_States_inform__terminate_1_0"""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Init">*/
+    class Init
+    {
+      name = "Init";
+      init = /*%FSM<STATEINIT""">*/"_clicker = player;" \n "_veh = _this select 1;" \n "_pos = _this select 2;" \n "_override = _this select 3;" \n "" \n "_initVehPos = position _veh;" \n "" \n "//textLogFormat[""SOM_ supplydropService.fsm %1 %2"",_this,time]; //CRASHING THE GAME!" \n "" \n "if (markerPos ""BIS_supplydropMarker"" select 0 == 0) then {" \n "	_marker = createMarkerLocal [""BIS_supplydropMarker"", [-500, -500, 0]];" \n "	_marker setMarkerShapeLocal ""ICON"";" \n "	""BIS_supplydropMarker"" setMarkerTypeLocal ""EMPTY""" \n "};" \n "" \n "if (count _override == 0) then {_override = ["""", """", """", """", """", """"]};" \n "" \n "if (format [""%1"", _veh getVariable ""initPos""] == ""<null>"") then {_veh setVariable [""initPos"", position _veh, TRUE]};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "not_in_pool">*/
+        class not_in_pool
+        {
+          priority = 4.000000;
+          to="terminate";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(_clicker in (_veh getVariable ""supPool""))"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "vehicle_destroye">*/
+        class vehicle_destroye
+        {
+          priority = 3.000000;
+          to="inform__terminat_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(canMove _veh)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "support_unavaila">*/
+        class support_unavaila
+        {
+          priority = 2.000000;
+          to="inform__terminat";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""onMission"") != _clicker && !(isNull (_veh getVariable ""onMission""))"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "phase__1">*/
+        class phase__1
+        {
+          priority = 1.000000;
+          to="alternate_pickup";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""supPhase"") == 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "phase__0">*/
+        class phase__0
+        {
+          priority = 1.000000;
+          to="vehicle_moves_to";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""supPhase"") == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="terminate";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""supPhase"") >= 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "vehicle_moves_to">*/
+    class vehicle_moves_to
+    {
+      name = "vehicle_moves_to";
+      init = /*%FSM<STATEINIT""">*/"if (_override select 0 != """") then {call compile loadFile (_override select 0)} else " \n "{" \n "	_veh setVariable [""onMission"", _clicker, TRUE];" \n "" \n "	/*" \n "		RADIO - CALLING supplydrop" \n "	*/" \n "" \n "	""BIS_supplydropMarker"" setMarkerPosLocal _pos;" \n "	""BIS_supplydropMarker"" setMarkerTypeLocal ""mil_End"";" \n "	""BIS_supplydropMarker"" setMarkerSizeLocal [0.5, 0.5];" \n "	""BIS_supplydropMarker"" setMarkerColorLocal ""ColorYellow"";" \n "	""BIS_supplydropMarker"" setMarkerTextLocal localize ""STR_suppyDrop_Dropzone"";" \n "" \n "	textLogFormat [""SUPPLYDROP_ Sending vehicle %1 to %2"",_veh, _pos];" \n "     _pos = [(_pos select 0) -150 + random 300, (_pos select 1) -150 + random 300, 0];" \n "	textLogFormat [""SUPPLYDROP_ Sending vehicle %1 to %2 (randomized)"",_veh, _pos];" \n "" \n "	[nil,_veh, ""loc"",rMOVE,_pos] call RE;" \n "	_veh flyInHeight 250; " \n "	_veh setVariable [""supPhase"", 1, TRUE];" \n "	" \n "	[_veh, _allowed, _plannedLZ, _pos, _initVehPos] spawn {" \n "		_veh = _this select 0;" \n "		_allowed = _this select 1;" \n "		_plannedLZ = _this select 2;" \n "		_pos = _this select 3;" \n "		_initVehPos = _this select 4;" \n "" \n "		sleep 5;" \n "		//waitUntil {unitReady _veh};" \n "" \n "		waitUntil {	textLogFormat [""SUPPLYDROP_ distance %1"",(_veh distance _pos)]; (_veh distance _pos) < 450};" \n "" \n "		" \n "" \n "		_veh setVariable [""supPhase"", 2, TRUE];" \n "" \n "		/*" \n "			SDS code here" \n "		*/" \n "" \n "		textLogFormat [""DROP_ Dropping cargo at: %1"", position _veh];" \n "" \n "		//one vehicle and two ammocrates" \n "		" \n "		[_veh, ""land""] call BIS_fnc_supplydrop;" \n "		Sleep (0.5 + random 0.3);" \n "		[_veh, ""reammobox""] call BIS_fnc_supplydrop;" \n "		Sleep (0.3 + random 0.1);" \n "		[_veh, ""reammobox""] call BIS_fnc_supplydrop;" \n "	" \n "" \n "" \n "		/*" \n "			RADIO - supplydrop tells supplies dropped" \n "		*/" \n "" \n "		""BIS_supplydropMarker"" setMarkerTypeLocal ""Empty"";" \n "		_veh allowFleeing 1;" \n "		_veh setCombatMode ""Yellow"";" \n "		_veh setBehaviour ""Aware"";" \n "		[nil,_veh, ""loc"",rMOVE,_initVehPos] call RE;" \n "		sleep 5;" \n "		waitUntil {unitReady _veh};" \n "" \n "		_crewToKill = crew _veh;" \n "		deleteVehicle _veh;" \n "		{deleteVehicle _x} forEach _crewToKill;" \n "	}" \n "}"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "alternate_pickup">*/
+    class alternate_pickup
+    {
+      name = "alternate_pickup";
+      init = /*%FSM<STATEINIT""">*/"if (_override select 1 != """") then {call compile loadFile (_override select 1)} else {" \n "" \n "	[_veh, _pos] spawn {" \n "		_veh = _this select 0;" \n "		_pos = _this select 1;" \n "" \n "		[nil,_veh,""loc"",rMOVE, _pos] call RE;" \n "		""BIS_supplydropMarker"" setMarkerPosLocal _pos;" \n "" \n "		/*" \n "			RADIO - supplydrop CONFIRMS DROP POSITION" \n "		*/" \n "	}" \n "}"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Init";
+  finalStates[] =
+  {
+    "terminate",
+    "inform__terminat",
+    "inform__terminat_1",
+    "vehicle_moves_to",
+    "alternate_pickup",
+  };
+};
+/*%FSM</COMPILE>*/

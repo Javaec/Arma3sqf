@@ -1,0 +1,286 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, Shootout">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-40.000000,-280.000000,50.000000,-230.000000,0.000000,"Start"};
+item1[] = {"Close",4,218,-40.000000,-70.000000,50.000000,-20.000000,0.000000,"Close"};
+item2[] = {"Feuer_frei_",2,250,-40.000000,0.000000,50.000000,50.000000,0.000000,"Feuer frei!"};
+item3[] = {"__1_FlyBy",2,250,-150.000000,-140.000000,-60.000000,-90.000000,0.000000,"+1 FlyBy"};
+item4[] = {"Crossroad",2,250,-40.000000,-140.000000,50.000000,-90.000000,0.000000,"Crossroad"};
+item5[] = {"_",8,218,-40.000000,-210.000000,50.000000,-160.000000,0.000000,""};
+item6[] = {"Away_or_timeout",4,218,-150.000000,-70.000000,-60.000000,-20.000000,0.000000,"Away" \n "or timeout"};
+item7[] = {"",7,210,111.000000,-119.000000,119.000000,-111.000000,0.000000,""};
+item8[] = {"AAF_KIA_or_3rd_F",4,218,70.000000,-70.000000,160.000000,-20.000000,5.000000,"AAF KIA" \n "or 3rd FlyBy"};
+item9[] = {"END",1,250,70.000000,0.000000,160.000000,50.000000,0.000000,"END"};
+item10[] = {"",7,210,-109.000000,21.000000,-101.000000,29.000002,0.000000,""};
+item11[] = {"",7,210,-108.999977,-189.000000,-101.000023,-181.000000,0.000000,""};
+link0[] = {0,5};
+link1[] = {1,2};
+link2[] = {2,10};
+link3[] = {3,11};
+link4[] = {4,1};
+link5[] = {4,7};
+link6[] = {5,4};
+link7[] = {6,3};
+link8[] = {7,8};
+link9[] = {8,9};
+link10[] = {10,6};
+link11[] = {11,5};
+globals[] = {10.000000,1,0,0,0,640,480,1,37,6316128,1,-275.416321,317.783386,75.754517,-309.149261,1404,911,1};
+window[] = {2,-1,-1,-1,-1,810,50,1490,50,3,1422};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Shootout";
+  class States
+  {
+    /*%FSM<STATE "Start">*/
+    class Start
+    {
+      name = "Start";
+      init = /*%FSM<STATEINIT""">*/"// AAF and FIA shootout when player gets near" \n
+       "" \n
+       "BIS_FlyBy = 0;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Crossroad";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Feuer_frei_">*/
+    class Feuer_frei_
+    {
+      name = "Feuer_frei_";
+      init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+       "" \n
+       "// *** FIA Team leader (Khaybar) ***" \n
+       "" \n
+       "[] spawn {" \n
+       "" \n
+       "_ammo = (5 + (floor random 5));" \n
+       "" \n
+       "sleep (random 5);" \n
+       "" \n
+       "While {(_ammo > 0) and !(BIS_AAFDestroyed)} Do {" \n
+       "" \n
+       "BIS_FIA_Patrol_01 forceWeaponFire [(primaryWeapon BIS_FIA_Patrol_01), ""FullAuto""];" \n
+       "_ammo = _ammo -1;" \n
+       "sleep 0.5};" \n
+       "" \n
+       "};" \n
+       "" \n
+       "// *** FIA Rifleman (MX) ***" \n
+       "" \n
+       "[] spawn {" \n
+       "" \n
+       "_ammo = (5 + (floor random 5));" \n
+       "" \n
+       "sleep (random 5);" \n
+       "" \n
+       "While {(_ammo > 0) and !(BIS_AAFDestroyed)} Do {" \n
+       "" \n
+       "BIS_FIA_Patrol_02 forceWeaponFire [(primaryWeapon BIS_FIA_Patrol_02), ""FullAuto""];" \n
+       "_ammo = _ammo -1;" \n
+       "sleep 0.25};" \n
+       "" \n
+       "};" \n
+       "" \n
+       "// *** FIA MG (Zafir) ***" \n
+       "[] spawn {" \n
+       "" \n
+       "_ammo = (15 + (floor random 15));" \n
+       "" \n
+       "sleep (random 5);" \n
+       "" \n
+       "While {(_ammo > 0) and !(BIS_AAFDestroyed)} Do {" \n
+       "" \n
+       "BIS_FIA_Patrol_03 forceWeaponFire [(primaryWeapon BIS_FIA_Patrol_03), ""FullAuto""];" \n
+       "_ammo = _ammo -1;" \n
+       "sleep 0.1};" \n
+       "" \n
+       "};" \n
+       "" \n
+       "// *** AAF autorifleman ***" \n
+       "" \n
+       "[] spawn {" \n
+       "" \n
+       "_ammo = (15 + (floor random 15));" \n
+       "" \n
+       "sleep (random 5);" \n
+       "" \n
+       "While {(_ammo > 0) and !(BIS_AAFDestroyed)} Do {" \n
+       "" \n
+       "BIS_AAF_04 forceWeaponFire [(primaryWeapon BIS_AAF_04), ""Manual""];" \n
+       "_ammo = _ammo -1;" \n
+       "sleep 0.1};" \n
+       "" \n
+       "};" \n
+       "" \n
+       "// *** AAF rifleman ***" \n
+       "" \n
+       "[] spawn {" \n
+       "" \n
+       "_ammo = (5 + (floor random 5));" \n
+       "" \n
+       "sleep (random 5);" \n
+       "" \n
+       "While {(_ammo > 0) and !(BIS_AAFDestroyed)} Do {" \n
+       "" \n
+       "BIS_AAF_05 forceWeaponFire [(primaryWeapon BIS_AAF_05), ""FullAuto""];" \n
+       "_ammo = _ammo -1;" \n
+       "sleep 0.50};" \n
+       "" \n
+       "};" \n
+       "" \n
+       "// *** AAF rifleman ***" \n
+       "" \n
+       "[] spawn {" \n
+       "" \n
+       "_ammo = (5 + (floor random 5));" \n
+       "" \n
+       "sleep (random 5);" \n
+       "" \n
+       "While {(_ammo > 0) and !(BIS_AAFDestroyed)} Do {" \n
+       "" \n
+       "BIS_AAF_06 forceWeaponFire [(primaryWeapon BIS_AAF_06), ""FullAuto""];" \n
+       "_ammo = _ammo -1;" \n
+       "sleep 0.25};" \n
+       "" \n
+       "};" \n
+       "" \n
+       "// Grenades" \n
+       "[] spawn {" \n
+       "" \n
+       "If (BIS_FlyBy == 0) Then " \n
+       "	{" \n
+       "		sleep (random 5);" \n
+       "" \n
+       "		_shellType = ""R_PG32V_F""; " \n
+       "		_shell = _shellType createVehicle getMarkerPos ""BIS_ExplosionPos_01"";" \n
+       "	};" \n
+       "" \n
+       "If (BIS_FlyBy == 1) Then " \n
+       "	{" \n
+       "		_shellType = ""GrenadeHand""; " \n
+       "		_shell = _shellType createVehicle getMarkerPos ""BIS_ExplosionPos_02"";" \n
+       "	};" \n
+       "" \n
+       "If (BIS_FlyBy == 2) Then " \n
+       "	{" \n
+       "" \n
+       "		_shellType = ""GrenadeHand""; " \n
+       "		_shell = _shellType createVehicle getMarkerPos ""BIS_ExplosionPos_03"";" \n
+       "" \n
+       "		sleep (random 5);" \n
+       "" \n
+       "		_shellType = ""R_PG32V_F""; " \n
+       "		_shell = _shellType createVehicle getMarkerPos ""BIS_ExplosionPos_04"";" \n
+       "	};" \n
+       "" \n
+       "};" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Away_or_timeout">*/
+        class Away_or_timeout
+        {
+          priority = 0.000000;
+          to="__1_FlyBy";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(BIS_Plane distance BIS_AAF > 1200) or" \n
+           "(time > _t + 60)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "__1_FlyBy">*/
+    class __1_FlyBy
+    {
+      name = "__1_FlyBy";
+      init = /*%FSM<STATEINIT""">*/"BIS_FlyBy = BIS_FlyBy + 1;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Crossroad";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Crossroad">*/
+    class Crossroad
+    {
+      name = "Crossroad";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "AAF_KIA_or_3rd_F">*/
+        class AAF_KIA_or_3rd_F
+        {
+          priority = 5.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"({alive _x} count (units BIS_grpAAF) < 4)" \n
+           "" \n
+           "or " \n
+           "" \n
+           "(BIS_FlyBy > 2)" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Close">*/
+        class Close
+        {
+          priority = 0.000000;
+          to="Feuer_frei_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_Plane distance BIS_AAF < 1000" \n
+           ""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "END">*/
+    class END
+    {
+      name = "END";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Start";
+  finalStates[] =
+  {
+    "END",
+  };
+};
+/*%FSM</COMPILE>*/

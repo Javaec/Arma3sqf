@@ -1,0 +1,313 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, BIS_fnc_skirmishTrigger">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-175.000000,-275.000000,-75.000000,-225.000000,0.000000,"Start"};
+item1[] = {"_",8,218,-175.000000,-50.000000,-75.000000,0.000000,0.000000,""};
+item2[] = {"Don_t_hide_marke",4,218,-50.000000,-125.000000,50.000000,-75.000000,1.000000,"Don't hide" \n "marker"};
+item3[] = {"Hide_marker",2,250,-175.000000,25.000000,-75.000000,75.000000,0.000000,"Hide marker"};
+item4[] = {"_",8,218,-175.000000,100.000000,-75.000000,150.000000,0.000000,""};
+item5[] = {"",7,210,-4.000002,121.000000,4.000002,129.000000,0.000000,""};
+item6[] = {"Trigger_activate",4,218,-175.000000,250.000000,-75.000000,300.000000,0.000000,"Trigger" \n "activated"};
+item7[] = {"Mission_end",1,4346,-175.000000,325.000000,-75.000000,375.000000,0.000000,"Mission" \n "end"};
+item8[] = {"_",2,250,-175.000000,175.000000,-75.000000,225.000000,0.000000,""};
+item9[] = {"Player_dead",4,218,-50.000000,175.000000,50.000000,225.000000,2.000000,"Player dead"};
+item10[] = {"Terminate",1,250,75.000000,175.000000,175.000000,225.000000,0.000000,"Terminate"};
+item11[] = {"Multiplayer",4,218,-50.000000,-275.000000,50.000000,-225.000000,1.000000,"Multiplayer"};
+item12[] = {"Terminate_1",1,250,75.000000,-275.000000,175.000000,-225.000000,0.000000,"Terminate"};
+item13[] = {"_",8,218,-175.000000,-200.000000,-75.000000,-150.000000,0.000000,""};
+item14[] = {"Init",2,250,-175.000000,-125.000000,-75.000000,-75.000000,0.000000,"Init"};
+item15[] = {"Author__Thomas_Ryan",-1,250,-500.000000,-275.000000,-200.000000,-150.000000,0.000000,"Author: Thomas Ryan" \n "" \n "Description:" \n "Control the triggering and terminating of Skirmish." \n "" \n "Parameters:" \n "_this: OBJECT - Skirmish - Trigger module"};
+item16[] = {"no_input",4,218,-50.000000,-200.000000,50.000000,-150.000000,1.000000,"no input"};
+item17[] = {"Terminate_2",1,250,75.000000,-200.000000,175.000000,-150.000000,0.000000,"Terminate"};
+version=1;
+class LayoutItems
+{
+	class Item15
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			lStyle=1;
+			Align=0;
+		};
+	};
+};
+link0[] = {0,11};
+link1[] = {0,13};
+link2[] = {0,16};
+link3[] = {1,3};
+link4[] = {2,5};
+link5[] = {3,4};
+link6[] = {4,8};
+link7[] = {5,8};
+link8[] = {6,7};
+link9[] = {8,6};
+link10[] = {8,9};
+link11[] = {9,10};
+link12[] = {11,12};
+link13[] = {13,14};
+link14[] = {14,1};
+link15[] = {14,2};
+link16[] = {16,17};
+globals[] = {25.000000,1,0,0,0,640,480,1,30,6316128,1,-364.806763,234.586792,390.847961,-416.963074,765,1031,1};
+window[] = {2,-1,-1,-1,-1,992,225,1439,225,3,783};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "BIS_fnc_skirmishTrigger";
+        class States
+        {
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private [""_module""];" \n
+                         "_module = [_this, 0, objNull, [objNull]] call BIS_fnc_param;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "no_input">*/
+                                class no_input
+                                {
+                                        itemno = 16;
+                                        priority = 1.000000;
+                                        to="Terminate_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(_module getVariable ""Marker"") == """" || (_module getVariable ""MissionName"") == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Multiplayer">*/
+                                class Multiplayer
+                                {
+                                        itemno = 11;
+                                        priority = 1.000000;
+                                        to="Terminate_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isMultiplayer"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Hide_marker">*/
+                class Hide_marker
+                {
+                        name = "Hide_marker";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"_marker setMarkerAlpha 0;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Mission_end">*/
+                class Mission_end
+                {
+                        name = "Mission_end";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"[_missionName, true] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Player_dead">*/
+                                class Player_dead
+                                {
+                                        itemno = 9;
+                                        priority = 2.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive player)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Trigger_activate">*/
+                                class Trigger_activate
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="Mission_end";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated _zoneTrigger1;"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate_1">*/
+                class Terminate_1
+                {
+                        name = "Terminate_1";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"""Not multiplayer compatible"" call BIS_fnc_error;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"// Get parameters" \n
+                         "private [""_marker"", ""_hideMarker"", ""_dest"", ""_missionName"", ""_distLimit""];" \n
+                         "_marker = (_module getVariable ""Marker"");" \n
+                         "_hideMarker = parseNumber (_module getVariable ""HideMarker"") > 0;" \n
+                         "_dest = parseNumber (_module getVariable ""Destination"");" \n
+                         "_missionName = _module getVariable ""MissionName"";" \n
+                         "_distLimit = parseNumber (_module getVariable ""DistanceLimit"");" \n
+                         "" \n
+                         "// Create zone triggers" \n
+                         "private [""_zoneTrigger1"", ""_zoneTrigger2""];" \n
+                         "_zoneTrigger1 = createTrigger [""EmptyDetector"", markerPos _marker];" \n
+                         "_zoneTrigger2 = createTrigger [""EmptyDetector"", markerPos _marker];" \n
+                         "" \n
+                         "_zoneTrigger1 setTriggerArea [" \n
+                         "	markerSize _marker select 0," \n
+                         "	markerSize _marker select 1," \n
+                         "	0," \n
+                         "	if (markerShape _marker == ""RECTANGLE"") then {true} else {false}" \n
+                         "];" \n
+                         "" \n
+                         "_zoneTrigger2 setTriggerArea [" \n
+                         "	(markerSize _marker select 0) + 20," \n
+                         "	(markerSize _marker select 1) + 20," \n
+                         "	0," \n
+                         "	if (markerShape _marker == ""RECTANGLE"") then {true} else {false}" \n
+                         "];" \n
+                         "" \n
+                         "_zoneTrigger1 triggerAttachVehicle [player];" \n
+                         "_zoneTrigger2 triggerAttachVehicle [player];" \n
+                         "" \n
+                         "_zoneTrigger1 setTriggerActivation [" \n
+                         "	""VEHICLE""," \n
+                         "	if (_dest == 0) then {""NOT PRESENT""} else {""PRESENT""}," \n
+                         "	true" \n
+                         "];" \n
+                         "" \n
+                         "_zoneTrigger2 setTriggerActivation [" \n
+                         "	""VEHICLE""," \n
+                         "	if (_dest == 0) then {""NOT PRESENT""} else {""PRESENT""}," \n
+                         "	true" \n
+                         "];" \n
+                         "" \n
+                         "_zoneTrigger2 setTriggerStatements [""this"", ""[""""SkirmishLeaving""""] call BIS_fnc_showNotification;"", """"];" \n
+                         "" \n
+                         "if (_dest == 0) then {" \n
+                         "	// Create radio trigger" \n
+                         "	private [""_radioTrigger""];" \n
+                         "	_radioTrigger = createTrigger [""EmptyDetector"", [10, 10, 10]];" \n
+                         "	_radioTrigger setTriggerActivation [""JULIET"", ""PRESENT"", false];" \n
+                         "	" \n
+                         "	_radioTrigger setTriggerStatements [" \n
+                         "		""this""," \n
+                         "		format [""[%1, nil, nil, nil, {[true, false, false] call BIS_fnc_hubExit}, 2] call BIS_fnc_endMission"", str _missionName]," \n
+                         "		""""" \n
+                         "	];" \n
+                         "	" \n
+                         "	_radioTrigger setTriggerText localize ""STR_A3_mdl_supp_skirmishTrg_start"";" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Don_t_hide_marke">*/
+                                class Don_t_hide_marke
+                                {
+                                        itemno = 2;
+                                        priority = 1.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(_hideMarker)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Hide_marker";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate_2">*/
+                class Terminate_2
+                {
+                        name = "Terminate_2";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"""Missing input parameters"" call BIS_fnc_error;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Start";
+        finalStates[] =
+        {
+                "Mission_end",
+                "Terminate",
+                "Terminate_1",
+                "Terminate_2",
+        };
+};
+/*%FSM</COMPILE>*/

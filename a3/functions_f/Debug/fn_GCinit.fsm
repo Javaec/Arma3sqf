@@ -1,0 +1,314 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Garbage Collector">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,50.000000,-325.000000,150.000000,-275.000000,0.000000,"Start"};
+item1[] = {"Check_queue",2,250,-25.000000,-25.000000,75.000000,25.000000,0.000000,"Check queue"};
+item2[] = {"Empty",4,218,-100.000000,75.000000,0.000000,125.000000,1.000000,"Empty"};
+item3[] = {"Not_empty",8,218,50.000000,75.000000,150.000000,125.000000,0.000000,"Not empty"};
+item4[] = {"Delay",2,250,-225.000000,75.000000,-125.000000,125.000000,0.000000,"Delay"};
+item5[] = {"Delay_over___10s",4,218,-225.000000,-25.000000,-125.000000,25.000000,0.000000,"Delay over " \n "(10s)"};
+item6[] = {"Process_Init",2,250,50.000000,150.000000,150.000000,200.000000,0.000000,"Process" \n "Init"};
+item7[] = {"Always",8,218,-225.000000,225.000000,-125.000000,275.000000,0.000000,"Always"};
+item8[] = {"Always",8,218,-25.000000,-100.000000,75.000000,-50.000000,0.000000,"Always"};
+item9[] = {"Process",4,218,50.000000,225.000000,150.000000,275.000000,1.000000,"Process"};
+item10[] = {"Process_Item",2,250,50.000000,300.000000,150.000000,350.000000,0.000000,"Process Item"};
+item11[] = {"Return",8,218,-100.000000,300.000000,0.000000,350.000000,0.000000,"Return"};
+item12[] = {"Return",2,250,-225.000000,300.000000,-125.000000,350.000000,0.000000,"Return"};
+item13[] = {"Already_running",4,218,125.000000,-250.000000,225.000000,-200.000000,1.000000,"Already" \n "running"};
+item14[] = {"Terminate",1,4346,125.000000,-175.000000,225.000000,-125.000000,0.000000,"Terminate"};
+item15[] = {"Always",8,218,-25.000000,-250.000000,75.000000,-200.000000,0.000000,"Always"};
+item16[] = {"Init",2,250,-25.000000,-175.000000,75.000000,-125.000000,0.000000,"Init"};
+link0[] = {0,13};
+link1[] = {0,15};
+link2[] = {1,2};
+link3[] = {1,3};
+link4[] = {2,4};
+link5[] = {3,6};
+link6[] = {4,5};
+link7[] = {5,1};
+link8[] = {6,9};
+link9[] = {7,4};
+link10[] = {8,1};
+link11[] = {9,10};
+link12[] = {10,9};
+link13[] = {10,11};
+link14[] = {11,12};
+link15[] = {12,7};
+link16[] = {13,14};
+link17[] = {15,16};
+link18[] = {16,8};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,18,6316128,1,-223.565140,344.073120,408.102600,-448.116516,596,899,1};
+window[] = {2,-1,-1,-1,-1,604,-1256,-392,24,3,613};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Garbage Collector";
+  class States
+  {
+    /*%FSM<STATE "Start">*/
+    class Start
+    {
+      name = "Start";
+      itemno = 0;
+      init = /*%FSM<STATEINIT""">*/"private [""_collector""];" \n
+       "_collector = bis_functions_mainscope;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Already_running">*/
+        class Already_running
+        {
+          itemno = 13;
+          priority = 1.000000;
+          to="Terminate";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!isnil {_collector getvariable ""queue""}"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          itemno = 15;
+          priority = 0.000000;
+          to="Init";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Check_queue">*/
+    class Check_queue
+    {
+      name = "Check_queue";
+      itemno = 1;
+      init = /*%FSM<STATEINIT""">*/"_queue = _collector getVariable ""queue"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Empty">*/
+        class Empty
+        {
+          itemno = 2;
+          priority = 1.000000;
+          to="Delay";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(count _queue) == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Not_empty">*/
+        class Not_empty
+        {
+          itemno = 3;
+          priority = 0.000000;
+          to="Process_Init";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Delay">*/
+    class Delay
+    {
+      name = "Delay";
+      itemno = 4;
+      init = /*%FSM<STATEINIT""">*/"_timeNow = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Delay_over___10s">*/
+        class Delay_over___10s
+        {
+          itemno = 5;
+          priority = 0.000000;
+          to="Check_queue";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _timeNow) >= 10"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Process_Init">*/
+    class Process_Init
+    {
+      name = "Process_Init";
+      itemno = 6;
+      init = /*%FSM<STATEINIT""">*/"_mainGrp = group player;" \n
+       "_i = 0;" \n
+       "_queueCount = (count _queue);"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Process">*/
+        class Process
+        {
+          itemno = 9;
+          priority = 1.000000;
+          to="Process_Item";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_i < _queueCount"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Process_Item">*/
+    class Process_Item
+    {
+      name = "Process_Item";
+      itemno = 10;
+      init = /*%FSM<STATEINIT""">*/"private [""_entry"", ""_time""];" \n
+       "_entry = _queue select _i;" \n
+       "_time = _entry select 1;" \n
+       "" \n
+       "//Check the object was in the queue for at least the assigned time (expiry date)." \n
+       "if (_time <= time) then" \n
+       "{" \n
+       "	private [""_object""];" \n
+       "	_object = _entry select 0;" \n
+       "" \n
+       "	switch (typeName _object) do" \n
+       "	{" \n
+       "" \n
+       "		//--- Object" \n
+       "		case (typeName objNull):" \n
+       "		{" \n
+       "			//Player and his squadmates cannot be too close." \n
+       "			//ToDo: use 'cameraOn' as well?" \n
+       "			if (({(_x distance _object) <= 1000} count (units _mainGrp)) == 0) then" \n
+       "			{" \n
+       "				deleteVehicle _object;" \n
+       "				_queue set [_i, -1];" \n
+       "			};" \n
+       "		};" \n
+       "" \n
+       "		//--- Group" \n
+       "		case (typeName grpNull):" \n
+       "		{" \n
+       "			//Make sure the group is empty." \n
+       "			if (({alive _x} count (units _object)) == 0) then" \n
+       "			{" \n
+       "				deleteGroup _object;" \n
+       "				_queue set [_i, -1];" \n
+       "			};" \n
+       "		};" \n
+       "" \n
+       "		//--- Marker" \n
+       "		case (typeName """"):" \n
+       "		{" \n
+       "			deletemarker _object;" \n
+       "			_queue set [_i, -1];" \n
+       "		};" \n
+       "" \n
+       "		default {};" \n
+       "	};" \n
+       "};" \n
+       "" \n
+       "_i = _i + 1;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Process">*/
+        class Process
+        {
+          itemno = 9;
+          priority = 1.000000;
+          to="Process_Item";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_i < _queueCount"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Return">*/
+        class Return
+        {
+          itemno = 11;
+          priority = 0.000000;
+          to="Return";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Return">*/
+    class Return
+    {
+      name = "Return";
+      itemno = 12;
+      init = /*%FSM<STATEINIT""">*/"_queue = _queue - [-1];" \n
+       "_collector setVariable [""queue"", _queue];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          itemno = 7;
+          priority = 0.000000;
+          to="Delay";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Terminate">*/
+    class Terminate
+    {
+      name = "Terminate";
+      itemno = 14;
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Init">*/
+    class Init
+    {
+      name = "Init";
+      itemno = 16;
+      init = /*%FSM<STATEINIT""">*/"private [""_timeNow""];" \n
+       "_collector setVariable [""queue"", []];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Always">*/
+        class Always
+        {
+          itemno = 8;
+          priority = 0.000000;
+          to="Check_queue";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Start";
+  finalStates[] =
+  {
+    "Terminate",
+  };
+};
+/*%FSM</COMPILE>*/

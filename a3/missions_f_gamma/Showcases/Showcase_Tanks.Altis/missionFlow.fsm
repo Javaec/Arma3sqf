@@ -1,0 +1,197 @@
+/*%FSM<COMPILE "O:\fsmeditor\scriptedFSM.cfg, Tanks">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-125.000000,-675.000000,-25.000000,-625.000000,0.000000,"Init"};
+item1[] = {"player_in_tank",4,218,-125.000000,-600.000000,-25.000000,-550.000000,0.000000,"player in tank"};
+item2[] = {"move_in_rest_of",2,4346,-125.000000,-525.000000,-25.000000,-475.000000,0.000000,"move in rest" \n "of the crew"};
+item3[] = {"Malos_clear",4,218,-125.000000,-300.000000,-25.000000,-250.000000,0.000000,"Malos clear"};
+item4[] = {"report",1,250,-125.000000,-225.000000,-25.000000,-175.000000,0.000000,"report"};
+item5[] = {"met_platoon",4,218,-125.000000,-450.000000,-25.000000,-400.000000,0.000000,"met platoon"};
+item6[] = {"join",2,250,-125.000000,-375.000000,-25.000000,-325.000000,0.000000,"join"};
+item7[] = {"decimated",4,218,0.000000,-375.000000,100.000000,-325.000000,0.000000,"decimated"};
+item8[] = {"fail",1,250,0.000000,-450.000000,100.000000,-400.000000,0.000000,"fail"};
+item9[] = {"tank_FUBAR",4,218,0.000000,-525.000000,100.000000,-475.000000,0.000000,"tank" \n "FUBAR"};
+item10[] = {"fail_1",1,250,0.000000,-300.000000,100.000000,-250.000000,0.000000,"fail"};
+link0[] = {0,1};
+link1[] = {0,9};
+link2[] = {1,2};
+link3[] = {2,5};
+link4[] = {2,9};
+link5[] = {3,4};
+link6[] = {5,6};
+link7[] = {6,3};
+link8[] = {6,7};
+link9[] = {7,10};
+link10[] = {9,8};
+globals[] = {25.000000,1,0,0,0,640,480,1,67,6316128,1,-171.784241,250.911469,-260.528564,-691.539673,610,622,1};
+window[] = {0,-1,-1,-1,-1,792,1945,3159,25,1,628};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Tanks";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "tank_FUBAR">*/
+                                class tank_FUBAR
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="fail";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_tank2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "player_in_tank">*/
+                                class player_in_tank
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="move_in_rest_of";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle BIS_player == BIS_tank2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "move_in_rest_of">*/
+                class move_in_rest_of
+                {
+                        name = "move_in_rest_of";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"[""BIS_objGetIn"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "[""BIS_objMeeting"", ""Current""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "_null = [[""Vehicle"", ""Commanding""], 15] spawn BIS_fnc_advHint;" \n
+                         "" \n
+                         "_gunner = assignedGunner BIS_tank2;" \n
+                         "_driver = assignedDriver BIS_tank2;" \n
+                         "" \n
+                         "if (vehicle _gunner == _gunner) then {_gunner moveInGunner BIS_tank2};" \n
+                         "if (vehicle _driver == _driver) then {_driver moveInDriver BIS_tank2};" \n
+                         "" \n
+                         "(group BIS_crewLead1) setFormDir 250;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "tank_FUBAR">*/
+                                class tank_FUBAR
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="fail";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!canMove BIS_tank2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "met_platoon">*/
+                                class met_platoon
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="join";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_meeting"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "report">*/
+                class report
+                {
+                        name = "report";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_null = ""village1"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "[""BIS_obj1"", ""Succeeded""] call BIS_fnc_missionTasks;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "join">*/
+                class join
+                {
+                        name = "join";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"_null = ""meeting"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "[""BIS_objMeeting"", ""Succeeded""] call BIS_fnc_missionTasks;" \n
+                         "[""BIS_obj1"", ""Current""] call BIS_fnc_missionTasks;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "decimated">*/
+                                class decimated
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="fail_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{canMove _x} count [BIS_tank1, BIS_tank2, BIS_tank3, BIS_tank4] < 2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Malos_clear">*/
+                                class Malos_clear
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="report";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_molosArea"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "fail">*/
+                class fail
+                {
+                        name = "fail";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"[""Fail01"", FALSE] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "fail_1">*/
+                class fail_1
+                {
+                        name = "fail_1";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"[""Fail02"", FALSE] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "report",
+                "fail",
+                "fail_1",
+        };
+};
+/*%FSM</COMPILE>*/

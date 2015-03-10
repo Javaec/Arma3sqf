@@ -1,0 +1,1600 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Mission Flow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,375.000000,425.000000,475.000000,475.000000,0.000000,"Start"};
+item1[] = {"In_contact",4,218,250.000000,550.000000,350.000000,600.000000,0.000000,"In contact"};
+item2[] = {"",7,210,421.000000,496.000000,429.000000,504.000000,0.000000,""};
+item3[] = {"",7,210,296.000000,521.000000,304.000000,529.000000,0.000000,""};
+item4[] = {"Engage",2,250,250.000000,625.000000,350.000000,675.000000,0.000000,"Engage"};
+item5[] = {"Threat_neutraliz",4,218,125.000000,550.000000,225.000000,600.000000,1.000000,"Threat" \n "neutralized"};
+item6[] = {"Patrol_inbound",2,250,125.000000,625.000000,225.000000,675.000000,0.000000,"Patrol inbound"};
+item7[] = {"",7,210,171.000000,521.000000,179.000000,529.000000,0.000000,""};
+item8[] = {"",7,210,295.999969,696.000000,304.000000,704.000000,0.000000,""};
+item9[] = {"",7,210,171.000000,696.000000,179.000000,704.000000,0.000000,""};
+item10[] = {"At_crash_site",4,218,375.000000,550.000000,475.000000,600.000000,0.000000,"At crash site"};
+item11[] = {"Defend",2,250,375.000000,625.000000,475.000000,675.000000,0.000000,"Defend"};
+item12[] = {"Attackers_spotte",4,218,250.000000,775.000000,350.000000,825.000000,0.000000,"Attackers" \n "spotted"};
+item13[] = {"Open_fire",2,250,250.000000,850.000000,350.000000,900.000000,0.000000,"Open fire"};
+item14[] = {"",7,210,421.000000,721.000000,429.000000,729.000000,0.000000,""};
+item15[] = {"",7,210,46.000000,746.000000,54.000000,754.000000,0.000000,""};
+item16[] = {"On_station",4,218,125.000000,775.000000,225.000000,825.000000,0.000000,"On station"};
+item17[] = {"Treat_survivor",2,250,125.000000,850.000000,225.000000,900.000000,0.000000,"Treat survivor"};
+item18[] = {"Survivor_died",4,218,375.000000,775.000000,475.000000,825.000000,0.000000,"Survivor" \n "died"};
+item19[] = {"Destroy_wreckage",2,250,375.000000,950.000000,475.000000,1000.000000,0.000000,"Destroy wreckage"};
+item20[] = {"",7,210,496.000000,1121.000000,504.000000,1129.000000,0.000000,""};
+item21[] = {"Court_martialed",4,218,525.000000,475.000000,625.000000,525.000000,1.000000,"Court-martialed"};
+item22[] = {"Terminate",1,250,525.000000,550.000000,625.000000,600.000000,0.000000,"Terminate"};
+item23[] = {"Medic_dead",4,218,0.000000,775.000000,100.000000,825.000000,0.000000,"Medic dead"};
+item24[] = {"Survivor_dead",4,218,-125.000000,775.000000,-25.000000,825.000000,0.000000,"Survivor dead"};
+item25[] = {"Fail__1",1,250,0.000000,850.000000,100.000000,900.000000,0.000000,"Fail #1"};
+item26[] = {"Fail__2",1,250,-125.000000,850.000000,-25.000000,900.000000,0.000000,"Fail #2"};
+item27[] = {"",7,210,496.000000,446.000000,504.000000,454.000000,0.000000,""};
+item28[] = {"",7,210,571.000000,446.000000,579.000000,454.000000,0.000000,""};
+item29[] = {"",7,210,421.000000,521.000000,429.000000,529.000000,0.000000,""};
+item30[] = {"",7,210,96.000000,696.000000,104.000000,704.000000,0.000000,""};
+item31[] = {"",7,210,96.000000,496.000000,104.000000,504.000000,0.000000,""};
+item32[] = {"",7,210,421.000000,746.000000,429.000000,754.000000,0.000000,""};
+item33[] = {"",7,210,296.000000,746.000000,304.000000,754.000000,0.000000,""};
+item34[] = {"",7,210,296.000000,921.000000,304.000000,929.000000,0.000000,""};
+item35[] = {"",7,210,171.000000,746.000000,179.000000,754.000000,0.000000,""};
+item36[] = {"",7,210,-79.000000,746.000000,-71.000000,754.000000,0.000000,""};
+item37[] = {"",7,210,171.000000,921.000000,179.000000,929.000000,0.000000,""};
+item38[] = {"",7,210,-154.000000,921.000000,-146.000000,929.000000,0.000000,""};
+item39[] = {"",7,210,-154.000000,721.000000,-146.000000,729.000000,0.000000,""};
+item40[] = {"",7,210,496.000000,521.000000,504.000000,529.000000,0.000000,""};
+item41[] = {"",7,210,496.000000,746.000000,504.000000,754.000000,0.000000,""};
+item42[] = {"",7,210,496.000000,1271.000000,504.000000,1279.000000,0.000000,""};
+item43[] = {"",7,210,496.000000,1421.000000,504.000000,1429.000000,0.000000,""};
+item44[] = {"",7,210,496.000000,1571.000000,504.000000,1579.000000,0.000000,""};
+item45[] = {"",7,210,496.000000,1721.000000,504.000000,1729.000000,0.000000,""};
+item46[] = {"",7,210,496.000000,2271.000000,504.000000,2279.000000,0.000000,""};
+item47[] = {"",7,210,71.000000,1721.000000,79.000000,1729.000000,0.000000,""};
+item48[] = {"",7,210,71.000000,1871.000000,79.000000,1879.000000,0.000000,""};
+item49[] = {"",7,210,71.000000,2021.000000,79.000000,2029.000000,0.000000,""};
+item50[] = {"",7,210,71.000000,2496.000000,79.000000,2504.000000,0.000000,""};
+item51[] = {"",7,210,496.000000,2496.000000,504.000000,2504.000000,0.000000,""};
+item52[] = {"",7,210,421.000000,2271.000000,429.000000,2279.000000,0.000000,""};
+item53[] = {"",7,210,421.000000,2296.000000,429.000000,2304.000000,0.000000,""};
+item54[] = {"Wreck_destroyed",4,218,375.000000,2325.000000,475.000000,2375.000000,0.000000,"Wreck" \n "destroyed"};
+item55[] = {"Success",1,250,375.000000,2400.000000,475.000000,2450.000000,0.000000,"Success"};
+item56[] = {"",7,210,296.000000,2296.000000,304.000000,2304.000000,0.000000,""};
+item57[] = {"All_clear",4,218,250.000000,2325.000000,350.000000,2375.000000,0.000000,"All clear"};
+item58[] = {"Safe_detonation",2,250,250.000000,2400.000000,350.000000,2450.000000,0.000000,"Safe detonation"};
+item59[] = {"",7,210,296.000000,2471.000000,304.000000,2479.000000,0.000000,""};
+item60[] = {"",7,210,221.000000,2471.000000,229.000015,2479.000000,0.000000,""};
+item61[] = {"",7,210,221.000000,2271.000000,229.000015,2279.000000,0.000000,""};
+item62[] = {"Allowed_to_plant",4,218,375.000000,1025.000000,475.000000,1075.000000,0.000000,"Allowed to" \n "plant"};
+item63[] = {"_",2,250,375.000000,1100.000000,475.000000,1150.000000,0.000000,""};
+item64[] = {"Already_planted",4,218,0.000000,1100.000000,100.000000,1150.000000,1.000000,"Already planted" \n "or destroyed"};
+item65[] = {"_",8,218,375.000000,1175.000000,475.000000,1225.000000,0.000000,""};
+item66[] = {"Order_to_plant",2,250,375.000000,1250.000000,475.000000,1300.000000,0.000000,"Order to plant"};
+item67[] = {"Ordered",4,218,375.000000,1325.000000,475.000000,1375.000000,0.000000,"Ordered"};
+item68[] = {"__1",2,250,375.000000,1400.000000,475.000000,1450.000000,0.000000,""};
+item69[] = {"No_charge",4,218,100.000000,1400.000000,200.000000,1450.000000,1.000000,"No charge"};
+item70[] = {"Find_charge",2,250,100.000000,1700.000000,200.000000,1750.000000,0.000000,"Find charge"};
+item71[] = {"Charge_found",4,218,100.000000,1775.000000,200.000000,1825.000000,0.000000,"Charge found"};
+item72[] = {"Move_to_plant",2,250,100.000000,1850.000000,200.000000,1900.000000,0.000000,"Move to plant"};
+item73[] = {"_",8,218,375.000000,1475.000000,475.000000,1525.000000,0.000000,""};
+item74[] = {"Plant",2,250,375.000000,1550.000000,475.000000,1600.000000,0.000000,"Plant"};
+item75[] = {"Planted",4,218,375.000000,1625.000000,475.000000,1675.000000,0.000000,"Planted"};
+item76[] = {"__2",2,250,375.000000,1700.000000,475.000000,1750.000000,0.000000,""};
+item77[] = {"Bad_position",4,218,225.000000,1700.000000,325.000000,1750.000000,1.000000,"Bad position"};
+item78[] = {"_",8,218,375.000000,1775.000000,475.000000,1825.000000,0.000000,""};
+item79[] = {"Get_clear",2,250,375.000000,2200.000000,475.000000,2250.000000,0.000000,"Get clear"};
+item80[] = {"Planted",4,218,100.000000,1925.000000,200.000000,1975.000000,0.000000,"Planted"};
+item81[] = {"__3",2,250,100.000000,2000.000000,200.000000,2050.000000,0.000000,""};
+item82[] = {"Bad_position",4,218,100.000000,2075.000000,200.000000,2125.000000,1.000000,"Bad position"};
+item83[] = {"Fail__3",1,250,100.000000,2150.000000,200.000000,2200.000000,0.000000,"Fail #3"};
+item84[] = {"_",8,218,225.000000,2000.000000,325.000000,2050.000000,0.000000,""};
+item85[] = {"",7,210,271.000000,2221.000000,279.000000,2229.000000,0.000000,""};
+item86[] = {"",7,210,45.999992,2221.000000,54.000011,2229.000000,0.000000,""};
+item87[] = {"",7,210,496.000000,971.000000,504.000000,979.000000,0.000000,""};
+link0[] = {0,2};
+link1[] = {0,27};
+link2[] = {1,4};
+link3[] = {2,29};
+link4[] = {3,1};
+link5[] = {3,7};
+link6[] = {4,8};
+link7[] = {5,6};
+link8[] = {6,9};
+link9[] = {7,5};
+link10[] = {8,9};
+link11[] = {9,30};
+link12[] = {10,11};
+link13[] = {11,14};
+link14[] = {12,13};
+link15[] = {13,34};
+link16[] = {14,32};
+link17[] = {15,23};
+link18[] = {15,36};
+link19[] = {16,17};
+link20[] = {17,37};
+link21[] = {18,19};
+link22[] = {19,62};
+link23[] = {19,87};
+link24[] = {20,87};
+link25[] = {21,22};
+link26[] = {23,25};
+link27[] = {24,26};
+link28[] = {27,28};
+link29[] = {28,21};
+link30[] = {29,3};
+link31[] = {29,10};
+link32[] = {29,40};
+link33[] = {30,31};
+link34[] = {31,2};
+link35[] = {32,18};
+link36[] = {32,33};
+link37[] = {32,41};
+link38[] = {33,12};
+link39[] = {33,35};
+link40[] = {34,37};
+link41[] = {35,15};
+link42[] = {35,16};
+link43[] = {36,24};
+link44[] = {37,38};
+link45[] = {38,39};
+link46[] = {39,14};
+link47[] = {40,27};
+link48[] = {41,40};
+link49[] = {42,20};
+link50[] = {43,42};
+link51[] = {44,43};
+link52[] = {45,44};
+link53[] = {46,45};
+link54[] = {47,48};
+link55[] = {48,49};
+link56[] = {49,50};
+link57[] = {50,51};
+link58[] = {51,46};
+link59[] = {52,46};
+link60[] = {52,53};
+link61[] = {53,54};
+link62[] = {53,56};
+link63[] = {54,55};
+link64[] = {56,57};
+link65[] = {57,58};
+link66[] = {58,59};
+link67[] = {59,60};
+link68[] = {60,61};
+link69[] = {61,52};
+link70[] = {62,63};
+link71[] = {63,20};
+link72[] = {63,64};
+link73[] = {63,65};
+link74[] = {64,86};
+link75[] = {65,66};
+link76[] = {66,42};
+link77[] = {66,67};
+link78[] = {67,68};
+link79[] = {68,43};
+link80[] = {68,69};
+link81[] = {68,73};
+link82[] = {69,70};
+link83[] = {70,47};
+link84[] = {70,71};
+link85[] = {71,72};
+link86[] = {72,48};
+link87[] = {72,80};
+link88[] = {73,74};
+link89[] = {74,44};
+link90[] = {74,75};
+link91[] = {75,76};
+link92[] = {76,45};
+link93[] = {76,77};
+link94[] = {76,78};
+link95[] = {77,70};
+link96[] = {78,79};
+link97[] = {79,52};
+link98[] = {80,81};
+link99[] = {81,49};
+link100[] = {81,82};
+link101[] = {81,84};
+link102[] = {82,83};
+link103[] = {84,85};
+link104[] = {85,79};
+link105[] = {86,85};
+link106[] = {87,41};
+globals[] = {25.000000,1,0,0,0,640,480,1,245,6316128,1,-203.632233,576.916992,2676.324463,1508.771118,716,1071,1};
+window[] = {2,-1,-1,-1,-1,892,125,1339,125,3,734};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Mission Flow";
+        class States
+        {
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Threat_neutraliz">*/
+                                class Threat_neutraliz
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="Patrol_inbound";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x} count units BIS_IA_group1 == 0" \n
+                                         "&&" \n
+                                         "isNil ""_threatNeutralized"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "In_contact">*/
+                                class In_contact
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Engage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	behaviour leader BIS_BLU_group1 == ""COMBAT""" \n
+                                         "	||" \n
+                                         "	!(isNil ""_inContact"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "isNil ""_threatNeutralized"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "At_crash_site">*/
+                                class At_crash_site
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Defend";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_atCrashSite"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Engage">*/
+                class Engage
+                {
+                        name = "Engage";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"private [""_inContact""];" \n
+                         "if (isNil ""_inContact"") then {" \n
+                         "	_inContact = true;" \n
+                         "	""BIS_contact"" spawn BIS_fnc_missionConversations;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Threat_neutraliz">*/
+                                class Threat_neutraliz
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="Patrol_inbound";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x} count units BIS_IA_group1 == 0" \n
+                                         "&&" \n
+                                         "isNil ""_threatNeutralized"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "In_contact">*/
+                                class In_contact
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Engage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	behaviour leader BIS_BLU_group1 == ""COMBAT""" \n
+                                         "	||" \n
+                                         "	!(isNil ""_inContact"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "isNil ""_threatNeutralized"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "At_crash_site">*/
+                                class At_crash_site
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Defend";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_atCrashSite"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Patrol_inbound">*/
+                class Patrol_inbound
+                {
+                        name = "Patrol_inbound";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"enableSentences false;" \n
+                         "" \n
+                         "private [""_threatNeutralized""];" \n
+                         "_threatNeutralized = [] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: patrol inbound"";" \n
+                         "	" \n
+                         "	sleep (5 + random 5);" \n
+                         "	" \n
+                         "	""BIS_secure"" call BIS_fnc_missionConversations;" \n
+                         "	""BIS_report"" call BIS_fnc_missionConversations;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Threat_neutraliz">*/
+                                class Threat_neutraliz
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="Patrol_inbound";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x} count units BIS_IA_group1 == 0" \n
+                                         "&&" \n
+                                         "isNil ""_threatNeutralized"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "In_contact">*/
+                                class In_contact
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Engage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(" \n
+                                         "	behaviour leader BIS_BLU_group1 == ""COMBAT""" \n
+                                         "	||" \n
+                                         "	!(isNil ""_inContact"")" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "isNil ""_threatNeutralized"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "At_crash_site">*/
+                                class At_crash_site
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Defend";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_atCrashSite"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Defend">*/
+                class Defend
+                {
+                        name = "Defend";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"// Update tasks" \n
+                         "{_x call BIS_fnc_missionTasks} forEach [""BIS_crashSite"", ""BIS_defend""];" \n
+                         "" \n
+                         "// Allow medic and survivor to take damage" \n
+                         "{_x removeEventhandler [""HandleDamage"", _x getVariable ""BIS_damageEH""]} forEach [BIS_BLU3, BIS_BLU4];" \n
+                         "" \n
+                         "// Separate medic from player's group" \n
+                         "private [""_group""];" \n
+                         "_group = createGroup WEST;" \n
+                         "[BIS_BLU3] joinSilent _group;" \n
+                         "BIS_BLU3 allowFleeing 0;" \n
+                         "" \n
+                         "// Add waypoints" \n
+                         "private [""_wp1""];" \n
+                         "_wp1 = _group addWaypoint [markerPos ""BIS_medicMove1"", 0];" \n
+                         "_wp1 setWaypointPosition [markerPos ""BIS_medicMove1"", 0];" \n
+                         "_wp1 setWaypointType ""MOVE"";" \n
+                         "" \n
+                         "private [""_wp2""];" \n
+                         "_wp2 = _group addWaypoint [markerPos ""BIS_medicPos"", 0];" \n
+                         "_wp2 setWaypointPosition [markerPos ""BIS_medicPos"", 0];" \n
+                         "_wp2 setWaypointStatements [""true"", ""BIS_medicInPos = true""];" \n
+                         "_wp2 setWaypointType ""MOVE"";" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: medic control"";" \n
+                         "	" \n
+                         "	waitUntil {!(isNil ""BIS_medicInPos"") || !(alive BIS_BLU3)};" \n
+                         "	" \n
+                         "	if (alive BIS_BLU3) then {" \n
+                         "		// Start treating the pilot" \n
+                         "		BIS_BLU3 disableAI ""MOVE"";" \n
+                         "		BIS_BLU3 setVelocity [0,0,0];" \n
+                         "		BIS_BLU3 setPos markerPos ""BIS_medicPos"";" \n
+                         "		BIS_BLU3 setDir markerDir ""BIS_medicPos"";" \n
+                         "		" \n
+                         "		BIS_BLU3 playMove ""Acts_TreatingWounded_in"";" \n
+                         "		" \n
+                         "		sleep 0.25;" \n
+                         "		" \n
+                         "		BIS_BLU3 setVelocity [0,0,0];" \n
+                         "		BIS_BLU3 setPos markerPos ""BIS_medicPos"";" \n
+                         "		BIS_BLU3 setDir markerDir ""BIS_medicPos"";" \n
+                         "		" \n
+                         "		// Store animations that can be used" \n
+                         "		BIS_anims = [" \n
+                         "			""Acts_TreatingWounded02""," \n
+                         "			""Acts_TreatingWounded03""," \n
+                         "			""Acts_TreatingWounded04""," \n
+                         "			""Acts_TreatingWounded05""," \n
+                         "			""Acts_TreatingWounded06""" \n
+                         "		];" \n
+                         "		" \n
+                         "		private [""_animEH""];" \n
+                         "		_animEH = BIS_BLU3 addEventHandler [" \n
+                         "			""AnimDone""," \n
+                         "			{" \n
+                         "				if (_this select 1 == ""Acts_TreatingWounded_in"") then {" \n
+                         "					BIS_BLU3 removeEventHandler [""AnimDone"", BIS_BLU3 getVariable ""BIS_animEH""];" \n
+                         "					" \n
+                         "					BIS_BLU3 disableAI ""ANIM"";" \n
+                         "					BIS_BLU3 attachTo [BIS_logic2, [0,0,0]];" \n
+                         "					" \n
+                         "					// Detach from logic if killed" \n
+                         "					private [""_killedEH""];" \n
+                         "					_killedEH = BIS_BLU3 addEventHandler [""Killed"", {detach BIS_BLU3}];" \n
+                         "					BIS_BLU3 setVariable [""BIS_killedEH"", _killedEH];" \n
+                         "					" \n
+                         "					private [""_anim""];" \n
+                         "					_anim = BIS_anims call BIS_fnc_selectRandom;" \n
+                         "					BIS_anims = BIS_anims - [_anim];" \n
+                         "					" \n
+                         "					// Play the animation" \n
+                         "					BIS_BLU3 switchMove _anim;" \n
+                         "					" \n
+                         "					private [""_animEH""];" \n
+                         "					_animEH = BIS_BLU3 addEventHandler [" \n
+                         "						""AnimDone""," \n
+                         "						{" \n
+                         "							// Reset anims if necessary" \n
+                         "							if (count BIS_anims == 0) then {" \n
+                         "								BIS_anims = [" \n
+                         "									""Acts_TreatingWounded02""," \n
+                         "									""Acts_TreatingWounded03""," \n
+                         "									""Acts_TreatingWounded04""," \n
+                         "									""Acts_TreatingWounded05""," \n
+                         "									""Acts_TreatingWounded06""" \n
+                         "								];" \n
+                         "							};" \n
+                         "							" \n
+                         "							private [""_anim""];" \n
+                         "							_anim = BIS_anims call BIS_fnc_selectRandom;" \n
+                         "							BIS_anims = BIS_anims - [_anim];" \n
+                         "							" \n
+                         "							BIS_BLU3 switchMove _anim;" \n
+                         "						}" \n
+                         "					];" \n
+                         "					" \n
+                         "					BIS_BLU3 setVariable [""BIS_animEH"", _animEH];" \n
+                         "				};" \n
+                         "			}" \n
+                         "		];" \n
+                         "		" \n
+                         "		BIS_BLU3 setVariable [""BIS_animEH"", _animEH];" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "// Separate other squad member if necessary" \n
+                         "if (alive BIS_BLU2 && leader BIS_BLU_group1 != BIS_BLU2) then {" \n
+                         "	private [""_group""];" \n
+                         "	_group = createGroup WEST;" \n
+                         "	[BIS_BLU2] joinSilent _group;" \n
+                         "	" \n
+                         "	private [""_wpPos""];" \n
+                         "	_wpPos = [2689.03,2965.95,0];" \n
+                         "	" \n
+                         "	// Add waypoint" \n
+                         "	private [""_wp1""];" \n
+                         "	_wp1 = _group addWaypoint [_wpPos, 0];" \n
+                         "	_wp1 setWaypointType ""MOVE"";" \n
+                         "	" \n
+                         "	// Make him go crouch" \n
+                         "	_wp1 setWaypointStatements [" \n
+                         "		""true""," \n
+                         "		""" \n
+                         "			BIS_BLU2 setBehaviour 'COMBAT';" \n
+                         "			BIS_BLU2 setUnitPos 'MIDDLE';" \n
+                         "			BIS_BLU2 doWatch [2679.31,2949.31,0];" \n
+                         "		""" \n
+                         "	];" \n
+                         "	" \n
+                         "	// Hold position" \n
+                         "	private [""_wp2""];" \n
+                         "	_wp2 = _group addWaypoint [_wpPos, 0];" \n
+                         "	_wp2 setWaypointType ""HOLD"";" \n
+                         "};" \n
+                         "" \n
+                         "// Signal to defend" \n
+                         "BIS_defend = true;" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: defend"";" \n
+                         "	" \n
+                         "	""BIS_survivor"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	sleep 1;" \n
+                         "	" \n
+                         "	saveGame;" \n
+                         "	" \n
+                         "	sleep 1;" \n
+                         "	" \n
+                         "	// Send attackers and medevac team" \n
+                         "	{" \n
+                         "		private [""_unit""];" \n
+                         "		_unit = _x;" \n
+                         "		" \n
+                         "		_unit hideObject false;" \n
+                         "		_unit enableSimulation true;" \n
+                         "		_unit allowDamage true;" \n
+                         "		_unit setCaptive false;" \n
+                         "		" \n
+                         "		{_unit enableAI _x} forEach [""ANIM"", ""AUTOTARGET"", ""FSM"", ""MOVE"", ""TARGET""];" \n
+                         "	} forEach (BIS_crashSite_attackers + units BIS_BLU_group2);" \n
+                         "	" \n
+                         "	if (""APERSBoundingMine_Range_Mag"" in magazines BIS_inf) then {" \n
+                         "		// Player still has his mines" \n
+                         "		[[""Weapons"", ""Mines""]] call BIS_fnc_advHint;" \n
+                         "	};" \n
+                         "	" \n
+                         "	""BIS_inform"" call BIS_fnc_missionConversations;" \n
+                         "	""BIS_medevac"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	sleep 2;" \n
+                         "	" \n
+                         "	0 fadeMusic 0.2;" \n
+                         "	playMusic ""LeadTrack02b_F_EPA"";" \n
+                         "	" \n
+                         "	BIS_musicEH = addMusicEventHandler [" \n
+                         "		""MusicStop""," \n
+                         "		{" \n
+                         "			removeMusicEventHandler [""MusicStopped"", BIS_musicEH];" \n
+                         "			BIS_musicStopped = true;" \n
+                         "		}" \n
+                         "	];" \n
+                         "	" \n
+                         "	""BIS_medevacResult"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	if (""APERSBoundingMine_Range_Mag"" in magazines BIS_inf) then {" \n
+                         "		// Add Instructor Figure" \n
+                         "		[""AddTopic"", [""i01_Mines"", ""A_m01"", localize ""STR_A3_A_m01_Instructor_Defensive_Perimeter""]] call BIS_fnc_InstructorFigure;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "On_station">*/
+                                class On_station
+                                {
+                                        itemno = 16;
+                                        priority = 0.000000;
+                                        to="Treat_survivor";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{_x distance BIS_wreck <= 40} count units BIS_BLU_group2 > 0" \n
+                                         "&&" \n
+                                         "isNil ""_onStation"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Medic_dead">*/
+                                class Medic_dead
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="Fail__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_BLU3)" \n
+                                         "&&" \n
+                                         "{!(isNil _x)} count [""BIS_playerKilled"", ""_onStation""] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Survivor_dead">*/
+                                class Survivor_dead
+                                {
+                                        itemno = 24;
+                                        priority = 0.000000;
+                                        to="Fail__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_BLU4)" \n
+                                         "&&" \n
+                                         "{!(isNil _x)} count [""BIS_playerKilled"", ""_onStation""] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Attackers_spotte">*/
+                                class Attackers_spotte
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Open_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(	" \n
+                                         "	(" \n
+                                         "		{BIS_BLU1 knowsAbout _x > 1.5} count BIS_crashSite_attackers > 0" \n
+                                         "		||" \n
+                                         "		{BIS_BLU2 knowsAbout _x > 1.5} count BIS_crashSite_attackers > 0" \n
+                                         "		||" \n
+                                         "		{BIS_inf knowsAbout _x > 1.5} count BIS_crashSite_attackers > 0" \n
+                                         "	)" \n
+                                         "	||" \n
+                                         "	{!(alive _x)} count BIS_crashSite_attackers > 0" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "isNil ""BIS_contact"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Survivor_died">*/
+                                class Survivor_died
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="Destroy_wreckage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_medicReady"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Open_fire">*/
+                class Open_fire
+                {
+                        name = "Open_fire";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"// Signal the contact" \n
+                         "BIS_contact = ""BIS_spotted"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: attack music"";" \n
+                         "	" \n
+                         "	waitUntil {!(isNil ""BIS_musicStopped"")};" \n
+                         "	" \n
+                         "	0 fadeMusic 0.2;" \n
+                         "	playMusic ""EventTrack03_F_EPA"";" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "On_station">*/
+                                class On_station
+                                {
+                                        itemno = 16;
+                                        priority = 0.000000;
+                                        to="Treat_survivor";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{_x distance BIS_wreck <= 40} count units BIS_BLU_group2 > 0" \n
+                                         "&&" \n
+                                         "isNil ""_onStation"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Medic_dead">*/
+                                class Medic_dead
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="Fail__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_BLU3)" \n
+                                         "&&" \n
+                                         "{!(isNil _x)} count [""BIS_playerKilled"", ""_onStation""] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Survivor_dead">*/
+                                class Survivor_dead
+                                {
+                                        itemno = 24;
+                                        priority = 0.000000;
+                                        to="Fail__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_BLU4)" \n
+                                         "&&" \n
+                                         "{!(isNil _x)} count [""BIS_playerKilled"", ""_onStation""] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Attackers_spotte">*/
+                                class Attackers_spotte
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Open_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(	" \n
+                                         "	(" \n
+                                         "		{BIS_BLU1 knowsAbout _x > 1.5} count BIS_crashSite_attackers > 0" \n
+                                         "		||" \n
+                                         "		{BIS_BLU2 knowsAbout _x > 1.5} count BIS_crashSite_attackers > 0" \n
+                                         "		||" \n
+                                         "		{BIS_inf knowsAbout _x > 1.5} count BIS_crashSite_attackers > 0" \n
+                                         "	)" \n
+                                         "	||" \n
+                                         "	{!(alive _x)} count BIS_crashSite_attackers > 0" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "isNil ""BIS_contact"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Survivor_died">*/
+                                class Survivor_died
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="Destroy_wreckage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_medicReady"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Treat_survivor">*/
+                class Treat_survivor
+                {
+                        name = "Treat_survivor";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"private [""_onStation""];" \n
+                         "_onStation = [] spawn {" \n
+                         "	""BIS_onStation"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	sleep 1;" \n
+                         "	" \n
+                         "	BIS_BLU4 setDamage 1;" \n
+                         "	" \n
+                         "	sleep 4;" \n
+                         "	" \n
+                         "	BIS_medicReady = true;" \n
+                         "};" \n
+                         "" \n
+                         "// Stop medic and survivor from being killed by anyone other than the player" \n
+                         "{" \n
+                         "	private [""_damageEH""];" \n
+                         "	_damageEH = _x addEventHandler [" \n
+                         "		""HandleDamage""," \n
+                         "		{" \n
+                         "			private [""_damage"", ""_source""];" \n
+                         "			_damage = _this select 2;" \n
+                         "			_source = _this select 3;" \n
+                         "			" \n
+                         "			if (_source in [vehicle BIS_inf, BIS_inf]) then {_damage} else {0};" \n
+                         "		}" \n
+                         "	];" \n
+                         "	" \n
+                         "	_x setVariable [""BIS_damageEH"", _damageEH];" \n
+                         "} forEach [BIS_BLU3, BIS_BLU4];" \n
+                         "" \n
+                         "enableSentences false;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "On_station">*/
+                                class On_station
+                                {
+                                        itemno = 16;
+                                        priority = 0.000000;
+                                        to="Treat_survivor";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{_x distance BIS_wreck <= 40} count units BIS_BLU_group2 > 0" \n
+                                         "&&" \n
+                                         "isNil ""_onStation"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Medic_dead">*/
+                                class Medic_dead
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="Fail__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_BLU3)" \n
+                                         "&&" \n
+                                         "{!(isNil _x)} count [""BIS_playerKilled"", ""_onStation""] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Survivor_dead">*/
+                                class Survivor_dead
+                                {
+                                        itemno = 24;
+                                        priority = 0.000000;
+                                        to="Fail__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_BLU4)" \n
+                                         "&&" \n
+                                         "{!(isNil _x)} count [""BIS_playerKilled"", ""_onStation""] == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Attackers_spotte">*/
+                                class Attackers_spotte
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Open_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(	" \n
+                                         "	(" \n
+                                         "		{BIS_BLU1 knowsAbout _x > 1.5} count BIS_crashSite_attackers > 0" \n
+                                         "		||" \n
+                                         "		{BIS_BLU2 knowsAbout _x > 1.5} count BIS_crashSite_attackers > 0" \n
+                                         "		||" \n
+                                         "		{BIS_inf knowsAbout _x > 1.5} count BIS_crashSite_attackers > 0" \n
+                                         "	)" \n
+                                         "	||" \n
+                                         "	{!(alive _x)} count BIS_crashSite_attackers > 0" \n
+                                         ")" \n
+                                         "&&" \n
+                                         "isNil ""BIS_contact"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Survivor_died">*/
+                                class Survivor_died
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="Destroy_wreckage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_medicReady"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Destroy_wreckage">*/
+                class Destroy_wreckage
+                {
+                        name = "Destroy_wreckage";
+                        itemno = 19;
+                        init = /*%FSM<STATEINIT""">*/"saveGame;" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: destroy wreckage"";" \n
+                         "	" \n
+                         "	sleep 1;" \n
+                         "	" \n
+                         "	// Remove Instructor Figure" \n
+                         "	[""RemoveTopic"", [""i01_Mines""]] call BIS_fnc_InstructorFigure;" \n
+                         "	" \n
+                         "	0 fadeMusic 0.2;" \n
+                         "	playMusic ""EventTrack01a_F_EPA"";" \n
+                         "	" \n
+                         "	// Update task" \n
+                         "	""BIS_defend"" call BIS_fnc_missionTasks;" \n
+                         "	" \n
+                         "	// Remove medic's old eventhandler" \n
+                         "	BIS_BLU3 removeEventHandler [""AnimDone"", BIS_BLU3 getVariable ""BIS_animEH""];" \n
+                         "	" \n
+                         "	detach BIS_BLU3;" \n
+                         "	BIS_BLU3 setPos position BIS_BLU3;" \n
+                         "	BIS_BLU3 setDir direction BIS_BLU3;" \n
+                         "	BIS_BLU3 playMoveNow ""Acts_TreatingWounded_out"";" \n
+                         "	" \n
+                         "	private [""_animEH""];" \n
+                         "	_animEH = BIS_BLU3 addEventHandler [" \n
+                         "		""AnimDone""," \n
+                         "		{" \n
+                         "			if (_this select 1 == ""Acts_TreatingWounded_out"") then {" \n
+                         "				BIS_BLU3 removeEventHandler [""Killed"", BIS_BLU3 getVariable ""BIS_killedEH""];" \n
+                         "				BIS_BLU3 removeEventHandler [""AnimDone"", BIS_BLU3 getVariable ""BIS_animEH""];" \n
+                         "				" \n
+                         "				{BIS_BLU3 enableAI _x} forEach [""ANIM"", ""MOVE""];" \n
+                         "				" \n
+                         "				if ({alive _x} count [BIS_BLU1, BIS_BLU2, BIS_BLU3] > 0) then {" \n
+                         "					// Reorganize the player's squad" \n
+                         "					[BIS_BLU2, BIS_BLU3] joinSilent BIS_BLU_group1;" \n
+                         "					" \n
+                         "					private [""_leader""];" \n
+                         "					_leader = BIS_inf;" \n
+                         "					{if (alive _x) exitWith {_leader = _x}} forEach [BIS_BLU1, BIS_BLU2, BIS_BLU3];" \n
+                         "					" \n
+                         "					if (_leader != BIS_inf) then {" \n
+                         "						BIS_BLU_group1 selectLeader _leader;" \n
+                         "					};" \n
+                         "				};" \n
+                         "				" \n
+                         "				// Ensure all of the group act the same" \n
+                         "				{" \n
+                         "					_x setBehaviour ""COMBAT"";" \n
+                         "					_x setUnitPos ""MIDDLE"";" \n
+                         "				} forEach units BIS_BLU_group1;" \n
+                         "				" \n
+                         "				BIS_BLU3 playMove ""AmovPercMstpSrasWrflDnon"";" \n
+                         "			};" \n
+                         "		}" \n
+                         "	];" \n
+                         "" \n
+                         "	BIS_BLU3 setVariable [""BIS_animEH"", _animEH];" \n
+                         "	" \n
+                         "	[] spawn {" \n
+                         "		scriptName ""missionFlow.fsm: destroy wreckage"";" \n
+                         "		" \n
+                         "		""BIS_medicReady"" call BIS_fnc_missionConversations;" \n
+                         "		" \n
+                         "		// Signal to plant" \n
+                         "		BIS_plant = true;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Allowed_to_plant">*/
+                                class Allowed_to_plant
+                                {
+                                        itemno = 62;
+                                        priority = 0.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_plant"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 22;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Fail__1">*/
+                class Fail__1
+                {
+                        name = "Fail__1";
+                        itemno = 25;
+                        init = /*%FSM<STATEINIT""">*/"// Signal that the medic died" \n
+                         "BIS_charDead = true;" \n
+                         "" \n
+                         """BIS_defend"" call BIS_fnc_missionTasks;" \n
+                         "[[missionName, 1], false] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Fail__2">*/
+                class Fail__2
+                {
+                        name = "Fail__2";
+                        itemno = 26;
+                        init = /*%FSM<STATEINIT""">*/"// Signal that the survivor died" \n
+                         "BIS_charDead = true;" \n
+                         "" \n
+                         """BIS_defend"" call BIS_fnc_missionTasks;" \n
+                         "[[missionName, 2], false] call BIS_fnc_endMission;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Success">*/
+                class Success
+                {
+                        name = "Success";
+                        itemno = 55;
+                        init = /*%FSM<STATEINIT""">*/"if (""BIS_destroy"" call BIS_fnc_taskExists) then {""BIS_destroy"" call BIS_fnc_missionTasks};" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: success control"";" \n
+                         "	" \n
+                         "	sleep 6;" \n
+                         "	" \n
+                         "	[[""A_hub01"", 1], true, true, false] call BIS_fnc_endMission;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Safe_detonation">*/
+                class Safe_detonation
+                {
+                        name = "Safe_detonation";
+                        itemno = 58;
+                        init = /*%FSM<STATEINIT""">*/"private [""_allClear""];" \n
+                         "_allClear = ""BIS_allClear"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "All_clear">*/
+                                class All_clear
+                                {
+                                        itemno = 57;
+                                        priority = 0.000000;
+                                        to="Safe_detonation";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{_x distance BIS_wreck < 70} count (units BIS_BLU_group1 + units BIS_BLU_group2 - [BIS_inf]) == 0" \n
+                                         "&&" \n
+                                         "isNil ""_allClear"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Wreck_destroyed">*/
+                                class Wreck_destroyed
+                                {
+                                        itemno = 54;
+                                        priority = 0.000000;
+                                        to="Success";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_wreck)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 63;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Already_planted">*/
+                                class Already_planted
+                                {
+                                        itemno = 64;
+                                        priority = 1.000000;
+                                        to="Get_clear";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x && _x distance BIS_wreck < 20} count BIS_planted > 0" \n
+                                         "||" \n
+                                         "!(alive BIS_wreck)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 65;
+                                        priority = 0.000000;
+                                        to="Order_to_plant";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Order_to_plant">*/
+                class Order_to_plant
+                {
+                        name = "Order_to_plant";
+                        itemno = 66;
+                        init = /*%FSM<STATEINIT""">*/"private [""_order""];" \n
+                         "_order = ""BIS_plant"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Ordered">*/
+                                class Ordered
+                                {
+                                        itemno = 67;
+                                        priority = 0.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"scriptDone _order"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__1">*/
+                class __1
+                {
+                        name = "__1";
+                        itemno = 68;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "No_charge">*/
+                                class No_charge
+                                {
+                                        itemno = 69;
+                                        priority = 1.000000;
+                                        to="Find_charge";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(""DemoCharge_Remote_Mag"" in magazines BIS_inf)" \n
+                                         "&&" \n
+                                         "{alive _x && _x distance BIS_wreck < 20} count BIS_planted == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 73;
+                                        priority = 0.000000;
+                                        to="Plant";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Find_charge">*/
+                class Find_charge
+                {
+                        name = "Find_charge";
+                        itemno = 70;
+                        init = /*%FSM<STATEINIT""">*/"// Player doesn't have his charge" \n
+                         "BIS_noCharges = true;" \n
+                         "" \n
+                         "// Add charge to random enemy" \n
+                         "private [""_units""];" \n
+                         "_units = units BIS_IA_group1 + BIS_crashSite_attackers;" \n
+                         "{if (alive _x) then {_units = _units - [_x]}} forEach _units;" \n
+                         "" \n
+                         "BIS_bombCarrier = _units call BIS_fnc_selectRandom;" \n
+                         "" \n
+                         "removeAllItems BIS_bombCarrier;" \n
+                         "removeAllWeapons BIS_bombCarrier;" \n
+                         "removeAllAssignedItems BIS_bombCarrier;" \n
+                         "BIS_bombCarrier addMagazine ""DemoCharge_Remote_Mag"";" \n
+                         "" \n
+                         "// Ensure unit has enough carrying capacity" \n
+                         "if (!(""DemoCharge_Remote_Mag"" in magazines BIS_bombCarrier)) then {" \n
+                         "	BIS_bombCarrier addBackpack ""I_Carryall_oli_Exp"";" \n
+                         "	removeAllItems BIS_bombCarrier;" \n
+                         "	removeAllWeapons BIS_bombCarrier;" \n
+                         "	removeAllAssignedItems BIS_bombCarrier;" \n
+                         "	" \n
+                         "	BIS_bombCarrier addMagazine ""DemoCharge_Remote_Mag"";" \n
+                         "};" \n
+                         "" \n
+                         """BIS_scavenge"" call BIS_fnc_missionTasks;" \n
+                         "if (!(""BIS_plant"" call BIS_fnc_taskExists)) then {""BIS_plant"" call BIS_fnc_missionTasks};" \n
+                         "" \n
+                         """BIS_noCharges"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Charge_found">*/
+                                class Charge_found
+                                {
+                                        itemno = 71;
+                                        priority = 0.000000;
+                                        to="Move_to_plant";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"""DemoCharge_Remote_Mag"" in magazines BIS_inf"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Move_to_plant">*/
+                class Move_to_plant
+                {
+                        name = "Move_to_plant";
+                        itemno = 72;
+                        init = /*%FSM<STATEINIT""">*/"if (isNil ""BIS_hintShown"") then {[[""Weapons"", ""IEDs""]] call BIS_fnc_advHint};" \n
+                         "{_x call BIS_fnc_missionTasks} forEach [""BIS_scavenge"", ""BIS_plant""];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Planted">*/
+                                class Planted
+                                {
+                                        itemno = 80;
+                                        priority = 0.000000;
+                                        to="__3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(""DemoCharge_Remote_Mag"" in magazines BIS_inf)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Plant">*/
+                class Plant
+                {
+                        name = "Plant";
+                        itemno = 74;
+                        init = /*%FSM<STATEINIT""">*/"BIS_hintShown = true;" \n
+                         "[[""Weapons"", ""IEDs""]] call BIS_fnc_advHint;" \n
+                         "" \n
+                         """BIS_plant"" call BIS_fnc_missionTasks;" \n
+                         """BIS_planting"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Planted">*/
+                                class Planted
+                                {
+                                        itemno = 75;
+                                        priority = 0.000000;
+                                        to="__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(""DemoCharge_Remote_Mag"" in magazines BIS_inf)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__2">*/
+                class __2
+                {
+                        name = "__2";
+                        itemno = 76;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Bad_position">*/
+                                class Bad_position
+                                {
+                                        itemno = 77;
+                                        priority = 1.000000;
+                                        to="Find_charge";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x && _x distance BIS_wreck < 20} count BIS_planted == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 78;
+                                        priority = 0.000000;
+                                        to="Get_clear";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Get_clear">*/
+                class Get_clear
+                {
+                        name = "Get_clear";
+                        itemno = 79;
+                        init = /*%FSM<STATEINIT""">*/"// Reset behaviors" \n
+                         "{" \n
+                         "	_x setBehaviour ""AWARE"";" \n
+                         "	_x setUnitPos ""AUTO"";" \n
+                         "	_x doWatch objNull;" \n
+                         "} forEach units BIS_BLU_group1;" \n
+                         "" \n
+                         "// Signal to go back to Maxwell" \n
+                         "BIS_getOut = true;" \n
+                         "" \n
+                         "if (alive BIS_wreck) then {" \n
+                         "	if (!(""BIS_plant"" call BIS_fnc_taskExists)) then {" \n
+                         "		""BIS_destroy"" call BIS_fnc_missionTasks;" \n
+                         "		""BIS_getClear"" spawn BIS_fnc_missionConversations;" \n
+                         "	} else {" \n
+                         "		{_x call BIS_fnc_missionTasks} forEach [""BIS_plant"", ""BIS_destroy""];" \n
+                         "		" \n
+                         "		[] spawn {" \n
+                         "			scriptName ""missionFlow.fsm: get out"";" \n
+                         "			" \n
+                         "			""BIS_planted"" call BIS_fnc_missionConversations;" \n
+                         "			""BIS_getClear"" call BIS_fnc_missionConversations;" \n
+                         "		};" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "All_clear">*/
+                                class All_clear
+                                {
+                                        itemno = 57;
+                                        priority = 0.000000;
+                                        to="Safe_detonation";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{_x distance BIS_wreck < 70} count (units BIS_BLU_group1 + units BIS_BLU_group2 - [BIS_inf]) == 0" \n
+                                         "&&" \n
+                                         "isNil ""_allClear"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Wreck_destroyed">*/
+                                class Wreck_destroyed
+                                {
+                                        itemno = 54;
+                                        priority = 0.000000;
+                                        to="Success";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(alive BIS_wreck)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__3">*/
+                class __3
+                {
+                        name = "__3";
+                        itemno = 81;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Court_martialed">*/
+                                class Court_martialed
+                                {
+                                        itemno = 21;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Bad_position">*/
+                                class Bad_position
+                                {
+                                        itemno = 82;
+                                        priority = 1.000000;
+                                        to="Fail__3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{alive _x && _x distance BIS_wreck < 20} count BIS_planted == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 84;
+                                        priority = 0.000000;
+                                        to="Get_clear";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Fail__3">*/
+                class Fail__3
+                {
+                        name = "Fail__3";
+                        itemno = 83;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "	scriptName ""missionFlow.fsm: fail #3"";" \n
+                         "	" \n
+                         "	sleep 1;" \n
+                         "	" \n
+                         "	[[""A_m01"", 3], false] call BIS_fnc_endMission;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Start";
+        finalStates[] =
+        {
+                "Terminate",
+                "Fail__1",
+                "Fail__2",
+                "Success",
+                "Fail__3",
+        };
+};
+/*%FSM</COMPILE>*/

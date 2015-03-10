@@ -1,0 +1,316 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Offroad Control">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Offroad_Control",0,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"Offroad Control"};
+item1[] = {"Offroad",4,218,-75.000000,-50.000000,25.000000,0.000000,0.000000,"Offroad"};
+item2[] = {"",7,210,95.999992,-104.000000,104.000000,-96.000000,0.000000,""};
+item3[] = {"Wait",2,250,-75.000000,25.000000,25.000000,75.000000,0.000000,"Wait"};
+item4[] = {"Time_passed",4,218,-75.000000,100.000000,25.000000,150.000000,0.000000,"Time passed"};
+item5[] = {"Give_warning",2,250,-75.000000,175.000000,25.000000,225.000000,0.000000,"Give warning"};
+item6[] = {"",7,210,46.000004,196.000000,53.999996,204.000000,0.000000,""};
+item7[] = {"",7,210,46.000004,120.999992,53.999996,129.000000,0.000000,""};
+item8[] = {"Back_on_road",4,218,50.000000,25.000000,150.000000,75.000000,0.000000,"Back on road"};
+item9[] = {"",7,210,96.000008,196.000000,104.000000,204.000000,0.000000,""};
+item10[] = {"",7,210,-104.000000,-104.000000,-96.000000,-96.000000,0.000000,""};
+item11[] = {"",7,210,-104.000000,46.000000,-96.000008,54.000004,0.000000,""};
+item12[] = {"",7,210,-104.000000,196.000000,-96.000000,204.000000,0.000000,""};
+item13[] = {"",7,210,-179.000000,-104.000000,-171.000000,-96.000000,0.000000,""};
+item14[] = {"Not_applicable",4,218,-225.000000,-50.000000,-125.000000,0.000000,0.000000,"Not applicable"};
+item15[] = {"Terminate",1,250,-225.000000,25.000000,-125.000000,75.000000,0.000000,"Terminate"};
+item16[] = {"",7,210,-329.000000,-104.000000,-321.000000,-96.000000,0.000000,""};
+item17[] = {"At_checkpoint",4,218,-375.000000,-50.000000,-275.000000,0.000000,0.000000,"At checkpoint"};
+item18[] = {"Wait_to_pass_che",2,250,-375.000000,25.000000,-275.000000,75.000000,0.000000,"Wait to pass" \n "checkpoint"};
+item19[] = {"",7,210,-253.999985,46.000000,-246.000000,54.000004,0.000000,""};
+item20[] = {"",7,210,-254.000000,-29.000000,-246.000000,-21.000000,0.000000,""};
+item21[] = {"Left_checkpoint",4,218,-375.000000,100.000000,-275.000000,150.000000,0.000000,"Left checkpoint"};
+item22[] = {"",7,210,-404.000000,121.000000,-396.000000,129.000000,0.000000,""};
+item23[] = {"",7,210,-404.000000,-154.000000,-396.000000,-146.000015,0.000000,""};
+item24[] = {"",7,210,-29.000000,-154.000000,-21.000000,-146.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {0,10};
+link2[] = {1,3};
+link3[] = {2,0};
+link4[] = {3,4};
+link5[] = {3,8};
+link6[] = {3,11};
+link7[] = {4,5};
+link8[] = {5,6};
+link9[] = {5,12};
+link10[] = {6,7};
+link11[] = {6,9};
+link12[] = {7,4};
+link13[] = {8,2};
+link14[] = {9,8};
+link15[] = {10,13};
+link16[] = {11,10};
+link17[] = {12,11};
+link18[] = {13,14};
+link19[] = {13,16};
+link20[] = {14,15};
+link21[] = {16,17};
+link22[] = {17,18};
+link23[] = {18,19};
+link24[] = {18,21};
+link25[] = {19,20};
+link26[] = {20,14};
+link27[] = {21,22};
+link28[] = {22,23};
+link29[] = {23,24};
+link30[] = {24,0};
+globals[] = {25.000000,1,0,0,0,640,480,1,34,6316128,1,-512.369385,331.475586,334.818298,-273.375854,863,622,1};
+window[] = {0,-1,-1,-1,-1,792,25,1239,25,1,881};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Offroad Control";
+        class States
+        {
+                /*%FSM<STATE "Offroad_Control">*/
+                class Offroad_Control
+                {
+                        name = "Offroad_Control";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"// Register the player is on the road" \n
+                         "BIS_offroad = false;" \n
+                         "" \n
+                         "// List available warnings" \n
+                         "private [""_warnings""];" \n
+                         "_warnings = [""BIS_warning1"", ""BIS_warning2""];" \n
+                         "" \n
+                         "// Ensure player is on captive" \n
+                         "BIS_inf setCaptive true;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Not_applicable">*/
+                                class Not_applicable
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{!(isNil _x)} count [""BIS_courtMartial"", ""BIS_checksPassed""] > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "At_checkpoint">*/
+                                class At_checkpoint
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="Wait_to_pass_che";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_atCheckpoint > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Offroad">*/
+                                class Offroad
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isOnRoad BIS_truck)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Wait">*/
+                class Wait
+                {
+                        name = "Wait";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"private [""_time""];" \n
+                         "_time = time + 3;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Back_on_road">*/
+                                class Back_on_road
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Offroad_Control";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isOnRoad BIS_truck"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Not_applicable">*/
+                                class Not_applicable
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{!(isNil _x)} count [""BIS_courtMartial"", ""BIS_checksPassed""] > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "At_checkpoint">*/
+                                class At_checkpoint
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="Wait_to_pass_che";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_atCheckpoint > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Time_passed">*/
+                                class Time_passed
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Give_warning";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time" \n
+                                         "&&" \n
+                                         "count _warnings > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Give_warning">*/
+                class Give_warning
+                {
+                        name = "Give_warning";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"// Register that the player is offroad" \n
+                         "BIS_offroad = true;" \n
+                         "" \n
+                         "// Take player off captive" \n
+                         "BIS_inf setCaptive false;" \n
+                         "" \n
+                         "// Choose random warning" \n
+                         "private [""_warning""];" \n
+                         "_warning = _warnings call BIS_fnc_selectRandom;" \n
+                         "_warnings = _warnings - [_warning];" \n
+                         "" \n
+                         "// Give warning" \n
+                         "_warning spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "// Allow delay" \n
+                         "_time = time + 15;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Back_on_road">*/
+                                class Back_on_road
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Offroad_Control";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isOnRoad BIS_truck"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Not_applicable">*/
+                                class Not_applicable
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{!(isNil _x)} count [""BIS_courtMartial"", ""BIS_checksPassed""] > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "At_checkpoint">*/
+                                class At_checkpoint
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="Wait_to_pass_che";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_atCheckpoint > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Time_passed">*/
+                                class Time_passed
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Give_warning";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time" \n
+                                         "&&" \n
+                                         "count _warnings > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/"BIS_offroad = false;" \n
+                         "" \n
+                         "if (isNil ""BIS_courtMartial"") then {" \n
+                         "	// Return to captive" \n
+                         "	BIS_inf setCaptive true;" \n
+                         "} else {" \n
+                         "	// Take off captive" \n
+                         "	BIS_inf setCaptive false;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Wait_to_pass_che">*/
+                class Wait_to_pass_che
+                {
+                        name = "Wait_to_pass_che";
+                        itemno = 18;
+                        init = /*%FSM<STATEINIT""">*/"// Return to captive" \n
+                         "BIS_offroad = false;" \n
+                         "BIS_inf setCaptive true;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Not_applicable">*/
+                                class Not_applicable
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{!(isNil _x)} count [""BIS_courtMartial"", ""BIS_checksPassed""] > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Left_checkpoint">*/
+                                class Left_checkpoint
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="Offroad_Control";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_atCheckpoint == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Offroad_Control";
+        finalStates[] =
+        {
+                "Terminate",
+        };
+};
+/*%FSM</COMPILE>*/

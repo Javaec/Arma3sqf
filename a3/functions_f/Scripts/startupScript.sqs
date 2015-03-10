@@ -1,0 +1,92 @@
+;? (distributionRegion==1) : goto "US"
+;? (distributionRegion==6) : goto "RU"
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+#EU
+;disableUserInput true;
+
+~1
+
+;ESRB only in PA-Lite
+?((productVersion select 1) != "Arma3AlphaLite"): goto "alpha"
+1 cutRsc ["SplashESRB", "PLAIN"]
+~5
+#alpha
+1 cutRsc ["SplashBohemia", "PLAIN"]
+0 cutRsc ["SplashNoise","PLAIN"]
+~4
+?((productVersion select 1) == "Arma3AlphaLite"): goto "alphaLite"
+1 cutRsc ["SplashArma3", "PLAIN"]
+goto "alphaLiteEnd"
+#alphaLite
+1 cutRsc ["SplashArma3Lite", "PLAIN"]
+#alphaLiteEnd
+~4
+1 cutRsc ["SplashCopyright", "PLAIN"]
+~3
+
+titleText ["", "PLAIN"]
+disableUserInput false
+goto "exit"
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+#US
+disableUserInput true
+
+~1
+
+;ESRB only in PA-Lite
+?((productVersion select 1) != "Arma3AlphaLite"): goto "alpha"
+1 cutRsc ["SplashESRB", "PLAIN"]
+~5
+#alpha
+1 cutRsc ["SplashBohemia", "PLAIN"]
+0 cutRsc ["SplashNoise","PLAIN"]
+~4
+?((productVersion select 1) == "Arma3AlphaLite"): goto "alphaLite"
+1 cutRsc ["SplashArma3", "PLAIN"]
+goto "alphaLiteEnd"
+#alphaLite
+1 cutRsc ["SplashArma3Lite", "PLAIN"]
+#alphaLiteEnd
+~4
+1 cutRsc ["SplashCopyright", "PLAIN"]
+~3
+
+titleText ["", "PLAIN"]
+disableUserInput false
+goto "exit"
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+#RU
+disableUserInput true
+
+~1
+
+;ESRB only in PA-Lite
+?((productVersion select 1) != "Arma3AlphaLite"): goto "alpha"
+1 cutRsc ["SplashESRB", "PLAIN"]
+~5
+#alpha
+1 cutRsc ["SplashBohemia", "PLAIN"]
+0 cutRsc ["SplashNoise","PLAIN"]
+~4
+?((productVersion select 1) == "Arma3AlphaLite"): goto "alphaLite"
+1 cutRsc ["SplashArma3", "PLAIN"]
+goto "alphaLiteEnd"
+#alphaLite
+1 cutRsc ["SplashArma3Lite", "PLAIN"]
+#alphaLiteEnd
+~4
+1 cutRsc ["SplashCopyright", "PLAIN"]
+~3
+
+titleText ["", "PLAIN"]
+disableUserInput false
+goto "exit"
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+#exit
+exit

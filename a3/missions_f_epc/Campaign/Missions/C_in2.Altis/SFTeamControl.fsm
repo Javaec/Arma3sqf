@@ -1,0 +1,690 @@
+/*%FSM<COMPILE "C:\Bis\FSMEditor\scriptedFSM.cfg, SF Team Control">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"SF_Team_Control",0,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"SF Team" \n "Control"};
+item1[] = {"",7,210,-28.999998,-54.000000,-21.000000,-46.000000,0.000000,""};
+item2[] = {"Pilot_changed",4,218,-75.000000,-25.000000,25.000000,25.000000,0.000000,"Pilot changed"};
+item3[] = {"Reassign",2,250,-75.000000,50.000000,25.000000,100.000000,0.000000,"Reassign"};
+item4[] = {"",7,210,221.000000,-54.000000,229.000000,-46.000000,0.000000,""};
+item5[] = {"Ready",4,218,175.000000,-25.000000,275.000000,25.000000,0.000000,"Ready"};
+item6[] = {"",7,210,471.000000,-54.000000,479.000000,-46.000000,0.000000,""};
+item7[] = {"Boat_disabled",4,218,425.000000,-25.000000,525.000000,25.000000,0.000000,"Boat disabled"};
+item8[] = {"Kill_all",1,250,425.000000,50.000000,525.000000,100.000000,0.000000,"Kill all"};
+item9[] = {"",7,210,596.000000,-54.000000,604.000000,-46.000000,0.000000,""};
+item10[] = {"Inserted__engaged",4,218,550.000000,-25.000000,650.000000,25.000000,0.000000,"Inserted," \n "engaged" \n "or dead"};
+item11[] = {"Terminate",1,250,550.000000,50.000000,650.000000,100.000000,0.000000,"Terminate"};
+item12[] = {"Coast_in",2,250,175.000000,50.000000,275.000000,100.000000,0.000000,"Coast in"};
+item13[] = {"",7,210,221.000000,121.000008,229.000000,129.000000,0.000000,""};
+item14[] = {"",7,210,-29.000000,121.000000,-21.000000,129.000000,0.000000,""};
+item15[] = {"",7,210,-104.000000,121.000000,-96.000000,129.000000,0.000000,""};
+item16[] = {"",7,210,-104.000000,-54.000000,-96.000000,-46.000000,0.000000,""};
+item17[] = {"",7,210,346.000000,-54.000000,354.000000,-46.000000,0.000000,""};
+item18[] = {"On_land",4,218,300.000000,-25.000000,400.000000,25.000000,0.000000,"On land"};
+item19[] = {"Disembark",2,250,300.000000,50.000000,400.000000,100.000000,0.000000,"Disembark"};
+item20[] = {"",7,210,96.000000,-54.000000,104.000000,-46.000000,0.000000,""};
+item21[] = {"Engaged",4,218,50.000000,-25.000000,150.000000,25.000000,0.000000,"Engaged"};
+item22[] = {"React",2,250,50.000000,50.000000,150.000000,100.000000,0.000000,"React"};
+item23[] = {"",7,210,96.000000,121.000000,104.000000,129.000000,0.000000,""};
+item24[] = {"",7,210,346.000000,121.000000,354.000000,129.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {1,20};
+link3[] = {2,3};
+link4[] = {3,14};
+link5[] = {4,5};
+link6[] = {4,17};
+link7[] = {5,12};
+link8[] = {6,7};
+link9[] = {6,9};
+link10[] = {7,8};
+link11[] = {9,10};
+link12[] = {10,11};
+link13[] = {12,13};
+link14[] = {13,23};
+link15[] = {14,15};
+link16[] = {15,16};
+link17[] = {16,1};
+link18[] = {17,6};
+link19[] = {17,18};
+link20[] = {18,19};
+link21[] = {19,24};
+link22[] = {20,4};
+link23[] = {20,21};
+link24[] = {21,22};
+link25[] = {22,23};
+link26[] = {23,14};
+link27[] = {24,13};
+globals[] = {25.000000,1,0,0,0,640,480,1,53,6316128,1,-67.914032,694.729431,618.628601,-190.876953,1009,1071,1};
+window[] = {2,-1,-1,-1,-1,1030,150,1544,150,3,1027};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "SF Team Control";
+        class States
+        {
+                /*%FSM<STATE "SF_Team_Control">*/
+                class SF_Team_Control
+                {
+                        name = "SF_Team_Control";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private [""_team""];" \n
+                         "_team = _this;" \n
+                         "" \n
+                         "// Determine team details" \n
+                         "private [""_units"", ""_boat"", ""_pilot"", ""_readyVar""];" \n
+                         "_units = missionNamespace getVariable (format [""BIS_SFTeam%1"", _team]);" \n
+                         "_boat = missionNamespace getVariable (format [""BIS_SFBoat%1"", _team]);" \n
+                         "_pilot = driver _boat;" \n
+                         "_readyVar = format [""BIS_SFTeam%1_ready"", _team];" \n
+                         "" \n
+                         "private [""_i"", ""_markers""];" \n
+                         "_i = 1;" \n
+                         "_markers = [];" \n
+                         "" \n
+                         "while {markerType (format [""BIS_SFTeam%1_dest%2"", _team, _i]) != """"} do {" \n
+                         "	private [""_marker""];" \n
+                         "	_marker = format [""BIS_SFTeam%1_dest%2"", _team, _i];" \n
+                         "	_markers = _markers + [_marker];" \n
+                         "	" \n
+                         "	_i = _i + 1;" \n
+                         "};" \n
+                         "" \n
+                         "_markers call BIS_fnc_log;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Engaged">*/
+                                class Engaged
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="React";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	_x knowsAbout BIS_inf >= 1.5" \n
+                                         "	||" \n
+                                         "	damage _x > 0" \n
+                                         "} count _units > 0" \n
+                                         "||" \n
+                                         "!(isNil ""BIS_SFTeams_engage"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Ready">*/
+                                class Ready
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Coast_in";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil _readyVar)" \n
+                                         "&&" \n
+                                         "isNil ""_speedConstant"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "On_land">*/
+                                class On_land
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="Disembark";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(surfaceIsWater position _boat)" \n
+                                         "&&" \n
+                                         "isNil ""_onLand"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Boat_disabled">*/
+                                class Boat_disabled
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Kill_all";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove _boat)" \n
+                                         "&&" \n
+                                         "isNil ""_onLand"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Inserted__engaged">*/
+                                class Inserted__engaged
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{isNil _x} count [""_onLand"", ""BIS_SFTeams_engage""] == 0" \n
+                                         "||" \n
+                                         "{alive _x} count _units == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Pilot_changed">*/
+                                class Pilot_changed
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="Reassign";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"driver _boat != _pilot"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Reassign">*/
+                class Reassign
+                {
+                        name = "Reassign";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"// Reassign new pilot" \n
+                         "private [""_group""];" \n
+                         "_pilot = driver _boat;" \n
+                         "_group = group _pilot;" \n
+                         "" \n
+                         "// Adjust behavior" \n
+                         "_pilot setBehaviour ""CARELESS"";" \n
+                         "_pilot setSpeedMode ""FULL"";" \n
+                         "" \n
+                         "// Add waypoints" \n
+                         "private [""_current""];" \n
+                         "" \n
+                         "{" \n
+                         "	if (isNil {missionNamespace getVariable _x}) then {" \n
+                         "		private [""_wp""];" \n
+                         "		_wp = _group addWaypoint [markerPos _x, 0];" \n
+                         "		_wp setWaypointCombatMode ""BLUE"";" \n
+                         "		_wp setWaypointType ""MOVE"";" \n
+                         "		" \n
+                         "		if (isNil ""_current"") then {" \n
+                         "			_group setCurrentWaypoint _wp;" \n
+                         "			_current = true;" \n
+                         "		};" \n
+                         "		" \n
+                         "		if (_forEachIndex == (count _markers - 1)) then {" \n
+                         "			_wp setWaypointStatements [" \n
+                         "				""true""," \n
+                         "				format [" \n
+                         "					""BIS_SFTeam%1_ready = true""," \n
+                         "					_team" \n
+                         "				]" \n
+                         "			];" \n
+                         "		};" \n
+                         "	};" \n
+                         "} forEach _markers;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Engaged">*/
+                                class Engaged
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="React";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	_x knowsAbout BIS_inf >= 1.5" \n
+                                         "	||" \n
+                                         "	damage _x > 0" \n
+                                         "} count _units > 0" \n
+                                         "||" \n
+                                         "!(isNil ""BIS_SFTeams_engage"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Ready">*/
+                                class Ready
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Coast_in";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil _readyVar)" \n
+                                         "&&" \n
+                                         "isNil ""_speedConstant"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "On_land">*/
+                                class On_land
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="Disembark";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(surfaceIsWater position _boat)" \n
+                                         "&&" \n
+                                         "isNil ""_onLand"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Boat_disabled">*/
+                                class Boat_disabled
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Kill_all";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove _boat)" \n
+                                         "&&" \n
+                                         "isNil ""_onLand"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Inserted__engaged">*/
+                                class Inserted__engaged
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{isNil _x} count [""_onLand"", ""BIS_SFTeams_engage""] == 0" \n
+                                         "||" \n
+                                         "{alive _x} count _units == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Pilot_changed">*/
+                                class Pilot_changed
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="Reassign";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"driver _boat != _pilot"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Kill_all">*/
+                class Kill_all
+                {
+                        name = "Kill_all";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"// Kill survivors" \n
+                         "{if (alive _x) then {_x setDamage 1}} forEach ([_boat] + _units);"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Coast_in">*/
+                class Coast_in
+                {
+                        name = "Coast_in";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"// Force boat onto land" \n
+                         "private [""_speedConstant""];" \n
+                         "_speedConstant = [" \n
+                         "	format [" \n
+                         "		""BIS_SFTeam%1_speedConstant""," \n
+                         "		_team" \n
+                         "	]," \n
+                         "	""onEachFrame""," \n
+                         "	format [" \n
+                         "		""%1 setVelocity %2""," \n
+                         "		_boat," \n
+                         "		velocity _boat" \n
+                         "	]" \n
+                         "] call BIS_fnc_addStackedEventHandler;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Engaged">*/
+                                class Engaged
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="React";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	_x knowsAbout BIS_inf >= 1.5" \n
+                                         "	||" \n
+                                         "	damage _x > 0" \n
+                                         "} count _units > 0" \n
+                                         "||" \n
+                                         "!(isNil ""BIS_SFTeams_engage"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Ready">*/
+                                class Ready
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Coast_in";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil _readyVar)" \n
+                                         "&&" \n
+                                         "isNil ""_speedConstant"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "On_land">*/
+                                class On_land
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="Disembark";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(surfaceIsWater position _boat)" \n
+                                         "&&" \n
+                                         "isNil ""_onLand"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Boat_disabled">*/
+                                class Boat_disabled
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Kill_all";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove _boat)" \n
+                                         "&&" \n
+                                         "isNil ""_onLand"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Inserted__engaged">*/
+                                class Inserted__engaged
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{isNil _x} count [""_onLand"", ""BIS_SFTeams_engage""] == 0" \n
+                                         "||" \n
+                                         "{alive _x} count _units == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Pilot_changed">*/
+                                class Pilot_changed
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="Reassign";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"driver _boat != _pilot"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Disembark">*/
+                class Disembark
+                {
+                        name = "Disembark";
+                        itemno = 19;
+                        init = /*%FSM<STATEINIT""">*/"// Stop forcing speed" \n
+                         "[_speedConstant, ""onEachFrame""] call BIS_fnc_removeStackedEventHandler;" \n
+                         "" \n
+                         "{" \n
+                         "	// Normalize" \n
+                         "	_x setUnitPos ""AUTO"";" \n
+                         "	_x setBehaviour ""AWARE"";" \n
+                         "	_x setSpeedMode ""NORMAL"";" \n
+                         "	" \n
+                         "	// Disembark" \n
+                         "	{(group _x) leaveVehicle _boat} forEach _units;" \n
+                         "} forEach _units;" \n
+                         "" \n
+                         "// Disembark" \n
+                         "doGetOut _units;" \n
+                         "" \n
+                         "// Engage control" \n
+                         "private [""_onLand""];" \n
+                         "_onLand = _units spawn {" \n
+                         "	private [""_units""];" \n
+                         "	_units = _this;" \n
+                         "	" \n
+                         "	scriptName (format [""SFTeamControl.fsm: engage control - [%1]"", _units]);" \n
+                         "		" \n
+                         "	// Wait for units to be engaged" \n
+                         "	waitUntil {" \n
+                         "		{" \n
+                         "			_x knowsAbout BIS_inf >= 1.5" \n
+                         "			||" \n
+                         "			damage _x > 0" \n
+                         "		} count _units > 0" \n
+                         "		||" \n
+                         "		!(isNil ""BIS_SFTeams_engage"")" \n
+                         "	};" \n
+                         "	" \n
+                         "	// Fight back" \n
+                         "	BIS_SFTeams_engage = true;" \n
+                         "	" \n
+                         "	// Find leader" \n
+                         "	private [""_leader""];" \n
+                         "	_leader = objNull;" \n
+                         "	{if (alive _x) exitWith {_leader = _x}} forEach _units;" \n
+                         "	" \n
+                         "	if (!(isNull _leader)) then {" \n
+                         "		// Join together" \n
+                         "		private [""_group""];" \n
+                         "		_group = group _leader;" \n
+                         "		{if (alive _x) then {[_x] joinSilent _group}} forEach (_units - [_leader]);" \n
+                         "		" \n
+                         "		private [""_wp""];" \n
+                         "		_wp = _group addWaypoint [markerPos ""BIS_katalaki"", 0];" \n
+                         "		_wp setWaypointBehaviour ""COMBAT"";" \n
+                         "		_wp setWaypointCombatMode ""YELLOW"";" \n
+                         "		_wp setWaypointSpeed ""NORMAL"";" \n
+                         "		_wp setWaypointType ""MOVE"";" \n
+                         "		_group setCurrentWaypoint _wp;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Engaged">*/
+                                class Engaged
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="React";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	_x knowsAbout BIS_inf >= 1.5" \n
+                                         "	||" \n
+                                         "	damage _x > 0" \n
+                                         "} count _units > 0" \n
+                                         "||" \n
+                                         "!(isNil ""BIS_SFTeams_engage"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Ready">*/
+                                class Ready
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Coast_in";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil _readyVar)" \n
+                                         "&&" \n
+                                         "isNil ""_speedConstant"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "On_land">*/
+                                class On_land
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="Disembark";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(surfaceIsWater position _boat)" \n
+                                         "&&" \n
+                                         "isNil ""_onLand"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Boat_disabled">*/
+                                class Boat_disabled
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Kill_all";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove _boat)" \n
+                                         "&&" \n
+                                         "isNil ""_onLand"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Inserted__engaged">*/
+                                class Inserted__engaged
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{isNil _x} count [""_onLand"", ""BIS_SFTeams_engage""] == 0" \n
+                                         "||" \n
+                                         "{alive _x} count _units == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Pilot_changed">*/
+                                class Pilot_changed
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="Reassign";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"driver _boat != _pilot"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "React">*/
+                class React
+                {
+                        name = "React";
+                        itemno = 22;
+                        init = /*%FSM<STATEINIT""">*/"// Fight back" \n
+                         "BIS_SFTeams_engage = true;" \n
+                         "" \n
+                         "if (isNil ""_onLand"") then {" \n
+                         "	// Speed up" \n
+                         "	_pilot setSpeedMode ""FULL"";" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Engaged">*/
+                                class Engaged
+                                {
+                                        itemno = 21;
+                                        priority = 0.000000;
+                                        to="React";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	_x knowsAbout BIS_inf >= 1.5" \n
+                                         "	||" \n
+                                         "	damage _x > 0" \n
+                                         "} count _units > 0" \n
+                                         "||" \n
+                                         "!(isNil ""BIS_SFTeams_engage"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Ready">*/
+                                class Ready
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Coast_in";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil _readyVar)" \n
+                                         "&&" \n
+                                         "isNil ""_speedConstant"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "On_land">*/
+                                class On_land
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="Disembark";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(surfaceIsWater position _boat)" \n
+                                         "&&" \n
+                                         "isNil ""_onLand"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Boat_disabled">*/
+                                class Boat_disabled
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Kill_all";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(canMove _boat)" \n
+                                         "&&" \n
+                                         "isNil ""_onLand"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Inserted__engaged">*/
+                                class Inserted__engaged
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{isNil _x} count [""_onLand"", ""BIS_SFTeams_engage""] == 0" \n
+                                         "||" \n
+                                         "{alive _x} count _units == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Pilot_changed">*/
+                                class Pilot_changed
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="Reassign";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"driver _boat != _pilot"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="SF_Team_Control";
+        finalStates[] =
+        {
+                "Kill_all",
+                "Terminate",
+        };
+};
+/*%FSM</COMPILE>*/

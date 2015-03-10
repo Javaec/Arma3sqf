@@ -1,0 +1,218 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Rearm">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Rearm",0,250,50.000000,-775.000000,150.000000,-725.000000,0.000000,"Rearm"};
+item1[] = {"Start_rearm",2,250,50.000000,-475.000000,150.000000,-425.000000,0.000000,"Start rearm"};
+item2[] = {"Left_Pyrgos",4,218,50.000000,-400.000000,150.000000,-350.000000,0.000000,"Left Pyrgos"};
+item3[] = {"",7,210,296.000000,-379.000000,304.000000,-371.000000,0.000000,""};
+item4[] = {"Landed_at_Pyrgos",4,218,50.000000,-700.000000,150.000000,-650.000000,0.000000,"Landed at" \n "Pyrgos"};
+item5[] = {"Start_countdown",2,250,50.000000,-625.000000,150.000000,-575.000000,0.000000,"Start countdown"};
+item6[] = {"Time_passed",4,218,50.000000,-550.000000,150.000000,-500.000000,0.000000,"Time passed"};
+item7[] = {"Moving_again",4,218,175.000000,-625.000000,275.000000,-575.000000,0.000000,"Moving" \n "again"};
+item8[] = {"_",2,250,175.000000,-700.000000,275.000000,-650.000000,0.000000,""};
+item9[] = {"",7,210,296.000000,-754.000000,304.000000,-746.000000,0.000000,""};
+item10[] = {"",7,210,21.000002,-754.000000,29.000000,-746.000000,0.000000,""};
+item11[] = {"Can_t_rearm",4,218,-100.000000,-775.000000,0.000000,-725.000000,0.000000,"Can't rearm"};
+item12[] = {"Terminate",1,250,-100.000000,-700.000000,0.000000,-650.000000,0.000000,"Terminate"};
+item13[] = {"",7,210,21.000002,-604.000000,28.999996,-596.000000,0.000000,""};
+item14[] = {"",7,210,21.000000,-454.000000,29.000000,-446.000000,0.000000,""};
+link0[] = {0,4};
+link1[] = {0,10};
+link2[] = {1,2};
+link3[] = {1,14};
+link4[] = {2,3};
+link5[] = {3,9};
+link6[] = {4,5};
+link7[] = {5,6};
+link8[] = {5,7};
+link9[] = {5,13};
+link10[] = {6,1};
+link11[] = {7,8};
+link12[] = {8,4};
+link13[] = {9,0};
+link14[] = {10,11};
+link15[] = {11,12};
+link16[] = {13,10};
+link17[] = {14,13};
+globals[] = {25.000000,1,0,0,0,640,480,1,23,6316128,1,-332.724915,585.671021,-137.545837,-924.376221,1075,921,1};
+window[] = {2,-1,-1,-1,-1,975,125,1565,125,3,1093};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Rearm";
+        class States
+        {
+                /*%FSM<STATE "Rearm">*/
+                class Rearm
+                {
+                        name = "Rearm";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Can_t_rearm">*/
+                                class Can_t_rearm
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_task05Done" \n
+                                         "||" \n
+                                         "!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Landed_at_Pyrgos">*/
+                                class Landed_at_Pyrgos
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Start_countdown";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isTouchingGround BIS_Mi48" \n
+                                         "&&" \n
+                                         "BIS_Mi48 distance markerPos ""BIS_mrkEnd"" <= 50"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Start_rearm">*/
+                class Start_rearm
+                {
+                        name = "Start_rearm";
+                        itemno = 1;
+                        init = /*%FSM<STATEINIT""">*/"BIS_rearmedOnce = true;" \n
+                         "" \n
+                         "// Execute resupply procedure" \n
+                         "[] spawn BIS_resupply;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Can_t_rearm">*/
+                                class Can_t_rearm
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_task05Done" \n
+                                         "||" \n
+                                         "!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Left_Pyrgos">*/
+                                class Left_Pyrgos
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="Rearm";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isTouchingGround BIS_Mi48)" \n
+                                         "&&" \n
+                                         "BIS_Mi48 distance markerPos ""BIS_mrkEnd"" > 50"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Start_countdown">*/
+                class Start_countdown
+                {
+                        name = "Start_countdown";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"private [""_time""];" \n
+                         "_time = time + 3;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Moving_again">*/
+                                class Moving_again
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isTouchingGround BIS_Mi48)" \n
+                                         "||" \n
+                                         "BIS_Mi48 distance markerPos ""BIS_mrkEnd"" > 50"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Can_t_rearm">*/
+                                class Can_t_rearm
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_task05Done" \n
+                                         "||" \n
+                                         "!(isNil ""BIS_courtMartial"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Time_passed">*/
+                                class Time_passed
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="Start_rearm";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time >= _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Landed_at_Pyrgos">*/
+                                class Landed_at_Pyrgos
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Start_countdown";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isTouchingGround BIS_Mi48" \n
+                                         "&&" \n
+                                         "BIS_Mi48 distance markerPos ""BIS_mrkEnd"" <= 50"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Rearm";
+        finalStates[] =
+        {
+                "Terminate",
+        };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,334 @@
+/*%FSM<COMPILE "C:\Bis\FSMEditor\scriptedFSM.cfg, Ammo Control">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Ammo_Control",0,250,-75.000000,-150.000000,25.000000,-100.000000,0.000000,"Ammo Control"};
+item1[] = {"Magazine_loaded",4,218,-75.000000,-50.000000,25.000000,0.000000,0.000000,"Magazine" \n "loaded"};
+item2[] = {"Wait",2,250,-75.000000,25.000000,25.000000,75.000000,0.000000,"Wait"};
+item3[] = {"Magazine_deplete",4,218,-75.000000,100.000000,25.000000,150.000000,0.000000,"Magazine" \n "depleted"};
+item4[] = {"Reprimand",2,250,-75.000000,625.000000,25.000000,675.000000,0.000000,"Reprimand"};
+item5[] = {"Terminate",4,218,75.000000,-50.000000,175.000000,0.000000,2.000000,"Terminate"};
+item6[] = {"Terminate",1,250,75.000000,25.000000,175.000000,75.000000,0.000000,"Terminate"};
+item7[] = {"Reload",2,250,-75.000000,175.000000,25.000000,225.000000,0.000000,"Reload"};
+item8[] = {"",7,210,-28.999998,-79.000000,-21.000000,-71.000000,0.000000,""};
+item9[] = {"",7,210,46.000000,-79.000000,54.000000,-71.000000,0.000000,""};
+item10[] = {"",7,210,46.000000,46.000000,54.000000,54.000000,0.000000,""};
+item11[] = {"",7,210,121.000000,-79.000000,129.000000,-71.000000,0.000000,""};
+item12[] = {"Reloaded",4,218,-75.000000,250.000000,25.000000,300.000000,0.000000,"Reloaded"};
+item13[] = {"Depleted_or_not",2,250,-75.000000,325.000000,25.000000,375.000000,0.000000,"Depleted or not"};
+item14[] = {"Depleted",4,218,-75.000000,400.000000,25.000000,450.000000,1.000000,"Depleted"};
+item15[] = {"Not_depleted",8,218,-200.000000,325.000000,-100.000000,375.000000,0.000000,"Not depleted"};
+item16[] = {"",7,210,-229.000000,646.000000,-221.000000,654.000000,0.000000,""};
+item17[] = {"",7,210,-229.000000,-79.000000,-221.000000,-71.000000,0.000000,""};
+item18[] = {"",7,210,-154.000000,46.000000,-146.000000,54.000000,0.000000,""};
+item19[] = {"",7,210,46.000000,196.000000,54.000000,204.000000,0.000000,""};
+item20[] = {"",7,210,46.000000,346.000000,54.000000,354.000000,0.000000,""};
+item21[] = {"Wait_until_empty",2,250,-75.000000,475.000000,25.000000,525.000000,0.000000,"Wait until empty"};
+item22[] = {"Empty",4,218,-75.000000,550.000000,25.000000,600.000000,0.000000,"Empty"};
+item23[] = {"",7,210,46.000000,496.000000,54.000000,504.000000,0.000000,""};
+link0[] = {0,8};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,10};
+link4[] = {3,7};
+link5[] = {4,16};
+link6[] = {5,6};
+link7[] = {7,12};
+link8[] = {7,19};
+link9[] = {8,1};
+link10[] = {8,9};
+link11[] = {9,11};
+link12[] = {10,9};
+link13[] = {11,5};
+link14[] = {12,13};
+link15[] = {13,14};
+link16[] = {13,15};
+link17[] = {13,20};
+link18[] = {14,21};
+link19[] = {15,18};
+link20[] = {16,17};
+link21[] = {17,8};
+link22[] = {18,2};
+link23[] = {19,10};
+link24[] = {20,19};
+link25[] = {21,22};
+link26[] = {21,23};
+link27[] = {22,4};
+link28[] = {23,20};
+globals[] = {25.000000,1,0,0,0,640,480,1,39,6316128,1,-569.821716,569.820313,681.033569,-161.659485,994,735,1};
+window[] = {0,-1,-1,-1,-1,930,50,1444,50,1,1012};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Ammo Control";
+        class States
+        {
+                /*%FSM<STATE "Ammo_Control">*/
+                class Ammo_Control
+                {
+                        name = "Ammo_Control";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private [""_var""];" \n
+                         "_var = [_this, 0, """", [""""]] call BIS_fnc_param;" \n
+                         "" \n
+                         "if (isNil ""BIS_ammoReprimands"") then {" \n
+                         "	BIS_ammoReprimands = [" \n
+                         "		""x15_Ammo_Depleted_1""," \n
+                         "		""x20_Ammo_Depleted_2""," \n
+                         "		""x25_Ammo_Depleted_3""" \n
+                         "	];" \n
+                         "};" \n
+                         "" \n
+                         "if (isNil ""BIS_ammoTime"") then {" \n
+                         "	BIS_ammoTime = 0;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Terminate">*/
+                                class Terminate
+                                {
+                                        itemno = 5;
+                                        priority = 2.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"missionNamespace getVariable [_var, false]"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Magazine_loaded">*/
+                                class Magazine_loaded
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"currentMagazine BIS_lacey != """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Wait">*/
+                class Wait
+                {
+                        name = "Wait";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Terminate">*/
+                                class Terminate
+                                {
+                                        itemno = 5;
+                                        priority = 2.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"missionNamespace getVariable [_var, false]"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Magazine_deplete">*/
+                                class Magazine_deplete
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Reload";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_lacey ammo (primaryWeapon BIS_lacey) == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Reprimand">*/
+                class Reprimand
+                {
+                        name = "Reprimand";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"// Rearm player" \n
+                         "BIS_lacey addMagazines [""30Rnd_65x39_caseless_mag"", 4];" \n
+                         "reload BIS_lacey;" \n
+                         "" \n
+                         "if (time > BIS_ammoTime) then {" \n
+                         "	if (count BIS_ammoReprimands == 0) then {" \n
+                         "		// Replenish reprimands" \n
+                         "		BIS_ammoReprimands = [" \n
+                         "			""x15_Ammo_Depleted_1""," \n
+                         "			""x20_Ammo_Depleted_2""," \n
+                         "			""x25_Ammo_Depleted_3""" \n
+                         "		];" \n
+                         "	};" \n
+                         "	" \n
+                         "	// Reprimand" \n
+                         "	private [""_reprimand""];" \n
+                         "	_reprimand = BIS_ammoReprimands call BIS_fnc_selectRandom;" \n
+                         "	_reprimand spawn BIS_fnc_missionConversations;" \n
+                         "	BIS_ammoReprimands = BIS_ammoReprimands - [_reprimand];" \n
+                         "	" \n
+                         "	// Reset delay" \n
+                         "	BIS_ammoTime = time + 15;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Terminate">*/
+                                class Terminate
+                                {
+                                        itemno = 5;
+                                        priority = 2.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"missionNamespace getVariable [_var, false]"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Magazine_loaded">*/
+                                class Magazine_loaded
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"currentMagazine BIS_lacey != """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Reload">*/
+                class Reload
+                {
+                        name = "Reload";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Terminate">*/
+                                class Terminate
+                                {
+                                        itemno = 5;
+                                        priority = 2.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"missionNamespace getVariable [_var, false]"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Reloaded">*/
+                                class Reloaded
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Depleted_or_not";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_lacey ammo (primaryWeapon BIS_lacey) > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Depleted_or_not">*/
+                class Depleted_or_not
+                {
+                        name = "Depleted_or_not";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Terminate">*/
+                                class Terminate
+                                {
+                                        itemno = 5;
+                                        priority = 2.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"missionNamespace getVariable [_var, false]"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Depleted">*/
+                                class Depleted
+                                {
+                                        itemno = 14;
+                                        priority = 1.000000;
+                                        to="Wait_until_empty";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{_x == ""30Rnd_65x39_caseless_mag""} count magazines BIS_lacey == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Not_depleted">*/
+                                class Not_depleted
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="Wait";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Wait_until_empty">*/
+                class Wait_until_empty
+                {
+                        name = "Wait_until_empty";
+                        itemno = 21;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Terminate">*/
+                                class Terminate
+                                {
+                                        itemno = 5;
+                                        priority = 2.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"missionNamespace getVariable [_var, false]"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Empty">*/
+                                class Empty
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="Reprimand";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_lacey ammo (primaryWeapon BIS_lacey) == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Ammo_Control";
+        finalStates[] =
+        {
+                "Terminate",
+        };
+};
+/*%FSM</COMPILE>*/

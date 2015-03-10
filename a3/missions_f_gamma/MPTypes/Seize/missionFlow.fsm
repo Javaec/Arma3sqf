@@ -1,0 +1,483 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, Seize">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"START",0,250,-150.000000,-225.000000,-50.000000,-175.000000,0.000000,"START"};
+item1[] = {"Continue",8,218,-150.000000,-150.000000,-50.000000,-100.000000,0.000000,"Continue"};
+item2[] = {"Init",2,250,-150.000000,-75.000000,-50.000000,-25.000000,0.000000,"Init"};
+item3[] = {"Sector_Captured",4,218,-75.000000,125.000000,25.000000,175.000000,0.000000,"Sector" \n "Captured"};
+item4[] = {"System_Curator",4,218,-325.000000,0.000000,-225.000000,50.000000,0.000000,"System" \n "Curator"};
+item5[] = {"System_Curator",2,4346,-325.000000,75.000000,-225.000000,125.000000,0.000000,"System" \n "Curator"};
+item6[] = {"Sector_Captured",2,250,-75.000000,200.000000,25.000000,250.000000,0.000000,"Sector" \n "Captured"};
+item7[] = {"All_Sectors_Capt",4,218,-75.000000,275.000000,25.000000,325.000000,1.000000,"All Sectors" \n "Captured"};
+item8[] = {"Players_Won",2,250,-75.000000,350.000000,25.000000,400.000000,0.000000,"Players" \n "Won"};
+item9[] = {"Players_Lost",4,218,-225.000000,125.000000,-125.000000,175.000000,0.000000,"Players" \n "Lost"};
+item10[] = {"",7,210,96.000000,221.000015,104.000000,229.000000,0.000000,""};
+item11[] = {"",7,210,96.000000,-129.000000,104.000000,-121.000008,0.000000,""};
+item12[] = {"Players_Lost",2,250,-225.000000,350.000000,-125.000000,400.000000,0.000000,"Players" \n "Lost"};
+item13[] = {"Fatality_",4,218,-150.000000,425.000000,-50.000000,475.000000,0.000000,"Fatality!"};
+item14[] = {"END",1,250,-150.000000,500.000000,-50.000000,550.000000,0.000000,"END"};
+item15[] = {"",7,210,-104.000000,45.999996,-96.000000,54.000004,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,15};
+link3[] = {3,6};
+link4[] = {4,5};
+link5[] = {5,15};
+link6[] = {6,7};
+link7[] = {6,10};
+link8[] = {7,8};
+link9[] = {8,13};
+link10[] = {9,12};
+link11[] = {10,11};
+link12[] = {11,1};
+link13[] = {12,13};
+link14[] = {13,14};
+link15[] = {15,3};
+link16[] = {15,4};
+link17[] = {15,9};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,16,6316128,1,-507.144562,218.855240,381.355133,-259.436798,779,925,1};
+window[] = {2,-1,-1,-1,-1,822,-1658,-575,52,3,796};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Seize";
+        class States
+        {
+                /*%FSM<STATE "START">*/
+                class START
+                {
+                        name = "START";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_logic = _this select 0;" \n
+                         "" \n
+                         "_sectors = _logic getvariable [""sectors"",[]];" \n
+                         "_playerSideLogics = _logic getvariable [""playerSideLogics"",[]];" \n
+                         "_playerSides = _logic getvariable [""playerSides"",[]];" \n
+                         "_enemySides = _logic getvariable [""enemySides"",[]];" \n
+                         "_enemyUnits = [[]];" \n
+                         "" \n
+                         "_remainingTimeWarning = 0;" \n
+                         "" \n
+                         "_curator = missionnamespace getvariable [""bis_curator"",objnull];" \n
+                         "_curatorAutomatic = [] spawn {};" \n
+                         "" \n
+                         "_sectorAreas = [];" \n
+                         "{" \n
+                         "	_sectorAreas set [_foreachindex,_x getvariable [""areas"",[]]];" \n
+                         "} foreach _sectors;" \n
+                         "" \n
+                         "" \n
+                         "_systemInit = {" \n
+                         "	_group = _this select 0;" \n
+                         "	_group setbehaviour ""safe"";" \n
+                         "	_group setspeedmode ""limited"";" \n
+                         "	_group allowfleeing 0;" \n
+                         "	" \n
+                         "	//Group vehicles" \n
+                         "	{" \n
+                         "		_x lock true;" \n
+                         "		_x allowCrewInImmobile true;" \n
+                         "	} forEach ([_group] call BIS_fnc_groupVehicles);" \n
+                         "" \n
+                         "	if !(isplayer bis_curator) then {" \n
+                         "		_pos = position (leader _group);" \n
+                         "" \n
+                         "		_area = _group getvariable [""BIS_fnc_curatorAutomatic_area"",[_pos,100]];" \n
+                         "" \n
+                         "		_areaPos = _area select 0;" \n
+                         "		_areaSize = _area select 1;" \n
+                         "" \n
+                         "		_wp = _group addwaypoint [_areaPos,_areaSize * (1 + random 1)];" \n
+                         "		_wp = _group addwaypoint [_areaPos,_areaSize * (1 + random 1)];" \n
+                         "		_wp = _group addwaypoint [_areaPos,_areaSize * (1 + random 1)];" \n
+                         "		_wp setwaypointtype ""CYCLE"";" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Continue">*/
+                                class Continue
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"_totalSectors = count _sectors;" \n
+                         "_capturedSectors = 0;" \n
+                         "" \n
+                         "_systemGroups = [];" \n
+                         "_systemAttempts = 10;" \n
+                         "_systemAttemptTime = time + 2;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "System_Curator">*/
+                                class System_Curator
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="System_Curator";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"//_objects = _curator call bis_fnc_curatorEditableObjects;" \n
+                                         "" \n
+                                         "!isplayer _curator" \n
+                                         "&&" \n
+                                         "(_curator call bis_fnc_curatorPoints) > 0" \n
+                                         "//count _objects == 0" \n
+                                         "&&" \n
+                                         "_systemAttempts > 0" \n
+                                         "&&" \n
+                                         "time > _systemAttemptTime" \n
+                                         "&&" \n
+                                         "scriptdone _curatorAutomatic"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Players_Lost">*/
+                                class Players_Lost
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="Players_Lost";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_remainingTickets = [] call bis_fnc_respawnTickets;" \n
+                                         "_remainingPlayers = if (_remainingTickets == 0) then {" \n
+                                         "	{side group _x in _playersides} count playableunits;" \n
+                                         "} else {" \n
+                                         "	1" \n
+                                         "};" \n
+                                         "" \n
+                                         "_remainingTime = if (estimatedEndServerTime != 0) then {" \n
+                                         "	_remainingTime = servertime - estimatedEndServerTime;" \n
+                                         "" \n
+                                         "	//--- Warn player about time running out" \n
+                                         "	if (_remainingTime < 120 && time > _remainingTimeWarning) then {" \n
+                                         "		[" \n
+                                         "			[""BIS_timeRunningOut"",[_logic],""BIS_fnc_moduleMPTypeSeize_missionConversations""]," \n
+                                         "			""bis_fnc_missionConversations""" \n
+                                         "		] call bis_fnc_mp;" \n
+                                         "		_remainingTimeWarning = time + 120;" \n
+                                         "	};" \n
+                                         "	1" \n
+                                         "} else {" \n
+                                         "	0" \n
+                                         "};" \n
+                                         "" \n
+                                         "(_remainingTime < 0)" \n
+                                         "||" \n
+                                         "(_remainingTickets == 0 && _remainingPlayers == 0)" \n
+                                         "||" \n
+                                         "!(simulationenabled _logic)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Sector_Captured">*/
+                                class Sector_Captured
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Sector_Captured";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	simulationenabled _x" \n
+                                         "	&&" \n
+                                         "	(_x getvariable ""owner"") in _playerSides" \n
+                                         "} count _sectors > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "System_Curator">*/
+                class System_Curator
+                {
+                        name = "System_Curator";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"//--- When curator is not player, try to replace him by system" \n
+                         "_systemAttempts = _systemAttempts - 1;" \n
+                         "_systemAttemptTime = time + 5;" \n
+                         "" \n
+                         "//_systemGroups = [_logic,_curator] spawn BIS_fnc_moduleMPTypeSeize_systemCurator;" \n
+                         "" \n
+                         "_ratioInfantry = (_logic getvariable [""RatioInfantry"",1]) call bis_fnc_parsenumber;" \n
+                         "_ratioGround = (_logic getvariable [""RatioGround"",1]) call bis_fnc_parsenumber;" \n
+                         "_ratioAir = (_logic getvariable [""RatioAir"",1]) call bis_fnc_parsenumber;" \n
+                         "_ratioWater = (_logic getvariable [""RatioWater"",1]) call bis_fnc_parsenumber;" \n
+                         "" \n
+                         "_curatorAutomatic = [" \n
+                         "	_curator," \n
+                         "	_enemySides," \n
+                         "	_systemInit," \n
+                         "	_ratioInfantry," \n
+                         "	_ratioGround," \n
+                         "	_ratioAir," \n
+                         "	_ratioWater" \n
+                         "] spawn BIS_fnc_curatorAutomatic;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "System_Curator">*/
+                                class System_Curator
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="System_Curator";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"//_objects = _curator call bis_fnc_curatorEditableObjects;" \n
+                                         "" \n
+                                         "!isplayer _curator" \n
+                                         "&&" \n
+                                         "(_curator call bis_fnc_curatorPoints) > 0" \n
+                                         "//count _objects == 0" \n
+                                         "&&" \n
+                                         "_systemAttempts > 0" \n
+                                         "&&" \n
+                                         "time > _systemAttemptTime" \n
+                                         "&&" \n
+                                         "scriptdone _curatorAutomatic"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Players_Lost">*/
+                                class Players_Lost
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="Players_Lost";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_remainingTickets = [] call bis_fnc_respawnTickets;" \n
+                                         "_remainingPlayers = if (_remainingTickets == 0) then {" \n
+                                         "	{side group _x in _playersides} count playableunits;" \n
+                                         "} else {" \n
+                                         "	1" \n
+                                         "};" \n
+                                         "" \n
+                                         "_remainingTime = if (estimatedEndServerTime != 0) then {" \n
+                                         "	_remainingTime = servertime - estimatedEndServerTime;" \n
+                                         "" \n
+                                         "	//--- Warn player about time running out" \n
+                                         "	if (_remainingTime < 120 && time > _remainingTimeWarning) then {" \n
+                                         "		[" \n
+                                         "			[""BIS_timeRunningOut"",[_logic],""BIS_fnc_moduleMPTypeSeize_missionConversations""]," \n
+                                         "			""bis_fnc_missionConversations""" \n
+                                         "		] call bis_fnc_mp;" \n
+                                         "		_remainingTimeWarning = time + 120;" \n
+                                         "	};" \n
+                                         "	1" \n
+                                         "} else {" \n
+                                         "	0" \n
+                                         "};" \n
+                                         "" \n
+                                         "(_remainingTime < 0)" \n
+                                         "||" \n
+                                         "(_remainingTickets == 0 && _remainingPlayers == 0)" \n
+                                         "||" \n
+                                         "!(simulationenabled _logic)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Sector_Captured">*/
+                                class Sector_Captured
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Sector_Captured";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	simulationenabled _x" \n
+                                         "	&&" \n
+                                         "	(_x getvariable ""owner"") in _playerSides" \n
+                                         "} count _sectors > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Sector_Captured">*/
+                class Sector_Captured
+                {
+                        name = "Sector_Captured";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"_capturedSector = objnull;" \n
+                         "{" \n
+                         "	if (" \n
+                         "		(simulationenabled _x)" \n
+                         "		&&" \n
+                         "		(_x getvariable ""owner"") in _playerSides" \n
+                         "	) exitwith {" \n
+                         "		_capturedSector = _x;" \n
+                         "		_x enablesimulation false;" \n
+                         "		_capturedSectors = _capturedSectors + 1;" \n
+                         "" \n
+                         "		_editingAreas = _x getvariable [""editingAreas"",[]];" \n
+                         "		{" \n
+                         "			[bis_curator,_x] call BIS_fnc_curatorRemoveEditingArea;" \n
+                         "		} foreach _editingAreas;" \n
+                         "	};" \n
+                         "} foreach _sectors;" \n
+                         "" \n
+                         "//--- Ger remaining sectors (include the current one)" \n
+                         "_areas = [];" \n
+                         "{" \n
+                         "	if (" \n
+                         "		simulationenabled _x || _x == _capturedSector" \n
+                         "	) then {" \n
+                         "		_areas = _areas + (_sectorAreas select _foreachindex);" \n
+                         "	};" \n
+                         "} foreach (_sectors);" \n
+                         "" \n
+                         "//--- Clean dead units which are not around remaining sectors" \n
+                         "_objects = [_curator] call bis_fnc_curatorEditableObjects;" \n
+                         "{" \n
+                         "	_object = _x;" \n
+                         "	if !(alive _object) then {" \n
+                         "		if (" \n
+                         "			{" \n
+                         "				_areaPos = position _x;" \n
+                         "				_areaSize = (triggerarea _x select 0) min (triggerarea _x select 1);" \n
+                         "				_object distance _areaPos < (_areaSize * 2)" \n
+                         "			} count _areas == 0" \n
+                         "		) then {" \n
+                         "			if (_x == vehicle _x) then {" \n
+                         "				hidebody _x;" \n
+                         "			} else {" \n
+                         "				_veh = vehicle _x;" \n
+                         "				{deletevehicle _x} foreach crew _x;" \n
+                         "				deletevehicle _veh;" \n
+                         "			};" \n
+                         "		};" \n
+                         "	};" \n
+                         "} foreach _objects;" \n
+                         "" \n
+                         "//--- Adjust global progress" \n
+                         "_points = 1 - (_capturedSectors / _totalSectors);" \n
+                         "[_curator,_points] call bis_fnc_curatorAddPoints;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "All_Sectors_Capt">*/
+                                class All_Sectors_Capt
+                                {
+                                        itemno = 7;
+                                        priority = 1.000000;
+                                        to="Players_Won";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{simulationenabled _x} count _sectors == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Continue">*/
+                                class Continue
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Players_Won">*/
+                class Players_Won
+                {
+                        name = "Players_Won";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"_endType = ""Players"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Fatality_">*/
+                                class Fatality_
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="END";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Players_Lost">*/
+                class Players_Lost
+                {
+                        name = "Players_Lost";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"_endType = ""Curator"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Fatality_">*/
+                                class Fatality_
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="END";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "END">*/
+                class END
+                {
+                        name = "END";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"_curator call bis_fnc_removeCurator;" \n
+                         "" \n
+                         "_sideType = str sideunknown;" \n
+                         "{" \n
+                         "	_score = scoreside _x;" \n
+                         "	if (" \n
+                         "		{scoreside _x >= _score} count (_playerSides - [_x]) == 0" \n
+                         "	) then {" \n
+                         "		_sideType = str _x;" \n
+                         "	};" \n
+                         "} foreach _playerSides;" \n
+                         "" \n
+                         "" \n
+                         "{" \n
+                         "	_xEndType = format [""moduleMPTypeSeize_%1%2"",_endType,_sideType];" \n
+                         "	[_xEndType,""bis_fnc_endMission"",_x] call bis_fnc_mp;" \n
+                         "} foreach ([] call bis_fnc_listPlayers);" \n
+                         "" \n
+                         "" \n
+                         "" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="START";
+        finalStates[] =
+        {
+                "END",
+        };
+};
+/*%FSM</COMPILE>*/

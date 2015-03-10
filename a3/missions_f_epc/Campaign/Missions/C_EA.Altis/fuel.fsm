@@ -1,0 +1,196 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Fuel Monitor">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"start",0,250,75.000000,-850.000000,175.000000,-800.000000,0.000000,"start"};
+item1[] = {"both_in_car",4,218,75.000000,-775.000000,175.000000,-725.000000,0.000000,"both in" \n "car"};
+item2[] = {"default_state",2,250,75.000000,-700.000000,175.000000,-650.000000,0.000000,"default state"};
+item3[] = {"low_fuel",2,250,75.000000,-550.000000,175.000000,-500.000000,0.000000,"low fuel"};
+item4[] = {"tank_full",4,218,200.000000,-550.000000,300.000000,-500.000000,0.000000,"tank full"};
+item5[] = {"refueled",2,4346,200.000000,-775.000000,300.000000,-725.000000,0.000000,"refueled"};
+item6[] = {"low_fuel_",4,218,75.000000,-625.000000,175.000000,-575.000000,100.000000,"low fuel?"};
+item7[] = {"changed_car",4,218,-50.000000,-550.000000,50.000000,-500.000000,100.000000,"changed car"};
+item8[] = {"outside",2,250,-50.000000,-775.000000,50.000000,-725.000000,0.000000,"outside"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,6};
+link3[] = {3,4};
+link4[] = {3,7};
+link5[] = {4,5};
+link6[] = {5,1};
+link7[] = {6,3};
+link8[] = {7,8};
+link9[] = {8,1};
+globals[] = {25.000000,1,0,0,0,640,480,1,362,6316128,1,-283.052124,561.659973,-0.303615,-1032.399048,852,1041,1};
+window[] = {2,-1,-1,-1,-1,868,100,1300,100,3,870};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Fuel Monitor";
+        class States
+        {
+                /*%FSM<STATE "start">*/
+                class start
+                {
+                        name = "start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private[""_kb"",""_car"",""_announced""];" \n
+                         "" \n
+                         "_kb = [] spawn {true};" \n
+                         "_announced = false;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "both_in_car">*/
+                                class both_in_car
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="default_state";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player == vehicle BIS_journalist) && (scriptDone _kb)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "default_state">*/
+                class default_state
+                {
+                        name = "default_state";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"[""[FuelMonitor] Waiting in default state.""] call BIS_fnc_logFormat;" \n
+                         "" \n
+                         "_car = vehicle player;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "low_fuel_">*/
+                                class low_fuel_
+                                {
+                                        itemno = 6;
+                                        priority = 100.000000;
+                                        to="low_fuel";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"fuel vehicle player < 0.2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "low_fuel">*/
+                class low_fuel
+                {
+                        name = "low_fuel";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"[""[FuelMonitor] Vehicle is low on fuel.""] call BIS_fnc_logFormat;" \n
+                         "" \n
+                         "if (time > BIS_convEnd + 5) then" \n
+                         "{" \n
+                         "	if !(_announced) then" \n
+                         "	{" \n
+                         "		_kb = ""25_LowFuel"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "		_announced = true;" \n
+                         "	}" \n
+                         "	else" \n
+                         "	{" \n
+                         "		_kb = [""25_LowFuel"",[""c_ea_25_lowfuel_KER_0"",""c_ea_25_lowfuel_KER_0""]] spawn BIS_fnc_missionConversations;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "[""BIS_refuel"",""ASSIGNED""] call BIS_fnc_missionTasks;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "changed_car">*/
+                                class changed_car
+                                {
+                                        itemno = 7;
+                                        priority = 100.000000;
+                                        to="outside";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player != _car)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "tank_full">*/
+                                class tank_full
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="refueled";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(fuel vehicle player > 0.9)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "refueled">*/
+                class refueled
+                {
+                        name = "refueled";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"[""[FuelMonitor] Car is refueled!""] call BIS_fnc_logFormat;" \n
+                         "" \n
+                         "[""BIS_refuel"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "if (scriptDone _kb) then" \n
+                         "{" \n
+                         "	_kb = ""35_ReFueled"" spawn BIS_fnc_missionConversations;" \n
+                         "};" \n
+                         "" \n
+                         "//activate ambient planes" \n
+                         "BIS_air1 enableSimulation true; BIS_air2 enableSimulation true;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "both_in_car">*/
+                                class both_in_car
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="default_state";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player == vehicle BIS_journalist) && (scriptDone _kb)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "outside">*/
+                class outside
+                {
+                        name = "outside";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"[""[FuelMonitor] Player is outside.""] call BIS_fnc_logFormat;" \n
+                         "" \n
+                         "[""BIS_refuel"",""CANCELED""] call BIS_fnc_taskSetState;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "both_in_car">*/
+                                class both_in_car
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="default_state";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player == vehicle BIS_journalist) && (scriptDone _kb)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="start";
+        finalStates[] =
+        {
+        };
+};
+/*%FSM</COMPILE>*/

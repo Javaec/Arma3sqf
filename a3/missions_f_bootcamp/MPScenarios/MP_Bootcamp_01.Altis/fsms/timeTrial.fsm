@@ -1,0 +1,473 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, MP_Bootcamp_TimeTrial">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-220.000000,-370.000000,-130.000000,-320.000000,0.000000,"init"};
+item1[] = {"not_local",4,218,-350.000000,-440.000000,-260.000000,-390.000000,3.000000,"not" \n "local"};
+item2[] = {"_",1,250,-350.000000,-510.000000,-260.000000,-460.000000,0.000000,""};
+item3[] = {"no_checkpoints",4,218,-220.000000,-440.000000,-130.000000,-390.000000,2.000000,"no" \n "checkpoints"};
+item4[] = {"__1",1,250,-220.000000,-510.000000,-130.000000,-460.000000,0.000000,""};
+item5[] = {"_",4,218,-220.000000,-160.000000,-130.000000,-110.000000,0.000000,""};
+item6[] = {"__2",2,250,-220.000000,-90.000000,-130.000000,-40.000000,0.000000,""};
+item7[] = {"checkpoint_reach",4,218,-330.000000,-90.000000,-240.000000,-40.000000,0.000000,"checkpoint" \n "reached"};
+item8[] = {"aborted",4,4314,-220.000000,-20.000000,-130.000000,30.000000,1.000000,"aborted"};
+item9[] = {"all_checkpoints",4,218,-440.000000,-20.000000,-350.000000,30.000000,1.000000,"all" \n "checkpoints" \n "completed"};
+item10[] = {"__3",2,250,-440.000000,-90.000000,-350.000000,-40.000000,0.000000,""};
+item11[] = {"",7,210,-399.000000,-139.000000,-391.000000,-131.000000,0.000000,""};
+item12[] = {"__4",1,250,-440.000000,50.000000,-350.000000,100.000000,0.000000,""};
+item13[] = {"__5",1,250,-220.000000,50.000000,-130.000000,100.000000,0.000000,""};
+item14[] = {"_",4,218,-220.000000,-300.000000,-130.000000,-250.000000,0.000000,""};
+item15[] = {"__6",2,250,-220.000000,-230.000000,-130.000000,-180.000000,0.000000,""};
+item16[] = {"already_in_time",4,218,-80.000000,-440.000000,10.000000,-390.000000,1.000000,"already in" \n "time trial"};
+item17[] = {"__7",1,250,-80.000000,-510.000000,10.000000,-460.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {0,3};
+link2[] = {0,14};
+link3[] = {0,16};
+link4[] = {1,2};
+link5[] = {3,4};
+link6[] = {5,6};
+link7[] = {6,7};
+link8[] = {6,8};
+link9[] = {7,10};
+link10[] = {8,13};
+link11[] = {9,12};
+link12[] = {10,9};
+link13[] = {10,11};
+link14[] = {11,5};
+link15[] = {14,15};
+link16[] = {15,5};
+link17[] = {16,17};
+globals[] = {10.000000,1,0,0,0,640,480,1,506,6316128,1,-498.672943,44.828918,220.681213,-461.842438,830,1031,1};
+window[] = {2,-1,-1,-1,-1,975,125,1565,125,3,848};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "MP_Bootcamp_TimeTrial";
+        class States
+        {
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"// Parameters" \n
+                         "private [""_player"", ""_object"", ""_checkpoints"", ""_trackId"", ""_trigger"", ""_checkpointRadius""];" \n
+                         "_player 				= [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "_object				= [_this, 1, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "_checkpoints			= [_this, 2, [], [[]]] call BIS_fnc_param;" \n
+                         "_trackId				= [_this, 3, """", [""""]] call BIS_fnc_param;" \n
+                         "_trackName			= [_this, 4, """", [""""]] call BIS_fnc_param;" \n
+                         "_trigger				= [_this, 5, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "_checkpointRadius 	= [_this, 6, 8, [0]] call BIS_fnc_param;" \n
+                         "" \n
+                         "// Log" \n
+                         "[""MP_Bootcamp_TimeTrial: Player (%1) started a time trial on course (%2)"", _player, _trackId] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "not_local">*/
+                                class not_local
+                                {
+                                        itemno = 1;
+                                        priority = 3.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!local _player" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "no_checkpoints">*/
+                                class no_checkpoints
+                                {
+                                        itemno = 3;
+                                        priority = 2.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count _checkpoints < 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "already_in_time">*/
+                                class already_in_time
+                                {
+                                        itemno = 16;
+                                        priority = 1.000000;
+                                        to="__7";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { _player getVariable ""BIS_timeTrial"" }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="__6";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"// Log" \n
+                         "[""MP_Bootcamp_TimeTrial: Not local to %1, exiting"", _player] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__1">*/
+                class __1
+                {
+                        name = "__1";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"// Log" \n
+                         "[""MP_Bootcamp_TimeTrial: No checkpoints defined for %1"", _player] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__2">*/
+                class __2
+                {
+                        name = "__2";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"// Store checkpoint position" \n
+                         "missionNamespace setVariable [""BIS_timeTrial_nextCheckpoint"", _checkpoints select _checkpointIndex];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "aborted">*/
+                                class aborted
+                                {
+                                        itemno = 8;
+                                        priority = 1.000000;
+                                        to="__5";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isNil { BIS_insideTrigger }" \n
+                                         "||" \n
+                                         "{ !alive _player }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "checkpoint_reach">*/
+                                class checkpoint_reach
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="__3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"// The wanted checkpoint" \n
+                                         "private ""_checkpoint"";" \n
+                                         "_checkpoint = _checkpoints select _checkpointIndex;" \n
+                                         "" \n
+                                         "// Is player near the checkpoint" \n
+                                         "_player distance _checkpoint < _checkpointRadius" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__3">*/
+                class __3
+                {
+                        name = "__3";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"// The new checkpoint index" \n
+                         "_checkpointIndex = _checkpointIndex + 1;" \n
+                         "" \n
+                         "// Show notification, only if this checkpoint was not the last" \n
+                         "if (_checkpointIndex < count _checkpoints) then {" \n
+                         "	[""TimeTrialCheckpoint"", [_checkpointIndex]] call BIS_fnc_showNotification;" \n
+                         "};" \n
+                         "" \n
+                         "// Play sound" \n
+                         "playSound ""FD_Timer_F"";" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "all_checkpoints">*/
+                                class all_checkpoints
+                                {
+                                        itemno = 9;
+                                        priority = 1.000000;
+                                        to="__4";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_checkpointIndex > count _checkpoints - 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__4">*/
+                class __4
+                {
+                        name = "__4";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"// Reset flag" \n
+                         "_player setVariable [""BIS_timeTrial"", nil];" \n
+                         "" \n
+                         "// The total time" \n
+                         "private ""_timeTotal"";" \n
+                         "_timeTotal = _player getVariable [""BIS_counter"", 999999];" \n
+                         "" \n
+                         "// Store result globally, but only in case current result is better then the last one, if any" \n
+                         "if (_timeTotal < _player getVariable [_trackId, 99999999]) then {" \n
+                         "	_player setVariable [_trackId, _timeTotal, true];" \n
+                         "};" \n
+                         "" \n
+                         "// The formatted time" \n
+                         "private ""_timeFormat"";" \n
+                         "_timeFormat = [(_timeTotal / 3600) % 60] call BIS_fnc_timeToString;" \n
+                         "" \n
+                         "// Show notification" \n
+                         "[""TimeTrialEnded"", [_timeFormat]] call BIS_fnc_showNotification;" \n
+                         "" \n
+                         "// Hint about score board" \n
+                         "hint localize ""STR_A3_MP_Bootcamp_Hint_ScoreBoard"";" \n
+                         "" \n
+                         "// Get the old best score of this recruit" \n
+                         "private ""_oldBestTime"";" \n
+                         "_oldBestTime = [""getRecruitBestTime"", [_object, getPlayerUid _player]] call BIS_fnc_timeTrial;" \n
+                         "if (_oldBestTime < 0) then { _oldBestTime = _timeTotal; };" \n
+                         "" \n
+                         "// Add trial information to the time trial object" \n
+                         "[""setRecruitData"", [_object, getPlayerUid _player, [getPlayerUid _player, name _player, _timeTotal min _oldBestTime, ((_timeTotal + _oldBestTime) / 2)]]] call BIS_fnc_timeTrial;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__5">*/
+                class __5
+                {
+                        name = "__5";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"// Reset flag" \n
+                         "_player setVariable [""BIS_timeTrial"", nil];" \n
+                         "" \n
+                         "// Show notification" \n
+                         "[""TimeTrialAborted""] call BIS_fnc_showNotification;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__6">*/
+                class __6
+                {
+                        name = "__6";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/"// Initialize score board object if not already" \n
+                         "if !([""isInitialized"", [_object]] call BIS_fnc_timeTrial) then {" \n
+                         "	[""initialize"", [_object]] call BIS_fnc_timeTrial;" \n
+                         "};" \n
+                         "" \n
+                         "// The index of the current checkpoint player wants" \n
+                         "private ""_checkpointIndex"";" \n
+                         "_checkpointIndex = 0;" \n
+                         "" \n
+                         "// The flag" \n
+                         "_player setVariable [""BIS_timeTrial"", true];" \n
+                         "" \n
+                         "// The counter thread" \n
+                         "private ""_thread"";" \n
+                         "_thread = [_player, _trackId] spawn {" \n
+                         "	private [""_player"", ""_trackId""];" \n
+                         "	_player 	= [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "	_trackId	= [_this, 1, """", [""""]] call BIS_fnc_param;" \n
+                         "	" \n
+                         "	// Reset counter" \n
+                         "	_player setVariable [""BIS_counter"", 0];" \n
+                         "	" \n
+                         "	// UI" \n
+                         "	RscFiringDrillTime_current = parsetext """";" \n
+                         "	RscFiringDrillTime_best = parsetext """";" \n
+                         "	RscFiringDrillTime_done = false;" \n
+                         "	1 cutRsc [""RscFiringDrillTime"", ""plain""];" \n
+                         "	" \n
+                         "	// Start sound" \n
+                         "	playSound ""FD_Start_F"";" \n
+                         "	" \n
+                         "	while { !isNil { _player getVariable ""BIS_timeTrial"" } } do {" \n
+                         "		// Next second" \n
+                         "		sleep 1;" \n
+                         "		" \n
+                         "		// Update" \n
+                         "		_player setVariable [""BIS_counter"", (_player getVariable [""BIS_counter"", 0]) + 1];" \n
+                         "		" \n
+                         "		// The total amount of passed time" \n
+                         "		private ""_timeTotal"";" \n
+                         "		_timeTotal = _player getVariable [""BIS_counter"", 0];" \n
+                         "		" \n
+                         "		// The formatted time" \n
+                         "		private ""_timeFormat"";" \n
+                         "		_timeFormat = [(_timeTotal / 3600) % 60] call BIS_fnc_timeToString;" \n
+                         "		" \n
+                         "		private [""_cfgFiringDrills""];" \n
+                         "		_cfgFiringDrills = configFile >> ""CfgFiringDrills"";" \n
+                         "		" \n
+                         "		private [""_colorsMedals"", ""_colorBronze"", ""_colorSilver"", ""_colorGold""];" \n
+                         "		_colorsMedals = getArray (_cfgFiringDrills >> ""colorsMedals"");" \n
+                         "		_colorBronze = _colorsMedals select 0;" \n
+                         "		_colorSilver = _colorsMedals select 1;" \n
+                         "		_colorGold = _colorsMedals select 2;" \n
+                         "		" \n
+                         "		private [""_iconsMedals"", ""_iconBronze"", ""_iconSilver"", ""_iconGold""];" \n
+                         "		_iconsMedals = getArray (_cfgFiringDrills >> ""iconsMedals"");" \n
+                         "		_iconBronze = _iconsMedals select 0;" \n
+                         "		_iconSilver = _iconsMedals select 1;" \n
+                         "		_iconGold = _iconsMedals select 2;" \n
+                         "		" \n
+                         "		private ""_textCurrent"";" \n
+                         "		_textCurrent = ""<t color='"" + _iconBronze + ""'>"";" \n
+                         "		_textCurrent = _textCurrent + ""<img image='"" + _iconBronze + ""' /> "";" \n
+                         "		_textCurrent = _textCurrent + _timeFormat;" \n
+                         "		_textCurrent = _textCurrent + ""</t>"";" \n
+                         "		" \n
+                         "		// The UI counter" \n
+                         "		RscFiringDrillTime_current = parsetext _textCurrent;" \n
+                         "		" \n
+                         "		// The best time" \n
+                         "		if (!isNil { _player getVariable _trackId }) then {" \n
+                         "			// Strip time best" \n
+                         "			private ""_timeTotal"";" \n
+                         "			_timeTotal 	= _player getVariable [_trackId, 99999];" \n
+                         "			" \n
+                         "			// The formatted time" \n
+                         "			private ""_timeFormat"";" \n
+                         "			_timeFormat = [(_timeTotal / 3600) % 60] call BIS_fnc_timeToString;" \n
+                         "			" \n
+                         "			private ""_textBest"";" \n
+                         "			_textBest = ""<t color='"" + _colorGold + ""'>"";" \n
+                         "			_textBest = _textBest + ""<img image='"" + _iconGold + ""' /> "";" \n
+                         "			_textBest = _textBest + _timeFormat;" \n
+                         "			_textBest = _textBest + ""</t>"";" \n
+                         "			" \n
+                         "			// The UI counter" \n
+                         "			RscFiringDrillTime_best = parsetext _textBest;" \n
+                         "		} else {" \n
+                         "			// No UI counter needed since we have no best time available yet" \n
+                         "			RscFiringDrillTime_best = parsetext """";" \n
+                         "		};" \n
+                         "	};" \n
+                         "	" \n
+                         "	// Terminate UI" \n
+                         "	RscFiringDrillTime_done = true;" \n
+                         "};" \n
+                         "" \n
+                         "// The draw 3d event handler, for drawing checkpoints in the 3d world" \n
+                         "missionNamespace setVariable [""BIS_3dCheckpoints"", addMissionEventHandler [""Draw3D"", {" \n
+                         "	// Remove event handler in case we are not in the trial anymore" \n
+                         "	if (isNil { player getVariable ""BIS_timeTrial"" }) exitWith {" \n
+                         "		removeMissionEventHandler [""Draw3D"", missionNamespace getVariable ""BIS_3dCheckpoints""];" \n
+                         "	};" \n
+                         "	" \n
+                         "	// The next checkpoint" \n
+                         "	private ""_checkpoint"";" \n
+                         "	_checkpoint = missionNamespace getVariable [""BIS_timeTrial_nextCheckpoint"", []];" \n
+                         "	" \n
+                         "	// Draw icon on the checkpoint position" \n
+                         "	if (count _checkpoint > 0) then {" \n
+                         "		// Current icon rotation" \n
+                         "		if (isNil { missionNamespace getVariable ""BIS_timetrial_iconRotation"" }) then {" \n
+                         "			missionNamespace setVariable [""BIS_timetrial_iconRotation"", 0];" \n
+                         "		} else {" \n
+                         "			missionNamespace setVariable [""BIS_timetrial_iconRotation"", (missionNamespace getVariable ""BIS_timetrial_iconRotation"") - 2];" \n
+                         "		};" \n
+                         "		" \n
+                         "		private ""_iconRotation"";" \n
+                         "		_iconRotation = missionNamespace getVariable ""BIS_timetrial_iconRotation"";" \n
+                         "		" \n
+                         "		drawIcon3D [""A3\Ui_F_Curator\Data\CfgCurator\waypointCycle_ca.paa"", [1,1,1,0.5], _checkpoint, 1.0, 1.0, _iconRotation, format [""%1 m"", round (player distance _checkpoint)], 1, 0.035, ""PuristaMedium""];" \n
+                         "	};" \n
+                         "}]];" \n
+                         "" \n
+                         "// Show notification" \n
+                         "[""TimeTrialStarted"", [_trackName]] call BIS_fnc_showNotification;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__7">*/
+                class __7
+                {
+                        name = "__7";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"// Log" \n
+                         "[""MP_Bootcamp_TimeTrial: %1 is already doing another time trial"", _player] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "_",
+                "__1",
+                "__4",
+                "__5",
+                "__7",
+        };
+};
+/*%FSM</COMPILE>*/

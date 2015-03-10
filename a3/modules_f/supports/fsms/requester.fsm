@@ -1,0 +1,2149 @@
+/*%FSM<COMPILE "O:\fsmeditor\scriptedFSM.cfg, Requester">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,50.000000,-100.000000,150.000000,-50.000000,0.000000,"Init"};
+item1[] = {"Artillery",4,218,-600.000000,400.000000,-500.000000,450.000000,0.000000,"Artillery"};
+item2[] = {"CAS_Heli",4,218,-275.000000,400.000000,-175.000000,450.000000,0.000000,"CAS_Heli"};
+item3[] = {"CAS_Bombing",4,218,50.000000,400.000000,150.000000,450.000000,0.000000,"CAS_Bombing"};
+item4[] = {"UAV",4,218,700.000000,400.000000,800.000000,450.000000,0.000000,"UAV"};
+item5[] = {"Drop",4,218,900.000000,400.000000,1000.000000,450.000000,0.000000,"Drop"};
+item6[] = {"select_provider",2,250,-275.000000,700.000000,-175.000000,750.000000,0.000000,"select provider"};
+item7[] = {"always",8,218,50.000000,-25.000000,150.000000,25.000000,0.000000,"always"};
+item8[] = {"wait_for_request",2,250,50.000000,50.000000,150.000000,100.000000,0.000000,"wait for request"};
+item9[] = {"requested",4,218,50.000000,125.000000,150.000000,175.000000,0.000000,"requested"};
+item10[] = {"set_up_variables",2,250,50.000000,200.000000,150.000000,250.000000,0.000000,"set up variables"};
+item11[] = {"select_provider_1",2,250,-600.000000,700.000000,-500.000000,750.000000,0.000000,"select provider"};
+item12[] = {"select_provider_2",2,250,50.000000,700.000000,150.000000,750.000000,0.000000,"select provider"};
+item13[] = {"select_provider_3",2,250,700.000000,700.000000,800.000000,750.000000,0.000000,"select provider"};
+item14[] = {"select_provider_4",2,250,900.000000,700.000000,1000.000000,750.000000,0.000000,"select provider"};
+item15[] = {"window_closed",4,218,700.000000,925.000000,800.000000,975.000000,0.000000,"window" \n "closed"};
+item16[] = {"provider_selecte",4,218,-600.000000,775.000000,-500.000000,825.000000,0.000000,"provider" \n "selected"};
+item17[] = {"provider_selecte",4,218,-275.000000,775.000000,-175.000000,825.000000,0.000000,"provider" \n "selected"};
+item18[] = {"provider_selecte",4,218,50.000000,775.000000,150.000000,825.000000,0.000000,"provider" \n "selected"};
+item19[] = {"provider_selecte",4,218,625.000000,775.000000,725.000000,825.000000,0.000000,"provider" \n "selected"};
+item20[] = {"",7,210,1146.000000,946.000000,1154.000000,954.000000,0.000000,""};
+item21[] = {"",7,210,1146.000000,71.000000,1154.000000,79.000000,0.000000,""};
+item22[] = {"assign_provider",2,250,-275.000000,1075.000000,-175.000000,1125.000000,0.000000,"assign provider," \n "radio"};
+item23[] = {"always",8,218,50.000000,2100.000000,150.000000,2150.000000,0.000000,"always"};
+item24[] = {"",7,210,-829.000061,2121.000000,-820.999939,2129.000000,0.000000,""};
+item25[] = {"",7,210,-829.000061,71.000000,-820.999939,79.000000,0.000000,""};
+item26[] = {"is_the_provider",2,250,-275.000000,925.000000,-175.000000,975.000000,0.000000,"is the provider" \n "still available?"};
+item27[] = {"yes",4,218,-275.000000,1000.000000,-175.000000,1050.000000,0.000000,"yes"};
+item28[] = {"no",4,218,-150.000000,1000.000000,-50.000000,1050.000000,1.000000,"no"};
+item29[] = {"assign_provider_1",2,250,-600.000000,1575.000000,-500.000000,1625.000000,0.000000,"assign provider," \n "radio"};
+item30[] = {"selected_ammo",4,218,-600.000000,1050.000000,-500.000000,1100.000000,1.000000,"selected" \n "ammo"};
+item31[] = {"open_burst_menu",2,250,-600.000000,1275.000000,-500.000000,1325.000000,0.000000,"open" \n "burst menu"};
+item32[] = {"selected_burst",4,218,-600.000000,1350.000000,-500.000000,1400.000000,1.000000,"selected burst"};
+item33[] = {"open_ammo_menu",2,250,-600.000000,975.000000,-500.000000,1025.000000,0.000000,"open" \n "ammo menu"};
+item34[] = {"is_the_provider_1",2,250,-600.000000,1425.000000,-500.000000,1475.000000,0.000000,"is the provider" \n "still available?"};
+item35[] = {"range_check",2,250,-600.000000,1125.000000,-500.000000,1175.000000,0.000000,"range check"};
+item36[] = {"range_ok",4,218,-600.000000,1200.000000,-500.000000,1250.000000,1.000000,"range ok"};
+item37[] = {"invalid_range",4,218,-800.000000,1125.000000,-700.000000,1175.000000,0.000000,"invalid" \n "range"};
+item38[] = {"inform",2,250,-800.000000,1575.000000,-700.000000,1625.000000,0.000000,"inform"};
+item39[] = {"yes",4,218,-600.000000,1500.000000,-500.000000,1550.000000,0.000000,"yes"};
+item40[] = {"no",4,218,-725.000000,1425.000000,-625.000000,1475.000000,1.000000,"no"};
+item41[] = {"",7,210,-679.000000,720.999939,-671.000000,729.000061,0.000000,""};
+item42[] = {"assign_provider_2",2,250,900.000000,1175.000000,1000.000000,1225.000000,0.000000,"assign provider," \n "radio"};
+item43[] = {"window_closed",4,218,-400.000000,700.000000,-300.000000,750.000000,0.000000,"window" \n "closed"};
+item44[] = {"",7,210,-354.000000,1296.000000,-346.000000,1304.000000,0.000000,""};
+item45[] = {"",7,210,-354.000000,995.999878,-346.000000,1004.000122,0.000000,""};
+item46[] = {"provider_selecte",4,218,900.000000,775.000000,1000.000000,825.000000,0.000000,"provider" \n "selected"};
+item47[] = {"is_the_provider_2",2,250,900.000000,1025.000000,1000.000000,1075.000000,0.000000,"is the provider" \n "still available?"};
+item48[] = {"yes",4,218,900.000000,1100.000000,1000.000000,1150.000000,0.000000,"yes"};
+item49[] = {"no",4,218,775.000000,775.000000,875.000000,825.000000,1.000000,"no"};
+item50[] = {"select_guided__",2,250,50.000000,925.000000,150.000000,975.000000,0.000000,"select" \n "guided / unguided"};
+item51[] = {"selected",4,218,50.000000,1000.000000,150.000000,1050.000000,1.000000,"selected"};
+item52[] = {"is_the_provider_3",2,250,50.000000,1075.000000,150.000000,1125.000000,0.000000,"is the provider" \n "still available?"};
+item53[] = {"yes",4,218,50.000000,1150.000000,150.000000,1200.000000,0.000000,"yes"};
+item54[] = {"no",4,218,-75.000000,1075.000000,25.000000,1125.000000,1.000000,"no"};
+item55[] = {"",7,210,-29.000000,721.000000,-21.000000,729.000000,0.000000,""};
+item56[] = {"assign_provider_3",2,250,50.000000,1225.000000,150.000000,1275.000000,0.000000,"assign provider," \n "radio"};
+item57[] = {"virtual_",2,250,-600.000000,475.000000,-500.000000,525.000000,0.000000,"virtual?"};
+item58[] = {"no",4,218,-600.000000,550.000000,-500.000000,600.000000,0.000000,"no"};
+item59[] = {"yes",4,218,-475.000000,550.000000,-375.000000,600.000000,1.000000,"yes"};
+item60[] = {"offer_virtual_pr",2,250,-475.000000,625.000000,-375.000000,675.000000,0.000000,"offer virtual" \n "providers"};
+item61[] = {"",7,210,-354.000000,71.000000,-346.000000,79.000000,0.000000,""};
+item62[] = {"virtual__1",2,250,-275.000000,475.000000,-175.000000,525.000000,0.000000,"virtual?"};
+item63[] = {"no",4,218,-275.000000,550.000000,-175.000000,600.000000,0.000000,"no"};
+item64[] = {"yes",4,218,-150.000000,550.000000,-50.000000,600.000000,1.000000,"yes"};
+item65[] = {"spawn_assets",2,250,-150.000000,850.000000,-50.000000,900.000000,0.000000,"spawn assets"};
+item66[] = {"virtual__2",2,250,50.000000,475.000000,150.000000,525.000000,0.000000,"virtual?"};
+item67[] = {"no",4,218,50.000000,550.000000,150.000000,600.000000,0.000000,"no"};
+item68[] = {"yes",4,218,175.000000,550.000000,275.000000,600.000000,1.000000,"yes"};
+item69[] = {"spawn_assets_1",2,250,175.000000,775.000000,275.000000,825.000000,0.000000,"spawn assets"};
+item70[] = {"virtual__3",2,250,900.000000,475.000000,1000.000000,525.000000,0.000000,"virtual?"};
+item71[] = {"no",4,218,900.000000,550.000000,1000.000000,600.000000,0.000000,"no"};
+item72[] = {"yes",4,218,1025.000000,550.000000,1125.000000,600.000000,1.000000,"yes"};
+item73[] = {"spawn_assets_2",2,250,1025.000000,1025.000000,1125.000000,1075.000000,0.000000,"spawn assets"};
+item74[] = {"invalid_coords",4,218,175.000000,125.000000,275.000000,175.000000,1.000000,"invalid coords"};
+item75[] = {"inform_1",2,250,525.000000,125.000000,625.000000,175.000000,0.000000,"inform"};
+item76[] = {"always",8,218,650.000000,125.000000,750.000000,175.000000,0.000000,"always"};
+item77[] = {"Transport",4,218,300.000000,400.000000,400.000000,450.000000,0.000000,"Transport"};
+item78[] = {"select_provider_5",2,250,300.000000,700.000000,400.000000,750.000000,0.000000,"select provider"};
+item79[] = {"provider_selecte",4,218,300.000000,1000.000000,400.000000,1050.000000,0.000000,"provider" \n "selected"};
+item80[] = {"assign_provider_4",2,250,300.000000,1225.000000,400.000000,1275.000000,0.000000,"assign provider," \n "radio"};
+item81[] = {"is_the_provider_4",2,250,300.000000,1075.000000,400.000000,1125.000000,0.000000,"is the provider" \n "still available?"};
+item82[] = {"yes",4,218,300.000000,1150.000000,400.000000,1200.000000,0.000000,"yes"};
+item83[] = {"no",4,218,175.000000,1075.000000,275.000000,1125.000000,1.000000,"no"};
+item84[] = {"virtual__4",2,250,300.000000,475.000000,400.000000,525.000000,0.000000,"virtual?"};
+item85[] = {"no",4,218,300.000000,550.000000,400.000000,600.000000,0.000000,"no"};
+item86[] = {"yes",4,218,425.000000,550.000000,525.000000,600.000000,1.000000,"yes"};
+item87[] = {"spawn_assets_3",2,250,425.000000,1000.000000,525.000000,1050.000000,0.000000,"spawn assets"};
+item88[] = {"provider_selecte",4,218,-475.000000,775.000000,-375.000000,825.000000,0.000000,"provider" \n "selected"};
+item89[] = {"spawn_assets_4",2,250,-475.000000,850.000000,-375.000000,900.000000,0.000000,"spawn assets"};
+item90[] = {"always",8,218,-475.000000,925.000000,-375.000000,975.000000,0.000000,"always"};
+item91[] = {"offer_virtual_pr_1",2,250,-150.000000,625.000000,-50.000000,675.000000,0.000000,"offer virtual" \n "providers"};
+item92[] = {"provider_selecte",4,218,-150.000000,775.000000,-50.000000,825.000000,0.000000,"provider" \n "selected"};
+item93[] = {"always",8,218,-150.000000,925.000000,-50.000000,975.000000,0.000000,"always"};
+item94[] = {"offer_virtual_pr_2",2,250,175.000000,625.000000,275.000000,675.000000,0.000000,"offer virtual" \n "providers"};
+item95[] = {"provider_selecte",4,218,175.000000,700.000000,275.000000,750.000000,0.000000,"provider" \n "selected"};
+item96[] = {"always",8,218,175.000000,850.000000,275.000000,900.000000,0.000000,"always"};
+item97[] = {"always",8,218,425.000000,1075.000000,525.000000,1125.000000,0.000000,"always"};
+item98[] = {"offer_virtual_pr_3",2,250,425.000000,700.000000,525.000000,750.000000,0.000000,"offer virtual" \n "providers"};
+item99[] = {"provider_selecte",4,218,425.000000,875.000000,525.000000,925.000000,0.000000,"provider" \n "selected"};
+item100[] = {"always",8,218,1025.000000,1100.000000,1125.000000,1150.000000,0.000000,"always"};
+item101[] = {"offer_virtual_pr_4",2,250,1025.000000,700.000000,1125.000000,750.000000,0.000000,"offer virtual" \n "providers"};
+item102[] = {"provider_selecte",4,218,1025.000000,875.000000,1125.000000,925.000000,0.000000,"provider" \n "selected"};
+item103[] = {"underway_",2,250,425.000000,400.000000,525.000000,450.000000,0.000000,"underway?"};
+item104[] = {"no",4,218,425.000000,475.000000,525.000000,525.000000,0.000000,"no"};
+item105[] = {"yes",4,218,550.000000,400.000000,650.000000,450.000000,1.000000,"yes"};
+item106[] = {"open_destination",2,4346,550.000000,475.000000,650.000000,525.000000,0.000000,"open destination" \n "window"};
+item107[] = {"",7,210,596.000000,1008.500000,604.000000,1016.500000,0.000000,""};
+item108[] = {"____FAKE____",9,3538944,0.000000,0.000000,0.000000,0.000000,0.000000,"____FAKE____"};
+link0[] = {0,7};
+link1[] = {1,57};
+link2[] = {2,62};
+link3[] = {3,66};
+link4[] = {4,13};
+link5[] = {5,70};
+link6[] = {6,17};
+link7[] = {6,43};
+link8[] = {7,8};
+link9[] = {8,9};
+link10[] = {8,74};
+link11[] = {9,10};
+link12[] = {10,1};
+link13[] = {10,2};
+link14[] = {10,3};
+link15[] = {10,4};
+link16[] = {10,5};
+link17[] = {10,77};
+link18[] = {11,16};
+link19[] = {11,43};
+link20[] = {12,15};
+link21[] = {12,18};
+link22[] = {13,15};
+link23[] = {13,19};
+link24[] = {14,15};
+link25[] = {14,46};
+link26[] = {15,20};
+link27[] = {16,33};
+link28[] = {17,26};
+link29[] = {18,50};
+link30[] = {20,21};
+link31[] = {21,8};
+link32[] = {22,23};
+link33[] = {23,24};
+link34[] = {24,25};
+link35[] = {25,61};
+link36[] = {26,27};
+link37[] = {26,28};
+link38[] = {27,22};
+link39[] = {28,6};
+link40[] = {29,23};
+link41[] = {30,35};
+link42[] = {31,32};
+link43[] = {31,44};
+link44[] = {32,34};
+link45[] = {33,30};
+link46[] = {33,45};
+link47[] = {34,39};
+link48[] = {34,40};
+link49[] = {35,36};
+link50[] = {35,37};
+link51[] = {36,31};
+link52[] = {37,38};
+link53[] = {38,23};
+link54[] = {39,29};
+link55[] = {40,41};
+link56[] = {41,11};
+link57[] = {42,23};
+link58[] = {43,61};
+link59[] = {44,45};
+link60[] = {45,43};
+link61[] = {46,47};
+link62[] = {47,48};
+link63[] = {47,49};
+link64[] = {48,42};
+link65[] = {49,14};
+link66[] = {50,15};
+link67[] = {50,51};
+link68[] = {51,52};
+link69[] = {52,53};
+link70[] = {52,54};
+link71[] = {53,56};
+link72[] = {54,55};
+link73[] = {55,12};
+link74[] = {56,23};
+link75[] = {57,58};
+link76[] = {57,59};
+link77[] = {58,11};
+link78[] = {59,60};
+link79[] = {60,43};
+link80[] = {60,88};
+link81[] = {61,8};
+link82[] = {62,63};
+link83[] = {62,64};
+link84[] = {63,6};
+link85[] = {64,91};
+link86[] = {65,93};
+link87[] = {66,67};
+link88[] = {66,68};
+link89[] = {67,12};
+link90[] = {68,94};
+link91[] = {69,96};
+link92[] = {70,71};
+link93[] = {70,72};
+link94[] = {71,14};
+link95[] = {72,101};
+link96[] = {73,100};
+link97[] = {74,75};
+link98[] = {75,76};
+link99[] = {76,21};
+link100[] = {77,103};
+link101[] = {78,15};
+link102[] = {78,79};
+link103[] = {79,81};
+link104[] = {80,23};
+link105[] = {81,82};
+link106[] = {81,83};
+link107[] = {82,80};
+link108[] = {83,78};
+link109[] = {84,85};
+link110[] = {84,86};
+link111[] = {85,78};
+link112[] = {86,98};
+link113[] = {87,97};
+link114[] = {88,89};
+link115[] = {89,90};
+link116[] = {90,33};
+link117[] = {91,43};
+link118[] = {91,92};
+link119[] = {92,65};
+link120[] = {93,22};
+link121[] = {94,15};
+link122[] = {94,95};
+link123[] = {95,69};
+link124[] = {96,50};
+link125[] = {97,80};
+link126[] = {98,15};
+link127[] = {98,99};
+link128[] = {99,87};
+link129[] = {100,42};
+link130[] = {101,15};
+link131[] = {101,102};
+link132[] = {102,73};
+link133[] = {103,104};
+link134[] = {103,105};
+link135[] = {104,84};
+link136[] = {105,106};
+link137[] = {106,107};
+link138[] = {107,23};
+link139[] = {19,108};
+globals[] = {25.000000,1,0,0,0,640,480,1,426,6316128,1,86.066376,829.745178,1382.104492,280.476257,696,1031,1};
+window[] = {2,-1,-1,-1,-1,1259,275,1472,275,3,714};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Requester";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"_deleteVirtual = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "select_provider">*/
+                class select_provider
+                {
+                        name = "select_provider";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"[_supportType, _supportCoords] call BIS_SUPP_pickProvider;" \n
+                         "" \n
+                         "_null = [_supportType, _supportCoords] spawn {" \n
+                         "	_supportType = _this select 0;" \n
+                         "	_supportCoords = _this select 1;" \n
+                         "	sleep 1;" \n
+                         "	while {commandingMenu == ""#USER:BIS_SUPP_commMenu"" && isNull (player getVariable ""BIS_SUPP_selectedProvider"")} do {" \n
+                         "		sleep 1;" \n
+                         "		if (commandingMenu == ""#USER:BIS_SUPP_commMenu"" && isNull (player getVariable ""BIS_SUPP_selectedProvider"")) then {" \n
+                         "			[_supportType, _supportCoords] call BIS_SUPP_pickProvider;" \n
+                         "		};" \n
+                         "		sleep 1;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "if (_notifyNA) then {hint localize ""STR_A3_mdl_supp_hint_provUnavail""};" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 43;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "provider_selecte">*/
+                                class provider_selecte
+                                {
+                                        itemno = 17;
+                                        priority = 0.000000;
+                                        to="is_the_provider";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNull (player getVariable ""BIS_SUPP_selectedProvider""))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "wait_for_request">*/
+                class wait_for_request
+                {
+                        name = "wait_for_request";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"call BIS_SUPP_refreshMainWindow;" \n
+                         "" \n
+                         "player setVariable [""BIS_SUPP_request"", ["""", [0,0,0]]];" \n
+                         "" \n
+                         "if (_deleteVirtual && !(isNil {(player getVariable ""BIS_SUPP_selectedProvider"") getVariable ""BIS_SUPP_virtual""})) then {" \n
+                         "	_temp = player getVariable ""BIS_SUPP_selectedProvider"";" \n
+                         "	_grp = group _temp;" \n
+                         "" \n
+                         "	deleteVehicle vehicle _temp;" \n
+                         "	{deleteVehicle _x} forEach units _temp;" \n
+                         "	deleteGroup _grp" \n
+                         "}"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "invalid_coords">*/
+                                class invalid_coords
+                                {
+                                        itemno = 74;
+                                        priority = 1.000000;
+                                        to="inform_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player getVariable ""BIS_SUPP_request"") select 0 != """" && count ((player getVariable ""BIS_SUPP_request"") select 1) == 0 && (if ((player getVariable ""BIS_SUPP_request"") select 0 == ""Transport"") then {vehicle player != vehicle (player getVariable ""BIS_SUPP_selectedProvider"")} else {TRUE})" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "requested">*/
+                                class requested
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="set_up_variables";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player getVariable ""BIS_SUPP_request"") select 0 != """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "set_up_variables">*/
+                class set_up_variables
+                {
+                        name = "set_up_variables";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"_supportType = (player getVariable ""BIS_SUPP_request"") select 0;" \n
+                         "_supportCoords = (player getVariable ""BIS_SUPP_request"") select 1;" \n
+                         "" \n
+                         "_notifyNA = FALSE;" \n
+                         "_deleteVirtual = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "CAS_Heli">*/
+                                class CAS_Heli
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="virtual__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_supportType == ""CAS_Heli"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "CAS_Bombing">*/
+                                class CAS_Bombing
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="virtual__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_supportType == ""CAS_Bombing"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "UAV">*/
+                                class UAV
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="select_provider_3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_supportType == ""UAV"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Drop">*/
+                                class Drop
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="virtual__3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_supportType == ""Drop"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Transport">*/
+                                class Transport
+                                {
+                                        itemno = 77;
+                                        priority = 0.000000;
+                                        to="underway_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_supportType == ""Transport"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Artillery">*/
+                                class Artillery
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="virtual_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_supportType == ""Artillery"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "select_provider_1">*/
+                class select_provider_1
+                {
+                        name = "select_provider_1";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"[_supportType, _supportCoords] call BIS_SUPP_pickProvider;" \n
+                         "" \n
+                         "_null = [_supportType, _supportCoords] spawn {" \n
+                         "	_supportType = _this select 0;" \n
+                         "	_supportCoords = _this select 1;" \n
+                         "	sleep 1;" \n
+                         "	while {commandingMenu == ""#USER:BIS_SUPP_commMenu"" && isNull (player getVariable ""BIS_SUPP_selectedProvider"")} do {" \n
+                         "		sleep 1;" \n
+                         "		if (commandingMenu == ""#USER:BIS_SUPP_commMenu"" && isNull (player getVariable ""BIS_SUPP_selectedProvider"")) then {" \n
+                         "			[_supportType, _supportCoords] call BIS_SUPP_pickProvider;" \n
+                         "		};" \n
+                         "		sleep 1;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "if (_notifyNA) then {hint localize ""STR_A3_mdl_supp_hint_provUnavail""};" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 43;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "provider_selecte">*/
+                                class provider_selecte
+                                {
+                                        itemno = 16;
+                                        priority = 0.000000;
+                                        to="open_ammo_menu";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNull (player getVariable ""BIS_SUPP_selectedProvider""))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "select_provider_2">*/
+                class select_provider_2
+                {
+                        name = "select_provider_2";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"[_supportType, _supportCoords] call BIS_SUPP_pickProvider;" \n
+                         "" \n
+                         "_null = [_supportType, _supportCoords] spawn {" \n
+                         "	_supportType = _this select 0;" \n
+                         "	_supportCoords = _this select 1;" \n
+                         "	sleep 1;" \n
+                         "	while {commandingMenu == ""#USER:BIS_SUPP_commMenu"" && isNull (player getVariable ""BIS_SUPP_selectedProvider"")} do {" \n
+                         "		sleep 1;" \n
+                         "		if (commandingMenu == ""#USER:BIS_SUPP_commMenu"" && isNull (player getVariable ""BIS_SUPP_selectedProvider"")) then {" \n
+                         "			[_supportType, _supportCoords] call BIS_SUPP_pickProvider;" \n
+                         "		};" \n
+                         "		sleep 1;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "player setVariable [""BIS_SUPP_ammoType"", -1];" \n
+                         "player setVariable [""BIS_SUPP_burst"", 0];" \n
+                         "" \n
+                         "if (_notifyNA) then {hint localize ""STR_A3_mdl_supp_hint_provUnavail""};" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "provider_selecte">*/
+                                class provider_selecte
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="select_guided__";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNull (player getVariable ""BIS_SUPP_selectedProvider""))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "select_provider_3">*/
+                class select_provider_3
+                {
+                        name = "select_provider_3";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"[_supportType, _supportCoords] call BIS_SUPP_pickProvider;" \n
+                         "" \n
+                         "_null = [_supportType, _supportCoords] spawn {" \n
+                         "	_supportType = _this select 0;" \n
+                         "	_supportCoords = _this select 1;" \n
+                         "	sleep 1;" \n
+                         "	while {commandingMenu == ""#USER:BIS_SUPP_commMenu"" && isNull (player getVariable ""BIS_SUPP_selectedProvider"")} do {" \n
+                         "		sleep 1;" \n
+                         "		if (commandingMenu == ""#USER:BIS_SUPP_commMenu"" && isNull (player getVariable ""BIS_SUPP_selectedProvider"")) then {" \n
+                         "			[_supportType, _supportCoords] call BIS_SUPP_pickProvider;" \n
+                         "		};" \n
+                         "		sleep 1;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "if (_notifyNA) then {hint localize ""STR_A3_mdl_supp_hint_provUnavail""};" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "provider_selecte">*/
+                                class provider_selecte
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="____FAKE____";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNull (player getVariable ""BIS_SUPP_selectedProvider""))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "select_provider_4">*/
+                class select_provider_4
+                {
+                        name = "select_provider_4";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"[_supportType, _supportCoords] call BIS_SUPP_pickProvider;" \n
+                         "" \n
+                         "_null = [_supportType, _supportCoords] spawn {" \n
+                         "	_supportType = _this select 0;" \n
+                         "	_supportCoords = _this select 1;" \n
+                         "	sleep 1;" \n
+                         "	while {commandingMenu == ""#USER:BIS_SUPP_commMenu"" && isNull (player getVariable ""BIS_SUPP_selectedProvider"")} do {" \n
+                         "		sleep 1;" \n
+                         "		if (commandingMenu == ""#USER:BIS_SUPP_commMenu"" && isNull (player getVariable ""BIS_SUPP_selectedProvider"")) then {" \n
+                         "			[_supportType, _supportCoords] call BIS_SUPP_pickProvider;" \n
+                         "		};" \n
+                         "		sleep 1;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "if (_notifyNA) then {hint localize ""STR_A3_mdl_supp_hint_provUnavail""};" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "provider_selecte">*/
+                                class provider_selecte
+                                {
+                                        itemno = 46;
+                                        priority = 0.000000;
+                                        to="is_the_provider_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNull (player getVariable ""BIS_SUPP_selectedProvider""))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "assign_provider">*/
+                class assign_provider
+                {
+                        name = "assign_provider";
+                        itemno = 22;
+                        init = /*%FSM<STATEINIT""">*/"_provider setVariable [""BIS_SUPP_requester"", player, TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supportRunCoords"", _supportCoords, TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supportType"", ""CAS_Heli"", TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supporting"", TRUE, TRUE];" \n
+                         "" \n
+                         "player kbTell [_provider, ""BIS_SUPP_protocol"", _supportType + ""_Request"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group player)];" \n
+                         "" \n
+                         "_i = 1;" \n
+                         "while {markerPos format [""BIS_SUPP_mrkr_%1"", _i] distance [0,0,0] > 0} do {_i = _i + 1};" \n
+                         "_mrkrName = format [""BIS_SUPP_mrkr_%1"", _i];" \n
+                         "" \n
+                         "_mrkr = createMarker [_mrkrName, _supportCoords];" \n
+                         "_mrkrName setMarkerTextLocal localize ""STR_A3_mdl_supp_disp_cas_heli"";" \n
+                         "_mrkrName setMarkerTypeLocal ""selector_selectedMission"";" \n
+                         "_mrkrName setMarkerColorLocal ""ColorBlack"";" \n
+                         "_mrkrName setMarkerSizeLocal [0.75, 0.75];" \n
+                         "" \n
+                         "[_provider, _mrkrName] spawn {" \n
+                         "	_provider = _this select 0;" \n
+                         "	_mrkrName = _this select 1;" \n
+                         "	waitUntil {!(_provider getVariable ""BIS_SUPP_supporting"") || !alive _provider};" \n
+                         "	deleteMarker _mrkrName;" \n
+                         "};" \n
+                         "" \n
+                         "if (_virtual) then {" \n
+                         "	_module setVariable [""BIS_SUPP_lastCall"", time, TRUE];" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "is_the_provider">*/
+                class is_the_provider
+                {
+                        name = "is_the_provider";
+                        itemno = 26;
+                        init = /*%FSM<STATEINIT""">*/"_provider = player getVariable ""BIS_SUPP_selectedProvider"";" \n
+                         "" \n
+                         "_notifyNA = TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 28;
+                                        priority = 1.000000;
+                                        to="select_provider";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_provider getVariable ""BIS_SUPP_supporting"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 27;
+                                        priority = 0.000000;
+                                        to="assign_provider";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "assign_provider_1">*/
+                class assign_provider_1
+                {
+                        name = "assign_provider_1";
+                        itemno = 29;
+                        init = /*%FSM<STATEINIT""">*/"_provider setVariable [""BIS_SUPP_requester"", player, TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supportRunCoords"", _supportCoords, TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_burst"", player getVariable ""BIS_SUPP_burst"", TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_ammoType"", player getVariable ""BIS_SUPP_ammoType"", TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supportType"", ""Artillery"", TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supporting"", TRUE, TRUE];" \n
+                         "" \n
+                         "player kbTell [_provider, ""BIS_SUPP_protocol"", _supportType + ""_Request"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group player)];" \n
+                         "" \n
+                         "_i = 1;" \n
+                         "while {markerPos format [""BIS_SUPP_mrkr_%1"", _i] distance [0,0,0] > 0} do {_i = _i + 1};" \n
+                         "_mrkrName = format [""BIS_SUPP_mrkr_%1"", _i];" \n
+                         "" \n
+                         "_mrkr = createMarker [_mrkrName, _supportCoords];" \n
+                         "_mrkrName setMarkerTextLocal localize ""STR_A3_mdl_supp_disp_artillery"";" \n
+                         "_mrkrName setMarkerTypeLocal ""selector_selectedMission"";" \n
+                         "_mrkrName setMarkerColorLocal ""ColorBlack"";" \n
+                         "_mrkrName setMarkerSizeLocal [0.75, 0.75];" \n
+                         "" \n
+                         "[_provider, _mrkrName] spawn {" \n
+                         "	_provider = _this select 0;" \n
+                         "	_mrkrName = _this select 1;" \n
+                         "	waitUntil {!(_provider getVariable ""BIS_SUPP_supporting"") || !alive _provider};" \n
+                         "	deleteMarker _mrkrName;" \n
+                         "};" \n
+                         "" \n
+                         "if (_virtual) then {" \n
+                         "	_module setVariable [""BIS_SUPP_lastCall"", time, TRUE];" \n
+                         "};" \n
+                         "" \n
+                         "_deleteVirtual = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "open_burst_menu">*/
+                class open_burst_menu
+                {
+                        name = "open_burst_menu";
+                        itemno = 31;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "BIS_SUPP_commMenu = [" \n
+                         "	[localize ""STR_A3_mdl_supp_comm_burst"" + format ["", ETA %1s"", round (vehicle _provider getArtilleryETA [_supportCoords, (getArtilleryAmmo [vehicle _provider] select (player getVariable ""BIS_SUPP_ammoType""))])], TRUE]" \n
+                         "];" \n
+                         "" \n
+                         "_weaponUsed = """";" \n
+                         "{if (_selectedAmmo in getArray (configFile >> ""CfgWeapons"" >> _x >> ""magazines"")) then {_weaponUsed = _x}} forEach weapons vehicle _provider;" \n
+                         "" \n
+                         "_roundsLeft = [_provider, (getArtilleryAmmo [vehicle _provider] select (player getVariable ""BIS_SUPP_ammoType"")), _supportCoords] call BIS_SUPP_calculateAmmo;" \n
+                         "" \n
+                         "for [{_x = 1}, {_x <= _roundsLeft && _x <= 9}, {_x = _x + 1}] do {" \n
+                         "	BIS_SUPP_commMenu = BIS_SUPP_commMenu + [" \n
+                         "		[" \n
+                         "			""""," \n
+                         "			[_x + 1]," \n
+                         "			""""," \n
+                         "			-5," \n
+                         "			[[" \n
+                         "				""expression""," \n
+                         "				format [""player setVariable ['BIS_SUPP_burst', %1]"", _x]" \n
+                         "			]]," \n
+                         "			""1""," \n
+                         "			""1""," \n
+                         "			""""" \n
+                         "		]" \n
+                         "	];" \n
+                         "};" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	sleep 0.1;" \n
+                         "	showCommandingMenu ""#USER:BIS_SUPP_commMenu""" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "selected_burst">*/
+                                class selected_burst
+                                {
+                                        itemno = 32;
+                                        priority = 1.000000;
+                                        to="is_the_provider_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player getVariable ""BIS_SUPP_burst"") > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 43;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "open_ammo_menu">*/
+                class open_ammo_menu
+                {
+                        name = "open_ammo_menu";
+                        itemno = 33;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "_provider = player getVariable ""BIS_SUPP_selectedProvider"";" \n
+                         "" \n
+                         "player setVariable [""BIS_SUPP_ammoType"", -1];" \n
+                         "player setVariable [""BIS_SUPP_burst"", 0];" \n
+                         "" \n
+                         "BIS_SUPP_commMenu = [" \n
+                         "	[localize ""STR_A3_mdl_supp_comm_ammo"", TRUE]" \n
+                         "];" \n
+                         "" \n
+                         "{" \n
+                         "	BIS_SUPP_commMenu = BIS_SUPP_commMenu + [" \n
+                         "		[" \n
+                         "			getText (configFile >> ""CfgMagazines"" >> _x >> ""displayName"")," \n
+                         "			[_forEachIndex + 2]," \n
+                         "			""""," \n
+                         "			-5," \n
+                         "			[[" \n
+                         "				""expression""," \n
+                         "				format [""player setVariable ['BIS_SUPP_ammoType', %1]"", _forEachIndex]" \n
+                         "			]]," \n
+                         "			""1""," \n
+                         "			""1""," \n
+                         "			""""" \n
+                         "		]" \n
+                         "	]" \n
+                         "} forEach getArtilleryAmmo [vehicle _provider];" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	sleep 0.1;" \n
+                         "	showCommandingMenu ""#USER:BIS_SUPP_commMenu""" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "selected_ammo">*/
+                                class selected_ammo
+                                {
+                                        itemno = 30;
+                                        priority = 1.000000;
+                                        to="range_check";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player getVariable ""BIS_SUPP_ammoType"") > -1"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 43;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "is_the_provider_1">*/
+                class is_the_provider_1
+                {
+                        name = "is_the_provider_1";
+                        itemno = 34;
+                        init = /*%FSM<STATEINIT""">*/"_notifyNA = TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 40;
+                                        priority = 1.000000;
+                                        to="select_provider_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_provider getVariable ""BIS_SUPP_supporting"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 39;
+                                        priority = 0.000000;
+                                        to="assign_provider_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "range_check">*/
+                class range_check
+                {
+                        name = "range_check";
+                        itemno = 35;
+                        init = /*%FSM<STATEINIT""">*/"_selectedAmmo = (getArtilleryAmmo [vehicle _provider]) select (player getVariable ""BIS_SUPP_ammoType"");"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "range_ok">*/
+                                class range_ok
+                                {
+                                        itemno = 36;
+                                        priority = 1.000000;
+                                        to="open_burst_menu";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_supportCoords inRangeOfArtillery [[vehicle _provider], _selectedAmmo]"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "invalid_range">*/
+                                class invalid_range
+                                {
+                                        itemno = 37;
+                                        priority = 0.000000;
+                                        to="inform";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "inform">*/
+                class inform
+                {
+                        name = "inform";
+                        itemno = 38;
+                        init = /*%FSM<STATEINIT""">*/"hint localize ""STR_A3_mdl_supp_hint_rngInval"";" \n
+                         "//playSound ""invalidCoords"";" \n
+                         "" \n
+                         "_deleteVirtual = TRUE;" \n
+                         "" \n
+                         "call BIS_SUPP_refreshMainWindow;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "assign_provider_2">*/
+                class assign_provider_2
+                {
+                        name = "assign_provider_2";
+                        itemno = 42;
+                        init = /*%FSM<STATEINIT""">*/"if (isNull _module) then {" \n
+                         "	{if (_provider in synchronizedObjects _x) then {_module = _x}} forEach (player getVariable ""BIS_SUPP_correctProviderModules"");" \n
+                         "};" \n
+                         "" \n
+                         "_provider setVariable [""BIS_SUPP_requester"", player, TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supportRunCoords"", _supportCoords, TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supportType"", ""Drop"", TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_selectedModule"", _module, TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supporting"", TRUE, TRUE];" \n
+                         "" \n
+                         "player kbTell [_provider, ""BIS_SUPP_protocol"", _supportType + ""_Request"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group player)];" \n
+                         "" \n
+                         "_i = 1;" \n
+                         "while {markerPos format [""BIS_SUPP_mrkr_%1"", _i] distance [0,0,0] > 0} do {_i = _i + 1};" \n
+                         "_mrkrName = format [""BIS_SUPP_mrkr_%1"", _i];" \n
+                         "" \n
+                         "_mrkr = createMarker [_mrkrName, _supportCoords];" \n
+                         "_mrkrName setMarkerTextLocal localize ""STR_A3_mdl_supp_disp_drop"";" \n
+                         "_mrkrName setMarkerTypeLocal ""selector_selectedMission"";" \n
+                         "_mrkrName setMarkerColorLocal ""ColorBlack"";" \n
+                         "_mrkrName setMarkerSizeLocal [0.75, 0.75];" \n
+                         "" \n
+                         "[_provider, _mrkrName] spawn {" \n
+                         "	_provider = _this select 0;" \n
+                         "	_mrkrName = _this select 1;" \n
+                         "	waitUntil {!(_provider getVariable ""BIS_SUPP_supporting"") || !alive _provider};" \n
+                         "	deleteMarker _mrkrName;" \n
+                         "};" \n
+                         "" \n
+                         "if (_virtual) then {" \n
+                         "	_module setVariable [""BIS_SUPP_lastCall"", time, TRUE];" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "is_the_provider_2">*/
+                class is_the_provider_2
+                {
+                        name = "is_the_provider_2";
+                        itemno = 47;
+                        init = /*%FSM<STATEINIT""">*/"_provider = player getVariable ""BIS_SUPP_selectedProvider"";" \n
+                         "" \n
+                         "_notifyNA = TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 49;
+                                        priority = 1.000000;
+                                        to="select_provider_4";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_provider getVariable ""BIS_SUPP_supporting"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 48;
+                                        priority = 0.000000;
+                                        to="assign_provider_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "select_guided__">*/
+                class select_guided__
+                {
+                        name = "select_guided__";
+                        itemno = 50;
+                        init = /*%FSM<STATEINIT""">*/"_t = time;" \n
+                         "" \n
+                         "_provider = player getVariable ""BIS_SUPP_selectedProvider"";" \n
+                         "" \n
+                         "BIS_SUPP_commMenu = [" \n
+                         "	[localize ""STR_A3_mdl_supp_comm_ammo"", TRUE]" \n
+                         "];" \n
+                         "" \n
+                         "BIS_SUPP_commMenu = BIS_SUPP_commMenu + [" \n
+                         "	[" \n
+                         "		localize ""STR_A3_mdl_supp_comm_guided""," \n
+                         "		[2]," \n
+                         "		""""," \n
+                         "		-5," \n
+                         "		[[" \n
+                         "			""expression""," \n
+                         "			""player setVariable ['BIS_SUPP_ammoType', 1]""" \n
+                         "		]]," \n
+                         "		""1""," \n
+                         "		""1""," \n
+                         "		""""" \n
+                         "	]" \n
+                         "];" \n
+                         "" \n
+                         "BIS_SUPP_commMenu = BIS_SUPP_commMenu + [" \n
+                         "	[" \n
+                         "		localize ""STR_A3_mdl_supp_comm_unguided""," \n
+                         "		[3]," \n
+                         "		""""," \n
+                         "		-5," \n
+                         "		[[" \n
+                         "			""expression""," \n
+                         "			""player setVariable ['BIS_SUPP_ammoType', 0]""" \n
+                         "		]]," \n
+                         "		""1""," \n
+                         "		""1""," \n
+                         "		""""" \n
+                         "	]" \n
+                         "];" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	sleep 0.1;" \n
+                         "	showCommandingMenu ""#USER:BIS_SUPP_commMenu""" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "selected">*/
+                                class selected
+                                {
+                                        itemno = 51;
+                                        priority = 1.000000;
+                                        to="is_the_provider_3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player getVariable ""BIS_SUPP_ammoType"") >= 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "is_the_provider_3">*/
+                class is_the_provider_3
+                {
+                        name = "is_the_provider_3";
+                        itemno = 52;
+                        init = /*%FSM<STATEINIT""">*/"_notifyNA = TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 54;
+                                        priority = 1.000000;
+                                        to="select_provider_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_provider getVariable ""BIS_SUPP_supporting"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 53;
+                                        priority = 0.000000;
+                                        to="assign_provider_3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "assign_provider_3">*/
+                class assign_provider_3
+                {
+                        name = "assign_provider_3";
+                        itemno = 56;
+                        init = /*%FSM<STATEINIT""">*/"_provider setVariable [""BIS_SUPP_requester"", player, TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supportRunCoords"", _supportCoords, TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_ammoType"", player getVariable ""BIS_SUPP_ammoType"", TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supportType"", ""CAS_Bombing"", TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supporting"", TRUE, TRUE];" \n
+                         "" \n
+                         "player kbTell [_provider, ""BIS_SUPP_protocol"", _supportType + ""_Request"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group player)];" \n
+                         "" \n
+                         "_i = 1;" \n
+                         "while {markerPos format [""BIS_SUPP_mrkr_%1"", _i] distance [0,0,0] > 0} do {_i = _i + 1};" \n
+                         "_mrkrName = format [""BIS_SUPP_mrkr_%1"", _i];" \n
+                         "" \n
+                         "_mrkr = createMarker [_mrkrName, _supportCoords];" \n
+                         "_mrkrName setMarkerTextLocal localize ""STR_A3_mdl_supp_disp_cas_bombing"";" \n
+                         "_mrkrName setMarkerTypeLocal ""selector_selectedMission"";" \n
+                         "_mrkrName setMarkerColorLocal ""ColorBlack"";" \n
+                         "_mrkrName setMarkerSizeLocal [0.75, 0.75];" \n
+                         "" \n
+                         "[_provider, _mrkrName] spawn {" \n
+                         "	_provider = _this select 0;" \n
+                         "	_mrkrName = _this select 1;" \n
+                         "	waitUntil {!(_provider getVariable ""BIS_SUPP_supporting"") || !alive _provider};" \n
+                         "	deleteMarker _mrkrName;" \n
+                         "};" \n
+                         "" \n
+                         "if (_virtual) then {" \n
+                         "	_module setVariable [""BIS_SUPP_lastCall"", time, TRUE];" \n
+                         "};" \n
+                         "" \n
+                         "_deleteVirtual = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "virtual_">*/
+                class virtual_
+                {
+                        name = "virtual_";
+                        itemno = 57;
+                        init = /*%FSM<STATEINIT""">*/"_virtual = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 59;
+                                        priority = 1.000000;
+                                        to="offer_virtual_pr";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{typeOf _x == ""SupportProvider_Virtual_Artillery""} count (player getVariable ""BIS_SUPP_allProviderModules"") > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 58;
+                                        priority = 0.000000;
+                                        to="select_provider_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "offer_virtual_pr">*/
+                class offer_virtual_pr
+                {
+                        name = "offer_virtual_pr";
+                        itemno = 60;
+                        init = /*%FSM<STATEINIT""">*/"[player, _supportType, _supportCoords] call BIS_SUPP_pickProviderVirtual;" \n
+                         "" \n
+                         "_t = time;" \n
+                         "" \n
+                         "_virtual = TRUE;" \n
+                         "" \n
+                         "_null = [_supportType, _supportCoords] spawn {" \n
+                         "	_supportType = _this select 0;" \n
+                         "	_supportCoords = _this select 1;" \n
+                         "	sleep 1;" \n
+                         "	while {commandingMenu == ""#USER:BIS_SUPP_commMenu"" && (player getVariable ""BIS_SUPP_selectedProviderVeh"") == """"} do {" \n
+                         "		sleep 1;" \n
+                         "		if (commandingMenu == ""#USER:BIS_SUPP_commMenu"" && (player getVariable ""BIS_SUPP_selectedProviderVeh"") == """") then {" \n
+                         "			[player, _supportType, _supportCoords] call BIS_SUPP_pickProviderVirtual;" \n
+                         "		};" \n
+                         "		sleep 1;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "provider_selecte">*/
+                                class provider_selecte
+                                {
+                                        itemno = 88;
+                                        priority = 0.000000;
+                                        to="spawn_assets_4";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player getVariable ""BIS_SUPP_selectedProviderVeh"") != """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 43;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "virtual__1">*/
+                class virtual__1
+                {
+                        name = "virtual__1";
+                        itemno = 62;
+                        init = /*%FSM<STATEINIT""">*/"_virtual = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 64;
+                                        priority = 1.000000;
+                                        to="offer_virtual_pr_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{typeOf _x == ""SupportProvider_Virtual_CAS_Heli""} count (player getVariable ""BIS_SUPP_allProviderModules"") > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 63;
+                                        priority = 0.000000;
+                                        to="select_provider";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "spawn_assets">*/
+                class spawn_assets
+                {
+                        name = "spawn_assets";
+                        itemno = 65;
+                        init = /*%FSM<STATEINIT""">*/"_veh = player getVariable ""BIS_SUPP_selectedProviderVeh"";" \n
+                         "_module = player getVariable ""BIS_SUPP_selectedModule"";" \n
+                         "" \n
+                         "_virtualProvider = [[position _module select 0, position _module select 1, 100], [_module, _supportCoords] call BIS_fnc_dirTo, _veh, side group player] call BIS_fnc_spawnVehicle;" \n
+                         "[""[SUPPORTS] Spawned %1"", typeOf (_virtualProvider select 0)] call BIS_fnc_logFormat;" \n
+                         "(_virtualProvider select 0) call (_module getVariable ""BIS_SUPP_vehicleInit"");" \n
+                         "_virtualProviderUnit = leader (_virtualProvider select 2);" \n
+                         "" \n
+                         "_virtualProviderUnit kbAddTopic [""BIS_SUPP_protocol"", ""A3\Modules_F\supports\kb\protocol.bikb"", ""A3\Modules_F\supports\kb\protocol.fsm"", {call compile preprocessFileLineNumbers ""A3\Modules_F\supports\kb\protocol.sqf""}];" \n
+                         "" \n
+                         "_virtualProviderUnit execFSM ""A3\modules_f\supports\fsms\cas_heli.fsm"";" \n
+                         "" \n
+                         "_virtualProviderUnit setVariable [""BIS_SUPP_virtual"", TRUE];" \n
+                         "player setVariable [""BIS_SUPP_selectedProvider"", _virtualProviderUnit];" \n
+                         "" \n
+                         "_provider = _virtualProviderUnit;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 93;
+                                        priority = 0.000000;
+                                        to="assign_provider";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "virtual__2">*/
+                class virtual__2
+                {
+                        name = "virtual__2";
+                        itemno = 66;
+                        init = /*%FSM<STATEINIT""">*/"_virtual = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 68;
+                                        priority = 1.000000;
+                                        to="offer_virtual_pr_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{typeOf _x == ""SupportProvider_Virtual_CAS_Bombing""} count (player getVariable ""BIS_SUPP_allProviderModules"") > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 67;
+                                        priority = 0.000000;
+                                        to="select_provider_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "spawn_assets_1">*/
+                class spawn_assets_1
+                {
+                        name = "spawn_assets_1";
+                        itemno = 69;
+                        init = /*%FSM<STATEINIT""">*/"_veh = player getVariable ""BIS_SUPP_selectedProviderVeh"";" \n
+                         "_module = player getVariable ""BIS_SUPP_selectedModule"";" \n
+                         "" \n
+                         "_virtualProvider = [[position _module select 0, position _module select 1, 100], [_module, _supportCoords] call BIS_fnc_dirTo, _veh, side group player] call BIS_fnc_spawnVehicle;" \n
+                         "[""[SUPPORTS] Spawned %1"", typeOf (_virtualProvider select 0)] call BIS_fnc_logFormat;" \n
+                         "(_virtualProvider select 0) call (_module getVariable ""BIS_SUPP_vehicleInit"");" \n
+                         "_virtualProviderUnit = leader (_virtualProvider select 2);" \n
+                         "" \n
+                         "vehicle _virtualProviderUnit enableSimulation FALSE;" \n
+                         "" \n
+                         "_virtualProviderUnit kbAddTopic [""BIS_SUPP_protocol"", ""A3\Modules_F\supports\kb\protocol.bikb"", ""A3\Modules_F\supports\kb\protocol.fsm"", {call compile preprocessFileLineNumbers ""A3\Modules_F\supports\kb\protocol.sqf""}];" \n
+                         "" \n
+                         "_virtualProviderUnit execFSM ""A3\modules_f\supports\fsms\cas_bombing.fsm"";" \n
+                         "" \n
+                         "_virtualProviderUnit setVariable [""BIS_SUPP_virtual"", TRUE];" \n
+                         "player setVariable [""BIS_SUPP_selectedProvider"", _virtualProviderUnit];" \n
+                         "" \n
+                         "_deleteVirtual = TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 96;
+                                        priority = 0.000000;
+                                        to="select_guided__";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "virtual__3">*/
+                class virtual__3
+                {
+                        name = "virtual__3";
+                        itemno = 70;
+                        init = /*%FSM<STATEINIT""">*/"_module = objNull;" \n
+                         "" \n
+                         "_virtual = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 72;
+                                        priority = 1.000000;
+                                        to="offer_virtual_pr_4";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{typeOf _x == ""SupportProvider_Virtual_Drop""} count (player getVariable ""BIS_SUPP_allProviderModules"") > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 71;
+                                        priority = 0.000000;
+                                        to="select_provider_4";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "spawn_assets_2">*/
+                class spawn_assets_2
+                {
+                        name = "spawn_assets_2";
+                        itemno = 73;
+                        init = /*%FSM<STATEINIT""">*/"_veh = player getVariable ""BIS_SUPP_selectedProviderVeh"";" \n
+                         "_module = player getVariable ""BIS_SUPP_selectedModule"";" \n
+                         "" \n
+                         "_virtualProvider = [[position _module select 0, position _module select 1, 100], [_module, _supportCoords] call BIS_fnc_dirTo, _veh, side group player] call BIS_fnc_spawnVehicle;" \n
+                         "[""[SUPPORTS] Spawned %1"", typeOf (_virtualProvider select 0)] call BIS_fnc_logFormat;" \n
+                         "(_virtualProvider select 0) call (_module getVariable ""BIS_SUPP_vehicleInit"");" \n
+                         "_virtualProviderUnit = leader (_virtualProvider select 2);" \n
+                         "" \n
+                         "_virtualProviderUnit kbAddTopic [""BIS_SUPP_protocol"", ""A3\Modules_F\supports\kb\protocol.bikb"", ""A3\Modules_F\supports\kb\protocol.fsm"", {call compile preprocessFileLineNumbers ""A3\Modules_F\supports\kb\protocol.sqf""}];" \n
+                         "" \n
+                         "_virtualProviderUnit allowFleeing 0;" \n
+                         "_virtualProviderUnit setBehaviour ""CARELESS"";" \n
+                         "_virtualProviderUnit setCombatMode ""BLUE"";" \n
+                         "" \n
+                         "_virtualProviderUnit execFSM ""A3\modules_f\supports\fsms\drop.fsm"";" \n
+                         "" \n
+                         "_virtualProviderUnit setVariable [""BIS_SUPP_virtual"", TRUE];" \n
+                         "player setVariable [""BIS_SUPP_selectedProvider"", _virtualProviderUnit];" \n
+                         "" \n
+                         "_provider = _virtualProviderUnit;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 100;
+                                        priority = 0.000000;
+                                        to="assign_provider_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "inform_1">*/
+                class inform_1
+                {
+                        name = "inform_1";
+                        itemno = 75;
+                        init = /*%FSM<STATEINIT""">*/"hint localize ""STR_A3_mdl_supp_hint_noCoords"""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 76;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "select_provider_5">*/
+                class select_provider_5
+                {
+                        name = "select_provider_5";
+                        itemno = 78;
+                        init = /*%FSM<STATEINIT""">*/"[_supportType, _supportCoords] call BIS_SUPP_pickProvider;" \n
+                         "" \n
+                         "_null = [_supportType, _supportCoords] spawn {" \n
+                         "	_supportType = _this select 0;" \n
+                         "	_supportCoords = _this select 1;" \n
+                         "	sleep 1;" \n
+                         "	while {commandingMenu == ""#USER:BIS_SUPP_commMenu"" && isNull (player getVariable ""BIS_SUPP_selectedProvider"")} do {" \n
+                         "		sleep 1;" \n
+                         "		if (commandingMenu == ""#USER:BIS_SUPP_commMenu"" && isNull (player getVariable ""BIS_SUPP_selectedProvider"")) then {" \n
+                         "			[_supportType, _supportCoords] call BIS_SUPP_pickProvider;" \n
+                         "		};" \n
+                         "		sleep 1;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "if (_notifyNA) then {hint localize ""STR_A3_mdl_supp_hint_provUnavail""};" \n
+                         "" \n
+                         "_t = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "provider_selecte">*/
+                                class provider_selecte
+                                {
+                                        itemno = 79;
+                                        priority = 0.000000;
+                                        to="is_the_provider_4";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNull (player getVariable ""BIS_SUPP_selectedProvider""))"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "assign_provider_4">*/
+                class assign_provider_4
+                {
+                        name = "assign_provider_4";
+                        itemno = 80;
+                        init = /*%FSM<STATEINIT""">*/"_provider setVariable [""BIS_SUPP_requester"", player, TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supportRunCoords"", _supportCoords, TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supportType"", ""Transport"", TRUE];" \n
+                         "_provider setVariable [""BIS_SUPP_supporting"", TRUE, TRUE];" \n
+                         "" \n
+                         "player kbTell [_provider, ""BIS_SUPP_protocol"", _supportType + ""_Request"", BIS_SUPP_channels select ([WEST, EAST, RESISTANCE] find side group player)];" \n
+                         "" \n
+                         "_i = 1;" \n
+                         "while {markerPos format [""BIS_SUPP_mrkr_%1"", _i] distance [0,0,0] > 0} do {_i = _i + 1};" \n
+                         "_mrkrName = format [""BIS_SUPP_mrkr_%1"", _i];" \n
+                         "" \n
+                         "_mrkr = createMarker [_mrkrName, _supportCoords];" \n
+                         "_mrkrName setMarkerTextLocal localize ""STR_A3_mdl_supp_disp_transport"";" \n
+                         "_mrkrName setMarkerTypeLocal ""selector_selectedMission"";" \n
+                         "_mrkrName setMarkerColorLocal ""ColorBlack"";" \n
+                         "_mrkrName setMarkerSizeLocal [0.75, 0.75];" \n
+                         "" \n
+                         "[_provider, _mrkrName] spawn {" \n
+                         "	_provider = _this select 0;" \n
+                         "	_mrkrName = _this select 1;" \n
+                         "	waitUntil {!(_provider getVariable ""BIS_SUPP_supporting"") || !alive _provider};" \n
+                         "	deleteMarker _mrkrName;" \n
+                         "};" \n
+                         "" \n
+                         "[player, _mrkrName, _provider] spawn {" \n
+                         "	while {((_this select 2) getVariable ""BIS_SUPP_supporting"") && alive (_this select 2)} do {" \n
+                         "		waitUntil {(_this select 0) getVariable ""BIS_SUPP_transmitting""};" \n
+                         "" \n
+                         "		BIS_SUPP_commMenu = [" \n
+                         "			[localize ""STR_A3_mdl_supp_disp_transport"", TRUE]" \n
+                         "		];" \n
+                         "" \n
+                         "		BIS_SUPP_commMenu = BIS_SUPP_commMenu + [" \n
+                         "			[" \n
+                         "				localize ""STR_A3_mdl_supp_comm_unload""," \n
+                         "				[2]," \n
+                         "				""""," \n
+                         "				-5," \n
+                         "				[[" \n
+                         "					""expression""," \n
+                         "					""if (count _pos > 0) then {player setVariable ['BIS_SUPP_unloadCoords', _pos, TRUE]; player setVariable ['BIS_SUPP_transmitting', FALSE]} else {[] spawn {player setVariable ['BIS_SUPP_unloadCoords', [0], TRUE]; hint localize 'STR_A3_mdl_supp_hint_noCoords'; sleep 0.1; showCommandingMenu '#USER:BIS_SUPP_commMenu'; player setVariable ['BIS_SUPP_unloadCoords', [], TRUE]}}""" \n
+                         "				]]," \n
+                         "				""1""," \n
+                         "				""1""," \n
+                         "				BIS_SUPP_cursor" \n
+                         "			]" \n
+                         "		];" \n
+                         "" \n
+                         "		sleep 0.1;" \n
+                         "		showCommandingMenu ""#USER:BIS_SUPP_commMenu"";" \n
+                         "		waitUntil {!((_this select 0) getVariable ""BIS_SUPP_transmitting"")};" \n
+                         "		call BIS_SUPP_refreshMainWindow;" \n
+                         "		if (count ((_this select 0) getVariable ""BIS_SUPP_unloadCoords"") > 1) then {" \n
+                         "			(_this select 1) setMarkerPos ((_this select 0) getVariable ""BIS_SUPP_unloadCoords"");" \n
+                         "		};" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "if (_virtual) then {" \n
+                         "	_module setVariable [""BIS_SUPP_lastCall"", time, TRUE];" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "is_the_provider_4">*/
+                class is_the_provider_4
+                {
+                        name = "is_the_provider_4";
+                        itemno = 81;
+                        init = /*%FSM<STATEINIT""">*/"_provider = player getVariable ""BIS_SUPP_selectedProvider"";" \n
+                         "" \n
+                         "_notifyNA = TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 83;
+                                        priority = 1.000000;
+                                        to="select_provider_5";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_provider getVariable ""BIS_SUPP_supporting"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 82;
+                                        priority = 0.000000;
+                                        to="assign_provider_4";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "virtual__4">*/
+                class virtual__4
+                {
+                        name = "virtual__4";
+                        itemno = 84;
+                        init = /*%FSM<STATEINIT""">*/"_virtual = FALSE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 86;
+                                        priority = 1.000000;
+                                        to="offer_virtual_pr_3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{typeOf _x == ""SupportProvider_Virtual_Transport""} count (player getVariable ""BIS_SUPP_allProviderModules"") > 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 85;
+                                        priority = 0.000000;
+                                        to="select_provider_5";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "spawn_assets_3">*/
+                class spawn_assets_3
+                {
+                        name = "spawn_assets_3";
+                        itemno = 87;
+                        init = /*%FSM<STATEINIT""">*/"_veh = player getVariable ""BIS_SUPP_selectedProviderVeh"";" \n
+                         "_module = player getVariable ""BIS_SUPP_selectedModule"";" \n
+                         "" \n
+                         "_virtualProvider = [[position _module select 0, position _module select 1, 100], [_module, _supportCoords] call BIS_fnc_dirTo, _veh, side group player] call BIS_fnc_spawnVehicle;" \n
+                         "[""[SUPPORTS] Spawned %1"", typeOf (_virtualProvider select 0)] call BIS_fnc_logFormat;" \n
+                         "(_virtualProvider select 0) call (_module getVariable ""BIS_SUPP_vehicleInit"");" \n
+                         "_virtualProviderUnit = leader (_virtualProvider select 2);" \n
+                         "" \n
+                         "_virtualProviderUnit kbAddTopic [""BIS_SUPP_protocol"", ""A3\Modules_F\supports\kb\protocol.bikb"", ""A3\Modules_F\supports\kb\protocol.fsm"", {call compile preprocessFileLineNumbers ""A3\Modules_F\supports\kb\protocol.sqf""}];" \n
+                         "" \n
+                         "_virtualProviderUnit execFSM ""A3\modules_f\supports\fsms\transport.fsm"";" \n
+                         "" \n
+                         "_virtualProviderUnit setVariable [""BIS_SUPP_virtual"", TRUE];" \n
+                         "player setVariable [""BIS_SUPP_selectedProvider"", _virtualProviderUnit];" \n
+                         "" \n
+                         "_provider = _virtualProviderUnit;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 97;
+                                        priority = 0.000000;
+                                        to="assign_provider_4";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "spawn_assets_4">*/
+                class spawn_assets_4
+                {
+                        name = "spawn_assets_4";
+                        itemno = 89;
+                        init = /*%FSM<STATEINIT""">*/"_veh = player getVariable ""BIS_SUPP_selectedProviderVeh"";" \n
+                         "_module = player getVariable ""BIS_SUPP_selectedModule"";" \n
+                         "_spawnPos = (position _module) findEmptyPosition [0, 50, _veh];" \n
+                         "if (count _spawnPos == 0) then {_spawnPos = [_module, random 20, random 360] call BIS_fnc_relPos};" \n
+                         "_virtualProvider = [_spawnPos, direction _module, _veh, side group player] call BIS_fnc_spawnVehicle;" \n
+                         "[""[SUPPORTS] Spawned %1"", typeOf (_virtualProvider select 0)] call BIS_fnc_logFormat;" \n
+                         "(_virtualProvider select 0) call (_module getVariable ""BIS_SUPP_vehicleInit"");" \n
+                         "_virtualProviderUnit = leader (_virtualProvider select 2);" \n
+                         "group _virtualProviderUnit setFormDir direction _module;" \n
+                         "" \n
+                         "_virtualProviderUnit kbAddTopic [""BIS_SUPP_protocol"", ""A3\Modules_F\supports\kb\protocol.bikb"", ""A3\Modules_F\supports\kb\protocol.fsm"", {call compile preprocessFileLineNumbers ""A3\Modules_F\supports\kb\protocol.sqf""}];" \n
+                         "" \n
+                         "_virtualProviderUnit execFSM ""A3\modules_f\supports\fsms\artillery.fsm"";" \n
+                         "" \n
+                         "_virtualProviderUnit setVariable [""BIS_SUPP_virtual"", TRUE];" \n
+                         "player setVariable [""BIS_SUPP_selectedProvider"", _virtualProviderUnit];" \n
+                         "" \n
+                         "_deleteVirtual = TRUE;" \n
+                         "" \n
+                         "if (surfaceIsWater position _module) then {" \n
+                         "	(_virtualProvider select 0) spawn {" \n
+                         "		_pos = position _this;" \n
+                         "		_pos set [2,1.5];" \n
+                         "		while {alive _this} do {" \n
+                         "			_this setPos _pos;" \n
+                         "			sleep 0.025;" \n
+                         "		};" \n
+                         "	};" \n
+                         "};" \n
+                         "		"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 90;
+                                        priority = 0.000000;
+                                        to="open_ammo_menu";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "offer_virtual_pr_1">*/
+                class offer_virtual_pr_1
+                {
+                        name = "offer_virtual_pr_1";
+                        itemno = 91;
+                        init = /*%FSM<STATEINIT""">*/"[player, _supportType, _supportCoords] call BIS_SUPP_pickProviderVirtual;" \n
+                         "" \n
+                         "_t = time;" \n
+                         "" \n
+                         "_virtual = TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "provider_selecte">*/
+                                class provider_selecte
+                                {
+                                        itemno = 92;
+                                        priority = 0.000000;
+                                        to="spawn_assets";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player getVariable ""BIS_SUPP_selectedProviderVeh"") != """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 43;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "offer_virtual_pr_2">*/
+                class offer_virtual_pr_2
+                {
+                        name = "offer_virtual_pr_2";
+                        itemno = 94;
+                        init = /*%FSM<STATEINIT""">*/"player setVariable [""BIS_SUPP_ammoType"", -1];" \n
+                         "" \n
+                         "[player, _supportType, _supportCoords] call BIS_SUPP_pickProviderVirtual;" \n
+                         "" \n
+                         "_t = time;" \n
+                         "" \n
+                         "_virtual = TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "provider_selecte">*/
+                                class provider_selecte
+                                {
+                                        itemno = 95;
+                                        priority = 0.000000;
+                                        to="spawn_assets_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player getVariable ""BIS_SUPP_selectedProviderVeh"") != """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "offer_virtual_pr_3">*/
+                class offer_virtual_pr_3
+                {
+                        name = "offer_virtual_pr_3";
+                        itemno = 98;
+                        init = /*%FSM<STATEINIT""">*/"[player, _supportType, _supportCoords] call BIS_SUPP_pickProviderVirtual;" \n
+                         "" \n
+                         "_t = time;" \n
+                         "" \n
+                         "_virtual = TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "provider_selecte">*/
+                                class provider_selecte
+                                {
+                                        itemno = 99;
+                                        priority = 0.000000;
+                                        to="spawn_assets_3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player getVariable ""BIS_SUPP_selectedProviderVeh"") != """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "offer_virtual_pr_4">*/
+                class offer_virtual_pr_4
+                {
+                        name = "offer_virtual_pr_4";
+                        itemno = 101;
+                        init = /*%FSM<STATEINIT""">*/"[player, _supportType, _supportCoords] call BIS_SUPP_pickProviderVirtual;" \n
+                         "" \n
+                         "_t = time;" \n
+                         "" \n
+                         "_virtual = TRUE;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "provider_selecte">*/
+                                class provider_selecte
+                                {
+                                        itemno = 102;
+                                        priority = 0.000000;
+                                        to="spawn_assets_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(player getVariable ""BIS_SUPP_selectedProviderVeh"") != """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "window_closed">*/
+                                class window_closed
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t + 0.5 && commandingMenu == """""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "underway_">*/
+                class underway_
+                {
+                        name = "underway_";
+                        itemno = 103;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "yes">*/
+                                class yes
+                                {
+                                        itemno = 105;
+                                        priority = 1.000000;
+                                        to="open_destination";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"vehicle player == vehicle (player getVariable ""BIS_SUPP_selectedProvider"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "no">*/
+                                class no
+                                {
+                                        itemno = 104;
+                                        priority = 0.000000;
+                                        to="virtual__4";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "open_destination">*/
+                class open_destination
+                {
+                        name = "open_destination";
+                        itemno = 106;
+                        init = /*%FSM<STATEINIT""">*/"player setVariable [""BIS_SUPP_transmitting"", TRUE];" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	waitUntil {commandingMenu == """"};" \n
+                         "	player setVariable [""BIS_SUPP_transmitting"", FALSE];" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "always">*/
+                                class always
+                                {
+                                        itemno = 23;
+                                        priority = 0.000000;
+                                        to="wait_for_request";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "____FAKE____">*/
+                class ____FAKE____
+                {
+                        name = "____FAKE____";
+                        itemno = 108;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+        };
+};
+/*%FSM</COMPILE>*/

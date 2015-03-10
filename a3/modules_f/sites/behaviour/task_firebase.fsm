@@ -1,0 +1,489 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, Group Mission - firebase">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-300.000000,-100.000000,-200.000000,-50.000000,0.000000,"Init"};
+item1[] = {"always",8,218,-300.000000,-25.000000,-200.000000,25.000000,0.000000,"always"};
+item2[] = {"planning",2,250,-300.000000,50.000000,-200.000000,100.000000,0.000000,"planning"};
+item3[] = {"has_plan",4,218,-300.000000,150.000000,-200.000000,200.000000,0.000000,"has plan"};
+item4[] = {"moving",2,250,-300.000000,225.000000,-200.000000,275.000000,0.000000,"moving"};
+item5[] = {"close",4,218,-300.000000,300.000000,-200.000000,350.000000,0.000000,"close"};
+item6[] = {"",7,210,-254.000015,120.999992,-246.000000,129.000000,0.000000,""};
+item7[] = {"",7,210,-379.000000,121.000008,-371.000000,129.000000,0.000000,""};
+item8[] = {"no_plan",4,218,-425.000000,50.000000,-325.000000,100.000000,2.000000,"no plan"};
+item9[] = {"setup",2,4346,-300.000000,375.000000,-200.000000,425.000000,0.000000,"setup"};
+item10[] = {"GROUP_FIREBASE_M",-1,250,-125.000000,-75.000000,125.000000,25.000000,0.000000,"GROUP" \n "FIREBASE MISSION"};
+item11[] = {"",7,210,-179.000000,71.000008,-171.000000,79.000000,0.000000,""};
+item12[] = {"",7,210,-179.000000,246.000000,-171.000000,254.000000,0.000000,""};
+item13[] = {"",7,210,-179.000000,396.000000,-171.000000,404.000000,0.000000,""};
+item14[] = {"end",1,250,275.000000,50.000000,375.000000,100.000000,0.000000,"end"};
+item15[] = {"ready",4,218,-300.000000,450.000000,-200.000000,500.000000,0.000000,"ready"};
+item16[] = {"wait",2,250,-300.000000,525.000000,-200.000000,575.000000,0.000000,"wait"};
+item17[] = {"",7,210,-179.000000,546.000000,-171.000000,554.000000,0.000000,""};
+item18[] = {"wait_1",2,250,-425.000000,450.000000,-325.000000,500.000000,0.000000,"wait"};
+item19[] = {"active",4,218,-425.000000,525.000000,-325.000000,575.000000,0.000000,"active"};
+item20[] = {"",7,210,-179.000000,146.000000,-171.000000,154.000000,0.000000,""};
+item21[] = {"",7,210,-154.000000,71.000000,-146.000000,79.000000,0.000000,""};
+item22[] = {"escape",4,218,-125.000000,125.000000,-25.000000,175.000000,2.000000,"escape"};
+item23[] = {"",7,210,-154.000000,146.000000,-146.000000,154.000000,0.000000,""};
+item24[] = {"emergency_moveme",2,250,0.000000,125.000000,100.000000,175.000000,0.000000,"emergency" \n "movement"};
+item25[] = {"in_position",4,218,125.000000,125.000000,225.000000,175.000000,0.000000,"in" \n "position"};
+item26[] = {"",7,210,246.000000,146.000000,254.000000,154.000000,0.000000,""};
+item27[] = {"",7,210,246.000000,71.000000,254.000000,79.000000,0.000000,""};
+item28[] = {"time",4,218,-300.000000,600.000000,-200.000000,650.000000,0.000000,"time"};
+item29[] = {"parent_leaving",4,218,-125.000000,50.000000,-25.000000,100.000000,2.000000,"parent" \n "leaving"};
+version=1;
+class LayoutItems
+{
+	class Item10
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=18;
+			FontWeight=700;
+			lStyle=1;
+		};
+	};
+};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,6};
+link3[] = {3,4};
+link4[] = {4,5};
+link5[] = {4,12};
+link6[] = {5,9};
+link7[] = {6,3};
+link8[] = {6,7};
+link9[] = {7,8};
+link10[] = {8,2};
+link11[] = {9,13};
+link12[] = {9,15};
+link13[] = {11,21};
+link14[] = {12,20};
+link15[] = {13,12};
+link16[] = {15,18};
+link17[] = {16,17};
+link18[] = {16,28};
+link19[] = {17,13};
+link20[] = {18,19};
+link21[] = {19,16};
+link22[] = {20,11};
+link23[] = {21,23};
+link24[] = {21,29};
+link25[] = {22,24};
+link26[] = {23,22};
+link27[] = {24,25};
+link28[] = {25,26};
+link29[] = {26,27};
+link30[] = {27,14};
+link31[] = {28,16};
+link32[] = {29,27};
+globals[] = {25.000000,1,0,0,0,640,480,1,156,6316128,1,-682.462891,534.893799,905.773926,-344.521362,887,911,1};
+window[] = {2,-1,-1,-1,-1,885,125,1121,125,3,905};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Group Mission - firebase";
+  class States
+  {
+    /*%FSM<STATE "Init">*/
+    class Init
+    {
+      name = "Init";
+      init = /*%FSM<STATEINIT""">*/"_group = [_this, 0, grpNull] call bis_fnc_param;" \n
+       "_targetPos = [_this, 1, objNull] call bis_fnc_param;" \n
+       "_side = side _group;" \n
+       "_weapon = _group getVariable [""supportWeaponSetup"",objNull];" \n
+       "_gunner = objNull;" \n
+       "_parentUnit = _group getVariable[""parentUnit"",grpNull];" \n
+       "//player sidechat str(_weapon);"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "always">*/
+        class always
+        {
+          priority = 0.000000;
+          to="planning";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "planning">*/
+    class planning
+    {
+      name = "planning";
+      init = /*%FSM<STATEINIT""">*/"_currentPos = position leader _group;" \n
+       "_disTo = _currentPos distance _targetPos;" \n
+       "_dirTo = [_currentPos,_targetPos] call BIS_fnc_dirTo;" \n
+       "_areaPos = [_currentPos, (_disTo - 700), _dirTo] call BIS_fnc_relPos;" \n
+       "" \n
+       "_supportSite = [_targetPos,500,300,-50,_areaPos] call BIS_fnc_findOverwatch;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "no_plan">*/
+        class no_plan
+        {
+          priority = 2.000000;
+          to="planning";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"false"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "has_plan">*/
+        class has_plan
+        {
+          priority = 0.000000;
+          to="moving";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "moving">*/
+    class moving
+    {
+      name = "moving";
+      init = /*%FSM<STATEINIT""">*/"_wp1 = objNull;" \n
+       "_wp2 = objNull;" \n
+       "_setup = """";" \n
+       "_action = """";" \n
+       "if (isNull _weapon) then {" \n
+       "	_wp1 = _group addWaypoint [_supportSite, 20];" \n
+       "	_wp1 setWaypointBehaviour ""AWARE"";" \n
+       "	_wp1 setWaypointType ""MOVE"";" \n
+       "	_wp1 setWaypointStatements [""true"", ""(group this) setVariable ['wpStatus','inposition'];""];" \n
+       "" \n
+       "	_setup = [""Setup"",_group,[""Establish an Observation Post to support your Squads assault on the position"",""Establish Observation post"",""OP""]] call BIS_Fnc_taskAiAssign;" \n
+       "	_wp1 setWaypointDescription ""SETUP"";" \n
+       "" \n
+       "	_wp2 = _group addWaypoint [_supportSite, 0];" \n
+       "	_wp2 setWaypointBehaviour ""STEALTH"";" \n
+       "	_wp2 setWaypointType ""SAD"";" \n
+       "" \n
+       "	_action = [""Action"",_group,[""Provide fire support for your squad's assault on this position"",""Engage Objective"",""Engage""],false] call BIS_Fnc_taskAiAssign;" \n
+       "	_wp2 setWaypointDescription ""ENGAGE"";" \n
+       "" \n
+       "} else {" \n
+       "	_wp1 = _group addWaypoint [_supportSite, 0];" \n
+       "	_wp1 setWaypointBehaviour ""AWARE"";" \n
+       "	_wp1 setWaypointType ""MOVE"";" \n
+       "	_wp1 setWaypointStatements [""true"", ""(group this) setVariable ['wpStatus','inposition'];""];" \n
+       "" \n
+       "	_setup = [""Setup"",_group,[""Establish a Firebase to support your Squads assault on the position"",""Establish Firebase"",""Setup""]] call BIS_Fnc_taskAiAssign;" \n
+       "	_wp1 setWaypointDescription ""SETUP"";" \n
+       "" \n
+       "	_wp2 = _group addWaypoint [_targetPos, 0];" \n
+       "	_wp2 setWaypointBehaviour ""AWARE"";" \n
+       "	_wp2 setWaypointType ""SAD"";" \n
+       "" \n
+       "	_action = [""Action"",_group,[""Provide suppressive fire for your squad's assault on this position"",""Supress Objective"",""Supress""],false] call BIS_Fnc_taskAiAssign;" \n
+       "	_wp2 setWaypointDescription ""SUPRESS"";" \n
+       "};" \n
+       "" \n
+       "_group setCurrentWaypoint _wp1;" \n
+       "" \n
+       "	if (!isNull _parentUnit) then {" \n
+       "	//	[_parentUnit,(currentWaypoint _parentUnit)] synchronizeWaypoint [_wp1 ];" \n
+       "	};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "parent_leaving">*/
+        class parent_leaving
+        {
+          priority = 2.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_parentUnit getVariable [""task"",""check""] == ""none"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"while {(count (waypoints _group)) > 0} do" \n
+           "{" \n
+           "	deleteWaypoint ((waypoints _group) select 0);" \n
+           "};" \n
+           "{" \n
+           "	_x setUnitPos ""Auto"";" \n
+           "} forEach units _group;" \n
+           "_param = [_action,""SUCCEEDED"",false,true];" \n
+           "[_param,""BIS_fnc_taskSetState"",objNull,true] call BIS_fnc_MP;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "escape">*/
+        class escape
+        {
+          priority = 2.000000;
+          to="emergency_moveme";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_group getVariable [""task"",""none""] == ""escape"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"while {(count (waypoints _group)) > 0} do" \n
+           "{" \n
+           "	deleteWaypoint ((waypoints _group) select 0);" \n
+           "};" \n
+           "{" \n
+           "	_x setUnitPos ""Auto"";" \n
+           "} forEach units _group;" \n
+           "_param = [_action,""CANCELLED"",false,true];" \n
+           "[_param,""BIS_fnc_taskSetState"",objNull,true] call BIS_fnc_MP;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "close">*/
+        class close
+        {
+          priority = 0.000000;
+          to="setup";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((_group getVariable[""wpStatus"",""""]) == ""inposition"") or (leader _group distance _targetPos < 2);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "setup">*/
+    class setup
+    {
+      name = "setup";
+      init = /*%FSM<STATEINIT""">*/"_gunner = objNull;" \n
+       "if (!(isNull _weapon)) then {" \n
+       "	 [_group,_supportSite,_targetPos] spawn BIS_fnc_unpackStaticWeapon;" \n
+       "} else {" \n
+       "	_group setBehaviour ""COMBAT"";" \n
+       "};" \n
+       "" \n
+       "_alarm1 = createTrigger[""EmptyDetector"",_targetPos];" \n
+       "_alarm1 setTriggerArea[100,100,0,false];" \n
+       "_alarm1 setTriggerActivation[ ""ANY"",""PRESENT"",true];" \n
+       "" \n
+       "//Record Setup" \n
+       "_param = [_setup,""SUCCEEDED"",false,true];" \n
+       "[_param,""BIS_fnc_taskSetState"",objNull,true] call BIS_fnc_MP;" \n
+       "_param = [_action,""ASSIGNED"",false,true];" \n
+       "[_param,""BIS_fnc_taskSetState"",objNull,true] call BIS_fnc_MP;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "parent_leaving">*/
+        class parent_leaving
+        {
+          priority = 2.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_parentUnit getVariable [""task"",""check""] == ""none"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"while {(count (waypoints _group)) > 0} do" \n
+           "{" \n
+           "	deleteWaypoint ((waypoints _group) select 0);" \n
+           "};" \n
+           "{" \n
+           "	_x setUnitPos ""Auto"";" \n
+           "} forEach units _group;" \n
+           "_param = [_action,""SUCCEEDED"",false,true];" \n
+           "[_param,""BIS_fnc_taskSetState"",objNull,true] call BIS_fnc_MP;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "escape">*/
+        class escape
+        {
+          priority = 2.000000;
+          to="emergency_moveme";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_group getVariable [""task"",""none""] == ""escape"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"while {(count (waypoints _group)) > 0} do" \n
+           "{" \n
+           "	deleteWaypoint ((waypoints _group) select 0);" \n
+           "};" \n
+           "{" \n
+           "	_x setUnitPos ""Auto"";" \n
+           "} forEach units _group;" \n
+           "_param = [_action,""CANCELLED"",false,true];" \n
+           "[_param,""BIS_fnc_taskSetState"",objNull,true] call BIS_fnc_MP;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "ready">*/
+        class ready
+        {
+          priority = 0.000000;
+          to="wait_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "end">*/
+    class end
+    {
+      name = "end";
+      init = /*%FSM<STATEINIT""">*/"_group getVariable [""useTransport"",true];" \n
+       "_group setVariable [""task"",""none""];" \n
+       "_group setVariable ['wpStatus',''];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "wait">*/
+    class wait
+    {
+      name = "wait";
+      init = /*%FSM<STATEINIT""">*/"_timer = time;" \n
+       "(units _group) doWatch _targetPos;" \n
+       "(units _group) lookAt _targetPos;" \n
+       "" \n
+       "_hasTarget = objNull;" \n
+       "if (!(isNull _weapon)) then {" \n
+       "	_gunner = gunner _weapon;" \n
+       "} else {" \n
+       "	_gunner = leader _group;" \n
+       "};" \n
+       "{" \n
+       "	_group reveal _x;" \n
+       "	if (side _x != _side) then {" \n
+       "		_hasTarget = _x;" \n
+       "	};" \n
+       "} forEach list _alarm1;" \n
+       "" \n
+       "if (!isNull _hasTarget) then {" \n
+       "	_gunner doTarget _hasTarget;" \n
+       "	_gunner commandFire _hasTarget;" \n
+       "};" \n
+       "" \n
+       "if (!(isNull _weapon)) then {" \n
+       "	if (!alive _gunner) then {" \n
+       "		_units = (units _group);" \n
+       "		if (count _units > 0) then {" \n
+       "			_gunner = _units select 0;" \n
+       "			_gunner assignAsGunner _weapon;" \n
+       "			[_gunner] orderGetIn true;" \n
+       "			_gunner enableAI ""MOVE"";" \n
+       "			_gunner enableAI ""ANIM"";" \n
+       "			_gunner setUnitPos ""Auto"";" \n
+       "		};" \n
+       "	};" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "parent_leaving">*/
+        class parent_leaving
+        {
+          priority = 2.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_parentUnit getVariable [""task"",""check""] == ""none"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"while {(count (waypoints _group)) > 0} do" \n
+           "{" \n
+           "	deleteWaypoint ((waypoints _group) select 0);" \n
+           "};" \n
+           "{" \n
+           "	_x setUnitPos ""Auto"";" \n
+           "} forEach units _group;" \n
+           "_param = [_action,""SUCCEEDED"",false,true];" \n
+           "[_param,""BIS_fnc_taskSetState"",objNull,true] call BIS_fnc_MP;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "escape">*/
+        class escape
+        {
+          priority = 2.000000;
+          to="emergency_moveme";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_group getVariable [""task"",""none""] == ""escape"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"while {(count (waypoints _group)) > 0} do" \n
+           "{" \n
+           "	deleteWaypoint ((waypoints _group) select 0);" \n
+           "};" \n
+           "{" \n
+           "	_x setUnitPos ""Auto"";" \n
+           "} forEach units _group;" \n
+           "_param = [_action,""CANCELLED"",false,true];" \n
+           "[_param,""BIS_fnc_taskSetState"",objNull,true] call BIS_fnc_MP;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "time">*/
+        class time
+        {
+          priority = 0.000000;
+          to="wait";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _timer) > 5;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "wait_1">*/
+    class wait_1
+    {
+      name = "wait_1";
+      init = /*%FSM<STATEINIT""">*/"_timer = time;" \n
+       "_group setBehaviour ""COMBAT"";" \n
+       "_group setCombatMode ""RED"";" \n
+       "(units _group) commandWatch _targetPos;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "active">*/
+        class active
+        {
+          priority = 0.000000;
+          to="wait";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _timer) > 5;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_weapon = nearestObject [leader _group,""StaticWeapon""];" \n
+           "_gunner = units _group select 0;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "emergency_moveme">*/
+    class emergency_moveme
+    {
+      name = "emergency_moveme";
+      init = /*%FSM<STATEINIT""">*/"_disTo = _startPos distance _targetPos;" \n
+       "_dirTo = [_targetPos,_startPos] call BIS_fnc_dirTo;" \n
+       "_evacPoint = [_targetPos,700, _dirTo] call BIS_fnc_relPos;" \n
+       "_evacPoint = [_evacPoint,0,200,3,0,20,0,[],[_targetPos,_reconSite]] call BIS_Fnc_findSafePos;" \n
+       "" \n
+       "_wp1 = _group addWaypoint [_evacPoint, 0];" \n
+       "_wp1 setWaypointBehaviour ""CARELESS"";" \n
+       "_wp1 setWaypointType ""MOVE"";" \n
+       "_wp1 setWaypointCombatMode ""YELLOW"";" \n
+       "_wp1 setWaypointSpeed ""FULL"";" \n
+       "_wp1 setWaypointStatements [""true"", ""(group this) setVariable ['wpStatus','ready3'];""];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "in_position">*/
+        class in_position
+        {
+          priority = 0.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_group getVariable[""wpStatus"",""""]) == ""ready3"";"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Init";
+  finalStates[] =
+  {
+    "end",
+  };
+};
+/*%FSM</COMPILE>*/

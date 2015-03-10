@@ -1,0 +1,368 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, ambientPlanes">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"ambientPlanes",0,250,-150.000000,-150.000000,-50.000000,-100.000000,0.000000,"ambientPlanes"};
+item1[] = {"True",8,218,-150.000000,-75.000000,-50.000000,-25.000000,0.000000,"True"};
+item2[] = {"Find_nearest_air",2,250,-150.000000,0.000000,-50.000000,50.000000,0.000000,"Find" \n "nearest airport"};
+item3[] = {"Delay",4,218,-275.000000,0.000000,-175.000000,50.000000,0.000000,"Delay"};
+item4[] = {"No_airports",4,218,-25.000000,-150.000000,75.000000,-100.000000,1.000000,"No" \n "airports"};
+item5[] = {"EXIT",1,250,100.000000,-150.000000,200.000000,-100.000000,0.000000,"EXIT"};
+item6[] = {"Plane",4,218,-25.000000,0.000000,75.000000,50.000000,1.000000,"Plane"};
+item7[] = {"Plane",2,4346,-25.000000,-75.000000,75.000000,-25.000000,0.000000,"Plane"};
+item8[] = {"Reset",2,250,-275.000000,-75.000000,-175.000000,-25.000000,0.000000,"Reset"};
+link0[] = {0,1};
+link1[] = {0,4};
+link2[] = {1,2};
+link3[] = {2,3};
+link4[] = {2,6};
+link5[] = {3,8};
+link6[] = {4,5};
+link7[] = {6,7};
+link8[] = {7,1};
+link9[] = {8,1};
+globals[] = {25.000000,1,0,0,16777215,640,480,1,13,6316128,1,-358.209259,176.210480,365.750031,-429.686035,604,899,1};
+window[] = {2,-1,-1,-32000,-32000,775,-1232,-272,48,3,621};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "ambientPlanes";
+  class States
+  {
+    /*%FSM<STATE "ambientPlanes">*/
+    class ambientPlanes
+    {
+      name = "ambientPlanes";
+      itemno = 0;
+      init = /*%FSM<STATEINIT""">*/"_vehCountMax =		[_this,0,5,[0]] call bis_fnc_param;" \n
+       "_schnobble =			[_this,1,10000,[0]] call bis_fnc_param;" \n
+       "_dirStep =				[_this,2,30,[0]] call bis_fnc_param;" \n
+       "_heightMin = 500;" \n
+       "_heightMax = 2000;" \n
+       "_schnobbleOut = _schnobble * 0.75;" \n
+       "_speedDefault = 20;" \n
+       "" \n
+       "//////////////////////////////////////////////////////////////////////////////////" \n
+       "//--- Get plane classes" \n
+       "_listClasses = [];" \n
+       "_cfgVehicles = configfile >> ""cfgvehicles"";" \n
+       "for ""_c"" from 0 to (count _cfgVehicles - 1) do {" \n
+       "	_current = _cfgVehicles select _c;" \n
+       "	if (isclass _current) then {" \n
+       "		_currentClass = configname _current;" \n
+       "		if (_currentClass iskindof ""plane"") then {" \n
+       "			_scope = getnumber (_current >> ""scope"");" \n
+       "			_ambientType = getnumber (_current >> ""ambientType"");" \n
+       "			if (_scope > 1 && _ambientType > 0) then {" \n
+       "				_listClasses set [count _listClasses,_currentClass];" \n
+       "			};" \n
+       "		};" \n
+       "	};" \n
+       "};" \n
+       "" \n
+       "//////////////////////////////////////////////////////////////////////////////////" \n
+       "//--- Create vehicles" \n
+       "_listVehs = [];" \n
+       "_listClassesTemp = [];" \n
+       "for ""_i"" from 0 to (_vehCountMax - 1) do {" \n
+       "" \n
+       "	//--- Classes exceeded; reset" \n
+       "	if (count _listClassesTemp < 1) then {_listClassesTemp = _listClasses};" \n
+       "	_class = _listClassesTemp call bis_fnc_selectrandom;" \n
+       "	_listClassesTemp = _listClassesTemp - [_class];" \n
+       "" \n
+       "	_vehArray = [" \n
+       "		[99,99,99 * _i]," \n
+       "		0," \n
+       "		_class," \n
+       "		side player" \n
+       "	] call bis_fnc_spawnVehicle;" \n
+       "" \n
+       "	_veh = _vehArray select 0;" \n
+       "	_vehGrp = _vehArray select 2;" \n
+       "	_listVehs set [count _listVehs,_veh];" \n
+       "	_veh enablesimulation false;" \n
+       "	_veh hideobject true;" \n
+       "	_veh disableai ""target"";" \n
+       "	_veh disableai ""autotarget"";" \n
+       "	_veh setcombatmode ""blue"";" \n
+       "	_veh setbehaviour ""careless"";" \n
+       "" \n
+       "	//_wp = _vehGrp addwaypoint [position _veh,0];" \n
+       "	//_wp setwaypointstatements [""false"",""""];" \n
+       "};" \n
+       "_listVehsCount = count _listVehs - 1;" \n
+       "" \n
+       "//////////////////////////////////////////////////////////////////////////////////" \n
+       "//--- Recognize airports" \n
+       "_listAirports = [];" \n
+       "_addAirport = {" \n
+       "" \n
+       "	//--- Ambient planes allowed?" \n
+       "	_ilsRadius = getnumber (_this >> ""ilsAmbientPlanes"");" \n
+       "	if (_ilsRadius > 0) then {" \n
+       "" \n
+       "		_class = configname _this;" \n
+       "" \n
+       "		//--- Position - extract only XY" \n
+       "		_ilsPosition = getarray (_this >> ""ilsPosition"");" \n
+       "		_ilsPosition resize 2;" \n
+       "" \n
+       "		//---Direction - original value is XZY, convert to XY" \n
+       "		_ilsDirection = getarray (_this >> ""ilsDirection"");" \n
+       "		_airportVector = [" \n
+       "			_ilsDirection select 0," \n
+       "			_ilsDirection select 2," \n
+       "			_ilsDirection select 1" \n
+       "		];" \n
+       "" \n
+       "		//--- Convert vector to direction" \n
+       "		_airportDir = [_airportVector,[0,0,0]] call bis_fnc_dirto;" \n
+       "" \n
+       "		//--- Register" \n
+       "		if (count _ilsPosition >= 2) then {" \n
+       "			_listAirports set [" \n
+       "				count _listAirports," \n
+       "				_ilsPosition + [_airportDir]" \n
+       "			];" \n
+       "		};" \n
+       "	};" \n
+       "};" \n
+       "" \n
+       "//--- Primary" \n
+       "_cfgWorld = configfile >> ""cfgworlds"" >> worldname;" \n
+       "_cfgWorld call _addAirport;" \n
+       "" \n
+       "//--- Secondary" \n
+       "_cfgSecondaryAirports = configfile >> ""cfgworlds"" >> worldname >> ""SecondaryAirports"";" \n
+       "for ""_a"" from 0 to (count _cfgSecondaryAirports - 1) do {" \n
+       "	_current = _cfgSecondaryAirports select _a;" \n
+       "	if (isclass _current) then {" \n
+       "		_current call _addAirport;" \n
+       "	};" \n
+       "};" \n
+       "" \n
+       "//--- Loop init" \n
+       "_v = 0;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "No_airports">*/
+        class No_airports
+        {
+          itemno = 4;
+          priority = 1.000000;
+          to="EXIT";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count _listAirports < 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "True">*/
+        class True
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="Find_nearest_air";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Find_nearest_air">*/
+    class Find_nearest_air
+    {
+      name = "Find_nearest_air";
+      itemno = 2;
+      init = /*%FSM<STATEINIT""">*/"//--- Find nearest airport" \n
+       "_veh = vehicle player;" \n
+       "_airport = [0,0,0,0];" \n
+       "_disMin = 10e10;" \n
+       "{" \n
+       "	_disTemp = [_x,_veh] call bis_fnc_distance2D;" \n
+       "	if (_disTemp < _disMin) then {" \n
+       "		_airport = _x;" \n
+       "		_disMin = _disTemp;" \n
+       "	};" \n
+       "} foreach _listAirports;" \n
+       "" \n
+       "//--- Airport position and direction" \n
+       "_airportPos = [" \n
+       "	_airport select 0," \n
+       "	_airport select 1," \n
+       "	0" \n
+       "];" \n
+       "_airportDir = _airport select 2;" \n
+       "_airportDis = _airportPos distance _veh;" \n
+       "" \n
+       "//--- Get nearest 30° directions from airport" \n
+       "_airportDirFrom = ([_airport,_veh] call bis_fnc_dirto) + 360;" \n
+       "" \n
+       "_airportDirFromLower = _airportDirFrom - (_airportDirFrom % _dirStep);" \n
+       "_airportDirFromUpper = _airportDirFromLower + _dirStep;" \n
+       "_airportDirFromArray = [_airportDirFromLower,_airportDirFromUpper];" \n
+       "" \n
+       "//--- Position planes" \n
+       "_distanceLimit = viewdistance;" \n
+       "" \n
+       "//--- Delay" \n
+       "_time = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Plane">*/
+        class Plane
+        {
+          itemno = 6;
+          priority = 1.000000;
+          to="Plane";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_v < _listVehsCount"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Delay">*/
+        class Delay
+        {
+          itemno = 3;
+          priority = 0.000000;
+          to="Reset";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _time) > 10 && !isnull player"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "EXIT">*/
+    class EXIT
+    {
+      name = "EXIT";
+      itemno = 5;
+      init = /*%FSM<STATEINIT""">*/"""No airports found" \n
+       """ call bis_fnc_error;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Plane">*/
+    class Plane
+    {
+      name = "Plane";
+      itemno = 7;
+      init = /*%FSM<STATEINIT""">*/"_plane = _listVehs select _v;" \n
+       "" \n
+       "if (_plane distance _veh > _distanceLimit) then {" \n
+       "" \n
+       "	//--- Random vector" \n
+       "	_vehDir = _airportDirFromArray select (_v % 2);" \n
+       "	_vehLanding = abs ((((_vehDir - _airportDir) + 360) % 360) - 180) < 90;" \n
+       "" \n
+       "	//--- Random pos" \n
+       "	_vehDis = (_airportDis - _schnobble) max 0;" \n
+       "	if (_vehLanding) then {_vehDis = _vehDis + 2 * _schnobble};" \n
+       "	_vehPos = [_airportPos,_vehDis,_vehDir] call bis_fnc_relpos;" \n
+       "" \n
+       "" \n
+       "" \n
+       "	//--- No other planes around" \n
+       "	if ({[_vehPos,_x] call bis_fnc_distance2D < _schnobbleOut} count _listVehs == 0) then {" \n
+       "" \n
+       "		//--- Set height" \n
+       "		_vehPosZ = ((_vehDis / 8) min _heightMax max _heightMin) + _vehDir;" \n
+       "		_vehPos set [2,_vehPosZ];" \n
+       "" \n
+       "		//--- Random direction (from/to airport)" \n
+       "		if (_vehLanding) then {_vehDir = _vehDir + 180};" \n
+       "" \n
+       "		//--- Velocity" \n
+       "		_vehVelocity = [sin _vehDir * _speedDefault,cos _vehDir * _speedDefault,0];" \n
+       "" \n
+       "		_plane setpos _vehPos;" \n
+       "		_plane setdir _vehDir;" \n
+       "		_plane setvelocity _vehVelocity;" \n
+       "		_plane flyinheight _vehPosZ;" \n
+       "		_plane enablesimulation true;" \n
+       "		_plane hideobject false;" \n
+       "" \n
+       "		//--- Land" \n
+       "		if (_vehDis < 2000 && _vehLanding) then {" \n
+       "			_plane land ""land""" \n
+       "		} else {" \n
+       "			_plane land ""none"";" \n
+       "			_wpPos = [_airportPos,_vehDis * 5,_vehDir] call bis_fnc_relpos;" \n
+       "			_plane domove _wpPos;" \n
+       "			//[group _plane,1] setwaypointposition [_wpPos,0];" \n
+       "" \n
+       "			//--- Take off" \n
+       "			if (_vehDis < 100 && {_x distance _airportPos < 500} count _listVehs == 0) then {" \n
+       "					_plane setvelocity [0,0,0];" \n
+       "					_plane setpos _airportPos;" \n
+       "					_plane setdir _airportDir;" \n
+       "			};" \n
+       "		};" \n
+       "	} else {" \n
+       "" \n
+       "		//--- Disable" \n
+       "		if (_plane distance _veh > _distanceLimit) then {" \n
+       "			//_plane setpos [99,99,99];" \n
+       "			_plane enablesimulation false;" \n
+       "			_plane hideobject true;" \n
+       "		};" \n
+       "	};" \n
+       "};" \n
+       "" \n
+       "_v = _v + 1;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "True">*/
+        class True
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="Find_nearest_air";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Reset">*/
+    class Reset
+    {
+      name = "Reset";
+      itemno = 8;
+      init = /*%FSM<STATEINIT""">*/"_v = 0;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "True">*/
+        class True
+        {
+          itemno = 1;
+          priority = 0.000000;
+          to="Find_nearest_air";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="ambientPlanes";
+  finalStates[] =
+  {
+    "EXIT",
+  };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,346 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, MP_Bootcamp_Flow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-220.000000,-510.000000,-130.000000,-460.000000,0.000000,"init"};
+item1[] = {"not_server",4,218,-220.000000,-580.000000,-130.000000,-530.000000,1.000000,"not" \n "server"};
+item2[] = {"_",1,250,-220.000000,-650.000000,-130.000000,-600.000000,0.000000,""};
+item3[] = {"wait_for_stage",4,218,-220.000000,-300.000000,-130.000000,-250.000000,0.000000,"wait for" \n "stage"};
+item4[] = {"initialize_stage",2,250,-220.000000,-230.000000,-130.000000,-180.000000,0.000000,"initialize" \n "stage"};
+item5[] = {"stage_completed",4,218,-290.000000,-140.000000,-200.000000,-90.000000,1.000000,"stage" \n "completed"};
+item6[] = {"stage_changed",4,218,-160.000000,-140.000000,-70.000000,-90.000000,0.000000,"stage" \n "changed"};
+item7[] = {"__1",2,250,-160.000000,-60.000000,-70.000000,-10.000000,0.000000,""};
+item8[] = {"__2",2,250,-290.000000,-60.000000,-200.000000,-10.000000,0.000000,""};
+item9[] = {"all_stages_compl",4,218,-290.000000,10.000000,-200.000000,60.000000,1.000000,"all stages" \n "completed"};
+item10[] = {"",7,210,-359.000000,-279.000000,-351.000000,-271.000000,0.000000,""};
+item11[] = {"stages_to_comple",4,218,-400.000000,-60.000000,-310.000000,-10.000000,0.000000,"stages to" \n "complete"};
+item12[] = {"",7,210,-28.999998,-39.000000,-21.000002,-31.000000,0.000000,""};
+item13[] = {"",7,210,-28.999998,-279.000000,-21.000000,-271.000000,0.000000,""};
+item14[] = {"__3",1,4346,-290.000000,80.000000,-200.000000,130.000000,0.000000,""};
+item15[] = {"assign_select_stage",2,250,-400.000000,-140.000000,-310.000000,-90.000000,0.000000,"assign" \n "select stage" \n "task"};
+item16[] = {"wait",4,218,-220.000000,-440.000000,-130.000000,-390.000000,0.000000,"wait"};
+item17[] = {"create_task",2,250,-220.000000,-370.000000,-130.000000,-320.000000,0.000000,"create task"};
+link0[] = {0,1};
+link1[] = {0,16};
+link2[] = {1,2};
+link3[] = {3,4};
+link4[] = {4,5};
+link5[] = {4,6};
+link6[] = {5,8};
+link7[] = {6,7};
+link8[] = {7,12};
+link9[] = {8,9};
+link10[] = {8,11};
+link11[] = {9,14};
+link12[] = {10,3};
+link13[] = {11,15};
+link14[] = {12,13};
+link15[] = {13,3};
+link16[] = {15,10};
+link17[] = {16,17};
+link18[] = {17,3};
+globals[] = {10.000000,1,0,0,0,640,480,1,473,6316128,1,-559.047913,69.615097,394.637482,-394.827972,821,1031,1};
+window[] = {2,-1,-1,-1,-1,1125,275,1715,275,3,839};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "MP_Bootcamp_Flow";
+        class States
+        {
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"// Log" \n
+                         """MP_Bootcamp_Stages: FSM initialized"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "not_server">*/
+                                class not_server
+                                {
+                                        itemno = 1;
+                                        priority = 1.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isServer" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "wait">*/
+                                class wait
+                                {
+                                        itemno = 16;
+                                        priority = 0.000000;
+                                        to="create_task";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"if (isDedicated) then {" \n
+                                         "	time >= 45;" \n
+                                         "} else {" \n
+                                         "	!isNil { BIS_introFinished };" \n
+                                         "};" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"// Log" \n
+                         """MP_Bootcamp_Stages: Not server, exiting"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "initialize_stage">*/
+                class initialize_stage
+                {
+                        name = "initialize_stage";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"// The current stage Id" \n
+                         "private ""_stageId"";" \n
+                         "_stageId = [""getCurrentStage""] call BIS_fnc_flow;" \n
+                         "" \n
+                         "// Start stage" \n
+                         "[_stageId] execFSM ""fsms\stage.fsm"";" \n
+                         "" \n
+                         "// Succeed task" \n
+                         "[""BIS_stage"", [""setState"", [""SUCCEEDED""]]] call BIS_fnc_missionTasks;" \n
+                         "" \n
+                         "// Log" \n
+                         "[""MP_Bootcamp_Stages: Initializating Stage (%1)"", _stageId] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "stage_completed">*/
+                                class stage_completed
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"[""isCompleted"", [_stageId]] call BIS_fnc_stage" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "stage_changed">*/
+                                class stage_changed
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"[""getCurrentStage""] call BIS_fnc_flow != _stageId" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__1">*/
+                class __1
+                {
+                        name = "__1";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"// Should we reset stage and challenges data" \n
+                         "//TODO" \n
+                         "" \n
+                         "// Assign task" \n
+                         "if ([""getCurrentStage""] call BIS_fnc_flow == """") then {" \n
+                         "	[""BIS_stage"", [""setState"", [""ASSIGNED""]]] call BIS_fnc_missionTasks;" \n
+                         "};" \n
+                         "" \n
+                         "// Log" \n
+                         "[""MP_Bootcamp_Stages: Stage was changed from (%1) to (%2)"", _stageId, [""getCurrentStage""] call BIS_fnc_flow] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "wait_for_stage">*/
+                                class wait_for_stage
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="initialize_stage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"// The current stage" \n
+                                         "private ""_stageId"";" \n
+                                         "_stageId = [""getCurrentStage""] call BIS_fnc_flow;" \n
+                                         "" \n
+                                         "// Id must be valid" \n
+                                         "_stageId != """"" \n
+                                         "&&" \n
+                                         "// Current stage must not be completed" \n
+                                         "{ !([""isCompleted"", [_stageId]] call BIS_fnc_stage) }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__2">*/
+                class __2
+                {
+                        name = "__2";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"// Set no stage" \n
+                         "[""setCurrentStage"", [""""]] call BIS_fnc_flow;" \n
+                         "" \n
+                         "// Log" \n
+                         "[""MP_Bootcamp_Stages: Stage (%1) was completed"", _stageId] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "all_stages_compl">*/
+                                class all_stages_compl
+                                {
+                                        itemno = 9;
+                                        priority = 1.000000;
+                                        to="__3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{" \n
+                                         "	!([""isCompleted"", [_x]] call BIS_fnc_stage)" \n
+                                         "} count ([""getStagesIds""] call BIS_fnc_flow) < 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "stages_to_comple">*/
+                                class stages_to_comple
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="assign_select_stage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__3">*/
+                class __3
+                {
+                        name = "__3";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"// Execute achievements script" \n
+                         "[[], ""BIS_fnc_achievements""] call BIS_fnc_mp;" \n
+                         "" \n
+                         "// End mission on Instructor machine" \n
+                         "{" \n
+                         "	[[""INSTRUCTOR"", true], ""BIS_fnc_endMission"", _x, true] call BIS_fnc_mp;" \n
+                         "} forEach ([""allInstructors""] call BIS_fnc_flow);" \n
+                         "" \n
+                         "// End mission on Recruit machines" \n
+                         "{" \n
+                         "	[[""RECRUIT"", true], ""BIS_fnc_endMission"", _x, true] call BIS_fnc_mp;" \n
+                         "} forEach ([""allRecruits""] call BIS_fnc_flow);" \n
+                         "" \n
+                         "// End mission on dedicated server" \n
+                         "if (isDedicated) then {" \n
+                         "	[""INSTRUCTOR"", true] call BIS_fnc_endMission;" \n
+                         "};" \n
+                         "" \n
+                         "// Log" \n
+                         """MP_Bootcamp_Stages: All Stages completed, ending scenario"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "assign_select_stage">*/
+                class assign_select_stage
+                {
+                        name = "assign_select_stage";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/"// Assign task" \n
+                         "[""BIS_stage"", [""setState"", [""ASSIGNED""]]] call BIS_fnc_missionTasks;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "wait_for_stage">*/
+                                class wait_for_stage
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="initialize_stage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"// The current stage" \n
+                                         "private ""_stageId"";" \n
+                                         "_stageId = [""getCurrentStage""] call BIS_fnc_flow;" \n
+                                         "" \n
+                                         "// Id must be valid" \n
+                                         "_stageId != """"" \n
+                                         "&&" \n
+                                         "// Current stage must not be completed" \n
+                                         "{ !([""isCompleted"", [_stageId]] call BIS_fnc_stage) }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "create_task">*/
+                class create_task
+                {
+                        name = "create_task";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"// Create task" \n
+                         "[""BIS_stage"", [""create""]] call BIS_fnc_missionTasks;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "wait_for_stage">*/
+                                class wait_for_stage
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="initialize_stage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"// The current stage" \n
+                                         "private ""_stageId"";" \n
+                                         "_stageId = [""getCurrentStage""] call BIS_fnc_flow;" \n
+                                         "" \n
+                                         "// Id must be valid" \n
+                                         "_stageId != """"" \n
+                                         "&&" \n
+                                         "// Current stage must not be completed" \n
+                                         "{ !([""isCompleted"", [_stageId]] call BIS_fnc_stage) }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "_",
+                "__3",
+        };
+};
+/*%FSM</COMPILE>*/

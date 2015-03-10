@@ -1,0 +1,478 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, Journalist">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"start",0,250,75.000000,-1000.000000,175.000000,-950.000000,0.000000,"start"};
+item1[] = {"true",4,218,75.000000,-550.000000,175.000000,-500.000000,-1.000000,"true"};
+item2[] = {"default_state",2,250,75.000000,-475.000000,175.000000,-425.000000,0.000000,"default state"};
+item3[] = {"___10m",4,218,175.000000,-100.000000,275.000000,-50.000000,100.000000,"> 10m"};
+item4[] = {"run",2,250,175.000000,-25.000000,275.000000,25.000000,0.000000,"run"};
+item5[] = {"___3m",4,218,-25.000000,-100.000000,75.000000,-50.000000,50.000000,"> 3m"};
+item6[] = {"walk",2,250,-25.000000,-25.000000,75.000000,25.000000,0.000000,"walk"};
+item7[] = {"go_to_vehicle",4,218,-75.000000,-400.000000,25.000000,-350.000000,50.000000,"go to vehicle"};
+item8[] = {"leave_vehicle",4,218,225.000000,-400.000000,325.000000,-350.000000,100.000000,"leave vehicle"};
+item9[] = {"go_to_vehicle",2,250,-75.000000,-325.000000,25.000000,-275.000000,0.000000,"go to vehicle"};
+item10[] = {"leave_vehicle",2,250,225.000000,-325.000000,325.000000,-275.000000,0.000000,"leave vehicle"};
+item11[] = {"both_outside",4,218,75.000000,-400.000000,175.000000,-350.000000,0.000000,"both outside"};
+item12[] = {"both_outside",2,250,75.000000,-325.000000,175.000000,-275.000000,0.000000,"both outside"};
+item13[] = {"true",4,218,75.000000,-250.000000,175.000000,-200.000000,0.000000,"true"};
+item14[] = {"distance_check",2,250,75.000000,-175.000000,175.000000,-125.000000,0.000000,"distance" \n "check"};
+item15[] = {"",7,210,21.000002,71.000000,28.999998,79.000000,0.000000,""};
+item16[] = {"",7,210,221.000000,70.999992,229.000000,79.000008,0.000000,""};
+item17[] = {"",7,210,-204.000000,71.000000,-195.999985,79.000000,0.000000,""};
+item18[] = {"",7,210,-204.000000,-154.000000,-195.999985,-146.000000,0.000000,""};
+item19[] = {"delay",4,218,-250.000000,-325.000000,-150.000000,-275.000000,0.000000,"delay"};
+item20[] = {"debug",2,250,-250.000000,-400.000000,-150.000000,-350.000000,0.000000,"debug"};
+item21[] = {"",7,210,-204.000000,-529.000000,-196.000000,-521.000000,0.000000,""};
+item22[] = {"can_start_",4,218,75.000000,-700.000000,175.000000,-650.000000,0.000000,"can start?"};
+item23[] = {"init",2,4346,75.000000,-625.000000,175.000000,-575.000000,0.000000,"init"};
+item24[] = {"not_walking_",4,218,75.000000,-925.000000,175.000000,-875.000000,0.000000,"not walking?"};
+item25[] = {"waiting_for_play",2,250,75.000000,-850.000000,175.000000,-800.000000,0.000000,"waiting for player"};
+item26[] = {"true",8,218,225.000000,-925.000000,325.000000,-875.000000,-1.000000,"true"};
+item27[] = {"watch_player",2,250,225.000000,-850.000000,325.000000,-800.000000,0.000000,"watch player"};
+item28[] = {"true",8,218,225.000000,-775.000000,325.000000,-725.000000,0.000000,"true"};
+item29[] = {"watch_player_1",2,250,-175.000000,-175.000000,-75.000000,-125.000000,0.000000,"watch player"};
+item30[] = {"true",8,218,-50.000000,-175.000000,50.000000,-125.000000,0.000000,"true"};
+link0[] = {0,24};
+link1[] = {1,2};
+link2[] = {2,7};
+link3[] = {2,8};
+link4[] = {2,11};
+link5[] = {3,4};
+link6[] = {4,16};
+link7[] = {5,6};
+link8[] = {6,15};
+link9[] = {7,9};
+link10[] = {8,10};
+link11[] = {9,13};
+link12[] = {10,13};
+link13[] = {11,12};
+link14[] = {12,13};
+link15[] = {13,14};
+link16[] = {14,3};
+link17[] = {14,5};
+link18[] = {14,30};
+link19[] = {15,17};
+link20[] = {16,15};
+link21[] = {17,18};
+link22[] = {18,19};
+link23[] = {19,20};
+link24[] = {20,21};
+link25[] = {21,1};
+link26[] = {22,23};
+link27[] = {23,1};
+link28[] = {24,25};
+link29[] = {25,22};
+link30[] = {25,26};
+link31[] = {26,27};
+link32[] = {27,28};
+link33[] = {28,25};
+link34[] = {29,18};
+link35[] = {30,29};
+globals[] = {25.000000,1,0,0,0,640,480,1,370,6316128,1,-289.095856,535.072388,-120.538269,-1140.703735,841,1041,1};
+window[] = {2,-1,-1,-1,-1,843,75,1275,75,3,859};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Journalist";
+        class States
+        {
+                /*%FSM<STATE "start">*/
+                class start
+                {
+                        name = "start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"BIS_journalistCanFollow = false;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "not_walking_">*/
+                                class not_walking_
+                                {
+                                        itemno = 24;
+                                        priority = 0.000000;
+                                        to="waiting_for_play";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(currentWaypoint group bis_journalist == count waypoints group bis_journalist)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "default_state">*/
+                class default_state
+                {
+                        name = "default_state";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "leave_vehicle">*/
+                                class leave_vehicle
+                                {
+                                        itemno = 8;
+                                        priority = 100.000000;
+                                        to="leave_vehicle";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle _this != _this) && (vehicle _this != vehicle player) && (speed vehicle _this < 0.5)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "go_to_vehicle">*/
+                                class go_to_vehicle
+                                {
+                                        itemno = 7;
+                                        priority = 50.000000;
+                                        to="go_to_vehicle";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle player != player) && (vehicle _this == _this) && (canMove vehicle player)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "both_outside">*/
+                                class both_outside
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="both_outside";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(vehicle _this == _this) && (vehicle player == player)"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "run">*/
+                class run
+                {
+                        name = "run";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_this forceWalk false;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "delay">*/
+                                class delay
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="debug";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "walk">*/
+                class walk
+                {
+                        name = "walk";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"_this forceWalk true;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "delay">*/
+                                class delay
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="debug";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "go_to_vehicle">*/
+                class go_to_vehicle
+                {
+                        name = "go_to_vehicle";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"_this assignAsCargo (vehicle player);" \n
+                         "[_this] orderGetIn true;" \n
+                         "" \n
+                         "//[""Entering vehicle.""] call BIS_fnc_logFormat;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="distance_check";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "leave_vehicle">*/
+                class leave_vehicle
+                {
+                        name = "leave_vehicle";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"unassignVehicle _this;" \n
+                         "" \n
+                         "//[""Leaving vehicle.""] call BIS_fnc_logFormat;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="distance_check";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "both_outside">*/
+                class both_outside
+                {
+                        name = "both_outside";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"_this doMove (getPos vehicle player);" \n
+                         "" \n
+                         "//[""Both outside.""] call BIS_fnc_logFormat;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="distance_check";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "distance_check">*/
+                class distance_check
+                {
+                        name = "distance_check";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/"_t = time + _delay;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "___10m">*/
+                                class ___10m
+                                {
+                                        itemno = 3;
+                                        priority = 100.000000;
+                                        to="run";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_this distance player > 10"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "___3m">*/
+                                class ___3m
+                                {
+                                        itemno = 5;
+                                        priority = 50.000000;
+                                        to="walk";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_this distance player > 3"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 30;
+                                        priority = 0.000000;
+                                        to="watch_player_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "debug">*/
+                class debug
+                {
+                        name = "debug";
+                        itemno = 20;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 1;
+                                        priority = -1.000000;
+                                        to="default_state";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 23;
+                        init = /*%FSM<STATEINIT""">*/"private[""_delay"",""_t""];" \n
+                         "" \n
+                         "_delay = 1;" \n
+                         "" \n
+                         "[_this] joinSilent createGroup WEST;" \n
+                         "unassignVehicle _this;" \n
+                         "_this setUnitPos ""UP"";" \n
+                         "_this setBehaviour ""CARELESS"";" \n
+                         "_this forceWalk true;" \n
+                         "_this setGroupId [localize ""STR_A3_CfgIdentities_Cole""];" \n
+                         "" \n
+                         "[""[!] Journalist FSM is running!""] call BIS_fnc_logFormat;" \n
+                         "" \n
+                         "while {count waypoints (group _this) > 0} do" \n
+                         "{" \n
+                         "	deleteWaypoint [(group _this), 0];" \n
+                         "};	" \n
+                         "" \n
+                         "BIS_journalist limitSpeed 1000; "/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 1;
+                                        priority = -1.000000;
+                                        to="default_state";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "waiting_for_play">*/
+                class waiting_for_play
+                {
+                        name = "waiting_for_play";
+                        itemno = 25;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "can_start_">*/
+                                class can_start_
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_journalistCanFollow"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 26;
+                                        priority = -1.000000;
+                                        to="watch_player";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "watch_player">*/
+                class watch_player
+                {
+                        name = "watch_player";
+                        itemno = 27;
+                        init = /*%FSM<STATEINIT""">*/"//turn journalist to player" \n
+                         "private[""_watchPos""];" \n
+                         "" \n
+                         "_watchPos = getPos player;" \n
+                         "_watchPos set [2, 1.75];" \n
+                         "" \n
+                         "_this lookAt _watchPos;" \n
+                         "_this doWatch _watchPos;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 28;
+                                        priority = 0.000000;
+                                        to="waiting_for_play";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "watch_player_1">*/
+                class watch_player_1
+                {
+                        name = "watch_player_1";
+                        itemno = 29;
+                        init = /*%FSM<STATEINIT""">*/"//turn journalist to player" \n
+                         "private[""_watchPos""];" \n
+                         "" \n
+                         "_watchPos = getPos player;" \n
+                         "_watchPos set [2, 1.75];" \n
+                         "" \n
+                         "_this lookAt _watchPos;" \n
+                         "_this doWatch _watchPos;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "delay">*/
+                                class delay
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="debug";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _t"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="start";
+        finalStates[] =
+        {
+        };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,321 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, WeaponryUsage">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-30.000000,-210.000000,60.000000,-160.000000,0.000000,"Start"};
+item1[] = {"_",8,218,-30.000000,-140.000000,60.000000,-90.000000,0.000000,""};
+item2[] = {"Add_eventHandler",2,250,-30.000000,-70.000000,60.000000,-20.000000,0.000000,"Add" \n "eventHandler"};
+item3[] = {"AA_missile",4,218,-140.000000,0.000000,-50.000000,50.000000,0.000000,"AA" \n "missile"};
+item4[] = {"AT_fired",2,250,-250.000000,70.000000,-160.000000,120.000000,0.000000,"AT" \n "fired"};
+item5[] = {"Bomb_dropped",2,250,-250.000000,140.000000,-160.000000,190.000000,0.000000,"Bomb" \n "dropped"};
+item6[] = {"",7,210,10.999992,91.000000,19.000008,99.000000,0.000000,""};
+item7[] = {"",7,210,10.999992,161.000000,19.000008,169.000000,0.000000,""};
+item8[] = {"",7,210,-319.000000,21.000000,-311.000000,29.000000,0.000000,""};
+item9[] = {"",7,210,-319.000000,91.000000,-311.000000,99.000000,0.000000,""};
+item10[] = {"AT_missile",4,218,-140.000000,70.000000,-50.000000,120.000000,0.000000,"AT" \n "missile"};
+item11[] = {"Bomb",4,218,-140.000000,140.000000,-50.000000,190.000000,0.000000,"Bomb"};
+item12[] = {"",7,210,-319.000000,161.000000,-311.000000,169.000000,0.000000,""};
+item13[] = {"AA_fired",2,250,-250.000000,0.000000,-160.000000,50.000000,0.000000,"AA" \n "fired"};
+item14[] = {"",7,210,10.999990,20.999998,19.000010,29.000004,0.000000,""};
+item15[] = {"_",8,218,-360.000000,-70.000000,-270.000000,-20.000000,0.000000,""};
+item16[] = {"Mayday",4,218,-140.000000,280.000000,-50.000000,330.000000,5.000000,"Mayday"};
+item17[] = {"",7,210,11.000008,301.000031,18.999992,308.999969,0.000000,""};
+item18[] = {"End",1,250,-250.000000,280.000000,-160.000000,330.000000,0.000000,"End"};
+item19[] = {"Nothing",2,250,-250.000000,210.000000,-160.000000,260.000000,0.000000,"Nothing"};
+item20[] = {"",7,210,10.999992,231.000000,19.000008,239.000015,0.000000,""};
+item21[] = {"Cannon",4,218,-140.000000,210.000000,-50.000000,260.000000,0.000000,"Cannon"};
+item22[] = {"",7,210,-319.000000,231.000000,-311.000000,239.000015,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,14};
+link3[] = {3,13};
+link4[] = {4,9};
+link5[] = {5,12};
+link6[] = {6,7};
+link7[] = {6,10};
+link8[] = {7,11};
+link9[] = {7,20};
+link10[] = {8,15};
+link11[] = {9,8};
+link12[] = {10,4};
+link13[] = {11,5};
+link14[] = {12,9};
+link15[] = {13,8};
+link16[] = {14,3};
+link17[] = {14,6};
+link18[] = {15,2};
+link19[] = {16,18};
+link20[] = {17,16};
+link21[] = {19,22};
+link22[] = {20,17};
+link23[] = {20,21};
+link24[] = {21,19};
+link25[] = {22,12};
+globals[] = {10.000000,1,0,0,0,640,480,1,97,6316128,1,-552.023560,336.452148,345.131348,-231.776260,1403,911,1};
+window[] = {2,-1,-1,-1,-1,985,225,1665,225,3,1421};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "WeaponryUsage";
+  class States
+  {
+    /*%FSM<STATE "Start">*/
+    class Start
+    {
+      name = "Start";
+      init = /*%FSM<STATEINIT""">*/"// BIS_Mayday set in missionFlow and used also in Conversations.fsm" \n
+       "" \n
+       "// For use in HeliIntercepted.fsm" \n
+       "BIS_AAFired = false;" \n
+       "BIS_CannonFired = false;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Add_eventHandler";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Add_eventHandler">*/
+    class Add_eventHandler
+    {
+      name = "Add_eventHandler";
+      init = /*%FSM<STATEINIT""">*/"BIS_AA_missile = false;" \n
+       "BIS_AT_missile = false;" \n
+       "BIS_Bomb = false;" \n
+       "BIS_Cannon = false;" \n
+       "" \n
+       "// For ALCA" \n
+       "BIS_Plane addEventHandler [""FIRED"", {if (_this select 1 == ""missiles_ASRAAM"") then {BIS_AA_missile = true}}];" \n
+       "BIS_Plane addEventHandler [""FIRED"", {if (_this select 1 == ""missiles_SCALPEL"") then {BIS_AT_missile = true}}];" \n
+       "BIS_Plane addEventHandler [""FIRED"", {if (_this select 1 == ""GBU12BombLauncher"") then {BIS_Bomb = true}}];" \n
+       "BIS_Plane addEventHandler [""FIRED"", {if (_this select 1 == ""gatling_20mm"") then {BIS_Cannon = true}}];" \n
+       "" \n
+       "// For A-10" \n
+       "BIS_Plane addEventHandler [""FIRED"", {if (_this select 1 == ""Missile_AA_04_Plane_CAS_01_F"") then {BIS_AA_missile = true}}];" \n
+       "BIS_Plane addEventHandler [""FIRED"", {if (_this select 1 == ""Missile_AGM_02_Plane_CAS_01_F"") then {BIS_AT_missile = true}}];" \n
+       "BIS_Plane addEventHandler [""FIRED"", {if (_this select 1 == ""Bomb_04_Plane_CAS_01_F"") then {BIS_Bomb = true}}];" \n
+       "BIS_Plane addEventHandler [""FIRED"", {if (_this select 1 == ""Gatling_30mm_Plane_CAS_01_F"") then {BIS_Cannon = true}}];" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Mayday">*/
+        class Mayday
+        {
+          priority = 5.000000;
+          to="End";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_Mayday"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Bomb">*/
+        class Bomb
+        {
+          priority = 0.000000;
+          to="Bomb_dropped";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_Bomb"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Cannon">*/
+        class Cannon
+        {
+          priority = 0.000000;
+          to="Nothing";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_Cannon"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "AT_missile">*/
+        class AT_missile
+        {
+          priority = 0.000000;
+          to="AT_fired";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_AT_missile"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "AA_missile">*/
+        class AA_missile
+        {
+          priority = 0.000000;
+          to="AA_fired";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_AA_missile"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "AT_fired">*/
+    class AT_fired
+    {
+      name = "AT_fired";
+      init = /*%FSM<STATEINIT""">*/"// removeEventHandler" \n
+       "" \n
+       "BIS_AT_missile = false;" \n
+       "BIS_Plane removeAllEventHandlers ""Fired"";" \n
+       "" \n
+       "[] spawn {" \n
+       "" \n
+       "sleep 0.2;" \n
+       "" \n
+       """ATMissileFired"" call BIS_fnc_missionConversations;" \n
+       "" \n
+       "};" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Add_eventHandler";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Bomb_dropped">*/
+    class Bomb_dropped
+    {
+      name = "Bomb_dropped";
+      init = /*%FSM<STATEINIT""">*/"// removeEventHandler" \n
+       "" \n
+       "BIS_Bomb = false;" \n
+       "BIS_Plane removeAllEventHandlers ""Fired"";" \n
+       "" \n
+       "[] spawn {" \n
+       "" \n
+       "sleep 0.2;" \n
+       "" \n
+       """BombDropped"" call BIS_fnc_missionConversations;" \n
+       "" \n
+       "};" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Add_eventHandler";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "AA_fired">*/
+    class AA_fired
+    {
+      name = "AA_fired";
+      init = /*%FSM<STATEINIT""">*/"// removeEventHandler" \n
+       "" \n
+       "BIS_AA_missile = false;" \n
+       "BIS_Plane removeAllEventHandlers ""Fired"";" \n
+       "" \n
+       "// *************************" \n
+       "// For use in HeliIntercepted.fsm" \n
+       "// *************************" \n
+       "" \n
+       "BIS_AAFired = true;" \n
+       "" \n
+       "[] spawn {" \n
+       "" \n
+       "sleep 0.2;" \n
+       "" \n
+       """AAMissileFired"" call BIS_fnc_missionConversations;" \n
+       "" \n
+       "};" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Add_eventHandler";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "End">*/
+    class End
+    {
+      name = "End";
+      init = /*%FSM<STATEINIT""">*/"// This is the end..." \n
+       "" \n
+       "BIS_Plane removeAllEventHandlers ""Fired"";" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Nothing">*/
+    class Nothing
+    {
+      name = "Nothing";
+      init = /*%FSM<STATEINIT""">*/"// removeEventHandler" \n
+       "" \n
+       "BIS_Cannon = false;" \n
+       "BIS_Plane removeAllEventHandlers ""Fired"";" \n
+       "" \n
+       "// *************************" \n
+       "// For use in HeliIntercepted.fsm" \n
+       "// *************************" \n
+       "" \n
+       "BIS_CannonFired = true;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Add_eventHandler";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Start";
+  finalStates[] =
+  {
+    "End",
+  };
+};
+/*%FSM</COMPILE>*/

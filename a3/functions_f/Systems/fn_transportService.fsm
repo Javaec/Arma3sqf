@@ -1,0 +1,1445 @@
+/*%FSM<COMPILE "C:\bis\fsmeditor\scriptedFSM.cfg, heliTransport">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-225.000000,-700.000000,-125.000000,-650.000000,0.000000,"Init"};
+item1[] = {"not_in_pool",4,218,275.000000,-550.000000,375.000000,-500.000000,5.000000,"not in pool"};
+item2[] = {"___nothing__",1,250,275.000000,-475.000000,375.000000,-425.000000,0.000000,"< nothing >"};
+item3[] = {"phase__0",4,218,-625.000000,-550.000000,-525.000000,-500.000000,0.000000,"phase #0"};
+item4[] = {"support_unavaila",4,218,525.000000,-550.000000,625.000000,-500.000000,3.000000,"support" \n "unavailable"};
+item5[] = {"move_to_pick_up",2,250,-625.000000,-475.000000,-525.000000,-425.000000,0.000000,"move to pick up," \n "SET PHASE #1" \n "(or #2)"};
+item6[] = {"inform",1,250,525.000000,-475.000000,625.000000,-425.000000,0.000000,"inform"};
+item7[] = {"phase__1",4,218,-475.000000,-550.000000,-375.000000,-500.000000,0.000000,"phase #1"};
+item8[] = {"phase__2",4,218,-350.000000,-550.000000,-250.000000,-500.000000,0.000000,"phase #2"};
+item9[] = {"phase__3",4,218,-225.000000,-550.000000,-125.000000,-500.000000,0.000000,"phase #3"};
+item10[] = {"phase__4",4,218,-100.000000,-550.000000,0.000000,-500.000000,0.000000,"phase #4"};
+item11[] = {"___nothing___1",1,250,-350.000000,-475.000000,-250.000000,-425.000000,0.000000,"< nothing >"};
+item12[] = {"move_to_unload_position",2,250,-225.000000,-25.000000,-125.000000,25.000000,0.000000,"move to" \n "unload position," \n "SET PHASE #4"};
+item13[] = {"alternate_unload",1,4346,-100.000000,-475.000000,0.000000,-425.000000,0.000000,"alternate" \n "unload pos."};
+item14[] = {"phase__5",4,218,25.000000,-550.000000,125.000000,-500.000000,0.000000,"phase #5"};
+item15[] = {"___nothing___2",1,250,25.000000,-475.000000,125.000000,-425.000000,0.000000,"< nothing >"};
+item16[] = {"vehicle_destroye",4,218,400.000000,-550.000000,500.000000,-500.000000,4.000000,"vehicle" \n "destroyed"};
+item17[] = {"inform_1",1,250,400.000000,-475.000000,500.000000,-425.000000,0.000000,"inform"};
+item18[] = {"boarded_right_aw",4,218,150.000000,-550.000000,250.000000,-500.000000,2.000000,"boarded" \n "right away"};
+item19[] = {"__climb_up___SET",2,250,150.000000,-475.000000,250.000000,-425.000000,0.000000,"(climb up)," \n "SET PHASE #3"};
+item20[] = {"timeout",6,250,-750.000000,-325.000000,-650.000000,-275.000000,0.000000,"timeout"};
+item21[] = {"___nothing___3",2,250,-750.000000,-250.000000,-650.000000,-200.000000,0.000000,"< nothing >"};
+item22[] = {"at_pick_up",4,218,-750.000000,-175.000000,-650.000000,-125.000000,0.000000,"at pick-up"};
+item23[] = {"___nothing___4",2,250,-750.000000,-100.000000,-650.000000,-50.000000,0.000000,"< nothing >"};
+item24[] = {"aircraft",4,218,-750.000000,-475.000000,-650.000000,-425.000000,1.000000,"aircraft"};
+item25[] = {"fly_to_pick_up",2,250,-750.000000,-400.000000,-650.000000,-350.000000,0.000000,"fly to pick up"};
+item26[] = {"unit_far",4,218,-875.000000,-100.000000,-775.000000,-50.000000,0.000000,"unit far"};
+item27[] = {"unit_close",4,218,-750.000000,-25.000000,-650.000000,25.000000,0.000000,"unit close"};
+item28[] = {"stop_circling__fly",2,250,-875.000000,125.000000,-775.000000,175.000000,0.000000,"stop circling," \n "fly to pick up," \n "SET PHASE #2"};
+item29[] = {"unit_close",4,218,-1000.000000,125.000000,-900.000000,175.000000,0.000000,"unit close"};
+item30[] = {"aircraft_ready",4,218,-875.000000,200.000000,-775.000000,250.000000,0.000000,"aircraft" \n "ready"};
+item31[] = {"land__SET_PHASE",2,250,-750.000000,200.000000,-650.000000,250.000000,0.000000,"land," \n "SET PHASE #2"};
+item32[] = {"unit_in_vehicle",4,218,-625.000000,200.000000,-525.000000,250.000000,0.000000,"unit in" \n "vehicle"};
+item33[] = {"at_pick_up__unit",4,218,-625.000000,-400.000000,-525.000000,-350.000000,0.000000,"at pick-up," \n "unit close"};
+item34[] = {"SET_PHASE__2",2,250,-625.000000,-325.000000,-525.000000,-275.000000,0.000000,"SET PHASE #2"};
+item35[] = {"__climb_up_",2,250,-625.000000,275.000000,-525.000000,325.000000,0.000000,"(climb up)"};
+item36[] = {"unload_allowed",4,218,-750.000000,350.000000,-650.000000,400.000000,1.000000,"unload" \n "allowed"};
+item37[] = {"SET_PHASE__3",1,250,-875.000000,350.000000,-775.000000,400.000000,0.000000,"SET PHASE #3"};
+item38[] = {"___always__",4,218,-625.000000,350.000000,-525.000000,400.000000,0.000000,"< always >"};
+item39[] = {"move_to_predefined",2,250,-625.000000,425.000000,-525.000000,475.000000,0.000000,"move to" \n "predefined pos.," \n "SET PHASE #5"};
+item40[] = {"timeout",6,250,-625.000000,500.000000,-525.000000,550.000000,0.000000,"timeout"};
+item41[] = {"___nothing___5",2,250,-625.000000,575.000000,-525.000000,625.000000,0.000000,"< nothing >"};
+item42[] = {"at_the_unload_po",4,218,-225.000000,575.000000,-125.000000,625.000000,0.000000,"at the" \n "unload pos"};
+item43[] = {"SET_PHASE__5",2,250,-225.000000,875.000000,-125.000000,925.000000,0.000000,"SET PHASE #5"};
+item44[] = {"cancelled",4,218,-475.000000,-175.000000,-375.000000,-125.000000,5.000000,"cancelled"};
+item45[] = {"",7,210,-504.000000,-454.000000,-496.000000,-446.000000,0.000000,""};
+item46[] = {"aircraft",4,218,-100.000000,875.000000,0.000000,925.000000,1.000000,"aircraft"};
+item47[] = {"land",2,250,-100.000000,950.000000,0.000000,1000.000000,0.000000,"land"};
+item48[] = {"low_enough",4,218,25.000000,1025.000000,125.000000,1075.000000,0.000000,"low enough"};
+item49[] = {"unit_out",4,218,-350.000000,950.000000,-250.000000,1000.000000,1.000000,"unit out"};
+item50[] = {"stuck",4,218,25.000000,875.000000,125.000000,925.000000,1.000000,"stuck"};
+item51[] = {"",7,210,-504.000000,-379.000000,-496.000000,-371.000000,0.000000,""};
+item52[] = {"___nothing___6",2,250,-350.000000,1025.000000,-250.000000,1075.000000,0.000000,"< nothing >"};
+item53[] = {"SET_PHASE__3_1",1,250,25.000000,950.000000,125.000000,1000.000000,0.000000,"SET PHASE #3"};
+item54[] = {"RTB__SET_PHASE_",2,250,-475.000000,950.000000,-375.000000,1000.000000,0.000000,"RTB," \n "SET PHASE #0"};
+item55[] = {"timeout",6,250,-475.000000,1025.000000,-375.000000,1075.000000,0.000000,"timeout"};
+item56[] = {"___nothing___7",2,250,-475.000000,1100.000000,-375.000000,1150.000000,0.000000,"< nothing >"};
+item57[] = {"at_base",4,218,-350.000000,1100.000000,-250.000000,1150.000000,0.000000,"at base"};
+item58[] = {"land_1",1,250,-350.000000,1325.000000,-250.000000,1375.000000,0.000000,"land"};
+item59[] = {"___nothing___8",2,250,-350.000000,1175.000000,-250.000000,1225.000000,0.000000,"< nothing >"};
+item60[] = {"___always__",8,218,-475.000000,1175.000000,-375.000000,1225.000000,0.000000,"< always >"};
+item61[] = {"aircraft",4,218,-350.000000,1250.000000,-250.000000,1300.000000,1.000000,"aircraft"};
+item62[] = {"",7,210,-504.000000,-304.000000,-496.000000,-296.000000,0.000000,""};
+item63[] = {"new_mission",4,218,-600.000000,1100.000000,-500.000000,1150.000000,0.000000,"new mission"};
+item64[] = {"___nothing___9",1,250,-600.000000,1175.000000,-500.000000,1225.000000,0.000000,"< nothing >"};
+item65[] = {"",7,210,-504.000000,-229.000000,-496.000000,-221.000000,0.000000,""};
+item66[] = {"__stop_circling",1,250,-475.000000,-475.000000,-375.000000,-425.000000,0.000000,"(stop circling)," \n "move to" \n "new pick-up"};
+item67[] = {"new_pick_up",4,218,-1000.000000,-25.000000,-900.000000,25.000000,0.000000,"new" \n "pick-up"};
+item68[] = {"initialize_circling",2,250,-875.000000,-25.000000,-775.000000,25.000000,0.000000,"initialize" \n "circling" \n "procedure"};
+item69[] = {"aircraft_ready",4,218,-875.000000,50.000000,-775.000000,100.000000,0.000000,"aircraft" \n "ready"};
+item70[] = {"continue_circlin",2,250,-1000.000000,50.000000,-900.000000,100.000000,0.000000,"continue circling"};
+item71[] = {"",7,210,-504.000000,-154.000000,-496.000000,-146.000000,0.000000,""};
+item72[] = {"",7,210,-504.000000,-4.000000,-496.000000,4.000000,0.000000,""};
+item73[] = {"",7,210,-504.000000,71.000000,-496.000000,79.000000,0.000000,""};
+item74[] = {"",7,210,-504.000000,146.000000,-496.000000,154.000000,0.000000,""};
+item75[] = {"",7,210,-504.000000,221.000000,-496.000000,229.000000,0.000000,""};
+item76[] = {"",7,210,-504.000000,146.000000,-496.000000,154.000000,0.000000,""};
+item77[] = {"___nothing___10",2,250,-1000.000000,-175.000000,-900.000000,-125.000000,0.000000,"< nothing >"};
+item78[] = {"supply_drop",4,218,-350.000000,-100.000000,-250.000000,-50.000000,1.000000,"supply drop"};
+item79[] = {"drop_the_cargo",2,250,-350.000000,-25.000000,-250.000000,25.000000,0.000000,"drop the cargo"};
+item80[] = {"cargo_dropped",4,218,-350.000000,50.000000,-250.000000,100.000000,0.000000,"cargo dropped"};
+item81[] = {"marked_an_LZ",4,218,75.000000,-400.000000,175.000000,-350.000000,0.000000,"marked" \n "an LZ"};
+item82[] = {"left",4,218,225.000000,-400.000000,325.000000,-350.000000,0.000000,"left"};
+item83[] = {"cancel_the_support",1,250,225.000000,-325.000000,325.000000,-275.000000,0.000000,"cancel" \n "the support run"};
+item84[] = {"___nothing___11",2,250,-225.000000,-475.000000,-125.000000,-425.000000,0.000000,"< nothing >"};
+item85[] = {"unload_far_enoug",4,218,-225.000000,-400.000000,-125.000000,-350.000000,1.000000,"unload" \n "far enough"};
+item86[] = {"too_close",4,218,-100.000000,-400.000000,0.000000,-350.000000,0.000000,"too close"};
+item87[] = {"new_pick_up",4,218,-750.000000,275.000000,-650.000000,325.000000,0.000000,"new" \n "pick-up"};
+item88[] = {"___nothing___12",2,250,-875.000000,275.000000,-775.000000,325.000000,0.000000,"< nothing >"};
+item89[] = {"new_unload",4,218,-100.000000,1025.000000,0.000000,1075.000000,0.000000,"new" \n "unload"};
+item90[] = {"___nothing___13",2,250,-100.000000,575.000000,0.000000,625.000000,0.000000,"< nothing >"};
+link0[] = {0,1};
+link1[] = {0,3};
+link2[] = {0,4};
+link3[] = {0,7};
+link4[] = {0,8};
+link5[] = {0,9};
+link6[] = {0,10};
+link7[] = {0,14};
+link8[] = {0,16};
+link9[] = {0,18};
+link10[] = {1,2};
+link11[] = {3,5};
+link12[] = {4,6};
+link13[] = {5,24};
+link14[] = {5,33};
+link15[] = {5,45};
+link16[] = {7,66};
+link17[] = {8,11};
+link18[] = {9,84};
+link19[] = {10,13};
+link20[] = {12,42};
+link21[] = {12,49};
+link22[] = {14,15};
+link23[] = {16,17};
+link24[] = {18,19};
+link25[] = {19,81};
+link26[] = {19,82};
+link27[] = {20,21};
+link28[] = {21,22};
+link29[] = {21,65};
+link30[] = {22,23};
+link31[] = {23,26};
+link32[] = {23,27};
+link33[] = {23,78};
+link34[] = {24,25};
+link35[] = {25,20};
+link36[] = {25,51};
+link37[] = {26,68};
+link38[] = {27,31};
+link39[] = {28,30};
+link40[] = {28,74};
+link41[] = {29,28};
+link42[] = {30,31};
+link43[] = {31,32};
+link44[] = {31,75};
+link45[] = {31,87};
+link46[] = {32,35};
+link47[] = {33,34};
+link48[] = {34,32};
+link49[] = {34,62};
+link50[] = {35,36};
+link51[] = {35,38};
+link52[] = {36,37};
+link53[] = {38,39};
+link54[] = {39,40};
+link55[] = {40,41};
+link56[] = {41,42};
+link57[] = {41,49};
+link58[] = {42,43};
+link59[] = {43,46};
+link60[] = {43,49};
+link61[] = {44,54};
+link62[] = {45,51};
+link63[] = {46,47};
+link64[] = {47,48};
+link65[] = {47,49};
+link66[] = {47,50};
+link67[] = {47,89};
+link68[] = {48,52};
+link69[] = {49,54};
+link70[] = {50,53};
+link71[] = {51,62};
+link72[] = {52,49};
+link73[] = {52,89};
+link74[] = {54,55};
+link75[] = {55,56};
+link76[] = {56,57};
+link77[] = {56,63};
+link78[] = {57,59};
+link79[] = {59,60};
+link80[] = {59,61};
+link81[] = {60,64};
+link82[] = {61,58};
+link83[] = {62,65};
+link84[] = {63,64};
+link85[] = {65,71};
+link86[] = {67,77};
+link87[] = {68,69};
+link88[] = {68,72};
+link89[] = {69,70};
+link90[] = {70,29};
+link91[] = {70,67};
+link92[] = {70,69};
+link93[] = {70,73};
+link94[] = {71,44};
+link95[] = {72,71};
+link96[] = {73,72};
+link97[] = {75,76};
+link98[] = {76,73};
+link99[] = {77,22};
+link100[] = {77,71};
+link101[] = {78,79};
+link102[] = {79,80};
+link103[] = {80,54};
+link104[] = {81,15};
+link105[] = {82,83};
+link106[] = {84,85};
+link107[] = {84,86};
+link108[] = {85,12};
+link109[] = {86,15};
+link110[] = {87,88};
+link111[] = {88,22};
+link112[] = {89,90};
+link113[] = {90,42};
+globals[] = {25.000000,1,0,0,0,640,480,1,271,6316128,1,-669.544250,203.716629,311.494537,-576.617676,882,897,1};
+window[] = {2,-1,-1,-1,-1,770,22,982,22,3,899};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "heliTransport";
+  class States
+  {
+    /*%FSM<STATE "Init">*/
+    class Init
+    {
+      name = "Init";
+      init = /*%FSM<STATEINIT""">*/"private [""_t"", ""_clicker"", ""_veh"", ""_pos"", ""_allowed"", ""_plannedLZ"", ""_supportType"", ""_passedPos""];" \n
+       "" \n
+       "_clicker = player;" \n
+       "_veh = vehicle (_this select 1);" \n
+       "_pos = _this select 2;" \n
+       "_allowed = _this select 3;" \n
+       "_plannedLZ = _this select 4;" \n
+       "_supportType = _this select 5;" \n
+       "" \n
+       "debuglog _this;" \n
+       "" \n
+       "if ((_veh getVariable ""supPhase"") == 0 && !(""pickup"" in _allowed)) then {_pos = _plannedLZ};" \n
+       "" \n
+       "if (markerPos ""BIS_transportMarker"" select 0 == 0) then {" \n
+       "	_marker = createMarkerLocal [""BIS_transportMarker"", [-500, -500, 0]];" \n
+       "	_marker setMarkerShapeLocal ""ICON"";" \n
+       "	""BIS_transportMarker"" setMarkerTypeLocal ""EMPTY""" \n
+       "};" \n
+       "" \n
+       "if (format [""%1"", _veh getVariable ""initPos""] == ""<null>"") then {_veh setVariable [""initPos"", position _veh, TRUE]};" \n
+       "if (format [""%1"", _veh getVariable ""circling""] == ""<null>"") then {_veh setVariable [""circling"", FALSE, TRUE]};" \n
+       "if (format [""%1"", _veh getVariable ""name""] == ""<null>"") then {_veh setVariable [""name"", getText ((configFile >> ""cfgVehicles"" >> (typeOf _veh)) >> ""displayName""), TRUE]};" \n
+       "if (format [""%1"", _veh getVariable ""noTSSHint""] == ""<null>"") then {_veh setVariable [""noTSSHint"", FALSE, TRUE]};" \n
+       "" \n
+       "_procedure_circling = {" \n
+       "	_circlePos1 = [(_pos select 0) + 400, (_pos select 1), 0];" \n
+       "	_circlePos2 = [(_pos select 0), (_pos select 1) + 400, 0];" \n
+       "	_circlePos3 = [(_pos select 0) - 400, (_pos select 1), 0];" \n
+       "	_circlePos4 = [(_pos select 0), (_pos select 1) - 400, 0];" \n
+       "" \n
+       "	while {TRUE} do {" \n
+       "		[nil,_veh,""loc"",rMOVE,_circlePos1] call RE;" \n
+       "		" \n
+       "		waitUntil {_veh distance _circlePos1 < 400 || !(_veh getVariable ""circling"") || (_veh getVariable ""onMission"") distance markerPos ""BIS_transportMarker"" < 200};" \n
+       "		if (!(_veh getVariable ""circling"") || (_veh getVariable ""onMission"") distance markerPos ""BIS_transportMarker"" < 200) exitWith {" \n
+       "		[nil,_veh,""loc"",rMOVE,markerPos ""BIS_transportMarker""] call RE;" \n
+       "		_veh setVariable [""circling"", FALSE, TRUE]};" \n
+       "		[nil,_veh,""loc"",rMOVE,_circlePos2] call RE;" \n
+       "		waitUntil {_veh distance _circlePos2 < 400 || !(_veh getVariable ""circling"") || (_veh getVariable ""onMission"") distance markerPos ""BIS_transportMarker"" < 200};" \n
+       "		if (!(_veh getVariable ""circling"") || (_veh getVariable ""onMission"") distance markerPos ""BIS_transportMarker"" < 200) exitWith {" \n
+       "		[nil,_veh,""loc"",rMOVE,markerPos ""BIS_transportMarker""] call RE;" \n
+       "		_veh setVariable [""circling"", FALSE, TRUE]};" \n
+       "		[nil,_veh,""loc"",rMOVE,_circlePos3] call RE;" \n
+       "		waitUntil {_veh distance _circlePos3 < 400 || !(_veh getVariable ""circling"") || (_veh getVariable ""onMission"") distance markerPos ""BIS_transportMarker"" < 200};" \n
+       "		if (!(_veh getVariable ""circling"") || (_veh getVariable ""onMission"") distance markerPos ""BIS_transportMarker"" < 200) exitWith {" \n
+       "		[nil,_veh,""loc"",rMOVE,markerPos ""BIS_transportMarker""] call RE;" \n
+       "		_veh setVariable [""circling"", FALSE, TRUE]};" \n
+       "		[nil,_veh,""loc"",rMOVE,_circlePos4] call RE;" \n
+       "		waitUntil {_veh distance _circlePos4 < 400 || !(_veh getVariable ""circling"") || (_veh getVariable ""onMission"") distance markerPos ""BIS_transportMarker"" < 200};" \n
+       "		if (!(_veh getVariable ""circling"") || (_veh getVariable ""onMission"") distance markerPos ""BIS_transportMarker"" < 200) exitWith {" \n
+       "		[nil,_veh,""loc"",rMOVE,markerPos ""BIS_transportMarker""] call RE;" \n
+       "		_veh setVariable [""circling"", FALSE, TRUE]}" \n
+       "	}" \n
+       "}"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "not_in_pool">*/
+        class not_in_pool
+        {
+          priority = 5.000000;
+          to="___nothing__";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(_clicker in (_veh getVariable ""supPool""))"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "vehicle_destroye">*/
+        class vehicle_destroye
+        {
+          priority = 4.000000;
+          to="inform_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(canMove _veh)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "support_unavaila">*/
+        class support_unavaila
+        {
+          priority = 3.000000;
+          to="inform";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""onMission"") != _clicker && !(isNull (_veh getVariable ""onMission""))"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "boarded_right_aw">*/
+        class boarded_right_aw
+        {
+          priority = 2.000000;
+          to="__climb_up___SET";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_clicker in _veh && (_veh getVariable ""supPhase"") <= 3 && (_pos distance (position _clicker)) < 0.5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "phase__1">*/
+        class phase__1
+        {
+          priority = 0.000000;
+          to="__stop_circling";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""supPhase"") == 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "phase__4">*/
+        class phase__4
+        {
+          priority = 0.000000;
+          to="alternate_unload";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""supPhase"") == 4"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "phase__5">*/
+        class phase__5
+        {
+          priority = 0.000000;
+          to="___nothing___2";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""supPhase"") == 5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "phase__0">*/
+        class phase__0
+        {
+          priority = 0.000000;
+          to="move_to_pick_up";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""supPhase"") == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "phase__2">*/
+        class phase__2
+        {
+          priority = 0.000000;
+          to="___nothing___1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""supPhase"") == 2"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "phase__3">*/
+        class phase__3
+        {
+          priority = 0.000000;
+          to="___nothing___11";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""supPhase"") == 3"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing__">*/
+    class ___nothing__
+    {
+      name = "___nothing__";
+      init = /*%FSM<STATEINIT""">*/"hint localize ""str_5po_c7c_support"""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "move_to_pick_up">*/
+    class move_to_pick_up
+    {
+      name = "move_to_pick_up";
+      init = /*%FSM<STATEINIT""">*/"_veh setVariable [""onMission"", _clicker, TRUE];" \n
+       "" \n
+       "//	RADIO - CALLING TRANSPORT" \n
+       "if (!(isNil {_veh getVariable ""TSS_request""})) then {call (_veh getVariable ""TSS_request"")};" \n
+       "if (!(isNil {_veh getVariable ""SDS_click_drop""})) then {call (_veh getVariable ""SDS_click_drop"")};" \n
+       "	" \n
+       """BIS_transportMarker"" setMarkerPosLocal _pos;" \n
+       """BIS_transportMarker"" setMarkerTypeLocal ""mil_Pickup"";" \n
+       """BIS_transportMarker"" setMarkerSizeLocal [0.5, 0.5];" \n
+       """BIS_transportMarker"" setMarkerColorLocal ""ColorYellow"";" \n
+       "if (_supportType == ""transport"") then {" \n
+       "	""BIS_transportMarker"" setMarkerTextLocal localize ""STR_heliTransport.fsm_FSM_States_heli_flies_to_pickup_pos__1""" \n
+       "} else {" \n
+       "	""BIS_transportMarker"" setMarkerTextLocal localize ""STR_suppyDrop_Dropzone"";" \n
+       "	_veh flyInHeight 250; " \n
+       "};" \n
+       "" \n
+       "if (!(_veh isKindOf ""Air"")) then {[nil,_veh, ""loc"",rMOVE,_pos] call RE};" \n
+       "if (""pickup"" in _allowed) then {_veh setVariable [""supPhase"", 1, TRUE]} else {_veh setVariable [""supPhase"", 2, TRUE]};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "cancelled">*/
+        class cancelled
+        {
+          priority = 5.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNull (_veh getVariable ""onMission"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "aircraft">*/
+        class aircraft
+        {
+          priority = 1.000000;
+          to="fly_to_pick_up";
+          precondition = /*%FSM<CONDPRECONDITION""">*/"_veh isKindOf ""Air"""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_veh isKindOf ""Air"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "at_pick_up__unit">*/
+        class at_pick_up__unit
+        {
+          priority = 0.000000;
+          to="SET_PHASE__2";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"unitReady _veh && (_veh getVariable ""onMission"") distance _veh < 10"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "inform">*/
+    class inform
+    {
+      name = "inform";
+      init = /*%FSM<STATEINIT""">*/"hint format [localize ""STR_transportService_Busy"", _veh getVariable ""name""]"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___1">*/
+    class ___nothing___1
+    {
+      name = "___nothing___1";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "move_to_unload_position">*/
+    class move_to_unload_position
+    {
+      name = "move_to_unload_position";
+      init = /*%FSM<STATEINIT""">*/"_nic = [nil,_veh, ""loc"", rMOVE, _pos] call RE;" \n
+       "_veh setVariable [""supPhase"", 4, TRUE];" \n
+       "" \n
+       """BIS_transportMarker"" setMarkerPosLocal _pos;" \n
+       """BIS_transportMarker"" setMarkerTypeLocal ""mil_End"";" \n
+       """BIS_transportMarker"" setMarkerSizeLocal [0.5, 0.5];" \n
+       """BIS_transportMarker"" setMarkerColorLocal ""ColorYellow"";" \n
+       """BIS_transportMarker"" setMarkerTextLocal localize ""STR_heliTransport.fsm_FSM_States_heli_flies_to_unload_pos__0"";" \n
+       "" \n
+       "//	RADIO - TRANSPORT CONFIRMS UNLOAD POSITION" \n
+       "if (!(isNil {_veh getVariable ""TSS_click_unload""})) then {call (_veh getVariable ""TSS_click_unload"")};" \n
+       "" \n
+       "" \n
+       "_t = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unit_out">*/
+        class unit_out
+        {
+          priority = 1.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{_x in _veh} count units group (_veh getVariable ""onMission"") == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "at_the_unload_po">*/
+        class at_the_unload_po
+        {
+          priority = 0.000000;
+          to="SET_PHASE__5";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"unitReady _veh"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "alternate_unload">*/
+    class alternate_unload
+    {
+      name = "alternate_unload";
+      init = /*%FSM<STATEINIT""">*/"[nil,_veh,""loc"",rMOVE,_pos] call RE;" \n
+       "_nic = [nil, _veh, ""loc"", rLAND, ""NONE""] call RE;" \n
+       "" \n
+       """BIS_transportMarker"" setMarkerPosLocal _pos;" \n
+       """BIS_transportMarker"" setMarkerTypeLocal ""mil_End"";" \n
+       "" \n
+       "//	RADIO - TRANSPORT CONFIRMS UNLOAD POSITION" \n
+       "if (!(isNil {_veh getVariable ""TSS_click_unload""})) then {call (_veh getVariable ""TSS_click_unload"")};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___2">*/
+    class ___nothing___2
+    {
+      name = "___nothing___2";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "inform_1">*/
+    class inform_1
+    {
+      name = "inform_1";
+      init = /*%FSM<STATEINIT""">*/"""BIS_transportMarker"" setMarkerTypeLocal ""EMPTY"";" \n
+       "if (!(_veh getVariable ""noTSSHint"")) then {hint format [localize ""STR_transportService_Destroyed"", _veh getVariable ""name""]};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "__climb_up___SET">*/
+    class __climb_up___SET
+    {
+      name = "__climb_up___SET";
+      init = /*%FSM<STATEINIT""">*/"_veh setVariable [""onMission"", _clicker, TRUE];" \n
+       "//[nil,_veh,""loc"",rMOVE, position _veh] call RE;" \n
+       "driver _veh action [""ENGINEON"", _veh];" \n
+       "//hint localize ""STR_heliTransport.fsm_FSM_States_heli_flies_to_pickup_pos__0"";" \n
+       "" \n
+       "_veh setVariable [""supPhase"", 3, TRUE];" \n
+       "showCommandingMenu ""#USER:BIS_MENU_SOM_Support"";" \n
+       "" \n
+       "//	RADIO - TRANSPORT GREETS CREW" \n
+       "if (!(isNil {_veh getVariable ""TSS_boarded""})) then {call (_veh getVariable ""TSS_boarded"")};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "left">*/
+        class left
+        {
+          priority = 0.000000;
+          to="cancel_the_support";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(_clicker in _veh)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "marked_an_LZ">*/
+        class marked_an_LZ
+        {
+          priority = 0.000000;
+          to="___nothing___2";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""supPhase"") == 4"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___3">*/
+    class ___nothing___3
+    {
+      name = "___nothing___3";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "cancelled">*/
+        class cancelled
+        {
+          priority = 5.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNull (_veh getVariable ""onMission"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "at_pick_up">*/
+        class at_pick_up
+        {
+          priority = 0.000000;
+          to="___nothing___4";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"unitReady _veh || (if (_supportType == ""supplyDrop"") then {((_veh distance _pos) < 450) || unitReady _veh} else {false})"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___4">*/
+    class ___nothing___4
+    {
+      name = "___nothing___4";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "supply_drop">*/
+        class supply_drop
+        {
+          priority = 1.000000;
+          to="drop_the_cargo";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_supportType == ""supplyDrop"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "unit_close">*/
+        class unit_close
+        {
+          priority = 0.000000;
+          to="land__SET_PHASE";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""onMission"") distance _veh < 200"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "unit_far">*/
+        class unit_far
+        {
+          priority = 0.000000;
+          to="initialize_circling";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""onMission"") distance _veh >= 200 && ((position _veh) select 2) > 10"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "fly_to_pick_up">*/
+    class fly_to_pick_up
+    {
+      name = "fly_to_pick_up";
+      init = /*%FSM<STATEINIT""">*/"if (_veh distance _pos > 100) then {[nil,_veh, ""loc"",rMOVE,_pos] call RE; _nic = [nil, _veh, ""loc"", rLAND, ""NONE""] call RE} else {driver _veh action [""ENGINEON"", _veh]};" \n
+       "" \n
+       "_t = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "cancelled">*/
+        class cancelled
+        {
+          priority = 5.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNull (_veh getVariable ""onMission"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "timeout">*/
+        class timeout
+        {
+          priority = 0.000000;
+          to="___nothing___3";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"time > (_t + 10)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "stop_circling__fly">*/
+    class stop_circling__fly
+    {
+      name = "stop_circling__fly";
+      init = /*%FSM<STATEINIT""">*/"_veh setVariable [""circling"", FALSE, TRUE];" \n
+       "[nil,_veh, ""loc"",rMOVE,markerPos ""BIS_transportMarker""] call RE;" \n
+       "//_veh setVariable [""supPhase"", 2, TRUE];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "aircraft_ready">*/
+        class aircraft_ready
+        {
+          priority = 0.000000;
+          to="land__SET_PHASE";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"unitReady _veh"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "land__SET_PHASE">*/
+    class land__SET_PHASE
+    {
+      name = "land__SET_PHASE";
+      init = /*%FSM<STATEINIT""">*/"if ((position _veh) select 2 > 10) then {_nic = [nil, _veh, ""loc"", rLAND, ""GET IN""] call RE};" \n
+       "//_veh setVariable [""supPhase"", 2, TRUE];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "cancelled">*/
+        class cancelled
+        {
+          priority = 5.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNull (_veh getVariable ""onMission"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "new_pick_up">*/
+        class new_pick_up
+        {
+          priority = 0.000000;
+          to="___nothing___12";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(unitReady _veh)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "unit_in_vehicle">*/
+        class unit_in_vehicle
+        {
+          priority = 0.000000;
+          to="__climb_up_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""onMission"") in _veh"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "SET_PHASE__2">*/
+    class SET_PHASE__2
+    {
+      name = "SET_PHASE__2";
+      init = /*%FSM<STATEINIT""">*/"//_veh setVariable [""supPhase"", 2, TRUE];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "cancelled">*/
+        class cancelled
+        {
+          priority = 5.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNull (_veh getVariable ""onMission"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "unit_in_vehicle">*/
+        class unit_in_vehicle
+        {
+          priority = 0.000000;
+          to="__climb_up_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""onMission"") in _veh"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "__climb_up_">*/
+    class __climb_up_
+    {
+      name = "__climb_up_";
+      init = /*%FSM<STATEINIT""">*/"//_nic = [nil, _veh, ""loc"", rMOVE, position _veh] call RE;" \n
+       "" \n
+       "//	RADIO - TRANSPORT GREETS CREW" \n
+       "if (!(isNil {_veh getVariable ""TSS_boarded""})) then {call (_veh getVariable ""TSS_boarded"")};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unload_allowed">*/
+        class unload_allowed
+        {
+          priority = 1.000000;
+          to="SET_PHASE__3";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"""unload"" in _allowed"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "___always__">*/
+        class ___always__
+        {
+          priority = 0.000000;
+          to="move_to_predefined";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"if (!(isNil ""BIS_grpNManhattan"")) then {{_x in _veh} count units BIS_grpMain == count units BIS_grpMain} else {true}"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "SET_PHASE__3">*/
+    class SET_PHASE__3
+    {
+      name = "SET_PHASE__3";
+      init = /*%FSM<STATEINIT""">*/"//hint localize ""STR_heliTransport.fsm_FSM_States_heli_flies_to_pickup_pos__0"";" \n
+       "_veh setVariable [""supPhase"", 3, TRUE];" \n
+       "" \n
+       "if (""unload"" in _allowed) then {showCommandingMenu ""#USER:BIS_MENU_SOM_Support""};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "move_to_predefined">*/
+    class move_to_predefined
+    {
+      name = "move_to_predefined";
+      init = /*%FSM<STATEINIT""">*/"_nic = [nil,_veh, ""loc"", rMOVE, _plannedLZ] call RE;" \n
+       "_veh setVariable [""supPhase"", 5, TRUE];" \n
+       "" \n
+       """BIS_transportMarker"" setMarkerPosLocal _plannedLZ;" \n
+       """BIS_transportMarker"" setMarkerTypeLocal ""mil_End"";" \n
+       """BIS_transportMarker"" setMarkerSizeLocal [0.5, 0.5];" \n
+       """BIS_transportMarker"" setMarkerColorLocal ""ColorYellow"";" \n
+       """BIS_transportMarker"" setMarkerTextLocal localize ""STR_heliTransport.fsm_FSM_States_heli_flies_to_unload_pos__0"";" \n
+       "	" \n
+       "//	RADIO - TRANSPORT CONFIRMS UNLOAD POSITION" \n
+       "if (!(isNil {_veh getVariable ""TSS_click_unload""})) then {call (_veh getVariable ""TSS_click_unload"")};" \n
+       "" \n
+       "_t = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "timeout">*/
+        class timeout
+        {
+          priority = 0.000000;
+          to="___nothing___5";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"time > _t + 10"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___5">*/
+    class ___nothing___5
+    {
+      name = "___nothing___5";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unit_out">*/
+        class unit_out
+        {
+          priority = 1.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{_x in _veh} count units group (_veh getVariable ""onMission"") == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "at_the_unload_po">*/
+        class at_the_unload_po
+        {
+          priority = 0.000000;
+          to="SET_PHASE__5";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"unitReady _veh"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "SET_PHASE__5">*/
+    class SET_PHASE__5
+    {
+      name = "SET_PHASE__5";
+      init = /*%FSM<STATEINIT""">*/"//_veh setVariable [""supPhase"", 5, TRUE];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unit_out">*/
+        class unit_out
+        {
+          priority = 1.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{_x in _veh} count units group (_veh getVariable ""onMission"") == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "aircraft">*/
+        class aircraft
+        {
+          priority = 1.000000;
+          to="land";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_veh isKindOf ""Air"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "land">*/
+    class land
+    {
+      name = "land";
+      init = /*%FSM<STATEINIT""">*/"_nic = [nil, _veh, ""loc"", rLAND, ""GET OUT""] call RE;" \n
+       "" \n
+       "_t = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unit_out">*/
+        class unit_out
+        {
+          priority = 1.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{_x in _veh} count units group (_veh getVariable ""onMission"") == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "stuck">*/
+        class stuck
+        {
+          priority = 1.000000;
+          to="SET_PHASE__3_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"landResult _veh == ""NotFound"" && time > _t + 5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "new_unload">*/
+        class new_unload
+        {
+          priority = 0.000000;
+          to="___nothing___13";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(unitReady _veh)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "low_enough">*/
+        class low_enough
+        {
+          priority = 0.000000;
+          to="___nothing___6";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(position _veh) select 2 < 10"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___6">*/
+    class ___nothing___6
+    {
+      name = "___nothing___6";
+      init = /*%FSM<STATEINIT""">*/"_lowEnough = TRUE;" \n
+       "" \n
+       "//	RADIO - TRANSPORT ORDERS UNITS TO GET OUT" \n
+       "if (!(isNil {_veh getVariable ""TSS_finished""})) then {call (_veh getVariable ""TSS_finished"")};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unit_out">*/
+        class unit_out
+        {
+          priority = 1.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{_x in _veh} count units group (_veh getVariable ""onMission"") == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "new_unload">*/
+        class new_unload
+        {
+          priority = 0.000000;
+          to="___nothing___13";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(unitReady _veh)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "SET_PHASE__3_1">*/
+    class SET_PHASE__3_1
+    {
+      name = "SET_PHASE__3_1";
+      init = /*%FSM<STATEINIT""">*/"_veh setVariable [""supPhase"", 3, TRUE];" \n
+       "showCommandingMenu ""#USER:BIS_MENU_SOM_Support"";" \n
+       "" \n
+       "_veh land ""None"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "RTB__SET_PHASE_">*/
+    class RTB__SET_PHASE_
+    {
+      name = "RTB__SET_PHASE_";
+      init = /*%FSM<STATEINIT""">*/"""BIS_transportMarker"" setMarkerType ""EMPTY"";" \n
+       "_nic = [nil, _veh, ""loc"", rMOVE, (_veh getVariable ""initPos"")] call RE;" \n
+       "_veh setVariable [""onMission"", objNull, TRUE];" \n
+       "_veh setVariable [""supPhase"", 0, TRUE];" \n
+       "//_veh setVariable [""supPool"", [], TRUE];" \n
+       "" \n
+       "_t = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "timeout">*/
+        class timeout
+        {
+          priority = 0.000000;
+          to="___nothing___7";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"time > _t + 10"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___7">*/
+    class ___nothing___7
+    {
+      name = "___nothing___7";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "new_mission">*/
+        class new_mission
+        {
+          priority = 0.000000;
+          to="___nothing___9";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(isNull (_veh getVariable ""onMission""))"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "at_base">*/
+        class at_base
+        {
+          priority = 0.000000;
+          to="___nothing___8";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"unitReady _veh"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "land_1">*/
+    class land_1
+    {
+      name = "land_1";
+      init = /*%FSM<STATEINIT""">*/"_nic = [nil, _veh, ""loc"", rLAND, ""LAND""] call RE;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___8">*/
+    class ___nothing___8
+    {
+      name = "___nothing___8";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "aircraft">*/
+        class aircraft
+        {
+          priority = 1.000000;
+          to="land_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_veh isKindOf ""Air"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "___always__">*/
+        class ___always__
+        {
+          priority = 0.000000;
+          to="___nothing___9";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___9">*/
+    class ___nothing___9
+    {
+      name = "___nothing___9";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "__stop_circling">*/
+    class __stop_circling
+    {
+      name = "__stop_circling";
+      init = /*%FSM<STATEINIT""">*/"_veh setVariable [""circling"", FALSE, TRUE];" \n
+       "[nil,_veh,""loc"",rMOVE, _pos] call RE;" \n
+       """BIS_transportMarker"" setMarkerPosLocal _pos;" \n
+       "" \n
+       "//	RADIO - TRANSPORT CONFIRMS NEW PICK-UP POSITION" \n
+       "if (!(isNil {_veh getVariable ""TSS_click_pickup""})) then {call (_veh getVariable ""TSS_click_pickup"")};" \n
+       "" \n
+       "//	RADIO -SUPPLY DROP CONFIRMS NEW DROP POSITION" \n
+       "if (!(isNil {_veh getVariable ""SDS_click_drop""})) then {call (_veh getVariable ""SDS_click_drop"")};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "initialize_circling">*/
+    class initialize_circling
+    {
+      name = "initialize_circling";
+      init = /*%FSM<STATEINIT""">*/"_veh setVariable [""circling"", TRUE, TRUE];" \n
+       "" \n
+       "_circlePos1 = [((markerPos ""BIS_transportMarker"") select 0) + 400, ((markerPos ""BIS_transportMarker"") select 1), 0];" \n
+       "_circlePos2 = [((markerPos ""BIS_transportMarker"") select 0), ((markerPos ""BIS_transportMarker"") select 1) + 400, 0];" \n
+       "_circlePos3 = [((markerPos ""BIS_transportMarker"") select 0) - 400, ((markerPos ""BIS_transportMarker"") select 1), 0];" \n
+       "_circlePos4 = [((markerPos ""BIS_transportMarker"") select 0), ((markerPos ""BIS_transportMarker"") select 1) - 400, 0];" \n
+       "" \n
+       "_index = 1;" \n
+       "_circlePos = _circlePos1;" \n
+       "" \n
+       "_nic = [nil, _veh, ""loc"", rMOVE, _circlePos] call RE;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "cancelled">*/
+        class cancelled
+        {
+          priority = 5.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNull (_veh getVariable ""onMission"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "aircraft_ready">*/
+        class aircraft_ready
+        {
+          priority = 0.000000;
+          to="continue_circlin";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_veh distance _circlePos < 400"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "continue_circlin">*/
+    class continue_circlin
+    {
+      name = "continue_circlin";
+      init = /*%FSM<STATEINIT""">*/"_index = _index + 1;" \n
+       "if (_index > 4) then {_index = 1};" \n
+       "" \n
+       "call compile format [""_circlePos = _circlePos%1"",_index];" \n
+       "" \n
+       "_nic = [nil, _veh, ""loc"", rMOVE, _circlePos] call RE;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "cancelled">*/
+        class cancelled
+        {
+          priority = 5.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNull (_veh getVariable ""onMission"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "aircraft_ready">*/
+        class aircraft_ready
+        {
+          priority = 0.000000;
+          to="continue_circlin";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_veh distance _circlePos < 400"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "new_pick_up">*/
+        class new_pick_up
+        {
+          priority = 0.000000;
+          to="___nothing___10";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(_veh getVariable ""circling"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "unit_close">*/
+        class unit_close
+        {
+          priority = 0.000000;
+          to="stop_circling__fly";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_veh getVariable ""onMission"") distance markerPos ""BIS_transportMarker"" < 200"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___10">*/
+    class ___nothing___10
+    {
+      name = "___nothing___10";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "cancelled">*/
+        class cancelled
+        {
+          priority = 5.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNull (_veh getVariable ""onMission"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "at_pick_up">*/
+        class at_pick_up
+        {
+          priority = 0.000000;
+          to="___nothing___4";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"unitReady _veh || (if (_supportType == ""supplyDrop"") then {((_veh distance _pos) < 450) || unitReady _veh} else {false})"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "drop_the_cargo">*/
+    class drop_the_cargo
+    {
+      name = "drop_the_cargo";
+      init = /*%FSM<STATEINIT""">*/"//hint ""DROPPING CARGO"";" \n
+       "" \n
+       "_veh setVariable [""cargoDropped"", FALSE, TRUE];" \n
+       "" \n
+       "[_veh] spawn {" \n
+       "	_veh = _this select 0;" \n
+       "	[_veh, ""land""] call BIS_fnc_supplydrop;" \n
+       "	Sleep (0.2 + random 0.2);" \n
+       "	[_veh, ""reammobox""] call BIS_fnc_supplydrop;" \n
+       "	Sleep (0.1 + random 0.05);" \n
+       "	[_veh, ""reammobox""] call BIS_fnc_supplydrop;" \n
+       "" \n
+       "" \n
+       "	if (!(isNil {_veh getVariable ""SDS_dropped""})) then {call (_veh getVariable ""SDS_dropped"")};" \n
+       "" \n
+       "	_veh setVariable [""cargoDropped"", TRUE, TRUE]" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "cargo_dropped">*/
+        class cargo_dropped
+        {
+          priority = 0.000000;
+          to="RTB__SET_PHASE_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_veh getVariable ""cargoDropped"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "cancel_the_support">*/
+    class cancel_the_support
+    {
+      name = "cancel_the_support";
+      init = /*%FSM<STATEINIT""">*/"hint """";" \n
+       "" \n
+       "_veh setVariable [""onMission"", objNull, TRUE];" \n
+       "_veh setVariable [""supPhase"", 0, TRUE];" \n
+       "//_veh setVariable [""supPool"", [], TRUE];" \n
+       "driver _veh action [""ENGINEOFF"", _veh];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___11">*/
+    class ___nothing___11
+    {
+      name = "___nothing___11";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "unload_far_enoug">*/
+        class unload_far_enoug
+        {
+          priority = 1.000000;
+          to="move_to_unload_position";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_pos distance _veh > 100"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "too_close">*/
+        class too_close
+        {
+          priority = 0.000000;
+          to="___nothing___2";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___12">*/
+    class ___nothing___12
+    {
+      name = "___nothing___12";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "at_pick_up">*/
+        class at_pick_up
+        {
+          priority = 0.000000;
+          to="___nothing___4";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"unitReady _veh || (if (_supportType == ""supplyDrop"") then {((_veh distance _pos) < 450) || unitReady _veh} else {false})"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___nothing___13">*/
+    class ___nothing___13
+    {
+      name = "___nothing___13";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "at_the_unload_po">*/
+        class at_the_unload_po
+        {
+          priority = 0.000000;
+          to="SET_PHASE__5";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"unitReady _veh"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Init";
+  finalStates[] =
+  {
+    "___nothing__",
+    "inform",
+    "___nothing___1",
+    "alternate_unload",
+    "___nothing___2",
+    "inform_1",
+    "SET_PHASE__3",
+    "SET_PHASE__3_1",
+    "land_1",
+    "___nothing___9",
+    "__stop_circling",
+    "cancel_the_support",
+  };
+};
+/*%FSM</COMPILE>*/

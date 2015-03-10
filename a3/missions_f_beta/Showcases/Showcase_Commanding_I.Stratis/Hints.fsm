@@ -1,0 +1,185 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, Hints">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,-40.000000,-110.000000,50.000000,-60.000000,0.000000,"Start"};
+item1[] = {"On_the_beach",4,218,-40.000000,100.000000,50.000000,150.000000,0.000000,"On the" \n "beach"};
+item2[] = {"Vehicles__Format",2,250,-40.000000,170.000000,50.000000,220.000000,0.000000,"Vehicles," \n "Formations"};
+item3[] = {"Arrived_at_Girna",4,218,-40.000000,240.000000,50.000000,290.000000,0.000000,"Arrived at" \n "Girna"};
+item4[] = {"Placing__units_",1,250,-40.000000,310.000000,50.000000,360.000000,0.000000,"Placing " \n "units, stances +" \n "orientation"};
+item5[] = {"Commandbar__Sele",2,250,-40.000000,30.000000,50.000000,80.000000,0.000000,"Commandbar," \n "Selecting"};
+item6[] = {"Mission_started",4,218,-40.000000,-40.000000,50.000000,10.000000,0.000000,"Mission" \n "started"};
+item7[] = {"Campaign_mission",4,218,70.000000,-40.000000,160.000000,10.000000,1.000000,"Campaign" \n "mission"};
+item8[] = {"",7,210,111.000000,-89.000000,119.000000,-81.000000,0.000000,""};
+item9[] = {"Skip_first_Hints",2,250,70.000000,30.000000,160.000000,80.000000,0.000000,"Skip" \n "first" \n "Hints"};
+item10[] = {"",7,210,111.000000,121.000000,119.000000,129.000000,0.000000,""};
+link0[] = {0,6};
+link1[] = {0,8};
+link2[] = {1,2};
+link3[] = {2,3};
+link4[] = {3,4};
+link5[] = {5,1};
+link6[] = {6,5};
+link7[] = {7,9};
+link8[] = {8,7};
+link9[] = {9,10};
+link10[] = {10,1};
+globals[] = {10.000000,1,0,0,0,640,480,1,24,6316128,1,-351.221527,360.331024,382.092560,-139.678864,1406,1031,1};
+window[] = {2,-1,-1,-1,-1,950,100,1540,100,3,1424};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Hints";
+        class States
+        {
+                /*%FSM<STATE "Start">*/
+                class Start
+                {
+                        name = "Start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Campaign_mission">*/
+                                class Campaign_mission
+                                {
+                                        itemno = 7;
+                                        priority = 1.000000;
+                                        to="Skip_first_Hints";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"[] call BIS_fnc_isCampaign" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Mission_started">*/
+                                class Mission_started
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="Commandbar__Sele";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!(isNil ""BIS_missionStarted"")"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Vehicles__Format">*/
+                class Vehicles__Format
+                {
+                        name = "Vehicles__Format";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "" \n
+                         "sleep 10;" \n
+                         "" \n
+                         "_null = [[""Command"", ""Vehicles""], 15] spawn BIS_fnc_advHint;" \n
+                         "sleep 60;" \n
+                         "" \n
+                         "_null = [[""Command"", ""Formations""], 15] spawn BIS_fnc_advHint;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Arrived_at_Girna">*/
+                                class Arrived_at_Girna
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Placing__units_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_joined02"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Placing__units_">*/
+                class Placing__units_
+                {
+                        name = "Placing__units_";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "" \n
+                         "// waiting for savegame" \n
+                         "sleep 5;" \n
+                         "_null = [[""Command"", ""Waypoints""], 15] spawn BIS_fnc_advHint;" \n
+                         "" \n
+                         "sleep 40;" \n
+                         "_null = [[""Command"", ""Stances""], 15] spawn BIS_fnc_advHint;" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Commandbar__Sele">*/
+                class Commandbar__Sele
+                {
+                        name = "Commandbar__Sele";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"[] spawn {" \n
+                         "" \n
+                         "sleep 5;" \n
+                         "_null = [[""Command"", ""Commandbar""], 15] spawn BIS_fnc_advHint;" \n
+                         "" \n
+                         " sleep 45;" \n
+                         "_null = [[""Command"", ""Selecting""], 15] spawn BIS_fnc_advHint;" \n
+                         "" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "On_the_beach">*/
+                                class On_the_beach
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Vehicles__Format";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_joined01"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Skip_first_Hints">*/
+                class Skip_first_Hints
+                {
+                        name = "Skip_first_Hints";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "On_the_beach">*/
+                                class On_the_beach
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Vehicles__Format";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_joined01"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Start";
+        finalStates[] =
+        {
+                "Placing__units_",
+        };
+};
+/*%FSM</COMPILE>*/

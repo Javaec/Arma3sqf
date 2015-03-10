@@ -1,0 +1,159 @@
+/*%FSM<COMPILE "C:\BIS\fsmeditor\scriptedFSM.cfg, Sabotage #2">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-125.000000,-750.000000,-25.000000,-700.000000,0.000000,"Init"};
+item1[] = {"depot_seized",4,218,-125.000000,-675.000000,-25.000000,-625.000000,0.000000,"depot" \n "seized"};
+item2[] = {"allow_artillery",2,250,-125.000000,-600.000000,-25.000000,-550.000000,0.000000,"allow" \n "artillery"};
+item3[] = {"called_in",4,218,-125.000000,-525.000000,-25.000000,-475.000000,0.000000,"called in"};
+item4[] = {"FIRE_",1,250,-125.000000,-450.000000,-25.000000,-400.000000,0.000000,"FIRE!"};
+item5[] = {"helicopter_ambus",4,218,50.000000,-750.000000,150.000000,-700.000000,0.000000,"helicopter" \n "ambush"};
+item6[] = {"terminate",1,250,50.000000,-675.000000,150.000000,-625.000000,0.000000,"terminate"};
+link0[] = {0,1};
+link1[] = {0,5};
+link2[] = {1,2};
+link3[] = {2,3};
+link4[] = {2,5};
+link5[] = {3,4};
+link6[] = {5,6};
+globals[] = {25.000000,1,0,0,0,640,480,1,121,6316128,1,-295.540649,185.827911,-209.642120,-842.277954,681,1031,1};
+window[] = {2,-1,-1,-1,-1,1042,275,1489,275,3,699};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Sabotage #2";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "helicopter_ambus">*/
+                                class helicopter_ambus
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_sabotage_heli"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "depot_seized">*/
+                                class depot_seized
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="allow_artillery";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"triggerActivated BIS_depotArea"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "allow_artillery">*/
+                class allow_artillery
+                {
+                        name = "allow_artillery";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"BIS_suppReq_depot = [BIS_inf, ""Depot""] call BIS_fnc_addCommMenuItem;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "helicopter_ambus">*/
+                                class helicopter_ambus
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_sabotage_heli"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "called_in">*/
+                                class called_in
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="FIRE_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_fireMission"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "FIRE_">*/
+                class FIRE_
+                {
+                        name = "FIRE_";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_null = [] spawn {" \n
+                         "	sleep 60;" \n
+                         "	_pos = markerPos ""arty1_target"";" \n
+                         "	_shell = ""Sh_155mm_AMOS"" createVehicle _pos; _shell setPos [_pos select 0, _pos select 1, 200]; _shell setVelocity [0,0,-100];" \n
+                         "	sleep 2;" \n
+                         "	_pos = markerPos ""arty2_target"";" \n
+                         "	_shell = ""Sh_155mm_AMOS"" createVehicle _pos; _shell setPos [_pos select 0, _pos select 1, 200]; _shell setVelocity [0,0,-100];" \n
+                         "	sleep 2;" \n
+                         "	_pos = markerPos ""arty3_target"";" \n
+                         "	_shell = ""Sh_155mm_AMOS"" createVehicle _pos; _shell setPos [_pos select 0, _pos select 1, 200]; _shell setVelocity [0,0,-100];" \n
+                         "	sleep 2;" \n
+                         "	_pos = markerPos ""arty4_target"";" \n
+                         "	_shell = ""Sh_155mm_AMOS"" createVehicle _pos; _shell setPos [_pos select 0, _pos select 1, 200]; _shell setVelocity [0,0,-100];" \n
+                         "	sleep 2;" \n
+                         "	_pos = markerPos ""arty5_target"";" \n
+                         "	_shell = ""Sh_155mm_AMOS"" createVehicle _pos; _shell setPos [_pos select 0, _pos select 1, 200]; _shell setVelocity [0,0,-100];" \n
+                         "	sleep 2;" \n
+                         "	_pos = markerPos ""arty6_target"";" \n
+                         "	_shell = ""Sh_155mm_AMOS"" createVehicle _pos; _shell setPos [_pos select 0, _pos select 1, 200]; _shell setVelocity [0,0,-100];" \n
+                         "	sleep 2;" \n
+                         "	_pos = markerPos ""arty7_target"";" \n
+                         "	_shell = ""Sh_155mm_AMOS"" createVehicle _pos; _shell setPos [_pos select 0, _pos select 1, 200]; _shell setVelocity [0,0,-100];" \n
+                         "	sleep 2;" \n
+                         "	_pos = markerPos ""arty8_target"";" \n
+                         "	_shell = ""Sh_155mm_AMOS"" createVehicle _pos; _shell setPos [_pos select 0, _pos select 1, 200]; _shell setVelocity [0,0,-100];" \n
+                         "	sleep 2;" \n
+                         "	_pos = markerPos ""arty9_target"";" \n
+                         "	_shell = ""Sh_155mm_AMOS"" createVehicle _pos; _shell setPos [_pos select 0, _pos select 1, 200]; _shell setVelocity [0,0,-100];" \n
+                         "	sleep 2;" \n
+                         "	_pos = markerPos ""arty10_target"";" \n
+                         "	_shell = ""Sh_155mm_AMOS"" createVehicle _pos; _shell setPos [_pos select 0, _pos select 1, 200]; _shell setVelocity [0,0,-100];" \n
+                         "	sleep 3;" \n
+                         "	{_x setDamage 1} forEach [BIS_depotVeh1, BIS_depotVeh2, BIS_depotVeh3, BIS_depotVeh4, BIS_depotVeh5, BIS_depotVeh6, BIS_depotVeh7, BIS_depotVeh8];" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "terminate">*/
+                class terminate
+                {
+                        name = "terminate";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "FIRE_",
+                "terminate",
+        };
+};
+/*%FSM</COMPILE>*/

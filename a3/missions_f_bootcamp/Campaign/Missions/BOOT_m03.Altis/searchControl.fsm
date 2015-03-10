@@ -1,0 +1,221 @@
+/*%FSM<COMPILE "C:\Bis\FSMEditor\scriptedFSM.cfg, Search Control">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Search_Control",0,250,-75.000000,-150.000000,25.000000,-100.000000,0.000000,"Search Control"};
+item1[] = {"In_building",4,218,-75.000000,-50.000000,25.000000,0.000000,0.000000,"In building"};
+item2[] = {"Search",2,250,-75.000000,25.000000,25.000000,75.000000,0.000000,"Search"};
+item3[] = {"Searched",4,218,-75.000000,100.000000,25.000000,150.000000,0.000000,"Searched"};
+item4[] = {"End",1,250,-75.000000,175.000000,25.000000,225.000000,0.000000,"End"};
+item5[] = {"Left_building",4,218,50.000000,25.000000,150.000000,75.000000,0.000000,"Left building"};
+item6[] = {"Stop_searching",2,250,50.000000,-50.000000,150.000000,0.000000,0.000000,"Stop searching"};
+item7[] = {"",7,210,-29.000000,-79.000000,-21.000002,-71.000000,0.000000,""};
+item8[] = {"Stash_found",4,218,-200.000000,25.000000,-100.000000,75.000000,0.000000,"Stash found"};
+item9[] = {"",7,210,96.000000,-79.000000,104.000000,-71.000000,0.000000,""};
+item10[] = {"",7,210,-154.000000,-79.000000,-146.000000,-71.000000,0.000000,""};
+item11[] = {"Terminate",1,250,-200.000000,100.000000,-100.000000,150.000000,0.000000,"Terminate"};
+link0[] = {0,7};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,5};
+link4[] = {2,8};
+link5[] = {3,4};
+link6[] = {5,6};
+link7[] = {6,9};
+link8[] = {7,1};
+link9[] = {7,10};
+link10[] = {8,11};
+link11[] = {9,7};
+link12[] = {10,8};
+globals[] = {25.000000,1,0,0,0,640,480,1,17,6316128,1,-352.218536,352.218445,278.938416,-239.860367,998,735,1};
+window[] = {0,-1,-1,-1,-1,905,25,1419,25,1,1016};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Search Control";
+        class States
+        {
+                /*%FSM<STATE "Search_Control">*/
+                class Search_Control
+                {
+                        name = "Search_Control";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"private [""_trigger"", ""_heightMin"", ""_heightMax"", ""_limit"", ""_conv"", ""_marker""];" \n
+                         "_trigger = [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "_heightMin = [_this, 1, 0, [0]] call BIS_fnc_param;" \n
+                         "_heightMax = [_this, 2, 0, [0]] call BIS_fnc_param;" \n
+                         "_limit = [_this, 3, 2, [0]] call BIS_fnc_param;" \n
+                         "_conv = [_this, 4, """", [""""]] call BIS_fnc_param;" \n
+                         "_marker = [_this, 5, """", [""""]] call BIS_fnc_param;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Stash_found">*/
+                                class Stash_found
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_stashFound"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "In_building">*/
+                                class In_building
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Search";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"private [""_height""];" \n
+                                         "_height = getPosATL BIS_lacey select 2;" \n
+                                         "" \n
+                                         "triggerActivated _trigger" \n
+                                         "&&" \n
+                                         "_height >= _heightMin" \n
+                                         "&&" \n
+                                         "_height <= _heightMax"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Search">*/
+                class Search
+                {
+                        name = "Search";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"private [""_time""];" \n
+                         "_time = time + _limit;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Left_building">*/
+                                class Left_building
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Stop_searching";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"private [""_height""];" \n
+                                         "_height = getPosATL BIS_lacey select 2;" \n
+                                         "" \n
+                                         "!(triggerActivated _trigger)" \n
+                                         "||" \n
+                                         "_height < _heightMin" \n
+                                         "||" \n
+                                         "_height > _heightMax"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Stash_found">*/
+                                class Stash_found
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_stashFound"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Searched">*/
+                                class Searched
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time > _time"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End">*/
+                class End
+                {
+                        name = "End";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"if (_marker != """") then {" \n
+                         "	// Change marker" \n
+                         "	_marker setMarkerColor ""ColorIndependent"";" \n
+                         "};" \n
+                         "" \n
+                         "if (BIS_stash == _trigger) then {" \n
+                         "	// Register that the stash was found" \n
+                         "	BIS_stashFound = true;" \n
+                         "} else {" \n
+                         "	// Play conversation" \n
+                         "	_conv spawn BIS_fnc_missionConversations;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Stop_searching">*/
+                class Stop_searching
+                {
+                        name = "Stop_searching";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Stash_found">*/
+                                class Stash_found
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_stashFound"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "In_building">*/
+                                class In_building
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Search";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"private [""_height""];" \n
+                                         "_height = getPosATL BIS_lacey select 2;" \n
+                                         "" \n
+                                         "triggerActivated _trigger" \n
+                                         "&&" \n
+                                         "_height >= _heightMin" \n
+                                         "&&" \n
+                                         "_height <= _heightMax"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Search_Control";
+        finalStates[] =
+        {
+                "End",
+                "Terminate",
+        };
+};
+/*%FSM</COMPILE>*/

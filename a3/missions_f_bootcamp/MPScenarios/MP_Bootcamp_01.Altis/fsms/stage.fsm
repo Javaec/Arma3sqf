@@ -1,0 +1,314 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, MP_Bootcamp_Stage">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-220.000000,-370.000000,-130.000000,-320.000000,0.000000,"init"};
+item1[] = {"not_server",4,218,-220.000000,-440.000000,-130.000000,-390.000000,1.000000,"not" \n "server"};
+item2[] = {"_",1,250,-220.000000,-510.000000,-130.000000,-460.000000,0.000000,""};
+item3[] = {"_",4,218,-220.000000,-300.000000,-130.000000,-250.000000,0.000000,""};
+item4[] = {"process_stage",2,4346,-220.000000,-230.000000,-130.000000,-180.000000,0.000000,"process" \n "stage"};
+item5[] = {"stage_completed",4,218,-110.000000,-230.000000,-20.000000,-180.000000,1.000000,"stage" \n "completed"};
+item6[] = {"__1",1,250,0.000000,-230.000000,90.000000,-180.000000,0.000000,""};
+item7[] = {"initialize_next",2,250,-220.000000,-90.000000,-130.000000,-40.000000,0.000000,"initialize" \n "next" \n "challenge"};
+item8[] = {"challenge_comple",4,218,-220.000000,-20.000000,-130.000000,30.000000,0.000000,"challenge" \n "completed"};
+item9[] = {"challenges_avail",4,218,-220.000000,-160.000000,-130.000000,-110.000000,0.000000,"challenges" \n "available"};
+item10[] = {"new_stage_select",4,218,-110.000000,-90.000000,-20.000000,-40.000000,1.000000,"new stage" \n "selected"};
+item11[] = {"__2",1,250,0.000000,-90.000000,90.000000,-40.000000,0.000000,""};
+item12[] = {"__3",2,250,-330.000000,-20.000000,-240.000000,30.000000,0.000000,""};
+item13[] = {"",7,210,-289.000000,-279.000000,-281.000000,-271.000000,0.000000,""};
+item14[] = {"",7,210,-69.000000,-149.000000,-61.000000,-141.000000,0.000000,""};
+item15[] = {"",7,210,135.999969,-149.000000,144.000015,-141.000000,0.000000,""};
+item16[] = {"",7,210,135.999985,66.000000,144.000015,74.000000,0.000000,""};
+item17[] = {"",7,210,-289.000000,66.000000,-281.000000,74.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {0,3};
+link2[] = {1,2};
+link3[] = {3,4};
+link4[] = {4,5};
+link5[] = {4,9};
+link6[] = {5,6};
+link7[] = {7,8};
+link8[] = {7,10};
+link9[] = {8,12};
+link10[] = {9,7};
+link11[] = {10,11};
+link12[] = {12,13};
+link13[] = {12,17};
+link14[] = {13,3};
+link15[] = {14,5};
+link16[] = {15,14};
+link17[] = {16,15};
+link18[] = {17,16};
+globals[] = {10.000000,1,0,0,0,640,480,1,489,6316128,1,-372.676086,204.609070,155.854492,-569.092041,821,1031,1};
+window[] = {2,-1,-1,-1,-1,1000,150,1590,150,3,839};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "MP_Bootcamp_Stage";
+        class States
+        {
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"// Stage id" \n
+                         "private [""_stageId""];" \n
+                         "_stageId = [_this, 0, """", [""""]] call BIS_fnc_param;" \n
+                         "" \n
+                         "// Log" \n
+                         "[""MP_Bootcamp_Stage: Stage (%1)  FSM initialized"", _stageId] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "not_server">*/
+                                class not_server
+                                {
+                                        itemno = 1;
+                                        priority = 1.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isServer" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="process_stage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"// Log" \n
+                         """MP_Bootcamp_Stage: Not server, exiting"" call BIS_fnc_log;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "process_stage">*/
+                class process_stage
+                {
+                        name = "process_stage";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"// Make sure task is has not been added already" \n
+                         "if !([_stageId] call BIS_fnc_taskExists) then {" \n
+                         "	// Get the Stage title and description so we can build the task" \n
+                         "	private [""_stageTitle"", ""_stageDescription""];" \n
+                         "	_stageTitle 		= [""getTitle"", [_stageId]] call BIS_fnc_stage;" \n
+                         "	_stageDescription	= [""getDescription"", [_stageId]] call BIS_fnc_stage;" \n
+                         "	" \n
+                         "	// Add the Stage task" \n
+                         "	[WEST, _stageId, [_stageDescription, _stageTitle, _stageId], nil, false] call BIS_fnc_taskCreate;" \n
+                         "};" \n
+                         "" \n
+                         "// Whether the stage has been fully completed or not" \n
+                         "private ""_isCompleted"";" \n
+                         "_isCompleted = [""isCompleted"", [_stageId]] call BIS_fnc_stage;" \n
+                         "" \n
+                         "// The challenges" \n
+                         "private ""_challenges"";" \n
+                         "_challenges = [""getChallenges"", [_stageId]] call BIS_fnc_stage;" \n
+                         "" \n
+                         "// The completed challenges" \n
+                         "private ""_challengesCompleted"";" \n
+                         "_challengesCompleted = [""getCompletedChallenges"", [_stageId]] call BIS_fnc_stage;" \n
+                         "" \n
+                         "// The challenges that are not yet completed" \n
+                         "private ""_challengesUncompleted"";" \n
+                         "_challengesUncompleted = [""getUncompletedChallenges"", [_stageId]] call BIS_fnc_stage;" \n
+                         "" \n
+                         "// Set In Progress" \n
+                         "[""setProgress"", [_stageId, true]] call BIS_fnc_stage;" \n
+                         "" \n
+                         "// Log" \n
+                         "[""MP_Bootcamp_Stage: Stage (%1) processed, Challenges (%2), Challenges Completed (%3), Challenges Uncompleted (%4)"", _stageId, _challenges, _challengesCompleted, _challengesUncompleted] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "stage_completed">*/
+                                class stage_completed
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count _challengesUncompleted < 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "challenges_avail">*/
+                                class challenges_avail
+                                {
+                                        itemno = 9;
+                                        priority = 0.000000;
+                                        to="initialize_next";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__1">*/
+                class __1
+                {
+                        name = "__1";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"// Succeed Stage task" \n
+                         "[_stageId, ""SUCCEEDED""] call BIS_fnc_taskSetState;" \n
+                         "" \n
+                         "// Set In Progress" \n
+                         "[""setProgress"", [_stageId, false]] call BIS_fnc_stage;" \n
+                         "" \n
+                         "// Log" \n
+                         "[""Stage with ID (%1) fsm terminated because stage is already completed"", _stageId] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "initialize_next">*/
+                class initialize_next
+                {
+                        name = "initialize_next";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"// The next challenge" \n
+                         "private ""_challenge"";" \n
+                         "_challenge = _challengesUncompleted select 0;" \n
+                         "" \n
+                         "// The challenge id" \n
+                         "private ""_challengeId"";" \n
+                         "_challengeId = _challenge select 1;" \n
+                         "" \n
+                         "// Start challenge" \n
+                         "[_stageId, _challengeId] execFSM ""fsms\challenge.fsm"";" \n
+                         "" \n
+                         "// Log" \n
+                         "[""MP_Bootcamp_Stage: Stage (%1) is initializating Challenge (%2)"", _stageId, _challengeId] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "new_stage_select">*/
+                                class new_stage_select
+                                {
+                                        itemno = 10;
+                                        priority = 1.000000;
+                                        to="__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"[""getCurrentStage""] call BIS_fnc_flow != _stageId" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "challenge_comple">*/
+                                class challenge_comple
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="__3";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"[""isCompleted"", [_stageId, _challengeId]] call BIS_fnc_challenge" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__2">*/
+                class __2
+                {
+                        name = "__2";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"// Set In Progress" \n
+                         "[""setProgress"", [_stageId, false]] call BIS_fnc_stage;" \n
+                         "" \n
+                         "// Log" \n
+                         "[""Stage with ID (%1) fsm terminated because another stage was selected"", _stageId] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__3">*/
+                class __3
+                {
+                        name = "__3";
+                        itemno = 12;
+                        init = /*%FSM<STATEINIT""">*/"// Check and see if this Stage's Challenges are all completed, if so, mark the Stage as completed also" \n
+                         "if ({ !([""isCompleted"", [_stageId, _x select 1]] call BIS_fnc_challenge) } count ([""getChallenges"", [_stageId]] call BIS_fnc_stage) < 1) then {" \n
+                         "	[""setState"", [_stageId, true]] call BIS_fnc_stage;" \n
+                         "};" \n
+                         "" \n
+                         "// The challenges that are not yet completed" \n
+                         "private ""_challengesUncompleted"";" \n
+                         "_challengesUncompleted = [""getUncompletedChallenges"", [_stageId]] call BIS_fnc_stage;" \n
+                         "" \n
+                         "// Log" \n
+                         "[""MP_Bootcamp_Stage: Stage (%1) Challenge (%2) completed"", _stageId, _challengeId] call BIS_fnc_logFormat;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "stage_completed">*/
+                                class stage_completed
+                                {
+                                        itemno = 5;
+                                        priority = 1.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"count _challengesUncompleted < 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="process_stage";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "_",
+                "__1",
+                "__2",
+        };
+};
+/*%FSM</COMPILE>*/

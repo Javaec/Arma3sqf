@@ -1,0 +1,472 @@
+/*%FSM<COMPILE "C:\BIS\FSMEditor\scriptedFSM.cfg, INSERTION_FSM">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-75.000000,-275.000000,25.000000,-225.000000,0.000000,"init"};
+item1[] = {"landing",4,218,50.000000,-275.000000,150.000000,-225.000000,0.000000,"landing"};
+item2[] = {"suppressive_fire",2,250,-75.000000,-200.000000,25.000000,-150.000000,0.000000,"suppressive" \n "fire"};
+item3[] = {"all_out",4,218,50.000000,-125.000000,150.000000,-75.000000,0.000000,"all out"};
+item4[] = {"chopper_leaves",2,250,-75.000000,-50.000000,25.000000,0.000000,0.000000,"chopper" \n "leaves"};
+item5[] = {"landed",4,218,50.000000,-200.000000,150.000000,-150.000000,0.000000,"landed"};
+item6[] = {"touch_down",2,4346,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"touch down"};
+item7[] = {"unitPlay_finishe",4,218,50.000000,-50.000000,150.000000,0.000000,0.000000,"unitPlay" \n "finished"};
+item8[] = {"exit",1,250,50.000000,25.000000,150.000000,75.000000,0.000000,"exit"};
+item9[] = {"unable_to_move",4,218,-200.000000,-50.000000,-100.000000,0.000000,1.000000,"unable" \n "to move"};
+item10[] = {"fail",1,250,-200.000000,25.000000,-100.000000,75.000000,0.000000,"fail"};
+item11[] = {"",7,210,-154.000000,-104.000000,-146.000000,-96.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,5};
+link3[] = {3,4};
+link4[] = {4,7};
+link5[] = {4,9};
+link6[] = {5,6};
+link7[] = {6,3};
+link8[] = {6,11};
+link9[] = {7,8};
+link10[] = {9,10};
+link11[] = {11,9};
+globals[] = {25.000000,1,0,0,0,640,480,1,79,6316128,1,-249.932800,218.556503,152.173553,-435.432892,822,1031,1};
+window[] = {2,-1,-1,-1,-1,1030,150,1544,150,3,840};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "INSERTION_FSM";
+        class States
+        {
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"//The player's group" \n
+                         "private ""_groupPlayer"";" \n
+                         "_groupPlayer = group player;" \n
+                         "" \n
+                         "//The units in player's group" \n
+                         "private ""_units"";" \n
+                         "_units = units group player - [player];" \n
+                         "" \n
+                         "//For now, player joins his own group" \n
+                         "_units joinSilent grpNull;" \n
+                         "" \n
+                         "//Simulate chopper" \n
+                         "{ _x disableAi ""MOVE""; _x disableAi ""FSM""; _x disableAi ""TARGET""; _x disableAi ""AUTOTARGET""; } forEach units group driver BIS_heli;" \n
+                         "BIS_heli enableSimulation true;" \n
+                         "BIS_heli hideObject false;" \n
+                         "BIS_heli setCaptive true;" \n
+                         "BIS_heli flyInHeight 0;" \n
+                         "BIS_heli lock 2;" \n
+                         "" \n
+                         "//Get Out event handler" \n
+                         "BIS_heli addEventHandler [""GetOut"", {" \n
+                         "	private [""_vehicle"", ""_seat"", ""_unit""];" \n
+                         "	_vehicle 	=  [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "	_seat 		=  [_this, 1, """", [""""]] call BIS_fnc_param;" \n
+                         "	_unit 		=  [_this, 2, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "	" \n
+                         "	if (isPlayer _unit) then {" \n
+                         "		//Stop cinema borders once player disembarks" \n
+                         "		[1, nil, false] spawn BIS_fnc_cinemaBorder;" \n
+                         "		" \n
+                         "		//Fade music to reasonable value" \n
+                         "		5 fadeMusic 0.3;" \n
+                         "	} else {" \n
+                         "		//Good off position" \n
+                         "		_unit setPos ([BIS_heli, 5, [BIS_heli, _unit] call BIS_fnc_dirTo] call BIS_fnc_relPos);" \n
+                         "		" \n
+                         "		//We make hm correctly leave the vehicle, or at least try" \n
+                         "		_unit playActionNow ""fastF"";" \n
+                         "		_unit playAction ""walkF"";" \n
+                         "	};" \n
+                         "}];" \n
+                         "" \n
+                         "//End mission as friendly fire if player hits the vehicle" \n
+                         "BIS_heli addEventHandler [""Hit"", {" \n
+                         "	private [""_vehicle"", ""_causedBy"", ""_damage""];" \n
+                         "	_vehicle 	= [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "	_causedBy	= [_this, 1, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "	_damage 	= [_this, 2, 0, [0]] call BIS_fnc_param;" \n
+                         "	" \n
+                         "	if (isPlayer _causedBy && { !canMove _vehicle }) then {" \n
+                         "		//Flag" \n
+                         "		BIS_insertionChopperDestroyed = true;" \n
+                         "	};" \n
+                         "}];" \n
+                         "" \n
+                         "//Load movement data" \n
+                         "private ""_movement"";" \n
+                         "_movement = call compile preprocessFileLineNumbers ""scenes\chopperInsertion_1.sqf"";" \n
+                         "" \n
+                         "//Play" \n
+                         "private ""_unitPlayIn"";" \n
+                         "_unitPlayIn = [BIS_heli, _movement, nil, nil, nil, nil, 10] spawn BIS_fnc_unitPlay;" \n
+                         "" \n
+                         "//Marker and heliH" \n
+                         """BIS_insertion"" setMarkerPos ((_movement select (count _movement - 1)) select 1);" \n
+                         "BIS_insertionH setPos ((_movement select (count _movement - 1)) select 1);" \n
+                         "" \n
+                         "//Waypoint" \n
+                         "private ""_waypoint"";" \n
+                         "_waypoint = group driver BIS_heli addWaypoint [position BIS_insertionH, 0];" \n
+                         "_waypoint setWaypointType ""TR UNLOAD"";" \n
+                         "" \n
+                         "//Conversations" \n
+                         "[] spawn {" \n
+                         "	sleep 10;" \n
+                         "	""BIS_flyIn"" call BIS_fnc_missionConversations;" \n
+                         "	waitUntil { !isNil { BIS_jetsFired } };" \n
+                         "	sleep 8;" \n
+                         "	""BIS_flyInEvent"" call BIS_fnc_missionConversations;" \n
+                         "	""BIS_flyInGroup"" call BIS_fnc_missionConversations;" \n
+                         "};" \n
+                         "" \n
+                         "//Jets" \n
+                         "[] spawn {" \n
+                         "	//Delay" \n
+                         "	sleep 18;" \n
+                         "	" \n
+                         "	//Enable simulation" \n
+                         "	{" \n
+                         "		_x enableSimulation true;" \n
+                         "		_x hideObject false;" \n
+                         "	} forEach [BIS_jet1, BIS_jet2];" \n
+                         "	" \n
+                         "	//Event handlers" \n
+                         "	{" \n
+                         "		_x addEventHandler [""Fired"", { BIS_jetsFired = true; }];" \n
+                         "	} forEach [BIS_jet1, BIS_jet2];" \n
+                         "	" \n
+                         "	//Load movement data" \n
+                         "	private [""_movement_1"", ""_movement_2""];" \n
+                         "	_movement_1 = call compile preprocessFileLineNumbers ""scenes\jetInsertion_1.sqf"";" \n
+                         "	_movement_2 = call compile preprocessFileLineNumbers ""scenes\jetInsertion_2.sqf"";" \n
+                         "	" \n
+                         "	//Unit Play" \n
+                         "	private [""_handlerMovement_1"", ""_handlerMovement_2""];" \n
+                         "	_handlerMovement_1 = [BIS_jet1, _movement_1, nil, nil, nil, nil, 1] spawn BIS_fnc_unitPlay;" \n
+                         "	_handlerMovement_2 = [BIS_jet2, _movement_2, nil, nil, nil, nil, 1] spawn BIS_fnc_unitPlay;" \n
+                         "	" \n
+                         "	//Wait until jets are close enough to solar station" \n
+                         "	//Make sure player can see them from chopper at tis point" \n
+                         "	waitUntil {" \n
+                         "		{ _x distance getMarkerPos ""BIS_solar"" < 1500 } count [BIS_jet1, BIS_jet2] > 0" \n
+                         "	};" \n
+                         "	" \n
+                         "	//Make jets fire one rocket each" \n
+                         "	{" \n
+                         "		(_x select 0) doWatch (_x select 1);" \n
+                         "		(_x select 0) doTarget (_x select 1);" \n
+                         "		(_x select 0) doFire (_x select 1);" \n
+                         "		(_x select 0) fire ((weapons (_x select 0)) select 1);" \n
+                         "		" \n
+                         "		if (_forEachIndex < 1) then {" \n
+                         "			sleep 1.5;" \n
+                         "		};" \n
+                         "	} forEach [[BIS_jet1, BIS_target1], [BIS_jet2, BIS_target2]];" \n
+                         "	" \n
+                         "	//Some delay before making sure we destroy the vehicles" \n
+                         "	sleep 3;" \n
+                         "	" \n
+                         "	//Make sure vehicles are destroyed" \n
+                         "	{" \n
+                         "		_x setDamage 1;" \n
+                         "	} forEach [BIS_target1, BIS_target2];" \n
+                         "	" \n
+                         "	waitUntil {" \n
+                         "		scriptDone _handlerMovement_1" \n
+                         "		&&" \n
+                         "		scriptDone _handlerMovement_2" \n
+                         "	};" \n
+                         "	" \n
+                         "	private ""_jetGroups"";" \n
+                         "	_jetGroups = [group BIS_jet1, group BIS_jet2];" \n
+                         "	" \n
+                         "	{ deleteVehicle _x; } forEach [BIS_jet1, BIS_jet2] + crew BIS_jet1 + crew BIS_jet2;" \n
+                         "	{ deleteGroup _x; } forEach _jetGroups;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "landing">*/
+                                class landing
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="suppressive_fire";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"BIS_heli distance getMarkerPos ""BIS_insertion"" < 125" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "suppressive_fire">*/
+                class suppressive_fire
+                {
+                        name = "suppressive_fire";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"//Land" \n
+                         "BIS_heli land ""GET OUT"";" \n
+                         "" \n
+                         "//Open the remaining door" \n
+                         "BIS_heli animateDoor [""Door_R"", 1];" \n
+                         "" \n
+                         "//Suppressive fire from door gunner" \n
+                         "{ if (group _x == group driver BIS_heli) then { _x setSkill 1; _x setSkill [""aimingAccuracy"", 1]; _x setSkill [""aimingShake"", 1]; _x setSkill [""aimingSpeed"", 1]; }; } forEach crew BIS_heli;" \n
+                         "[{ vehicle player != player && { alive BIS_targetGunner } && { { alive _x } count crew BIS_targetGunner > 0 } }, BIS_heli, ""LMG_Minigun"", BIS_targetGunner, [25, 50], [0.5, 1.5]] spawn BIS_fnc_C_out1_suppressiveFireVehicle;" \n
+                         "" \n
+                         "//Conversations" \n
+                         """BIS_doorGunnerEngages"" spawn BIS_fnc_missionConversations;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "landed">*/
+                                class landed
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="touch_down";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"scriptDone _unitPlayIn" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "chopper_leaves">*/
+                class chopper_leaves
+                {
+                        name = "chopper_leaves";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/" //Flag" \n
+                         "BIS_insertionFinished = true;" \n
+                         "" \n
+                         "//Detach heli" \n
+                         "detach BIS_heli;" \n
+                         "" \n
+                         "//Load movement data" \n
+                         "private ""_movement"";" \n
+                         "_movement = call compile preprocessFileLineNumbers ""scenes\chopperInsertion_2.sqf"";" \n
+                         "" \n
+                         "//Play" \n
+                         "if (alive BIS_heli && { canMove BIS_heli } && { isNil { BIS_insertionChopperDestroyed } }) then {" \n
+                         "	private ""_unitPlayOut"";" \n
+                         "	_unitPlayOut = [BIS_heli, _movement, nil, true] spawn BIS_fnc_unitPlay;" \n
+                         "};" \n
+                         "" \n
+                         "//Close doors" \n
+                         "{" \n
+                         "	BIS_heli animateDoor [_x, 0];" \n
+                         "} forEach [""Door_L"", ""Door_R""];" \n
+                         "" \n
+                         "//Conversations" \n
+                         "[] spawn {" \n
+                         "	""BIS_flyOut"" call BIS_fnc_missionConversations;" \n
+                         "	sleep 5;" \n
+                         "	""BIS_teamsReport"" call BIS_fnc_missionConversations;" \n
+                         "	" \n
+                         "	//Save" \n
+                         "	savegame;" \n
+                         "	" \n
+                         "	//Add instructor figure" \n
+                         "	[""AddTopic"", [""i00_friendlies"",""C_out1"", localize ""STR_A3_Campaign_C_out1_Instructor_Friendlies""] ] call BIS_fnc_InstructorFigure;" \n
+                         "};" \n
+                         "" \n
+                         "//Suppressive fire from door gunner" \n
+                         "[] spawn {" \n
+                         "	//Wait for chopper to be in the air" \n
+                         "	waitUntil { (getPosATL BIS_heli) select 2 >= 4 };" \n
+                         "	" \n
+                         "	//Container for enemy targets available near chopper" \n
+                         "	private ""_targets"";" \n
+                         "	_targets = [];" \n
+                         "	" \n
+                         "	{" \n
+                         "		//Make sure unit is near solar plant" \n
+                         "		if (_x distance BIS_heli < 150 && side _x == RESISTANCE) then {" \n
+                         "			_targets set [count _targets, _x];" \n
+                         "		};" \n
+                         "	} forEach allUnits;" \n
+                         "	" \n
+                         "	//Random target" \n
+                         "	 if (count _targets > 0) then {" \n
+                         "		//From targets list, select a random one" \n
+                         "		private ""_target"";" \n
+                         "		_target = _targets call BIS_fnc_selectRandom;" \n
+                         "		" \n
+                         "		//Suppressive fire" \n
+                         "		[{ BIS_heli distance getMarkerPos ""BIS_insertion"" < 125 }, BIS_heli, ""LMG_Minigun"", _target, [25, 50], [0.5, 1.5]] spawn BIS_fnc_C_out1_suppressiveFireVehicle;" \n
+                         "	};" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "unable_to_move">*/
+                                class unable_to_move
+                                {
+                                        itemno = 9;
+                                        priority = 1.000000;
+                                        to="fail";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive BIS_heli" \n
+                                         "||" \n
+                                         "{ !canMove BIS_heli }" \n
+                                         "||" \n
+                                         "{ !isNil { BIS_insertionChopperDestroyed } }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "unitPlay_finishe">*/
+                                class unitPlay_finishe
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { _unitPlayOut }" \n
+                                         "&&" \n
+                                         "{ scriptDone _unitPlayOut }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "touch_down">*/
+                class touch_down
+                {
+                        name = "touch_down";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"//Rejoin player to group" \n
+                         "_units joinSilent _groupPlayer;" \n
+                         "_groupPlayer selectLeader player;" \n
+                         "" \n
+                         "//Link UAV terminal" \n
+                         "player assignItem ""B_UavTerminal"";" \n
+                         "" \n
+                         "//Join player back to his group" \n
+                         "player action [""Eject"", vehicle player];" \n
+                         "" \n
+                         "//Unlock chopper, locked only for player" \n
+                         "BIS_heli lock 3;" \n
+                         "" \n
+                         "//Make team disembark" \n
+                         "{" \n
+                         "	unassignVehicle _x;" \n
+                         "	[_x] orderGetIn false;" \n
+                         "} forEach units _groupPlayer;" \n
+                         "" \n
+                         "//Get current chopper position" \n
+                         "BIS_heli setVariable [""BIS_positionChopperLoop"", getPosASL BIS_heli];" \n
+                         "" \n
+                         "//Force chopper to stay on the ground" \n
+                         "BIS_heli setVariable [""BIS_handlerChopperLoop"", addMissionEventHandler [""Draw3D"", {" \n
+                         "	// The position" \n
+                         "	private ""_position"";" \n
+                         "	_position = BIS_heli getVariable ""BIS_positionChopperLoop"";" \n
+                         "	" \n
+                         "	// Chopper should stay in position or be able to move" \n
+                         "	if ({ group _x != group driver BIS_heli } count crew BIS_heli < 1 || { !alive BIS_heli } || { !canMove BIS_heli }) then {" \n
+                         "		// Remove loop" \n
+                         "		removeMissionEventHandler [""Draw3D"", BIS_heli getVariable ""BIS_handlerChopperLoop""];" \n
+                         "	} else {" \n
+                         "		// Force position" \n
+                         "		BIS_heli setPosASL _position;" \n
+                         "	};" \n
+                         "}]];" \n
+                         "" \n
+                         "//Conversation" \n
+                         """BIS_flyInTouchDown"" spawn BIS_fnc_missionConversations;" \n
+                         "" \n
+                         "//Destroy target vehicle if still alive" \n
+                         "if (alive BIS_targetGunner) then {" \n
+                         "	BIS_targetGunner setDamage 1;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "unable_to_move">*/
+                                class unable_to_move
+                                {
+                                        itemno = 9;
+                                        priority = 1.000000;
+                                        to="fail";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!alive BIS_heli" \n
+                                         "||" \n
+                                         "{ !canMove BIS_heli }" \n
+                                         "||" \n
+                                         "{ !isNil { BIS_insertionChopperDestroyed } }" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "all_out">*/
+                                class all_out
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="chopper_leaves";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"{ vehicle _x != _x } count units group player < 1" \n
+                                         ""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "exit">*/
+                class exit
+                {
+                        name = "exit";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"//The chopper group" \n
+                         "private ""_group"";" \n
+                         "_group = group driver BIS_heli;" \n
+                         "" \n
+                         "//Delete, only if chopper is not near player" \n
+                         "if (BIS_heli distance player > 250) then {" \n
+                         "	{ deleteVehicle _x; } forEach crew BIS_heli + [BIS_heli];" \n
+                         "	deleteGroup _group;" \n
+                         "};" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "fail">*/
+                class fail
+                {
+                        name = "fail";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"//End mission" \n
+                         "[""FriendlyFire"", false] call BIS_fnc_endMission;" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "exit",
+                "fail",
+        };
+};
+/*%FSM</COMPILE>*/

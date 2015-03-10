@@ -1,0 +1,1044 @@
+/*%FSM<COMPILE "D:\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, Mission Flow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Mission_Flow",0,250,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"Mission Flow"};
+item1[] = {"Mission_started",4,218,-75.000000,-50.000000,25.000000,0.000000,0.000000,"Mission started"};
+item2[] = {"Intro",2,250,-75.000000,25.000000,25.000000,75.000000,0.000000,"Intro"};
+item3[] = {"Intro_ended",4,218,-75.000000,100.000000,25.000000,150.000000,0.000000,"Intro ended"};
+item4[] = {"Simple_movement",2,250,-75.000000,175.000000,25.000000,225.000000,0.000000,"Simple" \n "movement"};
+item5[] = {"At_marker",4,218,-75.000000,250.000000,25.000000,300.000000,0.000000,"At marker"};
+item6[] = {"Simple_shooting",2,250,-75.000000,325.000000,25.000000,375.000000,0.000000,"Simple shooting"};
+item7[] = {"Both_shot",4,218,-75.000000,400.000000,25.000000,450.000000,0.000000,"Both shot"};
+item8[] = {"Cardinal_points",2,250,-75.000000,475.000000,25.000000,525.000000,0.000000,"Cardinal" \n "points"};
+item9[] = {"Compass_opened",4,218,-75.000000,550.000000,25.000000,600.000000,0.000000,"Compass" \n "opened"};
+item10[] = {"Locate_target",2,250,-75.000000,625.000000,25.000000,675.000000,0.000000,"Locate target"};
+item11[] = {"Target_hit",4,218,-75.000000,850.000000,25.000000,900.000000,0.000000,"Target hit"};
+item12[] = {"Bearings",2,250,-75.000000,925.000000,25.000000,975.000000,0.000000,"Bearings"};
+item13[] = {"__nd_target_hit",4,218,-75.000000,1150.000000,25.000000,1200.000000,0.000000,"2nd target" \n "hit"};
+item14[] = {"To_start",2,250,-75.000000,1225.000000,25.000000,1275.000000,0.000000,"To start"};
+item15[] = {"At_start",4,218,-75.000000,1300.000000,25.000000,1350.000000,0.000000,"At start"};
+item16[] = {"Course",2,250,-75.000000,1375.000000,25.000000,1425.000000,0.000000,"Course"};
+item17[] = {"Tasks_closed",4,218,-200.000000,175.000000,-100.000000,225.000000,0.000000,"Tasks closed"};
+item18[] = {"Open_tasks",2,250,-200.000000,250.000000,-100.000000,300.000000,0.000000,"Open tasks"};
+item19[] = {"Sights_down",4,218,-200.000000,325.000000,-100.000000,375.000000,0.000000,"Sights down"};
+item20[] = {"Pull_up_sights",2,250,-200.000000,400.000000,-100.000000,450.000000,0.000000,"Pull up sights"};
+item21[] = {"Facing_1st_targe",4,218,-75.000000,700.000000,25.000000,750.000000,0.000000,"Facing" \n "1st target"};
+item22[] = {"Spawn_1st_target",2,250,-75.000000,775.000000,25.000000,825.000000,0.000000,"Spawn 1st target"};
+item23[] = {"Facing_2nd_targe",4,218,-75.000000,1000.000000,25.000000,1050.000000,0.000000,"Facing" \n "2nd target"};
+item24[] = {"Spawn_2nd_target",2,250,-75.000000,1075.000000,25.000000,1125.000000,0.000000,"Spawn 2nd target"};
+item25[] = {"At_1st_selector",4,218,-75.000000,1600.000000,25.000000,1650.000000,0.000000,"At 1st selector"};
+item26[] = {"__st_targets",2,250,-75.000000,1675.000000,25.000000,1725.000000,0.000000,"1st targets"};
+item27[] = {"Left_1st",4,218,-75.000000,1900.000000,25.000000,1950.000000,0.000000,"Left 1st"};
+item28[] = {"Helicopter",2,250,-75.000000,1975.000000,25.000000,2025.000000,0.000000,"Helicopter"};
+item29[] = {"At_2nd",4,218,-75.000000,2050.000000,25.000000,2100.000000,0.000000,"At 2nd"};
+item30[] = {"To_final",2,250,-75.000000,2275.000000,25.000000,2325.000000,0.000000,"To final"};
+item31[] = {"Left_2nd",4,218,-75.000000,2350.000000,25.000000,2400.000000,0.000000,"Left 2nd"};
+item32[] = {"Tank",2,250,-75.000000,2425.000000,25.000000,2475.000000,0.000000,"Tank"};
+item33[] = {"At_final",4,218,-75.000000,2500.000000,25.000000,2550.000000,0.000000,"At final"};
+item34[] = {"End",1,250,-75.000000,2575.000000,25.000000,2625.000000,0.000000,"End"};
+item35[] = {"__st_target_down",4,218,-75.000000,1750.000000,25.000000,1800.000000,0.000000,"1st target" \n "down"};
+item36[] = {"To_2nd",2,250,-75.000000,1825.000000,25.000000,1875.000000,0.000000,"To 2nd"};
+item37[] = {"__nd_targets",2,250,-75.000000,2125.000000,25.000000,2175.000000,0.000000,"2nd targets"};
+item38[] = {"__nd_targets_dow",4,218,-75.000000,2200.000000,25.000000,2250.000000,0.000000,"2nd targets" \n "down"};
+item39[] = {"Left_start",4,218,-75.000000,1450.000000,25.000000,1500.000000,0.000000,"Left start"};
+item40[] = {"Interruption",2,250,-75.000000,1525.000000,25.000000,1575.000000,0.000000,"Interruption"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {3,4};
+link4[] = {4,5};
+link5[] = {4,17};
+link6[] = {5,6};
+link7[] = {6,7};
+link8[] = {6,19};
+link9[] = {7,8};
+link10[] = {8,9};
+link11[] = {9,10};
+link12[] = {10,21};
+link13[] = {11,12};
+link14[] = {12,23};
+link15[] = {13,14};
+link16[] = {14,15};
+link17[] = {15,16};
+link18[] = {16,39};
+link19[] = {17,18};
+link20[] = {18,5};
+link21[] = {19,20};
+link22[] = {20,7};
+link23[] = {21,22};
+link24[] = {22,11};
+link25[] = {23,24};
+link26[] = {24,13};
+link27[] = {25,26};
+link28[] = {26,35};
+link29[] = {27,28};
+link30[] = {28,29};
+link31[] = {29,37};
+link32[] = {30,31};
+link33[] = {31,32};
+link34[] = {32,33};
+link35[] = {33,34};
+link36[] = {35,36};
+link37[] = {36,27};
+link38[] = {37,38};
+link39[] = {38,30};
+link40[] = {39,40};
+link41[] = {40,25};
+globals[] = {25.000000,1,0,0,0,640,480,1,49,6316128,1,-325.825165,325.814209,2727.039307,2136.936523,1006,911,1};
+window[] = {2,-1,-1,-1,-1,980,100,1494,100,3,1024};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Mission Flow";
+  class States
+  {
+    /*%FSM<STATE "Mission_Flow">*/
+    class Mission_Flow
+    {
+      name = "Mission_Flow";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Mission_started">*/
+        class Mission_started
+        {
+          priority = 0.000000;
+          to="Intro";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"time > 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Intro">*/
+    class Intro
+    {
+      name = "Intro";
+      init = /*%FSM<STATEINIT""">*/"execVM ""intro.sqf"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Intro_ended">*/
+        class Intro_ended
+        {
+          priority = 0.000000;
+          to="Simple_movement";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_introEnded"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Simple_movement">*/
+    class Simple_movement
+    {
+      name = "Simple_movement";
+      init = /*%FSM<STATEINIT""">*/"private [""_taskIDD""];" \n
+       "_taskIDD = 129;" \n
+       "" \n
+       "// Add task" \n
+       """BIS_move1"" call BIS_fnc_missionTasks;" \n
+       "" \n
+       "[] spawn {" \n
+       "	scriptName ""missionFlow.fsm: simple movement"";" \n
+       "	" \n
+       "	sleep 0.5;" \n
+       "	" \n
+       "	// Replace selector" \n
+       "	deleteVehicle BIS_startSelector;" \n
+       "	BIS_startSelector = [markerPos ""BIS_move1"", ""incomplete""] call BIS_fnc_VRSpawnSelector;" \n
+       "	BIS_startSelector say3D ""Topic_Selection"";" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Tasks_closed">*/
+        class Tasks_closed
+        {
+          priority = 0.000000;
+          to="Open_tasks";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNull (findDisplay _taskIDD)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "At_marker">*/
+        class At_marker
+        {
+          priority = 0.000000;
+          to="Simple_shooting";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_lacey distance markerPos ""BIS_move1"" < 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Simple_shooting">*/
+    class Simple_shooting
+    {
+      name = "Simple_shooting";
+      init = /*%FSM<STATEINIT""">*/"[""BIS_move1"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+       """BIS_shoot1"" call BIS_fnc_missionTasks;" \n
+       "" \n
+       "// Delete icons" \n
+       "deleteVehicle BIS_startSelector;" \n
+       "" \n
+       "// Swap marker" \n
+       "[""BIS_startMarker"", ""ACTIVATE""] call BIS_markerControl;" \n
+       "" \n
+       "// Prevent player from moving" \n
+       "BIS_lacey setPos markerPos ""BIS_move1"";" \n
+       "[] call BIS_stopMoving;" \n
+       "" \n
+       "// Spawn cover objects" \n
+       "[] spawn {" \n
+       "	scriptName ""missionFlow.fsm: cover spawn"";" \n
+       "	" \n
+       "	[BIS_target1_cover, 0] call BIS_fnc_setHeight;" \n
+       "	BIS_target1_cover call BIS_fnc_VRSpawnEffect;" \n
+       "	" \n
+       "	sleep 0.25;" \n
+       "	" \n
+       "	[BIS_target2_cover, 0] call BIS_fnc_setHeight;" \n
+       "	BIS_target2_cover call BIS_fnc_VRSpawnEffect;" \n
+       "};" \n
+       "" \n
+       "[] spawn {" \n
+       "	scriptName ""missionFlow.fsm: simple shooting"";" \n
+       "	" \n
+       "	""20_Targets"" call BIS_fnc_missionConversations;" \n
+       "	" \n
+       "	private [""_conv""];" \n
+       "	_conv = ""25_Targets_Spawned"" spawn BIS_fnc_missionConversations;" \n
+       "	" \n
+       "	// Rearm player" \n
+       "	BIS_lacey addMagazines [""30Rnd_65x39_caseless_mag"", 4];" \n
+       "	reload BIS_lacey;" \n
+       "	BIS_hasAmmo = true;" \n
+       "	" \n
+       "	// Check if ammo depleted" \n
+       "	""BIS_targetsDown"" execFSM ""ammoControl.fsm"";" \n
+       "	" \n
+       "	// Create targets" \n
+       "	BIS_target1 = [markerPos ""BIS_target1"", ""Stand""] call BIS_createTarget;" \n
+       "	sleep 0.25;" \n
+       "	BIS_target2 = [markerPos ""BIS_target2"", ""Kneel""] call BIS_createTarget;" \n
+       "	" \n
+       "	waitUntil {scriptDone _conv};" \n
+       "	" \n
+       "	""30_Fire"" call BIS_fnc_missionConversations;" \n
+       "};" \n
+       "" \n
+       "[] spawn {" \n
+       "	scriptName ""missionFlow.fsm: music loop control"";" \n
+       "	" \n
+       "	1 fadeMusic 0;" \n
+       "	" \n
+       "	sleep 1;" \n
+       "	" \n
+       "	1 fadeMusic 0.05;" \n
+       "	playMusic ""LeadTrack01b_F_Bootcamp"";" \n
+       "	" \n
+       "	BIS_musicEH = addMusicEventHandler [" \n
+       "		""MusicStop""," \n
+       "		{" \n
+       "			if (!(BIS_endLoop)) then {" \n
+       "				// Loop track" \n
+       "				playMusic ""LeadTrack01b_F_Bootcamp"";" \n
+       "			} else {" \n
+       "				// End music" \n
+       "				removeMusicEventHandler [""MusicStop"", BIS_musicEH];" \n
+       "				BIS_musicEH = nil;" \n
+       "				" \n
+       "				5 fadeMusic 0.15;" \n
+       "				playMusic [""LeadTrack01_F_Bootcamp"", 58.6];" \n
+       "			};" \n
+       "		}" \n
+       "	];" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Sights_down">*/
+        class Sights_down
+        {
+          priority = 0.000000;
+          to="Pull_up_sights";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"currentMagazine BIS_lacey != """"" \n
+           "&&" \n
+           "cameraView != ""GUNNER"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Both_shot">*/
+        class Both_shot
+        {
+          priority = 0.000000;
+          to="Cardinal_points";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{" \n
+           "	alive _x" \n
+           "} count [" \n
+           "	missionNamespace getVariable [""BIS_target1"", BIS_adams]," \n
+           "	missionNamespace getVariable [""BIS_target2"", BIS_adams]" \n
+           "] == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Cardinal_points">*/
+    class Cardinal_points
+    {
+      name = "Cardinal_points";
+      init = /*%FSM<STATEINIT""">*/"playSound ""Topic_Selection"";" \n
+       "[""BIS_shoot1"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+       "" \n
+       "[] spawn {" \n
+       "	scriptName ""missionFlow.fsm: cardinal points"";" \n
+       "	" \n
+       "	sleep 1;" \n
+       "	" \n
+       "	""35_Compass_1"" call BIS_fnc_missionConversations;" \n
+       "	" \n
+       "	// Give player a compass" \n
+       "	BIS_lacey linkItem ""ItemCompass"";" \n
+       "	BIS_hasCompass = true;" \n
+       "	" \n
+       "	[" \n
+       "		[""Navigation"", ""Direction"", ""Compass_sub""]," \n
+       "		nil, nil," \n
+       "		10e10," \n
+       "		""BIS_compassOpened""," \n
+       "		true," \n
+       "		true" \n
+       "	] call BIS_fnc_advHint;" \n
+       "	" \n
+       "	""35_Compass_2"" call BIS_fnc_missionConversations;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Compass_opened">*/
+        class Compass_opened
+        {
+          priority = 0.000000;
+          to="Locate_target";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"visibleCompass"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Locate_target">*/
+    class Locate_target
+    {
+      name = "Locate_target";
+      init = /*%FSM<STATEINIT""">*/"BIS_compassOpened = true;" \n
+       "" \n
+       """BIS_target1"" call BIS_fnc_missionTasks;" \n
+       """40_First_Target"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Facing_1st_targe">*/
+        class Facing_1st_targe
+        {
+          priority = 0.000000;
+          to="Spawn_1st_target";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"direction BIS_lacey > 88" \n
+           "&&" \n
+           "direction BIS_lacey < 91" \n
+           "&&" \n
+           "visibleCompass"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Bearings">*/
+    class Bearings
+    {
+      name = "Bearings";
+      init = /*%FSM<STATEINIT""">*/"playSound ""Topic_Selection"";" \n
+       "[""BIS_target1"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+       "" \n
+       "private [""_bearings""];" \n
+       "_bearings = [] spawn {" \n
+       "	scriptName ""missionFlow.fsm: bearings"";" \n
+       "	" \n
+       "	sleep 1;" \n
+       "	" \n
+       "	[" \n
+       "		[""Navigation"", ""Direction"", ""Bearings_sub""]," \n
+       "		nil, nil," \n
+       "		10e10," \n
+       "		""BIS_targetsDown""," \n
+       "		true," \n
+       "		true" \n
+       "	] call BIS_fnc_advHint;" \n
+       "	" \n
+       "	""45_Bearings"" call BIS_fnc_missionConversations;" \n
+       "	" \n
+       "	""BIS_target2"" call BIS_fnc_missionTasks;" \n
+       "	""50_Second_Target"" spawn BIS_fnc_missionConversations;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Facing_2nd_targe">*/
+        class Facing_2nd_targe
+        {
+          priority = 0.000000;
+          to="Spawn_2nd_target";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"direction BIS_lacey > 218" \n
+           "&&" \n
+           "direction BIS_lacey < 221" \n
+           "&&" \n
+           "scriptDone _bearings" \n
+           "&&" \n
+           "visibleCompass"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "To_start">*/
+    class To_start
+    {
+      name = "To_start";
+      init = /*%FSM<STATEINIT""">*/"// Register all targets as down" \n
+       "BIS_targetsDown = true;" \n
+       "" \n
+       "[""BIS_target2"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+       "" \n
+       "// Swap marker" \n
+       "[""BIS_startMarker"", ""DEACTIVATE""] call BIS_markerControl;" \n
+       "" \n
+       "// Let player move" \n
+       "false call BIS_stopMoving;" \n
+       "" \n
+       "private [""_toStart""];" \n
+       "_toStart = [] spawn {" \n
+       "	scriptName ""missionFlow.fsm: to start"";" \n
+       "	" \n
+       "	sleep 1;" \n
+       "	" \n
+       "	""55_All_Down"" call BIS_fnc_missionConversations;" \n
+       "	" \n
+       "	// Remove ammo from player" \n
+       "	BIS_hasAmmo = false;" \n
+       "	BIS_lacey setVehicleAmmo 0;" \n
+       "	" \n
+       "	// Move Adams again" \n
+       "	[BIS_adamsFake, markerPos ""BIS_adams_pos2""] call BIS_moveObject;" \n
+       "	" \n
+       "	// Create starting position" \n
+       "	BIS_courseSelector = [markerPos ""BIS_prepare""] call BIS_fnc_VRSpawnSelector;" \n
+       "	BIS_courseSelector call BIS_fnc_VRSpawnEffect;" \n
+       "	[""BIS_courseMarker"", ""CREATE"", markerPos ""BIS_prepare""] call BIS_markerControl;" \n
+       "	" \n
+       "	sleep 1;" \n
+       "	" \n
+       "	// Give player a map" \n
+       "	BIS_lacey linkItem ""ItemMap"";" \n
+       "	BIS_hasMap = true;" \n
+       "	" \n
+       "	[" \n
+       "		[""Navigation"", ""Waypoint""]," \n
+       "		nil, nil," \n
+       "		10e10," \n
+       "		""BIS_regrouped""," \n
+       "		true," \n
+       "		true" \n
+       "	] call BIS_fnc_advHint;" \n
+       "	" \n
+       "	""BIS_prepare"" call BIS_fnc_missionTasks;" \n
+       "	" \n
+       "	private [""_conv""];" \n
+       "	_conv = ""60_To_Start"" spawn BIS_fnc_missionConversations;" \n
+       "	" \n
+       "	sleep 0.5;" \n
+       "	" \n
+       "	// Replace selector" \n
+       "	deleteVehicle BIS_courseSelector;" \n
+       "	BIS_courseSelector = [markerPos ""BIS_prepare"", ""incomplete""] call BIS_fnc_VRSpawnSelector;" \n
+       "	BIS_courseSelector say3D ""Topic_Selection"";" \n
+       "	" \n
+       "	waitUntil {scriptDone _conv};" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "At_start">*/
+        class At_start
+        {
+          priority = 0.000000;
+          to="Course";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"scriptDone _toStart" \n
+           "&&" \n
+           "BIS_lacey distance markerPos ""BIS_prepare"" < 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Course">*/
+    class Course
+    {
+      name = "Course";
+      init = /*%FSM<STATEINIT""">*/"deleteVehicle BIS_courseSelector;" \n
+       "" \n
+       "[""BIS_prepare"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+       "" \n
+       "BIS_regrouped = true;" \n
+       "" \n
+       "// Swap marker" \n
+       "[""BIS_courseMarker"", ""ACTIVATE""] call BIS_markerControl;" \n
+       "" \n
+       "// Stop player moving" \n
+       "BIS_lacey setPos markerPos ""BIS_prepare"";" \n
+       "[] call BIS_stopMoving;" \n
+       "" \n
+       "private [""_course""];" \n
+       "_course = [] spawn {" \n
+       "	scriptName ""missionFlow.fsm: course"";" \n
+       "	" \n
+       "	// Spawn selectors" \n
+       "	{" \n
+       "		private [""_var"", ""_selector""];" \n
+       "		_var = ""BIS_course"" + str _x;" \n
+       "		_selector = [markerPos _var] call BIS_fnc_VRSpawnSelector;" \n
+       "		_selector call BIS_fnc_VRSpawnEffect;" \n
+       "		" \n
+       "		missionNamespace setVariable [_var, _selector];" \n
+       "		" \n
+       "		if (_forEachIndex == 2) then {" \n
+       "			// Create final marker" \n
+       "			private [""_marker""];" \n
+       "			_marker = createVehicle [""VR_Area_01_circle_4_yellow_F"", [10,10,10], [], 0, ""NONE""];" \n
+       "			_marker setPos markerPos _var;" \n
+       "		};" \n
+       "		" \n
+       "		sleep 0.25;" \n
+       "	} forEach [1,2,3];" \n
+       "	" \n
+       "	""d05_Course"" call BIS_fnc_missionConversations;" \n
+       "	" \n
+       "	// Let player move" \n
+       "	[""BIS_courseMarker"", ""DEACTIVATE""] call BIS_markerControl;" \n
+       "	false call BIS_stopMoving;" \n
+       "	" \n
+       "	// Add tasks" \n
+       "	{_x call BIS_fnc_missionTasks} forEach [""BIS_course1"", ""BIS_course2"", ""BIS_course3""];" \n
+       "	" \n
+       "	// Add ammo" \n
+       "	BIS_lacey addMagazines [""30Rnd_65x39_caseless_mag"", 4];" \n
+       "	reload BIS_lacey;" \n
+       "	BIS_hasAmmo = true;" \n
+       "	" \n
+       "	// Check if ammo is depleted" \n
+       "	""BIS_courseCompleted"" execFSM ""ammoControl.fsm"";" \n
+       "	" \n
+       "	sleep 0.5;" \n
+       "	" \n
+       "	// Replace first selector" \n
+       "	deleteVehicle BIS_course1;" \n
+       "	BIS_course1 = [markerPos ""BIS_course1"", ""incomplete""] call BIS_fnc_VRSpawnSelector;" \n
+       "	BIS_course1 say3D ""Topic_Selection"";" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Left_start">*/
+        class Left_start
+        {
+          priority = 0.000000;
+          to="Interruption";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"scriptDone _course" \n
+           "&&" \n
+           "BIS_lacey distance markerPos ""BIS_course1"" < 55"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Open_tasks">*/
+    class Open_tasks
+    {
+      name = "Open_tasks";
+      init = /*%FSM<STATEINIT""">*/"// Show hint" \n
+       "[" \n
+       "	[""Navigation"", ""Tasks"", ""Tasks_sub""]," \n
+       "	nil, nil," \n
+       "	10e10," \n
+       "	format [" \n
+       "		""!(isNull (findDisplay %1))""," \n
+       "		_taskIDD" \n
+       "	]," \n
+       "	true," \n
+       "	true" \n
+       "] call BIS_fnc_advHint;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "At_marker">*/
+        class At_marker
+        {
+          priority = 0.000000;
+          to="Simple_shooting";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_lacey distance markerPos ""BIS_move1"" < 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Pull_up_sights">*/
+    class Pull_up_sights
+    {
+      name = "Pull_up_sights";
+      init = /*%FSM<STATEINIT""">*/"[" \n
+       "	[""Weapons_basic"", ""Scopes"", ""Optics_sub""]," \n
+       "	nil, nil," \n
+       "	10e10," \n
+       "	""cameraView == 'GUNNER'""," \n
+       "	true," \n
+       "	true" \n
+       "] call BIS_fnc_advHint;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Both_shot">*/
+        class Both_shot
+        {
+          priority = 0.000000;
+          to="Cardinal_points";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{" \n
+           "	alive _x" \n
+           "} count [" \n
+           "	missionNamespace getVariable [""BIS_target1"", BIS_adams]," \n
+           "	missionNamespace getVariable [""BIS_target2"", BIS_adams]" \n
+           "] == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Spawn_1st_target">*/
+    class Spawn_1st_target
+    {
+      name = "Spawn_1st_target";
+      init = /*%FSM<STATEINIT""">*/"// Create target" \n
+       "private [""_target""];" \n
+       "_target = ([BIS_lacey, 20, 90] call BIS_fnc_relPos) call BIS_createTarget;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Target_hit">*/
+        class Target_hit
+        {
+          priority = 0.000000;
+          to="Bearings";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(alive _target)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Spawn_2nd_target">*/
+    class Spawn_2nd_target
+    {
+      name = "Spawn_2nd_target";
+      init = /*%FSM<STATEINIT""">*/"// Create second target" \n
+       "private [""_target""];" \n
+       "_target = ([BIS_lacey, 20, 220] call BIS_fnc_relPos) call BIS_createTarget;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "__nd_target_hit">*/
+        class __nd_target_hit
+        {
+          priority = 0.000000;
+          to="To_start";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(alive _target)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "__st_targets">*/
+    class __st_targets
+    {
+      name = "__st_targets";
+      init = /*%FSM<STATEINIT""">*/"deleteVehicle BIS_course1;" \n
+       "playSound ""Topic_Selection"";" \n
+       "" \n
+       "[""BIS_course1"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+       "" \n
+       "[] spawn {" \n
+       "	scriptName ""missionFlow.fsm: 1st targets"";" \n
+       "	" \n
+       "	sleep 0.25;" \n
+       "	" \n
+       "	// Spawn target" \n
+       "	BIS_1stTarget = ([BIS_lacey, 10, direction BIS_lacey] call BIS_fnc_relPos) call BIS_createTarget;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "__st_target_down">*/
+        class __st_target_down
+        {
+          priority = 0.000000;
+          to="To_2nd";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!(alive (missionNamespace getVariable [""BIS_1stTarget"", BIS_adams]))"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Helicopter">*/
+    class Helicopter
+    {
+      name = "Helicopter";
+      init = /*%FSM<STATEINIT""">*/"// Spawn fake helicopter" \n
+       "[] spawn BIS_flight;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "At_2nd">*/
+        class At_2nd
+        {
+          priority = 0.000000;
+          to="__nd_targets";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_lacey distance markerPos ""BIS_course2"" < 5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "To_final">*/
+    class To_final
+    {
+      name = "To_final";
+      init = /*%FSM<STATEINIT""">*/"[""BIS_course3"", ""CURRENT""] call BIS_fnc_missionTasks;" \n
+       "" \n
+       "[] spawn {" \n
+       "	scriptName ""missionFlow.fsm: to final"";" \n
+       "	" \n
+       "	sleep 0.5;" \n
+       "	" \n
+       "	// Replace final selector" \n
+       "	deleteVehicle BIS_course3;" \n
+       "	BIS_course3 = [markerPos ""BIS_course3"", ""exit""] call BIS_fnc_VRSpawnSelector;" \n
+       "	BIS_course3 say3D ""Topic_Selection"";" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Left_2nd">*/
+        class Left_2nd
+        {
+          priority = 0.000000;
+          to="Tank";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_lacey distance markerPos ""BIS_course3"" < 65"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Tank">*/
+    class Tank
+    {
+      name = "Tank";
+      init = /*%FSM<STATEINIT""">*/"// Ensure helicopter sequence is terminated" \n
+       "BIS_terminateHeli = true;" \n
+       "" \n
+       "[] spawn {" \n
+       "	scriptName ""missionFlow.fsm: tank"";" \n
+       "	" \n
+       "	// Spawn tank" \n
+       "	private [""_tank""];" \n
+       "	_tank = createVehicle [""B_MBT_01_TUSK_F"", [10,10,0], [], 0, ""NONE""];" \n
+       "	_tank setDir markerDir ""BIS_tankPos"";" \n
+       "	_tank lock true;" \n
+       "	_tank engineOn true;" \n
+       "	" \n
+       "	// Spawn Adams" \n
+       "	private [""_adamsGroup"", ""_fakeAdams""];" \n
+       "	_adamsGroup = createGroup WEST;" \n
+       "	_fakeAdams = _adamsGroup createUnit [""B_Soldier_TL_F"", [10,10,10], [], 0, ""NONE""];" \n
+       "	_fakeAdams addUniform ""U_B_Soldier_VR"";" \n
+       "	_fakeAdams setIdentity ""Bootcamp_B_Adams"";" \n
+       "	" \n
+       "	_fakeAdams assignAsCommander _tank;" \n
+       "	_fakeAdams moveInCommander _tank;" \n
+       "	" \n
+       "	_fakeAdams setBehaviour ""CARELESS"";" \n
+       "	" \n
+       "	sleep 3;" \n
+       "	" \n
+       "	// Move tank" \n
+       "	_tank setPos markerPos ""BIS_tankPos"";" \n
+       "	_tank setDir markerDir ""BIS_tankPos"";" \n
+       "	playSound [""Spawn"", true];" \n
+       "	" \n
+       "	sleep 1;" \n
+       "	" \n
+       "	// Spawn gunner" \n
+       "	private [""_gunnerGroup"", ""_gunner""];" \n
+       "	_gunnerGroup = createGroup WEST;" \n
+       "	_gunner = _gunnerGroup createUnit [""B_crew_F"", [10,10,10], [], 0, ""NONE""];" \n
+       "	_gunner addUniform ""U_B_Soldier_VR"";" \n
+       "	" \n
+       "	_gunner assignAsGunner _tank;" \n
+       "	_gunner moveInGunner _tank;" \n
+       "	" \n
+       "	// Turn to face the target" \n
+       "	_gunner doWatch markerPos ""BIS_target"";" \n
+       "	" \n
+       "	sleep 3;" \n
+       "	" \n
+       "	// Fire" \n
+       "	_tank fire ""cannon_105mm"";" \n
+       "	" \n
+       "	sleep 0.5;" \n
+       "	" \n
+       "	""d15_Deaf"" spawn BIS_fnc_missionConversations;" \n
+       "	" \n
+       "	sleep 2.5;" \n
+       "	" \n
+       "	// Delete" \n
+       "	{_x hideObject true; deleteVehicle _x} forEach [_fakeAdams, _gunner];" \n
+       "	{deleteGroup _x} forEach [_adamsGroup, _gunnerGroup];" \n
+       "	deleteVehicle _tank;" \n
+       "	" \n
+       "	playSound [""Spawn"", true];" \n
+       "	" \n
+       "	// Move Adams" \n
+       "	BIS_adams_logic setPos markerPos ""BIS_adams_pos3"";" \n
+       "	" \n
+       "	sleep 1;" \n
+       "	" \n
+       "	// Make him reappear" \n
+       "	BIS_adamsFake call BIS_fnc_VRSpawnEffect;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "At_final">*/
+        class At_final
+        {
+          priority = 0.000000;
+          to="End";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_lacey distance markerPos ""BIS_course3"" < 5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "End">*/
+    class End
+    {
+      name = "End";
+      init = /*%FSM<STATEINIT""">*/"// Register the course was finished" \n
+       "BIS_courseCompleted = true;" \n
+       "" \n
+       "deleteVehicle BIS_course3;" \n
+       "playSound ""Topic_Selection"";" \n
+       "" \n
+       "[""BIS_course3"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+       "" \n
+       "// Remove ammo from player" \n
+       "BIS_hasAmmo = false;" \n
+       "BIS_lacey setVehicleAmmo 0;" \n
+       "" \n
+       "[] spawn {" \n
+       "	scriptName ""missionFlow.fsm: end"";" \n
+       "	" \n
+       "	""d20_Shutdown"" call BIS_fnc_missionConversations;" \n
+       "	" \n
+       "	sleep 2.5;" \n
+       "	" \n
+       "	2 fadeMusic 0;" \n
+       "	" \n
+       "	// Tiles" \n
+       "	enableEnvironment false;" \n
+       "	playSound [""vr_shutdown"", true];" \n
+       "	[""#(argb,8,8,3)color(0,0,0,1)"", [safeZoneX, safeZoneY, safeZoneW, safeZoneH], [5,5], 2, 1] spawn BIS_fnc_textTiles;" \n
+       "	" \n
+       "	sleep 2;" \n
+       "	" \n
+       "	titleCut ["""", ""BLACK FADED"", 10e10];" \n
+       "	" \n
+       "	clearRadio;" \n
+       "	" \n
+       "	BIS_lacey allowDamage false;" \n
+       "	BIS_lacey setDamage 0;" \n
+       "	BIS_lacey setCaptive true;" \n
+       "	BIS_lacey switchMove ""HubSpectator_stand"";" \n
+       "	" \n
+       "	sleep 0.5;" \n
+       "	" \n
+       "	// Static" \n
+       "	titleRsc [""RscStatic"", ""PLAIN""];" \n
+       "	" \n
+       "	sleep 3;" \n
+       "	" \n
+       "	endMission ""BOOT_m02_1"";" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "To_2nd">*/
+    class To_2nd
+    {
+      name = "To_2nd";
+      init = /*%FSM<STATEINIT""">*/"[""BIS_course2"", ""CURRENT""] call BIS_fnc_missionTasks;" \n
+       "" \n
+       "// Hide Adams" \n
+       "[BIS_adamsFake, true] call BIS_fnc_VRSpawnEffect;" \n
+       "" \n
+       "// End music loop" \n
+       "BIS_endLoop = true;" \n
+       "" \n
+       "[] spawn {" \n
+       "	scriptName ""missionFlow.fsm: to 2nd"";" \n
+       "	" \n
+       "	sleep 0.5;" \n
+       "	" \n
+       "	// Replace next selector" \n
+       "	deleteVehicle BIS_course2;" \n
+       "	BIS_course2 = [markerPos ""BIS_course2"", ""incomplete""] call BIS_fnc_VRSpawnSelector;" \n
+       "	BIS_course2 say3D ""Topic_Selection"";" \n
+       "	" \n
+       "	sleep 0.5;" \n
+       "	" \n
+       "	// Move him upwards" \n
+       "	[BIS_adams_logic, 1000] call BIS_fnc_setHeight;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Left_1st">*/
+        class Left_1st
+        {
+          priority = 0.000000;
+          to="Helicopter";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_lacey distance markerPos ""BIS_course2"" < 75"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "__nd_targets">*/
+    class __nd_targets
+    {
+      name = "__nd_targets";
+      init = /*%FSM<STATEINIT""">*/"deleteVehicle BIS_course2;" \n
+       "playSound ""Topic_Selection"";" \n
+       "" \n
+       "[""BIS_course2"", ""SUCCEEDED""] call BIS_fnc_missionTasks;" \n
+       "" \n
+       "[] spawn {" \n
+       "	scriptName ""missionFlow.fsm: 2nd targets"";" \n
+       "	" \n
+       "	sleep 0.25;" \n
+       "	" \n
+       "	private [""_dir""];" \n
+       "	_dir = direction BIS_lacey;" \n
+       "	" \n
+       "	BIS_2ndTarget1 = ([BIS_lacey, 10, _dir - 10] call BIS_fnc_relPos) call BIS_createTarget;" \n
+       "	sleep 0.25;" \n
+       "	BIS_2ndTarget2 = ([BIS_lacey, 10, _dir + 10] call BIS_fnc_relPos) call BIS_createTarget;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "__nd_targets_dow">*/
+        class __nd_targets_dow
+        {
+          priority = 0.000000;
+          to="To_final";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{" \n
+           "	alive _x" \n
+           "} count [" \n
+           "	missionNamespace getVariable [""BIS_2ndTarget1"", BIS_adams]," \n
+           "	missionNamespace getVariable [""BIS_2ndTarget2"", BIS_adams]" \n
+           "] == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Interruption">*/
+    class Interruption
+    {
+      name = "Interruption";
+      init = /*%FSM<STATEINIT""">*/"""65_Interruption"" spawn BIS_fnc_missionConversations;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "At_1st_selector">*/
+        class At_1st_selector
+        {
+          priority = 0.000000;
+          to="__st_targets";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"BIS_lacey distance markerPos ""BIS_course1"" < 5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Mission_Flow";
+  finalStates[] =
+  {
+    "End",
+  };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,39 @@
+class CfgPatches
+{
+	class A3_Modules_F_Effects
+	{
+		units[]=
+		{
+			
+			"ModuleMPType_F",
+			"LogicSectorBase_F",
+			"LogicSectorPreview100m_F",
+			"LogicSectorPreview200m_F",
+			"LogicSectorPreview500m_F",
+			"LogicSectorUnknown100m_F",
+			"LogicSectorUnknown200m_F",
+			"LogicSectorUnknown500m_F",
+			"LogicSectorEast100m_F",
+			"LogicSectorEast200m_F",
+			"LogicSectorEast500m_F",
+			"LogicSectorWest100m_F",
+			"LogicSectorWest200m_F",
+			"LogicSectorWest500m_F",
+			"LogicSectorGuer100m_F",
+			"LogicSectorGuer200m_F",
+			"LogicSectorGuer500m_F",
+			"LogicSectorCiv100m_F",
+			"LogicSectorCiv200m_F",
+			"LogicSectorCiv500m_F",
+			"ModuleEffectsPlankton_F",
+			"ModuleEffectsBubbles_F",
+			"ModuleEffectsShells_F",
+			"ModuleEffectsSmoke_F",
+			"ModuleEffectsFire_F",
+			ModuleSmoke_F,ModuleChemlight_F,ModuleTracers_F,BIS_Effect_FilmGrain,BIS_Effect_Day,BIS_Effect_MovieNight,BIS_Effect_Sepia
+		};
+		weapons[]={};
+		requiredVersion=0.1;
+		requiredAddons[]={"A3_Modules_F"};
+	};
+};

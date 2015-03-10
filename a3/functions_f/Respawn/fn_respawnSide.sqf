@@ -1,0 +1,1 @@
+#include "fn_respawnGroup.sqf"
